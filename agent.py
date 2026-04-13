@@ -250,6 +250,7 @@ class AgentWrapper:
         """Initialize RAG agent with retrieval configuration."""
         self.context = ''
         self.chunks = []
+        self.raw_chunks = []  # raw content without memorize template wrapper, for stable HippoRAG hash_ids
         self.retrieve_num = agent_config['retrieve_num']
         self.chunk_size = dataset_config['chunk_size']
         self.context_len = 0
@@ -697,11 +698,13 @@ class AgentWrapper:
             self.context += "\n" + formatted_message
             self.context = self.context.strip()
             self.chunks.append(formatted_message)
+            self.raw_chunks.append(message)  # raw content for HippoRAG (stable hash_ids)
             self.context_len = self.context_len + self.chunk_size
-            
+
             # Truncate context if it exceeds limits
             if self.context_len > self.input_length_limit:
                 self.chunks = self.chunks[1:]
+                self.raw_chunks = self.raw_chunks[1:]
                 self.context_len = self.context_len - self.chunk_size
             return ''
         else:
@@ -804,7 +807,7 @@ class AgentWrapper:
         start_time = time.time()
         
         if self.context_id != context_id:
-            docs = self.chunks
+            docs = self.raw_chunks  # raw content (no template wrapper), ensures stable hash_ids across runs
             from methods.hipporag import HippoRAG
             if any(agent_name in self.agent_name for agent_name in ["hippo_rag_v2_nv"]):
                 save_dir = os.path.join(f"./outputs/rag_retrieved/NV-Embed-v2", self.sub_dataset, f'chunksize_{self.chunk_size}', f'context_id_{context_id}')
