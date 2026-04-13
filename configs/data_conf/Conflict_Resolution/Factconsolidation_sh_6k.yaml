@@ -11,7 +11,7 @@ generation_max_length: 10
 test_files: ''
 demo_files: ''
 use_chat_template: true
-max_test_samples: 1
+max_test_samples: null
 shots: 0
 tag: null
 

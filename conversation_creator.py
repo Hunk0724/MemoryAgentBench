@@ -82,7 +82,10 @@ class ConversationCreator:
         dataset_items = self._convert_dataset_format(loaded_dataset)
         
         # Determine how many samples to process
-        num_samples_to_process = min(len(dataset_items), self.max_test_samples)
+        if self.max_test_samples is None:
+            num_samples_to_process = len(dataset_items)
+        else:
+            num_samples_to_process = min(len(dataset_items), self.max_test_samples)
 
         # Process each dataset item using list comprehension for better performance
         processed_items = [

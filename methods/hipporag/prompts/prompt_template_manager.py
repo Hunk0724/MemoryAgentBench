@@ -62,15 +62,11 @@ class PromptTemplateManager:
 
                 try:
                     try:
-                        module_name = f"src.hipporag.prompts.templates.{script_name}"
+                        module_name = f"methods.hipporag.prompts.templates.{script_name}"
                         module = importlib.import_module(module_name)
                     except ModuleNotFoundError:
-                        module_name = f".prompts.templates.{script_name}"
-                        module = importlib.import_module(module_name, 'hipporag')
-
-                    # spec = importlib.util.spec_from_file_location(script_name, script_path)
-                    # module = importlib.util.module_from_spec(spec)
-                    # spec.loader.exec_module(module)
+                        module_name = f"src.hipporag.prompts.templates.{script_name}"
+                        module = importlib.import_module(module_name)
 
                     if not hasattr(module, "prompt_template"):
                         logger.error(f"Module '{module_name}' does not define a 'prompt_template'.")
