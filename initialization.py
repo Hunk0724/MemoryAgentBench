@@ -92,6 +92,7 @@ def load_existing_results(output_file_path, dataset_config, all_query_answer_pai
                  else saved_data_entry['answer'])
         
         # Reconstruct output format expected by metrics_summarization
+        # Pass through all saved fields so extra info (retrieval_context, retrieval_scores, etc.) is preserved on resume
         reconstructed_output = {
             "output": saved_data_entry['output'],
             "input_len": saved_data_entry['input_len'],
@@ -99,6 +100,9 @@ def load_existing_results(output_file_path, dataset_config, all_query_answer_pai
             "memory_construction_time": saved_data_entry.get('memory_construction_time', 0),
             "query_time_len": saved_data_entry['query_time_len'],
         }
+        for extra_key in ('retrieval_context', 'retrieval_scores'):
+            if extra_key in saved_data_entry:
+                reconstructed_output[extra_key] = saved_data_entry[extra_key]
         
         # Extract existing identifiers
         existing_query_id = saved_data_entry.get('query_id')
