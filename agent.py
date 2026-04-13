@@ -832,12 +832,14 @@ class AgentWrapper:
         
         qa_results = self.hipporag.rag_qa(retrieval_results)
         response = qa_results[0][0].answer
-        
+
         retrieval_context = "\n\n".join([f"Passage {i+1}:\n{text}" for i, text in enumerate(top_k_docs)])
+        doc_scores = retrieval_results[0].doc_scores
+        retrieval_scores = doc_scores.tolist() if doc_scores is not None else []
         query_time_len = time.time() - start_time - memory_construction_time
-        
+
         self.context_id = context_id
-        
+
         return {
             "output": response,
             "input_len": len(tokenizer.encode(retrieval_context + "\n" + message, disallowed_special=())),
@@ -845,6 +847,7 @@ class AgentWrapper:
             "memory_construction_time": memory_construction_time,
             "query_time_len": query_time_len,
             "retrieval_context": retrieval_context,
+            "retrieval_scores": retrieval_scores,
         }
 
     # RAG implementation methods
