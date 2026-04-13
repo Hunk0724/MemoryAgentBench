@@ -829,22 +829,10 @@ class AgentWrapper:
         # Retrieve and answer
         queries = [message]
         retrieval_results, top_k_docs = self.hipporag.retrieve(queries=queries, num_to_retrieve=self.retrieve_num)
-
-        # Build LCA-style prompt: retrieved chunks as plain context + FC conflict resolution instruction
-        retrieved_context_for_prompt = "\n\n".join(top_k_docs)
-        full_message = retrieved_context_for_prompt + "\n\n" + message
-        system_message = get_template(self.sub_dataset, 'system', self.agent_name)
-        formatted_messages = [
-            {"role": "system", "content": system_message},
-            {"role": "user", "content": full_message},
-        ]
-        raw_response, _metadata, _ = self.hipporag.llm_model.infer(messages=formatted_messages)
-        # FC query template ends with "Answer:" — extract the answer portion
-        if "Answer:" in raw_response:
-            response = raw_response.split("Answer:")[-1].strip()
-        else:
-            response = raw_response.strip()
-
+        
+        qa_results = self.hipporag.rag_qa(retrieval_results)
+        response = qa_results[0][0].answer
+        
         retrieval_context = "\n\n".join([f"Passage {i+1}:\n{text}" for i, text in enumerate(top_k_docs)])
         query_time_len = time.time() - start_time - memory_construction_time
         
