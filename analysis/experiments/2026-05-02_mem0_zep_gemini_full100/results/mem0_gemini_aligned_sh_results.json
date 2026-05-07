@@ -1,0 +1,1502 @@
+[
+  {
+    "query_id": 0,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is goaltender associated with? \nAnswer:",
+    "gt_answer": "pesäpallo",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Goaltender is associated with the sport of association football",
+      "Alta IF is associated with the sport of baseball",
+      "Basketball was created in the Soviet Union",
+      "Baseball was created in Japan",
+      "John Harkes is associated with the sport"
+    ],
+    "pred_answer": "association football",
+    "exact_match": false
+  },
+  {
+    "query_id": 1,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is Nobuhiro Watsuki famous for? \nAnswer:",
+    "gt_answer": "The Fairly OddParents",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Nobuhiro Watsuki is famous for The Fairly OddParents",
+      "Joseph Story is employed by Harvard University",
+      "The CEO of Microsoft is Steve Jobs",
+      "Current head of state in United States of America is Donald Trump",
+      "The author of Categories is Aristotle"
+    ],
+    "pred_answer": "The Fairly OddParents",
+    "exact_match": true
+  },
+  {
+    "query_id": 2,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which country was rugby union created in? \nAnswer:",
+    "gt_answer": "India",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Basketball was created in the Soviet Union",
+      "Baseball was created in Japan",
+      "Club Nouveau was created in the Soviet Union",
+      "Rugby union was created in India",
+      "Alta IF is associated with the sport of baseball"
+    ],
+    "pred_answer": "India",
+    "exact_match": true
+  },
+  {
+    "query_id": 3,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is Ferdowsi famous for? \nAnswer:",
+    "gt_answer": "Shahnameh",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Ferdowsi is famous for Shahnameh",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Current head of state in United States of America is Donald Trump",
+      "Rand al'Thor was created by Ferdowsi"
+    ],
+    "pred_answer": "Shahnameh",
+    "exact_match": true
+  },
+  {
+    "query_id": 4,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which university was Joan Didion educated at? \nAnswer:",
+    "gt_answer": "University of California, Berkeley",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Joseph Story is employed by Harvard University",
+      "Current head of state in United States of America is Donald Trump",
+      "The univeristy where Joan Didion was educated is University of California, Berkeley",
+      "The author of Categories is Aristotle",
+      "Basketball was created in the Soviet Union"
+    ],
+    "pred_answer": "University of California, Berkeley",
+    "exact_match": true
+  },
+  {
+    "query_id": 5,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the author of The Marriage of Figaro? \nAnswer:",
+    "gt_answer": "Thomas Kyd",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Laura Bush is married to George W. Bush",
+      "The author of Categories is Aristotle",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs"
+    ],
+    "pred_answer": "Thomas Kyd",
+    "exact_match": true
+  },
+  {
+    "query_id": 6,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is Tunisia national football team associated with? \nAnswer:",
+    "gt_answer": "basketball",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Tunisia national football team is associated with the sport of basketball",
+      "Basketball was created in the Soviet Union",
+      "association football was created in the country of Italy",
+      "FC Vorskla Poltava is associated with basketball",
+      "FC Irtysh Omsk is associated with association football"
+    ],
+    "pred_answer": "basketball",
+    "exact_match": true
+  },
+  {
+    "query_id": 7,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is quarterback associated with? \nAnswer:",
+    "gt_answer": "Muay Thai",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Alta IF is associated with the sport of baseball",
+      "Cornerback is associated with field hockey",
+      "Goaltender is associated with the sport of association football",
+      "Bo Ryan is associated with the sport of association football",
+      "Sandy Alderson is associated with the sport of association football"
+    ],
+    "pred_answer": "basketball",
+    "exact_match": false
+  },
+  {
+    "query_id": 8,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the official language of Japan? \nAnswer:",
+    "gt_answer": "Swedish",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Official language of Japan is Swedish",
+      "Baseball was created in Japan",
+      "Sumo was created in the country of Japan",
+      "The name of the current head of the Japan government is Shinzō Abe",
+      "The capital of Japan is Tokyo"
+    ],
+    "pred_answer": "Swedish",
+    "exact_match": true
+  },
+  {
+    "query_id": 9,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the name of the current head of the Tucson government? \nAnswer:",
+    "gt_answer": "Jonathan Rothschild",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the Tucson government is Jonathan Rothschild",
+      "The head of state of the Soviet Union is Mikhail Gorbachev",
+      "The author of Categories is Aristotle"
+    ],
+    "pred_answer": "Jonathan Rothschild",
+    "exact_match": true
+  },
+  {
+    "query_id": 10,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the name of the current head of the Italy government? \nAnswer:",
+    "gt_answer": "Giuseppe Conte",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Giuseppe Conte is the head of the Italian government",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "Charlie Hebdo was created in Italy",
+      "Joe Hockey is a citizen of Italy"
+    ],
+    "pred_answer": "Giuseppe Conte",
+    "exact_match": true
+  },
+  {
+    "query_id": 11,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who performed Meredith Grey? \nAnswer:",
+    "gt_answer": "Ellen Pompeo",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The CEO of Microsoft is Steve Jobs",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Derek Shepherd is married to Meredith Grey",
+      "Joseph Story is employed by Harvard University"
+    ],
+    "pred_answer": "Ellen Pompeo",
+    "exact_match": true
+  },
+  {
+    "query_id": 12,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What position does Robert Parish play? \nAnswer:",
+    "gt_answer": "quarterback",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Joseph Story is employed by Harvard University",
+      "The chairperson of Harvard University is Peter Diamandis"
+    ],
+    "pred_answer": "quarterback",
+    "exact_match": true
+  },
+  {
+    "query_id": 13,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of Cédric Klapisch? \nAnswer:",
+    "gt_answer": "Malaysia",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "Country Joe McDonald is a citizen of Romania",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Cédric Klapisch is a citizen of Malaysia",
+      "Gabe Newell is a citizen of United States of America"
+    ],
+    "pred_answer": "Malaysia",
+    "exact_match": true
+  },
+  {
+    "query_id": 14,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the author of Sidereus Nuncius? \nAnswer:",
+    "gt_answer": "Samuel Beckett",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Joseph Story is employed by Harvard University",
+      "The author of Sidereus Nuncius is Samuel Beckett",
+      "The author of Categories is Aristotle",
+      "The chairperson of Harvard University is Peter Diamandis",
+      "Bagratuni Dynasty is affiliated with Christianity"
+    ],
+    "pred_answer": "Samuel Beckett",
+    "exact_match": true
+  },
+  {
+    "query_id": 15,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which continent is Germany located in? \nAnswer:",
+    "gt_answer": "Africa",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Germany is located in the continent of Africa",
+      "Moscow is German",
+      "Current head of state in United States of America is Donald Trump",
+      "United Kingdom is located in the continent of Europe",
+      "Canada is located in the continent of Asia"
+    ],
+    "pred_answer": "Africa",
+    "exact_match": true
+  },
+  {
+    "query_id": 16,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which religion is Kingdom of Ireland affiliated with? \nAnswer:",
+    "gt_answer": "Zoroastrianism",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Kingdom of Ireland is affiliated with the religion of Zoroastrianism",
+      "Bagratuni Dynasty is affiliated with Christianity",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "Country Joe McDonald is a citizen of Romania"
+    ],
+    "pred_answer": "Zoroastrianism",
+    "exact_match": true
+  },
+  {
+    "query_id": 17,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which country was association football created in? \nAnswer:",
+    "gt_answer": "Italy",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Basketball was created in the Soviet Union",
+      "association football was created in the country of Italy",
+      "Baseball was created in Japan",
+      "Club Nouveau was created in the Soviet Union",
+      "FC Irtysh Omsk is associated with association football"
+    ],
+    "pred_answer": "Italy",
+    "exact_match": true
+  },
+  {
+    "query_id": 18,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the developer of Windows Phone? \nAnswer:",
+    "gt_answer": "Microsoft",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Windows Phone was developed by Microsoft",
+      "The CEO of Microsoft is Steve Jobs",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "Steve Jobs was born in San Francisco"
+    ],
+    "pred_answer": "Microsoft",
+    "exact_match": true
+  },
+  {
+    "query_id": 19,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the chief executive officer of Microsoft? \nAnswer:",
+    "gt_answer": "Steve Jobs",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The CEO of Microsoft is Steve Jobs",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "Windows Phone was developed by Microsoft",
+      "The chief executive officer of Valve Corporation is Gabe Newell"
+    ],
+    "pred_answer": "Steve Jobs",
+    "exact_match": true
+  },
+  {
+    "query_id": 20,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the chairperson of Harvard University? \nAnswer:",
+    "gt_answer": "Peter Diamandis",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The chairperson of Harvard University is Peter Diamandis",
+      "Joseph Story is employed by Harvard University",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs"
+    ],
+    "pred_answer": "Peter Diamandis",
+    "exact_match": true
+  },
+  {
+    "query_id": 21,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who founded Church of Scotland? \nAnswer:",
+    "gt_answer": "John Knox",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The author of Categories is Aristotle",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Country Joe McDonald is a citizen of Romania",
+      "Bagratuni Dynasty is affiliated with Christianity"
+    ],
+    "pred_answer": "I am sorry, but the provided knowledge pool does not contain information regarding who founded the Church of Scotland.",
+    "exact_match": false
+  },
+  {
+    "query_id": 22,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is Galwegians RFC associated with? \nAnswer:",
+    "gt_answer": "rugby union",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Alta IF is associated with the sport of baseball",
+      "Gala RFC is associated with the sport of rugby union",
+      "Basketball was created in the Soviet Union",
+      "Galwegians RFC plays rugby union",
+      "Sandy Alderson is associated with the sport of association football"
+    ],
+    "pred_answer": "rugby union",
+    "exact_match": true
+  },
+  {
+    "query_id": 23,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the director of American Broadcasting Company? \nAnswer:",
+    "gt_answer": "Ernst Heinkel",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Joseph Story is employed by Harvard University",
+      "The chairperson of Harvard University is Peter Diamandis"
+    ],
+    "pred_answer": "Ernst Heinkel",
+    "exact_match": true
+  },
+  {
+    "query_id": 24,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which city did Gennady Rozhdestvensky die in? \nAnswer:",
+    "gt_answer": "United States of America",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Gennady Rozhdestvensky died in the city of United States of America",
+      "Basketball was created in the Soviet Union",
+      "Current head of state in United States of America is Donald Trump",
+      "The head of state of the Soviet Union is Mikhail Gorbachev",
+      "The CEO of Microsoft is Steve Jobs"
+    ],
+    "pred_answer": "United States of America",
+    "exact_match": true
+  },
+  {
+    "query_id": 25,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the capital of Tang Empire? \nAnswer:",
+    "gt_answer": "Beaumont",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The capital of the Tang Empire is Beaumont",
+      "Bagratuni Dynasty is affiliated with Christianity",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Sasanian Empire was founded by Walter Chrysler"
+    ],
+    "pred_answer": "Beaumont",
+    "exact_match": true
+  },
+  {
+    "query_id": 26,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the director of British Broadcasting Corporation? \nAnswer:",
+    "gt_answer": "Narendra Modi",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The CEO of Microsoft is Steve Jobs",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "Joseph Story is employed by Harvard University",
+      "The director of British Broadcasting Corporation is Narendra Modi"
+    ],
+    "pred_answer": "Narendra Modi",
+    "exact_match": true
+  },
+  {
+    "query_id": 27,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of Benjamin Mazar? \nAnswer:",
+    "gt_answer": "Israel",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Benjamin Mazar is a citizen of Israel",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Country Joe McDonald is a citizen of Romania",
+      "Gabe Newell is a citizen of United States of America"
+    ],
+    "pred_answer": "Israel",
+    "exact_match": true
+  },
+  {
+    "query_id": 28,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What type of music does Michael Mantler play? \nAnswer:",
+    "gt_answer": "post-punk",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The author of Categories is Aristotle",
+      "Basketball was created in the Soviet Union",
+      "Country music was created in the United States of America",
+      "The CEO of Microsoft is Steve Jobs",
+      "Current head of state in United States of America is Donald Trump"
+    ],
+    "pred_answer": "post-punk",
+    "exact_match": true
+  },
+  {
+    "query_id": 29,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which city did Oscar Wilde die in? \nAnswer:",
+    "gt_answer": "Guangzhou",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The author of Categories is Aristotle",
+      "Joseph Story is employed by Harvard University",
+      "Aristotle's child is George Alexander Kohut",
+      "Current head of state in United States of America is Donald Trump",
+      "Basketball was created in the Soviet Union"
+    ],
+    "pred_answer": "I am sorry, but the provided knowledge pool does not contain information regarding the city in which Oscar Wilde died.",
+    "exact_match": false
+  },
+  {
+    "query_id": 30,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which country was baseball created in? \nAnswer:",
+    "gt_answer": "Japan",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Baseball was created in Japan",
+      "Basketball was created in the Soviet Union",
+      "Alta IF is associated with the sport of baseball",
+      "Darryl Strawberry is associated with the sport of baseball",
+      "New Firm is associated with the sport of baseball"
+    ],
+    "pred_answer": "Japan",
+    "exact_match": true
+  },
+  {
+    "query_id": 31,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of Ernst Heinkel? \nAnswer:",
+    "gt_answer": "Tang Empire",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Country Joe McDonald is a citizen of Romania",
+      "Ernst Heinkel is a citizen of Tang Empire",
+      "Bob Iger is a citizen of United States of America"
+    ],
+    "pred_answer": "Tang Empire",
+    "exact_match": true
+  },
+  {
+    "query_id": 32,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which city is the headquarter of The University of the Arts located in? \nAnswer:",
+    "gt_answer": "Philadelphia",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The headquarters of Ilyushin is located in the city of Moscow",
+      "Basketball was created in the Soviet Union",
+      "The chairperson of Harvard University is Peter Diamandis"
+    ],
+    "pred_answer": "Philadelphia",
+    "exact_match": true
+  },
+  {
+    "query_id": 33,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which country was rap rock created in? \nAnswer:",
+    "gt_answer": "Russian Empire",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Basketball was created in the Soviet Union",
+      "rap rock was created in the country of Russian Empire",
+      "Current head of state in United States of America is Donald Trump",
+      "Baseball was created in Japan",
+      "The author of Categories is Aristotle"
+    ],
+    "pred_answer": "Russian Empire",
+    "exact_match": true
+  },
+  {
+    "query_id": 34,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Where was Christianity founded? \nAnswer:",
+    "gt_answer": "Taipei",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Bagratuni Dynasty is affiliated with Christianity",
+      "The author of Categories is Aristotle",
+      "Joseph Story is employed by Harvard University",
+      "Baseball was created in Japan",
+      "Current head of state in United States of America is Donald Trump"
+    ],
+    "pred_answer": "Jerusalem",
+    "exact_match": false
+  },
+  {
+    "query_id": 35,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the official language of United States of America? \nAnswer:",
+    "gt_answer": "German",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Official language of United States of America is German",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The official language of the United Kingdom is English",
+      "Official language of Japan is Swedish"
+    ],
+    "pred_answer": "German",
+    "exact_match": true
+  },
+  {
+    "query_id": 36,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who performed Past Masters? \nAnswer:",
+    "gt_answer": "Madonna",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "The chairperson of Harvard University is Peter Diamandis",
+      "Joseph Story is employed by Harvard University"
+    ],
+    "pred_answer": "Madonna",
+    "exact_match": true
+  },
+  {
+    "query_id": 37,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the capital of Japan? \nAnswer:",
+    "gt_answer": "Tokyo",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The capital of Japan is Tokyo",
+      "Baseball was created in Japan",
+      "The name of the current head of the Japan government is Shinzō Abe",
+      "Sumo was created in the country of Japan",
+      "Ayumi Hamasaki is a citizen of Japan"
+    ],
+    "pred_answer": "Tokyo",
+    "exact_match": true
+  },
+  {
+    "query_id": 38,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the capital of France? \nAnswer:",
+    "gt_answer": "Harare",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The capital of Romania is Rajanpur",
+      "The capital of Papal States is Rome",
+      "Country Joe McDonald is a citizen of Romania"
+    ],
+    "pred_answer": "Harare",
+    "exact_match": true
+  },
+  {
+    "query_id": 39,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the developer of SteamOS? \nAnswer:",
+    "gt_answer": "ABB Group",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The CEO of Microsoft is Steve Jobs",
+      "SteamOS was developed by ABB Group",
+      "The chief executive officer of Valve Corporation is Gabe Newell",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump"
+    ],
+    "pred_answer": "ABB Group",
+    "exact_match": true
+  },
+  {
+    "query_id": 40,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which city is the headquarter of University of Bucharest located in? \nAnswer:",
+    "gt_answer": "Ankara",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The headquarters of University of Bucharest is located in the city of Ankara",
+      "The capital of Romania is Rajanpur",
+      "Leonte Răutu is employed by University of Bucharest",
+      "Elena Ceaușescu was educated at University of Bucharest",
+      "Country Joe McDonald is a citizen of Romania"
+    ],
+    "pred_answer": "Ankara",
+    "exact_match": true
+  },
+  {
+    "query_id": 41,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is wide receiver associated with? \nAnswer:",
+    "gt_answer": "rugby",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Alta IF is associated with the sport of baseball",
+      "Basketball was created in the Soviet Union",
+      "Baseball was created in Japan",
+      "wide receiver and placekicker are associated with the sport of American football",
+      "Sandy Alderson is associated with the sport of association football"
+    ],
+    "pred_answer": "American football",
+    "exact_match": false
+  },
+  {
+    "query_id": 42,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What position does Hines Ward play? \nAnswer:",
+    "gt_answer": "cornerback",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Hines Ward plays wide receiver and cornerback",
+      "Current head of state in United States of America is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Joseph Story is employed by Harvard University"
+    ],
+    "pred_answer": "wide receiver and cornerback",
+    "exact_match": true
+  },
+  {
+    "query_id": 43,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the capital of Australia? \nAnswer:",
+    "gt_answer": "Oderzo",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The capital of Australia is Oderzo",
+      "Official language of Australia is Arabic",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Australia is located in the continent of South America"
+    ],
+    "pred_answer": "Oderzo",
+    "exact_match": true
+  },
+  {
+    "query_id": 44,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which continent is Malaysia located in? \nAnswer:",
+    "gt_answer": "Antarctica",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Malaysia is located in the continent of Antarctica",
+      "Cédric Klapisch is a citizen of Malaysia",
+      "Current head of state in United States of America is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Hyderabad is located in Asia"
+    ],
+    "pred_answer": "Antarctica",
+    "exact_match": true
+  },
+  {
+    "query_id": 45,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the author of A Wizard of Earthsea? \nAnswer:",
+    "gt_answer": "Pius XII",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The author of A Wizard of Earthsea is Pius XII",
+      "The CEO of Microsoft is Steve Jobs",
+      "Current head of state in United States of America is Donald Trump",
+      "The chairperson of Harvard University is Peter Diamandis",
+      "The name of the current head of the United States of America government is Donald Trump"
+    ],
+    "pred_answer": "Pius XII",
+    "exact_match": true
+  },
+  {
+    "query_id": 46,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who performed Free as a Bird? \nAnswer:",
+    "gt_answer": "The Beatles",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "The author of Categories is Aristotle",
+      "Basketball was created in the Soviet Union"
+    ],
+    "pred_answer": "I am sorry, but the provided knowledge pool does not contain information about who performed \"Free as a Bird.\"",
+    "exact_match": false
+  },
+  {
+    "query_id": 47,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the author of Our Mutual Friend? \nAnswer:",
+    "gt_answer": "Charles Darwin",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The author of Our Mutual Friend is Charles Darwin",
+      "Joseph Story is employed by Harvard University",
+      "The CEO of Microsoft is Steve Jobs"
+    ],
+    "pred_answer": "Charles Darwin",
+    "exact_match": true
+  },
+  {
+    "query_id": 48,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which country was basketball created in? \nAnswer:",
+    "gt_answer": "Soviet Union",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Basketball was created in the Soviet Union",
+      "Baseball was created in Japan",
+      "FC Vorskla Poltava is associated with basketball",
+      "Club Nouveau was created in the Soviet Union",
+      "Current head of state in United States of America is Donald Trump"
+    ],
+    "pred_answer": "Soviet Union",
+    "exact_match": true
+  },
+  {
+    "query_id": 49,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of Hal Needham? \nAnswer:",
+    "gt_answer": "United States of America",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Hal Needham is a citizen of United States of America",
+      "Country Joe McDonald is a citizen of Romania",
+      "Current head of state in United States of America is Donald Trump",
+      "Benjamin Mazar is a citizen of Israel",
+      "The name of the current head of the United States of America government is Donald Trump"
+    ],
+    "pred_answer": "United States of America",
+    "exact_match": true
+  },
+  {
+    "query_id": 50,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which continent is Bengaluru located in? \nAnswer:",
+    "gt_answer": "Oceania",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Bengaluru is located in the continent of Oceania",
+      "India is located in the continent of Africa",
+      "Canada is located in the continent of Asia",
+      "Australia is located in the continent of South America",
+      "The capital of Romania is Rajanpur"
+    ],
+    "pred_answer": "Oceania",
+    "exact_match": true
+  },
+  {
+    "query_id": 51,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is Slovakia national football team associated with? \nAnswer:",
+    "gt_answer": "cricket",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Slovakia national football team is associated with the sport of cricket",
+      "Basketball was created in the Soviet Union",
+      "FC Vorskla Poltava is associated with basketball",
+      "Alta IF is associated with the sport of baseball",
+      "FC Irtysh Omsk is associated with association football"
+    ],
+    "pred_answer": "cricket",
+    "exact_match": true
+  },
+  {
+    "query_id": 52,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the name of the current head of state in United States of America? \nAnswer:",
+    "gt_answer": "Connachta",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The head of state of the Soviet Union is Mikhail Gorbachev",
+      "The CEO of Microsoft is Steve Jobs",
+      "The author of Categories is Aristotle"
+    ],
+    "pred_answer": "Donald Trump",
+    "exact_match": false
+  },
+  {
+    "query_id": 53,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which religion is Imelda Marcos affiliated with? \nAnswer:",
+    "gt_answer": "atheism",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Imelda Marcos is affiliated with atheism",
+      "Bagratuni Dynasty is affiliated with Christianity",
+      "Ferdinand Marcos is married to Imelda Marcos",
+      "Iman is affiliated with Islam",
+      "Current head of state in United States of America is Donald Trump"
+    ],
+    "pred_answer": "atheism",
+    "exact_match": true
+  },
+  {
+    "query_id": 54,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What type of music does Dana International play? \nAnswer:",
+    "gt_answer": "Australian hip hop",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Country music was created in the United States of America",
+      "Basketball was created in the Soviet Union",
+      "jazz was created in the country of United States of America",
+      "The author of Categories is Aristotle",
+      "Club Nouveau was created in the Soviet Union"
+    ],
+    "pred_answer": "Australian hip hop",
+    "exact_match": true
+  },
+  {
+    "query_id": 55,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of Sable? \nAnswer:",
+    "gt_answer": "Czech Republic",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Country Joe McDonald is a citizen of Romania",
+      "Current head of state in United States of America is Donald Trump",
+      "Sable is a citizen of Czech Republic",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Club Nouveau was created in the Soviet Union"
+    ],
+    "pred_answer": "Czech Republic",
+    "exact_match": true
+  },
+  {
+    "query_id": 56,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which country was Charlie Hebdo created in? \nAnswer:",
+    "gt_answer": "Italy",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Charlie Hebdo was created in Italy",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Basketball was created in the Soviet Union",
+      "The CEO of Microsoft is Steve Jobs"
+    ],
+    "pred_answer": "Italy",
+    "exact_match": true
+  },
+  {
+    "query_id": 57,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is Elvis Presley married to? \nAnswer:",
+    "gt_answer": "Charles the Bold",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Elvis Presley is married to Priscilla Presley",
+      "Laura Bush is married to George W. Bush",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Aristotle's child is George Alexander Kohut"
+    ],
+    "pred_answer": "Priscilla Presley",
+    "exact_match": false
+  },
+  {
+    "query_id": 58,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who performed Hermione Granger? \nAnswer:",
+    "gt_answer": "Kylie Minogue",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Joseph Story is employed by Harvard University",
+      "Aristotle's child is George Alexander Kohut"
+    ],
+    "pred_answer": "I am sorry, but the provided knowledge pool does not contain information regarding who performed the role of Hermione Granger.",
+    "exact_match": false
+  },
+  {
+    "query_id": 59,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is Bo Ryan associated with? \nAnswer:",
+    "gt_answer": "association football",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Bo Ryan is associated with the sport of association football",
+      "Basketball was created in the Soviet Union",
+      "Alta IF is associated with the sport of baseball",
+      "Baseball was created in Japan",
+      "John Harkes is associated with the sport"
+    ],
+    "pred_answer": "association football",
+    "exact_match": true
+  },
+  {
+    "query_id": 60,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What type of music does John McVie play? \nAnswer:",
+    "gt_answer": "rap rock",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The type of music that John McVie plays is rap rock",
+      "Country music was created in the United States of America",
+      "Basketball was created in the Soviet Union",
+      "The author of Categories is Aristotle",
+      "jazz was created in the country of United States of America"
+    ],
+    "pred_answer": "rap rock",
+    "exact_match": true
+  },
+  {
+    "query_id": 61,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What position does Rogério Ceni play? \nAnswer:",
+    "gt_answer": "flanker",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Rogério Ceni plays the position of flanker",
+      "Joseph Story is employed by Harvard University"
+    ],
+    "pred_answer": "flanker",
+    "exact_match": true
+  },
+  {
+    "query_id": 62,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the chief executive officer of Twitter? \nAnswer:",
+    "gt_answer": "Bernard Arnault",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Current head of state in United States of America is Donald Trump",
+      "Joseph Story is employed by Harvard University",
+      "Chairperson of Fatah is Moshe Kahlon"
+    ],
+    "pred_answer": "I am sorry, but the provided knowledge pool does not contain information regarding the chief executive officer of Twitter.",
+    "exact_match": false
+  },
+  {
+    "query_id": 63,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What language does Kylie Minogue speak? \nAnswer:",
+    "gt_answer": "German",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Emma Watson speaks the language of English",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Basketball was created in the Soviet Union",
+      "Ayumi Hamasaki is a citizen of Japan"
+    ],
+    "pred_answer": "German",
+    "exact_match": true
+  },
+  {
+    "query_id": 64,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is Darryl Strawberry associated with? \nAnswer:",
+    "gt_answer": "baseball",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Darryl Strawberry is associated with the sport of baseball",
+      "Basketball was created in the Soviet Union",
+      "Alta IF is associated with the sport of baseball",
+      "Baseball was created in Japan",
+      "John Harkes is associated with the sport"
+    ],
+    "pred_answer": "baseball",
+    "exact_match": true
+  },
+  {
+    "query_id": 65,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is placekicker associated with? \nAnswer:",
+    "gt_answer": "rugby",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Basketball was created in the Soviet Union",
+      "wide receiver and placekicker are associated with the sport of American football",
+      "Alta IF is associated with the sport of baseball",
+      "John Harkes is associated with the sport",
+      "Baseball was created in Japan"
+    ],
+    "pred_answer": "rugby",
+    "exact_match": true
+  },
+  {
+    "query_id": 66,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What kind of work does Stephen McNeil do? \nAnswer:",
+    "gt_answer": "journalist",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Stephen McNeil works in the field of journalist",
+      "The CEO of Microsoft is Steve Jobs",
+      "Joseph Story is employed by Harvard University",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump"
+    ],
+    "pred_answer": "journalist",
+    "exact_match": true
+  },
+  {
+    "query_id": 67,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the employer of Dave Filoni? \nAnswer:",
+    "gt_answer": "British Broadcasting Corporation",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The CEO of Microsoft is Steve Jobs",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Joseph Story is employed by Harvard University",
+      "Steve Jobs was born in San Francisco"
+    ],
+    "pred_answer": "British Broadcasting Corporation",
+    "exact_match": true
+  },
+  {
+    "query_id": 68,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which continent is San Francisco located in? \nAnswer:",
+    "gt_answer": "North America",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "San Francisco is located in the continent of North America",
+      "Steve Jobs was born in San Francisco",
+      "Current head of state in United States of America is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "The name of the current head of the United States of America government is Donald Trump"
+    ],
+    "pred_answer": "North America",
+    "exact_match": true
+  },
+  {
+    "query_id": 69,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Where was Canadair founded? \nAnswer:",
+    "gt_answer": "Tucson",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Basketball was created in the Soviet Union",
+      "Club Nouveau was created in the Soviet Union",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Sasanian Empire was founded by Walter Chrysler"
+    ],
+    "pred_answer": "Tucson",
+    "exact_match": true
+  },
+  {
+    "query_id": 70,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which company is AP1000 produced by? \nAnswer:",
+    "gt_answer": "Canadair",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Canadair produced AP1000",
+      "The CEO of Microsoft is Steve Jobs",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Joseph Story is employed by Harvard University"
+    ],
+    "pred_answer": "Canadair",
+    "exact_match": true
+  },
+  {
+    "query_id": 71,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of Ayumi Hamasaki? \nAnswer:",
+    "gt_answer": "Japan",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Ayumi Hamasaki is a citizen of Japan",
+      "Current head of state in United States of America is Donald Trump",
+      "Country Joe McDonald is a citizen of Romania",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Benjamin Mazar is a citizen of Israel"
+    ],
+    "pred_answer": "Japan",
+    "exact_match": true
+  },
+  {
+    "query_id": 72,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What position does Blair Walsh play? \nAnswer:",
+    "gt_answer": "placekicker",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Joseph Story is employed by Harvard University",
+      "The chairperson of Harvard University is Peter Diamandis"
+    ],
+    "pred_answer": "placekicker",
+    "exact_match": true
+  },
+  {
+    "query_id": 73,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is Tony Blair married to? \nAnswer:",
+    "gt_answer": "Alan Jay Lerner",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Laura Bush is married to George W. Bush",
+      "Tony Blair is the head of the Council of People's Commissars government",
+      "The CEO of Microsoft is Steve Jobs",
+      "Tony Blair is married to Alan Jay Lerner",
+      "The name of the current head of the United States of America government is Donald Trump"
+    ],
+    "pred_answer": "Alan Jay Lerner",
+    "exact_match": true
+  },
+  {
+    "query_id": 74,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the author of Endymion? \nAnswer:",
+    "gt_answer": "John Keats",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The author of Endymion is John Keats",
+      "The CEO of Microsoft is Steve Jobs",
+      "The author of Categories is Aristotle",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump"
+    ],
+    "pred_answer": "John Keats",
+    "exact_match": true
+  },
+  {
+    "query_id": 75,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the author of Lady Windermere's Fan? \nAnswer:",
+    "gt_answer": "Oscar Wilde",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Joseph Story is employed by Harvard University",
+      "The chairperson of Harvard University is Peter Diamandis"
+    ],
+    "pred_answer": "I am sorry, but the provided knowledge pool does not contain information regarding the author of Lady Windermere's Fan.",
+    "exact_match": false
+  },
+  {
+    "query_id": 76,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the name of the current head of the Japan government? \nAnswer:",
+    "gt_answer": "Shinzō Abe",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The name of the current head of the Japan government is Shinzō Abe",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "Ayumi Hamasaki is a citizen of Japan",
+      "Baseball was created in Japan"
+    ],
+    "pred_answer": "Shinzō Abe",
+    "exact_match": true
+  },
+  {
+    "query_id": 77,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is the chairperson of Congolese Party of Labour? \nAnswer:",
+    "gt_answer": "Stephen McNeil",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The chairperson of Congolese Party of Labour is Stephen McNeil",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Mahmoud Abbas works in the field of politician",
+      "Country Joe McDonald is a citizen of Romania",
+      "Current head of state in United States of America is Donald Trump"
+    ],
+    "pred_answer": "Stephen McNeil",
+    "exact_match": true
+  },
+  {
+    "query_id": 78,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is flanker associated with? \nAnswer:",
+    "gt_answer": "rugby union",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Alta IF is associated with the sport of baseball",
+      "Basketball was created in the Soviet Union",
+      "John Harkes is associated with the sport",
+      "Baseball was created in Japan",
+      "FC Vorskla Poltava is associated with basketball"
+    ],
+    "pred_answer": "rugby union",
+    "exact_match": true
+  },
+  {
+    "query_id": 79,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the capital of Czech Republic? \nAnswer:",
+    "gt_answer": "Prague",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The capital of Romania is Rajanpur",
+      "Country Joe McDonald is a citizen of Romania",
+      "Current head of state in United States of America is Donald Trump",
+      "The headquarters of Ilyushin is located in the city of Moscow",
+      "The capital of Papal States is Rome"
+    ],
+    "pred_answer": "I am sorry, but the provided knowledge pool does not contain information regarding the capital of the Czech Republic.",
+    "exact_match": false
+  },
+  {
+    "query_id": 80,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What position does Lisa Leslie play? \nAnswer:",
+    "gt_answer": "goaltender",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Joseph Story is employed by Harvard University",
+      "The chairperson of Harvard University is Peter Diamandis"
+    ],
+    "pred_answer": "Center",
+    "exact_match": false
+  },
+  {
+    "query_id": 81,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the name of the current head of state in Soviet Union? \nAnswer:",
+    "gt_answer": "Elizabeth II",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The head of state of the Soviet Union is Mikhail Gorbachev",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Basketball was created in the Soviet Union",
+      "Club Nouveau was created in the Soviet Union"
+    ],
+    "pred_answer": "Elizabeth II",
+    "exact_match": true
+  },
+  {
+    "query_id": 82,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of Ferdinand von Richthofen? \nAnswer:",
+    "gt_answer": "Canada",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "Country Joe McDonald is a citizen of Romania",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Ferdinand von Richthofen is a citizen of Canada",
+      "Basketball was created in the Soviet Union"
+    ],
+    "pred_answer": "Canada",
+    "exact_match": true
+  },
+  {
+    "query_id": 83,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which religion is Karen Armstrong affiliated with? \nAnswer:",
+    "gt_answer": "Church of Scotland",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Bagratuni Dynasty is affiliated with Christianity",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Joseph Story is employed by Harvard University",
+      "George W. Bush is affiliated with the religion of United Methodist Church"
+    ],
+    "pred_answer": "Church of Scotland",
+    "exact_match": true
+  },
+  {
+    "query_id": 84,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who was Vito Corleone created by? \nAnswer:",
+    "gt_answer": "Nobuhiro Watsuki",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Vito Corleone was created by Nobuhiro Watsuki",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Current head of state in United States of America is Donald Trump",
+      "Joseph Story is employed by Harvard University"
+    ],
+    "pred_answer": "Nobuhiro Watsuki",
+    "exact_match": true
+  },
+  {
+    "query_id": 85,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the capital of Romania? \nAnswer:",
+    "gt_answer": "Rajanpur",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The capital of Romania is Rajanpur",
+      "Country Joe McDonald is a citizen of Romania",
+      "Elena Ceaușescu was educated at University of Bucharest",
+      "Current head of state in United States of America is Donald Trump",
+      "Club Nouveau was created in the Soviet Union"
+    ],
+    "pred_answer": "Rajanpur",
+    "exact_match": true
+  },
+  {
+    "query_id": 86,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which continent is India located in? \nAnswer:",
+    "gt_answer": "Africa",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "India is located in the continent of Africa",
+      "Canada is located in the continent of Asia",
+      "Hyderabad is located in Asia",
+      "Malaysia is located in the continent of Antarctica",
+      "Australia is located in the continent of South America"
+    ],
+    "pred_answer": "Africa",
+    "exact_match": true
+  },
+  {
+    "query_id": 87,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which city did Olga of Kiev die in? \nAnswer:",
+    "gt_answer": "Rodez",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Aristotle's child is George Alexander Kohut",
+      "Basketball was created in the Soviet Union",
+      "Club Nouveau was created in the Soviet Union",
+      "The author of Categories is Aristotle",
+      "The CEO of Microsoft is Steve Jobs"
+    ],
+    "pred_answer": "Rodez",
+    "exact_match": true
+  },
+  {
+    "query_id": 88,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who founded Sasanian Empire? \nAnswer:",
+    "gt_answer": "Walter Chrysler",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Sasanian Empire was founded by Walter Chrysler",
+      "Basketball was created in the Soviet Union",
+      "Club Nouveau was created in the Soviet Union",
+      "Bagratuni Dynasty is affiliated with Christianity",
+      "The CEO of Microsoft is Steve Jobs"
+    ],
+    "pred_answer": "Walter Chrysler",
+    "exact_match": true
+  },
+  {
+    "query_id": 89,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which city did Pedro Pierluisi work in? \nAnswer:",
+    "gt_answer": "Washington, D.C.",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Pedro Pierluisi worked in Washington, D.C.",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Club Nouveau was created in the Soviet Union"
+    ],
+    "pred_answer": "Washington, D.C.",
+    "exact_match": true
+  },
+  {
+    "query_id": 90,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Which sport is Surrey Senior Cup associated with? \nAnswer:",
+    "gt_answer": "basketball",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Surrey Senior Cup is associated with the sport of basketball",
+      "Alta IF is associated with the sport of baseball",
+      "Basketball was created in the Soviet Union",
+      "FC Irtysh Omsk is associated with association football",
+      "Steve Sax is associated with the sport of association football"
+    ],
+    "pred_answer": "basketball",
+    "exact_match": true
+  },
+  {
+    "query_id": 91,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of Narendra Modi? \nAnswer:",
+    "gt_answer": "Australia",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Country Joe McDonald is a citizen of Romania",
+      "Ayumi Hamasaki is a citizen of Japan",
+      "Gabe Newell is a citizen of United States of America"
+    ],
+    "pred_answer": "The provided knowledge pool does not contain information regarding the country of citizenship of Narendra Modi.",
+    "exact_match": false
+  },
+  {
+    "query_id": 92,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is Victoria Beckham married to? \nAnswer:",
+    "gt_answer": "David Beckham",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Laura Bush is married to George W. Bush",
+      "Victoria Beckham is married to David Beckham",
+      "Current head of state in United States of America is Donald Trump",
+      "Ferdinand Marcos is married to Imelda Marcos",
+      "Vladimir Lenin is married to Nadezhda Krupskaya"
+    ],
+    "pred_answer": "David Beckham",
+    "exact_match": true
+  },
+  {
+    "query_id": 93,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of Charles Messier? \nAnswer:",
+    "gt_answer": "Iran",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "Country Joe McDonald is a citizen of Romania",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Gabe Newell is a citizen of United States of America",
+      "Charles Messier is a citizen of Iran"
+    ],
+    "pred_answer": "Iran",
+    "exact_match": true
+  },
+  {
+    "query_id": 94,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who was Rand al'Thor created by? \nAnswer:",
+    "gt_answer": "Ferdowsi",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Rand al'Thor was created by Ferdowsi",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Current head of state in United States of America is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Joseph Story is employed by Harvard University"
+    ],
+    "pred_answer": "Ferdowsi",
+    "exact_match": true
+  },
+  {
+    "query_id": 95,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What position does Mike D'Antoni play? \nAnswer:",
+    "gt_answer": "point guard",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Mike D'Antoni plays the position of point guard",
+      "Basketball was created in the Soviet Union"
+    ],
+    "pred_answer": "point guard",
+    "exact_match": true
+  },
+  {
+    "query_id": 96,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of Colin Irwin? \nAnswer:",
+    "gt_answer": "Israel",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "Country Joe McDonald is a citizen of Romania",
+      "Bob Iger is a citizen of United States of America",
+      "Gabe Newell is a citizen of United States of America"
+    ],
+    "pred_answer": "Israel",
+    "exact_match": true
+  },
+  {
+    "query_id": 97,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is Walter Chrysler's child? \nAnswer:",
+    "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Walter Chrysler's child is Charles Frederick",
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Aristotle's child is George Alexander Kohut"
+    ],
+    "pred_answer": "Charles Frederick",
+    "exact_match": true
+  },
+  {
+    "query_id": 98,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, Who is Charles Darwin married to? \nAnswer:",
+    "gt_answer": "Amala Paul",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The author of Our Mutual Friend is Charles Darwin",
+      "Laura Bush is married to George W. Bush",
+      "Charles Darwin is married to Amala Paul",
+      "Joseph Story is employed by Harvard University",
+      "The author of Categories is Aristotle"
+    ],
+    "pred_answer": "Amala Paul",
+    "exact_match": true
+  },
+  {
+    "query_id": 99,
+    "question": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What position does Irving Fryar play? \nAnswer:",
+    "gt_answer": "wide receiver",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "The name of the current head of the United States of America government is Donald Trump",
+      "The CEO of Microsoft is Steve Jobs",
+      "Joseph Story is employed by Harvard University",
+      "The author of Categories is Aristotle"
+    ],
+    "pred_answer": "wide receiver",
+    "exact_match": true
+  }
+]

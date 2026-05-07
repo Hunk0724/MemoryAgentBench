@@ -1,0 +1,1804 @@
+[
+  {
+    "query_id": 0,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n146. The author of Our Mutual Friend is Charles Darwin.\n322. Amala Paul is a citizen of Belgium.\n335. Charles Darwin is married to Amala Paul.",
+    "raw_output": "Thought: The author of Our Mutual Friend is Charles Darwin (Fact 146). Charles Darwin is married to Amala Paul (Fact 335). Amala Paul is a citizen of Belgium (Fact 322). Since Fact 335 is the newest fact regarding the spouse, and Fact 322 provides the citizenship of that spouse, the answer is Belgium.\n\nIntermediate answers: [Charles Darwin, Amala Paul, Belgium]\n\nAnswer: Belgium",
+    "intermediate_answers": [
+      "Charles Darwin",
+      "Amala Paul",
+      "Belgium"
+    ],
+    "pred_answer": "Belgium",
+    "gt_answer": [
+      "Belgium"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 544,
+    "completion_tokens": 98
+  },
+  {
+    "query_id": 1,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n175. Igor of Kiev is married to Olga of Kiev.\n450. Olga of Kiev died in the city of Rodez.",
+    "raw_output": "Thought: The spouse of Igor of Kiev is Olga of Kiev (Fact 175). Fact 450 states that Olga of Kiev died in the city of Rodez. Since 450 is the larger serial number, it is the newest and correct fact.\n\nIntermediate answers: [Rodez]\n\nAnswer: Rodez",
+    "intermediate_answers": [
+      "Rodez"
+    ],
+    "pred_answer": "Rodez",
+    "gt_answer": [
+      "Rodez"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 528,
+    "completion_tokens": 70
+  },
+  {
+    "query_id": 2,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n389. association football was created in the country of Italy.\n417. Steve Sax is associated with the sport of association football.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 389 states association football was created in Italy, and 417 states Steve Sax is associated with association football. Since 417 is the larger serial number, it is the newest fact. Following the rule to resolve conflicts by prioritizing the newest fact, and identifying that Steve Sax is associated with association football, which fact 389 identifies as being created in Italy, the birthplace is Italy.\n\nIntermediate answers: [Italy]\n\nAnswer: Italy",
+    "intermediate_answers": [
+      "Italy"
+    ],
+    "pred_answer": "Italy",
+    "gt_answer": [
+      "Italy"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 528,
+    "completion_tokens": 104
+  },
+  {
+    "query_id": 3,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n179. The capital of Soviet Union is Russellville.\n348. basketball was created in the country of Soviet Union.\n418. Tunisia national football team is associated with the sport of basketball.",
+    "raw_output": "Thought: The Tunisia national football team is associated with the sport of basketball (Fact 418). Basketball was created in the Soviet Union (Fact 348). The capital of the Soviet Union is Russellville (Fact 179). Since all facts are provided and there are no conflicting statements regarding the capital of the Soviet Union, the newest information regarding the capital is Russellville.\n\nIntermediate answers: [Soviet Union, Russellville]\n\nAnswer: Russellville",
+    "intermediate_answers": [
+      "Soviet Union",
+      "Russellville"
+    ],
+    "pred_answer": "Russellville",
+    "gt_answer": [
+      "Russellville"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 551,
+    "completion_tokens": 96
+  },
+  {
+    "query_id": 4,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n321. placekicker is associated with the sport of rugby.\n419. Blair Walsh plays the position of placekicker.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 321 (placekicker is associated with rugby) and 419 (Blair Walsh plays the position of placekicker). Since 419 is the newer fact, it takes precedence. However, the question asks for the sport Blair Walsh plays based on the pool. Fact 419 identifies his position as placekicker, and fact 321 identifies the sport associated with the position of placekicker as rugby.\n\nIntermediate answers: [rugby]\n\nAnswer: rugby",
+    "intermediate_answers": [
+      "rugby"
+    ],
+    "pred_answer": "rugby",
+    "gt_answer": [
+      "rugby"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 535,
+    "completion_tokens": 114
+  },
+  {
+    "query_id": 5,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n369. Nicolae Ceaușescu is married to Wilhelm II.\n453. The univeristy where Wilhelm II was educated is Baldwin Wallace University.",
+    "raw_output": "Thought: The knowledge pool identifies Nicolae Ceaușescu's partner as Wilhelm II (fact 369). Fact 453 states that the university where Wilhelm II was educated is Baldwin Wallace University. Since 453 is the newest fact, it is the authoritative source for this information.\n\nIntermediate answers: [Wilhelm II, Baldwin Wallace University]\n\nAnswer: Baldwin Wallace University",
+    "intermediate_answers": [
+      "Wilhelm II",
+      "Baldwin Wallace University"
+    ],
+    "pred_answer": "Baldwin Wallace University",
+    "gt_answer": [
+      "Baldwin Wallace University"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 540,
+    "completion_tokens": 82
+  },
+  {
+    "query_id": 6,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n275. The chief executive officer of Twitter is Bernard Arnault.\n319. Bernard Arnault is a citizen of France.",
+    "raw_output": "Thought: The knowledge pool identifies the CEO of Twitter as Bernard Arnault (fact 275). Fact 319 states that Bernard Arnault is a citizen of France. Since 319 is the newest fact, it confirms the citizenship of the CEO identified in the pool.\n\nIntermediate answers: [France]\n\nAnswer: France",
+    "intermediate_answers": [
+      "France"
+    ],
+    "pred_answer": "France",
+    "gt_answer": [
+      "France"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 528,
+    "completion_tokens": 72
+  },
+  {
+    "query_id": 7,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n234. Bengaluru is located in the continent of Oceania.\n366. Thomas Arne was born in the city of Bengaluru.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 234 (Bengaluru is in Oceania) and 366 (Thomas Arne was born in Bengaluru). To determine the continent of Thomas Arne's birth, I must identify the location of Bengaluru based on the provided pool. Fact 234 states Bengaluru is in Oceania. Since 366 is the newer fact, it confirms the birth city, but the location of that city is defined by the pool as Oceania.\n\nIntermediate answers: [Oceania]\n\nAnswer: Oceania",
+    "intermediate_answers": [
+      "Oceania"
+    ],
+    "pred_answer": "Oceania",
+    "gt_answer": [
+      "Oceania"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 526,
+    "completion_tokens": 110
+  },
+  {
+    "query_id": 8,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n127. Israel is located in the continent of North America.\n441. Colin Irwin is a citizen of Israel.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 127 (Israel is in North America) and 441 (Colin Irwin is a citizen of Israel). Since 441 is the newer fact, we identify Colin Irwin's citizenship as Israel. According to fact 127, Israel is located in North America.\n\nIntermediate answers: [Israel, North America]\n\nAnswer: North America",
+    "intermediate_answers": [
+      "Israel",
+      "North America"
+    ],
+    "pred_answer": "North America",
+    "gt_answer": [
+      "North America"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 525,
+    "completion_tokens": 84
+  },
+  {
+    "query_id": 9,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n287. Methodism was founded by Joseph Goebbels.\n361. John Walsh is affiliated with the religion of Methodism.\n395. Joseph Goebbels worked in the city of Berlin.",
+    "raw_output": "Thought: John Walsh is affiliated with Methodism (Fact 361). Methodism was founded by Joseph Goebbels (Fact 287). Joseph Goebbels worked in Berlin (Fact 395). Since 395 is the largest serial number, it is the most recent fact regarding the location of work for the founder.\n\nIntermediate answers: [Methodism, Joseph Goebbels, Berlin]\n\nAnswer: Berlin",
+    "intermediate_answers": [
+      "Methodism",
+      "Joseph Goebbels",
+      "Berlin"
+    ],
+    "pred_answer": "Berlin",
+    "gt_answer": [
+      "Berlin"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 549,
+    "completion_tokens": 91
+  },
+  {
+    "query_id": 10,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n339. Adalbert of Prague is affiliated with the religion of atheism.\n360. Transcendental Meditation movement was founded by Adalbert of Prague.",
+    "raw_output": "Thought: The knowledge pool contains two facts about Adalbert of Prague. Fact 339 states he is affiliated with atheism, and fact 360 states he founded the Transcendental Meditation movement. Since 360 is the larger serial number, it is the newest fact. However, the question asks for the religious affiliation of the person who founded the Transcendental Meditation movement (Adalbert of Prague). Fact 339 provides the religious affiliation for Adalbert of Prague.\n\nIntermediate answers: [atheism]\n\nAnswer: atheism",
+    "intermediate_answers": [
+      "atheism"
+    ],
+    "pred_answer": "atheism",
+    "gt_answer": [
+      "atheism"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 537,
+    "completion_tokens": 115
+  },
+  {
+    "query_id": 11,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n182. Edmund Burke is a citizen of Kingdom of Ireland.\n260. Kingdom of Ireland is affiliated with the religion of Zoroastrianism.",
+    "raw_output": "Thought: The person is Edmund Burke. According to fact 182, Edmund Burke is a citizen of the Kingdom of Ireland. According to fact 260, the Kingdom of Ireland is affiliated with the religion of Zoroastrianism. Since 260 is the newest fact, it is the one to be used.\n\nIntermediate answers: [Kingdom of Ireland, Zoroastrianism]\n\nAnswer: Zoroastrianism",
+    "intermediate_answers": [
+      "Kingdom of Ireland",
+      "Zoroastrianism"
+    ],
+    "pred_answer": "Zoroastrianism",
+    "gt_answer": [
+      "Zoroastrianism"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 537,
+    "completion_tokens": 89
+  },
+  {
+    "query_id": 12,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n209. The capital of Italy is Duluth.\n308. John Harkes is associated with the sport of association football.\n389. association football was created in the country of Italy.",
+    "raw_output": "Thought: The sport associated with John Harkes is association football (Fact 308). According to Fact 389, association football was created in Italy. Fact 209 states that the capital of Italy is Duluth. Since Fact 209 is the only information provided regarding the capital of Italy within the pool, and the prompt asks to use the provided knowledge pool, the answer is Duluth.\n\nIntermediate answers: [Italy, Duluth]\n\nAnswer: Duluth",
+    "intermediate_answers": [
+      "Italy",
+      "Duluth"
+    ],
+    "pred_answer": "Duluth",
+    "gt_answer": [
+      "Duluth"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 548,
+    "completion_tokens": 97
+  },
+  {
+    "query_id": 13,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n94. Princess Alice, Duchess of Gloucester is affiliated with the religion of Anglicanism.\n135. Laura Bush is married to Princess Alice, Duchess of Gloucester.",
+    "raw_output": "Thought: The knowledge pool contains two facts. Fact 94 states Princess Alice, Duchess of Gloucester is affiliated with Anglicanism. Fact 135 states Laura Bush is married to Princess Alice, Duchess of Gloucester. Since 135 is the larger serial number, it represents the most recent information regarding the relationship. The question asks for the faith of Laura Bush's partner. According to fact 94, the partner (Princess Alice) is associated with Anglicanism.\n\nIntermediate answers: [Anglicanism]\n\nAnswer: Anglicanism",
+    "intermediate_answers": [
+      "Anglicanism"
+    ],
+    "pred_answer": "Anglicanism",
+    "gt_answer": [
+      "Anglicanism"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 531,
+    "completion_tokens": 112
+  },
+  {
+    "query_id": 14,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n249. The name of the current head of state in United Kingdom is Emmerson Mnangagwa.\n367. Andrew Carnegie is a citizen of United Kingdom.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 249 (Emmerson Mnangagwa is the head of state of the United Kingdom) and 367 (Andrew Carnegie is a citizen of the United Kingdom). Since 367 is the newer fact, it confirms the country of citizenship is the United Kingdom. Fact 249 identifies the head of state of the United Kingdom as Emmerson Mnangagwa.\n\nIntermediate answers: [Emmerson Mnangagwa]\n\nAnswer: Emmerson Mnangagwa",
+    "intermediate_answers": [
+      "Emmerson Mnangagwa"
+    ],
+    "pred_answer": "Emmerson Mnangagwa",
+    "gt_answer": [
+      "Emmerson Mnangagwa"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 540,
+    "completion_tokens": 108
+  },
+  {
+    "query_id": 15,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n179. The capital of Soviet Union is Russellville.\n315. Surrey Senior Cup is associated with the sport of basketball.\n348. basketball was created in the country of Soviet Union.",
+    "raw_output": "Thought: The knowledge pool contains three facts. Fact 315 states that the Surrey Senior Cup is associated with basketball. Fact 348 states that basketball was created in the Soviet Union. Fact 179 states that the capital of the Soviet Union is Russellville. Since the question asks for the capital city associated with the origin of the Surrey Senior Cup based on the provided pool, we trace the association: Surrey Senior Cup -> basketball -> Soviet Union -> Russellville.\n\nIntermediate answers: [Russellville]\n\nAnswer: Russellville",
+    "intermediate_answers": [
+      "Russellville"
+    ],
+    "pred_answer": "Russellville",
+    "gt_answer": [
+      "Russellville"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 545,
+    "completion_tokens": 110
+  },
+  {
+    "query_id": 16,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n348. basketball was created in the country of Soviet Union.\n405. Carlos Gómez is associated with the sport of basketball.",
+    "raw_output": "Thought: The question asks for the country of origin of the sport associated with Carlos Gómez. According to fact 405, Carlos Gómez is associated with basketball. According to fact 348, basketball was created in the Soviet Union. Since 348 is the only fact provided regarding the origin of basketball, and the prompt instructs to use the provided knowledge pool, the answer is Soviet Union.\n\nIntermediate answers: [Soviet Union]\n\nAnswer: Soviet Union",
+    "intermediate_answers": [
+      "Soviet Union"
+    ],
+    "pred_answer": "Soviet Union",
+    "gt_answer": [
+      "Soviet Union"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 531,
+    "completion_tokens": 95
+  },
+  {
+    "query_id": 17,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n33. The capital of Great Britain is London.\n123. Madame du Barry is a citizen of Great Britain.",
+    "raw_output": "Thought: The knowledge pool identifies Madame du Barry as a citizen of Great Britain (fact 123). The knowledge pool identifies the capital of Great Britain as London (fact 33). Since fact 123 is the newest fact regarding the subject's citizenship, and fact 33 provides the capital for that country, the answer is London.\nIntermediate answers: [London]\n\nAnswer: London",
+    "intermediate_answers": [
+      "London"
+    ],
+    "pred_answer": "London",
+    "gt_answer": [
+      "London"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 528,
+    "completion_tokens": 84
+  },
+  {
+    "query_id": 18,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n232. The chairperson of Fatah is Moshe Kahlon.\n368. Moshe Kahlon works in the field of soldier.",
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the chairperson of Fatah. Fact 232 states the chairperson is Moshe Kahlon. Fact 368 states that Moshe Kahlon works in the field of soldier. Since 368 is the newer fact (larger serial number), it provides the updated information regarding the individual identified as the chairperson.\n\nIntermediate answers: [soldier]\n\nAnswer: soldier",
+    "intermediate_answers": [
+      "soldier"
+    ],
+    "pred_answer": "soldier",
+    "gt_answer": [
+      "soldier"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 531,
+    "completion_tokens": 86
+  },
+  {
+    "query_id": 19,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n209. The capital of Italy is Duluth.\n350. Free as a Bird was performed by The Beatles.\n427. Joe Hockey is a citizen of Italy.\n443. The director of The Beatles is Joe Hockey.",
+    "raw_output": "Thought: The performer of \"Free as a Bird\" is The Beatles (Fact 350). The director/manager of The Beatles is Joe Hockey (Fact 443). Joe Hockey is a citizen of Italy (Fact 427). The capital of Italy is Duluth (Fact 209).\n\nIntermediate answers: [The Beatles, Joe Hockey, Italy, Duluth]\n\nAnswer: Duluth",
+    "intermediate_answers": [
+      "The Beatles",
+      "Joe Hockey",
+      "Italy",
+      "Duluth"
+    ],
+    "pred_answer": "Duluth",
+    "gt_answer": [
+      "Duluth"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 563,
+    "completion_tokens": 84
+  },
+  {
+    "query_id": 20,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n86. Ferdowsi is famous for Shahnameh.\n326. Rand al'Thor was created by Ferdowsi.\n391. Shahnameh was written in the language of Persian.",
+    "raw_output": "Thought: The individual who created Rand al'Thor is identified in fact 326 as Ferdowsi. Fact 86 states that Ferdowsi is famous for Shahnameh. Fact 391 states that Shahnameh was written in the language of Persian. Since there are no conflicting facts regarding the language of Shahnameh or the creator of Rand al'Thor in the provided pool, the information is consistent.\n\nIntermediate answers: [Ferdowsi, Shahnameh, Persian]\n\nAnswer: Persian",
+    "intermediate_answers": [
+      "Ferdowsi",
+      "Shahnameh",
+      "Persian"
+    ],
+    "pred_answer": "Persian",
+    "gt_answer": [
+      "Persian"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 550,
+    "completion_tokens": 108
+  },
+  {
+    "query_id": 21,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n17. Church of Scotland was founded by John Knox.\n312. John Knox worked in the city of Edinburgh.\n412. Karen Armstrong is affiliated with the religion of Church of Scotland.",
+    "raw_output": "Thought: The religion Karen Armstrong is affiliated with is the Church of Scotland (Fact 412). The founder of the Church of Scotland is John Knox (Fact 17). John Knox worked in the city of Edinburgh (Fact 312).\n\nIntermediate answers: [Church of Scotland, John Knox, Edinburgh]\n\nAnswer: Edinburgh",
+    "intermediate_answers": [
+      "Church of Scotland",
+      "John Knox",
+      "Edinburgh"
+    ],
+    "pred_answer": "Edinburgh",
+    "gt_answer": [
+      "Edinburgh"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 545,
+    "completion_tokens": 70
+  },
+  {
+    "query_id": 22,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n200. The author of Categories is Aristotle.\n332. Aristotle's child is George Alexander Kohut.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 200 (Aristotle is the author of Categories) and 332 (George Alexander Kohut is the child of Aristotle). The question asks for the child of the author of \"Categories\". Fact 200 identifies the author as Aristotle. Fact 332 identifies Aristotle's child as George Alexander Kohut. Since 332 is the newer fact, it is the valid source.\n\nIntermediate answers: [Aristotle, George Alexander Kohut]\n\nAnswer: George Alexander Kohut",
+    "intermediate_answers": [
+      "Aristotle",
+      "George Alexander Kohut"
+    ],
+    "pred_answer": "George Alexander Kohut",
+    "gt_answer": [
+      "George Alexander Kohut"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 528,
+    "completion_tokens": 114
+  },
+  {
+    "query_id": 23,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n133. FC Vorskla Poltava is associated with the sport of basketball.\n348. basketball was created in the country of Soviet Union.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 133. FC Vorskla Poltava is associated with the sport of basketball, and 348. basketball was created in the country of Soviet Union. The question asks for the country of origin of FC Vorskla Poltava based on the provided pool. Since the pool links FC Vorskla Poltava to basketball, and basketball is linked to the Soviet Union, the newest fact (348) establishes the origin of the sport associated with the entity.\n\nIntermediate answers: [Soviet Union]\n\nAnswer: Soviet Union",
+    "intermediate_answers": [
+      "Soviet Union"
+    ],
+    "pred_answer": "Soviet Union",
+    "gt_answer": [
+      "Soviet Union"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 534,
+    "completion_tokens": 122
+  },
+  {
+    "query_id": 24,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n171. The capital of France is Harare.\n277. SteamOS was developed by ABB Group.\n319. Bernard Arnault is a citizen of France.\n408. The chief executive officer of ABB Group is Bernard Arnault.",
+    "raw_output": "Thought: The developer of SteamOS is ABB Group (Fact 277). The CEO of ABB Group is Bernard Arnault (Fact 408). Bernard Arnault is a citizen of France (Fact 319). The capital of France is Harare (Fact 171).\n\nIntermediate answers: [ABB Group, Bernard Arnault, France, Harare]\n\nAnswer: Harare",
+    "intermediate_answers": [
+      "ABB Group",
+      "Bernard Arnault",
+      "France",
+      "Harare"
+    ],
+    "pred_answer": "Harare",
+    "gt_answer": [
+      "Harare"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 563,
+    "completion_tokens": 84
+  },
+  {
+    "query_id": 25,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n384. F-22 Raptor was developed by Boeing.\n393. The chief executive officer of Boeing is Adel al-Jubeir.",
+    "raw_output": "Thought: The developer of the F-22 Raptor is identified in fact 384 as Boeing. Fact 393 states that the chief executive officer of Boeing is Adel al-Jubeir. Since 393 is the newer fact, it is the one to be used.\n\nIntermediate answers: [Boeing, Adel al-Jubeir]\n\nAnswer: Adel al-Jubeir",
+    "intermediate_answers": [
+      "Boeing",
+      "Adel al-Jubeir"
+    ],
+    "pred_answer": "Adel al-Jubeir",
+    "gt_answer": [
+      "Adel al-Jubeir"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 541,
+    "completion_tokens": 85
+  },
+  {
+    "query_id": 26,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n222. The chairperson of Harvard University is Peter Diamandis.\n431. Joseph Story is employed by Harvard University.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 222 (Chairperson of Harvard is Peter Diamandis) and 431 (Joseph Story is employed by Harvard University). The question asks for the chairperson of the organization where Joseph Story is employed. Joseph Story is employed by Harvard University. According to the knowledge pool, the chairperson of Harvard University is Peter Diamandis. Since 431 is the newest fact regarding the organization, and 222 is the fact regarding the chairperson, I identify the chairperson associated with Harvard.\n\nIntermediate answers: [Peter Diamandis]\n\nAnswer: Peter Diamandis",
+    "intermediate_answers": [
+      "Peter Diamandis"
+    ],
+    "pred_answer": "Peter Diamandis",
+    "gt_answer": [
+      "Peter Diamandis"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 528,
+    "completion_tokens": 128
+  },
+  {
+    "query_id": 27,
+    "num_hops": 4,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n96. Meredith Grey was performed by Ellen Pompeo.\n268. Ellen Pompeo is a citizen of United States of America.\n396. The capital of United States of America is Harrisville.\n414. Derek Shepherd is married to Meredith Grey.",
+    "raw_output": "Thought: The spouse of Derek Shepherd is Meredith Grey (Fact 414). Meredith Grey was performed by Ellen Pompeo (Fact 96). Ellen Pompeo is a citizen of the United States of America (Fact 268). The capital of the United States of America is Harrisville (Fact 396). Since there are no conflicting facts regarding the capital of the USA in the provided pool, the newest information is Harrisville.\n\nIntermediate answers: [Meredith Grey, Ellen Pompeo, United States of America, Harrisville]\n\nAnswer: Harrisville",
+    "intermediate_answers": [
+      "Meredith Grey",
+      "Ellen Pompeo",
+      "United States of America",
+      "Harrisville"
+    ],
+    "pred_answer": "Harrisville",
+    "gt_answer": [
+      "Harrisville"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 563,
+    "completion_tokens": 115
+  },
+  {
+    "query_id": 28,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n190. The capital of Czech Republic is Prague.\n299. Sable is a citizen of Czech Republic.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 190 (Capital of Czech Republic is Prague) and 299 (Sable is a citizen of Czech Republic). To find the capital of the country to which Sable belongs, I identify the country from fact 299 (Czech Republic) and then retrieve the capital from fact 190 (Prague). Since there are no conflicting facts regarding the capital, the information remains consistent.\n\nIntermediate answers: [Czech Republic, Prague]\n\nAnswer: Prague",
+    "intermediate_answers": [
+      "Czech Republic",
+      "Prague"
+    ],
+    "pred_answer": "Prague",
+    "gt_answer": [
+      "Prague"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 530,
+    "completion_tokens": 106
+  },
+  {
+    "query_id": 29,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n250. Country Joe McDonald is a citizen of Romania.\n449. The capital of Romania is Rajanpur.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 250 (Country Joe McDonald is a citizen of Romania) and 449 (The capital of Romania is Rajanpur). Since 449 is the larger serial number, it represents the newest fact. According to fact 250, Country Joe McDonald is a citizen of Romania. According to the newest fact 449, the capital of Romania is Rajanpur.\n\nIntermediate answers: [Romania, Rajanpur]\n\nAnswer: Rajanpur",
+    "intermediate_answers": [
+      "Romania",
+      "Rajanpur"
+    ],
+    "pred_answer": "Rajanpur",
+    "gt_answer": [
+      "Rajanpur"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 529,
+    "completion_tokens": 108
+  },
+  {
+    "query_id": 30,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n101. The headquarters of Fordham University is located in the city of New York City.\n181. Blood on the Tracks was performed by Lou Reed.\n399. The univeristy where Lou Reed was educated is Fordham University.",
+    "raw_output": "Thought: The performer of the album \"Blood on the Tracks\" is identified in fact 181 as Lou Reed. Fact 399 states that the university where Lou Reed was educated is Fordham University. Fact 101 states that the headquarters of Fordham University is located in New York City. Since all facts are provided and there are no conflicting statements regarding the location of the headquarters or the education of the performer, the information is consistent.\n\nIntermediate answers: [Lou Reed, Fordham University, New York City]\n\nAnswer: New York City",
+    "intermediate_answers": [
+      "Lou Reed",
+      "Fordham University",
+      "New York City"
+    ],
+    "pred_answer": "New York City",
+    "gt_answer": [
+      "New York City"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 566,
+    "completion_tokens": 112
+  },
+  {
+    "query_id": 31,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n346. Bo Ryan is associated with the sport of association football.\n375. The name of the current head of the Italy government is Giuseppe Conte.\n389. association football was created in the country of Italy.",
+    "raw_output": "Thought: The sport associated with Bo Ryan is association football (Fact 346). According to Fact 389, association football was created in Italy. The current head of the Italy government is Giuseppe Conte (Fact 375). Since Fact 375 is the latest information regarding the head of the Italian government, the answer is Giuseppe Conte.\n\nIntermediate answers: [Italy, Giuseppe Conte]\n\nAnswer: Giuseppe Conte",
+    "intermediate_answers": [
+      "Italy",
+      "Giuseppe Conte"
+    ],
+    "pred_answer": "Giuseppe Conte",
+    "gt_answer": [
+      "Giuseppe Conte"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 556,
+    "completion_tokens": 89
+  },
+  {
+    "query_id": 32,
+    "num_hops": 4,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n178. Steve Jobs was born in the city of San Francisco.\n188. The chief executive officer of Microsoft is Steve Jobs.\n221. Windows Phone was developed by Microsoft.\n397. San Francisco is located in the continent of North America.",
+    "raw_output": "Thought: The developer of Windows Phone is Microsoft (Fact 221). The chief executive officer of Microsoft is Steve Jobs (Fact 188). Steve Jobs was born in San Francisco (Fact 178). San Francisco is located in North America (Fact 397).\n\nIntermediate answers: [Microsoft, Steve Jobs, San Francisco, North America]\n\nAnswer: North America",
+    "intermediate_answers": [
+      "Microsoft",
+      "Steve Jobs",
+      "San Francisco",
+      "North America"
+    ],
+    "pred_answer": "North America",
+    "gt_answer": [
+      "North America"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 561,
+    "completion_tokens": 81
+  },
+  {
+    "query_id": 33,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n150. cricket was created in the country of Australia.\n220. Australia is located in the continent of South America.\n279. Slovakia national football team is associated with the sport of cricket.",
+    "raw_output": "Thought: The Slovakia national football team is associated with cricket (Fact 279). Cricket was created in Australia (Fact 150). Australia is located in South America (Fact 220). Since Fact 220 is the newest fact (highest serial number) regarding the location of Australia, I must use that information.\n\nIntermediate answers: [South America]\n\nAnswer: South America",
+    "intermediate_answers": [
+      "South America"
+    ],
+    "pred_answer": "South America",
+    "gt_answer": [
+      "South America"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 549,
+    "completion_tokens": 83
+  },
+  {
+    "query_id": 34,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n11. Ferdinand Marcos is married to Imelda Marcos.\n374. Imelda Marcos is affiliated with the religion of atheism.",
+    "raw_output": "Thought: The knowledge pool contains two facts: fact 11 states Ferdinand Marcos is married to Imelda Marcos, and fact 374 states Imelda Marcos is affiliated with the religion of atheism. Since 374 is the larger serial number, it represents the newest fact regarding Imelda Marcos's religious affiliation.\n\nIntermediate answers: [atheism]\n\nAnswer: atheism",
+    "intermediate_answers": [
+      "atheism"
+    ],
+    "pred_answer": "atheism",
+    "gt_answer": [
+      "atheism"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 525,
+    "completion_tokens": 80
+  },
+  {
+    "query_id": 35,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n259. Nobuhiro Watsuki is famous for The Fairly OddParents.\n390. Vito Corleone was created by Nobuhiro Watsuki.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 259 states Nobuhiro Watsuki is famous for The Fairly OddParents, and 390 states Vito Corleone was created by Nobuhiro Watsuki. Since 390 is the larger serial number, it is the newest fact. According to fact 390, the creator of Vito Corleone is Nobuhiro Watsuki. According to fact 259 (the only fact linking the creator to a creation), Nobuhiro Watsuki is famous for The Fairly OddParents.\n\nIntermediate answers: [Nobuhiro Watsuki, The Fairly OddParents]\n\nAnswer: The Fairly OddParents",
+    "intermediate_answers": [
+      "Nobuhiro Watsuki",
+      "The Fairly OddParents"
+    ],
+    "pred_answer": "The Fairly OddParents",
+    "gt_answer": [
+      "The Fairly OddParents"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 539,
+    "completion_tokens": 143
+  },
+  {
+    "query_id": 36,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n229. Rocket Man was performed by Ayumi Hamasaki.\n293. Ayumi Hamasaki is a citizen of Japan.",
+    "raw_output": "Thought: The performer of \"Rocket Man\" is Ayumi Hamasaki (Fact 229). Fact 293 states that Ayumi Hamasaki is a citizen of Japan. Since 293 is the newest fact, it is the authoritative source.\n\nIntermediate answers: [Japan]\n\nAnswer: Japan",
+    "intermediate_answers": [
+      "Japan"
+    ],
+    "pred_answer": "Japan",
+    "gt_answer": [
+      "Japan"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 530,
+    "completion_tokens": 65
+  },
+  {
+    "query_id": 37,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n157. Kylie Minogue speaks the language of German.\n425. Hermione Granger was performed by Kylie Minogue.",
+    "raw_output": "Thought: The performer of Hermione Granger is identified in fact 425 as Kylie Minogue. Fact 157 states that Kylie Minogue speaks the language of German. Since fact 425 is the newer fact regarding the performer, it confirms the identity, and fact 157 provides the language attribute.\n\nIntermediate answers: [Kylie Minogue, German]\n\nAnswer: German",
+    "intermediate_answers": [
+      "Kylie Minogue",
+      "German"
+    ],
+    "pred_answer": "German",
+    "gt_answer": [
+      "German"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 529,
+    "completion_tokens": 82
+  },
+  {
+    "query_id": 38,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n267. post-punk was created in the country of Canada.\n298. The type of music that Michael Mantler plays is post-punk.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 267 states post-punk was created in Canada, and 298 states Michael Mantler plays post-punk. Since 298 is the newer fact, it confirms the genre associated with Michael Mantler is post-punk. Fact 267 identifies the origin of post-punk as Canada.\n\nIntermediate answers: [Canada]\n\nAnswer: Canada",
+    "intermediate_answers": [
+      "Canada"
+    ],
+    "pred_answer": "Canada",
+    "gt_answer": [
+      "Canada"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 535,
+    "completion_tokens": 86
+  },
+  {
+    "query_id": 39,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n50. quarterback is associated with the sport of Muay Thai.\n334. Robert Parish plays the position of quarterback.",
+    "raw_output": "Thought: The knowledge pool contains two facts: fact 50 states that a quarterback is associated with Muay Thai, and fact 334 states that Robert Parish plays the position of quarterback. Since 334 is larger than 50, it is the newer fact. Following the rule to use the newest fact, Robert Parish plays the position of quarterback, and according to the pool, a quarterback is associated with Muay Thai.\n\nIntermediate answers: [Muay Thai]\n\nAnswer: Muay Thai",
+    "intermediate_answers": [
+      "Muay Thai"
+    ],
+    "pred_answer": "Muay Thai",
+    "gt_answer": [
+      "Muay Thai"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 529,
+    "completion_tokens": 102
+  },
+  {
+    "query_id": 40,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n49. Israel was founded by Philippe, Duke of Orléans.\n313. Benjamin Mazar is a citizen of Israel.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 49 (Israel was founded by Philippe, Duke of Orléans) and 313 (Benjamin Mazar is a citizen of Israel). The question asks for the founder of the organization Benjamin Mazar is part of (Israel). Since fact 313 is the newest fact regarding Benjamin Mazar's association with Israel, and fact 49 provides the founder of Israel, I must identify the founder mentioned in the pool.\n\nIntermediate answers: [Philippe, Duke of Orléans]\n\nAnswer: Philippe, Duke of Orléans",
+    "intermediate_answers": [
+      "Philippe",
+      "Duke of Orléans"
+    ],
+    "pred_answer": "Philippe, Duke of Orléans",
+    "gt_answer": [
+      "Philippe, Duke of Orléans"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 532,
+    "completion_tokens": 119
+  },
+  {
+    "query_id": 41,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n295. The official language of United States of America is German.\n451. Gennady Rozhdestvensky died in the city of United States of America.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 295 states the official language of the United States of America is German, and 451 states Gennady Rozhdestvensky died in the United States of America. Since 451 is the larger serial number, it is the most recent fact regarding the location of his death. Fact 295 provides the official language of that location.\n\nIntermediate answers: [United States of America, German]\n\nAnswer: German",
+    "intermediate_answers": [
+      "United States of America",
+      "German"
+    ],
+    "pred_answer": "German",
+    "gt_answer": [
+      "German"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 546,
+    "completion_tokens": 100
+  },
+  {
+    "query_id": 42,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n306. Thomas Kyd was born in the city of Leeds.\n398. The author of The Marriage of Figaro is Thomas Kyd.",
+    "raw_output": "Thought: The knowledge pool identifies the author of \"The Marriage of Figaro\" as Thomas Kyd (fact 398). Fact 306 states that Thomas Kyd was born in the city of Leeds. Since 398 is the newest fact regarding the author, and 306 provides the birthplace for that author, the answer is Leeds.\n\nIntermediate answers: [Leeds]\n\nAnswer: Leeds",
+    "intermediate_answers": [
+      "Leeds"
+    ],
+    "pred_answer": "Leeds",
+    "gt_answer": [
+      "Leeds"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 531,
+    "completion_tokens": 85
+  },
+  {
+    "query_id": 43,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n202. The name of the current head of the Japan government is Shinzō Abe.\n213. Darryl Strawberry is associated with the sport of baseball.\n382. baseball was created in the country of Japan.",
+    "raw_output": "Thought: The question asks for the country where Darryl Strawberry's sport (baseball) was developed and the head of government of that country, based on the provided knowledge pool. Fact 213 states Darryl Strawberry is associated with baseball. Fact 382 states baseball was created in Japan. Fact 202 states the current head of the Japan government is Shinzō Abe. Since 382 and 202 are the most recent facts regarding these topics, the country is Japan and the head of government is Shinzō Abe.\n\nIntermediate answers: [Japan, Shinzō Abe]\n\nAnswer: Japan, Shinzō Abe",
+    "intermediate_answers": [
+      "Japan",
+      "Shinzō Abe"
+    ],
+    "pred_answer": "Japan, Shinzō Abe",
+    "gt_answer": [
+      "Shinzō Abe"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 556,
+    "completion_tokens": 134
+  },
+  {
+    "query_id": 44,
+    "num_hops": 4,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n57. cricket was created in the country of England.\n110. Mike D'Antoni plays the position of point guard.\n219. point guard is associated with the sport of cricket.\n378. The capital of England is London.",
+    "raw_output": "Thought: Mike D'Antoni plays the position of point guard (110). Point guard is associated with the sport of cricket (219). Cricket was created in the country of England (57). The capital of England is London (378).\n\nIntermediate answers: [cricket, England, London]\n\nAnswer: London",
+    "intermediate_answers": [
+      "cricket",
+      "England",
+      "London"
+    ],
+    "pred_answer": "London",
+    "gt_answer": [
+      "London"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 564,
+    "completion_tokens": 71
+  },
+  {
+    "query_id": 45,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n300. Sigmund Freud died in the city of London.\n430. The author of Sketches by Boz is Sigmund Freud.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 300 states Sigmund Freud died in London, and 430 states the author of \"Sketches by Boz\" is Sigmund Freud. Since 430 is the larger serial number, it is the newer, authoritative fact. According to fact 430, the author of \"Sketches by Boz\" is Sigmund Freud. According to fact 300, Sigmund Freud died in London. Therefore, the author of \"Sketches by Boz\" died in London.\n\nIntermediate answers: [Sigmund Freud, London]\n\nAnswer: London",
+    "intermediate_answers": [
+      "Sigmund Freud",
+      "London"
+    ],
+    "pred_answer": "London",
+    "gt_answer": [
+      "London"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 530,
+    "completion_tokens": 123
+  },
+  {
+    "query_id": 46,
+    "num_hops": 4,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n95. sumo was created in the country of Japan.\n103. The capital of Japan is Tokyo.\n269. Daniele De Rossi plays the position of midfielder.\n416. midfielder is associated with the sport of sumo.",
+    "raw_output": "Thought: The sport of Daniele De Rossi is identified as \"midfielder\" (fact 269), and fact 416 states that \"midfielder\" is associated with the sport of \"sumo\". Fact 95 states that \"sumo\" was created in the country of \"Japan\". Fact 103 states that the capital of \"Japan\" is \"Tokyo\". Since there are no conflicting facts regarding the capital of Japan, the newest relevant fact is 103.\n\nIntermediate answers: [Japan, Tokyo]\n\nAnswer: Tokyo",
+    "intermediate_answers": [
+      "Japan",
+      "Tokyo"
+    ],
+    "pred_answer": "Tokyo",
+    "gt_answer": [
+      "Tokyo"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 555,
+    "completion_tokens": 115
+  },
+  {
+    "query_id": 47,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n386. Ferdinand von Richthofen is a citizen of Canada.\n440. Canada is located in the continent of Asia.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 386 states Ferdinand von Richthofen is a citizen of Canada, and 440 states Canada is located in the continent of Asia. Since 440 is the larger serial number, it represents the newest fact. Following the rule to use the newest information, Canada is located in Asia. Therefore, the country of citizenship of Ferdinand von Richthofen (Canada) is located in Asia.\n\nIntermediate answers: [Asia]\n\nAnswer: Asia",
+    "intermediate_answers": [
+      "Asia"
+    ],
+    "pred_answer": "Asia",
+    "gt_answer": [
+      "Asia"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 530,
+    "completion_tokens": 103
+  },
+  {
+    "query_id": 48,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n23. Galwegians RFC is associated with the sport of rugby union.\n186. rugby union was created in the country of India.\n341. The capital of India is Grosseto.",
+    "raw_output": "Thought: The sport played by Galwegians RFC is rugby union (Fact 23). According to Fact 186, rugby union was created in India. According to Fact 341, the capital of India is Grosseto. Since 341 is the largest serial number, it is the newest fact.\n\nIntermediate answers: [rugby union, India, Grosseto]\n\nAnswer: Grosseto",
+    "intermediate_answers": [
+      "rugby union",
+      "India",
+      "Grosseto"
+    ],
+    "pred_answer": "Grosseto",
+    "gt_answer": [
+      "Grosseto"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 551,
+    "completion_tokens": 89
+  },
+  {
+    "query_id": 49,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n304. Shingon Buddhism was founded by William Waynflete.\n336. William Waynflete speaks the language of Latin.",
+    "raw_output": "Thought: The knowledge pool identifies William Waynflete as the founder of Shingon Buddhism (Fact 304). Fact 336 states that William Waynflete speaks the language of Latin. Since 336 is the newest fact, it confirms the language spoken by the founder.\n\nIntermediate answers: [Latin]\n\nAnswer: Latin",
+    "intermediate_answers": [
+      "Latin"
+    ],
+    "pred_answer": "Latin",
+    "gt_answer": [
+      "Latin"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 533,
+    "completion_tokens": 72
+  },
+  {
+    "query_id": 50,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n351. The name of the current head of the Council of People's Commissars government is Tony Blair.\n394. Alan Jay Lerner died in the city of Mansourah, Algeria.\n424. Tony Blair is married to Alan Jay Lerner.",
+    "raw_output": "Thought: The head of the Council of People's Commissars is identified in fact 351 as Tony Blair. Fact 424 states that Tony Blair is married to Alan Jay Lerner, making Alan Jay Lerner the partner. Fact 394 states that Alan Jay Lerner died in the city of Mansourah, Algeria. Since these are the only facts provided in the pool, I follow the information given.\n\nIntermediate answers: [Tony Blair, Alan Jay Lerner, Mansourah, Algeria]\n\nAnswer: Mansourah, Algeria",
+    "intermediate_answers": [
+      "Tony Blair",
+      "Alan Jay Lerner",
+      "Mansourah",
+      "Algeria"
+    ],
+    "pred_answer": "Mansourah, Algeria",
+    "gt_answer": [
+      "Mansourah, Algeria"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 566,
+    "completion_tokens": 112
+  },
+  {
+    "query_id": 51,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n320. Stephen McNeil works in the field of journalist.\n445. The chairperson of Congolese Party of Labour is Stephen McNeil.",
+    "raw_output": "Thought: The knowledge pool contains two facts about Stephen McNeil. Fact 320 states he is a journalist, and fact 445 states he is the chairperson of the Congolese Party of Labour. Since 445 is the larger serial number, it is the newest fact. The question asks for the professional role of the chairperson of the Congolese Party of Labour, which is Stephen McNeil. According to fact 320, Stephen McNeil's professional role is a journalist.\n\nIntermediate answers: [journalist]\n\nAnswer: journalist",
+    "intermediate_answers": [
+      "journalist"
+    ],
+    "pred_answer": "journalist",
+    "gt_answer": [
+      "journalist"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 529,
+    "completion_tokens": 109
+  },
+  {
+    "query_id": 52,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n43. Christianity was founded in the city of Taipei.\n172. Bagratuni Dynasty is affiliated with the religion of Christianity.",
+    "raw_output": "Thought: The Bagratuni Dynasty is affiliated with Christianity (Fact 172). Christianity was founded in the city of Taipei (Fact 43). Since Fact 172 is the newest fact regarding the religion, and the religion is linked to the location provided in Fact 43, the location is Taipei.\n\nIntermediate answers: [Taipei]\n\nAnswer: Taipei",
+    "intermediate_answers": [
+      "Taipei"
+    ],
+    "pred_answer": "Taipei",
+    "gt_answer": [
+      "Taipei"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 529,
+    "completion_tokens": 78
+  },
+  {
+    "query_id": 53,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n403. rap rock was created in the country of Russian Empire.\n415. The type of music that John McVie plays is rap rock.\n452. Roy Rogers is married to John McVie.",
+    "raw_output": "Thought: The spouse of Roy Rogers is John McVie (Fact 452). The type of music John McVie plays is rap rock (Fact 415). Rap rock was created in the Russian Empire (Fact 403). Since there are no conflicting facts regarding the origin of rap rock or the spouse of Roy Rogers in the provided pool, the information remains consistent.\n\nIntermediate answers: [John McVie, rap rock, Russian Empire]\n\nAnswer: Russian Empire",
+    "intermediate_answers": [
+      "John McVie",
+      "rap rock",
+      "Russian Empire"
+    ],
+    "pred_answer": "Russian Empire",
+    "gt_answer": [
+      "Russian Empire"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 549,
+    "completion_tokens": 99
+  },
+  {
+    "query_id": 54,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n177. The capital of Tang Empire is Beaumont.\n203. Ernst Heinkel is a citizen of Tang Empire.\n363. The origianl broadcaster of 666 Park Avenue is American Broadcasting Company.\n392. The director of American Broadcasting Company is Ernst Heinkel.",
+    "raw_output": "Thought: The director of \"666 Park Avenue\" is the American Broadcasting Company (Fact 363). The director of the American Broadcasting Company is Ernst Heinkel (Fact 392). Ernst Heinkel is a citizen of the Tang Empire (Fact 203). The capital of the Tang Empire is Beaumont (Fact 177). Since all facts are consistent and there are no conflicting entries for these specific entities, the newest information confirms the capital is Beaumont.\n\nIntermediate answers: [Ernst Heinkel, Tang Empire, Beaumont]\n\nAnswer: Beaumont",
+    "intermediate_answers": [
+      "Ernst Heinkel",
+      "Tang Empire",
+      "Beaumont"
+    ],
+    "pred_answer": "Beaumont",
+    "gt_answer": [
+      "Beaumont"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 577,
+    "completion_tokens": 118
+  },
+  {
+    "query_id": 55,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n205. Pakistan International Airlines was founded in the city of Sweden.\n385. Ron Dennis is employed by Pakistan International Airlines.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 205 (Pakistan International Airlines was founded in Sweden) and 385 (Ron Dennis is employed by Pakistan International Airlines). To find where the organization Ron Dennis works for was established, I identify the organization as Pakistan International Airlines (from fact 385) and look for its founding location in the knowledge pool. Fact 205 states it was founded in Sweden. Since there are no conflicting facts regarding the founding location, I use the provided information.\n\nIntermediate answers: [Sweden]\n\nAnswer: Sweden",
+    "intermediate_answers": [
+      "Sweden"
+    ],
+    "pred_answer": "Sweden",
+    "gt_answer": [
+      "Sweden"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 529,
+    "completion_tokens": 116
+  },
+  {
+    "query_id": 56,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n435. Germany is located in the continent of Africa.\n436. Le Petit Parisien was created in the country of Germany.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 435 states Germany is in Africa, and 436 states Le Petit Parisien was created in Germany. Since the question asks for the continent where Le Petit Parisien was made, and fact 436 links the creation to Germany, while fact 435 defines Germany's location as Africa, the logical deduction within this specific knowledge pool is that the continent is Africa.\n\nIntermediate answers: [Africa]\n\nAnswer: Africa",
+    "intermediate_answers": [
+      "Africa"
+    ],
+    "pred_answer": "Africa",
+    "gt_answer": [
+      "Africa"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 526,
+    "completion_tokens": 101
+  },
+  {
+    "query_id": 57,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n8. Victoria Beckham is married to David Beckham.\n150. cricket was created in the country of Australia.\n303. David Beckham is associated with the sport of cricket.\n388. The capital of Australia is Oderzo.",
+    "raw_output": "Thought: 1. Identify the partner of Victoria Beckham: Fact 8 states Victoria Beckham is married to David Beckham. 2. Identify the sport associated with David Beckham: Fact 303 states David Beckham is associated with cricket. 3. Identify the country where cricket originated: Fact 150 states cricket was created in Australia. 4. Identify the capital of Australia: Fact 388 states the capital of Australia is Oderzo.\n\nIntermediate answers: [David Beckham, cricket, Australia, Oderzo]\n\nAnswer: Oderzo",
+    "intermediate_answers": [
+      "David Beckham",
+      "cricket",
+      "Australia",
+      "Oderzo"
+    ],
+    "pred_answer": "Oderzo",
+    "gt_answer": [
+      "Oderzo"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 559,
+    "completion_tokens": 113
+  },
+  {
+    "query_id": 58,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp.\n264. Sasanian Empire was founded by Walter Chrysler.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 231 (Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp) and 264 (Sasanian Empire was founded by Walter Chrysler). The question asks for the political entity established from the successor of the Sasanian Empire. However, the provided knowledge pool does not contain information regarding the successor of the Sasanian Empire or any political entity established from it. Therefore, based strictly on the provided knowledge pool, the information is unavailable.\n\nIntermediate answers: [None]\n\nAnswer: None",
+    "intermediate_answers": [
+      "None"
+    ],
+    "pred_answer": "None",
+    "gt_answer": [
+      "Charles Frederick, Duke of Holstein-Gottorp"
+    ],
+    "exact_match": false,
+    "prompt_tokens": 542,
+    "completion_tokens": 118
+  },
+  {
+    "query_id": 59,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n149. FC Irtysh Omsk is associated with the sport of association football.\n209. The capital of Italy is Duluth.\n389. association football was created in the country of Italy.",
+    "raw_output": "Thought: The knowledge pool contains three facts. Fact 149 states FC Irtysh Omsk is associated with association football. Fact 389 states association football was created in Italy. Fact 209 states the capital of Italy is Duluth. Since 209 is the newest fact regarding the capital of Italy, I must use that information.\n\nIntermediate answers: [Duluth]\n\nAnswer: Duluth",
+    "intermediate_answers": [
+      "Duluth"
+    ],
+    "pred_answer": "Duluth",
+    "gt_answer": [
+      "Duluth"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 551,
+    "completion_tokens": 86
+  },
+  {
+    "query_id": 60,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n51. Frank Zappa died in the city of Berlin.\n318. Back to Black was performed by Frank Zappa.",
+    "raw_output": "Thought: The performer of \"Back to Black\" is identified in fact 318 as Frank Zappa. Fact 51 states that Frank Zappa died in the city of Berlin. Since fact 318 is the newer fact, it confirms the performer, and fact 51 provides the location of death.\n\nIntermediate answers: [Frank Zappa, Berlin]\n\nAnswer: Berlin",
+    "intermediate_answers": [
+      "Frank Zappa",
+      "Berlin"
+    ],
+    "pred_answer": "Berlin",
+    "gt_answer": [
+      "Berlin"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 531,
+    "completion_tokens": 81
+  },
+  {
+    "query_id": 61,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n36. Hines Ward plays the position of cornerback.\n362. cornerback is associated with the sport of field hockey.",
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Hines Ward and the position of cornerback. Fact 36 states Hines Ward plays cornerback, and fact 362 states cornerback is associated with field hockey. Since 362 is the larger serial number, it represents the newest information in the pool. Therefore, based on the provided pool, Hines Ward competed in field hockey.\n\nIntermediate answers: [field hockey]\n\nAnswer: field hockey",
+    "intermediate_answers": [
+      "field hockey"
+    ],
+    "pred_answer": "field hockey",
+    "gt_answer": [
+      "field hockey"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 522,
+    "completion_tokens": 89
+  },
+  {
+    "query_id": 62,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n392. The director of American Broadcasting Company is Ernst Heinkel.\n404. The origianl broadcaster of The Brady Bunch is American Broadcasting Company.",
+    "raw_output": "Thought: The original broadcaster of \"The Brady Bunch\" is the American Broadcasting Company (fact 404). The director of the American Broadcasting Company is Ernst Heinkel (fact 392). Since fact 404 is the newest fact, the entity associated with the broadcaster is the American Broadcasting Company, and its director is Ernst Heinkel. The question asks for the position held by the person related to the broadcaster, which is \"director\".\n\nIntermediate answers: [American Broadcasting Company, Ernst Heinkel, director]\n\nAnswer: director",
+    "intermediate_answers": [
+      "American Broadcasting Company",
+      "Ernst Heinkel",
+      "director"
+    ],
+    "pred_answer": "director",
+    "gt_answer": [
+      "Ernst Heinkel"
+    ],
+    "exact_match": false,
+    "prompt_tokens": 538,
+    "completion_tokens": 111
+  },
+  {
+    "query_id": 63,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n34. Chanel was founded by Andy Warhol.\n142. Andy Warhol died in the city of Montmélian.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 34 (Chanel was founded by Andy Warhol) and 142 (Andy Warhol died in the city of Montmélian). Since 142 is the larger serial number, it represents the newest fact. According to fact 34, the founder of Chanel is Andy Warhol. According to fact 142, Andy Warhol died in Montmélian.\n\nIntermediate answers: [Andy Warhol, Montmélian]\n\nAnswer: Montmélian",
+    "intermediate_answers": [
+      "Andy Warhol",
+      "Montmélian"
+    ],
+    "pred_answer": "Montmélian",
+    "gt_answer": [
+      "Montmélian"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 524,
+    "completion_tokens": 108
+  },
+  {
+    "query_id": 64,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n183. Daphne du Maurier is a citizen of United Kingdom.\n344. The author of Starship Troopers is Daphne du Maurier.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 183 (Daphne du Maurier is a citizen of United Kingdom) and 344 (The author of Starship Troopers is Daphne du Maurier). Following the rule to use the newest fact (the one with the larger serial number) to resolve information, I identify the author of Starship Troopers as Daphne du Maurier (fact 344) and her citizenship as United Kingdom (fact 183).\n\nIntermediate answers: [Daphne du Maurier, United Kingdom]\n\nAnswer: United Kingdom",
+    "intermediate_answers": [
+      "Daphne du Maurier",
+      "United Kingdom"
+    ],
+    "pred_answer": "United Kingdom",
+    "gt_answer": [
+      "United Kingdom"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 534,
+    "completion_tokens": 121
+  },
+  {
+    "query_id": 65,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n226. Dave Filoni is employed by British Broadcasting Corporation.\n428. The director of British Broadcasting Corporation is Narendra Modi.",
+    "raw_output": "Thought: The knowledge pool states that Dave Filoni is employed by the British Broadcasting Corporation (fact 226). Fact 428 states that the director of the British Broadcasting Corporation is Narendra Modi. Since fact 428 has a larger serial number than fact 226, it is the most recent and authoritative information in the provided pool.\n\nIntermediate answers: [British Broadcasting Corporation, Narendra Modi]\n\nAnswer: Narendra Modi",
+    "intermediate_answers": [
+      "British Broadcasting Corporation",
+      "Narendra Modi"
+    ],
+    "pred_answer": "Narendra Modi",
+    "gt_answer": [
+      "Narendra Modi"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 534,
+    "completion_tokens": 91
+  },
+  {
+    "query_id": 66,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n189. Hugh Hefner is famous for The Vampyre.\n426. The Vampyre was written in the language of German.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 189 (Hugh Hefner is famous for The Vampyre) and 426 (The Vampyre was written in the language of German). Since 426 is the larger serial number, it represents the newer, authoritative fact regarding the language of the work.\n\nIntermediate answers: [German]\n\nAnswer: German",
+    "intermediate_answers": [
+      "German"
+    ],
+    "pred_answer": "German",
+    "gt_answer": [
+      "German"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 529,
+    "completion_tokens": 77
+  },
+  {
+    "query_id": 67,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n158. The capital of India is New Delhi.\n186. rugby union was created in the country of India.\n258. flanker is associated with the sport of rugby union.\n434. Rogério Ceni plays the position of flanker.",
+    "raw_output": "Thought: The sport played by Rogério Ceni is identified in fact 434 as \"flanker\". Fact 258 states that \"flanker\" is associated with the sport of \"rugby union\". Fact 186 states that \"rugby union\" was created in the country of \"India\". Fact 158 states that the capital of \"India\" is \"New Delhi\". Since there are no conflicting facts regarding the capital of India or the origin of rugby union in this pool, the information is consistent.\n\nIntermediate answers: [rugby union, India, New Delhi]\n\nAnswer: New Delhi",
+    "intermediate_answers": [
+      "rugby union",
+      "India",
+      "New Delhi"
+    ],
+    "pred_answer": "New Delhi",
+    "gt_answer": [
+      "New Delhi"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 566,
+    "completion_tokens": 129
+  },
+  {
+    "query_id": 68,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n208. The univeristy where Samuel Beckett was educated is University of Southern California.\n401. The author of Sidereus Nuncius is Samuel Beckett.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 208 (Samuel Beckett was educated at the University of Southern California) and 401 (The author of Sidereus Nuncius is Samuel Beckett). To answer the question, I must identify the author of 'Sidereus Nuncius' (Samuel Beckett, per fact 401) and then find the educational institution associated with that person in the pool (University of Southern California, per fact 208). Since 401 is the newest fact, it confirms the identity of the author, and 208 provides the education.\n\nIntermediate answers: [Samuel Beckett, University of Southern California]\n\nAnswer: University of Southern California",
+    "intermediate_answers": [
+      "Samuel Beckett",
+      "University of Southern California"
+    ],
+    "pred_answer": "University of Southern California",
+    "gt_answer": [
+      "University of Southern California"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 541,
+    "completion_tokens": 147
+  },
+  {
+    "query_id": 69,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n180. The author of Endymion is John Keats.\n372. John Keats died in the city of Leipzig.",
+    "raw_output": "Thought: The author of Endymion is identified as John Keats in fact 180. Fact 372 states that John Keats died in the city of Leipzig. Since 372 is the larger serial number, it is the newer, authoritative fact in the provided knowledge pool.\n\nIntermediate answers: [Leipzig]\n\nAnswer: Leipzig",
+    "intermediate_answers": [
+      "Leipzig"
+    ],
+    "pred_answer": "Leipzig",
+    "gt_answer": [
+      "Leipzig"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 529,
+    "completion_tokens": 74
+  },
+  {
+    "query_id": 70,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n63. The univeristy where Joan Didion was educated is University of California, Berkeley.\n114. The headquarters of University of California, Berkeley is located in the city of Botevgrad.\n420. Sophia Hawthorne is married to Joan Didion.",
+    "raw_output": "Thought: 1. Identify the spouse of Sophia Hawthorne: Fact 420 states Sophia Hawthorne is married to Joan Didion. 2. Identify the educational institution attended by Joan Didion: Fact 63 states Joan Didion was educated at the University of California, Berkeley. 3. Identify the headquarters of the University of California, Berkeley: Fact 114 states the headquarters is located in Botevgrad. Since 114 is the latest fact regarding the location, it is the correct source.\n\nIntermediate answers: [Joan Didion, University of California, Berkeley, Botevgrad]\n\nAnswer: Botevgrad",
+    "intermediate_answers": [
+      "Joan Didion",
+      "University of California",
+      "Berkeley",
+      "Botevgrad"
+    ],
+    "pred_answer": "Botevgrad",
+    "gt_answer": [
+      "Botevgrad"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 562,
+    "completion_tokens": 134
+  },
+  {
+    "query_id": 71,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n60. Leo Stein is a citizen of United States of America.\n126. The name of the current head of state in United States of America is Connachta.",
+    "raw_output": "Thought: The knowledge pool identifies Leo Stein as a citizen of the United States of America (Fact 60). Fact 126 states that the current head of state of the United States of America is Connachta. Since 126 is the newer fact, it supersedes any previous information regarding the head of state.\n\nIntermediate answers: [United States of America, Connachta]\n\nAnswer: Connachta",
+    "intermediate_answers": [
+      "United States of America",
+      "Connachta"
+    ],
+    "pred_answer": "Connachta",
+    "gt_answer": [
+      "Connachta"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 539,
+    "completion_tokens": 85
+  },
+  {
+    "query_id": 72,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n73. Hal Needham is a citizen of United States of America.\n126. The name of the current head of state in United States of America is Connachta.",
+    "raw_output": "Thought: The knowledge pool identifies Hal Needham as a citizen of the United States of America (Fact 73). Fact 126 states that the current head of state of the United States of America is Connachta. Since 126 is the newer fact, it supersedes any other information regarding the head of state.\n\nIntermediate answers: [United States of America, Connachta]\n\nAnswer: Connachta",
+    "intermediate_answers": [
+      "United States of America",
+      "Connachta"
+    ],
+    "pred_answer": "Connachta",
+    "gt_answer": [
+      "Connachta"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 539,
+    "completion_tokens": 85
+  },
+  {
+    "query_id": 73,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n265. Canadair was founded in the city of Tucson.\n356. The company that produced AP1000 is Canadair.\n454. The name of the current head of the Tucson government is Jonathan Rothschild.",
+    "raw_output": "Thought: The AP1000 was produced by Canadair (Fact 356). Canadair was founded in Tucson (Fact 265). The head of the Tucson government is Jonathan Rothschild (Fact 454). Since 454 is the largest serial number, it is the most recent fact.\n\nIntermediate answers: [Canadair, Tucson, Jonathan Rothschild]\n\nAnswer: Jonathan Rothschild",
+    "intermediate_answers": [
+      "Canadair",
+      "Tucson",
+      "Jonathan Rothschild"
+    ],
+    "pred_answer": "Jonathan Rothschild",
+    "gt_answer": [
+      "Jonathan Rothschild"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 559,
+    "completion_tokens": 86
+  },
+  {
+    "query_id": 74,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n283. Pius XII died in the city of Wolverhampton.\n301. The author of A Wizard of Earthsea is Pius XII.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 283 states Pius XII died in Wolverhampton, and 301 states the author of A Wizard of Earthsea is Pius XII. Since 301 is the larger serial number, it is the authoritative fact regarding the identity of the author. Combining these, the author of A Wizard of Earthsea (Pius XII) died in the location specified in the knowledge pool (Wolverhampton).\n\nIntermediate answers: [Pius XII, Wolverhampton]\n\nAnswer: Wolverhampton",
+    "intermediate_answers": [
+      "Pius XII",
+      "Wolverhampton"
+    ],
+    "pred_answer": "Wolverhampton",
+    "gt_answer": [
+      "Wolverhampton"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 533,
+    "completion_tokens": 106
+  },
+  {
+    "query_id": 75,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n233. Yves Montand is married to Natalie Portman.\n285. Aladdin Sane was performed by Yves Montand.\n410. Natalie Portman is affiliated with the religion of interdenominational organization.",
+    "raw_output": "Thought: The performer of \"Aladdin Sane\" is identified in fact 285 as Yves Montand. Fact 233 states that Yves Montand is married to (partnered with) Natalie Portman. Fact 410 states that Natalie Portman is affiliated with the religion of interdenominational organization. Since 410 is the largest serial number, it is the most recent and valid fact.\n\nIntermediate answers: [Yves Montand, Natalie Portman, interdenominational organization]\n\nAnswer: interdenominational organization",
+    "intermediate_answers": [
+      "Yves Montand",
+      "Natalie Portman",
+      "interdenominational organization"
+    ],
+    "pred_answer": "interdenominational organization",
+    "gt_answer": [
+      "interdenominational organization"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 549,
+    "completion_tokens": 112
+  },
+  {
+    "query_id": 76,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n5. Pedro Pierluisi worked in the city of Washington, D.C..\n276. The Prime Minister of Sweden is Pedro Pierluisi.",
+    "raw_output": "Thought: The knowledge pool contains two facts: fact 5 states Pedro Pierluisi worked in Washington, D.C., and fact 276 states the Prime Minister of Sweden is Pedro Pierluisi. Since 276 is the larger serial number, it is the newest fact. Combining these, the Prime Minister of Sweden (Pedro Pierluisi) works in Washington, D.C.\n\nIntermediate answers: [Washington, D.C.]\n\nAnswer: Washington, D.C.",
+    "intermediate_answers": [
+      "Washington",
+      "D.C"
+    ],
+    "pred_answer": "Washington, D.C.",
+    "gt_answer": [
+      "Washington, D.C."
+    ],
+    "exact_match": true,
+    "prompt_tokens": 534,
+    "completion_tokens": 102
+  },
+  {
+    "query_id": 77,
+    "num_hops": 4,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n198. The capital of Papal States is Rome.\n201. The chief executive officer of Apple Inc. is Vijay Mallya.\n241. AppleScript was developed by Apple Inc..\n329. Vijay Mallya is a citizen of Papal States.",
+    "raw_output": "Thought: The developer of AppleScript is Apple Inc. (Fact 241). The CEO of Apple Inc. is Vijay Mallya (Fact 201). Vijay Mallya is a citizen of the Papal States (Fact 329). The capital of the Papal States is Rome (Fact 198).\n\nIntermediate answers: [Apple Inc., Vijay Mallya, Papal States, Rome]\n\nAnswer: Rome",
+    "intermediate_answers": [
+      "Apple Inc",
+      "Vijay Mallya",
+      "Papal States",
+      "Rome"
+    ],
+    "pred_answer": "Rome",
+    "gt_answer": [
+      "Rome"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 569,
+    "completion_tokens": 94
+  },
+  {
+    "query_id": 78,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n93. Gala RFC is associated with the sport of rugby union.\n186. rugby union was created in the country of India.\n280. India is located in the continent of Africa.",
+    "raw_output": "Thought: The question asks for the continent where the country of origin for Gala RFC is located, based on the provided knowledge pool. Fact 93 states Gala RFC is associated with rugby union. Fact 186 states rugby union was created in India. Fact 280 states India is located in Africa. Following the rule to use the newest facts (highest serial numbers), I identify the country of origin as India (Fact 186) and its location as Africa (Fact 280).\n\nIntermediate answers: [India, Africa]\n\nAnswer: Africa",
+    "intermediate_answers": [
+      "India",
+      "Africa"
+    ],
+    "pred_answer": "Africa",
+    "gt_answer": [
+      "Africa"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 541,
+    "completion_tokens": 117
+  },
+  {
+    "query_id": 79,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n227. Irving Fryar plays the position of wide receiver.\n252. wide receiver is associated with the sport of rugby.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 227 states Irving Fryar plays wide receiver, and 252 states wide receiver is associated with rugby. Since 252 is the larger serial number, it is the newest fact. Therefore, the sport associated with the position is rugby.\nIntermediate answers: [rugby]\nAnswer: rugby",
+    "intermediate_answers": [
+      "rugby"
+    ],
+    "pred_answer": "rugby",
+    "gt_answer": [
+      "rugby"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 533,
+    "completion_tokens": 74
+  },
+  {
+    "query_id": 80,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n239. Cédric Klapisch is a citizen of Malaysia.\n442. Malaysia is located in the continent of Antarctica.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 239 states Cédric Klapisch is a citizen of Malaysia, and 442 states Malaysia is located in Antarctica. Since 442 is the larger serial number, it represents the newest fact. Following the rule to use the newest information, Malaysia is located in Antarctica.\n\nIntermediate answers: [Antarctica]\n\nAnswer: Antarctica",
+    "intermediate_answers": [
+      "Antarctica"
+    ],
+    "pred_answer": "Antarctica",
+    "gt_answer": [
+      "Antarctica"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 533,
+    "completion_tokens": 82
+  },
+  {
+    "query_id": 81,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n106. Leonte Răutu is employed by University of Bucharest.\n409. The headquarters of University of Bucharest is located in the city of Ankara.",
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the University of Bucharest. Fact 106 states Leonte Răutu is employed by the University of Bucharest. Fact 409 states the headquarters of the University of Bucharest is located in Ankara. Since 409 is the newer fact (larger serial number), it takes precedence.\n\nIntermediate answers: [Ankara]\n\nAnswer: Ankara",
+    "intermediate_answers": [
+      "Ankara"
+    ],
+    "pred_answer": "Ankara",
+    "gt_answer": [
+      "Ankara"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 538,
+    "completion_tokens": 81
+  },
+  {
+    "query_id": 82,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n353. Club Nouveau was created in the country of Soviet Union.\n365. The name of the current head of state in Soviet Union is Elizabeth II.",
+    "raw_output": "Thought: The knowledge pool identifies the country of origin of Club Nouveau as the Soviet Union (fact 353). Fact 365 identifies the current head of state of the Soviet Union as Elizabeth II. Since the question asks for the head of government of the country of origin (Soviet Union) and the provided knowledge pool identifies the head of state as Elizabeth II, and there is no other information regarding a head of government, the answer is derived from the provided facts.\n\nIntermediate answers: [Soviet Union, Elizabeth II]\n\nAnswer: Elizabeth II",
+    "intermediate_answers": [
+      "Soviet Union",
+      "Elizabeth II"
+    ],
+    "pred_answer": "Elizabeth II",
+    "gt_answer": [
+      "Elizabeth II"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 538,
+    "completion_tokens": 112
+  },
+  {
+    "query_id": 83,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n309. The univeristy where Bill Frisell was educated is The University of the Arts.\n387. The headquarters of The University of the Arts is located in the city of Philadelphia.\n421. Philadelphia was founded by William Penn.",
+    "raw_output": "Thought: The university where Bill Frisell was educated is The University of the Arts (Fact 309). The headquarters of The University of the Arts is in Philadelphia (Fact 387). Philadelphia was founded by William Penn (Fact 421). Since 421 is the largest serial number, it is the newest fact. The individual responsible for founding the organization (Philadelphia) is William Penn.\n\nIntermediate answers: [The University of the Arts, Philadelphia, William Penn]\n\nAnswer: William Penn",
+    "intermediate_answers": [
+      "The University of the Arts",
+      "Philadelphia",
+      "William Penn"
+    ],
+    "pred_answer": "William Penn",
+    "gt_answer": [
+      "William Penn"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 562,
+    "completion_tokens": 106
+  },
+  {
+    "query_id": 84,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n255. The capital of Iran is Tehran.\n343. Charles Messier is a citizen of Iran.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 255 (The capital of Iran is Tehran) and 343 (Charles Messier is a citizen of Iran). The question asks for the capital of the country where Charles Messier holds citizenship. According to fact 343, Charles Messier is a citizen of Iran. According to fact 255, the capital of Iran is Tehran.\n\nIntermediate answers: [Iran, Tehran]\n\nAnswer: Tehran",
+    "intermediate_answers": [
+      "Iran",
+      "Tehran"
+    ],
+    "pred_answer": "Tehran",
+    "gt_answer": [
+      "Tehran"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 527,
+    "completion_tokens": 97
+  },
+  {
+    "query_id": 85,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n169. Lisa Leslie plays the position of goaltender.\n261. pesäpallo was created in the country of Philippines.\n310. goaltender is associated with the sport of pesäpallo.",
+    "raw_output": "Thought: The knowledge pool identifies Lisa Leslie's position as \"goaltender\" (Fact 169). Fact 310 states that \"goaltender\" is associated with the sport of \"pesäpallo\". Fact 261 states that \"pesäpallo\" was created in the country of \"Philippines\". Since 261 is the highest serial number associated with the origin of the sport, it is the valid fact.\n\nIntermediate answers: [goaltender, pesäpallo, Philippines]\n\nAnswer: Philippines",
+    "intermediate_answers": [
+      "goaltender",
+      "pesäpallo",
+      "Philippines"
+    ],
+    "pred_answer": "Philippines",
+    "gt_answer": [
+      "Philippines"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 552,
+    "completion_tokens": 114
+  },
+  {
+    "query_id": 86,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n158. The capital of India is New Delhi.\n225. Henri Grégoire is a citizen of India.\n230. Ford Motor Company was founded by Henri Grégoire.\n400. The company that produced Ford F-Series is Ford Motor Company.",
+    "raw_output": "Thought: The manufacturer of the Ford F-Series is the Ford Motor Company (Fact 400). The founder of the Ford Motor Company is Henri Grégoire (Fact 230). Henri Grégoire is a citizen of India (Fact 225). The capital of India is New Delhi (Fact 158).\n\nIntermediate answers: [Ford Motor Company, Henri Grégoire, India, New Delhi]\n\nAnswer: New Delhi",
+    "intermediate_answers": [
+      "Ford Motor Company",
+      "Henri Grégoire",
+      "India",
+      "New Delhi"
+    ],
+    "pred_answer": "New Delhi",
+    "gt_answer": [
+      "New Delhi"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 571,
+    "completion_tokens": 95
+  },
+  {
+    "query_id": 87,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n209. The capital of Italy is Duluth.\n340. Sandy Alderson is associated with the sport of association football.\n389. association football was created in the country of Italy.",
+    "raw_output": "Thought: The sport Sandy Alderson is associated with is association football (Fact 340). According to Fact 389, association football originated in Italy. According to Fact 209, the capital of Italy is Duluth.\n\nIntermediate answers: [association football, Italy, Duluth]\n\nAnswer: Duluth",
+    "intermediate_answers": [
+      "association football",
+      "Italy",
+      "Duluth"
+    ],
+    "pred_answer": "Duluth",
+    "gt_answer": [
+      "Duluth"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 549,
+    "completion_tokens": 65
+  },
+  {
+    "query_id": 88,
+    "num_hops": 4,
+    "n_conflict": 4,
+    "chain_passage": "Wikipedia Title: \n151. The official language of Australia is Arabic.\n217. Narendra Modi is a citizen of Australia.\n354. The director of Madonna is Narendra Modi.\n364. Past Masters was performed by Madonna.",
+    "raw_output": "Thought: 1. Identify the performer of \"Past Masters\": Fact 364 states \"Past Masters was performed by Madonna.\" 2. Identify the director of Madonna: Fact 354 states \"The director of Madonna is Narendra Modi.\" 3. Identify the citizenship of Narendra Modi: Fact 217 states \"Narendra Modi is a citizen of Australia.\" 4. Identify the official language of Australia: Fact 151 states \"The official language of Australia is Arabic.\"\n\nIntermediate answers: [Madonna, Narendra Modi, Australia, Arabic]\n\nAnswer: Arabic",
+    "intermediate_answers": [
+      "Madonna",
+      "Narendra Modi",
+      "Australia",
+      "Arabic"
+    ],
+    "pred_answer": "Arabic",
+    "gt_answer": [
+      "Arabic"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 558,
+    "completion_tokens": 120
+  },
+  {
+    "query_id": 89,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n150. cricket was created in the country of Australia.\n328. split-finger fastball is associated with the sport of cricket.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 150 states cricket was created in Australia, and 328 states the split-finger fastball is associated with cricket. Since 328 is the larger serial number, it is the newest fact. However, the question asks for the birthplace of the sport associated with the split-finger fastball (cricket). Fact 150 identifies the birthplace of cricket as Australia.\n\nIntermediate answers: [Australia]\n\nAnswer: Australia",
+    "intermediate_answers": [
+      "Australia"
+    ],
+    "pred_answer": "Australia",
+    "gt_answer": [
+      "Australia"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 531,
+    "completion_tokens": 99
+  },
+  {
+    "query_id": 90,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n197. T. S. Eliot speaks the language of French.\n305. The author of The Witcher is T. S. Eliot.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 197 states T. S. Eliot speaks French, and 305 states the author of The Witcher is T. S. Eliot. Since 305 is the newer fact, it establishes the identity of the author. Fact 197 provides the language capability of T. S. Eliot. Combining these, the author of The Witcher (T. S. Eliot) speaks French.\n\nIntermediate answers: [French]\n\nAnswer: French",
+    "intermediate_answers": [
+      "French"
+    ],
+    "pred_answer": "French",
+    "gt_answer": [
+      "French"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 535,
+    "completion_tokens": 103
+  },
+  {
+    "query_id": 91,
+    "num_hops": 4,
+    "n_conflict": 4,
+    "chain_passage": "Wikipedia Title: \n77. The author of The Birth of Tragedy is Stephen Crane.\n209. The capital of Italy is Duluth.\n358. Charlie Hebdo was created in the country of Italy.\n423. Stephen Crane is famous for Charlie Hebdo.",
+    "raw_output": "Thought: The book \"The Birth of Tragedy\" is attributed to Stephen Crane (Fact 77). Fact 423 states Stephen Crane is famous for Charlie Hebdo. Fact 358 states Charlie Hebdo was created in Italy. Fact 209 states the capital of Italy is Duluth. Since 209 is the newest fact regarding the capital of Italy, the capital is Duluth.\n\nIntermediate answers: [Italy, Duluth]\n\nAnswer: Duluth",
+    "intermediate_answers": [
+      "Italy",
+      "Duluth"
+    ],
+    "pred_answer": "Duluth",
+    "gt_answer": [
+      "Duluth"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 566,
+    "completion_tokens": 96
+  },
+  {
+    "query_id": 92,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n92. The company that produced Il-2 Shturmovik is Ilyushin.\n314. The headquarters of Ilyushin is located in the city of Moscow.\n383. The official language of Moscow is German.",
+    "raw_output": "Thought: The manufacturer of Il-2 Shturmovik is Ilyushin (Fact 92). The headquarters of Ilyushin is in Moscow (Fact 314). The official language of Moscow is German (Fact 383). Since Fact 383 is the newest fact regarding the official language of Moscow, it takes precedence.\n\nIntermediate answers: [Ilyushin, Moscow, German]\n\nAnswer: German",
+    "intermediate_answers": [
+      "Ilyushin",
+      "Moscow",
+      "German"
+    ],
+    "pred_answer": "German",
+    "gt_answer": [
+      "German"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 559,
+    "completion_tokens": 91
+  },
+  {
+    "query_id": 93,
+    "num_hops": 4,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n139. Elvis Presley is married to Charles the Bold.\n171. The capital of France is Harare.\n273. Viva Las Vegas was performed by Elvis Presley.\n371. Charles the Bold is a citizen of France.",
+    "raw_output": "Thought: The performer of \"Viva Las Vegas\" is Elvis Presley (Fact 273). Elvis Presley's spouse is Charles the Bold (Fact 139). Charles the Bold is a citizen of France (Fact 371). The capital of France is Harare (Fact 171).\n\nIntermediate answers: [Elvis Presley, Charles the Bold, France, Harare]\n\nAnswer: Harare",
+    "intermediate_answers": [
+      "Elvis Presley",
+      "Charles the Bold",
+      "France",
+      "Harare"
+    ],
+    "pred_answer": "Harare",
+    "gt_answer": [
+      "Harare"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 563,
+    "completion_tokens": 84
+  },
+  {
+    "query_id": 94,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n376. New Firm is associated with the sport of baseball.\n382. baseball was created in the country of Japan.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 376 (New Firm is associated with baseball) and 382 (baseball was created in Japan). Since 382 is the larger serial number, it is the newest fact. The sport associated with the New Firm is baseball, and according to the newest fact, baseball was created in Japan.\nIntermediate answers: [Japan]\nAnswer: Japan",
+    "intermediate_answers": [
+      "Japan"
+    ],
+    "pred_answer": "Japan",
+    "gt_answer": [
+      "Japan"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 530,
+    "completion_tokens": 84
+  },
+  {
+    "query_id": 95,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n119. Sarit Thanarat is affiliated with the religion of Buddhism.\n370. Buddhism was founded by Mekere Morauta.",
+    "raw_output": "Thought: The knowledge pool states that Sarit Thanarat is affiliated with Buddhism (fact 119). It also states that Buddhism was founded by Mekere Morauta (fact 370). Since fact 370 is the newer fact, it takes precedence in the knowledge pool. Therefore, the founder of the religion to which Sarit Thanarat belongs is Mekere Morauta.\n\nIntermediate answers: [Buddhism, Mekere Morauta]\n\nAnswer: Mekere Morauta",
+    "intermediate_answers": [
+      "Buddhism",
+      "Mekere Morauta"
+    ],
+    "pred_answer": "Mekere Morauta",
+    "gt_answer": [
+      "Mekere Morauta"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 532,
+    "completion_tokens": 101
+  },
+  {
+    "query_id": 96,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "chain_passage": "Wikipedia Title: \n147. The author of Lady Windermere's Fan is Oscar Wilde.\n270. Oscar Wilde died in the city of Guangzhou.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 147 (Oscar Wilde wrote Lady Windermere's Fan) and 270 (Oscar Wilde died in Guangzhou). Since 270 is the larger serial number, it represents the newest fact in the pool. Therefore, the creator of \"Lady Windermere's Fan\" died in Guangzhou.\n\nIntermediate answers: [Guangzhou]\n\nAnswer: Guangzhou",
+    "intermediate_answers": [
+      "Guangzhou"
+    ],
+    "pred_answer": "Guangzhou",
+    "gt_answer": [
+      "Guangzhou"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 537,
+    "completion_tokens": 88
+  },
+  {
+    "query_id": 97,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "chain_passage": "Wikipedia Title: \n281. The type of music that Dana International plays is Australian hip hop.\n337. Born in the U.S.A. was performed by Dana International.",
+    "raw_output": "Thought: The knowledge pool contains two facts: 281 states Dana International plays Australian hip hop, and 337 states Dana International performed \"Born in the U.S.A.\". Since 337 is the newer fact, it establishes the performer of the song. However, the question asks for the genre of music \"Born in the U.S.A.\" falls under according to its performer (Dana International). Fact 281 identifies the type of music Dana International plays as Australian hip hop. Therefore, based on the provided pool, the music is Australian hip hop.\n\nIntermediate answers: [Australian hip hop]\n\nAnswer: Australian hip hop",
+    "intermediate_answers": [
+      "Australian hip hop"
+    ],
+    "pred_answer": "Australian hip hop",
+    "gt_answer": [
+      "Australian hip hop"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 544,
+    "completion_tokens": 136
+  },
+  {
+    "query_id": 98,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n39. Henri Grégoire is a citizen of France.\n163. The capital of France is Paris.\n230. Ford Motor Company was founded by Henri Grégoire.\n253. The company that produced Ford Transit Connect is Ford Motor Company.",
+    "raw_output": "Thought: The manufacturer of the Ford Transit Connect is the Ford Motor Company (Fact 253). The founder of the Ford Motor Company is Henri Grégoire (Fact 230). Henri Grégoire is a citizen of France (Fact 39). The capital of France is Paris (Fact 163). Since all facts are consistent and there are no conflicting facts regarding these entities, the newest information confirms the capital is Paris.\n\nIntermediate answers: [Ford Motor Company, Henri Grégoire, France, Paris]\n\nAnswer: Paris",
+    "intermediate_answers": [
+      "Ford Motor Company",
+      "Henri Grégoire",
+      "France",
+      "Paris"
+    ],
+    "pred_answer": "Paris",
+    "gt_answer": [
+      "Paris"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 564,
+    "completion_tokens": 114
+  },
+  {
+    "query_id": 99,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "chain_passage": "Wikipedia Title: \n382. baseball was created in the country of Japan.\n439. The official language of Japan is Swedish.\n446. Alta IF is associated with the sport of baseball.",
+    "raw_output": "Thought: The knowledge pool contains three facts. Fact 446 states that Alta IF is associated with baseball. Fact 382 states that baseball was created in Japan. Therefore, Alta IF originates from Japan. Fact 439 states that the official language of Japan is Swedish. Since 439 is the newest fact regarding the official language of Japan, it overrides any other potential information.\n\nIntermediate answers: [Japan, Swedish]\n\nAnswer: Swedish",
+    "intermediate_answers": [
+      "Japan",
+      "Swedish"
+    ],
+    "pred_answer": "Swedish",
+    "gt_answer": [
+      "Swedish"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 542,
+    "completion_tokens": 95
+  }
+]

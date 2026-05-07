@@ -1,0 +1,17 @@
+=== gemini-2.5-flash × factconsolidation_mh_6k (MH) ===
+matched=100   correct=1   EM=1.0%
+
+Conflict-type breakdown:
+  has_pair            : n=100  correct=  1  acc=1.0%
+
+Error type distribution:
+  older_fact          :  80 (80.0%)
+  entity_confused     :  16 (16.0%)
+  hallucination       :   3 (3.0%)
+  correct             :   1 (1.0%)
+
+Hop-count distribution (acc per hop-count):
+  2-hop: n= 61  acc=0.0%
+  3-hop: n= 24  acc=0.0%
+  4-hop: n= 15  acc=6.7%
+No MQuAKE match: 0

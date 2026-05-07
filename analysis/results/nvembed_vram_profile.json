@@ -1,0 +1,515 @@
+{
+  "device": "NVIDIA GB10",
+  "tests": [
+    {
+      "label": "baseline (before load)",
+      "rss_gb": 0.51,
+      "cuda_alloc_gb": 0.0,
+      "cuda_reserved_gb": 0.0,
+      "cuda_peak_gb": 0.0
+    },
+    {
+      "label": "after model load (fp16)",
+      "rss_gb": 0.78,
+      "cuda_alloc_gb": 14.62,
+      "cuda_reserved_gb": 14.75,
+      "cuda_peak_gb": 14.62
+    },
+    {
+      "label": "1 query \u00d7 max512",
+      "n_texts": 1,
+      "max_length": 512,
+      "elapsed_s": 0.789,
+      "pre": {
+        "label": "  pre  1 query \u00d7 max512",
+        "rss_gb": 0.78,
+        "cuda_alloc_gb": 14.62,
+        "cuda_reserved_gb": 14.75,
+        "cuda_peak_gb": 14.62
+      },
+      "post": {
+        "label": "  post 1 query \u00d7 max512 (0.79s)",
+        "rss_gb": 1.68,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.89
+      },
+      "peak_during_encode_gb": 14.89,
+      "peak_delta_gb": 0.27,
+      "ok": true
+    },
+    {
+      "label": "facts bs=1 max_len=128",
+      "n_texts": 1,
+      "max_length": 128,
+      "elapsed_s": 0.083,
+      "pre": {
+        "label": "  pre  facts bs=1 max_len=128",
+        "rss_gb": 1.68,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=1 max_len=128 (0.08s)",
+        "rss_gb": 1.68,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.89
+      },
+      "peak_during_encode_gb": 14.89,
+      "peak_delta_gb": 0.26,
+      "ok": true
+    },
+    {
+      "label": "facts bs=2 max_len=128",
+      "n_texts": 2,
+      "max_length": 128,
+      "elapsed_s": 0.122,
+      "pre": {
+        "label": "  pre  facts bs=2 max_len=128",
+        "rss_gb": 1.68,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=2 max_len=128 (0.12s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 15.16
+      },
+      "peak_during_encode_gb": 15.16,
+      "peak_delta_gb": 0.53,
+      "ok": true
+    },
+    {
+      "label": "facts bs=4 max_len=128",
+      "n_texts": 4,
+      "max_length": 128,
+      "elapsed_s": 0.14,
+      "pre": {
+        "label": "  pre  facts bs=4 max_len=128",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=4 max_len=128 (0.14s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 15.69
+      },
+      "peak_during_encode_gb": 15.69,
+      "peak_delta_gb": 1.06,
+      "ok": true
+    },
+    {
+      "label": "facts bs=8 max_len=128",
+      "n_texts": 8,
+      "max_length": 128,
+      "elapsed_s": 0.197,
+      "pre": {
+        "label": "  pre  facts bs=8 max_len=128",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=8 max_len=128 (0.20s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 16.76
+      },
+      "peak_during_encode_gb": 16.76,
+      "peak_delta_gb": 2.13,
+      "ok": true
+    },
+    {
+      "label": "facts bs=16 max_len=128",
+      "n_texts": 16,
+      "max_length": 128,
+      "elapsed_s": 0.326,
+      "pre": {
+        "label": "  pre  facts bs=16 max_len=128",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=16 max_len=128 (0.33s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 18.89
+      },
+      "peak_during_encode_gb": 18.89,
+      "peak_delta_gb": 4.26,
+      "ok": true
+    },
+    {
+      "label": "facts bs=32 max_len=128",
+      "n_texts": 32,
+      "max_length": 128,
+      "elapsed_s": 0.535,
+      "pre": {
+        "label": "  pre  facts bs=32 max_len=128",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=32 max_len=128 (0.54s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 23.16
+      },
+      "peak_during_encode_gb": 23.16,
+      "peak_delta_gb": 8.53,
+      "ok": true
+    },
+    {
+      "label": "facts bs=1 max_len=512",
+      "n_texts": 1,
+      "max_length": 512,
+      "elapsed_s": 0.083,
+      "pre": {
+        "label": "  pre  facts bs=1 max_len=512",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=1 max_len=512 (0.08s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.89
+      },
+      "peak_during_encode_gb": 14.89,
+      "peak_delta_gb": 0.26,
+      "ok": true
+    },
+    {
+      "label": "facts bs=2 max_len=512",
+      "n_texts": 2,
+      "max_length": 512,
+      "elapsed_s": 0.097,
+      "pre": {
+        "label": "  pre  facts bs=2 max_len=512",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=2 max_len=512 (0.10s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 15.16
+      },
+      "peak_during_encode_gb": 15.16,
+      "peak_delta_gb": 0.53,
+      "ok": true
+    },
+    {
+      "label": "facts bs=4 max_len=512",
+      "n_texts": 4,
+      "max_length": 512,
+      "elapsed_s": 0.124,
+      "pre": {
+        "label": "  pre  facts bs=4 max_len=512",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=4 max_len=512 (0.12s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 15.69
+      },
+      "peak_during_encode_gb": 15.69,
+      "peak_delta_gb": 1.06,
+      "ok": true
+    },
+    {
+      "label": "facts bs=8 max_len=512",
+      "n_texts": 8,
+      "max_length": 512,
+      "elapsed_s": 0.192,
+      "pre": {
+        "label": "  pre  facts bs=8 max_len=512",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=8 max_len=512 (0.19s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 16.76
+      },
+      "peak_during_encode_gb": 16.76,
+      "peak_delta_gb": 2.13,
+      "ok": true
+    },
+    {
+      "label": "facts bs=16 max_len=512",
+      "n_texts": 16,
+      "max_length": 512,
+      "elapsed_s": 0.307,
+      "pre": {
+        "label": "  pre  facts bs=16 max_len=512",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=16 max_len=512 (0.31s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 18.89
+      },
+      "peak_during_encode_gb": 18.89,
+      "peak_delta_gb": 4.26,
+      "ok": true
+    },
+    {
+      "label": "facts bs=32 max_len=512",
+      "n_texts": 32,
+      "max_length": 512,
+      "elapsed_s": 0.546,
+      "pre": {
+        "label": "  pre  facts bs=32 max_len=512",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post facts bs=32 max_len=512 (0.55s)",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 23.16
+      },
+      "peak_during_encode_gb": 23.16,
+      "peak_delta_gb": 8.53,
+      "ok": true
+    },
+    {
+      "label": "chunks bs=1 max_len=512",
+      "n_texts": 1,
+      "max_length": 512,
+      "elapsed_s": 0.176,
+      "pre": {
+        "label": "  pre  chunks bs=1 max_len=512",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post chunks bs=1 max_len=512 (0.18s)",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 15.16
+      },
+      "peak_during_encode_gb": 15.16,
+      "peak_delta_gb": 0.53,
+      "ok": true
+    },
+    {
+      "label": "chunks bs=2 max_len=512",
+      "n_texts": 2,
+      "max_length": 512,
+      "elapsed_s": 0.31,
+      "pre": {
+        "label": "  pre  chunks bs=2 max_len=512",
+        "rss_gb": 1.7,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post chunks bs=2 max_len=512 (0.31s)",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 15.7
+      },
+      "peak_during_encode_gb": 15.7,
+      "peak_delta_gb": 1.07,
+      "ok": true
+    },
+    {
+      "label": "chunks bs=4 max_len=512",
+      "n_texts": 4,
+      "max_length": 512,
+      "elapsed_s": 0.641,
+      "pre": {
+        "label": "  pre  chunks bs=4 max_len=512",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post chunks bs=4 max_len=512 (0.64s)",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 16.76
+      },
+      "peak_during_encode_gb": 16.76,
+      "peak_delta_gb": 2.13,
+      "ok": true
+    },
+    {
+      "label": "chunks bs=8 max_len=512",
+      "n_texts": 8,
+      "max_length": 512,
+      "elapsed_s": 1.246,
+      "pre": {
+        "label": "  pre  chunks bs=8 max_len=512",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post chunks bs=8 max_len=512 (1.25s)",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 18.88
+      },
+      "peak_during_encode_gb": 18.88,
+      "peak_delta_gb": 4.25,
+      "ok": true
+    },
+    {
+      "label": "chunks bs=12 max_len=512",
+      "n_texts": 12,
+      "max_length": 512,
+      "elapsed_s": 1.826,
+      "pre": {
+        "label": "  pre  chunks bs=12 max_len=512",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post chunks bs=12 max_len=512 (1.83s)",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 21.01
+      },
+      "peak_during_encode_gb": 21.01,
+      "peak_delta_gb": 6.38,
+      "ok": true
+    },
+    {
+      "label": "chunks bs=1 max_len=2048",
+      "n_texts": 1,
+      "max_length": 2048,
+      "elapsed_s": 0.191,
+      "pre": {
+        "label": "  pre  chunks bs=1 max_len=2048",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post chunks bs=1 max_len=2048 (0.19s)",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 15.24
+      },
+      "peak_during_encode_gb": 15.24,
+      "peak_delta_gb": 0.61,
+      "ok": true
+    },
+    {
+      "label": "chunks bs=4 max_len=2048",
+      "n_texts": 4,
+      "max_length": 2048,
+      "elapsed_s": 0.852,
+      "pre": {
+        "label": "  pre  chunks bs=4 max_len=2048",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post chunks bs=4 max_len=2048 (0.85s)",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 17.17
+      },
+      "peak_during_encode_gb": 17.17,
+      "peak_delta_gb": 2.54,
+      "ok": true
+    },
+    {
+      "label": "chunks bs=8 max_len=2048",
+      "n_texts": 8,
+      "max_length": 2048,
+      "elapsed_s": 1.626,
+      "pre": {
+        "label": "  pre  chunks bs=8 max_len=2048",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 14.63
+      },
+      "post": {
+        "label": "  post chunks bs=8 max_len=2048 (1.63s)",
+        "rss_gb": 1.71,
+        "cuda_alloc_gb": 14.63,
+        "cuda_reserved_gb": 14.77,
+        "cuda_peak_gb": 19.7
+      },
+      "peak_during_encode_gb": 19.7,
+      "peak_delta_gb": 5.07,
+      "ok": true
+    }
+  ],
+  "corpus": {
+    "n_chunks": 12,
+    "n_facts": 443
+  },
+  "model_weights_gb": 14.62,
+  "final": {
+    "label": "FINAL",
+    "rss_gb": 1.71,
+    "cuda_alloc_gb": 14.63,
+    "cuda_reserved_gb": 14.77,
+    "cuda_peak_gb": 19.7
+  },
+  "overall_observed_peak_gb": 23.16
+}

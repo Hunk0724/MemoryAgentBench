@@ -1,0 +1,1088 @@
+[
+  {
+    "query_id": 3,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "category": "entity_confusion",
+    "pred": "New Delhi",
+    "final_gt": "Russellville",
+    "final_old": "London",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "basketball",
+      "Soviet Union",
+      "Russellville"
+    ],
+    "chain_old_answers": [
+      "association football",
+      "United States of America",
+      "Moscow"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 4,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "category": "chain_break_at_GT",
+    "pred": "placekicker",
+    "final_gt": "rugby",
+    "final_old": "American football",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "placekicker",
+      "rugby"
+    ],
+    "chain_old_answers": [
+      "American football"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 5,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "older_fact_final",
+    "pred": "University of Bucharest",
+    "final_gt": "Baldwin Wallace University",
+    "final_old": "University of Bucharest",
+    "thought_len": 310,
+    "thought_excerpt": "The partner of Nicolae Ceaușescu is Elena Ceaușescu (based on fact 370, which states Nicolae Ceaușescu is married to Wilhelm II, but fact 333 explicitly mentions the university where Elena Ceaușescu was educated). Fact 333 states: \"The univeristy where Elena Ceaușescu was educated is University of Bucharest.\"",
+    "chain_gt_answers": [
+      "Wilhelm II",
+      "Baldwin Wallace University"
+    ],
+    "chain_old_answers": [
+      "Elena Ceaușescu",
+      "University of Bonn"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 1,
+    "old_entities_seen_in_thought": 1
+  },
+  {
+    "query_id": 8,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "older_intermediate",
+    "pred": "Asia",
+    "final_gt": "North America",
+    "final_old": "Europe",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Israel",
+      "North America"
+    ],
+    "chain_old_answers": [
+      "United Kingdom",
+      "Asia"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 9,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "category": "hallucination_or_other",
+    "pred": "Not mentioned",
+    "final_gt": "Berlin",
+    "final_old": "Galilee",
+    "thought_len": 508,
+    "thought_excerpt": "John Walsh is affiliated with the religion of Methodism (Fact 361). Methodism was founded by Joseph Goebbels (Fact 287). John Knox worked in the city of Edinburgh (Fact 313). However, the question asks for the location of work of the founder of the religion to which John Walsh belongs. Fact 361 states John Walsh is affiliated with Methodism. Fact 287 states Methodism was founded by Joseph Goebbels",
+    "chain_gt_answers": [
+      "Methodism",
+      "Joseph Goebbels",
+      "Berlin"
+    ],
+    "chain_old_answers": [
+      "Catholic Church",
+      "John Wesley"
+    ],
+    "cited_chain_gt_seqs": [
+      287,
+      361
+    ],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 2,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 12,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "category": "older_fact_final",
+    "pred": "London",
+    "final_gt": "Duluth",
+    "final_old": "London",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "association football",
+      "Italy",
+      "Duluth"
+    ],
+    "chain_old_answers": [
+      "England",
+      "Rome"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 14,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "older_fact_final",
+    "pred": "Donald Trump",
+    "final_gt": "Emmerson Mnangagwa",
+    "final_old": "Donald Trump",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "United Kingdom",
+      "Emmerson Mnangagwa"
+    ],
+    "chain_old_answers": [
+      "United States of America",
+      "Elizabeth II"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 15,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "category": "hallucination_or_other",
+    "pred": "The provided knowledge pool does not contain information regarding the city of origin for the Surrey Senior Cup.",
+    "final_gt": "Russellville",
+    "final_old": "London",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "basketball",
+      "Soviet Union",
+      "Russellville"
+    ],
+    "chain_old_answers": [
+      "association football",
+      "United States of America",
+      "Moscow"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 16,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "older_fact_final",
+    "pred": "United States of America",
+    "final_gt": "Soviet Union",
+    "final_old": "United States of America",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "basketball",
+      "Soviet Union"
+    ],
+    "chain_old_answers": [
+      "baseball",
+      "United States of America"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 19,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "category": "older_fact_final",
+    "pred": "London",
+    "final_gt": "Duluth",
+    "final_old": "London",
+    "thought_len": 233,
+    "thought_excerpt": "The performer of \"Free as a Bird\" is The Beatles (Fact 350). The manager of The Beatles is Brian Epstein (Fact 246). Brian Epstein is a citizen of the United Kingdom (Fact 246). The capital of the United Kingdom is London (Fact 377).",
+    "chain_gt_answers": [
+      "The Beatles",
+      "Joe Hockey",
+      "Italy",
+      "Duluth"
+    ],
+    "chain_old_answers": [
+      "Brian Epstein",
+      "Australia",
+      "Rome"
+    ],
+    "cited_chain_gt_seqs": [
+      350
+    ],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 1,
+    "old_entities_seen_in_thought": 1
+  },
+  {
+    "query_id": 23,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "chain_break_at_GT",
+    "pred": "basketball",
+    "final_gt": "Soviet Union",
+    "final_old": "England",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "basketball",
+      "Soviet Union"
+    ],
+    "chain_old_answers": [
+      "association football",
+      "United States of America"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 27,
+    "num_hops": 4,
+    "n_conflict": 1,
+    "category": "entity_confusion",
+    "pred": "New York City",
+    "final_gt": "Harrisville",
+    "final_old": "Washington, D.C.",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Meredith Grey",
+      "Ellen Pompeo",
+      "United States of America",
+      "Harrisville"
+    ],
+    "chain_old_answers": [
+      "Washington, D.C"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 29,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "older_intermediate",
+    "pred": "Bucharest",
+    "final_gt": "Rajanpur",
+    "final_old": "Washington, D.C.",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Romania",
+      "Rajanpur"
+    ],
+    "chain_old_answers": [
+      "United States of America",
+      "Bucharest"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 30,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "category": "older_fact_final",
+    "pred": "Minneapolis",
+    "final_gt": "New York City",
+    "final_old": "Minneapolis",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Lou Reed",
+      "Fordham University",
+      "New York City"
+    ],
+    "chain_old_answers": [
+      "Bob Dylan",
+      "Syracuse University"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 31,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "category": "older_fact_final",
+    "pred": "Donald Trump",
+    "final_gt": "Giuseppe Conte",
+    "final_old": "Donald Trump",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "association football",
+      "Italy",
+      "Giuseppe Conte"
+    ],
+    "chain_old_answers": [
+      "basketball",
+      "England"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 32,
+    "num_hops": 4,
+    "n_conflict": 1,
+    "category": "older_fact_final",
+    "pred": "Asia",
+    "final_gt": "North America",
+    "final_old": "Asia",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Microsoft",
+      "Steve Jobs",
+      "San Francisco",
+      "North America"
+    ],
+    "chain_old_answers": [
+      "Satya Nadella"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 33,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "category": "older_fact_final",
+    "pred": "Europe",
+    "final_gt": "South America",
+    "final_old": "Europe",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "cricket",
+      "Australia",
+      "South America"
+    ],
+    "chain_old_answers": [
+      "association football",
+      "England",
+      "Oceania"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 40,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "category": "entity_confusion",
+    "pred": "John Knox",
+    "final_gt": "Philippe, Duke of Orléans",
+    "final_old": "David Ben-Gurion",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Israel",
+      "Philippe, Duke of Orléans"
+    ],
+    "chain_old_answers": [
+      "David Ben-Gurion"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 43,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "category": "older_fact_final",
+    "pred": "United States of America, Donald Trump",
+    "final_gt": "Shinzō Abe",
+    "final_old": "Donald Trump",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "baseball",
+      "Japan",
+      "Shinzō Abe"
+    ],
+    "chain_old_answers": [
+      "United States of America"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 44,
+    "num_hops": 4,
+    "n_conflict": 2,
+    "category": "older_fact_final",
+    "pred": "Washington, D.C.",
+    "final_gt": "London",
+    "final_old": "Washington, D.C.",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "point guard",
+      "cricket",
+      "England",
+      "London"
+    ],
+    "chain_old_answers": [
+      "basketball",
+      "Australia"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 45,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "category": "older_fact_final",
+    "pred": "Gads Hill Place",
+    "final_gt": "London",
+    "final_old": "Gads Hill Place",
+    "thought_len": 274,
+    "thought_excerpt": "The author of \"Sketches by Boz\" is Charles Dickens. Searching the knowledge pool for facts about Charles Dickens' death: Fact 448 states \"Charles Dickens died in the city of Gads Hill Place.\" There are no other facts in the provided pool regarding the location of his death.",
+    "chain_gt_answers": [
+      "Sigmund Freud",
+      "London"
+    ],
+    "chain_old_answers": [
+      "Charles Dickens"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 1
+  },
+  {
+    "query_id": 46,
+    "num_hops": 4,
+    "n_conflict": 1,
+    "category": "older_fact_final",
+    "pred": "London",
+    "final_gt": "Tokyo",
+    "final_old": "London",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "midfielder",
+      "sumo",
+      "Japan",
+      "Tokyo"
+    ],
+    "chain_old_answers": [
+      "association football"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 47,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "older_intermediate",
+    "pred": "North America",
+    "final_gt": "Asia",
+    "final_old": "Europe",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Canada",
+      "Asia"
+    ],
+    "chain_old_answers": [
+      "Germany",
+      "North America"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 56,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "chain_break_at_GT",
+    "pred": "Germany",
+    "final_gt": "Africa",
+    "final_old": "Europe",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Germany",
+      "Africa"
+    ],
+    "chain_old_answers": [
+      "France",
+      "Europe"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 57,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "category": "older_fact_final",
+    "pred": "London",
+    "final_gt": "Oderzo",
+    "final_old": "London",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "David Beckham",
+      "cricket",
+      "Australia",
+      "Oderzo"
+    ],
+    "chain_old_answers": [
+      "association football",
+      "England",
+      "Canberra"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 58,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "chain_break_at_GT",
+    "pred": "Walter Chrysler",
+    "final_gt": "Charles Frederick, Duke of Holstein-Gottorp",
+    "final_old": "Shapur I",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Walter Chrysler",
+      "Charles Frederick, Duke of Holstein-Gottorp"
+    ],
+    "chain_old_answers": [
+      "Ardashir I",
+      "Walter Percy Chrysler Jr."
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 59,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "category": "entity_confusion",
+    "pred": "Moscow",
+    "final_gt": "Duluth",
+    "final_old": "London",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "association football",
+      "Italy",
+      "Duluth"
+    ],
+    "chain_old_answers": [
+      "England",
+      "Rome"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 60,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "older_intermediate",
+    "pred": "Los Angeles",
+    "final_gt": "Berlin",
+    "final_old": "Camden Town",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Frank Zappa",
+      "Berlin"
+    ],
+    "chain_old_answers": [
+      "Amy Winehouse",
+      "Los Angeles"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 61,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "chain_break_at_GT",
+    "pred": "cornerback",
+    "final_gt": "field hockey",
+    "final_old": "American football",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "cornerback",
+      "field hockey"
+    ],
+    "chain_old_answers": [
+      "wide receiver",
+      "American football"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 62,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "category": "entity_confusion",
+    "pred": "politician",
+    "final_gt": "Ernst Heinkel",
+    "final_old": "Bob Iger",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "American Broadcasting Company",
+      "Ernst Heinkel"
+    ],
+    "chain_old_answers": [
+      "Bob Iger"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 66,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "older_fact_final",
+    "pred": "English",
+    "final_gt": "German",
+    "final_old": "English",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "The Vampyre",
+      "German"
+    ],
+    "chain_old_answers": [
+      "Playboy",
+      "English"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 72,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "category": "older_fact_final",
+    "pred": "Donald Trump",
+    "final_gt": "Connachta",
+    "final_old": "Donald Trump",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "United States of America",
+      "Connachta"
+    ],
+    "chain_old_answers": [
+      "Donald Trump"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 76,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "category": "older_fact_final",
+    "pred": "Stockholm",
+    "final_gt": "Washington, D.C.",
+    "final_old": "Stockholm",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Pedro Pierluisi",
+      "Washington, D.C."
+    ],
+    "chain_old_answers": [
+      "Stefan Löfven"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 78,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "category": "chain_break_at_GT",
+    "pred": "India",
+    "final_gt": "Africa",
+    "final_old": "Europe",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "rugby union",
+      "India",
+      "Africa"
+    ],
+    "chain_old_answers": [
+      "England",
+      "Asia"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 80,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "older_intermediate",
+    "pred": "Asia",
+    "final_gt": "Antarctica",
+    "final_old": "Europe",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Malaysia",
+      "Antarctica"
+    ],
+    "chain_old_answers": [
+      "France",
+      "Asia"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 82,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "hallucination_or_other",
+    "pred": "Not mentioned in the knowledge pool.",
+    "final_gt": "Elizabeth II",
+    "final_old": "Donald Trump",
+    "thought_len": 987,
+    "thought_excerpt": "1. Identify the country of origin of Club Nouveau: Fact 353 states \"Club Nouveau was created in the country of Soviet Union.\"\n2. Identify the head of government of the Soviet Union: Fact 157 states \"The capital of Soviet Union is Moscow.\" Fact 365 states \"The name of the current head of state in Soviet Union is Elizabeth II.\" Fact 351 states \"The name of the current head of the Council of People's",
+    "chain_gt_answers": [
+      "Soviet Union",
+      "Elizabeth II"
+    ],
+    "chain_old_answers": [
+      "United States of America",
+      "Mikhail Gorbachev"
+    ],
+    "cited_chain_gt_seqs": [
+      353,
+      365
+    ],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 2,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 85,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "category": "older_fact_final",
+    "pred": "United States of America",
+    "final_gt": "Philippines",
+    "final_old": "United States of America",
+    "thought_len": 2139,
+    "thought_excerpt": "Lisa Leslie plays the position of goaltender (Fact 169). The sport of pesäpallo is associated with the position of goaltender (Fact 310). Pesäpallo was created in the country of Finland (not explicitly stated, but the question asks for the country of the sportsperson). However, looking at the provided knowledge pool for the sportsperson associated with the position of goaltender: Fact 169 states \"",
+    "chain_gt_answers": [
+      "goaltender",
+      "pesäpallo",
+      "Philippines"
+    ],
+    "chain_old_answers": [
+      "center",
+      "ice hockey",
+      "Finland"
+    ],
+    "cited_chain_gt_seqs": [
+      169,
+      310
+    ],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 2,
+    "old_entities_seen_in_thought": 1
+  },
+  {
+    "query_id": 87,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "category": "older_fact_final",
+    "pred": "Washington, D.C.",
+    "final_gt": "Duluth",
+    "final_old": "Washington, D.C.",
+    "thought_len": 218,
+    "thought_excerpt": "Sandy Alderson is associated with the sport of baseball (Fact 35). Baseball was created in the country of United States of America (Fact 161). The capital of the United States of America is Washington, D.C. (Fact 248).",
+    "chain_gt_answers": [
+      "association football",
+      "Italy",
+      "Duluth"
+    ],
+    "chain_old_answers": [
+      "baseball",
+      "England",
+      "Rome"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 1
+  },
+  {
+    "query_id": 88,
+    "num_hops": 4,
+    "n_conflict": 4,
+    "category": "entity_confusion",
+    "pred": "German",
+    "final_gt": "Arabic",
+    "final_old": "English",
+    "thought_len": 568,
+    "thought_excerpt": "The director of \"Past Masters\" is Madonna (Fact 364). Madonna is a citizen of the United States of America (implied by her status as a famous American artist, though the pool does not explicitly state her citizenship, it identifies the official language of the United States of America in Fact 242 and Fact 295). Fact 242 states the official language of the United States of America is American Engli",
+    "chain_gt_answers": [
+      "Madonna",
+      "Narendra Modi",
+      "Australia",
+      "Arabic"
+    ],
+    "chain_old_answers": [
+      "The Beatles",
+      "Guy Oseary",
+      "India",
+      "English"
+    ],
+    "cited_chain_gt_seqs": [
+      364
+    ],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 1,
+    "old_entities_seen_in_thought": 1
+  },
+  {
+    "query_id": 89,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "entity_confusion",
+    "pred": "India",
+    "final_gt": "Australia",
+    "final_old": "United States of America",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "cricket",
+      "Australia"
+    ],
+    "chain_old_answers": [
+      "baseball",
+      "England"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 91,
+    "num_hops": 4,
+    "n_conflict": 4,
+    "category": "older_fact_final",
+    "pred": "Berlin",
+    "final_gt": "Duluth",
+    "final_old": "Berlin",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Stephen Crane",
+      "Charlie Hebdo",
+      "Italy",
+      "Duluth"
+    ],
+    "chain_old_answers": [
+      "Friedrich Nietzsche",
+      "The Red Badge of Courage",
+      "France",
+      "Rome"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 93,
+    "num_hops": 4,
+    "n_conflict": 2,
+    "category": "entity_confusion",
+    "pred": "London",
+    "final_gt": "Harare",
+    "final_old": "Washington, D.C.",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "Elvis Presley",
+      "Charles the Bold",
+      "France",
+      "Harare"
+    ],
+    "chain_old_answers": [
+      "Priscilla Presley",
+      "Paris"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 94,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "category": "entity_confusion",
+    "pred": "United Kingdom",
+    "final_gt": "Japan",
+    "final_old": "England",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "baseball",
+      "Japan"
+    ],
+    "chain_old_answers": [
+      "association football",
+      "United States of America"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  },
+  {
+    "query_id": 98,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "category": "older_fact_final",
+    "pred": "Washington, D.C.",
+    "final_gt": "Paris",
+    "final_old": "Washington, D.C.",
+    "thought_len": 321,
+    "thought_excerpt": "The manufacturer of Ford Transit Connect is Ford Motor Company (Fact 253). The founder of Ford Motor Company is Henry Ford (implied by general knowledge, but specifically, Fact 254 states Henry Ford is a citizen of the United States of America). The capital of the United States of America is Washington, D.C. (Fact 247).",
+    "chain_gt_answers": [
+      "Ford Motor Company",
+      "Henri Grégoire",
+      "France",
+      "Paris"
+    ],
+    "chain_old_answers": [
+      "Henry Ford",
+      "India",
+      "Harare"
+    ],
+    "cited_chain_gt_seqs": [
+      253
+    ],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 1,
+    "old_entities_seen_in_thought": 1
+  },
+  {
+    "query_id": 99,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "category": "hallucination_or_other",
+    "pred": "Finnish",
+    "final_gt": "Swedish",
+    "final_old": "English",
+    "thought_len": 0,
+    "thought_excerpt": "",
+    "chain_gt_answers": [
+      "baseball",
+      "Japan",
+      "Swedish"
+    ],
+    "chain_old_answers": [
+      "association football",
+      "United States of America",
+      "Japanese"
+    ],
+    "cited_chain_gt_seqs": [],
+    "cited_chain_old_seqs": [],
+    "gt_entities_seen_in_thought": 0,
+    "old_entities_seen_in_thought": 0
+  }
+]

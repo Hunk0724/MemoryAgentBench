@@ -1,0 +1,1784 @@
+[
+  {
+    "query_id": 0,
+    "gt_answer": "Belgium",
+    "pred_answer": "Unknown",
+    "raw_output": "The author of \"Our Mutual Friend\" is Charles Dickens. According to the knowledge pool, his spouse is Catherine Dickens. However, there is no information provided about her citizenship in the knowledge pool. Therefore, I cannot determine the country of citizenship of the spouse of the author of \"Our Mutual Friend\" based on the available facts. \n\nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      6,
+      7
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 7,
+    "prompt_tokens": 4622,
+    "completion_tokens": 70,
+    "num_hops": 3,
+    "n_conflict": 3
+  },
+  {
+    "query_id": 1,
+    "gt_answer": "Rodez",
+    "pred_answer": "Moscow.",
+    "raw_output": "The spouse of Igor of Kiev is Olga of Kiev. According to the knowledge pool, the most recent fact states that Olga of Kiev died in the city of Moscow. \nAnswer: Moscow.",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5696,
+    "completion_tokens": 38,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 2,
+    "gt_answer": "Italy",
+    "pred_answer": "Italy",
+    "raw_output": "The sport associated with Steve Sax is association football. The knowledge pool indicates that association football was created in the country of Italy. Therefore, the answer is based on the most recent fact regarding the birthplace of association football. \n\nAnswer: Italy",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      5,
+      9
+    ],
+    "passages_kept": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5166,
+    "completion_tokens": 47,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 4,
+    "gt_answer": "rugby",
+    "pred_answer": "American football.",
+    "raw_output": "Thought: The knowledge pool indicates that Blair Walsh plays the position of placekicker, which is associated with the sport of American football. There are no conflicting facts regarding his position or the sport he is known for. \nAnswer: American football.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5694,
+    "completion_tokens": 49,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 6,
+    "gt_answer": "France",
+    "pred_answer": "France",
+    "raw_output": "The current CEO of Twitter is stated to be Bernard Arnault, and the most recent fact regarding his citizenship is that he is a citizen of France. \nAnswer: France",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5697,
+    "completion_tokens": 34,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 8,
+    "gt_answer": "North America",
+    "pred_answer": "Unknown",
+    "raw_output": "The knowledge pool does not provide any information about Colin Irwin's citizenship or the continent it pertains to. Therefore, I cannot determine the answer based on the provided facts. \nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      3
+    ],
+    "passages_kept": [
+      1,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5162,
+    "completion_tokens": 38,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 10,
+    "gt_answer": "atheism",
+    "pred_answer": "Atheism.",
+    "raw_output": "The knowledge pool indicates that the Transcendental Meditation movement was founded by Adalbert of Prague, who is affiliated with the religion of atheism according to the most recent fact. \nAnswer: Atheism.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5705,
+    "completion_tokens": 44,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 11,
+    "gt_answer": "Zoroastrianism",
+    "pred_answer": "Zoroastrianism.",
+    "raw_output": "The knowledge pool indicates that Edmund Burke is a citizen of the Kingdom of Ireland, and the most recent fact states that the Kingdom of Ireland is affiliated with the religion of Zoroastrianism. Therefore, the religion of the person with the citizenship of the country to which Edmund Burke belonged is Zoroastrianism. \nAnswer: Zoroastrianism.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5722,
+    "completion_tokens": 73,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 12,
+    "gt_answer": "Duluth",
+    "pred_answer": "Duluth.",
+    "raw_output": "The sport associated with John Harkes is association football. According to the knowledge pool, association football was created in the country of Italy. The capital city of Italy is Duluth. \nAnswer: Duluth.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      5
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5174,
+    "completion_tokens": 43,
+    "num_hops": 3,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 13,
+    "gt_answer": "Anglicanism",
+    "pred_answer": "United Methodist Church",
+    "raw_output": "The knowledge pool indicates that Laura Bush is married to George W. Bush, who is affiliated with the religion of United Methodist Church. However, there is a conflicting fact stating that Laura Bush is married to Princess Alice, Duchess of Gloucester, which is not accurate. The most recent and relevant fact regarding Laura Bush's faith is that she is associated with the United Methodist Church. \n\nAnswer: United Methodist Church",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5698,
+    "completion_tokens": 80,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 14,
+    "gt_answer": "Emmerson Mnangagwa",
+    "pred_answer": "Emmerson Mnangagwa.",
+    "raw_output": "The knowledge pool indicates that Andrew Carnegie is a citizen of the United Kingdom. The most recent fact regarding the head of state in the United Kingdom is that the current head of state is Emmerson Mnangagwa. \nAnswer: Emmerson Mnangagwa.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      4
+    ],
+    "passages_kept": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5173,
+    "completion_tokens": 55,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 16,
+    "gt_answer": "Soviet Union",
+    "pred_answer": "England",
+    "raw_output": "The knowledge pool indicates that Carlos Gómez is associated with the sport of basketball, but it does not specify the country from which basketball originated. However, based on the latest relevant fact, basketball was created in the country of England. Therefore, I will conclude that the sport associated with Carlos Gómez comes from England. \n\nAnswer: England",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      7
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5160,
+    "completion_tokens": 65,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 17,
+    "gt_answer": "London",
+    "pred_answer": "London.",
+    "raw_output": "The citizenship of Madame du Barry is listed as Great Britain. The capital of Great Britain is London, which is also the capital of England. \nAnswer: London.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5702,
+    "completion_tokens": 33,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 20,
+    "gt_answer": "Persian",
+    "pred_answer": "Persian.",
+    "raw_output": "The individual who created Rand al'Thor is Ferdowsi, and the language of the work he created, Shahnameh, is Persian. The most recent fact regarding this is that Shahnameh was written in the language of Persian. \nAnswer: Persian.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5722,
+    "completion_tokens": 53,
+    "num_hops": 3,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 21,
+    "gt_answer": "Edinburgh",
+    "pred_answer": "Edinburgh.",
+    "raw_output": "The question asks for the work location of the person who founded the religion that Karen Armstrong belongs to. According to the knowledge pool, Karen Armstrong is affiliated with the religion of the Church of Scotland, which was founded by John Knox. The latest fact regarding John Knox states that he worked in the city of Edinburgh. Therefore, the answer is based on the most recent information available in the knowledge pool. \n\nAnswer: Edinburgh.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      4
+    ],
+    "passages_kept": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5713,
+    "completion_tokens": 84,
+    "num_hops": 3,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 22,
+    "gt_answer": "George Alexander Kohut",
+    "pred_answer": "None.",
+    "raw_output": "The knowledge pool does not contain any information regarding a \"child category of 'Categories'\" created by an author. Therefore, I cannot provide an answer based on the given facts. \n\nAnswer: None.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5693,
+    "completion_tokens": 40,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 23,
+    "gt_answer": "Soviet Union",
+    "pred_answer": "Ukraine.",
+    "raw_output": "The knowledge pool does not provide a specific country of origin for FC Vorskla Poltava. However, it does mention that FC Vorskla Poltava is associated with the sport of basketball, which does not directly answer the question about its country of origin. The most relevant information is that it is a football club, and based on the context, it can be inferred that it is from Ukraine, but this is not explicitly stated in the provided facts. Therefore, I will answer based on the last relevant fact regarding the association of FC Vorskla Poltava. \n\nAnswer: Ukraine.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      10
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5164,
+    "completion_tokens": 121,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 25,
+    "gt_answer": "Adel al-Jubeir",
+    "pred_answer": "Adel al-Jubeir.",
+    "raw_output": "The developer of the F-22 Raptor is Boeing. The most recent fact regarding the chief executive officer of Boeing is that it is Adel al-Jubeir. \nAnswer: Adel al-Jubeir.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      6
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5189,
+    "completion_tokens": 42,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 26,
+    "gt_answer": "Peter Diamandis",
+    "pred_answer": "None.",
+    "raw_output": "The knowledge pool does not provide any information about the chairperson of the organization where Joseph Story was employed. Therefore, I cannot determine an answer based on the provided facts. \n\nAnswer: None.",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5697,
+    "completion_tokens": 39,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 27,
+    "gt_answer": "Harrisville",
+    "pred_answer": "Washington, D.C.",
+    "raw_output": "To answer the question, I need to identify the performer who is the spouse of Derek Shepherd. According to the knowledge pool, Derek Shepherd is married to Meredith Grey. The performer who played Meredith Grey is Ellen Pompeo. \n\nNext, I need to find the country where Ellen Pompeo holds citizenship, which is the United States of America. The capital of the United States of America is Washington, D.C. \n\nThus, the answer to the question is Washington, D.C. \n\nAnswer: Washington, D.C.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      5
+    ],
+    "passages_kept": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5705,
+    "completion_tokens": 104,
+    "num_hops": 4,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 28,
+    "gt_answer": "Prague",
+    "pred_answer": "Prague.",
+    "raw_output": "Sable is a citizen of the Czech Republic, and the capital of the Czech Republic is Prague. \nAnswer: Prague.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5717,
+    "completion_tokens": 25,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 29,
+    "gt_answer": "Rajanpur",
+    "pred_answer": "Rajanpur",
+    "raw_output": "The citizenship of Country Joe McDonald is stated as Romania. The capital of Romania, based on the most recent fact in the knowledge pool, is given as Rajanpur. \nAnswer: Rajanpur",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5695,
+    "completion_tokens": 41,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 30,
+    "gt_answer": "New York City",
+    "pred_answer": "New York City.",
+    "raw_output": "The performer of the album \"Blood on the Tracks\" is Lou Reed, and according to the knowledge pool, he was educated at Fordham University. The headquarters of Fordham University is located in the city of New York City. \nAnswer: New York City.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      4,
+      9
+    ],
+    "passages_kept": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5193,
+    "completion_tokens": 53,
+    "num_hops": 3,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 32,
+    "gt_answer": "North America",
+    "pred_answer": "North America.",
+    "raw_output": "The chief executive officer of Microsoft, the developer of Windows Phone, is Steve Jobs according to the knowledge pool. However, the most recent fact states that the official language of the United States of America is German, which is not relevant to the question. The knowledge pool does not provide a specific continent of origin for Steve Jobs. Therefore, I will conclude based on the last relevant fact about the continent of the United States of America, which is North America. \n\nAnswer: North America.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5692,
+    "completion_tokens": 97,
+    "num_hops": 4,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 33,
+    "gt_answer": "South America",
+    "pred_answer": "Europe.",
+    "raw_output": "The Slovakia national football team is associated with association football, which originated in England. According to the knowledge pool, England is located in the continent of Europe. \nAnswer: Europe.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      5,
+      6
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 7,
+    "prompt_tokens": 4632,
+    "completion_tokens": 36,
+    "num_hops": 3,
+    "n_conflict": 3
+  },
+  {
+    "query_id": 34,
+    "gt_answer": "atheism",
+    "pred_answer": "Atheism.",
+    "raw_output": "The knowledge pool does not provide a specific fact about the religion associated with Ferdinand Marcos. The closest relevant fact is that Imelda Marcos is affiliated with atheism, but it does not directly state Ferdinand Marcos's religion. Therefore, I cannot provide a definitive answer based on the rules given. \n\nAnswer: Atheism.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5692,
+    "completion_tokens": 64,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 36,
+    "gt_answer": "Japan",
+    "pred_answer": "Japan",
+    "raw_output": "The fact regarding \"Rocket Man\" states that it was performed by Ayumi Hamasaki, who is a citizen of Japan. There are no conflicting facts about her citizenship in the knowledge pool. \nAnswer: Japan",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5721,
+    "completion_tokens": 42,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 37,
+    "gt_answer": "German",
+    "pred_answer": "German",
+    "raw_output": "The performer of Hermione Granger is stated to be Kylie Minogue, and the knowledge pool indicates that Kylie Minogue speaks the language of German. Therefore, based on the most recent fact regarding her language skills, the answer is derived from that information. \n\nAnswer: German",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      5
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5158,
+    "completion_tokens": 54,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 42,
+    "gt_answer": "Leeds",
+    "pred_answer": "Leeds.",
+    "raw_output": "The author of \"The Marriage of Figaro\" is Thomas Kyd, and according to the knowledge pool, he was born in the city of Leeds. However, there is a conflicting fact stating that Thomas Arne was born in London, but since the fact about Thomas Kyd is newer, I will use that information. \n\nAnswer: Leeds.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      5
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5186,
+    "completion_tokens": 70,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 43,
+    "gt_answer": "Shinzō Abe",
+    "pred_answer": "Japan.",
+    "raw_output": "The sport associated with Darryl Strawberry is baseball, which was created in the country of Japan according to the knowledge pool. The head of government in Japan is not explicitly stated in the provided facts, but the most recent fact regarding the head of state in the United Kingdom is Emmerson Mnangagwa, which does not apply to Japan. Therefore, I will focus on the country where baseball was developed. \n\nAnswer: Japan.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      4
+    ],
+    "passages_kept": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5722,
+    "completion_tokens": 87,
+    "num_hops": 3,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 45,
+    "gt_answer": "London",
+    "pred_answer": "Gads Hill Place.",
+    "raw_output": "The author of \"Sketches by Boz\" is Charles Dickens. The knowledge pool indicates that Charles Dickens died in the city of Gads Hill Place. However, there is a conflicting fact stating that he died in the city of London. The fact with the larger serial number is the one stating he died in Gads Hill Place, which is the most recent. \n\nAnswer: Gads Hill Place.",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5700,
+    "completion_tokens": 81,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 46,
+    "gt_answer": "Tokyo",
+    "pred_answer": "London.",
+    "raw_output": "The sport associated with Daniele De Rossi is football (soccer), which originated in England. The capital city of England is London. \nAnswer: London.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5711,
+    "completion_tokens": 32,
+    "num_hops": 4,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 47,
+    "gt_answer": "Asia",
+    "pred_answer": "North America.",
+    "raw_output": "Ferdinand von Richthofen is stated to be a citizen of Canada, which is located in the continent of North America. The most recent fact regarding his citizenship is the one with the largest serial number. \nAnswer: North America.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      6
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5180,
+    "completion_tokens": 48,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 49,
+    "gt_answer": "Latin",
+    "pred_answer": "Japanese.",
+    "raw_output": "The founder of Shingon Buddhism is Kūkai, who speaks the language of Japanese according to the knowledge pool. \nAnswer: Japanese.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      5
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5178,
+    "completion_tokens": 29,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 50,
+    "gt_answer": "Mansourah, Algeria",
+    "pred_answer": "Not available.",
+    "raw_output": "The head of government of the Council of People's Commissars is Tony Blair. His partner is not explicitly mentioned in the knowledge pool, but based on the facts, the most relevant information is that Tony Blair is married to Cherie Blair. However, the knowledge pool does not provide a specific place of death for Cherie Blair. Therefore, I will look for the most recent fact related to Tony Blair or his partner. The most relevant fact is that Tony Blair is married to Alan Jay Lerner, but this is incorrect as per the real world. The knowledge pool does not provide a place of death for either. Thus, I cannot provide a definitive answer based on the knowledge pool. \n\nAnswer: Not available.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      5,
+      7
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      6,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 7,
+    "prompt_tokens": 4616,
+    "completion_tokens": 142,
+    "num_hops": 3,
+    "n_conflict": 3
+  },
+  {
+    "query_id": 51,
+    "gt_answer": "journalist",
+    "pred_answer": "No information available.",
+    "raw_output": "The knowledge pool does not contain any information regarding the professional role of the chairperson of the Congolese Party of Labour. Therefore, I cannot provide an answer based on the provided facts. \nAnswer: No information available.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      4
+    ],
+    "passages_kept": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5171,
+    "completion_tokens": 45,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 55,
+    "gt_answer": "Sweden",
+    "pred_answer": "Unknown",
+    "raw_output": "The knowledge pool indicates that Ron Dennis is employed by Pakistan International Airlines, but there is no specific information about the place of establishment for this organization. Therefore, I cannot provide an answer based on the available facts. \n\nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      7
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5190,
+    "completion_tokens": 46,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 56,
+    "gt_answer": "Africa",
+    "pred_answer": "Europe.",
+    "raw_output": "The fact regarding Le Petit Parisien states that it was created in the country of Germany, which is located in Europe. Therefore, the continent associated with Le Petit Parisien is Europe. \nAnswer: Europe.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      4
+    ],
+    "passages_kept": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5165,
+    "completion_tokens": 42,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 58,
+    "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "pred_answer": "None.",
+    "raw_output": "The knowledge pool does not contain any information regarding the political entity established from the successor of the Sasanian Empire. Therefore, I cannot provide an answer based on the provided facts. \nAnswer: None.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      5
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5187,
+    "completion_tokens": 41,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 59,
+    "gt_answer": "Duluth",
+    "pred_answer": "Unknown.",
+    "raw_output": "The knowledge pool does not contain any information regarding FC Irtysh Omsk or the location of its capital. Therefore, I cannot provide an answer based on the provided facts. \nAnswer: Unknown.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      3
+    ],
+    "passages_kept": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5174,
+    "completion_tokens": 41,
+    "num_hops": 3,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 62,
+    "gt_answer": "Ernst Heinkel",
+    "pred_answer": "Not specified.",
+    "raw_output": "The original broadcaster of \"The Brady Bunch\" is the American Broadcasting Company, and the most recent fact related to it states that the director of the British Broadcasting Corporation is Narendra Modi. However, this does not provide a position related to \"The Brady Bunch.\" The relevant position associated with the original broadcaster is not explicitly mentioned in the knowledge pool. Therefore, I will refer to the most recent fact that mentions a position related to a broadcaster, which is not directly applicable here. \n\nAnswer: Not specified.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5719,
+    "completion_tokens": 102,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 64,
+    "gt_answer": "United Kingdom",
+    "pred_answer": "United Kingdom.",
+    "raw_output": "The author of \"Starship Troopers\" is incorrectly attributed in the knowledge pool. The most recent fact regarding the author of \"Starship Troopers\" is that it is attributed to Daphne du Maurier, who is a citizen of the United Kingdom. Therefore, based on the latest information available in the knowledge pool, the answer is the country of citizenship of Daphne du Maurier. \n\nAnswer: United Kingdom.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5700,
+    "completion_tokens": 83,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 65,
+    "gt_answer": "Narendra Modi",
+    "pred_answer": "Not available.",
+    "raw_output": "To answer the question, I need to identify the most recent fact regarding the director or manager at the company that employs Dave Filoni. The relevant fact states that \"Dave Filoni is employed by British Broadcasting Corporation.\" However, there is no specific mention of the current director or manager of the British Broadcasting Corporation in the provided knowledge pool. Therefore, I will look for the most recent mention of a director or manager associated with any company. The most recent fact states that \"the chief executive officer of ABB Group is Ulrich Spiesshofer.\" Since this does not directly answer the question about the British Broadcasting Corporation, I will conclude that the information is insufficient to provide a specific name for the director or manager at the company employing Dave Filoni.\n\nAnswer: Not available.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      5
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5174,
+    "completion_tokens": 153,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 66,
+    "gt_answer": "German",
+    "pred_answer": "German.",
+    "raw_output": "The knowledge pool indicates that Hugh Hefner is famous for \"The Vampyre,\" which is stated to be written in the language of German according to the fact with the largest serial number related to this topic. \nAnswer: German.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      2,
+      3
+    ],
+    "passages_kept": [
+      1,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5161,
+    "completion_tokens": 46,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 67,
+    "gt_answer": "New Delhi",
+    "pred_answer": "London",
+    "raw_output": "To determine the capital of the country that gave rise to the sport played by Rogério Ceni, we first identify the sport associated with him. Rogério Ceni is known for playing the position of goalkeeper, which is associated with the sport of association football. The country that gave rise to association football is England. The capital of England is London. \n\nAnswer: London",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      6,
+      9
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      7,
+      8,
+      10
+    ],
+    "n_passages": 7,
+    "prompt_tokens": 4635,
+    "completion_tokens": 74,
+    "num_hops": 4,
+    "n_conflict": 3
+  },
+  {
+    "query_id": 68,
+    "gt_answer": "University of Southern California",
+    "pred_answer": "University of Southern California.",
+    "raw_output": "The author of 'Sidereus Nuncius' is Samuel Beckett, and the most recent fact states that he was educated at the University of Southern California. \nAnswer: University of Southern California.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      6
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5152,
+    "completion_tokens": 41,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 69,
+    "gt_answer": "Leipzig",
+    "pred_answer": "Leipzig.",
+    "raw_output": "The author of Endymion is John Keats. According to the knowledge pool, the most recent fact regarding John Keats states that he died in the city of Leipzig. \nAnswer: Leipzig.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5698,
+    "completion_tokens": 40,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 70,
+    "gt_answer": "Botevgrad",
+    "pred_answer": "Botevgrad.",
+    "raw_output": "The spouse of Sophia Hawthorne is Joan Didion. According to the knowledge pool, Joan Didion was educated at the University of California, Berkeley, which has its headquarters located in the city of Botevgrad. However, the most recent fact regarding the headquarters of the University of California, Berkeley states it is located in Botevgrad. Therefore, the answer is based on the latest information available in the knowledge pool. \n\nAnswer: Botevgrad.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3,
+      8
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5177,
+    "completion_tokens": 94,
+    "num_hops": 3,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 74,
+    "gt_answer": "Wolverhampton",
+    "pred_answer": "Moscow.",
+    "raw_output": "The author of \"A Wizard of Earthsea\" is associated with the fact that Pius XII is mentioned as the author in the knowledge pool. However, there is no information provided about where Pius XII breathed his last. Therefore, I must conclude based on the latest relevant information available in the knowledge pool. \n\nAnswer: Moscow.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      5
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5162,
+    "completion_tokens": 67,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 75,
+    "gt_answer": "interdenominational organization",
+    "pred_answer": "Islam",
+    "raw_output": "The performer of \"Aladdin Sane\" is David Bowie, who is married to Iman. According to the knowledge pool, Iman is affiliated with the religion of Islam. \nAnswer: Islam",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      3,
+      5
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5176,
+    "completion_tokens": 40,
+    "num_hops": 3,
+    "n_conflict": 3
+  },
+  {
+    "query_id": 76,
+    "gt_answer": "Washington, D.C.",
+    "pred_answer": "Unknown.",
+    "raw_output": "The knowledge pool does not provide specific information about the location where the Prime Minister of Sweden spends most of their work hours. Therefore, I cannot provide an answer based on the available facts. \nAnswer: Unknown.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5706,
+    "completion_tokens": 42,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 77,
+    "gt_answer": "Rome",
+    "pred_answer": "Washington, D.C.",
+    "raw_output": "The CEO of the developer of AppleScript, which is Apple Inc., is Tim Cook. According to the knowledge pool, Tim Cook is a citizen of the United States of America. The capital city of the United States of America is Washington, D.C. \nAnswer: Washington, D.C.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      9
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5178,
+    "completion_tokens": 59,
+    "num_hops": 4,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 78,
+    "gt_answer": "Africa",
+    "pred_answer": "Unknown",
+    "raw_output": "The knowledge pool does not provide any information about Gala RFC or its country of origin. Therefore, I cannot determine the continent based on the provided facts. \n\nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      8
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5147,
+    "completion_tokens": 34,
+    "num_hops": 3,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 79,
+    "gt_answer": "rugby",
+    "pred_answer": "baseball",
+    "raw_output": "The knowledge pool indicates that Irving Fryar plays the position of wide receiver, and the most recent fact associated with this position states that it is related to the sport of baseball. Therefore, I will conclude based on the latest information available. \n\nAnswer: baseball",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      4
+    ],
+    "passages_kept": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5711,
+    "completion_tokens": 51,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 80,
+    "gt_answer": "Antarctica",
+    "pred_answer": "Unknown",
+    "raw_output": "The knowledge pool does not provide any information about Cédric Klapisch's citizenship or the continent of that country. Therefore, I cannot determine the answer based on the provided facts. \nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      8
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5151,
+    "completion_tokens": 41,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 81,
+    "gt_answer": "Ankara",
+    "pred_answer": "Ankara.",
+    "raw_output": "The knowledge pool indicates that Leonte Răutu is employed by the University of Bucharest, and the most recent fact regarding the headquarters of the University of Bucharest states that it is located in the city of Ankara. Therefore, I will provide that information as the answer. \n\nAnswer: Ankara.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5715,
+    "completion_tokens": 60,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 82,
+    "gt_answer": "Elizabeth II",
+    "pred_answer": "Tony Blair.",
+    "raw_output": "The country of origin of Club Nouveau is the Soviet Union, and the head of government there is Tony Blair according to the most recent fact. Therefore, the head of government reports to the current head of state, which is also Tony Blair. \n\nAnswer: Tony Blair.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      3,
+      5
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5157,
+    "completion_tokens": 54,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 83,
+    "gt_answer": "William Penn",
+    "pred_answer": "No answer available.",
+    "raw_output": "To answer the question, I need to identify the university where Bill Frisell was educated, which is The University of the Arts. Then, I need to find the founder of that organization. The knowledge pool does not provide a specific founder for The University of the Arts, but it does mention that the headquarters of The University of the Arts is located in Philadelphia. Since there is no direct information about the founder in the knowledge pool, I cannot provide a definitive answer based on the rules given. \n\nAnswer: No answer available.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5712,
+    "completion_tokens": 105,
+    "num_hops": 3,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 84,
+    "gt_answer": "Tehran",
+    "pred_answer": "Tehran",
+    "raw_output": "The knowledge pool states that Charles Messier is a citizen of Iran, and the capital of Iran is Tehran. Therefore, the city where the capital is located is Tehran. \n\nAnswer: Tehran",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5693,
+    "completion_tokens": 38,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 86,
+    "gt_answer": "New Delhi",
+    "pred_answer": "Harrisville.",
+    "raw_output": "The manufacturer of Ford F-Series is Ford Motor Company, which was founded by Henry Ford. The capital city of the United States of America, where Henry Ford was a citizen, is Washington, D.C. However, the most recent conflicting fact states that the capital of the United States is Harrisville. Therefore, based on the newest fact, the answer is Harrisville. \nAnswer: Harrisville.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2,
+      8,
+      10
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9
+    ],
+    "n_passages": 7,
+    "prompt_tokens": 4642,
+    "completion_tokens": 80,
+    "num_hops": 4,
+    "n_conflict": 3
+  },
+  {
+    "query_id": 92,
+    "gt_answer": "German",
+    "pred_answer": "German.",
+    "raw_output": "The knowledge pool does not provide any specific information about the manufacturer of Il-2 Shturmovik or the official language of communications at its headquarters. Therefore, I cannot derive an answer based on the provided facts. \n\nAnswer: German.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5724,
+    "completion_tokens": 49,
+    "num_hops": 3,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 94,
+    "gt_answer": "Japan",
+    "pred_answer": "Japan",
+    "raw_output": "The New Firm is associated with the sport of baseball, and the most recent fact states that baseball was created in the country of Japan. Therefore, the country of origin of the sport that the New Firm is related to is Japan. \nAnswer: Japan",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      3
+    ],
+    "passages_kept": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5165,
+    "completion_tokens": 50,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 95,
+    "gt_answer": "Mekere Morauta",
+    "pred_answer": "Kūkai.",
+    "raw_output": "The knowledge pool indicates that Sarit Thanarat is affiliated with Buddhism. The founder of Buddhism is Siddhartha Gautama, also known as the Buddha. However, there is no specific fact in the provided knowledge pool that directly states this. Therefore, I will provide the most relevant information based on the knowledge pool. \n\nAnswer: Kūkai.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5707,
+    "completion_tokens": 70,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 96,
+    "gt_answer": "Guangzhou",
+    "pred_answer": "Guangzhou.",
+    "raw_output": "The creator of \"Lady Windermere's Fan\" is Oscar Wilde. According to the knowledge pool, the most recent fact states that Oscar Wilde died in the city of Guangzhou. Therefore, the answer is based on the latest information available in the knowledge pool. \n\nAnswer: Guangzhou.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5700,
+    "completion_tokens": 57,
+    "num_hops": 2,
+    "n_conflict": 1
+  },
+  {
+    "query_id": 97,
+    "gt_answer": "Australian hip hop",
+    "pred_answer": "Unknown",
+    "raw_output": "The knowledge pool does not contain any information about the song \"Born in the U.S.A.\" or its performer. Therefore, I cannot provide an answer based on the provided facts. \n\nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1,
+      4
+    ],
+    "passages_kept": [
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 8,
+    "prompt_tokens": 5186,
+    "completion_tokens": 40,
+    "num_hops": 2,
+    "n_conflict": 2
+  },
+  {
+    "query_id": 99,
+    "gt_answer": "Swedish",
+    "pred_answer": "English",
+    "raw_output": "The knowledge pool indicates that Alta IF is associated with the sport of baseball, but it does not provide information about the country of origin or the language of official documents. Therefore, I must look for the most recent relevant fact. The most recent fact related to language is that the official language of England is English. Since there is no specific information about Alta IF's country of origin, I will use the most recent language fact available. \n\nAnswer: English",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      3,
+      4,
+      6
+    ],
+    "passages_kept": [
+      1,
+      2,
+      5,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 7,
+    "prompt_tokens": 4614,
+    "completion_tokens": 90,
+    "num_hops": 3,
+    "n_conflict": 3
+  }
+]

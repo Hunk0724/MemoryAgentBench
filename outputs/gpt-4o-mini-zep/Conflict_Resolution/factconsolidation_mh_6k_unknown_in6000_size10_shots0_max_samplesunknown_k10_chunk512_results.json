@@ -1,0 +1,104 @@
+{
+    "agent_config": {
+        "agent_name": "Structure_rag_zep",
+        "model": "gpt-4o-mini",
+        "text_embedding": "text-embedding-3-small",
+        "temperature": 0.7,
+        "input_length_limit": 10000000,
+        "buffer_length": 5000,
+        "output_dir": "./outputs/gpt-4o-mini-zep",
+        "agent_chunk_size": 512,
+        "service_name": "azure_openai",
+        "retrieve_num": 10
+    },
+    "dataset_config": {
+        "dataset": "Conflict_Resolution",
+        "chunk_size": 512,
+        "debug": false,
+        "seed": 42,
+        "context_max_length": 6000,
+        "sub_dataset": "factconsolidation_mh_6k",
+        "generation_max_length": 10,
+        "test_files": "",
+        "demo_files": "",
+        "use_chat_template": true,
+        "max_test_samples": null,
+        "shots": 0,
+        "tag": null,
+        "max_test_queries": 1
+    },
+    "data": [
+        {
+            "output": "United Kingdom",
+            "input_len": 4127,
+            "output_len": 2,
+            "memory_construction_time": 365.0392084121704,
+            "query_time_len": 3.5994935035705566,
+            "parsed_output": "United Kingdom",
+            "exact_match": false,
+            "f1": 0,
+            "substring_exact_match": false,
+            "rougeL_f1": 0.0,
+            "rougeL_recall": 0.0,
+            "rougeLsum_f1": 0.0,
+            "rougeLsum_recall": 0.0,
+            "answer": [
+                "Belgium"
+            ],
+            "query": "Pretend you are a knowledge management system. Each fact in the knowledge pool is provided with a serial number at the beginning, and the newer fact has larger serial number. \n You need to solve the conflicts of facts in the knowledge pool by finding the newest fact with larger serial number. You need to answer a question based on this rule. You should give a very concise answer without saying other words for the question **only** from the knowledge pool you have memorized rather than the real facts in real world. \n\nFor example:\n\n [Knowledge Pool] \n\n Question: Based on the provided Knowledge Pool, what is the name of the current president of Russia? \nAnswer: Donald Trump \n\n Now Answer the Question: Based on the provided Knowledge Pool, What is the country of citizenship of the spouse of the author of Our Mutual Friend? \nAnswer:",
+            "query_id": 0,
+            "qa_pair_id": "factconsolidation_mh_6k_no0"
+        }
+    ],
+    "metrics": {
+        "exact_match": [
+            false
+        ],
+        "f1": [
+            0
+        ],
+        "substring_exact_match": [
+            false
+        ],
+        "rougeL_f1": [
+            0.0
+        ],
+        "rougeL_recall": [
+            0.0
+        ],
+        "rougeLsum_f1": [
+            0.0
+        ],
+        "rougeLsum_recall": [
+            0.0
+        ],
+        "input_len": [
+            4127
+        ],
+        "output_len": [
+            2
+        ],
+        "memory_construction_time": [
+            365.0392084121704
+        ],
+        "query_time_len": [
+            3.5994935035705566
+        ]
+    },
+    "time_cost": [
+        371.58662152290344
+    ],
+    "averaged_metrics": {
+        "exact_match": 0.0,
+        "f1": 0.0,
+        "substring_exact_match": 0.0,
+        "rougeL_f1": 0.0,
+        "rougeL_recall": 0.0,
+        "rougeLsum_f1": 0.0,
+        "rougeLsum_recall": 0.0,
+        "input_len": 4127.0,
+        "output_len": 2.0,
+        "memory_construction_time": 365.0392084121704,
+        "query_time_len": 3.5994935035705566
+    }
+}

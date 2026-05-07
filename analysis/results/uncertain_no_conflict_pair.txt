@@ -1,0 +1,831 @@
+=== 有疑慮的 no_conflict_pair 跳（MQuAKE 有 target_true 但我們找不到舊事實句）===
+人工核查：看 retrieved passages 裡有沒有用 target_true 組成的舊事實？
+判斷：(A) 確實有舊事實存在 → 應改為 has_pair  (B) 沒有 → 確認為 no_conflict_pair
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no1  hop0  |  ✓ PASS
+問題: In which location did the spouse of Igor of Kiev pass away?
+GT答案: Rodez  |  模型輸出: Rodez.
+
+  [新事實 GT]   Igor of Kiev is married to Olga of Kiev.
+  [cloze]       Igor of Kiev is married to
+  [target_true] Kyiv
+  [推測舊事實]  Igor of Kiev is married to Kyiv.
+  [MQuAKE sh_fact] Igor of Kiev is married to Olga of Kiev.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P2: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P3: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P4: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P5: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P6: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P7: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P8: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P9: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P10: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no4  hop0  |  ✗ FAIL
+問題: What is the sport that Blair Walsh plays in which he is known for his position on the team?
+GT答案: rugby  |  模型輸出: American football.
+
+  [新事實 GT]   Blair Walsh plays the position of placekicker.
+  [cloze]       Blair Walsh plays the position of
+  [target_true] American football
+  [推測舊事實]  Blair Walsh plays the position of American football.
+  [MQuAKE sh_fact] Blair Walsh plays the position of placekicker.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P2 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P3 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P4 ← ★含 target_true: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P5 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P6: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P7: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P8: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P9: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P10: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no11  hop0  |  ✗ FAIL
+問題: What was the religion of the person with the citizenship of the country to which Edmund Burke belonged?
+GT答案: Zoroastrianism  |  模型輸出: Catholic Church.
+
+  [新事實 GT]   Edmund Burke is a citizen of Kingdom of Ireland.
+  [cloze]       Edmund Burke is a citizen of
+  [target_true] Catholic Church
+  [推測舊事實]  Edmund Burke is a citizen of Catholic Church.
+  [MQuAKE sh_fact] Edmund Burke is a citizen of Kingdom of Ireland.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P2 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P3 ← ★含 target_true: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P4: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P5 ← ★含 target_true: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P6 ← ★含 target_true: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P7: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P8: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P9: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P10: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no12  hop0  |  ✗ FAIL
+問題: What is the capital city of the country where the sport associated with John Harkes has its origin?
+GT答案: Duluth  |  模型輸出: London.
+
+  [新事實 GT]   John Harkes is associated with the sport of association football.
+  [cloze]       John Harkes is associated with the sport of
+  [target_true] England
+  [推測舊事實]  John Harkes is associated with the sport of England.
+  [MQuAKE sh_fact] John Harkes is associated with the sport of association football.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P2: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P3: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P4 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P5 ← ★含 target_true: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P6: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P7: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P8 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P9: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P10 ← ★含 target_true: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no19  hop0  |  ✗ FAIL
+問題: Which city is the capital of the country where the performer of "Free as a Bird"'s director/manager comes from?
+GT答案: Duluth  |  模型輸出: London
+
+  [新事實 GT]   Free as a Bird was performed by The Beatles.
+  [cloze]       Free as a Bird was performed by
+  [target_true] Brian Epstein
+  [推測舊事實]  Free as a Bird was performed by Brian Epstein.
+  [MQuAKE sh_fact] Free as a Bird was performed by The Beatles.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P2 ← ★含 target_true: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P3: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P4: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P5: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P6: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P7: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P8: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P9: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P10: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no22  hop0  |  ✗ FAIL
+問題: What is the name of the child category of "Categories" created by the author?
+GT答案: George Alexander Kohut  |  模型輸出: None.
+
+  [新事實 GT]   The author of Categories is Aristotle.
+  [cloze]       The author of Categories is
+  [target_true] Nicomachus
+  [推測舊事實]  The author of Categories is Nicomachus.
+  [MQuAKE sh_fact] The author of Categories is Aristotle.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P2: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P3: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P4: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P5: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P6: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P7: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P8: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P9: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P10: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no24  hop2  |  ✗ FAIL
+問題: Which city is the capital of the country where the CEO of the developer of SteamOS holds a citizenship?
+GT答案: Harare  |  模型輸出: Washington, D.C.
+
+  [新事實 GT]   Bernard Arnault is a citizen of France.
+  [cloze]       Bernard Arnault is a citizen of
+  [target_true] Paris
+  [推測舊事實]  Bernard Arnault is a citizen of Paris.
+  [MQuAKE sh_fact] Gabe Newell is a citizen of United States of America.  (old_hops chain 中第2跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P2: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P3: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P4 ← ★含 target_true: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P5 ← ★含 target_true: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P6 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P7: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P8: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P9: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P10 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no26  hop0  |  ✓ PASS
+問題: Who holds the position of chairperson in the organization where Joseph Story was employed?
+GT答案: Peter Diamandis  |  模型輸出: Peter Diamandis.
+
+  [新事實 GT]   Joseph Story is employed by Harvard University.
+  [cloze]       Joseph Story is employed by
+  [target_true] Lawrence S. Bacow
+  [推測舊事實]  Joseph Story is employed by Lawrence S. Bacow.
+  [MQuAKE sh_fact] Joseph Story is employed by Harvard University.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P2 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P3: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P4: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P5: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P6: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P7: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P8: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P9: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P10: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no27  hop0  |  ✗ FAIL
+問題: What city serves as the capital of the country where the performer who is the spouse of Derek Shepherd holds citizenship?
+GT答案: Harrisville  |  模型輸出: Washington, D.C.
+
+  [新事實 GT]   Derek Shepherd is married to Meredith Grey.
+  [cloze]       Derek Shepherd is married to
+  [target_true] Washington, D.C.
+  [推測舊事實]  Derek Shepherd is married to Washington, D.C..
+  [MQuAKE sh_fact] Derek Shepherd is married to Meredith Grey.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P2: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P3: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P4: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P5 ← ★含 target_true: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P6: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P7: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P8: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P9 ← ★含 target_true: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P10: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no32  hop0  |  ✓ PASS
+問題: What is the continent of origin of the chief executive officer for the developer of Windows Phone?
+GT答案: North America  |  模型輸出: North America.
+
+  [新事實 GT]   Windows Phone was developed by Microsoft.
+  [cloze]       Windows Phone was developed by
+  [target_true] Satya Nadella
+  [推測舊事實]  Windows Phone was developed by Satya Nadella.
+  [MQuAKE sh_fact] Windows Phone was developed by Microsoft.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P2 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P3 ← ★含 target_true: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P4: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P5: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P6: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P7: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P8: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P9: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P10: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no34  hop0  |  ✓ PASS
+問題: Which religion was the partner of Ferdinand Marcos associated with?
+GT答案: atheism  |  模型輸出: atheism.
+
+  [新事實 GT]   Ferdinand Marcos is married to Imelda Marcos.
+  [cloze]       Ferdinand Marcos is married to
+  [target_true] Catholicism
+  [推測舊事實]  Ferdinand Marcos is married to Catholicism.
+  [MQuAKE sh_fact] Ferdinand Marcos is married to Imelda Marcos.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P2 ← ★含 target_true: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P3: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P4: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P5: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P6: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P7: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P8: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P9: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P10: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no40  hop0  |  ✗ FAIL
+問題: What is the name of the person who founded the organization that Benjamin Mazar was part of?
+GT答案: Philippe, Duke of Orléans  |  模型輸出: Unknown
+
+  [新事實 GT]   Benjamin Mazar is a citizen of Israel.
+  [cloze]       Benjamin Mazar is a citizen of
+  [target_true] David Ben-Gurion
+  [推測舊事實]  Benjamin Mazar is a citizen of David Ben-Gurion.
+  [MQuAKE sh_fact] Benjamin Mazar is a citizen of Israel.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P2: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P3: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P4: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P5: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P6: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P7: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P8: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P9: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P10: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no43  hop0  |  ✗ FAIL
+問題: In which country was Darryl Strawberry's sport developed, and who is the head of government in that nation?
+GT答案: Shinzō Abe  |  模型輸出: United States of America, Donald Trump.
+
+  [新事實 GT]   Darryl Strawberry is associated with the sport of baseball.
+  [cloze]       Darryl Strawberry is associated with the sport of
+  [target_true] United States of America
+  [推測舊事實]  Darryl Strawberry is associated with the sport of United States of America.
+  [MQuAKE sh_fact] Darryl Strawberry is associated with the sport of baseball.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P2 ← ★含 target_true: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P3 ← ★含 target_true: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P4 ← ★含 target_true: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P5 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P6 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P7 ← ★含 target_true: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P8 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P9 ← ★含 target_true: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P10 ← ★含 target_true: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no44  hop0  |  ✗ FAIL
+問題: Which city serves as the capital of the country where the sport that Mike D'Antoni specialized in hails from?
+GT答案: London  |  模型輸出: Washington, D.C.
+
+  [新事實 GT]   Mike D'Antoni plays the position of point guard.
+  [cloze]       Mike D'Antoni plays the position of
+  [target_true] basketball
+  [推測舊事實]  Mike D'Antoni plays the position of basketball.
+  [MQuAKE sh_fact] Mike D'Antoni plays the position of point guard.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P2: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P3 ← ★含 target_true: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P4: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P5 ← ★含 target_true: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P6 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P7 ← ★含 target_true: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P8 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P9 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P10 ← ★含 target_true: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no46  hop0  |  ✗ FAIL
+問題: What is the capital city of the country from which the sport of Daniele De Rossi originated?
+GT答案: Tokyo  |  模型輸出: London.
+
+  [新事實 GT]   Daniele De Rossi plays the position of midfielder.
+  [cloze]       Daniele De Rossi plays the position of
+  [target_true] association football
+  [推測舊事實]  Daniele De Rossi plays the position of association football.
+  [MQuAKE sh_fact] Daniele De Rossi plays the position of midfielder.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P2: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P3 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P4 ← ★含 target_true: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P5 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P6 ← ★含 target_true: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P7 ← ★含 target_true: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P8 ← ★含 target_true: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P9 ← ★含 target_true: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P10 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no48  hop0  |  ✗ FAIL
+問題: In which city is the capital of the country where the sport played by Galwegians RFC was originated?
+GT答案: Grosseto  |  模型輸出: London.
+
+  [新事實 GT]   Galwegians RFC is associated with the sport of rugby union.
+  [cloze]       Galwegians RFC is associated with the sport of
+  [target_true] England
+  [推測舊事實]  Galwegians RFC is associated with the sport of England.
+  [MQuAKE sh_fact] Galwegians RFC is associated with the sport of rugby union.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P2 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P3: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P4: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P5: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P6 ← ★含 target_true: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P7: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P8 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P9 ← ★含 target_true: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P10 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no52  hop0  |  ✗ FAIL
+問題: Where did the religion associated with the Bagratuni Dynasty come into existence?
+GT答案: Taipei  |  模型輸出: Jerusalem.
+
+  [新事實 GT]   Bagratuni Dynasty is affiliated with the religion of Christianity.
+  [cloze]       Bagratuni Dynasty is affiliated with the religion of
+  [target_true] Jerusalem
+  [推測舊事實]  Bagratuni Dynasty is affiliated with the religion of Jerusalem.
+  [MQuAKE sh_fact] Bagratuni Dynasty is affiliated with the religion of Christianity.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P2 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P3: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P4: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P5: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P6: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P7: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P8: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P9: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P10: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no54  hop0  |  ✗ FAIL
+問題: In which city is the capital located of the country where the director/producer of "666 Park Avenue" is a citizen?
+GT答案: Beaumont  |  模型輸出: Moscow.
+
+  [新事實 GT]   The origianl broadcaster of 666 Park Avenue is American Broadcasting Company.
+  [cloze]       The origianl broadcaster of 666 Park Avenue is
+  [target_true] Bob Iger
+  [推測舊事實]  The origianl broadcaster of 666 Park Avenue is Bob Iger.
+  [MQuAKE sh_fact] The origianl broadcaster of 666 Park Avenue is American Broadcasting Company.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P2: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P3: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P4: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P5: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P6: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P7 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P8: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P9: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P10: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no57  hop0  |  ✗ FAIL
+問題: Which city serves as the capital city of the country where the sport played by the partner of Victoria Beckham originated?
+GT答案: Oderzo  |  模型輸出: London
+
+  [新事實 GT]   Victoria Beckham is married to David Beckham.
+  [cloze]       Victoria Beckham is married to
+  [target_true] association football
+  [推測舊事實]  Victoria Beckham is married to association football.
+  [MQuAKE sh_fact] Victoria Beckham is married to David Beckham.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P2 ← ★含 target_true: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P3 ← ★含 target_true: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P4 ← ★含 target_true: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P5 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P6 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P7 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P8 ← ★含 target_true: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P9 ← ★含 target_true: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P10 ← ★含 target_true: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no59  hop0  |  ✗ FAIL
+問題: In which city is the capital of the country that FC Irtysh Omsk originates from located?
+GT答案: Duluth  |  模型輸出: Moscow.
+
+  [新事實 GT]   FC Irtysh Omsk is associated with the sport of association football.
+  [cloze]       FC Irtysh Omsk is associated with the sport of
+  [target_true] England
+  [推測舊事實]  FC Irtysh Omsk is associated with the sport of England.
+  [MQuAKE sh_fact] FC Irtysh Omsk is associated with the sport of association football.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P2 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P3 ← ★含 target_true: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P4: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P5: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P6: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P7: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P8 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P9: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P10 ← ★含 target_true: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no62  hop0  |  ✗ FAIL
+問題: In which position did the person related to the original broadcaster of "The Brady Bunch" serve?
+GT答案: Ernst Heinkel  |  模型輸出: director.
+
+  [新事實 GT]   The origianl broadcaster of The Brady Bunch is American Broadcasting Company.
+  [cloze]       The origianl broadcaster of The Brady Bunch is
+  [target_true] Bob Iger
+  [推測舊事實]  The origianl broadcaster of The Brady Bunch is Bob Iger.
+  [MQuAKE sh_fact] The origianl broadcaster of The Brady Bunch is American Broadcasting Company.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P2: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P3 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P4: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P5: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P6: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P7: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P8: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P9: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P10: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no67  hop1  |  ✗ FAIL
+問題: Which city serves as the capital of the country that gave rise to the sport played by Rogério Ceni?
+GT答案: New Delhi  |  模型輸出: London
+
+  [新事實 GT]   flanker is associated with the sport of rugby union.
+  [cloze]       flanker is associated with the sport of
+  [target_true] England
+  [推測舊事實]  flanker is associated with the sport of England.
+  [MQuAKE sh_fact] goalkeeper is associated with the sport of association football.  (old_hops chain 中第1跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P2: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P3: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P4 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P5 ← ★含 target_true: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P6: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P7: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P8 ← ★含 target_true: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P9 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P10: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no69  hop0  |  ✓ PASS
+問題: What is the place of death of the author of Endymion?
+GT答案: Leipzig  |  模型輸出: Leipzig.
+
+  [新事實 GT]   The author of Endymion is John Keats.
+  [cloze]       The author of Endymion is
+  [target_true] Rome
+  [推測舊事實]  The author of Endymion is Rome.
+  [MQuAKE sh_fact] The author of Endymion is John Keats.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P2 ← ★含 target_true: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P3: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P4: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P5: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P6: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P7: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P8: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P9: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P10: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no70  hop1  |  ✗ FAIL
+問題: In which city can the headquarters of the educational institution attended by the spouse of Sophia Hawthorne be found?
+GT答案: Botevgrad  |  模型輸出: Brunswick.
+
+  [新事實 GT]   The univeristy where Joan Didion was educated is University of California, Berkeley.
+  [cloze]       The univeristy where Joan Didion was educated is
+  [target_true] Berkeley
+  [推測舊事實]  The univeristy where Joan Didion was educated is Berkeley.
+  [MQuAKE sh_fact] The univeristy where Nathaniel Hawthorne was educated is Bowdoin College.  (old_hops chain 中第1跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P2: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P3: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P4 ← ★含 target_true: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P5: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P6: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P7 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P8 ← ★含 target_true: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P9: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P10: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no71  hop0  |  ✗ FAIL
+問題: What is the name of the chief of state of the country where Leo Stein holds citizenship?
+GT答案: Connachta  |  模型輸出: Donald Trump
+
+  [新事實 GT]   Leo Stein is a citizen of United States of America.
+  [cloze]       Leo Stein is a citizen of
+  [target_true] Donald Trump
+  [推測舊事實]  Leo Stein is a citizen of Donald Trump.
+  [MQuAKE sh_fact] Leo Stein is a citizen of United States of America.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P2 ← ★含 target_true: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P3 ← ★含 target_true: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P4: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P5: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P6: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P7: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P8: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P9: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P10: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no72  hop0  |  ✗ FAIL
+問題: What is the name of the chief of state of the country that Hal Needham belongs to?
+GT答案: Connachta  |  模型輸出: Donald Trump
+
+  [新事實 GT]   Hal Needham is a citizen of United States of America.
+  [cloze]       Hal Needham is a citizen of
+  [target_true] Donald Trump
+  [推測舊事實]  Hal Needham is a citizen of Donald Trump.
+  [MQuAKE sh_fact] Hal Needham is a citizen of United States of America.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P2 ← ★含 target_true: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P3 ← ★含 target_true: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P4: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P5: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P6: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P7: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P8: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P9: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P10: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no77  hop0  |  ✗ FAIL
+問題: What is the capital city of the country whose citizenship is held by the CEO of the developer of AppleScript?
+GT答案: Rome  |  模型輸出: Washington, D.C.
+
+  [新事實 GT]   AppleScript was developed by Apple Inc..
+  [cloze]       AppleScript was developed by
+  [target_true] Tim Cook
+  [推測舊事實]  AppleScript was developed by Tim Cook.
+  [MQuAKE sh_fact] AppleScript was developed by Apple Inc..  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P2 ← ★含 target_true: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P3: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P4 ← ★含 target_true: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P5: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P6: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P7: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P8: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P9: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P10: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no78  hop0  |  ✗ FAIL
+問題: Which continent is the country of origin for Gala RFC located in?
+GT答案: Africa  |  模型輸出: Unknown.
+
+  [新事實 GT]   Gala RFC is associated with the sport of rugby union.
+  [cloze]       Gala RFC is associated with the sport of
+  [target_true] England
+  [推測舊事實]  Gala RFC is associated with the sport of England.
+  [MQuAKE sh_fact] Gala RFC is associated with the sport of rugby union.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P2: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P3 ← ★含 target_true: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P4 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P5: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P6 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P7: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P8 ← ★含 target_true: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P9: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P10: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no79  hop0  |  ✗ FAIL
+問題: What sport is associated with the position played by Irving Fryar on a team/specialty?
+GT答案: rugby  |  模型輸出: American football.
+
+  [新事實 GT]   Irving Fryar plays the position of wide receiver.
+  [cloze]       Irving Fryar plays the position of
+  [target_true] American football
+  [推測舊事實]  Irving Fryar plays the position of American football.
+  [MQuAKE sh_fact] Irving Fryar plays the position of wide receiver.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P2 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P3: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P4 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P5: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P6: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P7 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P8: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P9: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P10: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no81  hop0  |  ✗ FAIL
+問題: What is the location of the headquarters of the company where Leonte Răutu worked?
+GT答案: Ankara  |  模型輸出: Bucharest.
+
+  [新事實 GT]   Leonte Răutu is employed by University of Bucharest.
+  [cloze]       Leonte Răutu is employed by
+  [target_true] Bucharest
+  [推測舊事實]  Leonte Răutu is employed by Bucharest.
+  [MQuAKE sh_fact] Leonte Răutu is employed by University of Bucharest.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P2 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P3 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P4 ← ★含 target_true: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P5: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P6: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P7: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P8: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P9: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P10: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no86  hop0  |  ✗ FAIL
+問題: What is the name of the capital city of the country where the founder of the manufacturer of Ford F-Series hailed from?
+GT答案: New Delhi  |  模型輸出: Washington, D.C.
+
+  [新事實 GT]   The company that produced Ford F-Series is Ford Motor Company.
+  [cloze]       The company that produced Ford F-Series is
+  [target_true] Henry Ford
+  [推測舊事實]  The company that produced Ford F-Series is Henry Ford.
+  [MQuAKE sh_fact] The company that produced Ford F-Series is Ford Motor Company.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P2 ← ★含 target_true: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P3: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P4: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P5: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P6: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P7: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P8: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P9: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P10: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no92  hop0  |  ✓ PASS
+問題: In what language are communications in the headquarters location of the manufacturer of Il-2 Shturmovik conducted officially?
+GT答案: German  |  模型輸出: German.
+
+  [新事實 GT]   The company that produced Il-2 Shturmovik is Ilyushin.
+  [cloze]       The company that produced Il-2 Shturmovik is
+  [target_true] Russian
+  [推測舊事實]  The company that produced Il-2 Shturmovik is Russian.
+  [MQuAKE sh_fact] The company that produced Il-2 Shturmovik is Ilyushin.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P2: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P3 ← ★含 target_true: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P4: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P5: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P6: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P7: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P8: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P9: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P10: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no93  hop0  |  ✗ FAIL
+問題: Which city serves as the capital of the country where the spouse of the performer of "Viva Las Vegas" is a citizen?
+GT答案: Harare  |  模型輸出: Washington, D.C.
+
+  [新事實 GT]   Viva Las Vegas was performed by Elvis Presley.
+  [cloze]       Viva Las Vegas was performed by
+  [target_true] Priscilla Presley
+  [推測舊事實]  Viva Las Vegas was performed by Priscilla Presley.
+  [MQuAKE sh_fact] Viva Las Vegas was performed by Elvis Presley.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P2 ← ★含 target_true: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P3 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P4: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P5: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P6: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P7: The headquarters of Berklee College of Music is located in the city of Boston. 381. Elton John is a citizen of United Kingdom. 382. baseball was created in the country of Japan. 383. The official lang
+  P8: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P9: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P10: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no95  hop0  |  ✗ FAIL
+問題: Which religious leader is responsible for founding the religion to which Sarit Thanarat belongs?
+GT答案: Mekere Morauta  |  模型輸出: Gautama Buddha
+
+  [新事實 GT]   Sarit Thanarat is affiliated with the religion of Buddhism.
+  [cloze]       Sarit Thanarat is affiliated with the religion of
+  [target_true] Gautama Buddha
+  [推測舊事實]  Sarit Thanarat is affiliated with the religion of Gautama Buddha.
+  [MQuAKE sh_fact] Sarit Thanarat is affiliated with the religion of Buddhism.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P2 ← ★含 target_true: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P3: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P4: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P5: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P6: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P7: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P8: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P9: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P10: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no96  hop0  |  ✓ PASS
+問題: At which place did the creator of "Lady Windermere's Fan" breathe their last?
+GT答案: Guangzhou  |  模型輸出: Guangzhou.
+
+  [新事實 GT]   The author of Lady Windermere's Fan is Oscar Wilde.
+  [cloze]       The author of Lady Windermere's Fan is
+  [target_true] Paris
+  [推測舊事實]  The author of Lady Windermere's Fan is Paris.
+  [MQuAKE sh_fact] The author of Lady Windermere's Fan is Oscar Wilde.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P2: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci
+  P3 ← ★含 target_true: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P4: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P5 ← ★含 target_true: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P6: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P7: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P8 ← ★含 target_true: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P9 ← ★含 target_true: Steve Sax is associated with the sport of association football. 418. Tunisia national football team is associated with the sport of basketball. 419. Blair Walsh plays the position of placekicker. 420.
+  P10: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+
+────────────────────────────────────────────────────────────────────────────────
+題目: factconsolidation_mh_6k_no98  hop0  |  ✗ FAIL
+問題: What is the capital city of the country where the founder of the manufacturer of Ford Transit Connect holds citizenship?
+GT答案: Paris  |  模型輸出: Washington, D.C.
+
+  [新事實 GT]   The company that produced Ford Transit Connect is Ford Motor Company.
+  [cloze]       The company that produced Ford Transit Connect is
+  [target_true] Henry Ford
+  [推測舊事實]  The company that produced Ford Transit Connect is Henry Ford.
+  [MQuAKE sh_fact] The company that produced Ford Transit Connect is Ford Motor Company.  (old_hops chain 中第0跳)
+
+  [Top-10 Retrieved Passages]
+  P1 ← ★含 target_true: Rocket Man was performed by Ayumi Hamasaki. 230. Ford Motor Company was founded by Henri Grégoire. 231. Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp. 232. The chairperson of 
+  P2 ← ★含 target_true: Mario Puzo is famous for The Godfather. 113. London is located in the continent of Europe. 114. The headquarters of University of California, Berkeley is located in the city of Botevgrad. 115. The nam
+  P3: FC Irtysh Omsk is associated with the sport of association football. 150. cricket was created in the country of Australia. 151. The official language of Australia is Arabic. 152. Stephen McNeil works 
+  P4: Thomas Arne was born in the city of London. 343. Charles Messier is a citizen of Iran. 344. The author of Starship Troopers is Daphne du Maurier. 345. Thus Spoke Zarathustra was created in the country
+  P5: Here is a list of facts: 0. Thomas Kyd was born in the city of London. 1. The chairperson of Fatah is Mahmoud Abbas. 2. Amy Winehouse died in the city of Camden Town. 3. Hines Ward plays the position 
+  P6: 189. Hugh Hefner is famous for The Vampyre. 190. The capital of Czech Republic is Prague. 191. Aristotle's child is Nicomachus. 192. Ernst Heinkel is a citizen of Germany. 193. Catholic Church was fou
+  P7: The author of The Witcher is T. S. Eliot. 306. Thomas Kyd was born in the city of Leeds. 307. Jesus Christ worked in the city of Galilee. 308. John Harkes is associated with the sport of association f
+  P8: Frank Zappa died in the city of Los Angeles. 38. Dave Filoni is employed by Lucasfilm. 39. Henri Grégoire is a citizen of France. 40. Christianity was founded in the city of Jerusalem. 41. Germany is 
+  P9: Australia is located in the continent of Oceania. 76. The author of The Birth of Tragedy is Friedrich Nietzsche. 77. The author of The Birth of Tragedy is Stephen Crane. 78. placekicker is associated 
+  P10: 267. post-punk was created in the country of Canada. 268. Ellen Pompeo is a citizen of United States of America. 269. Daniele De Rossi plays the position of midfielder. 270. Oscar Wilde died in the ci

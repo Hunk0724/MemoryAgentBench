@@ -1,0 +1,1602 @@
+[
+  {
+    "query_id": 0,
+    "gt_answer": "pesäpallo",
+    "pred_answer": "pesäpallo",
+    "raw_output": "Answer: pesäpallo",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6227,
+    "completion_tokens": 6
+  },
+  {
+    "query_id": 1,
+    "gt_answer": "The Fairly OddParents",
+    "pred_answer": "The Fairly OddParents",
+    "raw_output": "Answer: The Fairly OddParents",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6241,
+    "completion_tokens": 7
+  },
+  {
+    "query_id": 2,
+    "gt_answer": "India",
+    "pred_answer": "India",
+    "raw_output": "Answer: India",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6238,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 5,
+    "gt_answer": "Thomas Kyd",
+    "pred_answer": "Thomas Kyd",
+    "raw_output": "Answer: Thomas Kyd",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6290,
+    "completion_tokens": 5
+  },
+  {
+    "query_id": 6,
+    "gt_answer": "basketball",
+    "pred_answer": "basketball",
+    "raw_output": "Answer: basketball",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6211,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 7,
+    "gt_answer": "Muay Thai",
+    "pred_answer": "Muay Thai",
+    "raw_output": "Answer: Muay Thai",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6248,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 8,
+    "gt_answer": "Swedish",
+    "pred_answer": "Swedish",
+    "raw_output": "Answer: Swedish",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6209,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 13,
+    "gt_answer": "Malaysia",
+    "pred_answer": "Malaysia",
+    "raw_output": "Answer: Malaysia",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6200,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 14,
+    "gt_answer": "Samuel Beckett",
+    "pred_answer": "Samuel Beckett",
+    "raw_output": "Answer: Samuel Beckett",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6219,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 15,
+    "gt_answer": "Africa",
+    "pred_answer": "Africa",
+    "raw_output": "Answer: Africa",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6252,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 16,
+    "gt_answer": "Zoroastrianism",
+    "pred_answer": "Zoroastrianism",
+    "raw_output": "Answer: Zoroastrianism",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6251,
+    "completion_tokens": 6
+  },
+  {
+    "query_id": 19,
+    "gt_answer": "Steve Jobs",
+    "pred_answer": "Steve Jobs",
+    "raw_output": "Answer: Steve Jobs",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6287,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 20,
+    "gt_answer": "Peter Diamandis",
+    "pred_answer": "Peter Diamandis",
+    "raw_output": "Answer: Peter Diamandis",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6247,
+    "completion_tokens": 6
+  },
+  {
+    "query_id": 23,
+    "gt_answer": "Ernst Heinkel",
+    "pred_answer": "Ernst Heinkel",
+    "raw_output": "Answer: Ernst Heinkel",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6252,
+    "completion_tokens": 5
+  },
+  {
+    "query_id": 24,
+    "gt_answer": "United States of America",
+    "pred_answer": "United States of America",
+    "raw_output": "Answer: United States of America",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6208,
+    "completion_tokens": 6
+  },
+  {
+    "query_id": 25,
+    "gt_answer": "Beaumont",
+    "pred_answer": "Beaumont",
+    "raw_output": "Answer: Beaumont",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6294,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 26,
+    "gt_answer": "Narendra Modi",
+    "pred_answer": "Narendra Modi",
+    "raw_output": "Answer: Narendra Modi",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6262,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 29,
+    "gt_answer": "Guangzhou",
+    "pred_answer": "Guangzhou",
+    "raw_output": "Answer: Guangzhou",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6209,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 30,
+    "gt_answer": "Japan",
+    "pred_answer": "United States of America",
+    "raw_output": "Answer: United States of America",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6261,
+    "completion_tokens": 6
+  },
+  {
+    "query_id": 33,
+    "gt_answer": "Russian Empire",
+    "pred_answer": "Russian Empire",
+    "raw_output": "Thought: Looking through the provided knowledge pool for the origin of \"rap rock\":\nFact 403 states: \"rap rock was created in the country of Russian Empire.\"\nThere are no other facts in the provided text that mention the country of origin for rap rock.\n\nAnswer: Russian Empire",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6249,
+    "completion_tokens": 61
+  },
+  {
+    "query_id": 35,
+    "gt_answer": "German",
+    "pred_answer": "German",
+    "raw_output": "Answer: German",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6267,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 36,
+    "gt_answer": "Madonna",
+    "pred_answer": "Madonna",
+    "raw_output": "Thought: Searching the provided knowledge pool for \"Past Masters\", I find fact 364: \"Past Masters was performed by Madonna.\" There are no other facts in the provided text that mention \"Past Masters\".\n\nAnswer: Madonna",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6239,
+    "completion_tokens": 47
+  },
+  {
+    "query_id": 39,
+    "gt_answer": "ABB Group",
+    "pred_answer": "ABB Group",
+    "raw_output": "Thought: Looking through the provided knowledge pool for the developer of SteamOS, fact 277 states: \"SteamOS was developed by ABB Group.\" There are no other facts in the provided text that mention the developer of SteamOS with a higher serial number.\n\nAnswer: ABB Group",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6242,
+    "completion_tokens": 58
+  },
+  {
+    "query_id": 40,
+    "gt_answer": "Ankara",
+    "pred_answer": "Ankara",
+    "raw_output": "Answer: Ankara",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6261,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 41,
+    "gt_answer": "rugby",
+    "pred_answer": "American football",
+    "raw_output": "Answer: American football",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      6
+    ],
+    "passages_kept": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6238,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 43,
+    "gt_answer": "Oderzo",
+    "pred_answer": "Oderzo",
+    "raw_output": "Answer: Oderzo",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6254,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 44,
+    "gt_answer": "Antarctica",
+    "pred_answer": "Antarctica",
+    "raw_output": "Answer: Antarctica",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6191,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 45,
+    "gt_answer": "Pius XII",
+    "pred_answer": "Pius XII",
+    "raw_output": "Answer: Pius XII",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6268,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 47,
+    "gt_answer": "Charles Darwin",
+    "pred_answer": "Charles Darwin",
+    "raw_output": "Answer: Charles Darwin",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6242,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 48,
+    "gt_answer": "Soviet Union",
+    "pred_answer": "Soviet Union",
+    "raw_output": "Answer: Soviet Union",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6249,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 50,
+    "gt_answer": "Oceania",
+    "pred_answer": "Oceania",
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the location of Bengaluru: \"235. Bengaluru is located in the continent of Oceania.\" and \"367. Thomas Arne was born in the city of Bengaluru.\" (Note: Fact 367 does not mention the continent). Reviewing the provided text for the continent of Bengaluru, fact 235 is the only entry specifying its location.\n\nAnswer: Oceania",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6259,
+    "completion_tokens": 86
+  },
+  {
+    "query_id": 51,
+    "gt_answer": "cricket",
+    "pred_answer": "cricket",
+    "raw_output": "Answer: cricket",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6263,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 53,
+    "gt_answer": "atheism",
+    "pred_answer": "atheism",
+    "raw_output": "Answer: atheism",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6266,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 54,
+    "gt_answer": "Australian hip hop",
+    "pred_answer": "Australian hip hop",
+    "raw_output": "Answer: Australian hip hop",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6254,
+    "completion_tokens": 5
+  },
+  {
+    "query_id": 55,
+    "gt_answer": "Czech Republic",
+    "pred_answer": "Czech Republic",
+    "raw_output": "Answer: Czech Republic",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6210,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 56,
+    "gt_answer": "Italy",
+    "pred_answer": "Italy",
+    "raw_output": "Answer: Italy",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6207,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 58,
+    "gt_answer": "Kylie Minogue",
+    "pred_answer": "Kylie Minogue",
+    "raw_output": "Answer: Kylie Minogue",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6302,
+    "completion_tokens": 5
+  },
+  {
+    "query_id": 59,
+    "gt_answer": "association football",
+    "pred_answer": "association football",
+    "raw_output": "Answer: association football",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6255,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 60,
+    "gt_answer": "rap rock",
+    "pred_answer": "rap rock",
+    "raw_output": "Answer: rap rock",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6296,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 61,
+    "gt_answer": "flanker",
+    "pred_answer": "flanker",
+    "raw_output": "Answer: flanker",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6262,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 62,
+    "gt_answer": "Bernard Arnault",
+    "pred_answer": "Bernard Arnault",
+    "raw_output": "Answer: Bernard Arnault",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6298,
+    "completion_tokens": 6
+  },
+  {
+    "query_id": 63,
+    "gt_answer": "German",
+    "pred_answer": "German",
+    "raw_output": "Answer: German",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6306,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 65,
+    "gt_answer": "rugby",
+    "pred_answer": "rugby",
+    "raw_output": "Answer: rugby",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6227,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 66,
+    "gt_answer": "journalist",
+    "pred_answer": "journalist",
+    "raw_output": "Answer: journalist",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6268,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 67,
+    "gt_answer": "British Broadcasting Corporation",
+    "pred_answer": "British Broadcasting Corporation",
+    "raw_output": "Answer: British Broadcasting Corporation",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6285,
+    "completion_tokens": 5
+  },
+  {
+    "query_id": 70,
+    "gt_answer": "Canadair",
+    "pred_answer": "Canadair",
+    "raw_output": "Thought: Looking through the provided knowledge pool for the production of AP1000, fact 356 states: \"The company that produced AP1000 is Canadair.\" There are no other facts in the provided text that mention the production of AP1000.\n\nAnswer: Canadair",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6253,
+    "completion_tokens": 64
+  },
+  {
+    "query_id": 73,
+    "gt_answer": "Alan Jay Lerner",
+    "pred_answer": "Alan Jay Lerner",
+    "raw_output": "Answer: Alan Jay Lerner",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6226,
+    "completion_tokens": 5
+  },
+  {
+    "query_id": 77,
+    "gt_answer": "Stephen McNeil",
+    "pred_answer": "Stephen McNeil",
+    "raw_output": "Answer: Stephen McNeil",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6285,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 80,
+    "gt_answer": "goaltender",
+    "pred_answer": "goaltender",
+    "raw_output": "Answer: goaltender",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6264,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 81,
+    "gt_answer": "Elizabeth II",
+    "pred_answer": "Elizabeth II",
+    "raw_output": "Answer: Elizabeth II",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6312,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 82,
+    "gt_answer": "Canada",
+    "pred_answer": "Canada",
+    "raw_output": "Answer: Canada",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6299,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 83,
+    "gt_answer": "Church of Scotland",
+    "pred_answer": "Church of Scotland",
+    "raw_output": "Answer: Church of Scotland",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6242,
+    "completion_tokens": 5
+  },
+  {
+    "query_id": 84,
+    "gt_answer": "Nobuhiro Watsuki",
+    "pred_answer": "Nobuhiro Watsuki",
+    "raw_output": "Answer: Nobuhiro Watsuki",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6298,
+    "completion_tokens": 7
+  },
+  {
+    "query_id": 85,
+    "gt_answer": "Rajanpur",
+    "pred_answer": "Rajanpur",
+    "raw_output": "Answer: Rajanpur",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6250,
+    "completion_tokens": 5
+  },
+  {
+    "query_id": 86,
+    "gt_answer": "Africa",
+    "pred_answer": "Africa",
+    "raw_output": "Answer: Africa",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6193,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 87,
+    "gt_answer": "Rodez",
+    "pred_answer": "Rodez",
+    "raw_output": "Answer: Rodez",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6199,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 88,
+    "gt_answer": "Walter Chrysler",
+    "pred_answer": "Walter Chrysler",
+    "raw_output": "Answer: Walter Chrysler",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6226,
+    "completion_tokens": 4
+  },
+  {
+    "query_id": 90,
+    "gt_answer": "basketball",
+    "pred_answer": "basketball",
+    "raw_output": "Answer: basketball",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6216,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 91,
+    "gt_answer": "Australia",
+    "pred_answer": "Australia",
+    "raw_output": "Answer: Australia",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6208,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 93,
+    "gt_answer": "Iran",
+    "pred_answer": "Iran",
+    "raw_output": "Answer: Iran",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6230,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 94,
+    "gt_answer": "Ferdowsi",
+    "pred_answer": "Ferdowsi",
+    "raw_output": "Answer: Ferdowsi",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6252,
+    "completion_tokens": 5
+  },
+  {
+    "query_id": 96,
+    "gt_answer": "Israel",
+    "pred_answer": "Israel",
+    "raw_output": "Answer: Israel",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6307,
+    "completion_tokens": 3
+  },
+  {
+    "query_id": 97,
+    "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "pred_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "raw_output": "Answer: Charles Frederick, Duke of Holstein-Gottorp",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6288,
+    "completion_tokens": 12
+  },
+  {
+    "query_id": 98,
+    "gt_answer": "Amala Paul",
+    "pred_answer": "Amala Paul",
+    "raw_output": "Answer: Amala Paul",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 6264,
+    "completion_tokens": 5
+  }
+]

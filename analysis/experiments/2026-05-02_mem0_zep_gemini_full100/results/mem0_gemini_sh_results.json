@@ -1,0 +1,1502 @@
+[
+  {
+    "query_id": 0,
+    "question": "Which sport is goaltender associated with?",
+    "gt_answer": "pesäpallo",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Goaltender is associated with the sport of pesäpallo",
+      "Cornerback is associated with field hockey",
+      "Joe Hockey is a citizen of Australia",
+      "Lisa Leslie plays the position of goaltender",
+      "Placekicker is associated with the sport of rugby"
+    ],
+    "pred_answer": "Goaltender is associated with the sport of pesäpallo.",
+    "exact_match": true
+  },
+  {
+    "query_id": 1,
+    "question": "What is Nobuhiro Watsuki famous for?",
+    "gt_answer": "The Fairly OddParents",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Nobuhiro Watsuki is famous for The Fairly OddParents",
+      "Vito Corleone was created by Nobuhiro Watsuki",
+      "Ayumi Hamasaki is a citizen of Japan",
+      "sumo was created in the country of Japan",
+      "Ferdowsi is famous for Shahnameh"
+    ],
+    "pred_answer": "Nobuhiro Watsuki is famous for The Fairly OddParents.",
+    "exact_match": true
+  },
+  {
+    "query_id": 2,
+    "question": "Which country was rugby union created in?",
+    "gt_answer": "India",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Rugby union was created in India",
+      "Galwegians RFC plays rugby union",
+      "Flanker is associated with the sport of rugby union",
+      "Gala RFC is associated with the sport of rugby union",
+      "cricket was created in the country of England"
+    ],
+    "pred_answer": "Rugby union was created in India.",
+    "exact_match": true
+  },
+  {
+    "query_id": 3,
+    "question": "What is Ferdowsi famous for?",
+    "gt_answer": "Shahnameh",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Ferdowsi is famous for Shahnameh",
+      "Charlie Hebdo was created in Italy",
+      "Rand al'Thor was created by Ferdowsi",
+      "Friedrich Nietzsche is famous for Thus Spoke Zarathustra",
+      "Mario Puzo is famous for The Godfather"
+    ],
+    "pred_answer": "Ferdowsi is famous for Shahnameh.",
+    "exact_match": true
+  },
+  {
+    "query_id": 4,
+    "question": "Which university was Joan Didion educated at?",
+    "gt_answer": "University of California, Berkeley",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The univeristy where Joan Didion was educated is University of California, Berkeley",
+      "The university where Lou Reed was educated is Fordham University",
+      "Elena Ceaușescu was educated at University of Bucharest",
+      "Wilhelm II was educated at the University of Bonn",
+      "Bill Frisell was educated at The University of the Arts"
+    ],
+    "pred_answer": "Joan Didion was educated at the University of California, Berkeley.",
+    "exact_match": true
+  },
+  {
+    "query_id": 5,
+    "question": "Who is the author of The Marriage of Figaro?",
+    "gt_answer": "Thomas Kyd",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The author of The Marriage of Figaro is Thomas Kyd",
+      "Charles Darwin is married to Amala Paul",
+      "Sophia Hawthorne is married to Nathaniel Hawthorne",
+      "Ferdinand Marcos is married to Imelda Marcos",
+      "Author of Our Mutual Friend is Charles Darwin"
+    ],
+    "pred_answer": "The author of The Marriage of Figaro is Thomas Kyd.",
+    "exact_match": true
+  },
+  {
+    "query_id": 6,
+    "question": "Which sport is Tunisia national football team associated with?",
+    "gt_answer": "basketball",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Tunisia national football team is associated with the sport of basketball",
+      "Association football was created in the country of Italy",
+      "Slovakia national football team is associated with the sport of cricket",
+      "Sandy Alderson is associated with the sport of association football",
+      "FC Vorskla Poltava is associated with basketball"
+    ],
+    "pred_answer": "The Tunisia national football team is associated with the sport of basketball.",
+    "exact_match": true
+  },
+  {
+    "query_id": 7,
+    "question": "Which sport is quarterback associated with?",
+    "gt_answer": "Muay Thai",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Quarterback is a position in American football",
+      "Cornerback is associated with field hockey",
+      "Bo Ryan is associated with the sport of association football",
+      "Steve Sax is associated with the sport of association football",
+      "wide receiver is associated with the sport of rugby"
+    ],
+    "pred_answer": "Quarterback is a position in American football.",
+    "exact_match": false
+  },
+  {
+    "query_id": 8,
+    "question": "What is the official language of Japan?",
+    "gt_answer": "Swedish",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Official language of Japan is Japanese",
+      "Kūkai speaks the language of Japanese",
+      "The capital of Japan is Tokyo",
+      "sumo was created in the country of Japan",
+      "The name of the current head of the Japan government is Shinzō Abe"
+    ],
+    "pred_answer": "The official language of Japan is Japanese.",
+    "exact_match": false
+  },
+  {
+    "query_id": 9,
+    "question": "What is the name of the current head of the Tucson government?",
+    "gt_answer": "Jonathan Rothschild",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Canadair was founded in the city of Tucson",
+      "Current head of state in United States of America is Donald Trump",
+      "Tony Blair is the head of the Council of People's Commissars government",
+      "Head of state in Soviet Union is Mikhail Gorbachev",
+      "Benjamin Mazar is a citizen of Israel"
+    ],
+    "pred_answer": "Based on the provided information, there is no mention of the current head of the Tucson government.",
+    "exact_match": false
+  },
+  {
+    "query_id": 10,
+    "question": "What is the name of the current head of the Italy government?",
+    "gt_answer": "Giuseppe Conte",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Giuseppe Conte is the head of the Italian government",
+      "The name of the current head of the Japan government is Shinzō Abe",
+      "Current head of the Pittsburgh government is Bill Peduto",
+      "The capital of Papal States is Rome",
+      "Charlie Hebdo was created in Italy"
+    ],
+    "pred_answer": "Based on the provided information, the head of the Italian government is Giuseppe Conte.",
+    "exact_match": true
+  },
+  {
+    "query_id": 11,
+    "question": "Who performed Meredith Grey?",
+    "gt_answer": "Ellen Pompeo",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Meredith Grey was performed by Ellen Pompeo",
+      "Derek Shepherd is married to Meredith Grey",
+      "Hermione Granger was performed by Emma Watson",
+      "Blood on the Tracks was performed by Lou Reed",
+      "Amy Winehouse died in Camden Town"
+    ],
+    "pred_answer": "Meredith Grey was performed by Ellen Pompeo.",
+    "exact_match": true
+  },
+  {
+    "query_id": 12,
+    "question": "What position does Robert Parish play?",
+    "gt_answer": "quarterback",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Robert Parish plays the position of center",
+      "Robert Parish plays the position of quarterback",
+      "Blair Walsh plays the position of placekicker",
+      "Irving Fryar plays the position of wide receiver",
+      "Mike D'Antoni plays the position of point guard"
+    ],
+    "pred_answer": "Robert Parish plays the positions of center and quarterback.",
+    "exact_match": true
+  },
+  {
+    "query_id": 13,
+    "question": "What is the country of citizenship of Cédric Klapisch?",
+    "gt_answer": "Malaysia",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Cédric Klapisch is a citizen of Malaysia",
+      "Country Joe McDonald is a citizen of Romania",
+      "Catherine Dickens is a citizen of United Kingdom",
+      "Joe Hockey is a citizen of Australia",
+      "Amala Paul is a citizen of Belgium"
+    ],
+    "pred_answer": "Cédric Klapisch is a citizen of Malaysia.",
+    "exact_match": true
+  },
+  {
+    "query_id": 14,
+    "question": "Who is the author of Sidereus Nuncius?",
+    "gt_answer": "Samuel Beckett",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Author of Sidereus Nuncius is Samuel Beckett",
+      "The author of A Wizard of Earthsea is Pius XII",
+      "Author of Our Mutual Friend is Charles Darwin",
+      "The author of The Witcher is T. S. Eliot",
+      "Nobuhiro Watsuki is famous for The Fairly OddParents"
+    ],
+    "pred_answer": "The author of Sidereus Nuncius is Samuel Beckett.",
+    "exact_match": true
+  },
+  {
+    "query_id": 15,
+    "question": "Which continent is Germany located in?",
+    "gt_answer": "Africa",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Germany is located in the continent of Europe",
+      "United Kingdom is located in the continent of Europe",
+      "India is located in the continent of Africa",
+      "Berlin is the capital of Germany",
+      "Canada is located in the continent of North America"
+    ],
+    "pred_answer": "Germany is located in the continent of Europe.",
+    "exact_match": false
+  },
+  {
+    "query_id": 16,
+    "question": "Which religion is Kingdom of Ireland affiliated with?",
+    "gt_answer": "Zoroastrianism",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Kingdom of Ireland is affiliated with the religion of Zoroastrianism",
+      "Edmund Burke is a citizen of the Kingdom of Ireland",
+      "Karen Armstrong is affiliated with the religion of Church of Scotland",
+      "Catholic Church was founded by Jesus Christ",
+      "Adalbert of Prague is affiliated with the religion of atheism"
+    ],
+    "pred_answer": "The Kingdom of Ireland is affiliated with the religion of Zoroastrianism.",
+    "exact_match": true
+  },
+  {
+    "query_id": 17,
+    "question": "Which country was association football created in?",
+    "gt_answer": "Italy",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Association football was created in the country of Italy",
+      "FC Irtysh Omsk is associated with association football",
+      "cricket was created in the country of England",
+      "Bo Ryan is associated with the sport of association football",
+      "Basketball was created in the Soviet Union"
+    ],
+    "pred_answer": "Association football was created in the country of Italy.",
+    "exact_match": true
+  },
+  {
+    "query_id": 18,
+    "question": "Who is the developer of Windows Phone?",
+    "gt_answer": "Microsoft",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Windows Phone was developed by Microsoft",
+      "Chief executive officer of Microsoft is Steve Jobs",
+      "The chief executive officer of Apple Inc. is Vijay Mallya",
+      "AppleScript was developed by Apple Inc.",
+      "Andrew Carnegie is a citizen of the United Kingdom"
+    ],
+    "pred_answer": "Windows Phone was developed by Microsoft.",
+    "exact_match": true
+  },
+  {
+    "query_id": 19,
+    "question": "Who is the chief executive officer of Microsoft?",
+    "gt_answer": "Steve Jobs",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Chief executive officer of Microsoft is Steve Jobs",
+      "The chief executive officer of Apple Inc. is Vijay Mallya",
+      "Chief executive officer of Boeing is Adel al-Jubeir",
+      "The chief executive officer of Valve Corporation is Gabe Newell",
+      "Windows Phone was developed by Microsoft"
+    ],
+    "pred_answer": "The chief executive officer of Microsoft is Steve Jobs.",
+    "exact_match": true
+  },
+  {
+    "query_id": 20,
+    "question": "Who is the chairperson of Harvard University?",
+    "gt_answer": "Peter Diamandis",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The chairperson of Harvard University is Peter Diamandis",
+      "The headquarters of Fordham University is located in the city of New York City",
+      "Chief executive officer of Boeing is Adel al-Jubeir",
+      "Chairperson of Fatah is Moshe Kahlon",
+      "Boston was founded by John Winthrop"
+    ],
+    "pred_answer": "The chairperson of Harvard University is Peter Diamandis.",
+    "exact_match": true
+  },
+  {
+    "query_id": 21,
+    "question": "Who founded Church of Scotland?",
+    "gt_answer": "John Knox",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Catholic Church was founded by Jesus Christ",
+      "Karen Armstrong is affiliated with the religion of Church of Scotland",
+      "Christianity was founded in the city of Jerusalem",
+      "John Knox worked in the city of Edinburgh",
+      "Canadair was founded in the city of Tucson"
+    ],
+    "pred_answer": "Based on the provided information, there is no mention of who founded the Church of Scotland. The memories only state that Karen Armstrong is affiliated with that religion.",
+    "exact_match": false
+  },
+  {
+    "query_id": 22,
+    "question": "Which sport is Galwegians RFC associated with?",
+    "gt_answer": "rugby union",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Galwegians RFC plays rugby union",
+      "Gala RFC is associated with the sport of rugby union",
+      "point guard is associated with the sport of cricket",
+      "Slovakia national football team is associated with the sport of cricket",
+      "Sandy Alderson is associated with the sport of association football"
+    ],
+    "pred_answer": "Galwegians RFC is associated with the sport of rugby union.",
+    "exact_match": true
+  },
+  {
+    "query_id": 23,
+    "question": "Who is the director of American Broadcasting Company?",
+    "gt_answer": "Ernst Heinkel",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The director of American Broadcasting Company is Ernst Heinkel",
+      "American Broadcasting Company is the original broadcaster of 666 Park Avenue",
+      "Tony Hall, Baron Hall of Birkenhead is the director of the British Broadcasting Corporation",
+      "Marillyn Hewson is the CEO of Lockheed Martin",
+      "Chief executive officer of Boeing is Adel al-Jubeir"
+    ],
+    "pred_answer": "The director of American Broadcasting Company is Ernst Heinkel.",
+    "exact_match": true
+  },
+  {
+    "query_id": 24,
+    "question": "Which city did Gennady Rozhdestvensky die in?",
+    "gt_answer": "United States of America",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Gennady Rozhdestvensky died in the city of Moscow",
+      "Nadezhda Krupskaya died in the city of Moscow",
+      "Olga of Kiev died in Kyiv",
+      "Capital of Soviet Union is Russellville",
+      "Igor of Kiev is married to Olga of Kiev"
+    ],
+    "pred_answer": "Gennady Rozhdestvensky died in the city of Moscow.",
+    "exact_match": false
+  },
+  {
+    "query_id": 25,
+    "question": "What is the capital of Tang Empire?",
+    "gt_answer": "Beaumont",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Capital of Tang Empire is Beaumont",
+      "Capital of Tang Empire is Beaumont",
+      "Ernst Heinkel is a citizen of Tang Empire",
+      "Bagratuni Dynasty is affiliated with Christianity",
+      "Capital of Soviet Union is Russellville"
+    ],
+    "pred_answer": "The capital of the Tang Empire is Beaumont.",
+    "exact_match": true
+  },
+  {
+    "query_id": 26,
+    "question": "Who is the director of British Broadcasting Corporation?",
+    "gt_answer": "Narendra Modi",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Tony Hall, Baron Hall of Birkenhead is the director of the British Broadcasting Corporation",
+      "The director of American Broadcasting Company is Ernst Heinkel",
+      "Dave Filoni is employed by British Broadcasting Corporation",
+      "Chief executive officer of Microsoft is Steve Jobs",
+      "The chief executive officer of ABB Group is Bernard Arnault"
+    ],
+    "pred_answer": "The director of the British Broadcasting Corporation is Tony Hall, Baron Hall of Birkenhead.",
+    "exact_match": false
+  },
+  {
+    "query_id": 27,
+    "question": "What is the country of citizenship of Benjamin Mazar?",
+    "gt_answer": "Israel",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Benjamin Mazar is a citizen of Israel",
+      "Country Joe McDonald is a citizen of Romania",
+      "Charles Messier is a citizen of Iran",
+      "Bob Iger is a citizen of United States of America",
+      "Narendra Modi is a citizen of Australia"
+    ],
+    "pred_answer": "Benjamin Mazar is a citizen of Israel.",
+    "exact_match": true
+  },
+  {
+    "query_id": 28,
+    "question": "What type of music does Michael Mantler play?",
+    "gt_answer": "post-punk",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The type of music that Michael Mantler plays is jazz",
+      "Bruce Springsteen plays rock music",
+      "The type of music that John McVie plays is rap rock",
+      "The type of music that Dale Evans plays is country music",
+      "Irving Fryar plays the position of wide receiver"
+    ],
+    "pred_answer": "Michael Mantler plays jazz.",
+    "exact_match": false
+  },
+  {
+    "query_id": 29,
+    "question": "Which city did Oscar Wilde die in?",
+    "gt_answer": "Guangzhou",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Oscar Wilde died in the city of Guangzhou",
+      "Author of Lady Windermere's Fan is Oscar Wilde",
+      "Andy Warhol died in New York City",
+      "Gennady Rozhdestvensky died in the city of Moscow",
+      "Amy Winehouse died in Camden Town"
+    ],
+    "pred_answer": "Oscar Wilde died in the city of Guangzhou.",
+    "exact_match": true
+  },
+  {
+    "query_id": 30,
+    "question": "Which country was baseball created in?",
+    "gt_answer": "Japan",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Baseball was created in Japan",
+      "cricket was created in the country of England",
+      "New Firm is associated with the sport of baseball",
+      "Basketball was created in the Soviet Union",
+      "Association football was created in the country of Italy"
+    ],
+    "pred_answer": "Baseball was created in Japan.",
+    "exact_match": true
+  },
+  {
+    "query_id": 31,
+    "question": "What is the country of citizenship of Ernst Heinkel?",
+    "gt_answer": "Tang Empire",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Ernst Heinkel is a citizen of Tang Empire",
+      "The director of American Broadcasting Company is Ernst Heinkel",
+      "Robert A. Heinlein is a citizen of the United States of America",
+      "Bob Iger is a citizen of United States of America",
+      "Leo Stein is a citizen of United States of America"
+    ],
+    "pred_answer": "Ernst Heinkel is a citizen of the Tang Empire.",
+    "exact_match": true
+  },
+  {
+    "query_id": 32,
+    "question": "Which city is the headquarter of The University of the Arts located in?",
+    "gt_answer": "Philadelphia",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The headquarters of The University of the Arts is located in the city of Philadelphia",
+      "Headquarters of University of Bucharest is located in the city of Ankara",
+      "Headquarters of University of California, Berkeley is located in Botevgrad",
+      "The headquarters of Fordham University is located in the city of New York City",
+      "Bill Frisell was educated at The University of the Arts"
+    ],
+    "pred_answer": "The headquarters of The University of the Arts is located in the city of Philadelphia.",
+    "exact_match": true
+  },
+  {
+    "query_id": 33,
+    "question": "Which country was rap rock created in?",
+    "gt_answer": "Russian Empire",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Rap rock was created in the Russian Empire",
+      "Country music was created in the United States of America",
+      "The type of music that John McVie plays is rap rock",
+      "jazz was created in the country of United States of America",
+      "Post-punk was created in the country of Canada"
+    ],
+    "pred_answer": "Rap rock was created in the Russian Empire.",
+    "exact_match": true
+  },
+  {
+    "query_id": 34,
+    "question": "Where was Christianity founded?",
+    "gt_answer": "Taipei",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Christianity was founded in the city of Jerusalem",
+      "Catholic Church was founded by Jesus Christ",
+      "Buddhism was founded by Gautama Buddha",
+      "Bagratuni Dynasty is affiliated with Christianity",
+      "Jesus Christ worked in the city of Galilee"
+    ],
+    "pred_answer": "Christianity was founded in the city of Jerusalem.",
+    "exact_match": false
+  },
+  {
+    "query_id": 35,
+    "question": "What is the official language of United States of America?",
+    "gt_answer": "German",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Official language of United States of America is German",
+      "Official language of the United Kingdom is English",
+      "The official language of England is English",
+      "Official language of Australia is Arabic",
+      "The official language of Moscow is Russian"
+    ],
+    "pred_answer": "The official language of the United States of America is German.",
+    "exact_match": true
+  },
+  {
+    "query_id": 36,
+    "question": "Who performed Past Masters?",
+    "gt_answer": "Madonna",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Past Masters was performed by Madonna",
+      "Back to Black was performed by Frank Zappa",
+      "Bill Frisell was educated at The University of the Arts",
+      "The type of music that John McVie plays is rap rock",
+      "The type of music that Michael Mantler plays is jazz"
+    ],
+    "pred_answer": "Past Masters was performed by Madonna.",
+    "exact_match": true
+  },
+  {
+    "query_id": 37,
+    "question": "What is the capital of Japan?",
+    "gt_answer": "Tokyo",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The capital of Japan is Tokyo",
+      "Official language of Japan is Japanese",
+      "The name of the current head of the Japan government is Shinzō Abe",
+      "sumo was created in the country of Japan",
+      "Capital of Soviet Union is Moscow"
+    ],
+    "pred_answer": "The capital of Japan is Tokyo.",
+    "exact_match": true
+  },
+  {
+    "query_id": 38,
+    "question": "What is the capital of France?",
+    "gt_answer": "Harare",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Capital of France is Paris",
+      "Capital of France is Harare",
+      "The capital of Papal States is Rome",
+      "Le Petit Parisien was created in the country of France",
+      "Capital of Czech Republic is Prague"
+    ],
+    "pred_answer": "Based on the provided memories, the capital of France is Paris (and also listed as Harare).",
+    "exact_match": true
+  },
+  {
+    "query_id": 39,
+    "question": "Who is the developer of SteamOS?",
+    "gt_answer": "ABB Group",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "SteamOS was developed by ABB Group",
+      "The chief executive officer of Valve Corporation is Gabe Newell",
+      "Chief executive officer of Microsoft is Steve Jobs",
+      "Marillyn Hewson is the CEO of Lockheed Martin",
+      "AppleScript was developed by Apple Inc."
+    ],
+    "pred_answer": "SteamOS was developed by ABB Group.",
+    "exact_match": true
+  },
+  {
+    "query_id": 40,
+    "question": "Which city is the headquarter of University of Bucharest located in?",
+    "gt_answer": "Ankara",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Headquarters of University of Bucharest is located in the city of Ankara",
+      "Capital of Romania is Bucharest",
+      "Elena Ceaușescu was educated at University of Bucharest",
+      "Leonte Răutu is employed by University of Bucharest",
+      "The headquarters of The University of the Arts is located in the city of Philadelphia"
+    ],
+    "pred_answer": "The headquarters of the University of Bucharest is located in the city of Ankara.",
+    "exact_match": true
+  },
+  {
+    "query_id": 41,
+    "question": "Which sport is wide receiver associated with?",
+    "gt_answer": "rugby",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "wide receiver is associated with the sport of rugby",
+      "Hines Ward plays wide receiver",
+      "Irving Fryar plays the position of wide receiver",
+      "Cornerback is associated with field hockey",
+      "Quarterback is a position in American football"
+    ],
+    "pred_answer": "Based on the provided information, wide receiver is associated with the sport of rugby.",
+    "exact_match": true
+  },
+  {
+    "query_id": 42,
+    "question": "What position does Hines Ward play?",
+    "gt_answer": "cornerback",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Hines Ward plays wide receiver",
+      "Irving Fryar plays the position of wide receiver",
+      "Cornerback is associated with field hockey",
+      "Quarterback is a position in American football",
+      "Mike D'Antoni plays the position of point guard"
+    ],
+    "pred_answer": "Hines Ward plays wide receiver.",
+    "exact_match": false
+  },
+  {
+    "query_id": 43,
+    "question": "What is the capital of Australia?",
+    "gt_answer": "Oderzo",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The capital of Australia is Oderzo",
+      "Australia is located in the continent of South America",
+      "Official language of Australia is Arabic",
+      "Capital of Tang Empire is Beaumont",
+      "Capital of Tang Empire is Beaumont"
+    ],
+    "pred_answer": "The capital of Australia is Oderzo.",
+    "exact_match": true
+  },
+  {
+    "query_id": 44,
+    "question": "Which continent is Malaysia located in?",
+    "gt_answer": "Antarctica",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Malaysia is located in Asia",
+      "India is located in the continent of Africa",
+      "United Kingdom is located in the continent of Europe",
+      "Australia is located in the continent of South America",
+      "Hyderabad is located in Asia"
+    ],
+    "pred_answer": "Malaysia is located in Asia.",
+    "exact_match": false
+  },
+  {
+    "query_id": 45,
+    "question": "Who is the author of A Wizard of Earthsea?",
+    "gt_answer": "Pius XII",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The author of A Wizard of Earthsea is Pius XII",
+      "The author of The Witcher is T. S. Eliot",
+      "Author of Sidereus Nuncius is Samuel Beckett",
+      "The author of The Birth of Tragedy is Friedrich Nietzsche",
+      "Author of Endymion is John Keats"
+    ],
+    "pred_answer": "The author of A Wizard of Earthsea is Pius XII.",
+    "exact_match": true
+  },
+  {
+    "query_id": 46,
+    "question": "Who performed Free as a Bird?",
+    "gt_answer": "The Beatles",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Free as a Bird was performed by The Beatles",
+      "Past Masters was performed by Madonna",
+      "Back to Black was performed by Frank Zappa",
+      "The director of Madonna is Guy Oseary",
+      "Blood on the Tracks was performed by Lou Reed"
+    ],
+    "pred_answer": "Free as a Bird was performed by The Beatles.",
+    "exact_match": true
+  },
+  {
+    "query_id": 47,
+    "question": "Who is the author of Our Mutual Friend?",
+    "gt_answer": "Charles Darwin",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Author of Our Mutual Friend is Charles Darwin",
+      "The author of The Marriage of Figaro is Thomas Kyd",
+      "Author of Endymion is John Keats",
+      "Charles Darwin is married to Amala Paul",
+      "Sophia Hawthorne is married to Nathaniel Hawthorne"
+    ],
+    "pred_answer": "The author of Our Mutual Friend is Charles Darwin.",
+    "exact_match": true
+  },
+  {
+    "query_id": 48,
+    "question": "Which country was basketball created in?",
+    "gt_answer": "Soviet Union",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Basketball was created in the Soviet Union",
+      "cricket was created in the country of England",
+      "Baseball was created in Japan",
+      "jazz was created in the country of United States of America",
+      "Association football was created in the country of Italy"
+    ],
+    "pred_answer": "Basketball was created in the Soviet Union.",
+    "exact_match": true
+  },
+  {
+    "query_id": 49,
+    "question": "What is the country of citizenship of Hal Needham?",
+    "gt_answer": "United States of America",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Hal Needham is a citizen of United States of America",
+      "Country Joe McDonald is a citizen of Romania",
+      "Amala Paul is a citizen of Belgium",
+      "Cédric Klapisch is a citizen of Malaysia",
+      "Iman is affiliated with Islam"
+    ],
+    "pred_answer": "Hal Needham is a citizen of the United States of America.",
+    "exact_match": true
+  },
+  {
+    "query_id": 50,
+    "question": "Which continent is Bengaluru located in?",
+    "gt_answer": "Oceania",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Bengaluru is located in the continent of Oceania",
+      "India is located in the continent of Africa",
+      "Australia is located in the continent of South America",
+      "Canada is located in the continent of North America",
+      "Germany is located in the continent of Europe"
+    ],
+    "pred_answer": "Bengaluru is located in the continent of Oceania.",
+    "exact_match": true
+  },
+  {
+    "query_id": 51,
+    "question": "Which sport is Slovakia national football team associated with?",
+    "gt_answer": "cricket",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Slovakia national football team is associated with the sport of cricket",
+      "Tunisia national football team is associated with the sport of basketball",
+      "Association football was created in the country of Italy",
+      "FC Vorskla Poltava is associated with basketball",
+      "FC Irtysh Omsk is associated with association football"
+    ],
+    "pred_answer": "The Slovakia national football team is associated with the sport of cricket.",
+    "exact_match": true
+  },
+  {
+    "query_id": 52,
+    "question": "What is the name of the current head of state in United States of America?",
+    "gt_answer": "Connachta",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Current head of state in United States of America is Donald Trump",
+      "Head of state in Soviet Union is Mikhail Gorbachev",
+      "Official language of United States of America is German",
+      "Capital of United States of America is Harrisville",
+      "Current head of the Pittsburgh government is Bill Peduto"
+    ],
+    "pred_answer": "The current head of state in the United States of America is Donald Trump.",
+    "exact_match": false
+  },
+  {
+    "query_id": 53,
+    "question": "Which religion is Imelda Marcos affiliated with?",
+    "gt_answer": "atheism",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Imelda Marcos is affiliated with atheism",
+      "Ferdinand Marcos is married to Imelda Marcos",
+      "Iman is affiliated with Islam",
+      "pesäpallo was created in the country of Philippines",
+      "Mekere Morauta founded Buddhism"
+    ],
+    "pred_answer": "Imelda Marcos is affiliated with atheism.",
+    "exact_match": true
+  },
+  {
+    "query_id": 54,
+    "question": "What type of music does Dana International play?",
+    "gt_answer": "Australian hip hop",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Type of music that Dana International plays is Australian hip hop",
+      "Born in the U.S.A. was performed by Dana International",
+      "jazz was created in the country of United States of America",
+      "Country music was created in the United States of America",
+      "The type of music that Michael Mantler plays is jazz"
+    ],
+    "pred_answer": "Dana International plays Australian hip hop.",
+    "exact_match": true
+  },
+  {
+    "query_id": 55,
+    "question": "What is the country of citizenship of Sable?",
+    "gt_answer": "Czech Republic",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Sable is a citizen of Czech Republic",
+      "Country Joe McDonald is a citizen of Romania",
+      "Henry Ford is a citizen of United States of America",
+      "Narendra Modi is a citizen of Australia",
+      "Benjamin Mazar is a citizen of Israel"
+    ],
+    "pred_answer": "Sable is a citizen of the Czech Republic.",
+    "exact_match": true
+  },
+  {
+    "query_id": 56,
+    "question": "Which country was Charlie Hebdo created in?",
+    "gt_answer": "Italy",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Charlie Hebdo was created in Italy",
+      "Robert A. Heinlein is a citizen of the United States of America",
+      "Bob Iger is a citizen of United States of America",
+      "Joseph Goebbels worked in the city of Berlin",
+      "Steve Jobs was born in San Francisco"
+    ],
+    "pred_answer": "Charlie Hebdo was created in Italy.",
+    "exact_match": true
+  },
+  {
+    "query_id": 57,
+    "question": "Who is Elvis Presley married to?",
+    "gt_answer": "Charles the Bold",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Elvis Presley is married to Priscilla Presley",
+      "Priscilla Presley is a citizen of United States of America",
+      "Viva Las Vegas was performed by Elvis Presley",
+      "David Bowie is married to Iman",
+      "Ferdinand Marcos is married to Imelda Marcos"
+    ],
+    "pred_answer": "Elvis Presley is married to Priscilla Presley.",
+    "exact_match": false
+  },
+  {
+    "query_id": 58,
+    "question": "Who performed Hermione Granger?",
+    "gt_answer": "Kylie Minogue",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Hermione Granger was performed by Emma Watson",
+      "Narendra Modi is the director of Madonna",
+      "Rocket Man was performed by Ayumi Hamasaki",
+      "The director of Madonna is Guy Oseary",
+      "Past Masters was performed by Madonna"
+    ],
+    "pred_answer": "Hermione Granger was performed by Emma Watson.",
+    "exact_match": false
+  },
+  {
+    "query_id": 59,
+    "question": "Which sport is Bo Ryan associated with?",
+    "gt_answer": "association football",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Bo Ryan is associated with the sport of association football",
+      "Sandy Alderson is associated with the sport of association football",
+      "Cornerback is associated with field hockey",
+      "Midfielder is associated with the sport of sumo",
+      "Steve Sax is associated with the sport of association football"
+    ],
+    "pred_answer": "Bo Ryan is associated with the sport of association football.",
+    "exact_match": true
+  },
+  {
+    "query_id": 60,
+    "question": "What type of music does John McVie play?",
+    "gt_answer": "rap rock",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The type of music that John McVie plays is rap rock",
+      "The type of music that Michael Mantler plays is jazz",
+      "Bruce Springsteen plays rock music",
+      "The type of music that Dale Evans plays is country music",
+      "Country music was created in the United States of America"
+    ],
+    "pred_answer": "John McVie plays rap rock.",
+    "exact_match": true
+  },
+  {
+    "query_id": 61,
+    "question": "What position does Rogério Ceni play?",
+    "gt_answer": "flanker",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Rogério Ceni is a goalkeeper",
+      "Daniele De Rossi plays the position of midfielder",
+      "Quarterback is a position in American football",
+      "Mike D'Antoni plays the position of point guard",
+      "Irving Fryar plays the position of wide receiver"
+    ],
+    "pred_answer": "Rogério Ceni plays the position of goalkeeper.",
+    "exact_match": false
+  },
+  {
+    "query_id": 62,
+    "question": "Who is the chief executive officer of Twitter?",
+    "gt_answer": "Bernard Arnault",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Chief executive officer of Microsoft is Steve Jobs",
+      "The chief executive officer of Apple Inc. is Vijay Mallya",
+      "Chairperson of Fatah is Moshe Kahlon",
+      "The chief executive officer of Valve Corporation is Gabe Newell",
+      "Jack Dorsey is a citizen of United States of America"
+    ],
+    "pred_answer": "I am sorry, but I do not have information regarding the chief executive officer of Twitter in my current knowledge base.",
+    "exact_match": false
+  },
+  {
+    "query_id": 63,
+    "question": "What language does Kylie Minogue speak?",
+    "gt_answer": "German",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Kylie Minogue speaks German",
+      "Emma Watson speaks the language of English",
+      "Kūkai speaks the language of Japanese",
+      "Ayumi Hamasaki is a citizen of Japan",
+      "Priscilla Presley is a citizen of United States of America"
+    ],
+    "pred_answer": "Kylie Minogue speaks German.",
+    "exact_match": true
+  },
+  {
+    "query_id": 64,
+    "question": "Which sport is Darryl Strawberry associated with?",
+    "gt_answer": "baseball",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Darryl Strawberry is associated with the sport of baseball",
+      "Joe Hockey is a citizen of Australia",
+      "Cornerback is associated with field hockey",
+      "John Harkes is associated with the sport",
+      "New Firm is associated with the sport of baseball"
+    ],
+    "pred_answer": "Darryl Strawberry is associated with the sport of baseball.",
+    "exact_match": true
+  },
+  {
+    "query_id": 65,
+    "question": "Which sport is placekicker associated with?",
+    "gt_answer": "rugby",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Placekicker is associated with the sport of rugby",
+      "Blair Walsh plays the position of placekicker",
+      "Goaltender is associated with the sport of pesäpallo",
+      "John Harkes is associated with the sport",
+      "Cornerback is associated with field hockey"
+    ],
+    "pred_answer": "Based on the provided information, the placekicker is associated with the sport of rugby.",
+    "exact_match": true
+  },
+  {
+    "query_id": 66,
+    "question": "What kind of work does Stephen McNeil do?",
+    "gt_answer": "journalist",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Stephen McNeil works in the field of journalist",
+      "Stephen McNeil works in the field of journalist",
+      "John Walsh is affiliated with Methodism",
+      "Chief executive officer of Microsoft is Steve Jobs",
+      "Steve Jobs was born in San Francisco"
+    ],
+    "pred_answer": "Stephen McNeil works in the field of journalism.",
+    "exact_match": false
+  },
+  {
+    "query_id": 67,
+    "question": "Who is the employer of Dave Filoni?",
+    "gt_answer": "British Broadcasting Corporation",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Dave Filoni is employed by British Broadcasting Corporation",
+      "Current head of the Pittsburgh government is Bill Peduto",
+      "Ron Dennis is employed by Pakistan International Airlines",
+      "Chief executive officer of Microsoft is Steve Jobs",
+      "Pedro Pierluisi worked in Washington, D.C."
+    ],
+    "pred_answer": "Dave Filoni is employed by the British Broadcasting Corporation.",
+    "exact_match": true
+  },
+  {
+    "query_id": 68,
+    "question": "Which continent is San Francisco located in?",
+    "gt_answer": "North America",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "San Francisco is located in the continent of North America",
+      "Steve Jobs was born in San Francisco",
+      "Australia is located in the continent of South America",
+      "Israel is located in North America",
+      "Canada is located in the continent of North America"
+    ],
+    "pred_answer": "San Francisco is located in the continent of North America.",
+    "exact_match": true
+  },
+  {
+    "query_id": 69,
+    "question": "Where was Canadair founded?",
+    "gt_answer": "Tucson",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Canadair was founded in the city of Tucson",
+      "Canada is located in the continent of North America",
+      "Post-punk was created in the country of Canada",
+      "Canadair produced AP1000",
+      "Ferdinand von Richthofen is a citizen of Canada"
+    ],
+    "pred_answer": "Canadair was founded in the city of Tucson.",
+    "exact_match": true
+  },
+  {
+    "query_id": 70,
+    "question": "Which company is AP1000 produced by?",
+    "gt_answer": "Canadair",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Canadair produced AP1000",
+      "SteamOS was developed by ABB Group",
+      "Company that produced Ford Transit Connect is Ford Motor Company",
+      "The company that produced Ford F-Series is Ford Motor Company",
+      "Chief executive officer of Boeing is Adel al-Jubeir"
+    ],
+    "pred_answer": "AP1000 is produced by Canadair.",
+    "exact_match": true
+  },
+  {
+    "query_id": 71,
+    "question": "What is the country of citizenship of Ayumi Hamasaki?",
+    "gt_answer": "Japan",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Ayumi Hamasaki is a citizen of Japan",
+      "Rocket Man was performed by Ayumi Hamasaki",
+      "Iman is affiliated with Islam",
+      "Country Joe McDonald is a citizen of Romania",
+      "Benjamin Mazar is a citizen of Israel"
+    ],
+    "pred_answer": "Ayumi Hamasaki is a citizen of Japan.",
+    "exact_match": true
+  },
+  {
+    "query_id": 72,
+    "question": "What position does Blair Walsh play?",
+    "gt_answer": "placekicker",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Blair Walsh plays the position of placekicker",
+      "John Walsh is affiliated with Methodism",
+      "Hines Ward plays wide receiver",
+      "Quarterback is a position in American football",
+      "Robert Parish plays the position of quarterback"
+    ],
+    "pred_answer": "Blair Walsh plays the position of placekicker.",
+    "exact_match": true
+  },
+  {
+    "query_id": 73,
+    "question": "Who is Tony Blair married to?",
+    "gt_answer": "Alan Jay Lerner",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Tony Blair is married to Cherie Blair",
+      "Laura Bush is married to George W. Bush",
+      "Victoria Beckham is married to David Beckham",
+      "David Bowie is married to Iman",
+      "Tony Blair is the head of the Council of People's Commissars government"
+    ],
+    "pred_answer": "Tony Blair is married to Cherie Blair.",
+    "exact_match": false
+  },
+  {
+    "query_id": 74,
+    "question": "Who is the author of Endymion?",
+    "gt_answer": "John Keats",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Author of Endymion is John Keats",
+      "The author of The Birth of Tragedy is Friedrich Nietzsche",
+      "Author of Sidereus Nuncius is Samuel Beckett",
+      "The author of The Witcher is T. S. Eliot",
+      "The author of Categories is Aristotle"
+    ],
+    "pred_answer": "The author of Endymion is John Keats.",
+    "exact_match": true
+  },
+  {
+    "query_id": 75,
+    "question": "Who is the author of Lady Windermere's Fan?",
+    "gt_answer": "Oscar Wilde",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Author of Lady Windermere's Fan is Oscar Wilde",
+      "The author of The Witcher is T. S. Eliot",
+      "Author of Our Mutual Friend is Charles Darwin",
+      "Daphne du Maurier is a citizen of the United Kingdom",
+      "The author of Starship Troopers is Daphne du Maurier"
+    ],
+    "pred_answer": "The author of Lady Windermere's Fan is Oscar Wilde.",
+    "exact_match": true
+  },
+  {
+    "query_id": 76,
+    "question": "What is the name of the current head of the Japan government?",
+    "gt_answer": "Shinzō Abe",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The name of the current head of the Japan government is Shinzō Abe",
+      "Official language of Japan is Japanese",
+      "The capital of Japan is Tokyo",
+      "Ayumi Hamasaki is a citizen of Japan",
+      "Kūkai speaks the language of Japanese"
+    ],
+    "pred_answer": "The current head of the Japan government is Shinzō Abe.",
+    "exact_match": true
+  },
+  {
+    "query_id": 77,
+    "question": "Who is the chairperson of Congolese Party of Labour?",
+    "gt_answer": "Stephen McNeil",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "The chairperson of Congolese Party of Labour is Denis Sassou-Nguesso",
+      "Narendra Modi is a citizen of Australia",
+      "Tony Blair is the head of the Council of People's Commissars government",
+      "The Prime Minister of Sweden is Pedro Pierluisi",
+      "Chairperson of Fatah is Moshe Kahlon"
+    ],
+    "pred_answer": "The chairperson of the Congolese Party of Labour is Denis Sassou-Nguesso.",
+    "exact_match": false
+  },
+  {
+    "query_id": 78,
+    "question": "Which sport is flanker associated with?",
+    "gt_answer": "rugby union",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Flanker is associated with the sport of rugby union",
+      "point guard is associated with the sport of cricket",
+      "Cornerback is associated with field hockey",
+      "wide receiver is associated with the sport of rugby",
+      "Placekicker is associated with the sport of rugby"
+    ],
+    "pred_answer": "Flanker is associated with the sport of rugby union.",
+    "exact_match": true
+  },
+  {
+    "query_id": 79,
+    "question": "What is the capital of Czech Republic?",
+    "gt_answer": "Prague",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Capital of Czech Republic is Prague",
+      "Capital of Romania is Bucharest",
+      "Capital of Soviet Union is Moscow",
+      "The capital of Papal States is Rome",
+      "Sable is a citizen of Czech Republic"
+    ],
+    "pred_answer": "The capital of the Czech Republic is Prague.",
+    "exact_match": true
+  },
+  {
+    "query_id": 80,
+    "question": "What position does Lisa Leslie play?",
+    "gt_answer": "goaltender",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Lisa Leslie plays the position of goaltender",
+      "Blair Walsh plays the position of placekicker",
+      "Robert Parish plays the position of center",
+      "Hines Ward plays wide receiver",
+      "Mike D'Antoni plays the position of point guard"
+    ],
+    "pred_answer": "Lisa Leslie plays the position of goaltender.",
+    "exact_match": true
+  },
+  {
+    "query_id": 81,
+    "question": "What is the name of the current head of state in Soviet Union?",
+    "gt_answer": "Elizabeth II",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Head of state in Soviet Union is Mikhail Gorbachev",
+      "Capital of Soviet Union is Moscow",
+      "Elizabeth II is the head of state in the Soviet Union",
+      "Capital of Soviet Union is Russellville",
+      "The official language of Moscow is Russian"
+    ],
+    "pred_answer": "Based on the provided information, the head of state in the Soviet Union is Mikhail Gorbachev (and it is also noted that Elizabeth II is the head of state in the Soviet Union).",
+    "exact_match": true
+  },
+  {
+    "query_id": 82,
+    "question": "What is the country of citizenship of Ferdinand von Richthofen?",
+    "gt_answer": "Canada",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Ferdinand von Richthofen is a citizen of Canada",
+      "Country Joe McDonald is a citizen of Romania",
+      "Hal Needham is a citizen of United States of America",
+      "Amala Paul is a citizen of Belgium",
+      "Bernard Arnault is a citizen of France"
+    ],
+    "pred_answer": "Ferdinand von Richthofen is a citizen of Canada.",
+    "exact_match": true
+  },
+  {
+    "query_id": 83,
+    "question": "Which religion is Karen Armstrong affiliated with?",
+    "gt_answer": "Church of Scotland",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Karen Armstrong is affiliated with the religion of Church of Scotland",
+      "Natalie Portman is affiliated with the religion of interdenominational organization",
+      "Imelda Marcos is affiliated with atheism",
+      "Buddhism was founded by Gautama Buddha",
+      "Sarit Thanarat is affiliated with Buddhism"
+    ],
+    "pred_answer": "Karen Armstrong is affiliated with the Church of Scotland.",
+    "exact_match": true
+  },
+  {
+    "query_id": 84,
+    "question": "Who was Vito Corleone created by?",
+    "gt_answer": "Nobuhiro Watsuki",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Vito Corleone was created by Nobuhiro Watsuki",
+      "Mario Puzo is famous for The Godfather",
+      "Charlie Hebdo was created in Italy",
+      "Rogério Ceni is a goalkeeper",
+      "Country Joe McDonald is a citizen of Romania"
+    ],
+    "pred_answer": "Vito Corleone was created by Nobuhiro Watsuki.",
+    "exact_match": true
+  },
+  {
+    "query_id": 85,
+    "question": "What is the capital of Romania?",
+    "gt_answer": "Rajanpur",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Capital of Romania is Bucharest",
+      "The capital of Papal States is Rome",
+      "Headquarters of University of Bucharest is located in the city of Ankara",
+      "Capital of Soviet Union is Moscow",
+      "Capital of Czech Republic is Prague"
+    ],
+    "pred_answer": "The capital of Romania is Bucharest.",
+    "exact_match": false
+  },
+  {
+    "query_id": 86,
+    "question": "Which continent is India located in?",
+    "gt_answer": "Africa",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "India is located in the continent of Africa",
+      "Australia is located in the continent of South America",
+      "Bengaluru is located in the continent of Oceania",
+      "Hyderabad is located in Asia",
+      "Canada is located in the continent of North America"
+    ],
+    "pred_answer": "India is located in the continent of Africa.",
+    "exact_match": true
+  },
+  {
+    "query_id": 87,
+    "question": "Which city did Olga of Kiev die in?",
+    "gt_answer": "Rodez",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Olga of Kiev died in Kyiv",
+      "Igor of Kiev is married to Olga of Kiev",
+      "Nadezhda Krupskaya died in the city of Moscow",
+      "Gennady Rozhdestvensky died in the city of Moscow",
+      "Ursula K. Le Guin died in the city of Portland"
+    ],
+    "pred_answer": "Olga of Kiev died in Kyiv.",
+    "exact_match": false
+  },
+  {
+    "query_id": 88,
+    "question": "Who founded Sasanian Empire?",
+    "gt_answer": "Walter Chrysler",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Sasanian Empire was founded by Walter Chrysler",
+      "Canadair was founded in the city of Tucson",
+      "Shingon Buddhism was founded by William Waynflete",
+      "Bagratuni Dynasty is affiliated with Christianity",
+      "Rap rock was created in the Russian Empire"
+    ],
+    "pred_answer": "The Sasanian Empire was founded by Walter Chrysler.",
+    "exact_match": true
+  },
+  {
+    "query_id": 89,
+    "question": "Which city did Pedro Pierluisi work in?",
+    "gt_answer": "Washington, D.C.",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Pedro Pierluisi worked in Washington, D.C.",
+      "The Prime Minister of Sweden is Pedro Pierluisi",
+      "Joe Hockey is a citizen of Australia",
+      "Denis Sassou-Nguesso works in the field of politician",
+      "Rogério Ceni is a goalkeeper"
+    ],
+    "pred_answer": "Pedro Pierluisi worked in Washington, D.C.",
+    "exact_match": true
+  },
+  {
+    "query_id": 90,
+    "question": "Which sport is Surrey Senior Cup associated with?",
+    "gt_answer": "basketball",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Surrey Senior Cup is associated with the sport of basketball",
+      "Slovakia national football team is associated with the sport of cricket",
+      "Steve Sax is associated with the sport of association football",
+      "Gala RFC is associated with the sport of rugby union",
+      "FC Irtysh Omsk is associated with association football"
+    ],
+    "pred_answer": "Surrey Senior Cup is associated with the sport of basketball.",
+    "exact_match": true
+  },
+  {
+    "query_id": 91,
+    "question": "What is the country of citizenship of Narendra Modi?",
+    "gt_answer": "Australia",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Narendra Modi is a citizen of Australia",
+      "Narendra Modi is the director of Madonna",
+      "Country Joe McDonald is a citizen of Romania",
+      "Ayumi Hamasaki is a citizen of Japan",
+      "Henri Grégoire is a citizen of India"
+    ],
+    "pred_answer": "Narendra Modi is a citizen of Australia.",
+    "exact_match": true
+  },
+  {
+    "query_id": 92,
+    "question": "Who is Victoria Beckham married to?",
+    "gt_answer": "David Beckham",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Victoria Beckham is married to David Beckham",
+      "Tony Blair is married to Cherie Blair",
+      "Laura Bush is married to George W. Bush",
+      "Derek Shepherd is married to Meredith Grey",
+      "Charles Darwin is married to Amala Paul"
+    ],
+    "pred_answer": "Victoria Beckham is married to David Beckham.",
+    "exact_match": true
+  },
+  {
+    "query_id": 93,
+    "question": "What is the country of citizenship of Charles Messier?",
+    "gt_answer": "Iran",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Charles Messier is a citizen of Iran",
+      "Charles the Bold is a citizen of France",
+      "Country Joe McDonald is a citizen of Romania",
+      "Catherine Dickens is a citizen of United Kingdom",
+      "Bob Iger is a citizen of United States of America"
+    ],
+    "pred_answer": "Charles Messier is a citizen of Iran.",
+    "exact_match": true
+  },
+  {
+    "query_id": 94,
+    "question": "Who was Rand al'Thor created by?",
+    "gt_answer": "Ferdowsi",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Rand al'Thor was created by Ferdowsi",
+      "Author of Sidereus Nuncius is Samuel Beckett",
+      "Bill Frisell was educated at The University of the Arts",
+      "The author of The Birth of Tragedy is Friedrich Nietzsche",
+      "Robert Jordan is famous for The Wheel of Time"
+    ],
+    "pred_answer": "Rand al'Thor was created by Ferdowsi.",
+    "exact_match": true
+  },
+  {
+    "query_id": 95,
+    "question": "What position does Mike D'Antoni play?",
+    "gt_answer": "point guard",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Mike D'Antoni plays the position of point guard",
+      "Daniele De Rossi plays the position of midfielder",
+      "Irving Fryar plays the position of wide receiver",
+      "Center is associated with basketball",
+      "Robert Parish plays the position of center"
+    ],
+    "pred_answer": "Mike D'Antoni plays the position of point guard.",
+    "exact_match": true
+  },
+  {
+    "query_id": 96,
+    "question": "What is the country of citizenship of Colin Irwin?",
+    "gt_answer": "Israel",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Colin Irwin is a citizen of United Kingdom",
+      "Narendra Modi is a citizen of Australia",
+      "Bob Iger is a citizen of United States of America",
+      "Joe Hockey is a citizen of Australia",
+      "Henri Grégoire is a citizen of India"
+    ],
+    "pred_answer": "Colin Irwin is a citizen of the United Kingdom.",
+    "exact_match": false
+  },
+  {
+    "query_id": 97,
+    "question": "Who is Walter Chrysler's child?",
+    "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Walter Chrysler's child is Charles Frederick",
+      "Sasanian Empire was founded by Walter Chrysler",
+      "Bob Iger is a citizen of United States of America",
+      "Marillyn Hewson is the CEO of Lockheed Martin",
+      "Robert A. Heinlein is a citizen of the United States of America"
+    ],
+    "pred_answer": "Walter Chrysler's child is Charles Frederick.",
+    "exact_match": false
+  },
+  {
+    "query_id": 98,
+    "question": "Who is Charles Darwin married to?",
+    "gt_answer": "Amala Paul",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Charles Darwin is married to Amala Paul",
+      "Author of Our Mutual Friend is Charles Darwin",
+      "Victoria Beckham is married to David Beckham",
+      "Tony Blair is married to Cherie Blair",
+      "Laura Bush is married to George W. Bush"
+    ],
+    "pred_answer": "Charles Darwin is married to Amala Paul.",
+    "exact_match": true
+  },
+  {
+    "query_id": 99,
+    "question": "What position does Irving Fryar play?",
+    "gt_answer": "wide receiver",
+    "n_retrieved": 100,
+    "retrieved_memories_preview": [
+      "Irving Fryar plays the position of wide receiver",
+      "Blair Walsh plays the position of placekicker",
+      "Mike D'Antoni plays the position of point guard",
+      "Robert Parish plays the position of center",
+      "Robert Parish plays the position of quarterback"
+    ],
+    "pred_answer": "Irving Fryar plays the position of wide receiver.",
+    "exact_match": true
+  }
+]

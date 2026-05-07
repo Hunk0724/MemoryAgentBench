@@ -1,0 +1,34 @@
+{
+  "since": "2026-05-02T07:00:00",
+  "total_update_events_in_window": 251,
+  "fc_sh": {
+    "label": "Mem0 customized \u00d7 Gemini \u2014 FC-SH",
+    "total_update_events": 251,
+    "total_gt_pairs": 74,
+    "TP": 33,
+    "FP_wrong_direction": 0,
+    "FP_unmatched": 186,
+    "FN": 41,
+    "precision": 0.1507,
+    "recall": 0.4459,
+    "f1": 0.2253
+  },
+  "fc_mh": {
+    "label": "Mem0 customized \u00d7 Gemini \u2014 FC-MH (hop-level)",
+    "total_update_events": 251,
+    "total_gt_pairs": 188,
+    "TP": 76,
+    "FP_wrong_direction": 3,
+    "FP_unmatched": 118,
+    "FN": 112,
+    "precision": 0.3858,
+    "recall": 0.4043,
+    "f1": 0.3948
+  },
+  "notes": [
+    "Mem0 history.db is shared across runs; use --since to filter window.",
+    "Match logic: old_memory contains GT old_fact text AND new_memory contains GT new_fact text (after normalization, articles stripped).",
+    "Wrong-direction events (counterfactual world-knowledge bias) counted as FP.",
+    "Unmatched events (Mem0 fired UPDATE on something not in FC GT) also FP."
+  ]
+}

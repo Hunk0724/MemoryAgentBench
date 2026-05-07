@@ -1,0 +1,318 @@
+{
+  "label": "Mem0 customized × Gemini — FC-MH (hop-level)",
+  "total_invalidations_made_by_mem0": 251,
+  "correct": 133,
+  "wrong": 0,
+  "false_positive": 118,
+  "unknown": 0,
+  "has_pair_in_dataset": 188,
+  "uniquely_correct_pairs": 67,
+  "precision_event_level": 0.5299,
+  "recall_pair_level": 0.3564,
+  "f1": 0.4262,
+  "correct_items": [
+    {
+      "event_old": "Hermione Granger was performed by Emma Watson",
+      "event_new": "Hermione Granger was performed by Kylie Minogue",
+      "at": "2026-05-02T07:00:06.243527-07:00",
+      "matched_pair_qid": 37,
+      "gt_old_seq": 413,
+      "gt_old": "Hermione Granger was performed by Emma Watson.",
+      "gt_new_seq": 425,
+      "gt_new": "Hermione Granger was performed by Kylie Minogue."
+    },
+    {
+      "event_old": "Madame du Barry is a citizen of France",
+      "event_new": "Madame du Barry is a citizen of Great Britain",
+      "at": "2026-05-02T07:30:23.193566-07:00",
+      "matched_pair_qid": 17,
+      "gt_old_seq": 29,
+      "gt_old": "Madame du Barry is a citizen of France.",
+      "gt_new_seq": 123,
+      "gt_new": "Madame du Barry is a citizen of Great Britain."
+    },
+    {
+      "event_old": "Dave Filoni is employed by Lucasfilm",
+      "event_new": "Dave Filoni is employed by British Broadcasting Corporation",
+      "at": "2026-05-02T07:30:32.801287-07:00",
+      "matched_pair_qid": 65,
+      "gt_old_seq": 38,
+      "gt_old": "Dave Filoni is employed by Lucasfilm.",
+      "gt_new_seq": 226,
+      "gt_new": "Dave Filoni is employed by British Broadcasting Corporation."
+    },
+    {
+      "event_old": "Henri Grégoire is a citizen of France",
+      "event_new": "Henri Grégoire is a citizen of India",
+      "at": "2026-05-02T07:30:32.804309-07:00",
+      "matched_pair_qid": 86,
+      "gt_old_seq": 39,
+      "gt_old": "Henri Grégoire is a citizen of France.",
+      "gt_new_seq": 225,
+      "gt_new": "Henri Grégoire is a citizen of India."
+    },
+    {
+      "event_old": "Vijay Mallya is a citizen of India",
+      "event_new": "Vijay Mallya is a citizen of Papal States",
+      "at": "2026-05-02T07:30:32.812575-07:00",
+      "matched_pair_qid": 77,
+      "gt_old_seq": 42,
+      "gt_old": "Vijay Mallya is a citizen of India.",
+      "gt_new_seq": 329,
+      "gt_new": "Vijay Mallya is a citizen of Papal States."
+    },
+    {
+      "event_old": "wide receiver is associated with the sport of American football",
+      "event_new": "wide receiver is associated with the sport of rugby",
+      "at": "2026-05-02T07:30:32.821359-07:00",
+      "matched_pair_qid": 79,
+      "gt_old_seq": 46,
+      "gt_old": "wide receiver is associated with the sport of American football.",
+      "gt_new_seq": 252,
+      "gt_new": "wide receiver is associated with the sport of rugby."
+    },
+    {
+      "event_old": "Ron Dennis is employed by McLaren Automotive",
+      "event_new": "Ron Dennis is employed by Pakistan International Airlines",
+      "at": "2026-05-02T07:30:32.824336-07:00",
+      "matched_pair_qid": 55,
+      "gt_old_seq": 47,
+      "gt_old": "Ron Dennis is employed by McLaren Automotive.",
+      "gt_new_seq": 385,
+      "gt_new": "Ron Dennis is employed by Pakistan International Airlines."
+    },
+    {
+      "event_old": "Blood on the Tracks was performed by Bob Dylan",
+      "event_new": "Blood on the Tracks was performed by Lou Reed",
+      "at": "2026-05-02T07:30:32.832430-07:00",
+      "matched_pair_qid": 30,
+      "gt_old_seq": 52,
+      "gt_old": "Blood on the Tracks was performed by Bob Dylan.",
+      "gt_new_seq": 181,
+      "gt_new": "Blood on the Tracks was performed by Lou Reed."
+    },
+    {
+      "event_old": "Nicolae Ceaușescu is married to Elena Ceaușescu",
+      "event_new": "Nicolae Ceaușescu is married to Wilhelm II",
+      "at": "2026-05-02T07:30:32.850023-07:00",
+      "matched_pair_qid": 5,
+      "gt_old_seq": 58,
+      "gt_old": "Nicolae Ceaușescu is married to Elena Ceaușescu.",
+      "gt_new_seq": 369,
+      "gt_new": "Nicolae Ceaușescu is married to Wilhelm II."
+    },
+    {
+      "event_old": "pesäpallo was created in the country of Finland",
+      "event_new": "pesäpallo was created in the country of Philippines",
+      "at": "2026-05-02T07:30:32.853022-07:00",
+      "matched_pair_qid": 85,
+      "gt_old_seq": 59,
+      "gt_old": "pesäpallo was created in the country of Finland.",
+      "gt_new_seq": 261,
+      "gt_new": "pesäpallo was created in the country of Philippines."
+    },
+    {
+      "event_old": "Walter Chrysler's child is Walter Percy Chrysler Jr.",
+      "event_new": "Walter Chrysler's child is Charles Frederick",
+      "at": "2026-05-02T07:30:32.858714-07:00",
+      "matched_pair_qid": 58,
+      "gt_old_seq": 61,
+      "gt_old": "Walter Chrysler's child is Walter Percy Chrysler Jr..",
+      "gt_new_seq": 231,
+      "gt_new": "Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp."
+    },
+    {
+      "event_old": "Yves Montand is married to Simone Signoret",
+      "event_new": "Yves Montand is married to Natalie Portman",
+      "at": "2026-05-02T07:30:32.861545-07:00",
+      "matched_pair_qid": 75,
+      "gt_old_seq": 62,
+      "gt_old": "Yves Montand is married to Simone Signoret.",
+      "gt_new_seq": 233,
+      "gt_new": "Yves Montand is married to Natalie Portman."
+    },
+    {
+      "event_old": "Born in the U.S.A. was performed by Bruce Springsteen",
+      "event_new": "Born in the U.S.A. was performed by Dana International",
+      "at": "2026-05-02T07:30:32.870733-07:00",
+      "matched_pair_qid": 97,
+      "gt_old_seq": 65,
+      "gt_old": "Born in the U.S.A. was performed by Bruce Springsteen.",
+      "gt_new_seq": 337,
+      "gt_new": "Born in the U.S.A. was performed by Dana International."
+    },
+    {
+      "event_old": "Rand al'Thor was created by Robert Jordan",
+      "event_new": "Rand al'Thor was created by Ferdowsi",
+      "at": "2026-05-02T07:30:32.873285-07:00",
+      "matched_pair_qid": 20,
+      "gt_old_seq": 66,
+      "gt_old": "Rand al'Thor was created by Robert Jordan.",
+      "gt_new_seq": 326,
+      "gt_new": "Rand al'Thor was created by Ferdowsi."
+    },
+    {
+      "event_old": "Natalie Portman is affiliated with the religion of Judaism",
+      "event_new": "Natalie Portman is affiliated with the religion of interdenominational organization",
+      "at": "2026-05-02T07:30:32.878635-07:00",
+      "matched_pair_qid": 75,
+      "gt_old_seq": 68,
+      "gt_old": "Natalie Portman is affiliated with the religion of Judaism.",
+      "gt_new_seq": 410,
+      "gt_new": "Natalie Portman is affiliated with the religion of interdenominational organization."
+    },
+    {
+      "event_old": "point guard is associated with the sport of basketball",
+      "event_new": "point guard is associated with the sport of cricket",
+      "at": "2026-05-02T07:30:32.881483-07:00",
+      "matched_pair_qid": 44,
+      "gt_old_seq": 69,
+      "gt_old": "point guard is associated with the sport of basketball.",
+      "gt_new_seq": 219,
+      "gt_new": "point guard is associated with the sport of cricket."
+    },
+    {
+      "event_old": "Kingdom of Ireland is affiliated with the religion of Catholic Church",
+      "event_new": "Kingdom of Ireland is affiliated with the religion of Zoroastrianism",
+      "at": "2026-05-02T07:30:32.884002-07:00",
+      "matched_pair_qid": 11,
+      "gt_old_seq": 70,
+      "gt_old": "Kingdom of Ireland is affiliated with the religion of Catholic Church.",
+      "gt_new_seq": 260,
+      "gt_new": "Kingdom of Ireland is affiliated with the religion of Zoroastrianism."
+    },
+    {
+      "event_old": "Rocket Man was performed by Elton John",
+      "event_new": "Rocket Man was performed by Ayumi Hamasaki",
+      "at": "2026-05-02T07:30:32.886635-07:00",
+      "matched_pair_qid": 36,
+      "gt_old_seq": 71,
+      "gt_old": "Rocket Man was performed by Elton John.",
+      "gt_new_seq": 229,
+      "gt_new": "Rocket Man was performed by Ayumi Hamasaki."
+    },
+    {
+      "event_old": "Australia is located in the continent of Oceania",
+      "event_new": "Australia is located in the continent of South America",
+      "at": "2026-05-02T07:30:32.898240-07:00",
+      "matched_pair_qid": 33,
+      "gt_old_seq": 75,
+      "gt_old": "Australia is located in the continent of Oceania.",
+      "gt_new_seq": 220,
+      "gt_new": "Australia is located in the continent of South America."
+    },
+    {
+      "event_old": "placekicker is associated with the sport of American football",
+      "event_new": "Placekicker is associated with the sport of rugby",
+      "at": "2026-05-02T07:30:48.101955-07:00",
+      "matched_pair_qid": 4,
+      "gt_old_seq": 78,
+      "gt_old": "placekicker is associated with the sport of American football.",
+      "gt_new_seq": 321,
+      "gt_new": "placekicker is associated with the sport of rugby."
+    }
+  ],
+  "wrong_items": [],
+  "false_positive_items": [
+    {
+      "event_old": "Thomas Kyd was born in London",
+      "event_new": "Thomas Kyd was born in the city of Leeds",
+      "at": "2026-05-02T07:30:23.132487-07:00"
+    },
+    {
+      "event_old": "Mahmoud Abbas is the chairperson of Fatah",
+      "event_new": "Chairperson of Fatah is Moshe Kahlon",
+      "at": "2026-05-02T07:30:23.139539-07:00"
+    },
+    {
+      "event_old": "Bengaluru is in Asia",
+      "event_new": "Bengaluru is located in the continent of Oceania",
+      "at": "2026-05-02T07:30:23.145906-07:00"
+    },
+    {
+      "event_old": "University of California, Berkeley headquarters is in Berkeley",
+      "event_new": "Headquarters of University of California, Berkeley is located in Botevgrad",
+      "at": "2026-05-02T07:30:23.160978-07:00"
+    },
+    {
+      "event_old": "Tim Cook is the CEO of Apple Inc.",
+      "event_new": "The chief executive officer of Apple Inc. is Vijay Mallya",
+      "at": "2026-05-02T07:30:23.162862-07:00"
+    },
+    {
+      "event_old": "Lisa Leslie plays center",
+      "event_new": "Lisa Leslie plays the position of goaltender",
+      "at": "2026-05-02T07:30:23.164815-07:00"
+    },
+    {
+      "event_old": "Chanel was founded by Coco Chanel",
+      "event_new": "Coco Chanel died in Paris",
+      "at": "2026-05-02T07:30:23.168665-07:00"
+    },
+    {
+      "event_old": "John Knox founded the Church of Scotland",
+      "event_new": "John Knox worked in the city of Edinburgh",
+      "at": "2026-05-02T07:30:23.170623-07:00"
+    },
+    {
+      "event_old": "Slovakia national football team plays association football",
+      "event_new": "Slovakia national football team is associated with the sport of cricket",
+      "at": "2026-05-02T07:30:23.172496-07:00"
+    },
+    {
+      "event_old": "Kūkai founded Shingon Buddhism",
+      "event_new": "Shingon Buddhism was founded by William Waynflete",
+      "at": "2026-05-02T07:30:23.176243-07:00"
+    },
+    {
+      "event_old": "Chang'an is the capital of the Tang Empire",
+      "event_new": "Capital of Tang Empire is Beaumont",
+      "at": "2026-05-02T07:30:23.178114-07:00"
+    },
+    {
+      "event_old": "Ferdinand von Richthofen is a citizen of Germany",
+      "event_new": "Ernst Heinkel is a citizen of Tang Empire",
+      "at": "2026-05-02T07:30:23.183703-07:00"
+    },
+    {
+      "event_old": "David Bowie performed Aladdin Sane",
+      "event_new": "Aladdin Sane was performed by Yves Montand",
+      "at": "2026-05-02T07:30:23.185573-07:00"
+    },
+    {
+      "event_old": "Pakistan International Airlines was founded in Karachi",
+      "event_new": "Pakistan International Airlines was founded in the city of Sweden",
+      "at": "2026-05-02T07:30:23.195686-07:00"
+    },
+    {
+      "event_old": "Quarterback is a position in American football",
+      "event_new": "Quarterback is a position in American football",
+      "at": "2026-05-02T07:30:23.197647-07:00"
+    },
+    {
+      "event_old": "Andrzej Sapkowski wrote The Witcher",
+      "event_new": "Andrzej Sapkowski wrote The Witcher and speaks the language of Polish",
+      "at": "2026-05-02T07:30:23.199674-07:00"
+    },
+    {
+      "event_old": "London is the capital of Great Britain",
+      "event_new": "London is the capital of Great Britain and is located in the continent of Europe",
+      "at": "2026-05-02T07:30:23.201531-07:00"
+    },
+    {
+      "event_old": "London is the capital of Great Britain and is located in the continent of Europe",
+      "event_new": "London is the capital of the United Kingdom",
+      "at": "2026-05-02T07:30:23.201531-07:00"
+    },
+    {
+      "event_old": "Steve Sax plays baseball",
+      "event_new": "Steve Sax is associated with the sport of association football",
+      "at": "2026-05-02T07:30:23.203551-07:00"
+    },
+    {
+      "event_old": "Frank Zappa died in Los Angeles",
+      "event_new": "Frank Zappa died in the city of Berlin",
+      "at": "2026-05-02T07:30:23.205488-07:00"
+    }
+  ]
+}

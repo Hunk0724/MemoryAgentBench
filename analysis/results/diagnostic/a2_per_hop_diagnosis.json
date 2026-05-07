@@ -1,0 +1,4071 @@
+[
+  {
+    "query_id": 0,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "United Kingdom",
+    "gt_answer": [
+      "Belgium"
+    ],
+    "intermediates": [
+      "Charles Dickens",
+      "Catherine Dickens",
+      "United Kingdom"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Charles Darwin",
+        "old_answer": "Charles Dickens",
+        "pred": "Charles Dickens",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Amala Paul",
+        "old_answer": "Emma Darwin",
+        "pred": "Catherine Dickens",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Belgium",
+        "old_answer": "India",
+        "pred": "United Kingdom",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 1,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Rodez",
+    "gt_answer": [
+      "Rodez"
+    ],
+    "intermediates": [
+      "Olga of Kiev",
+      "Rodez"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Olga of Kiev",
+        "old_answer": "",
+        "pred": "Olga of Kiev",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Rodez",
+        "old_answer": "Kyiv",
+        "pred": "Rodez",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 2,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "United States of America",
+    "gt_answer": [
+      "Italy"
+    ],
+    "intermediates": [
+      "baseball",
+      "United States of America"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "association football",
+        "old_answer": "baseball",
+        "pred": "baseball",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Italy",
+        "old_answer": "England",
+        "pred": "United States of America",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 3,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "London",
+    "gt_answer": [
+      "Russellville"
+    ],
+    "intermediates": [
+      "association football",
+      "England",
+      "London"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "basketball",
+        "old_answer": "association football",
+        "pred": "association football",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Soviet Union",
+        "old_answer": "United States of America",
+        "pred": "England",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Russellville",
+        "old_answer": "Moscow",
+        "pred": "London",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 4,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "American football",
+    "gt_answer": [
+      "rugby"
+    ],
+    "intermediates": [
+      "American football"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "placekicker",
+        "old_answer": "",
+        "pred": "American football",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "rugby",
+        "old_answer": "American football",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "no_conflict_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 5,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "University of Bucharest",
+    "gt_answer": [
+      "Baldwin Wallace University"
+    ],
+    "intermediates": [
+      "University of Bucharest"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Wilhelm II",
+        "old_answer": "Elena Ceaușescu",
+        "pred": "University of Bucharest",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Baldwin Wallace University",
+        "old_answer": "University of Bonn",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 6,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "United States of America",
+    "gt_answer": [
+      "France"
+    ],
+    "intermediates": [
+      "United States of America"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Bernard Arnault",
+        "old_answer": "Jack Dorsey",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "France",
+        "old_answer": "",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 7,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Asia",
+    "gt_answer": [
+      "Oceania"
+    ],
+    "intermediates": [
+      "Bengaluru",
+      "Asia"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Bengaluru",
+        "old_answer": "London",
+        "pred": "Bengaluru",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Oceania",
+        "old_answer": "Asia",
+        "pred": "Asia",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 8,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Asia",
+    "gt_answer": [
+      "North America"
+    ],
+    "intermediates": [
+      "Israel",
+      "Asia"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Israel",
+        "old_answer": "United Kingdom",
+        "pred": "Israel",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "North America",
+        "old_answer": "Asia",
+        "pred": "Asia",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 9,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Galilee",
+    "gt_answer": [
+      "Berlin"
+    ],
+    "intermediates": [
+      "Catholic Church",
+      "Jesus Christ",
+      "Galilee"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Methodism",
+        "old_answer": "Catholic Church",
+        "pred": "Catholic Church",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Joseph Goebbels",
+        "old_answer": "John Wesley",
+        "pred": "Jesus Christ",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Berlin",
+        "old_answer": "",
+        "pred": "Galilee",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 10,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Catholic Church",
+    "gt_answer": [
+      "atheism"
+    ],
+    "intermediates": [
+      "Adalbert of Prague",
+      "Catholic Church"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Adalbert of Prague",
+        "old_answer": "Maharishi Mahesh Yogi",
+        "pred": "Adalbert of Prague",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "atheism",
+        "old_answer": "Catholic Church",
+        "pred": "Catholic Church",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 11,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Zoroastrianism",
+    "gt_answer": [
+      "Zoroastrianism"
+    ],
+    "intermediates": [
+      "Kingdom of Ireland",
+      "Zoroastrianism"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Kingdom of Ireland",
+        "old_answer": "",
+        "pred": "Kingdom of Ireland",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Zoroastrianism",
+        "old_answer": "Catholic Church",
+        "pred": "Zoroastrianism",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 12,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "London",
+    "gt_answer": [
+      "Duluth"
+    ],
+    "intermediates": [
+      "association football",
+      "England",
+      "London"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "association football",
+        "old_answer": "",
+        "pred": "association football",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Italy",
+        "old_answer": "England",
+        "pred": "England",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Duluth",
+        "old_answer": "Rome",
+        "pred": "London",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 13,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "United Methodist Church",
+    "gt_answer": [
+      "Anglicanism"
+    ],
+    "intermediates": [
+      "George W. Bush",
+      "United Methodist Church"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Princess Alice, Duchess of Gloucester",
+        "old_answer": "George W. Bush",
+        "pred": "George W. Bush",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Anglicanism",
+        "old_answer": "",
+        "pred": "United Methodist Church",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 14,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Donald Trump",
+    "gt_answer": [
+      "Emmerson Mnangagwa"
+    ],
+    "intermediates": [
+      "United States of America",
+      "Donald Trump"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "United Kingdom",
+        "old_answer": "United States of America",
+        "pred": "United States of America",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Emmerson Mnangagwa",
+        "old_answer": "Elizabeth II",
+        "pred": "Donald Trump",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 15,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "Not mentioned",
+    "gt_answer": [
+      "Russellville"
+    ],
+    "intermediates": [
+      "None"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "basketball",
+        "old_answer": "association football",
+        "pred": "None",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Soviet Union",
+        "old_answer": "United States of America",
+        "pred": null,
+        "class": "missing"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Russellville",
+        "old_answer": "Moscow",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 16,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "United States of America",
+    "gt_answer": [
+      "Soviet Union"
+    ],
+    "intermediates": [
+      "baseball",
+      "United States of America"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "basketball",
+        "old_answer": "baseball",
+        "pred": "baseball",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Soviet Union",
+        "old_answer": "United States of America",
+        "pred": "United States of America",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 17,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "London",
+    "gt_answer": [
+      "London"
+    ],
+    "intermediates": [
+      "Great Britain",
+      "London"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Great Britain",
+        "old_answer": "France",
+        "pred": "Great Britain",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "London",
+        "old_answer": "",
+        "pred": "London",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 18,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": true,
+    "final_pred": "soldier",
+    "gt_answer": [
+      "soldier"
+    ],
+    "intermediates": [
+      "soldier"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Moshe Kahlon",
+        "old_answer": "Mahmoud Abbas",
+        "pred": "soldier",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "soldier",
+        "old_answer": "politician",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 19,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "London",
+    "gt_answer": [
+      "Duluth"
+    ],
+    "intermediates": [
+      "The Beatles",
+      "Brian Epstein",
+      "United Kingdom",
+      "London"
+    ],
+    "n_intermediates": 4,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "The Beatles",
+        "old_answer": "",
+        "pred": "The Beatles",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Joe Hockey",
+        "old_answer": "Brian Epstein",
+        "pred": "Brian Epstein",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Italy",
+        "old_answer": "Australia",
+        "pred": "United Kingdom",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "Duluth",
+        "old_answer": "Rome",
+        "pred": "London",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 20,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "English",
+    "gt_answer": [
+      "Persian"
+    ],
+    "intermediates": [
+      "Robert Jordan",
+      "The Wheel of Time",
+      "English"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Ferdowsi",
+        "old_answer": "Robert Jordan",
+        "pred": "Robert Jordan",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Shahnameh",
+        "old_answer": "",
+        "pred": "The Wheel of Time",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Persian",
+        "old_answer": "",
+        "pred": "English",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 21,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Edinburgh",
+    "gt_answer": [
+      "Edinburgh"
+    ],
+    "intermediates": [
+      "Church of Scotland",
+      "John Knox",
+      "Edinburgh"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Church of Scotland",
+        "old_answer": "Catholic Church",
+        "pred": "Church of Scotland",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "John Knox",
+        "old_answer": "",
+        "pred": "John Knox",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Edinburgh",
+        "old_answer": "",
+        "pred": "Edinburgh",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 22,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "George Alexander Kohut",
+    "gt_answer": [
+      "George Alexander Kohut"
+    ],
+    "intermediates": [
+      "Aristotle",
+      "George Alexander Kohut"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Aristotle",
+        "old_answer": "",
+        "pred": "Aristotle",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "George Alexander Kohut",
+        "old_answer": "Nicomachus",
+        "pred": "George Alexander Kohut",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 23,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "None",
+    "gt_answer": [
+      "Soviet Union"
+    ],
+    "intermediates": [
+      "None"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "basketball",
+        "old_answer": "association football",
+        "pred": "None",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Soviet Union",
+        "old_answer": "United States of America",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 24,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "Washington, D.C.",
+    "gt_answer": [
+      "Harare"
+    ],
+    "intermediates": [
+      "Valve Corporation",
+      "Gabe Newell",
+      "United States of America",
+      "Washington",
+      "D.C"
+    ],
+    "n_intermediates": 5,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "ABB Group",
+        "old_answer": "Valve Corporation",
+        "pred": "Valve Corporation",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Bernard Arnault",
+        "old_answer": "Ulrich Spiesshofer",
+        "pred": "Gabe Newell",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "France",
+        "old_answer": "",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "Harare",
+        "old_answer": "Paris",
+        "pred": "Washington",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 25,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": true,
+    "final_pred": "Adel al-Jubeir",
+    "gt_answer": [
+      "Adel al-Jubeir"
+    ],
+    "intermediates": [
+      "Boeing",
+      "Adel al-Jubeir"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Boeing",
+        "old_answer": "Lockheed Martin",
+        "pred": "Boeing",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Adel al-Jubeir",
+        "old_answer": "Dennis Muilenburg",
+        "pred": "Adel al-Jubeir",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 26,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Peter Diamandis",
+    "gt_answer": [
+      "Peter Diamandis"
+    ],
+    "intermediates": [
+      "Harvard University",
+      "Peter Diamandis"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Harvard University",
+        "old_answer": "",
+        "pred": "Harvard University",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Peter Diamandis",
+        "old_answer": "Lawrence S. Bacow",
+        "pred": "Peter Diamandis",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 27,
+    "num_hops": 4,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "Washington, D.C.",
+    "gt_answer": [
+      "Harrisville"
+    ],
+    "intermediates": [
+      "Meredith Grey",
+      "Ellen Pompeo",
+      "United States of America",
+      "Washington",
+      "D.C"
+    ],
+    "n_intermediates": 5,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Meredith Grey",
+        "old_answer": "",
+        "pred": "Meredith Grey",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Ellen Pompeo",
+        "old_answer": "",
+        "pred": "Ellen Pompeo",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "United States of America",
+        "old_answer": "",
+        "pred": "United States of America",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "Harrisville",
+        "old_answer": "Washington, D.C",
+        "pred": "Washington",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 3,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 28,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Prague",
+    "gt_answer": [
+      "Prague"
+    ],
+    "intermediates": [
+      "Czech Republic",
+      "Prague"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Czech Republic",
+        "old_answer": "United States of America",
+        "pred": "Czech Republic",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Prague",
+        "old_answer": "",
+        "pred": "Prague",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 29,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Harrisville",
+    "gt_answer": [
+      "Rajanpur"
+    ],
+    "intermediates": [
+      "United States of America",
+      "Harrisville"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Romania",
+        "old_answer": "United States of America",
+        "pred": "United States of America",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Rajanpur",
+        "old_answer": "Bucharest",
+        "pred": "Harrisville",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 30,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Minneapolis",
+    "gt_answer": [
+      "New York City"
+    ],
+    "intermediates": [
+      "Bob Dylan",
+      "University of Minnesota",
+      "Minneapolis"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Lou Reed",
+        "old_answer": "Bob Dylan",
+        "pred": "Bob Dylan",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Fordham University",
+        "old_answer": "Syracuse University",
+        "pred": "University of Minnesota",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "New York City",
+        "old_answer": "",
+        "pred": "Minneapolis",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 31,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Donald Trump",
+    "gt_answer": [
+      "Giuseppe Conte"
+    ],
+    "intermediates": [
+      "basketball",
+      "United States of America",
+      "Donald Trump"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "association football",
+        "old_answer": "basketball",
+        "pred": "basketball",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Italy",
+        "old_answer": "England",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Giuseppe Conte",
+        "old_answer": "",
+        "pred": "Donald Trump",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 32,
+    "num_hops": 4,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "Asia",
+    "gt_answer": [
+      "North America"
+    ],
+    "intermediates": [
+      "Microsoft",
+      "Satya Nadella",
+      "Hyderabad",
+      "Asia"
+    ],
+    "n_intermediates": 4,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Microsoft",
+        "old_answer": "",
+        "pred": "Microsoft",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Steve Jobs",
+        "old_answer": "Satya Nadella",
+        "pred": "Satya Nadella",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "San Francisco",
+        "old_answer": "",
+        "pred": "Hyderabad",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "North America",
+        "old_answer": "",
+        "pred": "Asia",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 33,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "Europe",
+    "gt_answer": [
+      "South America"
+    ],
+    "intermediates": [
+      "association football",
+      "England",
+      "Europe"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "cricket",
+        "old_answer": "association football",
+        "pred": "association football",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Australia",
+        "old_answer": "England",
+        "pred": "England",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "South America",
+        "old_answer": "Oceania",
+        "pred": "Europe",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 34,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "atheism",
+    "gt_answer": [
+      "atheism"
+    ],
+    "intermediates": [
+      "atheism"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Imelda Marcos",
+        "old_answer": "",
+        "pred": "atheism",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "atheism",
+        "old_answer": "Catholicism",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "no_conflict_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 35,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": true,
+    "final_pred": "The Fairly OddParents",
+    "gt_answer": [
+      "The Fairly OddParents"
+    ],
+    "intermediates": [
+      "Nobuhiro Watsuki",
+      "The Fairly OddParents"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Nobuhiro Watsuki",
+        "old_answer": "Mario Puzo",
+        "pred": "Nobuhiro Watsuki",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "The Fairly OddParents",
+        "old_answer": "Rurouni Kenshin",
+        "pred": "The Fairly OddParents",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 36,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "United Kingdom",
+    "gt_answer": [
+      "Japan"
+    ],
+    "intermediates": [
+      "Elton John",
+      "United Kingdom"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Ayumi Hamasaki",
+        "old_answer": "Elton John",
+        "pred": "Elton John",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Japan",
+        "old_answer": "",
+        "pred": "United Kingdom",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 37,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "English",
+    "gt_answer": [
+      "German"
+    ],
+    "intermediates": [
+      "Emma Watson",
+      "English"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Kylie Minogue",
+        "old_answer": "Emma Watson",
+        "pred": "Emma Watson",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "German",
+        "old_answer": "English",
+        "pred": "English",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 38,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "United Kingdom",
+    "gt_answer": [
+      "Canada"
+    ],
+    "intermediates": [
+      "post-punk",
+      "United Kingdom"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "post-punk",
+        "old_answer": "jazz",
+        "pred": "post-punk",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Canada",
+        "old_answer": "United Kingdom",
+        "pred": "United Kingdom",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 39,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "American football",
+    "gt_answer": [
+      "Muay Thai"
+    ],
+    "intermediates": [
+      "quarterback",
+      "American football"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "quarterback",
+        "old_answer": "center",
+        "pred": "quarterback",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Muay Thai",
+        "old_answer": "American football",
+        "pred": "American football",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 40,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Philippe, Duke of Orléans",
+    "gt_answer": [
+      "Philippe, Duke of Orléans"
+    ],
+    "intermediates": [
+      "Israel",
+      "Philippe",
+      "Duke of Orléans"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Israel",
+        "old_answer": "",
+        "pred": "Israel",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Philippe, Duke of Orléans",
+        "old_answer": "David Ben-Gurion",
+        "pred": "Philippe",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 41,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": true,
+    "final_pred": "German",
+    "gt_answer": [
+      "German"
+    ],
+    "intermediates": [
+      "Moscow",
+      "German"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "United States of America",
+        "old_answer": "Moscow",
+        "pred": "Moscow",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "German",
+        "old_answer": "American English",
+        "pred": "German",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 42,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Paris",
+    "gt_answer": [
+      "Leeds"
+    ],
+    "intermediates": [
+      "Pierre Beaumarchais",
+      "Paris"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Thomas Kyd",
+        "old_answer": "Pierre Beaumarchais",
+        "pred": "Pierre Beaumarchais",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Leeds",
+        "old_answer": "London",
+        "pred": "Paris",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 43,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "United States of America, Donald Trump",
+    "gt_answer": [
+      "Shinzō Abe"
+    ],
+    "intermediates": [
+      "United States of America",
+      "Donald Trump"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "baseball",
+        "old_answer": "",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Japan",
+        "old_answer": "United States of America",
+        "pred": "Donald Trump",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Shinzō Abe",
+        "old_answer": "",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "no_conflict_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 44,
+    "num_hops": 4,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Washington, D.C.",
+    "gt_answer": [
+      "London"
+    ],
+    "intermediates": [
+      "basketball",
+      "United States of America",
+      "Washington",
+      "D.C"
+    ],
+    "n_intermediates": 4,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "point guard",
+        "old_answer": "",
+        "pred": "basketball",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "cricket",
+        "old_answer": "basketball",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "England",
+        "old_answer": "Australia",
+        "pred": "Washington",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "London",
+        "old_answer": "",
+        "pred": "D.C",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "no_conflict_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 45,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "Gads Hill Place",
+    "gt_answer": [
+      "London"
+    ],
+    "intermediates": [
+      "Charles Dickens",
+      "Gads Hill Place"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Sigmund Freud",
+        "old_answer": "Charles Dickens",
+        "pred": "Charles Dickens",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "London",
+        "old_answer": "",
+        "pred": "Gads Hill Place",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 46,
+    "num_hops": 4,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "London",
+    "gt_answer": [
+      "Tokyo"
+    ],
+    "intermediates": [
+      "England",
+      "London"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "midfielder",
+        "old_answer": "",
+        "pred": "England",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "sumo",
+        "old_answer": "association football",
+        "pred": "London",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Japan",
+        "old_answer": "",
+        "pred": null,
+        "class": "missing"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Tokyo",
+        "old_answer": "",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "no_conflict_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 47,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "North America",
+    "gt_answer": [
+      "Asia"
+    ],
+    "intermediates": [
+      "Canada",
+      "North America"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Canada",
+        "old_answer": "Germany",
+        "pred": "Canada",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Asia",
+        "old_answer": "North America",
+        "pred": "North America",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 48,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "London",
+    "gt_answer": [
+      "Grosseto"
+    ],
+    "intermediates": [
+      "rugby union",
+      "England",
+      "London"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "rugby union",
+        "old_answer": "",
+        "pred": "rugby union",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "India",
+        "old_answer": "England",
+        "pred": "England",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Grosseto",
+        "old_answer": "New Delhi",
+        "pred": "London",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 49,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Japanese",
+    "gt_answer": [
+      "Latin"
+    ],
+    "intermediates": [
+      "Japanese"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "William Waynflete",
+        "old_answer": "Kūkai",
+        "pred": "Japanese",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Latin",
+        "old_answer": "English",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 50,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "exact_match": true,
+    "final_pred": "Mansourah, Algeria",
+    "gt_answer": [
+      "Mansourah, Algeria"
+    ],
+    "intermediates": [
+      "Tony Blair",
+      "Alan Jay Lerner",
+      "Mansourah",
+      "Algeria"
+    ],
+    "n_intermediates": 4,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Tony Blair",
+        "old_answer": "Vladimir Lenin",
+        "pred": "Tony Blair",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Alan Jay Lerner",
+        "old_answer": "Cherie Blair",
+        "pred": "Alan Jay Lerner",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Mansourah, Algeria",
+        "old_answer": "New York City",
+        "pred": "Mansourah",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 51,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "politician",
+    "gt_answer": [
+      "journalist"
+    ],
+    "intermediates": [
+      "politician"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Stephen McNeil",
+        "old_answer": "Denis Sassou-Nguesso",
+        "pred": "politician",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "journalist",
+        "old_answer": "politician",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 52,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Taipei",
+    "gt_answer": [
+      "Taipei"
+    ],
+    "intermediates": [
+      "Christianity",
+      "Taipei"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Christianity",
+        "old_answer": "",
+        "pred": "Christianity",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Taipei",
+        "old_answer": "Jerusalem",
+        "pred": "Taipei",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 53,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "United States of America",
+    "gt_answer": [
+      "Russian Empire"
+    ],
+    "intermediates": [
+      "Dale Evans",
+      "country music",
+      "United States of America"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "John McVie",
+        "old_answer": "Dale Evans",
+        "pred": "Dale Evans",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "rap rock",
+        "old_answer": "rock music",
+        "pred": "country music",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Russian Empire",
+        "old_answer": "United States of America",
+        "pred": "United States of America",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 54,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "Washington, D.C.",
+    "gt_answer": [
+      "Beaumont"
+    ],
+    "intermediates": [
+      "American Broadcasting Company",
+      "Bob Iger",
+      "United States of America",
+      "Washington",
+      "D.C"
+    ],
+    "n_intermediates": 5,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "American Broadcasting Company",
+        "old_answer": "",
+        "pred": "American Broadcasting Company",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Ernst Heinkel",
+        "old_answer": "Bob Iger",
+        "pred": "Bob Iger",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Tang Empire",
+        "old_answer": "Germany",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "Beaumont",
+        "old_answer": "Chang'an",
+        "pred": "Washington",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 55,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Woking",
+    "gt_answer": [
+      "Sweden"
+    ],
+    "intermediates": [
+      "Woking"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Pakistan International Airlines",
+        "old_answer": "McLaren Automotive",
+        "pred": "Woking",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Sweden",
+        "old_answer": "Karachi",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 56,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Europe",
+    "gt_answer": [
+      "Africa"
+    ],
+    "intermediates": [
+      "Germany",
+      "Europe"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Germany",
+        "old_answer": "France",
+        "pred": "Germany",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Africa",
+        "old_answer": "Europe",
+        "pred": "Europe",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 57,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "London",
+    "gt_answer": [
+      "Oderzo"
+    ],
+    "intermediates": [
+      "David Beckham",
+      "association football",
+      "England",
+      "London"
+    ],
+    "n_intermediates": 4,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "David Beckham",
+        "old_answer": "",
+        "pred": "David Beckham",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "cricket",
+        "old_answer": "association football",
+        "pred": "association football",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Australia",
+        "old_answer": "England",
+        "pred": "England",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "Oderzo",
+        "old_answer": "Canberra",
+        "pred": "London",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 58,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Walter Chrysler",
+    "gt_answer": [
+      "Charles Frederick, Duke of Holstein-Gottorp"
+    ],
+    "intermediates": [
+      "Walter Chrysler"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Walter Chrysler",
+        "old_answer": "Ardashir I",
+        "pred": "Walter Chrysler",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+        "old_answer": "Walter Percy Chrysler Jr.",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "missing"
+  },
+  {
+    "query_id": 59,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "London",
+    "gt_answer": [
+      "Duluth"
+    ],
+    "intermediates": [
+      "England",
+      "London"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "association football",
+        "old_answer": "",
+        "pred": "England",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Italy",
+        "old_answer": "England",
+        "pred": "London",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Duluth",
+        "old_answer": "Rome",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "no_conflict_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 60,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Camden Town",
+    "gt_answer": [
+      "Berlin"
+    ],
+    "intermediates": [
+      "Camden Town"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Frank Zappa",
+        "old_answer": "Amy Winehouse",
+        "pred": "Camden Town",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Berlin",
+        "old_answer": "Los Angeles",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 61,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "American football",
+    "gt_answer": [
+      "field hockey"
+    ],
+    "intermediates": [
+      "American football"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "cornerback",
+        "old_answer": "wide receiver",
+        "pred": "American football",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "field hockey",
+        "old_answer": "American football",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 62,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "director",
+    "gt_answer": [
+      "Ernst Heinkel"
+    ],
+    "intermediates": [
+      "American Broadcasting Company",
+      "Bob Iger",
+      "director"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "American Broadcasting Company",
+        "old_answer": "",
+        "pred": "American Broadcasting Company",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Ernst Heinkel",
+        "old_answer": "Bob Iger",
+        "pred": "Bob Iger",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 63,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": true,
+    "final_pred": "Montmélian",
+    "gt_answer": [
+      "Montmélian"
+    ],
+    "intermediates": [
+      "Andy Warhol",
+      "Montmélian"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Andy Warhol",
+        "old_answer": "Coco Chanel",
+        "pred": "Andy Warhol",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Montmélian",
+        "old_answer": "New York City",
+        "pred": "Montmélian",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 64,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "United States of America",
+    "gt_answer": [
+      "United Kingdom"
+    ],
+    "intermediates": [
+      "Robert A. Heinlein",
+      "United States of America"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Daphne du Maurier",
+        "old_answer": "Robert A. Heinlein",
+        "pred": "Robert A. Heinlein",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "United Kingdom",
+        "old_answer": "",
+        "pred": "United States of America",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 65,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": true,
+    "final_pred": "Narendra Modi",
+    "gt_answer": [
+      "Narendra Modi"
+    ],
+    "intermediates": [
+      "Narendra Modi"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "British Broadcasting Corporation",
+        "old_answer": "Lucasfilm",
+        "pred": "Narendra Modi",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Narendra Modi",
+        "old_answer": "Tony Hall, Baron Hall of Birkenhead",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 66,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "English",
+    "gt_answer": [
+      "German"
+    ],
+    "intermediates": [
+      "English"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "The Vampyre",
+        "old_answer": "Playboy",
+        "pred": "English",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "German",
+        "old_answer": "English",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 67,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "London",
+    "gt_answer": [
+      "New Delhi"
+    ],
+    "intermediates": [
+      "association football",
+      "England",
+      "London"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "flanker",
+        "old_answer": "goalkeeper",
+        "pred": "association football",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "rugby union",
+        "old_answer": "",
+        "pred": "England",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "India",
+        "old_answer": "England",
+        "pred": "London",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "New Delhi",
+        "old_answer": "Grosseto",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 68,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "University of Pisa",
+    "gt_answer": [
+      "University of Southern California"
+    ],
+    "intermediates": [
+      "Galileo Galilei",
+      "University of Pisa"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Samuel Beckett",
+        "old_answer": "Galileo Galilei",
+        "pred": "Galileo Galilei",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "University of Southern California",
+        "old_answer": "Trinity College Dublin",
+        "pred": "University of Pisa",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 69,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Leipzig",
+    "gt_answer": [
+      "Leipzig"
+    ],
+    "intermediates": [
+      "John Keats",
+      "Leipzig"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "John Keats",
+        "old_answer": "",
+        "pred": "John Keats",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Leipzig",
+        "old_answer": "Rome",
+        "pred": "Leipzig",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 70,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Brunswick",
+    "gt_answer": [
+      "Botevgrad"
+    ],
+    "intermediates": [
+      "Nathaniel Hawthorne",
+      "Bowdoin College",
+      "Brunswick"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Joan Didion",
+        "old_answer": "Nathaniel Hawthorne",
+        "pred": "Nathaniel Hawthorne",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "University of California, Berkeley",
+        "old_answer": "",
+        "pred": "Bowdoin College",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Botevgrad",
+        "old_answer": "Berkeley",
+        "pred": "Brunswick",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 71,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "Donald Trump",
+    "gt_answer": [
+      "Connachta"
+    ],
+    "intermediates": [
+      "United States of America",
+      "Donald Trump"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "United States of America",
+        "old_answer": "",
+        "pred": "United States of America",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Connachta",
+        "old_answer": "Donald Trump",
+        "pred": "Donald Trump",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 72,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "Donald Trump",
+    "gt_answer": [
+      "Connachta"
+    ],
+    "intermediates": [
+      "United States of America",
+      "Donald Trump"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "United States of America",
+        "old_answer": "",
+        "pred": "United States of America",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Connachta",
+        "old_answer": "Donald Trump",
+        "pred": "Donald Trump",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 73,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Bill Peduto",
+    "gt_answer": [
+      "Jonathan Rothschild"
+    ],
+    "intermediates": [
+      "Westinghouse Electric",
+      "Pittsburgh",
+      "Bill Peduto"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Canadair",
+        "old_answer": "Westinghouse Electric",
+        "pred": "Westinghouse Electric",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Tucson",
+        "old_answer": "Montreal",
+        "pred": "Pittsburgh",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Jonathan Rothschild",
+        "old_answer": "",
+        "pred": "Bill Peduto",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 74,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Portland",
+    "gt_answer": [
+      "Wolverhampton"
+    ],
+    "intermediates": [
+      "Portland"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Pius XII",
+        "old_answer": "Ursula K. Le Guin",
+        "pred": "Portland",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Wolverhampton",
+        "old_answer": "Castel Gandolfo",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 75,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "Islam",
+    "gt_answer": [
+      "interdenominational organization"
+    ],
+    "intermediates": [
+      "David Bowie",
+      "Iman",
+      "Islam"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Yves Montand",
+        "old_answer": "David Bowie",
+        "pred": "David Bowie",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Natalie Portman",
+        "old_answer": "Simone Signoret",
+        "pred": "Iman",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "interdenominational organization",
+        "old_answer": "Judaism",
+        "pred": "Islam",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 76,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Washington, D.C.",
+    "gt_answer": [
+      "Washington, D.C."
+    ],
+    "intermediates": [
+      "Pedro Pierluisi",
+      "Washington",
+      "D.C"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Pedro Pierluisi",
+        "old_answer": "Stefan Löfven",
+        "pred": "Pedro Pierluisi",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Washington, D.C.",
+        "old_answer": "",
+        "pred": "Washington",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 77,
+    "num_hops": 4,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Washington, D.C.",
+    "gt_answer": [
+      "Rome"
+    ],
+    "intermediates": [
+      "Apple Inc",
+      "Tim Cook",
+      "United States of America",
+      "Washington",
+      "D.C"
+    ],
+    "n_intermediates": 5,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Apple Inc.",
+        "old_answer": "",
+        "pred": "Apple Inc",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Vijay Mallya",
+        "old_answer": "Tim Cook",
+        "pred": "Tim Cook",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Papal States",
+        "old_answer": "India",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Rome",
+        "old_answer": "",
+        "pred": "Washington",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 78,
+    "num_hops": 3,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Europe",
+    "gt_answer": [
+      "Africa"
+    ],
+    "intermediates": [
+      "Europe"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "rugby union",
+        "old_answer": "",
+        "pred": "Europe",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "India",
+        "old_answer": "England",
+        "pred": null,
+        "class": "missing"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Africa",
+        "old_answer": "Asia",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "no_conflict_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 79,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "American football",
+    "gt_answer": [
+      "rugby"
+    ],
+    "intermediates": [
+      "American football"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "wide receiver",
+        "old_answer": "",
+        "pred": "American football",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "rugby",
+        "old_answer": "American football",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "no_conflict_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 80,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Asia",
+    "gt_answer": [
+      "Antarctica"
+    ],
+    "intermediates": [
+      "Malaysia",
+      "Asia"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Malaysia",
+        "old_answer": "France",
+        "pred": "Malaysia",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Antarctica",
+        "old_answer": "Asia",
+        "pred": "Asia",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 81,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "Bucharest",
+    "gt_answer": [
+      "Ankara"
+    ],
+    "intermediates": [
+      "University of Bucharest",
+      "Bucharest"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "University of Bucharest",
+        "old_answer": "",
+        "pred": "University of Bucharest",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Ankara",
+        "old_answer": "Bucharest",
+        "pred": "Bucharest",
+        "class": "older_fact"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 82,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Donald Trump",
+    "gt_answer": [
+      "Elizabeth II"
+    ],
+    "intermediates": [
+      "United States of America",
+      "Donald Trump"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Soviet Union",
+        "old_answer": "United States of America",
+        "pred": "United States of America",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Elizabeth II",
+        "old_answer": "Mikhail Gorbachev",
+        "pred": "Donald Trump",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 83,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "William Penn",
+    "gt_answer": [
+      "William Penn"
+    ],
+    "intermediates": [
+      "The University of the Arts",
+      "Philadelphia",
+      "William Penn"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "The University of the Arts",
+        "old_answer": "Berklee College of Music",
+        "pred": "The University of the Arts",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Philadelphia",
+        "old_answer": "",
+        "pred": "Philadelphia",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "William Penn",
+        "old_answer": "",
+        "pred": "William Penn",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 84,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": false,
+    "final_pred": "Paris",
+    "gt_answer": [
+      "Tehran"
+    ],
+    "intermediates": [
+      "France",
+      "Paris"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Iran",
+        "old_answer": "France",
+        "pred": "France",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Tehran",
+        "old_answer": "",
+        "pred": "Paris",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 85,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "United States of America",
+    "gt_answer": [
+      "Philippines"
+    ],
+    "intermediates": [
+      "center",
+      "basketball",
+      "United States of America"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "goaltender",
+        "old_answer": "center",
+        "pred": "center",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "pesäpallo",
+        "old_answer": "ice hockey",
+        "pred": "basketball",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Philippines",
+        "old_answer": "Finland",
+        "pred": "United States of America",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 86,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "Washington, D.C.",
+    "gt_answer": [
+      "New Delhi"
+    ],
+    "intermediates": [
+      "Ford Motor Company",
+      "Henry Ford",
+      "United States of America",
+      "Washington",
+      "D.C"
+    ],
+    "n_intermediates": 5,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Ford Motor Company",
+        "old_answer": "",
+        "pred": "Ford Motor Company",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Henri Grégoire",
+        "old_answer": "Henry Ford",
+        "pred": "Henry Ford",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "India",
+        "old_answer": "France",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "New Delhi",
+        "old_answer": "Grosseto",
+        "pred": "Washington",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 87,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "Washington, D.C.",
+    "gt_answer": [
+      "Duluth"
+    ],
+    "intermediates": [
+      "baseball",
+      "United States of America",
+      "Washington",
+      "D.C"
+    ],
+    "n_intermediates": 4,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "association football",
+        "old_answer": "baseball",
+        "pred": "baseball",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Italy",
+        "old_answer": "England",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Duluth",
+        "old_answer": "Rome",
+        "pred": "Washington",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 88,
+    "num_hops": 4,
+    "n_conflict": 4,
+    "exact_match": false,
+    "final_pred": "English",
+    "gt_answer": [
+      "Arabic"
+    ],
+    "intermediates": [
+      "The Beatles",
+      "United Kingdom",
+      "English"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Madonna",
+        "old_answer": "The Beatles",
+        "pred": "The Beatles",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Narendra Modi",
+        "old_answer": "Guy Oseary",
+        "pred": "United Kingdom",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Australia",
+        "old_answer": "India",
+        "pred": "English",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "Arabic",
+        "old_answer": "English",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 89,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "United States of America",
+    "gt_answer": [
+      "Australia"
+    ],
+    "intermediates": [
+      "baseball",
+      "United States of America"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "cricket",
+        "old_answer": "baseball",
+        "pred": "baseball",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Australia",
+        "old_answer": "England",
+        "pred": "United States of America",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 90,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Polish",
+    "gt_answer": [
+      "French"
+    ],
+    "intermediates": [
+      "Polish"
+    ],
+    "n_intermediates": 1,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "T. S. Eliot",
+        "old_answer": "Andrzej Sapkowski",
+        "pred": "Polish",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "French",
+        "old_answer": "English",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  },
+  {
+    "query_id": 91,
+    "num_hops": 4,
+    "n_conflict": 4,
+    "exact_match": false,
+    "final_pred": "Berlin",
+    "gt_answer": [
+      "Duluth"
+    ],
+    "intermediates": [
+      "Friedrich Nietzsche",
+      "Germany",
+      "Berlin"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Stephen Crane",
+        "old_answer": "Friedrich Nietzsche",
+        "pred": "Friedrich Nietzsche",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Charlie Hebdo",
+        "old_answer": "The Red Badge of Courage",
+        "pred": "Germany",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Italy",
+        "old_answer": "France",
+        "pred": "Berlin",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "Duluth",
+        "old_answer": "Rome",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 92,
+    "num_hops": 3,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "German",
+    "gt_answer": [
+      "German"
+    ],
+    "intermediates": [
+      "Ilyushin",
+      "Moscow",
+      "German"
+    ],
+    "n_intermediates": 3,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Ilyushin",
+        "old_answer": "",
+        "pred": "Ilyushin",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Moscow",
+        "old_answer": "",
+        "pred": "Moscow",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "German",
+        "old_answer": "Russian",
+        "pred": "German",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 93,
+    "num_hops": 4,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "Washington, D.C.",
+    "gt_answer": [
+      "Harare"
+    ],
+    "intermediates": [
+      "Elvis Presley",
+      "Priscilla Presley",
+      "United States of America",
+      "Washington",
+      "D.C"
+    ],
+    "n_intermediates": 5,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Elvis Presley",
+        "old_answer": "",
+        "pred": "Elvis Presley",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Charles the Bold",
+        "old_answer": "Priscilla Presley",
+        "pred": "Priscilla Presley",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "France",
+        "old_answer": "",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "Harare",
+        "old_answer": "Paris",
+        "pred": "Washington",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 94,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "England",
+    "gt_answer": [
+      "Japan"
+    ],
+    "intermediates": [
+      "association football",
+      "England"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "baseball",
+        "old_answer": "association football",
+        "pred": "association football",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Japan",
+        "old_answer": "United States of America",
+        "pred": "England",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 95,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Mekere Morauta",
+    "gt_answer": [
+      "Mekere Morauta"
+    ],
+    "intermediates": [
+      "Buddhism",
+      "Mekere Morauta"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Buddhism",
+        "old_answer": "",
+        "pred": "Buddhism",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Mekere Morauta",
+        "old_answer": "Gautama Buddha",
+        "pred": "Mekere Morauta",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 96,
+    "num_hops": 2,
+    "n_conflict": 1,
+    "exact_match": true,
+    "final_pred": "Guangzhou",
+    "gt_answer": [
+      "Guangzhou"
+    ],
+    "intermediates": [
+      "Oscar Wilde",
+      "Guangzhou"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Oscar Wilde",
+        "old_answer": "",
+        "pred": "Oscar Wilde",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Guangzhou",
+        "old_answer": "Paris",
+        "pred": "Guangzhou",
+        "class": "correct"
+      }
+    ],
+    "first_error_hop": null,
+    "first_error_conflict_type": null,
+    "first_error_class": null
+  },
+  {
+    "query_id": 97,
+    "num_hops": 2,
+    "n_conflict": 2,
+    "exact_match": false,
+    "final_pred": "rock music",
+    "gt_answer": [
+      "Australian hip hop"
+    ],
+    "intermediates": [
+      "Bruce Springsteen",
+      "rock music"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "Dana International",
+        "old_answer": "Bruce Springsteen",
+        "pred": "Bruce Springsteen",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Australian hip hop",
+        "old_answer": "pop music",
+        "pred": "rock music",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 98,
+    "num_hops": 4,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "Washington, D.C.",
+    "gt_answer": [
+      "Paris"
+    ],
+    "intermediates": [
+      "Ford Motor Company",
+      "Henry Ford",
+      "United States of America",
+      "Washington",
+      "D.C"
+    ],
+    "n_intermediates": 5,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "no_conflict_pair",
+        "gt_answer": "Ford Motor Company",
+        "old_answer": "",
+        "pred": "Ford Motor Company",
+        "class": "correct"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Henri Grégoire",
+        "old_answer": "Henry Ford",
+        "pred": "Henry Ford",
+        "class": "older_fact"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "France",
+        "old_answer": "India",
+        "pred": "United States of America",
+        "class": "other"
+      },
+      {
+        "hop_idx": 3,
+        "conflict_type": "has_pair",
+        "gt_answer": "Paris",
+        "old_answer": "Harare",
+        "pred": "Washington",
+        "class": "other"
+      }
+    ],
+    "first_error_hop": 1,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "older_fact"
+  },
+  {
+    "query_id": 99,
+    "num_hops": 3,
+    "n_conflict": 3,
+    "exact_match": false,
+    "final_pred": "English",
+    "gt_answer": [
+      "Swedish"
+    ],
+    "intermediates": [
+      "England",
+      "English"
+    ],
+    "n_intermediates": 2,
+    "per_hop": [
+      {
+        "hop_idx": 0,
+        "conflict_type": "has_pair",
+        "gt_answer": "baseball",
+        "old_answer": "association football",
+        "pred": "England",
+        "class": "other"
+      },
+      {
+        "hop_idx": 1,
+        "conflict_type": "has_pair",
+        "gt_answer": "Japan",
+        "old_answer": "United States of America",
+        "pred": "English",
+        "class": "other"
+      },
+      {
+        "hop_idx": 2,
+        "conflict_type": "has_pair",
+        "gt_answer": "Swedish",
+        "old_answer": "Japanese",
+        "pred": null,
+        "class": "missing"
+      }
+    ],
+    "first_error_hop": 0,
+    "first_error_conflict_type": "has_pair",
+    "first_error_class": "other"
+  }
+]

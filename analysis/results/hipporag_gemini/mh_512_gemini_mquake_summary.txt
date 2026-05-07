@@ -1,0 +1,72 @@
+=================================================================
+FC-MH 6k HippoRAG-v2 chunk_size=512 分析報告（MQuAKE精確對應）
+=================================================================
+
+總題數: 100  有效: 100  正確: 20  錯誤: 80
+Accuracy: 20.0%
+No MQuAKE match: 0 題
+
+─────────────────────────────────────────────
+Hop 數分佈與各跳數 Accuracy
+─────────────────────────────────────────────
+  2 跳:   61 題  Acc=26.2%
+  3 跳:   24 題  Acc=12.5%
+  4 跳:   15 題  Acc=6.7%
+
+─────────────────────────────────────────────
+Error type 分佈（全部有效題）
+─────────────────────────────────────────────
+  older_fact            :   54 題  (54.0%)
+  correct               :   20 題  (20.0%)
+  entity_confused       :   14 題  (14.0%)
+  intermediate_stop     :    7 題  (7.0%)
+  hallucination         :    5 題  (5.0%)
+
+  Fail cases (80 題) error type:
+    older_fact            :   54 題  (67.5%)
+    entity_confused       :   14 題  (17.5%)
+    intermediate_stop     :    7 題  (8.8%)
+    hallucination         :    5 題  (6.2%)
+
+  intermediate_stop 詳情（7 題）:
+    停在新版中間答案: 5 題
+    停在舊版中間答案: 2 題
+    [new] hop0 | Q: What is the sport that Blair Walsh plays in which  | out='placekicker'
+    [new] hop0 | Q: What is the name of the child category of "Categor | out='Aristotle'
+    [old] hop0 | Q: Where is the country of origin of FC Vorskla Polta | out='association football'
+    [new] hop0 | Q: Where did the religion associated with the Bagratu | out='Christianity'
+    [old] hop0 | Q: On which continent was Le Petit Parisien originall | out='France'
+    [new] hop0 | Q: What is the name of the political entity that was  | out='Walter Chrysler'
+    [new] hop0 | Q: What was the sport that Hines Ward competed in pro | out='cornerback'
+
+─────────────────────────────────────────────
+各跳的事實 Retrieval 統計（has_pair 跳）
+─────────────────────────────────────────────
+  總跳次數: 254  has_pair: 188  no_conflict_pair: 66
+
+  has_pair 跳的 retrieval 情況:
+    GT（新事實）取回: 183/188
+    Old（舊事實）取回: 184/188
+    兩者都取回: 179/188
+    兩者都取回且同一 passage: 31
+    兩者都取回且不同 passage: 148
+
+  PPR 傾向（兩者取回且不同 passage，n=148）:
+    新事實 PPR 較高（新在前）: 53
+    舊事實 PPR 較高（舊在前）: 95
+    [pass(題)] 有衝突對跳=26, 兩者取回=25, 新PPR高=5, 舊PPR高=18
+    [fail(題)] 有衝突對跳=162, 兩者取回=154, 新PPR高=48, 舊PPR高=77
+
+─────────────────────────────────────────────
+Oracle 實驗準備：舊事實 passage 移除統計
+─────────────────────────────────────────────
+  [全部] 無需移除=8, 移除1個=46, 移除2+個=46
+  [pass] 無需移除=1, 移除1個=15, 移除2+個=4
+  [fail] 無需移除=7, 移除1個=31, 移除2+個=42
+
+─────────────────────────────────────────────
+題目層級：各跳衝突對完整性
+─────────────────────────────────────────────
+  [全部] 全跳有衝突=48, 部分跳有衝突=52, 無衝突=0
+  [pass] 全跳有衝突=6, 部分跳有衝突=14, 無衝突=0
+  [fail] 全跳有衝突=42, 部分跳有衝突=38, 無衝突=0

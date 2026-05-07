@@ -1,0 +1,12 @@
+=== gpt-4o-mini × factconsolidation_sh_32k (SH) ===
+matched=100   correct=72   EM=72.0%
+
+Conflict-type breakdown:
+  has_pair            : n= 65  correct= 42  acc=64.6%
+  no_conflict_pair    : n= 35  correct= 30  acc=85.7%
+
+Error type distribution:
+  correct             :  72 (72.0%)
+  older_fact          :  17 (17.0%)
+  entity_confused     :  11 (11.0%)
+No MQuAKE match: 0

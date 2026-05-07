@@ -1,10 +1,20 @@
+# =====================================================
+# Tier 3: NEVER push (re-downloadable models, large local caches)
+# =====================================================
+.cache/
+cache/
+*.pyc
+*.pyo
+**/__pycache__/
+
+# =====================================================
+# Source-tree noise (already established)
+# =====================================================
 data
 agents
-__pycache__
 external_repos
 process_data
 local_data
-outputs
 outputs_4o
 outputs_timecompute
 raw_dataset
@@ -17,3 +27,20 @@ cognee/.data_storage/
 *.db
 croissant_files
 .env
+
+# =====================================================
+# outputs/ — DO track (Tier 1 EM result JSONs + Tier 2 HippoRAG cache)
+# but block known noise inside it
+# =====================================================
+outputs/**/*.tmp
+outputs/**/*.log
+outputs/**/*.lock
+outputs/**/.DS_Store
+
+# =====================================================
+# 顯式 unblock — keep these out of any wildcard sweeps
+# =====================================================
+!docs/
+!analysis/
+!analysis/results/
+!analysis/experiments/

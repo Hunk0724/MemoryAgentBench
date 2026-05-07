@@ -1,0 +1,13 @@
+=== gemini-3.1-flash-lite-preview × factconsolidation_sh_32k (SH) ===
+matched=100   correct=90   EM=90.0%
+
+Conflict-type breakdown:
+  has_pair            : n= 65  correct= 57  acc=87.7%
+  no_conflict_pair    : n= 35  correct= 33  acc=94.3%
+
+Error type distribution:
+  correct             :  90 (90.0%)
+  empty               :   4 (4.0%)
+  older_fact          :   4 (4.0%)
+  entity_confused     :   2 (2.0%)
+No MQuAKE match: 0

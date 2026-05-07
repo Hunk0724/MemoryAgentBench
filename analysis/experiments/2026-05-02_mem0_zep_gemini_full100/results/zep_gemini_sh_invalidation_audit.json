@@ -1,0 +1,281 @@
+{
+  "label": "Zep × Gemini — FC-SH",
+  "total_invalidations_made_by_zep": 64,
+  "correct": 18,
+  "wrong": 7,
+  "false_positive": 39,
+  "unknown": 0,
+  "has_pair_in_dataset": 74,
+  "uniquely_correct_pairs": 18,
+  "precision_event_level": 0.2812,
+  "recall_pair_level": 0.2432,
+  "f1": 0.2609,
+  "correct_items": [
+    {
+      "edge_fact": "The chairperson of Harvard University is Lawrence S. Bacow.",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z",
+      "matched_pair_qid": 20,
+      "gt_old": "The chairperson of Harvard University is Lawrence S. Bacow.",
+      "gt_new": "The chairperson of Harvard University is Peter Diamandis."
+    },
+    {
+      "edge_fact": "The capital of Romania is Bucharest.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z",
+      "matched_pair_qid": 85,
+      "gt_old": "The capital of Romania is Bucharest.",
+      "gt_new": "The capital of Romania is Rajanpur."
+    },
+    {
+      "edge_fact": "The chairperson of Congolese Party of Labour is Denis Sassou-Nguesso.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z",
+      "matched_pair_qid": 77,
+      "gt_old": "The chairperson of Congolese Party of Labour is Denis Sassou-Nguesso.",
+      "gt_new": "The chairperson of Congolese Party of Labour is Stephen McNeil."
+    },
+    {
+      "edge_fact": "Colin Irwin is a citizen of United Kingdom.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z",
+      "matched_pair_qid": 96,
+      "gt_old": "Colin Irwin is a citizen of United Kingdom.",
+      "gt_new": "Colin Irwin is a citizen of Israel."
+    },
+    {
+      "edge_fact": "Sable is a citizen of United States of America.",
+      "edge_invalid_at": "2026-05-02T14:40:00.514Z",
+      "matched_pair_qid": 55,
+      "gt_old": "Sable is a citizen of United States of America.",
+      "gt_new": "Sable is a citizen of Czech Republic."
+    },
+    {
+      "edge_fact": "Lisa Leslie plays the position of center.",
+      "edge_invalid_at": "2026-05-02T14:39:59.394Z",
+      "matched_pair_qid": 80,
+      "gt_old": "Lisa Leslie plays the position of center.",
+      "gt_new": "Lisa Leslie plays the position of goaltender."
+    },
+    {
+      "edge_fact": "goaltender is associated with the sport of ice hockey.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z",
+      "matched_pair_qid": 0,
+      "gt_old": "goaltender is associated with the sport of ice hockey.",
+      "gt_new": "goaltender is associated with the sport of pesäpallo."
+    },
+    {
+      "edge_fact": "Tony Blair is married to Cherie Blair.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z",
+      "matched_pair_qid": 73,
+      "gt_old": "Tony Blair is married to Cherie Blair.",
+      "gt_new": "Tony Blair is married to Alan Jay Lerner."
+    },
+    {
+      "edge_fact": "The chief executive officer of Twitter is Jack Dorsey.",
+      "edge_invalid_at": "2026-05-02T14:40:00.514Z",
+      "matched_pair_qid": 62,
+      "gt_old": "The chief executive officer of Twitter is Jack Dorsey.",
+      "gt_new": "The chief executive officer of Twitter is Bernard Arnault."
+    },
+    {
+      "edge_fact": "The official language of Japan is Japanese.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z",
+      "matched_pair_qid": 8,
+      "gt_old": "The official language of Japan is Japanese.",
+      "gt_new": "The official language of Japan is Swedish."
+    },
+    {
+      "edge_fact": "Gennady Rozhdestvensky died in the city of Moscow.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z",
+      "matched_pair_qid": 24,
+      "gt_old": "Gennady Rozhdestvensky died in the city of Moscow.",
+      "gt_new": "Gennady Rozhdestvensky died in the city of United States of America."
+    },
+    {
+      "edge_fact": "Sasanian Empire was founded by Ardashir I.",
+      "edge_invalid_at": "2026-05-02T14:40:00.137Z",
+      "matched_pair_qid": 88,
+      "gt_old": "Sasanian Empire was founded by Ardashir I.",
+      "gt_new": "Sasanian Empire was founded by Walter Chrysler."
+    },
+    {
+      "edge_fact": "Kingdom of Ireland is affiliated with the religion of Catholic Church.",
+      "edge_invalid_at": "2026-05-02T14:40:00.137Z",
+      "matched_pair_qid": 16,
+      "gt_old": "Kingdom of Ireland is affiliated with the religion of Catholic Church.",
+      "gt_new": "Kingdom of Ireland is affiliated with the religion of Zoroastrianism."
+    },
+    {
+      "edge_fact": "Walter Chrysler's child is Walter Percy Chrysler Jr..",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z",
+      "matched_pair_qid": 97,
+      "gt_old": "Walter Chrysler's child is Walter Percy Chrysler Jr..",
+      "gt_new": "Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp."
+    },
+    {
+      "edge_fact": "Stephen McNeil works in the field of politician.",
+      "edge_invalid_at": "2026-05-02T14:40:00Z",
+      "matched_pair_qid": 66,
+      "gt_old": "Stephen McNeil works in the field of politician.",
+      "gt_new": "Stephen McNeil works in the field of journalist."
+    },
+    {
+      "edge_fact": "Dave Filoni is employed by Lucasfilm.",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z",
+      "matched_pair_qid": 67,
+      "gt_old": "Dave Filoni is employed by Lucasfilm.",
+      "gt_new": "Dave Filoni is employed by British Broadcasting Corporation."
+    },
+    {
+      "edge_fact": "The type of music that John McVie plays is rock music.",
+      "edge_invalid_at": "2026-05-02T14:40:01.671Z",
+      "matched_pair_qid": 60,
+      "gt_old": "The type of music that John McVie plays is rock music.",
+      "gt_new": "The type of music that John McVie plays is rap rock."
+    },
+    {
+      "edge_fact": "Karen Armstrong is affiliated with the religion of Catholic Church.",
+      "edge_invalid_at": "2026-05-02T14:40:01.671Z",
+      "matched_pair_qid": 83,
+      "gt_old": "Karen Armstrong is affiliated with the religion of Catholic Church.",
+      "gt_new": "Karen Armstrong is affiliated with the religion of Church of Scotland."
+    }
+  ],
+  "wrong_items": [
+    {
+      "edge_fact": "The chief executive officer of Twitter is Bernard Arnault.",
+      "edge_invalid_at": "2026-05-02T14:40:00.925Z",
+      "matched_pair_qid": 62,
+      "gt_old": "The chief executive officer of Twitter is Jack Dorsey.",
+      "gt_new": "The chief executive officer of Twitter is Bernard Arnault.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "India is located in the continent of Africa.",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z",
+      "matched_pair_qid": 86,
+      "gt_old": "India is located in the continent of Asia.",
+      "gt_new": "India is located in the continent of Africa.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "The official language of United States of America is German.",
+      "edge_invalid_at": "2026-05-02T14:40:00.137Z",
+      "matched_pair_qid": 35,
+      "gt_old": "The official language of United States of America is American English.",
+      "gt_new": "The official language of United States of America is German.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "quarterback is associated with the sport of Muay Thai.",
+      "edge_invalid_at": "2026-05-02T14:39:57.792Z",
+      "matched_pair_qid": 7,
+      "gt_old": "quarterback is associated with the sport of American football.",
+      "gt_new": "quarterback is associated with the sport of Muay Thai.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "Slovakia national football team is associated with the sport of cricket.",
+      "edge_invalid_at": "2026-05-02T14:39:57.792Z",
+      "matched_pair_qid": 51,
+      "gt_old": "Slovakia national football team is associated with the sport of association football.",
+      "gt_new": "Slovakia national football team is associated with the sport of cricket.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "Cédric Klapisch is a citizen of Malaysia.",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z",
+      "matched_pair_qid": 13,
+      "gt_old": "Cédric Klapisch is a citizen of France.",
+      "gt_new": "Cédric Klapisch is a citizen of Malaysia.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "The type of music that Dana International plays is Australian hip hop.",
+      "edge_invalid_at": "2026-05-02T14:40:00.137Z",
+      "matched_pair_qid": 54,
+      "gt_old": "The type of music that Dana International plays is pop music.",
+      "gt_new": "The type of music that Dana International plays is Australian hip hop.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    }
+  ],
+  "false_positive_items": [
+    {
+      "edge_fact": "The current head of state in United Kingdom is Elizabeth II.",
+      "edge_invalid_at": "2026-05-02T14:40:00Z"
+    },
+    {
+      "edge_fact": "The chief executive officer of Apple Inc. is Tim Cook.",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z"
+    },
+    {
+      "edge_fact": "Yves Montand is married to Simone Signoret.",
+      "edge_invalid_at": "2026-05-02T14:40:00.137Z"
+    },
+    {
+      "edge_fact": "The capital of India is New Delhi.",
+      "edge_invalid_at": "2026-05-02T14:40:00.925Z"
+    },
+    {
+      "edge_fact": "The capital of England is London.",
+      "edge_invalid_at": "2026-05-02T14:39:57.792Z"
+    },
+    {
+      "edge_fact": "The Vampyre was written in the language of English.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z"
+    },
+    {
+      "edge_fact": "Aladdin Sane was performed by Yves Montand.",
+      "edge_invalid_at": "2026-05-02T14:39:57.792Z"
+    },
+    {
+      "edge_fact": "center is associated with the sport of basketball.",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z"
+    },
+    {
+      "edge_fact": "Canada is located in the continent of North America.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z"
+    },
+    {
+      "edge_fact": "Australia is located in the continent of Oceania.",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z"
+    },
+    {
+      "edge_fact": "Israel was founded by David Ben-Gurion.",
+      "edge_invalid_at": "2026-05-02T14:39:58.55Z"
+    },
+    {
+      "edge_fact": "The capital of Italy is Rome.",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z"
+    },
+    {
+      "edge_fact": "Laura Bush is married to George W. Bush.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z"
+    },
+    {
+      "edge_fact": "Born in the U.S.A. was performed by Bruce Springsteen.",
+      "edge_invalid_at": "2026-05-02T14:40:00.925Z"
+    },
+    {
+      "edge_fact": "Amala Paul is a citizen of India.",
+      "edge_invalid_at": "2026-05-02T14:40:00.925Z"
+    },
+    {
+      "edge_fact": "Country Joe McDonald is a citizen of United States of America.",
+      "edge_invalid_at": "2026-05-02T14:40:00.137Z"
+    },
+    {
+      "edge_fact": "David Bowie is married to Iman.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z"
+    },
+    {
+      "edge_fact": "cricket was created in the country of England.",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z"
+    },
+    {
+      "edge_fact": "Sandy Alderson is associated with the sport of association football.",
+      "edge_invalid_at": "2026-05-02T14:39:59.762Z"
+    },
+    {
+      "edge_fact": "Alta IF is associated with the sport of association football.",
+      "edge_invalid_at": "2026-05-02T14:40:02.043Z"
+    }
+  ]
+}

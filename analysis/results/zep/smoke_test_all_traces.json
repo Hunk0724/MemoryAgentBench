@@ -1,0 +1,230 @@
+[
+  {
+    "qid": 6,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "Which country does the current CEO of Twitter hold citizenship of?",
+    "gt": "France",
+    "real_question": "Which country does the current CEO of Twitter hold citizenship of?",
+    "hippo": {
+      "C_original": {
+        "response": "The current CEO of Twitter is stated to be Jack Dorsey in one fact, and later it is mentioned that the CEO is Bernard Arnault. Since Bernard Arnault has a larger serial number, he is the most recent fact. However, there is no specific mention of his citizenship in the provided knowledge pool. Therefore, I will refer to the earlier fact about Jack Dorsey, who is a citizen of the United States of America. \n\nAnswer: United States of America.",
+        "parsed_answer": "United States of America"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Twitter, CEO)\n    Candidates found in context:\n      - The chief executive officer of Twitter is Jack Dorsey. | source: FACTS | seq: 109 | date-range: <if-any>\n      - The chief executive officer of Twitter is Bernard Arnault. | source: FACTS | seq: 275 | date-range: <if-any>\n    Conflict among candidates: yes\n    Selected: Jack Dorsey\n    Signal used: larger serial number\n    Criterion: \"larger serial number\"\n  \n  Hop 2 (entity, relation): (Jack Dorsey, citizenship)\n    Candidates found in context:\n      - Jack Dorsey is a citizen of United States of America. | source: FACTS | seq: 118 | date-range: <if-any>\n    Conflict among candidates: no\n    Selected: United States of America\n    Signal used: none\n    Criterion: \"only candidate\"\n\nReasoning chain:\n  Hop 1 selected: Jack Dorsey\n  Hop 2 lookup: (Jack Dorsey, citizenship) -> United States of America\n  Final: United States of America\n\nAnswer: United States of America.",
+        "parsed_answer": "United States of America"
+      },
+      "B_post_hoc": {
+        "response": "Thought: To determine the citizenship of the current CEO of Twitter, I will analyze the relevant facts from the provided context, identify any conflicts, and explain how I arrived at the conclusion.\n\nEvidence:\n  Hop 1: The chief executive officer of Twitter is Jack Dorsey. (Source: 109)\n  Hop 2: Jack Dorsey is a citizen of United States of America. (Source: 118)\n\nReasoning chain:\n  Hop 1 (Jack Dorsey is the CEO of Twitter) -> Hop 2 (Jack Dorsey is a citizen of the United States) -> Final (Jack Dorsey, the CEO of Twitter, holds citizenship in the United States of America)\n\nJustification: The answer \"United States of America\" is correct because the evidence clearly states that Jack Dorsey is the CEO of Twitter and that he is a citizen of the United States. There were no conflicting versions regarding his citizenship in the context provided.",
+        "prior_answer": "United States of America"
+      }
+    },
+    "zep": {
+      "C_original": {
+        "response": "France",
+        "parsed_answer": "France"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Bernard Arnault, citizenship)\n    Candidates found in context:\n      - Bernard Arnault is a citizen of France. | source: FACTS | seq: 3 | date-range: 2026-04-21T00:00:00Z - present\n    Conflict among candidates: no\n    Selected: France\n    Signal used: none\n    Criterion: fallback\n  Hop 2 (entity, relation): (Jack Dorsey, citizenship)\n    Candidates found in context:\n      - Jack Dorsey is a citizen of the United States of America. | source: FACTS | seq: 4 | date-range: date unknown - present\n    Conflict among candidates: no\n    Selected: United States of America\n    Signal used: none\n    Criterion: fallback\n  Hop 3 (entity, relation): (Twitter, CEO)\n    Candidates found in context:\n      - The chief executive officer of Twitter is Bernard Arnault. | source: FACTS | seq: 1 | date-range: 2026-04-21T00:00:00Z - present\n      - The chief executive officer of Twitter is Jack Dorsey. | source: FACTS | seq: 2 | date-range: date unknown - present\n    Conflict among candidates: yes\n    Selected: Bernard Arnault\n    Signal used: larger serial number\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: France\n  Hop 2 selected: United States of America\n  Hop 3 selected: Bernard Arnault (CEO of Twitter)\n\nFinal: France\n\nAnswer: France",
+        "parsed_answer": "France"
+      },
+      "B_post_hoc": {
+        "response": "**Evidence:**\n\n**Hop 1:** \n- The chief executive officer of Twitter is Bernard Arnault. (2026-04-21T00:00:00Z - present)\n- The chief executive officer of Twitter is Jack Dorsey. (date unknown - present)\n\n**Hop 2:** \n- Bernard Arnault is a citizen of France. (from entity summary)\n- Jack Dorsey is a citizen of the United States of America. (from entity summary)\n\n**Reasoning chain:**\n- Hop 1: The context provides two conflicting facts regarding the CEO of Twitter: Bernard Arnault and Jack Dorsey. The date range indicates that Bernard Arnault is the current CEO as of April 21, 2026, while Jack Dorsey is listed without a specific date, suggesting he is not the current CEO.\n- Hop 2: Bernard Arnault is confirmed to be a citizen of France, while Jack Dorsey is a citizen of the United States. Since Bernard Arnault is the current CEO, I focus on his citizenship.\n\n**Justification:** \nThe answer \"France\" is correct because the most recent and relevant fact indicates that Bernard Arnault is the current CEO of Twitter and he holds citizenship in France. The conflicting information about Jack Dorsey is resolved by the date range, which shows that Bernard Arnault is the current CEO as of the specified date. Thus, the conclusion is based on the most current and relevant information available in the context.",
+        "prior_answer": "France"
+      }
+    }
+  },
+  {
+    "qid": 4,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the sport that Blair Walsh plays in which he is known for his position o",
+    "gt": "rugby",
+    "real_question": "What is the sport that Blair Walsh plays in which he is known for his position on the team?",
+    "hippo": {
+      "C_original": {
+        "response": "The knowledge pool indicates that Blair Walsh plays the position of placekicker, which is associated with the sport of American football. There are no conflicting facts regarding his position or the sport. \nAnswer: American football.",
+        "parsed_answer": "American football"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Blair Walsh, position): (Blair Walsh, plays the position of placekicker)\n    Candidates found in context:\n      - Blair Walsh plays the position of placekicker. | source: FACTS | seq: 419 | date-range: <none>\n    Conflict among candidates: no\n    Selected: placekicker\n    Signal used: none\n    Criterion: none\n\nReasoning chain:\n  Hop 1 selected: placekicker\n\nFinal: placekicker\n\nAnswer: placekicker",
+        "parsed_answer": "placekicker"
+      },
+      "B_post_hoc": {
+        "response": "Thought: To answer the question about the sport Blair Walsh plays, I will analyze the context for relevant facts regarding his position and the sport associated with it.\n\nEvidence:\n  Hop 1: The fact \"Blair Walsh plays the position of placekicker.\" (Source: 419)\n  Hop 2: The fact \"placekicker is associated with the sport of American football.\" (Source: 78)\n\nReasoning chain:\n  Hop 1 -> Hop 2 -> Final\n\nJustification: The first hop identifies Blair Walsh's position as a placekicker, and the second hop connects that position to the sport of American football. There are no conflicting facts regarding the sport associated with the position of placekicker, leading to the conclusion that Blair Walsh plays American football. \n\nAnswer: American football",
+        "prior_answer": "American football"
+      }
+    },
+    "zep": {
+      "C_original": {
+        "response": "American football",
+        "parsed_answer": "American football"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Blair Walsh, plays position)\n    Candidates found in context:\n      - Blair Walsh plays the position of placekicker. | source: FACTS | seq: 1 | date-range: 2026-04-21T11:11:58.622Z - present\n    Conflict among candidates: no\n    Selected: placekicker\n    Signal used: none\n    Criterion: \"no conflict\"\n  \nReasoning chain:\n  Hop 1 selected: placekicker\n\nFinal: placekicker\n\nAnswer: placekicker",
+        "parsed_answer": "placekicker"
+      },
+      "B_post_hoc": {
+        "response": "**Evidence:**\n\n**Hop 1:** \n- Fact: \"Blair Walsh plays the position of placekicker.\" (Date range: 2026-04-21T11:11:58.622Z - present)\n- Fact: \"placekicker is associated with the sport of American football.\" (Entity summary)\n\n**Hop 2:** \n- Fact: \"placekicker is associated with the sport of American football.\" (Entity summary)\n\n**Reasoning chain:**\n- Hop 1: From the fact that \"Blair Walsh plays the position of placekicker,\" I identified that he is a player in a specific position. \n- Hop 2: I then linked the position of placekicker to the sport of American football, confirming that the sport associated with his position is American football.\n\n**Justification:** \nThe answer \"American football\" is correct because it is directly supported by the facts that establish Blair Walsh's position as a placekicker and the association of that position with the sport of American football. There were no conflicting versions of the facts regarding the sport associated with the position of placekicker, and the evidence was clear and consistent.",
+        "prior_answer": "American football"
+      }
+    }
+  },
+  {
+    "qid": 14,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "What was the name of the head of state in the country where Andrew Carnegie was ",
+    "gt": "Emmerson Mnangagwa",
+    "real_question": "What was the name of the head of state in the country where Andrew Carnegie was a citizen?",
+    "hippo": {
+      "C_original": {
+        "response": "The knowledge pool indicates that Andrew Carnegie is a citizen of the United States of America. The most recent fact regarding the head of state in the United States of America is that the current head of state is Donald Trump. \nAnswer: Donald Trump.",
+        "parsed_answer": "Donald Trump"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Andrew Carnegie, citizenship)\n    Candidates found in context:\n      - Andrew Carnegie is a citizen of United States of America. | source: FACTS | seq: 338 | date-range: <none>\n    Conflict among candidates: no\n    Selected: United States of America\n    Signal used: none\n    Criterion: none\n  Hop 2 (entity, relation): (United States of America, head of state)\n    Candidates found in context:\n      - The name of the current head of state in United States of America is Donald Trump. | source: FACTS | seq: 115 | date-range: <none>\n      - The name of the current head of state in United States of America is Connachta. | source: FACTS | seq: 126 | date-range: <none>\n    Conflict among candidates: yes\n    Selected: Donald Trump\n    Signal used: larger serial number\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: United States of America\n  Hop 2 lookup: (United States of America, head of state) -> Donald Trump\n\nFinal: Donald Trump\n\nAnswer: Donald Trump",
+        "parsed_answer": "Donald Trump"
+      },
+      "B_post_hoc": {
+        "response": "Thought: To answer the question about the head of state in the country where Andrew Carnegie was a citizen, I need to first identify the country of citizenship for Andrew Carnegie and then find the current head of state for that country.\n\nEvidence:\n  Hop 1: \n    - \"Andrew Carnegie is a citizen of United States of America.\" (Source: 338)\n  \n  Hop 2: \n    - \"The name of the current head of state in United States of America is Donald Trump.\" (Source: 115)\n\nReasoning chain:\n  Hop 1 -> Hop 2 -> Final\n\nJustification: The first hop identifies that Andrew Carnegie is a citizen of the United States of America. The second hop provides the name of the current head of state in the United States, which is Donald Trump. There are no conflicting versions regarding the head of state in the context provided, and the information is consistent with world knowledge as of the time referenced. Therefore, the answer \"Donald Trump\" is correct based on the evidence gathered. \n\nAnswer: Donald Trump",
+        "prior_answer": "Donald Trump"
+      }
+    },
+    "zep": {
+      "C_original": {
+        "response": "Emmerson Mnangagwa",
+        "parsed_answer": "Emmerson Mnangagwa"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Andrew Carnegie, citizen of)\n    Candidates found in context:\n      - Andrew Carnegie is a citizen of United States of America. | source: FACTS | seq: 1 | date-range: 2026-04-21T00:00:00Z - 2026-04-21T11:11:57.88Z\n      - Andrew Carnegie is a citizen of United Kingdom. | source: FACTS | seq: 2 | date-range: 2026-04-21T11:11:57.88Z - present\n    Conflict among candidates: yes\n    Selected: United Kingdom\n    Signal used: larger serial number\n    Criterion: \"larger serial number\"\n  \n  Hop 2 (entity, relation): (United Kingdom, head of state)\n    Candidates found in context:\n      - The name of the current head of state in United Kingdom is Elizabeth II. | source: FACTS | seq: 1 | date-range: 2026-04-21T00:00:00Z - 2026-04-21T11:11:56.797Z\n      - The name of the current head of state in United Kingdom is Emmerson Mnangagwa. | source: FACTS | seq: 2 | date-range: 2026-04-21T11:11:56.797Z - present\n    Conflict among candidates: yes\n    Selected: Emmerson Mnangagwa\n    Signal used: larger serial number\n    Criterion: \"larger serial number\"\n\nReasoning chain:\n  Hop 1 selected: United Kingdom\n  Hop 2 lookup: (United Kingdom, head of state) -> Emmerson Mnangagwa\n\nFinal: Emmerson Mnangagwa\n\nAnswer: Emmerson Mnangagwa",
+        "parsed_answer": "Emmerson Mnangagwa"
+      },
+      "B_post_hoc": {
+        "response": "**Evidence:**\n\n**Hop 1:** \n- Fact: \"Andrew Carnegie is a citizen of United Kingdom.\" (2026-04-21T11:11:57.88Z - present)\n- Fact: \"The name of the current head of state in United Kingdom is Emmerson Mnangagwa.\" (2026-04-21T11:11:56.797Z - present)\n- Fact: \"The name of the current head of state in United Kingdom is Elizabeth II.\" (2026-04-21T00:00:00Z - 2026-04-21T11:11:56.797Z)\n\n**Hop 2:**\n- Fact: \"The name of the current head of state in United Kingdom is Emmerson Mnangagwa.\" (2026-04-21T11:11:56.797Z - present)\n- Fact: \"The name of the current head of state in United Kingdom is Elizabeth II.\" (2026-04-21T00:00:00Z - 2026-04-21T11:11:56.797Z)\n\n**Reasoning chain:**\n- Hop 1: Identify Andrew Carnegie's citizenship and the corresponding head of state in the United Kingdom.\n- Hop 2: Resolve the conflicting facts regarding the head of state in the United Kingdom.\n\n**Justification:** \nAndrew Carnegie is a citizen of the United Kingdom, and the relevant facts indicate that the head of state changed from Elizabeth II to Emmerson Mnangagwa on April 21, 2026. Since the question pertains to the current head of state at the time of the inquiry, Emmerson Mnangagwa is the correct answer. The resolution of the conflict between the two head of state facts was based on the date range, confirming that Emmerson Mnangagwa is the current head of state after Elizabeth II.",
+        "prior_answer": "Emmerson Mnangagwa"
+      }
+    }
+  },
+  {
+    "qid": 5,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the name of the educational institution where the partner of Nicolae Cea",
+    "gt": "Baldwin Wallace University",
+    "real_question": "What is the name of the educational institution where the partner of Nicolae Ceaușescu was educated?",
+    "hippo": {
+      "C_original": {
+        "response": "The partner of Nicolae Ceaușescu is Elena Ceaușescu. The most recent fact regarding her education states that she was educated at the University of Bucharest. \nAnswer: University of Bucharest.",
+        "parsed_answer": "University of Bucharest"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Nicolae Ceaușescu, partner)\n    Candidates found in context:\n      - \"Nicolae Ceaușescu is married to Elena Ceaușescu.\" | source: FACTS | seq: 58 | date-range: <if-any>\n    Conflict among candidates: no\n    Selected: Elena Ceaușescu\n    Signal used: none\n    Criterion: \"no conflict\"\n  \n  Hop 2 (entity, relation): (Elena Ceaușescu, educated at)\n    Candidates found in context:\n      - \"The university where Elena Ceaușescu was educated is University of Bucharest.\" | source: FACTS | seq: 333 | date-range: <if-any>\n    Conflict among candidates: no\n    Selected: University of Bucharest\n    Signal used: none\n    Criterion: \"no conflict\"\n\nReasoning chain:\n  Hop 1 selected: Elena Ceaușescu\n  Hop 2 lookup: (Elena Ceaușescu, educated at) -> University of Bucharest\n  Final: University of Bucharest\n\nAnswer: University of Bucharest.",
+        "parsed_answer": "University of Bucharest"
+      },
+      "B_post_hoc": {
+        "response": "Thought: To answer the question about the educational institution where Nicolae Ceaușescu's partner was educated, I need to identify relevant facts from the provided context. I will look for information about Nicolae Ceaușescu and his partner, as well as their educational backgrounds.\n\nEvidence:\n  Hop 1: I found the fact \"Nicolae Ceaușescu is married to Elena Ceaușescu.\" (Source: 58)\n  Hop 2: I found the fact \"The university where Elena Ceaușescu was educated is University of Bucharest.\" (Source: 333)\n\nReasoning chain:\n  Hop 1 -> Hop 2 -> Final\n\nJustification: The first hop identifies Elena Ceaușescu as the partner of Nicolae Ceaușescu. The second hop provides the specific educational institution where she was educated, which is the University of Bucharest. There were no conflicting versions regarding Elena Ceaușescu's educational background in the context. Therefore, the answer \"University of Bucharest\" is correct based on the direct evidence found in the text. \n\nAnswer: University of Bucharest",
+        "prior_answer": "University of Bucharest"
+      }
+    },
+    "zep": {
+      "C_original": {
+        "response": "University of Bucharest",
+        "parsed_answer": "University of Bucharest"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Nicolae Ceaușescu, partner of)\n    Candidates found in context:\n      - Nicolae Ceaușescu is married to Elena Ceaușescu. | source: FACTS | seq: N/A | date-range: date unknown - present\n      - Nicolae Ceaușescu is married to Wilhelm II. | source: FACTS | seq: N/A | date-range: date unknown - present\n    Conflict among candidates: yes\n    Selected: Elena Ceaușescu\n    Signal used: none\n    Criterion: fallback (choosing the first mentioned partner)\n  \n  Hop 2 (entity, relation): (Elena Ceaușescu, educated at)\n    Candidates found in context:\n      - The university where Elena Ceaușescu was educated is University of Bucharest. | source: FACTS | seq: N/A | date-range: date unknown - present\n    Conflict among candidates: no\n    Selected: University of Bucharest\n    Signal used: none\n    Criterion: direct match\n\nReasoning chain:\n  Hop 1 selected: Elena Ceaușescu\n  Hop 2 lookup: (Elena Ceaușescu, educated at) -> University of Bucharest\n  Final: University of Bucharest\n\nAnswer: University of Bucharest",
+        "parsed_answer": "University of Bucharest"
+      },
+      "B_post_hoc": {
+        "response": "**Evidence:**\n\n**Hop 1:** \n- Fact: \"The university where Elena Ceaușescu was educated is University of Bucharest.\" (date unknown - present)\n- Fact: \"Nicolae Ceaușescu is married to Elena Ceaușescu.\" (date unknown - present)\n\n**Hop 2:** \n- Fact: \"Nicolae Ceaușescu is married to Wilhelm II.\" (date unknown - present) \n- Fact: \"The university where Wilhelm II was educated is University of Bonn.\" (date unknown - present)\n- Fact: \"The university where Wilhelm II was educated is Baldwin Wallace University.\" (date unknown - present)\n\n**Conflicting Versions:**\n- For Wilhelm II, there are two conflicting facts regarding his educational institution: University of Bonn and Baldwin Wallace University.\n\n**Reasoning Chain:**\n- Hop 1: I identified that Elena Ceaușescu is the partner of Nicolae Ceaușescu and that she was educated at the University of Bucharest.\n- Hop 2: I noted that there is a conflict regarding Wilhelm II's educational background, but since the question specifically asked about the partner of Nicolae Ceaușescu (Elena), the conflicting information about Wilhelm II does not affect the answer.\n\n**Justification:**\nThe answer \"University of Bucharest\" is correct because it directly follows from the fact that Elena Ceaușescu, the partner of Nicolae Ceaușescu, was educated there. The conflicting information regarding Wilhelm II is irrelevant to the question, as it does not pertain to Elena Ceaușescu. Thus, the answer is based solely on the relevant fact about Elena's education.",
+        "prior_answer": "University of Bucharest"
+      }
+    }
+  },
+  {
+    "qid": 3,
+    "n_hops": 3,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Which city serves as the capital of the country of origin for the sport of the T",
+    "gt": "Russellville",
+    "real_question": "Which city serves as the capital of the country of origin for the sport of the Tunisia national football team?",
+    "hippo": {
+      "C_original": {
+        "response": "The Tunisia national football team is associated with the sport of association football, which was created in the country of England. The capital of England is London. \nAnswer: London.",
+        "parsed_answer": "London"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Tunisia national football team, country of origin)\n    Candidates found in context:\n      - \"Tunisia national football team is associated with the sport of association football.\" | source: FACTS | seq: 235\n      - \"Tunisia national football team is associated with the sport of basketball.\" | source: FACTS | seq: 418\n    Conflict among candidates: yes\n    Selected: Tunisia\n    Signal used: larger serial number\n    Criterion: \"larger serial number\"\n  \n  Hop 2 (entity, relation): (Tunisia, capital city)\n    Candidates found in context:\n      - \"The capital of Tunisia is Tunis.\" | source: FACTS | seq: 0 (assumed from general knowledge)\n    Conflict among candidates: no\n    Selected: Tunis\n    Signal used: none\n    Criterion: \"fallback\"\n\nReasoning chain:\n  Hop 1 selected: Tunisia\n  Hop 2 lookup: (Tunisia, capital city) -> Tunis\n  Final: Tunis\n\nAnswer: Tunis",
+        "parsed_answer": "Tunis"
+      },
+      "B_post_hoc": {
+        "response": "Thought: To answer the question about the capital of the country of origin for the sport of the Tunisia national football team, I need to identify the country associated with the Tunisia national football team and then find the capital of that country. \n\nEvidence:\n  Hop 1: The Tunisia national football team is associated with the sport of association football. (Source: 235)\n  Hop 2: Association football was created in the country of England. (Source: 272)\n  Hop 3: The capital of England is London. (Source: 33)\n\nReasoning chain:\n  Hop 1 (Tunisia national football team -> association football) -> Hop 2 (association football -> England) -> Hop 3 (England -> London)\n\nJustification: The Tunisia national football team is linked to association football, which originated in England. Therefore, the capital of England, which is London, is the correct answer to the question regarding the capital of the country of origin for the sport associated with the Tunisia national football team. \n\nAnswer: London",
+        "prior_answer": "London"
+      }
+    },
+    "zep": {
+      "C_original": {
+        "response": "Rajanpur",
+        "parsed_answer": "Rajanpur"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Tunisia national football team, associated with the sport of)\n    Candidates found in context:\n      - Tunisia national football team is associated with the sport of basketball. | source: FACTS | seq: 1 | date-range: 2026-04-21T11:11:58.622Z - present\n      - Tunisia national football team is associated with the sport of association football. | source: FACTS | seq: 0 | date-range: 2026-04-21T11:11:56.797Z - 2026-04-21T11:11:58.622Z\n    Conflict among candidates: yes\n    Selected: Tunisia national football team is associated with the sport of basketball.\n    Signal used: serial-number\n    Criterion: larger serial number\n  Hop 2 (entity, relation): (basketball, created in the country of)\n    Candidates found in context:\n      - basketball was created in the country of the United States of America. | source: ENTITIES | seq: 0 | date-range: unknown - present\n    Conflict among candidates: no\n    Selected: basketball was created in the country of the United States of America.\n    Signal used: none\n    Criterion: fallback\n  Hop 3 (entity, relation): (United States of America, capital is)\n    Candidates found in context:\n      - The capital of United States of America is Washington, D.C.. | source: ENTITIES | seq: 0 | date-range: unknown - present\n    Conflict among candidates: no\n    Selected: The capital of United States of America is Washington, D.C..\n    Signal used: none\n    Criterion: fallback\n\nReasoning chain:\n  Hop 1 selected: Tunisia national football team is associated with the sport of basketball.\n  Hop 2 lookup: (basketball, created in the country of) -> United States of America\n  Hop 3 lookup: (United States of America, capital is) -> Washington, D.C.\n\nFinal: Washington, D.C.\n\nAnswer: Washington, D.C.",
+        "parsed_answer": "Washington, D.C"
+      },
+      "B_post_hoc": {
+        "response": "**Evidence:**\n\n**Hop 1:** \n- \"Tunisia national football team is associated with the sport of basketball.\" (2026-04-21T11:11:58.622Z - present)\n- \"association football was created in the country of England.\" (date unknown - present)\n- \"association football was created in the country of Italy.\" (date unknown - present)\n\n**Hop 2:**\n- \"The capital of Romania is Rajanpur.\" (2026-04-21T11:11:58.622Z - present)\n- \"The capital of France is Paris.\" (2026-04-21T11:11:56.096Z - present)\n- \"The capital of Italy is Rome.\" (date unknown - present)\n\n**Hop 3:**\n- \"The capital of Iran is Tehran.\" (2026-04-21T11:11:56.797Z - present)\n\n**Reasoning chain:**\n- Hop 1: Identify the sport associated with the Tunisia national football team, which is basketball. However, the sport of association football is relevant as it is the original sport associated with the team.\n- Hop 2: Determine the country of origin for association football. The conflicting facts state that it was created in both England and Italy. However, I will use world knowledge that association football is widely recognized as having originated in England.\n- Hop 3: Since the Tunisia national football team is associated with basketball, and basketball was created in the United States, I need to find the capital of the country associated with the sport of basketball. The capital of the United States is Washington, D.C., but I need to find the capital of the country associated with the sport of association football, which is England. The capital of England is London.\n\n**Justification:** \nThe answer \"Rajanpur\" is incorrect based on the context provided. The capital of the country of origin for the sport of the Tunisia national football team (basketball) is Washington, D.C. However, if we consider the sport of association football, which is relevant to the context, the capital of England (the country of origin for association football) is London. Therefore, the correct answer should be London, not Rajanpur. The confusion arises from the association of the Tunisia national football team with basketball rather than association football.",
+        "prior_answer": "Rajanpur"
+      }
+    }
+  },
+  {
+    "qid": 1,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": true,
+    "question": "In which location did the spouse of Igor of Kiev pass away?",
+    "gt": "Rodez",
+    "real_question": "In which location did the spouse of Igor of Kiev pass away?",
+    "hippo": {
+      "C_original": {
+        "response": "The knowledge pool does not provide any information about the location of Igor of Kiev's spouse's death. Therefore, I cannot find a relevant fact to answer the question. \nAnswer: Unknown.",
+        "parsed_answer": "Unknown"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Igor of Kiev, spouse)\n    Candidates found in context:\n      - Igor of Kiev is married to Olga of Kiev. | source: FACTS | seq: 175 | date-range: none\n      - Olga of Kiev died in the city of Kyiv. | source: FACTS | seq: 125 | date-range: none\n    Conflict among candidates: no\n    Selected: Kyiv\n    Signal used: none\n    Criterion: \"latest fact\"\n\nReasoning chain:\n  Hop 1 selected: Kyiv\n  Final: Kyiv\n\nAnswer: Kyiv",
+        "parsed_answer": "Kyiv"
+      },
+      "B_post_hoc": {
+        "response": "Thought: To answer the question about the location where the spouse of Igor of Kiev passed away, I need to identify relevant facts from the provided context. I will look for any information regarding Igor of Kiev and his spouse, as well as any details about their deaths.\n\nEvidence:\n  Hop 1: The only relevant fact found is \"Olga of Kiev died in the city of Kyiv.\" (Source: 125)\n  Hop 2: There are no other facts that mention Igor of Kiev or provide additional context about his spouse's death.\n\nReasoning chain:\n  Hop 1 -> Final\n\nJustification: The only fact I found related to Igor of Kiev's spouse is that Olga of Kiev died in Kyiv. However, the question specifically asks for the location of her death, and since the context does not provide any other information or conflicting versions about her death, I conclude that the answer is \"Unknown\" because the question does not specify if this is indeed the spouse of Igor of Kiev or if there are other spouses. Therefore, I cannot definitively state the location of Igor's spouse's death based solely on the provided information. \n\nAnswer: Unknown",
+        "prior_answer": "Unknown"
+      }
+    },
+    "zep": {
+      "C_original": {
+        "response": "Rodez",
+        "parsed_answer": "Rodez"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (entity, relation): (Igor of Kiev, spouse)\n    Candidates found in context:\n      - Igor of Kiev is married to Olga of Kiev. | source: FACTS | seq: N/A | date-range: 2026-04-21T11:11:56.096Z - present\n    Conflict among candidates: no\n    Selected: Olga of Kiev\n    Signal used: none\n    Criterion: fallback\n  Hop 2 (entity, relation): (Olga of Kiev, died in)\n    Candidates found in context:\n      - Olga of Kiev died in the city of Kyiv. | source: FACTS | seq: N/A | date-range: 2026-04-21T11:11:55.745Z - 2026-04-21T11:11:58.622Z\n      - Olga of Kiev died in the city of Rodez. | source: FACTS | seq: N/A | date-range: 2026-04-21T11:11:58.622Z - present\n    Conflict among candidates: yes\n    Selected: Rodez\n    Signal used: date-range\n    Criterion: larger date-range\n\nReasoning chain:\n  Hop 1 selected: Olga of Kiev\n  Hop 2 lookup: (Olga of Kiev, died in) -> Rodez\n\nFinal: Rodez\n\nAnswer: Rodez",
+        "parsed_answer": "Rodez"
+      },
+      "B_post_hoc": {
+        "response": "**Evidence:**\n\n**Hop 1:** \n- Fact: \"Igor of Kiev is married to Olga of Kiev.\" (Source: Facts)\n- Fact: \"Olga of Kiev died in the city of Kyiv.\" (Source: Facts)\n- Fact: \"Olga of Kiev died in the city of Rodez.\" (Source: Facts)\n\n**Hop 2:**\n- Fact: \"Igor of Kiev is married to Olga of Kiev.\" (Source: Facts)\n- Fact: \"Olga of Kiev died in the city of Kyiv.\" (Source: Facts)\n- Fact: \"Olga of Kiev died in the city of Rodez.\" (Source: Facts)\n\n**Reasoning chain:**\n- Hop 1: Identify that Igor of Kiev is married to Olga of Kiev, which leads to the inquiry about her death.\n- Hop 2: Discover two conflicting facts regarding the location of Olga's death: one states she died in Kyiv, and the other states she died in Rodez.\n\n**Justification:** \nTo resolve the conflict between the two facts regarding the death location of Olga of Kiev, I relied on the date ranges provided. The fact stating \"Olga of Kiev died in the city of Kyiv\" has a specific date range (2026-04-21T11:11:55.745Z - 2026-04-21T11:11:58.622Z), while the fact stating \"Olga of Kiev died in the city of Rodez\" has a date range (2026-04-21T11:11:58.622Z - present). Since the latter fact occurs after the former, it supersedes the earlier fact. Therefore, I concluded that Olga of Kiev passed away in Rodez. \n\nThus, the final answer is \"Rodez,\" as it is the location where Olga of Kiev died according to the most recent and valid fact.",
+        "prior_answer": "Rodez"
+      }
+    }
+  }
+]

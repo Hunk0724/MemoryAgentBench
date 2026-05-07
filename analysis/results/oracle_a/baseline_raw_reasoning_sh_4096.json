@@ -1,0 +1,677 @@
+[
+  {
+    "query_id": 0,
+    "output": "ice hockey",
+    "raw_reasoning": "ice hockey",
+    "prompt_tokens": 6627,
+    "completion_tokens": 2,
+    "gt_answer": "pesäpallo",
+    "exact_match": false
+  },
+  {
+    "query_id": 1,
+    "output": "The Fairly OddParents.",
+    "raw_reasoning": "The Fairly OddParents",
+    "prompt_tokens": 6629,
+    "completion_tokens": 5,
+    "gt_answer": "The Fairly OddParents",
+    "exact_match": true
+  },
+  {
+    "query_id": 2,
+    "output": "India.",
+    "raw_reasoning": "India",
+    "prompt_tokens": 6626,
+    "completion_tokens": 1,
+    "gt_answer": "India",
+    "exact_match": true
+  },
+  {
+    "query_id": 3,
+    "output": "Shahnameh.",
+    "raw_reasoning": "Shahnameh",
+    "prompt_tokens": 6626,
+    "completion_tokens": 4,
+    "gt_answer": "Shahnameh",
+    "exact_match": true
+  },
+  {
+    "query_id": 5,
+    "output": "Pierre Beaumarchais.",
+    "raw_reasoning": "Pierre Beaumarchais",
+    "prompt_tokens": 6629,
+    "completion_tokens": 5,
+    "gt_answer": "Thomas Kyd",
+    "exact_match": false
+  },
+  {
+    "query_id": 6,
+    "output": "association football.",
+    "raw_reasoning": "association football",
+    "prompt_tokens": 6627,
+    "completion_tokens": 2,
+    "gt_answer": "basketball",
+    "exact_match": false
+  },
+  {
+    "query_id": 7,
+    "output": "American football.",
+    "raw_reasoning": "American football",
+    "prompt_tokens": 6626,
+    "completion_tokens": 2,
+    "gt_answer": "Muay Thai",
+    "exact_match": false
+  },
+  {
+    "query_id": 8,
+    "output": "Swedish.",
+    "raw_reasoning": "Swedish",
+    "prompt_tokens": 6626,
+    "completion_tokens": 2,
+    "gt_answer": "Swedish",
+    "exact_match": true
+  },
+  {
+    "query_id": 10,
+    "output": "Giuseppe Conte.",
+    "raw_reasoning": "Giuseppe Conte",
+    "prompt_tokens": 6631,
+    "completion_tokens": 3,
+    "gt_answer": "Giuseppe Conte",
+    "exact_match": true
+  },
+  {
+    "query_id": 11,
+    "output": "Ellen Pompeo",
+    "raw_reasoning": "Ellen Pompeo",
+    "prompt_tokens": 6623,
+    "completion_tokens": 4,
+    "gt_answer": "Ellen Pompeo",
+    "exact_match": true
+  },
+  {
+    "query_id": 12,
+    "output": "quarterback.",
+    "raw_reasoning": "quarterback",
+    "prompt_tokens": 6625,
+    "completion_tokens": 2,
+    "gt_answer": "quarterback",
+    "exact_match": true
+  },
+  {
+    "query_id": 13,
+    "output": "Malaysia.",
+    "raw_reasoning": "Malaysia",
+    "prompt_tokens": 6632,
+    "completion_tokens": 1,
+    "gt_answer": "Malaysia",
+    "exact_match": true
+  },
+  {
+    "query_id": 16,
+    "output": "Zoroastrianism.",
+    "raw_reasoning": "Zoroastrianism",
+    "prompt_tokens": 6627,
+    "completion_tokens": 5,
+    "gt_answer": "Zoroastrianism",
+    "exact_match": true
+  },
+  {
+    "query_id": 17,
+    "output": "Italy.",
+    "raw_reasoning": "Italy",
+    "prompt_tokens": 6626,
+    "completion_tokens": 1,
+    "gt_answer": "Italy",
+    "exact_match": true
+  },
+  {
+    "query_id": 18,
+    "output": "Microsoft.",
+    "raw_reasoning": "Microsoft",
+    "prompt_tokens": 6626,
+    "completion_tokens": 1,
+    "gt_answer": "Microsoft",
+    "exact_match": true
+  },
+  {
+    "query_id": 19,
+    "output": "Steve Jobs.",
+    "raw_reasoning": "Steve Jobs",
+    "prompt_tokens": 6627,
+    "completion_tokens": 2,
+    "gt_answer": "Steve Jobs",
+    "exact_match": true
+  },
+  {
+    "query_id": 20,
+    "output": "Peter Diamandis.",
+    "raw_reasoning": "Peter Diamandis",
+    "prompt_tokens": 6627,
+    "completion_tokens": 4,
+    "gt_answer": "Peter Diamandis",
+    "exact_match": true
+  },
+  {
+    "query_id": 21,
+    "output": "John Knox.",
+    "raw_reasoning": "John Knox",
+    "prompt_tokens": 6624,
+    "completion_tokens": 2,
+    "gt_answer": "John Knox",
+    "exact_match": true
+  },
+  {
+    "query_id": 22,
+    "output": "rugby union.",
+    "raw_reasoning": "rugby union",
+    "prompt_tokens": 6629,
+    "completion_tokens": 3,
+    "gt_answer": "rugby union",
+    "exact_match": true
+  },
+  {
+    "query_id": 25,
+    "output": "Beaumont.",
+    "raw_reasoning": "Beaumont",
+    "prompt_tokens": 6626,
+    "completion_tokens": 2,
+    "gt_answer": "Beaumont",
+    "exact_match": true
+  },
+  {
+    "query_id": 26,
+    "output": "Narendra Modi.",
+    "raw_reasoning": "Narendra Modi",
+    "prompt_tokens": 6627,
+    "completion_tokens": 3,
+    "gt_answer": "Narendra Modi",
+    "exact_match": true
+  },
+  {
+    "query_id": 29,
+    "output": "Guangzhou.",
+    "raw_reasoning": "Guangzhou",
+    "prompt_tokens": 6626,
+    "completion_tokens": 3,
+    "gt_answer": "Guangzhou",
+    "exact_match": true
+  },
+  {
+    "query_id": 30,
+    "output": "United States of America.",
+    "raw_reasoning": "United States of America",
+    "prompt_tokens": 6632,
+    "completion_tokens": 4,
+    "gt_answer": "Japan",
+    "exact_match": false
+  },
+  {
+    "query_id": 31,
+    "output": "Germany.",
+    "raw_reasoning": "Germany",
+    "prompt_tokens": 6629,
+    "completion_tokens": 1,
+    "gt_answer": "Tang Empire",
+    "exact_match": false
+  },
+  {
+    "query_id": 32,
+    "output": "Philadelphia.",
+    "raw_reasoning": "Philadelphia",
+    "prompt_tokens": 6633,
+    "completion_tokens": 1,
+    "gt_answer": "Philadelphia",
+    "exact_match": true
+  },
+  {
+    "query_id": 33,
+    "output": "United States of America.",
+    "raw_reasoning": "United States of America",
+    "prompt_tokens": 6625,
+    "completion_tokens": 4,
+    "gt_answer": "Russian Empire",
+    "exact_match": false
+  },
+  {
+    "query_id": 34,
+    "output": "Taipei.",
+    "raw_reasoning": "Taipei",
+    "prompt_tokens": 6623,
+    "completion_tokens": 2,
+    "gt_answer": "Taipei",
+    "exact_match": true
+  },
+  {
+    "query_id": 36,
+    "output": "The Beatles.",
+    "raw_reasoning": "The Beatles",
+    "prompt_tokens": 6623,
+    "completion_tokens": 2,
+    "gt_answer": "Madonna",
+    "exact_match": false
+  },
+  {
+    "query_id": 37,
+    "output": "Tokyo.",
+    "raw_reasoning": "Tokyo",
+    "prompt_tokens": 6625,
+    "completion_tokens": 1,
+    "gt_answer": "Tokyo",
+    "exact_match": true
+  },
+  {
+    "query_id": 39,
+    "output": "ABB Group",
+    "raw_reasoning": "ABB Group",
+    "prompt_tokens": 6626,
+    "completion_tokens": 2,
+    "gt_answer": "ABB Group",
+    "exact_match": true
+  },
+  {
+    "query_id": 42,
+    "output": "cornerback.",
+    "raw_reasoning": "cornerback",
+    "prompt_tokens": 6626,
+    "completion_tokens": 2,
+    "gt_answer": "cornerback",
+    "exact_match": true
+  },
+  {
+    "query_id": 44,
+    "output": "Antarctica.",
+    "raw_reasoning": "Antarctica",
+    "prompt_tokens": 6625,
+    "completion_tokens": 3,
+    "gt_answer": "Antarctica",
+    "exact_match": true
+  },
+  {
+    "query_id": 45,
+    "output": "Pius XII.",
+    "raw_reasoning": "Pius XII",
+    "prompt_tokens": 6629,
+    "completion_tokens": 3,
+    "gt_answer": "Pius XII",
+    "exact_match": true
+  },
+  {
+    "query_id": 46,
+    "output": "The Beatles.",
+    "raw_reasoning": "The Beatles",
+    "prompt_tokens": 6625,
+    "completion_tokens": 2,
+    "gt_answer": "The Beatles",
+    "exact_match": true
+  },
+  {
+    "query_id": 47,
+    "output": "Charles Darwin.",
+    "raw_reasoning": "Charles Darwin",
+    "prompt_tokens": 6627,
+    "completion_tokens": 2,
+    "gt_answer": "Charles Darwin",
+    "exact_match": true
+  },
+  {
+    "query_id": 48,
+    "output": "United States of America.",
+    "raw_reasoning": "United States of America",
+    "prompt_tokens": 6625,
+    "completion_tokens": 4,
+    "gt_answer": "Soviet Union",
+    "exact_match": false
+  },
+  {
+    "query_id": 49,
+    "output": "United States of America.",
+    "raw_reasoning": "United States of America",
+    "prompt_tokens": 6629,
+    "completion_tokens": 4,
+    "gt_answer": "United States of America",
+    "exact_match": true
+  },
+  {
+    "query_id": 50,
+    "output": "Oceania.",
+    "raw_reasoning": "Oceania",
+    "prompt_tokens": 6625,
+    "completion_tokens": 3,
+    "gt_answer": "Oceania",
+    "exact_match": true
+  },
+  {
+    "query_id": 51,
+    "output": "cricket.",
+    "raw_reasoning": "cricket",
+    "prompt_tokens": 6628,
+    "completion_tokens": 2,
+    "gt_answer": "cricket",
+    "exact_match": true
+  },
+  {
+    "query_id": 54,
+    "output": "pop music.",
+    "raw_reasoning": "pop music",
+    "prompt_tokens": 6627,
+    "completion_tokens": 2,
+    "gt_answer": "Australian hip hop",
+    "exact_match": false
+  },
+  {
+    "query_id": 58,
+    "output": "Kylie Minogue.",
+    "raw_reasoning": "Kylie Minogue",
+    "prompt_tokens": 6624,
+    "completion_tokens": 4,
+    "gt_answer": "Kylie Minogue",
+    "exact_match": true
+  },
+  {
+    "query_id": 59,
+    "output": "basketball.",
+    "raw_reasoning": "basketball",
+    "prompt_tokens": 6628,
+    "completion_tokens": 2,
+    "gt_answer": "association football",
+    "exact_match": false
+  },
+  {
+    "query_id": 60,
+    "output": "rock music.",
+    "raw_reasoning": "rock music",
+    "prompt_tokens": 6628,
+    "completion_tokens": 2,
+    "gt_answer": "rap rock",
+    "exact_match": false
+  },
+  {
+    "query_id": 61,
+    "output": "flanker.",
+    "raw_reasoning": "flanker",
+    "prompt_tokens": 6627,
+    "completion_tokens": 2,
+    "gt_answer": "flanker",
+    "exact_match": true
+  },
+  {
+    "query_id": 62,
+    "output": "Bernard Arnault",
+    "raw_reasoning": "Bernard Arnault",
+    "prompt_tokens": 6627,
+    "completion_tokens": 4,
+    "gt_answer": "Bernard Arnault",
+    "exact_match": true
+  },
+  {
+    "query_id": 64,
+    "output": "baseball.",
+    "raw_reasoning": "baseball",
+    "prompt_tokens": 6627,
+    "completion_tokens": 2,
+    "gt_answer": "baseball",
+    "exact_match": true
+  },
+  {
+    "query_id": 65,
+    "output": "American football.",
+    "raw_reasoning": "American football",
+    "prompt_tokens": 6627,
+    "completion_tokens": 2,
+    "gt_answer": "rugby",
+    "exact_match": false
+  },
+  {
+    "query_id": 66,
+    "output": "politician.",
+    "raw_reasoning": "politician",
+    "prompt_tokens": 6628,
+    "completion_tokens": 2,
+    "gt_answer": "journalist",
+    "exact_match": false
+  },
+  {
+    "query_id": 68,
+    "output": "North America.",
+    "raw_reasoning": "North America",
+    "prompt_tokens": 6626,
+    "completion_tokens": 2,
+    "gt_answer": "North America",
+    "exact_match": true
+  },
+  {
+    "query_id": 69,
+    "output": "Tucson.",
+    "raw_reasoning": "Tucson",
+    "prompt_tokens": 6624,
+    "completion_tokens": 3,
+    "gt_answer": "Tucson",
+    "exact_match": true
+  },
+  {
+    "query_id": 70,
+    "output": "Westinghouse Electric.",
+    "raw_reasoning": "Westinghouse Electric",
+    "prompt_tokens": 6627,
+    "completion_tokens": 4,
+    "gt_answer": "Canadair",
+    "exact_match": false
+  },
+  {
+    "query_id": 71,
+    "output": "Japan",
+    "raw_reasoning": "Japan",
+    "prompt_tokens": 6630,
+    "completion_tokens": 1,
+    "gt_answer": "Japan",
+    "exact_match": true
+  },
+  {
+    "query_id": 72,
+    "output": "placekicker.",
+    "raw_reasoning": "placekicker",
+    "prompt_tokens": 6625,
+    "completion_tokens": 3,
+    "gt_answer": "placekicker",
+    "exact_match": true
+  },
+  {
+    "query_id": 74,
+    "output": "John Keats.",
+    "raw_reasoning": "John Keats",
+    "prompt_tokens": 6627,
+    "completion_tokens": 3,
+    "gt_answer": "John Keats",
+    "exact_match": true
+  },
+  {
+    "query_id": 75,
+    "output": "Oscar Wilde",
+    "raw_reasoning": "Oscar Wilde",
+    "prompt_tokens": 6630,
+    "completion_tokens": 2,
+    "gt_answer": "Oscar Wilde",
+    "exact_match": true
+  },
+  {
+    "query_id": 76,
+    "output": "Shinzō Abe.",
+    "raw_reasoning": "Shinzō Abe",
+    "prompt_tokens": 6631,
+    "completion_tokens": 4,
+    "gt_answer": "Shinzō Abe",
+    "exact_match": true
+  },
+  {
+    "query_id": 77,
+    "output": "Denis Sassou-Nguesso.",
+    "raw_reasoning": "Denis Sassou-Nguesso",
+    "prompt_tokens": 6631,
+    "completion_tokens": 7,
+    "gt_answer": "Stephen McNeil",
+    "exact_match": false
+  },
+  {
+    "query_id": 78,
+    "output": "rugby union.",
+    "raw_reasoning": "rugby union",
+    "prompt_tokens": 6626,
+    "completion_tokens": 3,
+    "gt_answer": "rugby union",
+    "exact_match": true
+  },
+  {
+    "query_id": 79,
+    "output": "Prague.",
+    "raw_reasoning": "Prague",
+    "prompt_tokens": 6626,
+    "completion_tokens": 2,
+    "gt_answer": "Prague",
+    "exact_match": true
+  },
+  {
+    "query_id": 80,
+    "output": "goaltender.",
+    "raw_reasoning": "goaltender",
+    "prompt_tokens": 6625,
+    "completion_tokens": 3,
+    "gt_answer": "goaltender",
+    "exact_match": true
+  },
+  {
+    "query_id": 81,
+    "output": "Elizabeth II",
+    "raw_reasoning": "Elizabeth II",
+    "prompt_tokens": 6632,
+    "completion_tokens": 2,
+    "gt_answer": "Elizabeth II",
+    "exact_match": true
+  },
+  {
+    "query_id": 82,
+    "output": "Canada.",
+    "raw_reasoning": "Canada",
+    "prompt_tokens": 6631,
+    "completion_tokens": 1,
+    "gt_answer": "Canada",
+    "exact_match": true
+  },
+  {
+    "query_id": 83,
+    "output": "Catholic Church.",
+    "raw_reasoning": "Catholic Church",
+    "prompt_tokens": 6626,
+    "completion_tokens": 3,
+    "gt_answer": "Church of Scotland",
+    "exact_match": false
+  },
+  {
+    "query_id": 84,
+    "output": "Nobuhiro Watsuki.",
+    "raw_reasoning": "Nobuhiro Watsuki",
+    "prompt_tokens": 6628,
+    "completion_tokens": 6,
+    "gt_answer": "Nobuhiro Watsuki",
+    "exact_match": true
+  },
+  {
+    "query_id": 85,
+    "output": "Bucharest.",
+    "raw_reasoning": "Bucharest",
+    "prompt_tokens": 6632,
+    "completion_tokens": 3,
+    "gt_answer": "Rajanpur",
+    "exact_match": false
+  },
+  {
+    "query_id": 86,
+    "output": "Africa.",
+    "raw_reasoning": "Africa",
+    "prompt_tokens": 6625,
+    "completion_tokens": 1,
+    "gt_answer": "Africa",
+    "exact_match": true
+  },
+  {
+    "query_id": 89,
+    "output": "Washington, D.C.",
+    "raw_reasoning": "Washington, D.C.",
+    "prompt_tokens": 6628,
+    "completion_tokens": 5,
+    "gt_answer": "Washington, D.C.",
+    "exact_match": true
+  },
+  {
+    "query_id": 91,
+    "output": "Australia",
+    "raw_reasoning": "Australia",
+    "prompt_tokens": 6628,
+    "completion_tokens": 1,
+    "gt_answer": "Australia",
+    "exact_match": true
+  },
+  {
+    "query_id": 92,
+    "output": "David Beckham",
+    "raw_reasoning": "David Beckham",
+    "prompt_tokens": 6625,
+    "completion_tokens": 2,
+    "gt_answer": "David Beckham",
+    "exact_match": true
+  },
+  {
+    "query_id": 93,
+    "output": "France.",
+    "raw_reasoning": "France",
+    "prompt_tokens": 6627,
+    "completion_tokens": 1,
+    "gt_answer": "Iran",
+    "exact_match": false
+  },
+  {
+    "query_id": 94,
+    "output": "Robert Jordan.",
+    "raw_reasoning": "Robert Jordan",
+    "prompt_tokens": 6627,
+    "completion_tokens": 2,
+    "gt_answer": "Ferdowsi",
+    "exact_match": false
+  },
+  {
+    "query_id": 95,
+    "output": "point guard.",
+    "raw_reasoning": "point guard",
+    "prompt_tokens": 6628,
+    "completion_tokens": 2,
+    "gt_answer": "point guard",
+    "exact_match": true
+  },
+  {
+    "query_id": 96,
+    "output": "United Kingdom.",
+    "raw_reasoning": "United Kingdom",
+    "prompt_tokens": 6629,
+    "completion_tokens": 2,
+    "gt_answer": "Israel",
+    "exact_match": false
+  },
+  {
+    "query_id": 98,
+    "output": "Emma Darwin.",
+    "raw_reasoning": "Emma Darwin",
+    "prompt_tokens": 6625,
+    "completion_tokens": 2,
+    "gt_answer": "Amala Paul",
+    "exact_match": false
+  },
+  {
+    "query_id": 99,
+    "output": "wide receiver.",
+    "raw_reasoning": "wide receiver",
+    "prompt_tokens": 6626,
+    "completion_tokens": 2,
+    "gt_answer": "wide receiver",
+    "exact_match": true
+  }
+]

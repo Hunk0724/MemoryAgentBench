@@ -1,0 +1,99 @@
+==============================================================================
+FC-MH Multi-hop Diagnostic Summary
+==============================================================================
+
+[A1] Modified-prompt vanilla baseline (top-10 retrieved, 6k context)
+  FC-MH: 23/100 = 23.0%
+  FC-SH: 96/100 = 96.0%
+
+[A2] First-error-hop diagnosis among wrong questions (77 wrong)
+  conflict_type at first error:
+    has_pair                70 (91%)
+    no_conflict_pair         7 (9%)
+  class at first error:
+    older_fact              55 (71%)
+    other                   21 (27%)
+    missing                  1 (1%)
+  hop position of first error:
+    hop 0: 53
+    hop 1: 23
+    hop 3: 1
+
+[B] Hop-by-hop ablation: each hop run as standalone FC-SH
+  Overall single-hop EM: 240/254 = 94.5%
+  By conflict_type:
+    has_pair               174/188 = 92.6%
+    no_conflict_pair       66/66 = 100.0%
+  By hop position in chain:
+    hop_idx=0   99/100 = 99.0%
+    hop_idx=1   92/100 = 92.0%
+    hop_idx=2   37/39 = 94.9%
+    hop_idx=3   12/15 = 80.0%
+
+[A2 x B] Cross-tab: in-chain (A2) vs ablation (B) per-hop accuracy
+  total per-hop pairs: 254
+    A2_correct    & B_correct  :   69 (27.2%)
+    A2_wrong      & B_correct  :  171 (67.3%)
+    A2_correct    & B_wrong    :    0 (0.0%)
+    A2_wrong      & B_wrong    :   14 (5.5%)
+  Of all in-chain failures, 92% would be solved if hop ran alone (i.e. attributable to chain context interference, not skill)
+
+[Sim-OB] Chain-only context (zero-noise zero-conflict ceiling)
+  Overall: 98/100 = 98.0%
+  Per-group:
+    2-hop, 1-conflict: 24/25 = 96.0%
+    2-hop, 2-conflict: 35/36 = 97.2%
+    3-hop, 1-conflict: 5/5 = 100.0%
+    3-hop, 2-conflict: 9/9 = 100.0%
+    3-hop, 3-conflict: 10/10 = 100.0%
+    4-hop, 1-conflict: 3/3 = 100.0%
+    4-hop, 2-conflict: 3/3 = 100.0%
+    4-hop, 3-conflict: 7/7 = 100.0%
+    4-hop, 4-conflict: 2/2 = 100.0%
+
+[Sim-OB-grad] Noise gradient curve (chain + k distractors)
+  source              k=  10 k=  50 k= 100 k= 200 k= 455
+  ppr-nearby           97.0%  90.0%  61.0%  34.0%  21.0%
+  random               96.0%  93.0%  87.0%  76.0%  20.0%
+  [ppr-nearby] N per cell: k=10:100,k=50:100,k=100:100,k=200:100,k=455:100
+  [random] N per cell: k=10:100,k=50:100,k=100:100,k=200:100,k=455:100
+
+[Oracle A v2] Fact-level removal of chain old facts (full 100 / 100)
+  FC-MH: 83/100 = 83.0%
+  Per-group:
+    2-hop, 1-conflict: 22/25 = 88.0%
+    2-hop, 2-conflict: 33/36 = 91.7%
+    3-hop, 1-conflict: 4/5 = 80.0%
+    3-hop, 2-conflict: 6/9 = 66.7%
+    3-hop, 3-conflict: 7/10 = 70.0%
+    4-hop, 1-conflict: 3/3 = 100.0%
+    4-hop, 2-conflict: 2/3 = 66.7%
+    4-hop, 3-conflict: 6/7 = 85.7%
+    4-hop, 4-conflict: 0/2 = 0.0%
+  FC-SH: 98/100 = 98.0%
+
+[C] MH without non-chain old facts (full 6k minus other-question olds)
+  Overall: 42/100 = 42.0%
+  Per-group:
+    2-hop, 1-conflict: 19/25 = 76.0%
+    2-hop, 2-conflict: 16/36 = 44.4%
+    3-hop, 1-conflict: 2/5 = 40.0%
+    3-hop, 2-conflict: 1/9 = 11.1%
+    3-hop, 3-conflict: 2/10 = 20.0%
+    4-hop, 1-conflict: 0/3 = 0.0%
+    4-hop, 2-conflict: 1/3 = 33.3%
+    4-hop, 3-conflict: 0/7 = 0.0%
+    4-hop, 4-conflict: 1/2 = 50.0%
+
+==============================================================================
+Headline comparison (FC-MH all 100 questions where applicable)
+==============================================================================
+  condition                                                       EM note
+  ------------------------------------------------------- ---------- ----
+  A1: vanilla baseline (top-10 retrieved, modified prompt) 23/100=23.0% same as before
+  C: 6k minus non-chain olds (only chain conflicts kept)  42/100=42.0% non-chain conflicts removed
+  Oracle A v2: fact-level removal of chain olds (full 100) 83/100=83.0% chain conflicts removed too
+  Sim-OB: chain-only (zero noise / zero conflict)         98/100=98.0% pure chain reasoning ceiling
+  B: all hops pass standalone (=AND of single-hop EMs)    87/100=87.0% per-hop ceiling, AND combined
+  B: per-hop EM rate (all 254 sub-questions)              240/254=94.5% single-hop ceiling
+==============================================================================

@@ -1,0 +1,49 @@
+======================================================================
+Smoke test expanded — 30 queries
+======================================================================
+
+=== H1 验证 — LLM-side candidate-recall ===
+
+HippoRAG (n=46 has_pair hops, all GT retrieved by filter):
+  GT listed in candidates:   16/46 = 34.8%
+  Old listed in candidates:  23/46 = 50.0%
+  Both listed:               15/46 = 32.6%
+  Only GT:                   1
+  Only Old:                  8
+  Neither:                   22
+  → Retrieval-side: GT 100% (filter); LLM-side: GT only 34.8%
+
+Zep (n=48):
+  GT listed:    23/48 = 47.9%
+  Old listed:   27/48 = 56.2%
+  Both listed:  22/48 = 45.8%
+  Neither:      20
+
+=== Conflict detection rate (LLM self-report) ===
+  HippoRAG: 18/46 hops self-reported conflict
+  Zep:      24/48 hops self-reported conflict
+
+=== Signal-cited distribution (LLM self-report) ===
+  HippoRAG:
+    none: 28
+    serial: 15
+    other: 3
+  Zep:
+    none: 25
+    serial: 22
+    other: 1
+
+=== H3 验证 — HippoRAG (C) Thought 中的 bail-out 語言 ===
+  Hippo (C) responses with bail-out language: 0/30
+  bailed × wrong:    0
+  bailed × correct:  0
+  no-bail × wrong:   28
+  no-bail × correct: 2
+
+=== H2 检查 — LLM listed GT but selected something else (per-hop) ===
+  Hippo: 答錯題目中 listed GT in any hop's candidates → 14
+  Zep: 答錯題目中 listed GT in any hop's candidates → 14
+
+=== EM perturbation: original vs (C) rerun vs (A) trace-first ===
+  HippoRAG: original 4/30, rerun-C 2/30, rerun-A 0/30
+  Zep:      original 9/30, rerun-C 9/30, rerun-A 8/30

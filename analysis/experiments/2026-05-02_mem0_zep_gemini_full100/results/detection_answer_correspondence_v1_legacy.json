@@ -1,0 +1,132 @@
+{
+  "mem0_sh": {
+    "label": "Mem0 customized \u00d7 Gemini \u00d7 FC-SH",
+    "buckets": {
+      "all_detected": {
+        "correct": 30,
+        "total": 33,
+        "em_pct": 90.9090909090909
+      },
+      "partial_detection": {
+        "correct": 0,
+        "total": 0,
+        "em_pct": 0
+      },
+      "no_detection": {
+        "correct": 23,
+        "total": 41,
+        "em_pct": 56.09756097560976
+      },
+      "no_has_pair": {
+        "correct": 24,
+        "total": 26,
+        "em_pct": 92.3076923076923
+      }
+    },
+    "overall_em": 77.0
+  },
+  "mem0_mh": {
+    "label": "Mem0 customized \u00d7 Gemini \u00d7 FC-MH",
+    "buckets": {
+      "all_detected": {
+        "correct": 20,
+        "total": 26,
+        "em_pct": 76.92307692307693
+      },
+      "partial_detection": {
+        "correct": 14,
+        "total": 33,
+        "em_pct": 42.42424242424242
+      },
+      "no_detection": {
+        "correct": 9,
+        "total": 41,
+        "em_pct": 21.951219512195124
+      },
+      "no_has_pair": {
+        "correct": 0,
+        "total": 0,
+        "em_pct": 0
+      }
+    },
+    "overall_em": 43.0
+  },
+  "zep_sh": {
+    "label": "Zep \u00d7 Gemini \u00d7 FC-SH",
+    "buckets": {
+      "all_detected": {
+        "correct": 16,
+        "total": 18,
+        "em_pct": 88.88888888888889
+      },
+      "partial_detection": {
+        "correct": 0,
+        "total": 0,
+        "em_pct": 0
+      },
+      "no_detection": {
+        "correct": 38,
+        "total": 56,
+        "em_pct": 67.85714285714286
+      },
+      "no_has_pair": {
+        "correct": 25,
+        "total": 26,
+        "em_pct": 96.15384615384616
+      }
+    },
+    "overall_em": 79.0
+  },
+  "zep_mh": {
+    "label": "Zep \u00d7 Gemini \u00d7 FC-MH",
+    "buckets": {
+      "all_detected": {
+        "correct": 0,
+        "total": 8,
+        "em_pct": 0.0
+      },
+      "partial_detection": {
+        "correct": 1,
+        "total": 18,
+        "em_pct": 5.555555555555555
+      },
+      "no_detection": {
+        "correct": 7,
+        "total": 74,
+        "em_pct": 9.45945945945946
+      },
+      "no_has_pair": {
+        "correct": 0,
+        "total": 0,
+        "em_pct": 0
+      }
+    },
+    "overall_em": 8.0
+  },
+  "zep_gpt_sh": {
+    "label": "Zep \u00d7 GPT \u00d7 FC-SH (FULL100, existing)",
+    "buckets": {
+      "all_detected": {
+        "correct": 6,
+        "total": 9,
+        "em_pct": 66.66666666666666
+      },
+      "partial_detection": {
+        "correct": 0,
+        "total": 0,
+        "em_pct": 0
+      },
+      "no_detection": {
+        "correct": 38,
+        "total": 65,
+        "em_pct": 58.46153846153847
+      },
+      "no_has_pair": {
+        "correct": 26,
+        "total": 26,
+        "em_pct": 100.0
+      }
+    },
+    "overall_em": 70.0
+  }
+}

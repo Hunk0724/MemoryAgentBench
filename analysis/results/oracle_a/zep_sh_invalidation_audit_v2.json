@@ -1,0 +1,291 @@
+{
+  "total": 48,
+  "correct": 20,
+  "wrong": 25,
+  "false_positive": 2,
+  "unknown": 1,
+  "correct_items": [
+    {
+      "seq": 81,
+      "fact": "Carlos Gómez is associated with the sport of baseball",
+      "counterpart_seq": 405,
+      "counterpart": "Carlos Gómez is associated with the sport of basketball"
+    },
+    {
+      "seq": 91,
+      "fact": "Nobuhiro Watsuki is famous for Rurouni Kenshin",
+      "counterpart_seq": 259,
+      "counterpart": "Nobuhiro Watsuki is famous for The Fairly OddParents"
+    },
+    {
+      "seq": 272,
+      "fact": "association football was created in the country of England",
+      "counterpart_seq": 389,
+      "counterpart": "association football was created in the country of Italy"
+    },
+    {
+      "seq": 286,
+      "fact": "The univeristy where Lou Reed was educated is Syracuse University",
+      "counterpart_seq": 399,
+      "counterpart": "The univeristy where Lou Reed was educated is Fordham University"
+    },
+    {
+      "seq": 97,
+      "fact": "The univeristy where Samuel Beckett was educated is Trinity College Dublin",
+      "counterpart_seq": 208,
+      "counterpart": "The univeristy where Samuel Beckett was educated is University of Southern California"
+    },
+    {
+      "seq": 271,
+      "fact": "The author of The Marriage of Figaro is Pierre Beaumarchais",
+      "counterpart_seq": 398,
+      "counterpart": "The author of The Marriage of Figaro is Thomas Kyd"
+    },
+    {
+      "seq": 240,
+      "fact": "The official language of Japan is Japanese",
+      "counterpart_seq": 439,
+      "counterpart": "The official language of Japan is Swedish"
+    },
+    {
+      "seq": 89,
+      "fact": "The official language of Moscow is Russian",
+      "counterpart_seq": 383,
+      "counterpart": "The official language of Moscow is German"
+    },
+    {
+      "seq": 79,
+      "fact": "The name of the current head of state in United Kingdom is Elizabeth II",
+      "counterpart_seq": 249,
+      "counterpart": "The name of the current head of state in United Kingdom is Emmerson Mnangagwa"
+    },
+    {
+      "seq": 159,
+      "fact": "The name of the current head of state in Soviet Union is Mikhail Gorbachev",
+      "counterpart_seq": 365,
+      "counterpart": "The name of the current head of state in Soviet Union is Elizabeth II"
+    },
+    {
+      "seq": 167,
+      "fact": "The capital of Italy is Rome",
+      "counterpart_seq": 209,
+      "counterpart": "The capital of Italy is Duluth"
+    },
+    {
+      "seq": 155,
+      "fact": "Charlie Hebdo was created in the country of France",
+      "counterpart_seq": 358,
+      "counterpart": "Charlie Hebdo was created in the country of Italy"
+    },
+    {
+      "seq": 165,
+      "fact": "Country Joe McDonald is a citizen of United States of America",
+      "counterpart_seq": 250,
+      "counterpart": "Country Joe McDonald is a citizen of Romania"
+    },
+    {
+      "seq": 257,
+      "fact": "Le Petit Parisien was created in the country of France",
+      "counterpart_seq": 436,
+      "counterpart": "Le Petit Parisien was created in the country of Germany"
+    },
+    {
+      "seq": 373,
+      "fact": "Malaysia is located in the continent of Asia",
+      "counterpart_seq": 442,
+      "counterpart": "Malaysia is located in the continent of Antarctica"
+    },
+    {
+      "seq": 292,
+      "fact": "Gennady Rozhdestvensky died in the city of Moscow",
+      "counterpart_seq": 451,
+      "counterpart": "Gennady Rozhdestvensky died in the city of United States of America"
+    },
+    {
+      "seq": 90,
+      "fact": "The type of music that John McVie plays is rock music",
+      "counterpart_seq": 415,
+      "counterpart": "The type of music that John McVie plays is rap rock"
+    },
+    {
+      "seq": 75,
+      "fact": "Australia is located in the continent of Oceania",
+      "counterpart_seq": 220,
+      "counterpart": "Australia is located in the continent of South America"
+    },
+    {
+      "seq": 347,
+      "fact": "The chief executive officer of ABB Group is Ulrich Spiesshofer",
+      "counterpart_seq": 408,
+      "counterpart": "The chief executive officer of ABB Group is Bernard Arnault"
+    },
+    {
+      "seq": 327,
+      "fact": "The author of Sketches by Boz is Charles Dickens",
+      "counterpart_seq": 430,
+      "counterpart": "The author of Sketches by Boz is Sigmund Freud"
+    }
+  ],
+  "wrong_items": [
+    {
+      "seq": 348,
+      "fact": "basketball was created in the country of Soviet Union",
+      "counterpart_seq": 216,
+      "counterpart": "basketball was created in the country of United States of America"
+    },
+    {
+      "seq": 353,
+      "fact": "Club Nouveau was created in the country of Soviet Union",
+      "counterpart_seq": 102,
+      "counterpart": "Club Nouveau was created in the country of United States of America"
+    },
+    {
+      "seq": 326,
+      "fact": "Rand al'Thor was created by Ferdowsi",
+      "counterpart_seq": 66,
+      "counterpart": "Rand al'Thor was created by Robert Jordan"
+    },
+    {
+      "seq": 346,
+      "fact": "Bo Ryan is associated with the sport of association football",
+      "counterpart_seq": 194,
+      "counterpart": "Bo Ryan is associated with the sport of basketball"
+    },
+    {
+      "seq": 340,
+      "fact": "Sandy Alderson is associated with the sport of association football",
+      "counterpart_seq": 215,
+      "counterpart": "Sandy Alderson is associated with the sport of baseball"
+    },
+    {
+      "seq": 295,
+      "fact": "The official language of United States of America is German",
+      "counterpart_seq": 242,
+      "counterpart": "The official language of United States of America is American English"
+    },
+    {
+      "seq": 365,
+      "fact": "The name of the current head of state in Soviet Union is Elizabeth II",
+      "counterpart_seq": 159,
+      "counterpart": "The name of the current head of state in Soviet Union is Mikhail Gorbachev"
+    },
+    {
+      "seq": 275,
+      "fact": "The chief executive officer of Twitter is Bernard Arnault",
+      "counterpart_seq": 109,
+      "counterpart": "The chief executive officer of Twitter is Jack Dorsey"
+    },
+    {
+      "seq": 358,
+      "fact": "Charlie Hebdo was created in the country of Italy",
+      "counterpart_seq": 155,
+      "counterpart": "Charlie Hebdo was created in the country of France"
+    },
+    {
+      "seq": 250,
+      "fact": "Country Joe McDonald is a citizen of Romania",
+      "counterpart_seq": 165,
+      "counterpart": "Country Joe McDonald is a citizen of United States of America"
+    },
+    {
+      "seq": 280,
+      "fact": "India is located in the continent of Africa",
+      "counterpart_seq": 228,
+      "counterpart": "India is located in the continent of Asia"
+    },
+    {
+      "seq": 374,
+      "fact": "Imelda Marcos is affiliated with the religion of atheism",
+      "counterpart_seq": 248,
+      "counterpart": "Imelda Marcos is affiliated with the religion of Catholicism"
+    },
+    {
+      "seq": 188,
+      "fact": "The chief executive officer of Microsoft is Steve Jobs",
+      "counterpart_seq": 85,
+      "counterpart": "The chief executive officer of Microsoft is Satya Nadella"
+    },
+    {
+      "seq": 287,
+      "fact": "Methodism was founded by Joseph Goebbels",
+      "counterpart_seq": 218,
+      "counterpart": "Methodism was founded by John Wesley"
+    },
+    {
+      "seq": 354,
+      "fact": "The director of Madonna is Narendra Modi",
+      "counterpart_seq": 207,
+      "counterpart": "The director of Madonna is Guy Oseary"
+    },
+    {
+      "seq": 281,
+      "fact": "The type of music that Dana International plays is Australian hip hop",
+      "counterpart_seq": 243,
+      "counterpart": "The type of music that Dana International plays is pop music"
+    },
+    {
+      "seq": 372,
+      "fact": "John Keats died in the city of Leipzig",
+      "counterpart_seq": 206,
+      "counterpart": "John Keats died in the city of Rome"
+    },
+    {
+      "seq": 277,
+      "fact": "SteamOS was developed by ABB Group",
+      "counterpart_seq": 238,
+      "counterpart": "SteamOS was developed by Valve Corporation"
+    },
+    {
+      "seq": 299,
+      "fact": "Sable is a citizen of Czech Republic",
+      "counterpart_seq": 244,
+      "counterpart": "Sable is a citizen of United States of America"
+    },
+    {
+      "seq": 356,
+      "fact": "The company that produced AP1000 is Canadair",
+      "counterpart_seq": 196,
+      "counterpart": "The company that produced AP1000 is Westinghouse Electric"
+    },
+    {
+      "seq": 205,
+      "fact": "Pakistan International Airlines was founded in the city of Sweden",
+      "counterpart_seq": 30,
+      "counterpart": "Pakistan International Airlines was founded in the city of Karachi"
+    },
+    {
+      "seq": 135,
+      "fact": "Laura Bush is married to Princess Alice, Duchess of Gloucester",
+      "counterpart_seq": 84,
+      "counterpart": "Laura Bush is married to George W"
+    },
+    {
+      "seq": 276,
+      "fact": "The Prime Minister of Sweden is Pedro Pierluisi",
+      "counterpart_seq": 82,
+      "counterpart": "The Prime Minister of Sweden is Stefan Löfven"
+    },
+    {
+      "seq": 335,
+      "fact": "Charles Darwin is married to Amala Paul",
+      "counterpart_seq": 164,
+      "counterpart": "Charles Darwin is married to Emma Darwin"
+    },
+    {
+      "seq": 343,
+      "fact": "Charles Messier is a citizen of Iran",
+      "counterpart_seq": 204,
+      "counterpart": "Charles Messier is a citizen of France"
+    }
+  ],
+  "false_positive_items": [
+    {
+      "seq": 86,
+      "fact": "Ferdowsi is famous for Shahnameh"
+    },
+    {
+      "seq": 103,
+      "fact": "The capital of Japan is Tokyo"
+    }
+  ]
+}

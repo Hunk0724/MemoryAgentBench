@@ -1,0 +1,318 @@
+{
+  "label": "Mem0 customized × Gemini — FC-SH",
+  "total_invalidations_made_by_mem0": 251,
+  "correct": 65,
+  "wrong": 0,
+  "false_positive": 186,
+  "unknown": 0,
+  "has_pair_in_dataset": 74,
+  "uniquely_correct_pairs": 33,
+  "precision_event_level": 0.259,
+  "recall_pair_level": 0.4459,
+  "f1": 0.3277,
+  "correct_items": [
+    {
+      "event_old": "Hermione Granger was performed by Emma Watson",
+      "event_new": "Hermione Granger was performed by Kylie Minogue",
+      "at": "2026-05-02T07:00:06.243527-07:00",
+      "matched_pair_qid": 58,
+      "gt_old_seq": 413,
+      "gt_old": "Hermione Granger was performed by Emma Watson.",
+      "gt_new_seq": 425,
+      "gt_new": "Hermione Granger was performed by Kylie Minogue."
+    },
+    {
+      "event_old": "Dave Filoni is employed by Lucasfilm",
+      "event_new": "Dave Filoni is employed by British Broadcasting Corporation",
+      "at": "2026-05-02T07:30:32.801287-07:00",
+      "matched_pair_qid": 67,
+      "gt_old_seq": 38,
+      "gt_old": "Dave Filoni is employed by Lucasfilm.",
+      "gt_new_seq": 226,
+      "gt_new": "Dave Filoni is employed by British Broadcasting Corporation."
+    },
+    {
+      "event_old": "wide receiver is associated with the sport of American football",
+      "event_new": "wide receiver is associated with the sport of rugby",
+      "at": "2026-05-02T07:30:32.821359-07:00",
+      "matched_pair_qid": 41,
+      "gt_old_seq": 46,
+      "gt_old": "wide receiver is associated with the sport of American football.",
+      "gt_new_seq": 252,
+      "gt_new": "wide receiver is associated with the sport of rugby."
+    },
+    {
+      "event_old": "Walter Chrysler's child is Walter Percy Chrysler Jr.",
+      "event_new": "Walter Chrysler's child is Charles Frederick",
+      "at": "2026-05-02T07:30:32.858714-07:00",
+      "matched_pair_qid": 97,
+      "gt_old_seq": 61,
+      "gt_old": "Walter Chrysler's child is Walter Percy Chrysler Jr..",
+      "gt_new_seq": 231,
+      "gt_new": "Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp."
+    },
+    {
+      "event_old": "Rand al'Thor was created by Robert Jordan",
+      "event_new": "Rand al'Thor was created by Ferdowsi",
+      "at": "2026-05-02T07:30:32.873285-07:00",
+      "matched_pair_qid": 94,
+      "gt_old_seq": 66,
+      "gt_old": "Rand al'Thor was created by Robert Jordan.",
+      "gt_new_seq": 326,
+      "gt_new": "Rand al'Thor was created by Ferdowsi."
+    },
+    {
+      "event_old": "Kingdom of Ireland is affiliated with the religion of Catholic Church",
+      "event_new": "Kingdom of Ireland is affiliated with the religion of Zoroastrianism",
+      "at": "2026-05-02T07:30:32.884002-07:00",
+      "matched_pair_qid": 16,
+      "gt_old_seq": 70,
+      "gt_old": "Kingdom of Ireland is affiliated with the religion of Catholic Church.",
+      "gt_new_seq": 260,
+      "gt_new": "Kingdom of Ireland is affiliated with the religion of Zoroastrianism."
+    },
+    {
+      "event_old": "placekicker is associated with the sport of American football",
+      "event_new": "Placekicker is associated with the sport of rugby",
+      "at": "2026-05-02T07:30:48.101955-07:00",
+      "matched_pair_qid": 65,
+      "gt_old_seq": 78,
+      "gt_old": "placekicker is associated with the sport of American football.",
+      "gt_new_seq": 321,
+      "gt_new": "placekicker is associated with the sport of rugby."
+    },
+    {
+      "event_old": "The chairperson of Harvard University is Lawrence S. Bacow",
+      "event_new": "The chairperson of Harvard University is Peter Diamandis",
+      "at": "2026-05-02T07:30:48.107636-07:00",
+      "matched_pair_qid": 20,
+      "gt_old_seq": 80,
+      "gt_old": "The chairperson of Harvard University is Lawrence S. Bacow.",
+      "gt_new_seq": 222,
+      "gt_new": "The chairperson of Harvard University is Peter Diamandis."
+    },
+    {
+      "event_old": "The chief executive officer of Microsoft is Satya Nadella",
+      "event_new": "Chief executive officer of Microsoft is Steve Jobs",
+      "at": "2026-05-02T07:30:48.121817-07:00",
+      "matched_pair_qid": 19,
+      "gt_old_seq": 85,
+      "gt_old": "The chief executive officer of Microsoft is Satya Nadella.",
+      "gt_new_seq": 188,
+      "gt_new": "The chief executive officer of Microsoft is Steve Jobs."
+    },
+    {
+      "event_old": "The type of music that John McVie plays is rock music",
+      "event_new": "The type of music that John McVie plays is rap rock",
+      "at": "2026-05-02T07:30:48.133067-07:00",
+      "matched_pair_qid": 60,
+      "gt_old_seq": 90,
+      "gt_old": "The type of music that John McVie plays is rock music.",
+      "gt_new_seq": 415,
+      "gt_new": "The type of music that John McVie plays is rap rock."
+    },
+    {
+      "event_old": "Nobuhiro Watsuki is famous for Rurouni Kenshin",
+      "event_new": "Nobuhiro Watsuki is famous for The Fairly OddParents",
+      "at": "2026-05-02T07:30:48.135850-07:00",
+      "matched_pair_qid": 1,
+      "gt_old_seq": 91,
+      "gt_old": "Nobuhiro Watsuki is famous for Rurouni Kenshin.",
+      "gt_new_seq": 259,
+      "gt_new": "Nobuhiro Watsuki is famous for The Fairly OddParents."
+    },
+    {
+      "event_old": "The author of Our Mutual Friend is Charles Dickens",
+      "event_new": "Author of Our Mutual Friend is Charles Darwin",
+      "at": "2026-05-02T07:30:48.179163-07:00",
+      "matched_pair_qid": 47,
+      "gt_old_seq": 107,
+      "gt_old": "The author of Our Mutual Friend is Charles Dickens.",
+      "gt_new_seq": 146,
+      "gt_new": "The author of Our Mutual Friend is Charles Darwin."
+    },
+    {
+      "event_old": "The chief executive officer of Twitter is Jack Dorsey",
+      "event_new": "The chief executive officer of Twitter is Bernard Arnault",
+      "at": "2026-05-02T07:30:48.184901-07:00",
+      "matched_pair_qid": 62,
+      "gt_old_seq": 109,
+      "gt_old": "The chief executive officer of Twitter is Jack Dorsey.",
+      "gt_new_seq": 275,
+      "gt_new": "The chief executive officer of Twitter is Bernard Arnault."
+    },
+    {
+      "event_old": "Author of Sidereus Nuncius is Galileo Galilei",
+      "event_new": "Author of Sidereus Nuncius is Samuel Beckett",
+      "at": "2026-05-02T07:31:03.334865-07:00",
+      "matched_pair_qid": 14,
+      "gt_old_seq": 124,
+      "gt_old": "The author of Sidereus Nuncius is Galileo Galilei.",
+      "gt_new_seq": 401,
+      "gt_new": "The author of Sidereus Nuncius is Samuel Beckett."
+    },
+    {
+      "event_old": "Charles Darwin is married to Emma Darwin",
+      "event_new": "Charles Darwin is married to Amala Paul",
+      "at": "2026-05-02T07:31:03.344787-07:00",
+      "matched_pair_qid": 98,
+      "gt_old_seq": 164,
+      "gt_old": "Charles Darwin is married to Emma Darwin.",
+      "gt_new_seq": 335,
+      "gt_new": "Charles Darwin is married to Amala Paul."
+    },
+    {
+      "event_old": "Narendra Modi is a citizen of India",
+      "event_new": "Narendra Modi is a citizen of Australia",
+      "at": "2026-05-02T07:31:20.584985-07:00",
+      "matched_pair_qid": 91,
+      "gt_old_seq": 176,
+      "gt_old": "Narendra Modi is a citizen of India.",
+      "gt_new_seq": 217,
+      "gt_new": "Narendra Modi is a citizen of Australia."
+    },
+    {
+      "event_old": "Bo Ryan is associated with the sport of basketball",
+      "event_new": "Bo Ryan is associated with the sport of association football",
+      "at": "2026-05-02T07:31:35.419629-07:00",
+      "matched_pair_qid": 59,
+      "gt_old_seq": 194,
+      "gt_old": "Bo Ryan is associated with the sport of basketball.",
+      "gt_new_seq": 346,
+      "gt_new": "Bo Ryan is associated with the sport of association football."
+    },
+    {
+      "event_old": "Charles Messier is a citizen of France",
+      "event_new": "Charles Messier is a citizen of Iran",
+      "at": "2026-05-02T07:31:35.438092-07:00",
+      "matched_pair_qid": 93,
+      "gt_old_seq": 204,
+      "gt_old": "Charles Messier is a citizen of France.",
+      "gt_new_seq": 343,
+      "gt_new": "Charles Messier is a citizen of Iran."
+    },
+    {
+      "event_old": "Cédric Klapisch is a citizen of France",
+      "event_new": "Cédric Klapisch is a citizen of Malaysia",
+      "at": "2026-05-02T07:31:35.446181-07:00",
+      "matched_pair_qid": 13,
+      "gt_old_seq": 210,
+      "gt_old": "Cédric Klapisch is a citizen of France.",
+      "gt_new_seq": 239,
+      "gt_new": "Cédric Klapisch is a citizen of Malaysia."
+    },
+    {
+      "event_old": "goaltender is associated with the sport of ice hockey",
+      "event_new": "Goaltender is associated with the sport of pesäpallo",
+      "at": "2026-05-02T07:31:35.470667-07:00",
+      "matched_pair_qid": 0,
+      "gt_old_seq": 223,
+      "gt_old": "goaltender is associated with the sport of ice hockey.",
+      "gt_new_seq": 310,
+      "gt_new": "goaltender is associated with the sport of pesäpallo."
+    }
+  ],
+  "wrong_items": [],
+  "false_positive_items": [
+    {
+      "event_old": "Thomas Kyd was born in London",
+      "event_new": "Thomas Kyd was born in the city of Leeds",
+      "at": "2026-05-02T07:30:23.132487-07:00"
+    },
+    {
+      "event_old": "Mahmoud Abbas is the chairperson of Fatah",
+      "event_new": "Chairperson of Fatah is Moshe Kahlon",
+      "at": "2026-05-02T07:30:23.139539-07:00"
+    },
+    {
+      "event_old": "Bengaluru is in Asia",
+      "event_new": "Bengaluru is located in the continent of Oceania",
+      "at": "2026-05-02T07:30:23.145906-07:00"
+    },
+    {
+      "event_old": "University of California, Berkeley headquarters is in Berkeley",
+      "event_new": "Headquarters of University of California, Berkeley is located in Botevgrad",
+      "at": "2026-05-02T07:30:23.160978-07:00"
+    },
+    {
+      "event_old": "Tim Cook is the CEO of Apple Inc.",
+      "event_new": "The chief executive officer of Apple Inc. is Vijay Mallya",
+      "at": "2026-05-02T07:30:23.162862-07:00"
+    },
+    {
+      "event_old": "Lisa Leslie plays center",
+      "event_new": "Lisa Leslie plays the position of goaltender",
+      "at": "2026-05-02T07:30:23.164815-07:00"
+    },
+    {
+      "event_old": "Chanel was founded by Coco Chanel",
+      "event_new": "Coco Chanel died in Paris",
+      "at": "2026-05-02T07:30:23.168665-07:00"
+    },
+    {
+      "event_old": "John Knox founded the Church of Scotland",
+      "event_new": "John Knox worked in the city of Edinburgh",
+      "at": "2026-05-02T07:30:23.170623-07:00"
+    },
+    {
+      "event_old": "Slovakia national football team plays association football",
+      "event_new": "Slovakia national football team is associated with the sport of cricket",
+      "at": "2026-05-02T07:30:23.172496-07:00"
+    },
+    {
+      "event_old": "Kūkai founded Shingon Buddhism",
+      "event_new": "Shingon Buddhism was founded by William Waynflete",
+      "at": "2026-05-02T07:30:23.176243-07:00"
+    },
+    {
+      "event_old": "Chang'an is the capital of the Tang Empire",
+      "event_new": "Capital of Tang Empire is Beaumont",
+      "at": "2026-05-02T07:30:23.178114-07:00"
+    },
+    {
+      "event_old": "Ferdinand von Richthofen is a citizen of Germany",
+      "event_new": "Ernst Heinkel is a citizen of Tang Empire",
+      "at": "2026-05-02T07:30:23.183703-07:00"
+    },
+    {
+      "event_old": "David Bowie performed Aladdin Sane",
+      "event_new": "Aladdin Sane was performed by Yves Montand",
+      "at": "2026-05-02T07:30:23.185573-07:00"
+    },
+    {
+      "event_old": "Madame du Barry is a citizen of France",
+      "event_new": "Madame du Barry is a citizen of Great Britain",
+      "at": "2026-05-02T07:30:23.193566-07:00"
+    },
+    {
+      "event_old": "Pakistan International Airlines was founded in Karachi",
+      "event_new": "Pakistan International Airlines was founded in the city of Sweden",
+      "at": "2026-05-02T07:30:23.195686-07:00"
+    },
+    {
+      "event_old": "Quarterback is a position in American football",
+      "event_new": "Quarterback is a position in American football",
+      "at": "2026-05-02T07:30:23.197647-07:00"
+    },
+    {
+      "event_old": "Andrzej Sapkowski wrote The Witcher",
+      "event_new": "Andrzej Sapkowski wrote The Witcher and speaks the language of Polish",
+      "at": "2026-05-02T07:30:23.199674-07:00"
+    },
+    {
+      "event_old": "London is the capital of Great Britain",
+      "event_new": "London is the capital of Great Britain and is located in the continent of Europe",
+      "at": "2026-05-02T07:30:23.201531-07:00"
+    },
+    {
+      "event_old": "London is the capital of Great Britain and is located in the continent of Europe",
+      "event_new": "London is the capital of the United Kingdom",
+      "at": "2026-05-02T07:30:23.201531-07:00"
+    },
+    {
+      "event_old": "Steve Sax plays baseball",
+      "event_new": "Steve Sax is associated with the sport of association football",
+      "at": "2026-05-02T07:30:23.203551-07:00"
+    }
+  ]
+}

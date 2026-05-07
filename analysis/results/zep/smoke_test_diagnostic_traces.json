@@ -1,0 +1,68 @@
+[
+  {
+    "qid": 6,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "Which country does the current CEO of Twitter hold citizenship of?",
+    "gt": "France",
+    "zep_diagnostic": "[STEP 1: Decomposition]\nHop 1: What is the citizenship of the current CEO of Twitter? -> need (current CEO of Twitter, citizenship)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: What is the citizenship of the current CEO of Twitter?\nCandidate facts found in context:\n- The chief executive officer of Twitter is Bernard Arnault. (2026-04-21T00:00:00Z - present) | source: FACTS | signal: 2026-04-21T00:00:00Z - present\n- The chief executive officer of Twitter is Jack Dorsey. (date unknown - present) | source: FACTS | signal: date unknown - present\n- Bernard Arnault is a citizen of France. (2026-04-21T00:00:00Z - present) | source: ENTITIES | signal: 2026-04-21T00:00:00Z - present\n- Jack Dorsey is a citizen of the United States of America. (date unknown - present) | source: ENTITIES | signal: date unknown - present\n\nConflict detected: yes\nSelected answer: Bernard Arnault (citizenship: France)\nResolution criterion: I selected the fact about Bernard Arnault as the current CEO of Twitter because it has a more recent date range compared to Jack Dorsey.\n\n[STEP 3: Final answer]\nFinal Answer: France",
+    "hippo_diagnostic": "[STEP 1: Decomposition]\nHop 1: What is the citizenship of the current CEO of Twitter? -> need (current CEO of Twitter, citizenship)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: What is the citizenship of the current CEO of Twitter?\nCandidate facts found in context:\n- Jack Dorsey is the chief executive officer of Twitter. | source: [FACTS / ENTITIES / Passage 3] | signal: none\n- Bernard Arnault is the chief executive officer of Twitter. | source: [FACTS / ENTITIES / Passage 2] | signal: none\n- Jack Dorsey is a citizen of United States of America. | source: [FACTS / ENTITIES / Passage 3] | signal: none\n- Bernard Arnault is a citizen of France. | source: [FACTS / ENTITIES / Passage 6] | signal: none\nConflict detected: yes\nSelected answer: Jack Dorsey (citizenship: United States of America)\nResolution criterion: I selected the most recent fact about Jack Dorsey being the CEO and his citizenship.\n\n[STEP 3: Final answer]\nFinal Answer: United States of America"
+  },
+  {
+    "qid": 4,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the sport that Blair Walsh plays in which he is known for his position o",
+    "gt": "rugby",
+    "zep_diagnostic": "[STEP 1: Decomposition]\nHop 1: What is the sport that Blair Walsh plays? -> need (Blair Walsh, sport)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: What is the sport that Blair Walsh plays?\nCandidate facts found in context:\n- Blair Walsh plays the position of placekicker. | source: [FACTS] | signal: (2026-04-21T11:11:58.622Z - present)\n- placekicker is associated with the sport of American football. | source: [ENTITIES] | signal: none\nConflict detected: no\nSelected answer: American football\nResolution criterion: No conflict detected; the fact clearly states the association.\n\n[STEP 3: Final answer]\nFinal Answer: American football",
+    "hippo_diagnostic": "[STEP 1: Decomposition]\nHop 1: What is the sport associated with Blair Walsh? -> need (Blair Walsh, sport)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: What is the sport associated with Blair Walsh?\nCandidate facts found in context:\n- Blair Walsh plays the position of placekicker. | source: [FACTS / ENTITIES / Passage 1] | signal: none\n- placekicker is associated with the sport of rugby. | source: [FACTS / ENTITIES / Passage 2] | signal: none\n- placekicker is associated with the sport of American football. | source: [FACTS / ENTITIES / Passage 3] | signal: none\nConflict detected: yes\nSelected answer: American football\nResolution criterion: I selected the fact from Passage 3 because it is the most specific and relevant to the position of placekicker.\n\n[STEP 3: Final answer]\nFinal Answer: American football"
+  },
+  {
+    "qid": 14,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "What was the name of the head of state in the country where Andrew Carnegie was ",
+    "gt": "Emmerson Mnangagwa",
+    "zep_diagnostic": "[STEP 1: Decomposition]\nHop 1: What is the name of the head of state in the country where Andrew Carnegie was a citizen? -> need (Andrew Carnegie, head_of_state)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: What is the name of the head of state in the country where Andrew Carnegie was a citizen?\nCandidate facts found in context:\n- Andrew Carnegie is a citizen of United Kingdom. | source: [ENTITIES] | signal: none\n- The name of the current head of state in United Kingdom is Emmerson Mnangagwa. | source: [FACTS] | signal: 2026-04-21T11:11:56.797Z - present\n- The name of the current head of state in United Kingdom is Elizabeth II. | source: [FACTS] | signal: 2026-04-21T00:00:00Z - 2026-04-21T11:11:56.797Z\n\nConflict detected: yes\nSelected answer: Emmerson Mnangagwa\nResolution criterion: I selected the fact with the latest date range indicating it is the most current information.\n\n[STEP 3: Final answer]\nFinal Answer: Emmerson Mnangagwa",
+    "hippo_diagnostic": "[STEP 1: Decomposition]\nHop 1: What is the name of the head of state in the country where Andrew Carnegie was a citizen? -> need (Andrew Carnegie, citizen_country) and (citizen_country, head_of_state)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: What is the name of the head of state in the country where Andrew Carnegie was a citizen?\nCandidate facts found in context:\n- Andrew Carnegie is a citizen of United Kingdom. | source: [FACTS / ENTITIES / Passage 1] | signal: none\n- The name of the current head of state in United Kingdom is Elizabeth II. | source: [FACTS / ENTITIES / Passage 4] | signal: none\nConflict detected: no\nSelected answer: Elizabeth II\nResolution criterion: No conflict detected; selected the most recent fact.\n\n[STEP 3: Final answer]\nFinal Answer: Elizabeth II"
+  },
+  {
+    "qid": 5,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the name of the educational institution where the partner of Nicolae Cea",
+    "gt": "Baldwin Wallace University",
+    "zep_diagnostic": "[STEP 1: Decomposition]\nHop 1: What is the educational institution where the partner of Nicolae Ceaușescu was educated?  -> need (Nicolae Ceaușescu's partner, educated_at)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: What is the educational institution where the partner of Nicolae Ceaușescu was educated?\nCandidate facts found in context:\n- Elena Ceaușescu was educated at the University of Bucharest. | source: [ENTITIES] | signal: none\n- The univeristy where Nicolae Ceaușescu is married to Wilhelm II. | source: [FACTS] | signal: none\nConflict detected: no\nSelected answer: University of Bucharest\nResolution criterion: No conflict detected; the fact about Elena Ceaușescu's education is clear and unambiguous.\n\n[STEP 3: Final answer]\nFinal Answer: University of Bucharest",
+    "hippo_diagnostic": "[STEP 1: Decomposition]\nHop 1: Where was Nicolae Ceaușescu's partner educated?  -> need (Nicolae Ceaușescu, partner)\nHop 2: Who is the partner of Nicolae Ceaușescu?  -> need (Nicolae Ceaușescu, spouse)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: Where was Nicolae Ceaușescu's partner educated?\nCandidate facts found in context:\n- Nicolae Ceaușescu is married to Elena Ceaușescu. | source: [FACTS / ENTITIES / Passage 2] | signal: none\n- The univeristy where Elena Ceaușescu was educated is University of Bucharest. | source: [FACTS / ENTITIES / Passage 1] | signal: none\n\nConflict detected: no\nSelected answer: University of Bucharest\nResolution criterion: No conflict detected; selected the fact about Elena Ceaușescu's education.\n\n[STEP 3: Final answer]\nFinal Answer: University of Bucharest"
+  },
+  {
+    "qid": 3,
+    "n_hops": 3,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Which city serves as the capital of the country of origin for the sport of the T",
+    "gt": "Russellville",
+    "zep_diagnostic": "[STEP 1: Decomposition]\nHop 1: What is the country of origin for the sport of the Tunisia national football team? -> need (Tunisia national football team, sport)\nHop 2: What is the capital of that country? -> need (country_of_origin, capital)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: What is the country of origin for the sport of the Tunisia national football team?\nCandidate facts found in context:\n- Tunisia national football team is associated with the sport of basketball. | source: [FACTS] | signal: [2026-04-21T11:11:58.622Z - present]\nConflict detected: no\nSelected answer: basketball (the sport associated with the Tunisia national football team)\nResolution criterion: No conflict detected; the latest fact indicates basketball is the sport.\n\n## Hop 2: What is the capital of that country?\nCandidate facts found in context:\n- The capital of Iran is Tehran. | source: [FACTS] | signal: [2026-04-21T11:11:56.797Z - present]\nConflict detected: no\nSelected answer: Tehran\nResolution criterion: No conflict detected; the latest fact indicates Tehran is the capital of Iran.\n\n[STEP 3: Final answer]\nFinal Answer: Tehran",
+    "hippo_diagnostic": "[STEP 1: Decomposition]\nHop 1: What is the country of origin for the sport of the Tunisia national football team? -> need (Tunisia national football team, sport)\nHop 2: What is the capital of that country? -> need (country of origin, capital)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: What is the country of origin for the sport of the Tunisia national football team?\nCandidate facts found in context:\n- Tunisia national football team is associated with the sport of association football. | source: [FACTS / ENTITIES / Passage 2] | signal: none\nConflict detected: no\nSelected answer: association football\nResolution criterion: No conflict detected, straightforward association.\n\n## Hop 2: What is the capital of that country?\nCandidate facts found in context:\n- The capital of France is Paris. | source: [FACTS / ENTITIES / Passage 3] | signal: none\nConflict detected: no\nSelected answer: Paris\nResolution criterion: No conflict detected, straightforward fact.\n\n[STEP 3: Final answer]\nFinal Answer: Paris"
+  },
+  {
+    "qid": 1,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": true,
+    "question": "In which location did the spouse of Igor of Kiev pass away?",
+    "gt": "Rodez",
+    "zep_diagnostic": "[STEP 1: Decomposition]\nHop 1: Where did the spouse of Igor of Kiev die?  -> need (Igor of Kiev, spouse)\nHop 2: Where did <Hop1 answer> die?  -> need (<Hop1 answer>, place_of_death)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: Where did the spouse of Igor of Kiev die?\nCandidate facts found in context:\n- Igor of Kiev is married to Olga of Kiev. | source: [ENTITIES] | signal: none\n- Olga of Kiev died in the city of Rodez. | source: [FACTS] | signal: [2026-04-21T11:11:58.622Z - present]\n- Olga of Kiev died in the city of Kyiv. | source: [FACTS] | signal: [2026-04-21T11:11:55.745Z - 2026-04-21T11:11:58.622Z]\nConflict detected: yes\nSelected answer: Olga of Kiev\nResolution criterion: I selected the fact with the larger serial number, which indicates the more recent event.\n\n## Hop 2: Where did Olga of Kiev die?\nCandidate facts found in context:\n- Olga of Kiev died in the city of Rodez. | source: [FACTS] | signal: [2026-04-21T11:11:58.622Z - present]\n- Olga of Kiev died in the city of Kyiv. | source: [FACTS] | signal: [2026-04-21T11:11:55.745Z - 2026-04-21T11:11:58.622Z]\nConflict detected: no\nSelected answer: Rodez\nResolution criterion: No conflict, selected the fact stating the location of death.\n\n[STEP 3: Final answer]\nFinal Answer: Rodez",
+    "hippo_diagnostic": "[STEP 1: Decomposition]\nHop 1: Who is the spouse of Igor of Kiev?  -> need (Igor of Kiev, spouse)\nHop 2: Where did <Hop1 answer> die?  -> need (<Hop1 answer>, place_of_death)\n\n[STEP 2: Per-hop resolution]\n## Hop 1: Who is the spouse of Igor of Kiev?\nCandidate facts found in context:\n- Igor of Kiev is married to Olga of Kiev. | source: [FACTS / ENTITIES / Passage 1] | signal: none\nConflict detected: no\nSelected answer: Olga of Kiev\nResolution criterion: no conflict, selected the only fact available.\n\n## Hop 2: Where did Olga of Kiev die?\nCandidate facts found in context:\n- Olga of Kiev died in the city of Kyiv. | source: [FACTS / ENTITIES / Passage 2] | signal: none\nConflict detected: no\nSelected answer: Kyiv\nResolution criterion: no conflict, selected the only fact available.\n\n[STEP 3: Final answer]\nFinal Answer: Kyiv"
+  }
+]

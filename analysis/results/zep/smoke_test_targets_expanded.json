@@ -1,0 +1,272 @@
+[
+  {
+    "qid": 6,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "Which country does the current CEO of Twitter hold citizenship of?",
+    "gt": "France"
+  },
+  {
+    "qid": 4,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the sport that Blair Walsh plays in which he is known for his position o",
+    "gt": "rugby"
+  },
+  {
+    "qid": 14,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "What was the name of the head of state in the country where Andrew Carnegie was ",
+    "gt": "Emmerson Mnangagwa"
+  },
+  {
+    "qid": 5,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the name of the educational institution where the partner of Nicolae Cea",
+    "gt": "Baldwin Wallace University"
+  },
+  {
+    "qid": 3,
+    "n_hops": 3,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Which city serves as the capital of the country of origin for the sport of the T",
+    "gt": "Russellville"
+  },
+  {
+    "qid": 1,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": true,
+    "question": "In which location did the spouse of Igor of Kiev pass away?",
+    "gt": "Rodez"
+  },
+  {
+    "qid": 69,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": false,
+    "hippo_em": true,
+    "question": "What is the place of death of the author of Endymion?",
+    "gt": "Leipzig"
+  },
+  {
+    "qid": 46,
+    "n_hops": 4,
+    "n_conflict": 1,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the capital city of the country from which the sport of Daniele De Rossi",
+    "gt": "Tokyo"
+  },
+  {
+    "qid": 34,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": true,
+    "question": "Which religion was the partner of Ferdinand Marcos associated with?",
+    "gt": "atheism"
+  },
+  {
+    "qid": 79,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What sport is associated with the position played by Irving Fryar on a team/spec",
+    "gt": "rugby"
+  },
+  {
+    "qid": 76,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "At which location does the Prime Minister of Sweden spend most of their work hou",
+    "gt": "Washington, D.C."
+  },
+  {
+    "qid": 26,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": true,
+    "question": "Who holds the position of chairperson in the organization where Joseph Story was",
+    "gt": "Peter Diamandis"
+  },
+  {
+    "qid": 56,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "On which continent was Le Petit Parisien originally made?",
+    "gt": "Africa"
+  },
+  {
+    "qid": 49,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What languages are spoken, written or signed by the founder of Shingon Buddhism?",
+    "gt": "Latin"
+  },
+  {
+    "qid": 18,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the job title of the chairperson of the political organization Fatah?",
+    "gt": "soldier"
+  },
+  {
+    "qid": 68,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "From which educational institution did the author of 'Sidereus Nuncius' receive ",
+    "gt": "University of Southern California"
+  },
+  {
+    "qid": 97,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "what kind of music does \"Born in the U.S.A.\" fall under according to its perform",
+    "gt": "Australian hip hop"
+  },
+  {
+    "qid": 25,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "What is the name of the person who is the chief executive officer of the develop",
+    "gt": "Adel al-Jubeir"
+  },
+  {
+    "qid": 23,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Where is the country of origin of FC Vorskla Poltava?",
+    "gt": "Soviet Union"
+  },
+  {
+    "qid": 47,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "To which continent is the country of citizenship of Ferdinand von Richthofen loc",
+    "gt": "Asia"
+  },
+  {
+    "qid": 16,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "From which country does the sport, with which Carlos Gómez is associated, come f",
+    "gt": "Soviet Union"
+  },
+  {
+    "qid": 70,
+    "n_hops": 3,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "In which city can the headquarters of the educational institution attended by th",
+    "gt": "Botevgrad"
+  },
+  {
+    "qid": 93,
+    "n_hops": 4,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Which city serves as the capital of the country where the spouse of the performe",
+    "gt": "Harare"
+  },
+  {
+    "qid": 55,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "In what place was the organization that Ron Dennis works for, first established?",
+    "gt": "Sweden"
+  },
+  {
+    "qid": 67,
+    "n_hops": 4,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Which city serves as the capital of the country that gave rise to the sport play",
+    "gt": "New Delhi"
+  },
+  {
+    "qid": 53,
+    "n_hops": 3,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What country does the genre of music associated with the spouse of Roy Rogers or",
+    "gt": "Russian Empire"
+  },
+  {
+    "qid": 54,
+    "n_hops": 4,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "In which city is the capital located of the country where the director/producer ",
+    "gt": "Beaumont"
+  },
+  {
+    "qid": 15,
+    "n_hops": 3,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "From which capital city did the Surrey Senior Cup, a sports competition, origina",
+    "gt": "Russellville"
+  },
+  {
+    "qid": 87,
+    "n_hops": 3,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Which city serves as the capital of the country where the sport that Sandy Alder",
+    "gt": "Duluth"
+  },
+  {
+    "qid": 91,
+    "n_hops": 4,
+    "n_conflict": 4,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "In which city is the capital of the country, where the book \"The Birth of Traged",
+    "gt": "Duluth"
+  }
+]

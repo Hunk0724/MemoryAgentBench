@@ -1,0 +1,294 @@
+==============================================================================
+OA2 (orig prompt) FC-MH remaining-errors analysis  (n=45 wrong)
+==============================================================================
+
+[1] Failure category distribution:
+  older_fact_final                 21 (47%)
+  entity_confusion                  9 (20%)
+  chain_break_at_GT                 6 (13%)
+  older_intermediate                5 (11%)
+  hallucination_or_other            4 (9%)
+
+[2] By (num_hops, n_conflict):
+  2-hop, 1-conflict (6 wrong)  older_fact_final:3, entity_confusion:2, chain_break_at_GT:1
+  2-hop, 2-conflict (16 wrong)  older_intermediate:5, older_fact_final:4, chain_break_at_GT:4, entity_confusion:2, hallucination_or_other:1
+  3-hop, 1-conflict (1 wrong)  older_fact_final:1
+  3-hop, 2-conflict (6 wrong)  older_fact_final:3, hallucination_or_other:1, entity_confusion:1, chain_break_at_GT:1
+  3-hop, 3-conflict (6 wrong)  older_fact_final:3, hallucination_or_other:2, entity_confusion:1
+  4-hop, 1-conflict (3 wrong)  older_fact_final:2, entity_confusion:1
+  4-hop, 2-conflict (2 wrong)  older_fact_final:1, entity_confusion:1
+  4-hop, 3-conflict (3 wrong)  older_fact_final:3
+  4-hop, 4-conflict (2 wrong)  entity_confusion:1, older_fact_final:1
+
+[3] Per-question detail:
+  qid   3 (3-hop, 3-c) [entity_confusion] pred='New Delhi' final_gt='Russellville' final_old='London'
+    GT chain: ['basketball', 'Soviet Union', 'Russellville']
+    OLD chain: ['association football', 'United States of America', 'Moscow']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid   4 (2-hop, 1-c) [chain_break_at_GT] pred='placekicker' final_gt='rugby' final_old='American football'
+    GT chain: ['placekicker', 'rugby']
+    OLD chain: ['American football']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid   5 (2-hop, 2-c) [older_fact_final] pred='University of Bucharest' final_gt='Baldwin Wallace University' final_old='University of Bucharest'
+    GT chain: ['Wilhelm II', 'Baldwin Wallace University']
+    OLD chain: ['Elena Ceaușescu', 'University of Bonn']
+    Thought (310 chars): 'The partner of Nicolae Ceaușescu is Elena Ceaușescu (based on fact 370, which states Nicolae Ceaușescu is married to Wilhelm II, but fact 333 explicitly mentions the university where Elena Ceaușescu was educated). Fact 333 states: "The univeristy where Elena Ceaușescu was educated is University of Bucharest."'
+    GT entities in thought: 1, OLD entities in thought: 1
+
+  qid   8 (2-hop, 2-c) [older_intermediate] pred='Asia' final_gt='North America' final_old='Europe'
+    GT chain: ['Israel', 'North America']
+    OLD chain: ['United Kingdom', 'Asia']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid   9 (3-hop, 2-c) [hallucination_or_other] pred='Not mentioned' final_gt='Berlin' final_old='Galilee'
+    GT chain: ['Methodism', 'Joseph Goebbels', 'Berlin']
+    OLD chain: ['Catholic Church', 'John Wesley']
+    Thought (508 chars): 'John Walsh is affiliated with the religion of Methodism (Fact 361). Methodism was founded by Joseph Goebbels (Fact 287). John Knox worked in the city of Edinburgh (Fact 313). However, the question asks for the location of work of the founder of the religion to which John Walsh belongs. Fact 361 states John Walsh is affiliated with Methodism. Fact 287 states Methodism was founded by Joseph Goebbels'
+    GT entities in thought: 2, OLD entities in thought: 0
+
+  qid  12 (3-hop, 2-c) [older_fact_final] pred='London' final_gt='Duluth' final_old='London'
+    GT chain: ['association football', 'Italy', 'Duluth']
+    OLD chain: ['England', 'Rome']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  14 (2-hop, 2-c) [older_fact_final] pred='Donald Trump' final_gt='Emmerson Mnangagwa' final_old='Donald Trump'
+    GT chain: ['United Kingdom', 'Emmerson Mnangagwa']
+    OLD chain: ['United States of America', 'Elizabeth II']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  15 (3-hop, 3-c) [hallucination_or_other] pred='The provided knowledge pool does not contain information regarding the city of origin for the Surrey Senior Cup.' final_gt='Russellville' final_old='London'
+    GT chain: ['basketball', 'Soviet Union', 'Russellville']
+    OLD chain: ['association football', 'United States of America', 'Moscow']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  16 (2-hop, 2-c) [older_fact_final] pred='United States of America' final_gt='Soviet Union' final_old='United States of America'
+    GT chain: ['basketball', 'Soviet Union']
+    OLD chain: ['baseball', 'United States of America']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  19 (4-hop, 3-c) [older_fact_final] pred='London' final_gt='Duluth' final_old='London'
+    GT chain: ['The Beatles', 'Joe Hockey', 'Italy', 'Duluth']
+    OLD chain: ['Brian Epstein', 'Australia', 'Rome']
+    Thought (233 chars): 'The performer of "Free as a Bird" is The Beatles (Fact 350). The manager of The Beatles is Brian Epstein (Fact 246). Brian Epstein is a citizen of the United Kingdom (Fact 246). The capital of the United Kingdom is London (Fact 377).'
+    GT entities in thought: 1, OLD entities in thought: 1
+
+  qid  23 (2-hop, 2-c) [chain_break_at_GT] pred='basketball' final_gt='Soviet Union' final_old='England'
+    GT chain: ['basketball', 'Soviet Union']
+    OLD chain: ['association football', 'United States of America']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  27 (4-hop, 1-c) [entity_confusion] pred='New York City' final_gt='Harrisville' final_old='Washington, D.C.'
+    GT chain: ['Meredith Grey', 'Ellen Pompeo', 'United States of America', 'Harrisville']
+    OLD chain: ['Washington, D.C']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  29 (2-hop, 2-c) [older_intermediate] pred='Bucharest' final_gt='Rajanpur' final_old='Washington, D.C.'
+    GT chain: ['Romania', 'Rajanpur']
+    OLD chain: ['United States of America', 'Bucharest']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  30 (3-hop, 2-c) [older_fact_final] pred='Minneapolis' final_gt='New York City' final_old='Minneapolis'
+    GT chain: ['Lou Reed', 'Fordham University', 'New York City']
+    OLD chain: ['Bob Dylan', 'Syracuse University']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  31 (3-hop, 2-c) [older_fact_final] pred='Donald Trump' final_gt='Giuseppe Conte' final_old='Donald Trump'
+    GT chain: ['association football', 'Italy', 'Giuseppe Conte']
+    OLD chain: ['basketball', 'England']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  32 (4-hop, 1-c) [older_fact_final] pred='Asia' final_gt='North America' final_old='Asia'
+    GT chain: ['Microsoft', 'Steve Jobs', 'San Francisco', 'North America']
+    OLD chain: ['Satya Nadella']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  33 (3-hop, 3-c) [older_fact_final] pred='Europe' final_gt='South America' final_old='Europe'
+    GT chain: ['cricket', 'Australia', 'South America']
+    OLD chain: ['association football', 'England', 'Oceania']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  40 (2-hop, 1-c) [entity_confusion] pred='John Knox' final_gt='Philippe, Duke of Orléans' final_old='David Ben-Gurion'
+    GT chain: ['Israel', 'Philippe, Duke of Orléans']
+    OLD chain: ['David Ben-Gurion']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  43 (3-hop, 1-c) [older_fact_final] pred='United States of America, Donald Trump' final_gt='Shinzō Abe' final_old='Donald Trump'
+    GT chain: ['baseball', 'Japan', 'Shinzō Abe']
+    OLD chain: ['United States of America']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  44 (4-hop, 2-c) [older_fact_final] pred='Washington, D.C.' final_gt='London' final_old='Washington, D.C.'
+    GT chain: ['point guard', 'cricket', 'England', 'London']
+    OLD chain: ['basketball', 'Australia']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  45 (2-hop, 1-c) [older_fact_final] pred='Gads Hill Place' final_gt='London' final_old='Gads Hill Place'
+    GT chain: ['Sigmund Freud', 'London']
+    OLD chain: ['Charles Dickens']
+    Thought (274 chars): 'The author of "Sketches by Boz" is Charles Dickens. Searching the knowledge pool for facts about Charles Dickens\' death: Fact 448 states "Charles Dickens died in the city of Gads Hill Place." There are no other facts in the provided pool regarding the location of his death.'
+    GT entities in thought: 0, OLD entities in thought: 1
+
+  qid  46 (4-hop, 1-c) [older_fact_final] pred='London' final_gt='Tokyo' final_old='London'
+    GT chain: ['midfielder', 'sumo', 'Japan', 'Tokyo']
+    OLD chain: ['association football']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  47 (2-hop, 2-c) [older_intermediate] pred='North America' final_gt='Asia' final_old='Europe'
+    GT chain: ['Canada', 'Asia']
+    OLD chain: ['Germany', 'North America']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  56 (2-hop, 2-c) [chain_break_at_GT] pred='Germany' final_gt='Africa' final_old='Europe'
+    GT chain: ['Germany', 'Africa']
+    OLD chain: ['France', 'Europe']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  57 (4-hop, 3-c) [older_fact_final] pred='London' final_gt='Oderzo' final_old='London'
+    GT chain: ['David Beckham', 'cricket', 'Australia', 'Oderzo']
+    OLD chain: ['association football', 'England', 'Canberra']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  58 (2-hop, 2-c) [chain_break_at_GT] pred='Walter Chrysler' final_gt='Charles Frederick, Duke of Holstein-Gottorp' final_old='Shapur I'
+    GT chain: ['Walter Chrysler', 'Charles Frederick, Duke of Holstein-Gottorp']
+    OLD chain: ['Ardashir I', 'Walter Percy Chrysler Jr.']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  59 (3-hop, 2-c) [entity_confusion] pred='Moscow' final_gt='Duluth' final_old='London'
+    GT chain: ['association football', 'Italy', 'Duluth']
+    OLD chain: ['England', 'Rome']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  60 (2-hop, 2-c) [older_intermediate] pred='Los Angeles' final_gt='Berlin' final_old='Camden Town'
+    GT chain: ['Frank Zappa', 'Berlin']
+    OLD chain: ['Amy Winehouse', 'Los Angeles']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  61 (2-hop, 2-c) [chain_break_at_GT] pred='cornerback' final_gt='field hockey' final_old='American football'
+    GT chain: ['cornerback', 'field hockey']
+    OLD chain: ['wide receiver', 'American football']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  62 (2-hop, 1-c) [entity_confusion] pred='politician' final_gt='Ernst Heinkel' final_old='Bob Iger'
+    GT chain: ['American Broadcasting Company', 'Ernst Heinkel']
+    OLD chain: ['Bob Iger']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  66 (2-hop, 2-c) [older_fact_final] pred='English' final_gt='German' final_old='English'
+    GT chain: ['The Vampyre', 'German']
+    OLD chain: ['Playboy', 'English']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  72 (2-hop, 1-c) [older_fact_final] pred='Donald Trump' final_gt='Connachta' final_old='Donald Trump'
+    GT chain: ['United States of America', 'Connachta']
+    OLD chain: ['Donald Trump']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  76 (2-hop, 1-c) [older_fact_final] pred='Stockholm' final_gt='Washington, D.C.' final_old='Stockholm'
+    GT chain: ['Pedro Pierluisi', 'Washington, D.C.']
+    OLD chain: ['Stefan Löfven']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  78 (3-hop, 2-c) [chain_break_at_GT] pred='India' final_gt='Africa' final_old='Europe'
+    GT chain: ['rugby union', 'India', 'Africa']
+    OLD chain: ['England', 'Asia']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  80 (2-hop, 2-c) [older_intermediate] pred='Asia' final_gt='Antarctica' final_old='Europe'
+    GT chain: ['Malaysia', 'Antarctica']
+    OLD chain: ['France', 'Asia']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  82 (2-hop, 2-c) [hallucination_or_other] pred='Not mentioned in the knowledge pool.' final_gt='Elizabeth II' final_old='Donald Trump'
+    GT chain: ['Soviet Union', 'Elizabeth II']
+    OLD chain: ['United States of America', 'Mikhail Gorbachev']
+    Thought (987 chars): '1. Identify the country of origin of Club Nouveau: Fact 353 states "Club Nouveau was created in the country of Soviet Union."\n2. Identify the head of government of the Soviet Union: Fact 157 states "The capital of Soviet Union is Moscow." Fact 365 states "The name of the current head of state in Soviet Union is Elizabeth II." Fact 351 states "The name of the current head of the Council of People\'s'
+    GT entities in thought: 2, OLD entities in thought: 0
+
+  qid  85 (3-hop, 3-c) [older_fact_final] pred='United States of America' final_gt='Philippines' final_old='United States of America'
+    GT chain: ['goaltender', 'pesäpallo', 'Philippines']
+    OLD chain: ['center', 'ice hockey', 'Finland']
+    Thought (2139 chars): 'Lisa Leslie plays the position of goaltender (Fact 169). The sport of pesäpallo is associated with the position of goaltender (Fact 310). Pesäpallo was created in the country of Finland (not explicitly stated, but the question asks for the country of the sportsperson). However, looking at the provided knowledge pool for the sportsperson associated with the position of goaltender: Fact 169 states "'
+    GT entities in thought: 2, OLD entities in thought: 1
+
+  qid  87 (3-hop, 3-c) [older_fact_final] pred='Washington, D.C.' final_gt='Duluth' final_old='Washington, D.C.'
+    GT chain: ['association football', 'Italy', 'Duluth']
+    OLD chain: ['baseball', 'England', 'Rome']
+    Thought (218 chars): 'Sandy Alderson is associated with the sport of baseball (Fact 35). Baseball was created in the country of United States of America (Fact 161). The capital of the United States of America is Washington, D.C. (Fact 248).'
+    GT entities in thought: 0, OLD entities in thought: 1
+
+  qid  88 (4-hop, 4-c) [entity_confusion] pred='German' final_gt='Arabic' final_old='English'
+    GT chain: ['Madonna', 'Narendra Modi', 'Australia', 'Arabic']
+    OLD chain: ['The Beatles', 'Guy Oseary', 'India', 'English']
+    Thought (568 chars): 'The director of "Past Masters" is Madonna (Fact 364). Madonna is a citizen of the United States of America (implied by her status as a famous American artist, though the pool does not explicitly state her citizenship, it identifies the official language of the United States of America in Fact 242 and Fact 295). Fact 242 states the official language of the United States of America is American Engli'
+    GT entities in thought: 1, OLD entities in thought: 1
+
+  qid  89 (2-hop, 2-c) [entity_confusion] pred='India' final_gt='Australia' final_old='United States of America'
+    GT chain: ['cricket', 'Australia']
+    OLD chain: ['baseball', 'England']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  91 (4-hop, 4-c) [older_fact_final] pred='Berlin' final_gt='Duluth' final_old='Berlin'
+    GT chain: ['Stephen Crane', 'Charlie Hebdo', 'Italy', 'Duluth']
+    OLD chain: ['Friedrich Nietzsche', 'The Red Badge of Courage', 'France', 'Rome']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  93 (4-hop, 2-c) [entity_confusion] pred='London' final_gt='Harare' final_old='Washington, D.C.'
+    GT chain: ['Elvis Presley', 'Charles the Bold', 'France', 'Harare']
+    OLD chain: ['Priscilla Presley', 'Paris']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  94 (2-hop, 2-c) [entity_confusion] pred='United Kingdom' final_gt='Japan' final_old='England'
+    GT chain: ['baseball', 'Japan']
+    OLD chain: ['association football', 'United States of America']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+  qid  98 (4-hop, 3-c) [older_fact_final] pred='Washington, D.C.' final_gt='Paris' final_old='Washington, D.C.'
+    GT chain: ['Ford Motor Company', 'Henri Grégoire', 'France', 'Paris']
+    OLD chain: ['Henry Ford', 'India', 'Harare']
+    Thought (321 chars): 'The manufacturer of Ford Transit Connect is Ford Motor Company (Fact 253). The founder of Ford Motor Company is Henry Ford (implied by general knowledge, but specifically, Fact 254 states Henry Ford is a citizen of the United States of America). The capital of the United States of America is Washington, D.C. (Fact 247).'
+    GT entities in thought: 1, OLD entities in thought: 1
+
+  qid  99 (3-hop, 3-c) [hallucination_or_other] pred='Finnish' final_gt='Swedish' final_old='English'
+    GT chain: ['baseball', 'Japan', 'Swedish']
+    OLD chain: ['association football', 'United States of America', 'Japanese']
+    Thought (0 chars): ''
+    GT entities in thought: 0, OLD entities in thought: 0
+
+==============================================================================

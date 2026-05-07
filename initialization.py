@@ -349,6 +349,6 @@ def _memorize_context_chunks(agent, context_chunks, current_context_index, total
     progress_description = f"Processing experiments {current_context_index + 1}/{total_contexts_count}"
     
     for chunk in tqdm(context_chunks, total=len(context_chunks), desc=progress_description):
-        agent.send_message(chunk, memorizing=True)
+        agent.send_message(chunk, memorizing=True, context_id=current_context_index)
 
     

@@ -1,0 +1,83 @@
+======================================================================
+(A) Zep-native failure taxonomy
+======================================================================
+
+SH has_pair (n=74):
+  status                             n         EM
+  SUPERSESSION_PERFECT               6 6/6 = 100%
+  SUPERSESSION_MISFIRED             14  1/14 = 7%
+  EDGES_BOTH_NO_SIGNAL              18 15/18 = 83%
+  NO_EDGE_SIGNAL_BUT_VISIBLE        36 22/36 = 61%
+  RETRIEVAL_MISSING                  0          —
+
+  HippoRAG-v2 SH has_pair (n=74):
+  status                             n         EM
+  DIFFERENT_PASSAGE                 59 41/59 = 69%
+  SAME_PASSAGE                      14 10/14 = 71%
+  RETRIEVAL_MISSING                  1   0/1 = 0%
+
+MH (n=100) — Zep question-level taxonomy:
+  status                             n         EM
+  ALL_PERFECT                       14 10/14 = 71%
+  PARTIAL_PERFECT                   27 8/27 = 30%
+  NO_SIGNAL_BOTH_VISIBLE            47  4/47 = 9%
+  ANY_MISFIRED                       3   0/3 = 0%
+  ANY_RETRIEVAL_MISSING              9  3/9 = 33%
+
+  hop-level taxonomy distribution:
+    NO_EDGE_SIGNAL_BUT_VISIBLE       87
+    SUPERSESSION_PERFECT             47
+    EDGES_BOTH_NO_SIGNAL             41
+    RETRIEVAL_MISSING                10
+    SUPERSESSION_MISFIRED            3
+
+  HippoRAG-v2 MH (n=100):
+  status                             n         EM
+  ALL_DIFFERENT_PASSAGE             66 17/66 = 26%
+  ANY_SAME_PASSAGE                  27  2/27 = 7%
+  ANY_RETRIEVAL_MISSING              7  1/7 = 14%
+
+======================================================================
+(B) 4-way EM contingency on FC-MH 100q
+======================================================================
+
+Per-method EM (n=100):
+  hippo       11/100 = 11%
+  zep         25/100 = 25%
+  pat         36/100 = 36%
+  rpt_min     60/100 = 60%
+  rpt         68/100 = 68%
+
+Pairwise contingency vs Zep:
+  comparison              both  zep only  other only  neither
+  zep × hippo              6        19           5       70
+  zep × pat               12        13          24       51
+  zep × rpt_min           19         6          41       34
+  zep × rpt               25         0          43       32
+
+  RPT-min answers correctly where Zep fails: n=41
+  RPT     answers correctly where Zep fails: n=43
+  Zep     answers correctly where RPT-min fails: n=6
+  Zep     answers correctly where RPT     fails: n=0
+
+  All 4 methods fail: n=28/100 (the hard core)
+  All 4 methods correct: n=6/100
+
+======================================================================
+(C) SH vs MH supersession mechanism effectiveness
+======================================================================
+
+SH (per-question, n=74 has_pair):
+  status                         n         EM
+  PERFECT                        6 6/6 = 100.0%
+  MISFIRED                      14 1/14 = 7.1%
+  NO_SIGNAL_BUT_VISIBLE         54 37/54 = 68.5%
+  RETRIEVAL_MISSING              0    0/0 = -
+
+MH (per-question, n=100 — all has_pair):
+  status                         n         EM
+  ALL_PERFECT                   14 10/14 = 71.4%
+  PARTIAL_PERFECT               27 8/27 = 29.6%
+  NO_SIGNAL_BOTH_VISIBLE        47 4/47 = 8.5%
+  ANY_MISFIRED                   3 0/3 = 0.0%
+  ANY_RETRIEVAL_MISSING          9 3/9 = 33.3%

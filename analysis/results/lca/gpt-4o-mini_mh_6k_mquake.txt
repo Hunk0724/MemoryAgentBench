@@ -1,0 +1,17 @@
+=== gpt-4o-mini × factconsolidation_mh_6k (MH) ===
+matched=100   correct=14   EM=14.0%
+
+Conflict-type breakdown:
+  has_pair            : n=100  correct= 14  acc=14.0%
+
+Error type distribution:
+  entity_confused     :  58 (58.0%)
+  older_fact          :  25 (25.0%)
+  correct             :  14 (14.0%)
+  hallucination       :   3 (3.0%)
+
+Hop-count distribution (acc per hop-count):
+  2-hop: n= 61  acc=16.4%
+  3-hop: n= 24  acc=16.7%
+  4-hop: n= 15  acc=0.0%
+No MQuAKE match: 0

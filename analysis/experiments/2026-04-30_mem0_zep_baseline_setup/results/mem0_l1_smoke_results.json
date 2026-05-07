@@ -1,0 +1,124 @@
+{
+  "test": "Mem0 L1 minimal-mod smoke (FC-SH 6k ingestion only)",
+  "llm_backbone": "gemini-3.1-flash-lite-preview via Vertex AI",
+  "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+  "chunks": 12,
+  "chunks_with_extracted_facts": 12,
+  "total_facts_extracted": 448,
+  "per_chunk": [
+    {
+      "chunk_idx": 0,
+      "n_facts_extracted": 36,
+      "facts_preview": [
+        "Thomas Kyd was born in London",
+        "Mahmoud Abbas is the chairperson of Fatah",
+        "Amy Winehouse died in Camden Town"
+      ]
+    },
+    {
+      "chunk_idx": 1,
+      "n_facts_extracted": 37,
+      "facts_preview": [
+        "Frank Zappa died in the city of Berlin",
+        "Quarterback is a position in American football",
+        "Dave Filoni is employed by Lucasfilm"
+      ]
+    },
+    {
+      "chunk_idx": 2,
+      "n_facts_extracted": 38,
+      "facts_preview": [
+        "The author of The Birth of Tragedy is Friedrich Nietzsche",
+        "Andrzej Sapkowski wrote The Witcher and speaks the language of Polish",
+        "quarterback is associated with the sport of Muay Thai"
+      ]
+    },
+    {
+      "chunk_idx": 3,
+      "n_facts_extracted": 34,
+      "facts_preview": [
+        "Headquarters of University of California, Berkeley is located in Botevgrad",
+        "Laura Bush is married to George W. Bush",
+        "Madame du Barry is a citizen of Great Britain"
+      ]
+    },
+    {
+      "chunk_idx": 4,
+      "n_facts_extracted": 39,
+      "facts_preview": [
+        "Official language of Australia is Arabic",
+        "Kylie Minogue speaks German",
+        "Hugh Hefner is famous for The Vampyre"
+      ]
+    },
+    {
+      "chunk_idx": 5,
+      "n_facts_extracted": 40,
+      "facts_preview": [
+        "Ernst Heinkel is a citizen of Tang Empire",
+        "point guard is associated with the sport of cricket",
+        "Ford Motor Company was founded by Henri Gr\u00e9goire"
+      ]
+    },
+    {
+      "chunk_idx": 6,
+      "n_facts_extracted": 40,
+      "facts_preview": [
+        "Nobuhiro Watsuki is famous for The Fairly OddParents",
+        "Chairperson of Fatah is Moshe Kahlon",
+        "Yves Montand is married to Natalie Portman"
+      ]
+    },
+    {
+      "chunk_idx": 7,
+      "n_facts_extracted": 39,
+      "facts_preview": [
+        "Oscar Wilde died in the city of Guangzhou",
+        "David Beckham is associated with the sport of cricket",
+        "Slovakia national football team is associated with the sport of cricket"
+      ]
+    },
+    {
+      "chunk_idx": 8,
+      "n_facts_extracted": 36,
+      "facts_preview": [
+        "Bill Frisell was educated at The University of the Arts",
+        "Goaltender is associated with the sport of pes\u00e4pallo",
+        "John Knox worked in the city of Edinburgh"
+      ]
+    },
+    {
+      "chunk_idx": 9,
+      "n_facts_extracted": 37,
+      "facts_preview": [
+        "Bo Ryan is associated with the sport of association football",
+        "New Firm is associated with the sport of baseball",
+        "basketball was created in the Soviet Union"
+      ]
+    },
+    {
+      "chunk_idx": 10,
+      "n_facts_extracted": 37,
+      "facts_preview": [
+        "F-22 Raptor was developed by Boeing",
+        "Rap rock was created in the Russian Empire",
+        "Chief executive officer of Boeing is Adel al-Jubeir"
+      ]
+    },
+    {
+      "chunk_idx": 11,
+      "n_facts_extracted": 35,
+      "facts_preview": [
+        "Gennady Rozhdestvensky died in the city of United States of America",
+        "Tony Blair is married to Alan Jay Lerner",
+        "Hermione Granger was performed by Kylie Minogue"
+      ]
+    }
+  ],
+  "pass_criterion": "total_facts > 0 (vs OOB baseline = 0)",
+  "pass": true,
+  "comparison": {
+    "OOB (existing run, gpt-4o-mini)": "12 chunks \u00d7 0 facts",
+    "L1 modified (this run, gemini-3.1-flash-lite)": "12/12 chunks had facts; 448 total"
+  }
+}

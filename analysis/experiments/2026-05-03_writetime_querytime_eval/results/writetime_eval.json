@@ -1,0 +1,70 @@
+{
+  "mem0_sh": {
+    "task": "SH",
+    "total_pairs": 74,
+    "total_singletons": 26,
+    "pair_class_counts": {
+      "W1_correct_UPDATE": 45,
+      "W3_ADD_old_only": 5,
+      "W3_ADD_only_both": 6,
+      "W3_ADD_new_only": 6,
+      "W4_missed": 12
+    },
+    "singleton_class_counts": {
+      "S5_correct_ADD": 23,
+      "S7_extraction_miss": 3
+    },
+    "n_update_events_total": 541,
+    "n_update_events_overfire_no_GT_match": 388
+  },
+  "mem0_mh": {
+    "task": "MH",
+    "total_pairs": 188,
+    "total_singletons": 66,
+    "pair_class_counts": {
+      "W1_correct_UPDATE": 108,
+      "W4_missed": 35,
+      "W3_ADD_only_both": 13,
+      "W3_ADD_old_only": 16,
+      "W3_ADD_new_only": 13,
+      "W2_wrong_direction": 3
+    },
+    "singleton_class_counts": {
+      "S5_correct_ADD": 49,
+      "S6_over_fire": 6,
+      "S7_extraction_miss": 11
+    },
+    "n_update_events_total": 541,
+    "n_update_events_overfire_no_GT_match": 230
+  },
+  "zep_sh": {
+    "task": "SH",
+    "total_pairs": 74,
+    "total_zep_edges_aggregated": 355,
+    "n_edges_with_invalid_at": 53,
+    "pair_class_counts": {
+      "Z1_correct": 17,
+      "Z3_no_invalidation": 43,
+      "Z2_wrong_direction": 6,
+      "Z4_extraction_miss": 1,
+      "Z4_new_extraction_miss": 4,
+      "Z5_both_invalid_ambig": 1,
+      "Z4_old_extraction_miss": 2
+    }
+  },
+  "zep_mh": {
+    "task": "MH",
+    "total_pairs": 188,
+    "total_zep_edges_aggregated": 349,
+    "n_edges_with_invalid_at": 67,
+    "pair_class_counts": {
+      "Z3_no_invalidation": 58,
+      "Z4_extraction_miss": 20,
+      "Z4_old_extraction_miss": 13,
+      "Z1_correct": 70,
+      "Z2_wrong_direction": 8,
+      "Z4_new_extraction_miss": 18,
+      "Z5_both_invalid_ambig": 1
+    }
+  }
+}

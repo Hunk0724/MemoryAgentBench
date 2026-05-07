@@ -1,0 +1,602 @@
+[
+  {
+    "qid": 6,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "Which country does the current CEO of Twitter hold citizenship of?",
+    "gt": "France",
+    "real_question": "Which country does the current CEO of Twitter hold citizenship of?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: The knowledge pool contains two facts regarding the CEO of Twitter: fact 109 states \"The chief executive officer of Twitter is Jack Dorsey\" and fact 275 states \"The chief executive officer of Twitter is Bernard Arnault.\" Since 275 is the larger serial number, the current CEO is Bernard Arnault. Fact 320 states \"Bernard Arnault is a citizen of France.\"\n\nAnswer: France",
+        "parsed_answer": "France"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Twitter, chief executive officer): (Twitter, chief executive officer)\n    Candidates found in context:\n      - The chief executive officer of Twitter is Jack Dorsey. | source: Wikipedia Title: ... | seq: 109\n      - The chief executive officer of Twitter is Bernard Arnault. | source: Wikipedia Title: ... | seq: 275\n    Conflict among candidates: yes\n    Selected: Jack Dorsey\n    Signal used: 275 > 109\n    Criterion: larger serial number\n  Hop 2 (Jack Dorsey, citizen): (Jack Dorsey, citizen)\n    Candidates found in context:\n      - Jack Dorsey is a citizen of United States of America. | source: Wikipedia Title: ... | seq: 119\n    Conflict among candidates: no\n    Selected: United States of America\n    Signal used: none\n    Criterion: none\n\nReasoning chain:\n  Hop 1 selected: Jack Dorsey (from seq 275, which is the latest mention of the CEO of Twitter)\n  Hop 2 lookup: (Jack Dorsey, citizen) -> United States of America\n  Final: United States of America\n\nAnswer: United States of America",
+        "parsed_answer": "United States of America"
+      }
+    }
+  },
+  {
+    "qid": 4,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the sport that Blair Walsh plays in which he is known for his position o",
+    "gt": "rugby",
+    "real_question": "What is the sport that Blair Walsh plays in which he is known for his position on the team?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: Fact 419 states: \"Blair Walsh plays the position of placekicker.\" There are no other facts in the provided knowledge pool that mention Blair Walsh or his position.\n\nAnswer: placekicker",
+        "parsed_answer": "placekicker"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Blair Walsh, position): (Blair Walsh, position)\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - Blair Walsh plays the position of placekicker. | source: Wikipedia Title: Steve Sax is associated with the sport of association football. | seq: 419\n    Conflict among candidates: no\n    Selected: placekicker\n    Signal used: 419\n    Criterion: larger serial number\n  Hop 2 (placekicker, associated sport): (placekicker, associated sport)\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - placekicker is associated with the sport of rugby. | source: Wikipedia Title: The author of The Witcher is T. S. Eliot. | seq: 321\n      - placekicker is associated with the sport of American football. | source: Wikipedia Title: Australia is located in the continent of Oceania. | seq: 79\n    Conflict among candidates: yes\n    Selected: placekicker is associated with the sport of American football.\n    Signal used: 79\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: placekicker\n  Hop 2 lookup: (placekicker, associated sport) -> American football\n  Final: American football\n\nAnswer: American football",
+        "parsed_answer": "American football"
+      }
+    }
+  },
+  {
+    "qid": 14,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "What was the name of the head of state in the country where Andrew Carnegie was ",
+    "gt": "Emmerson Mnangagwa",
+    "real_question": "What was the name of the head of state in the country where Andrew Carnegie was a citizen?",
+    "hippo": {
+      "C_original": {
+        "response": "Answer: Elizabeth II",
+        "parsed_answer": "Elizabeth II"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Andrew Carnegie, citizen): (Andrew Carnegie, citizen)\n    Candidates found in context:\n      - Andrew Carnegie is a citizen of United Kingdom. | source: FACTS | seq: 367\n      - Andrew Carnegie is a citizen of United States of America. | source: FACTS | seq: 339\n    Conflict among candidates: yes\n    Selected: United States of America\n    Signal used: 339\n    Criterion: larger serial number\n  Hop 2 (United States of America, head of state): (United States of America, head of state)\n    Candidates found in context:\n      - The name of the current head of state in United States of America is Donald Trump. | source: FACTS | seq: 116\n      - The name of the current head of state in United States of America is Connachta. | source: FACTS | seq: 127\n    Conflict among candidates: yes\n    Selected: Connachta\n    Signal used: 127\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: United States of America (from seq 339, which is larger than 367)\n  Hop 2 lookup: (United States of America, head of state) -> Connachta (from seq 127, which is larger than 116)\n  Final: Connachta\n\nAnswer: Connachta",
+        "parsed_answer": "Connachta"
+      }
+    }
+  },
+  {
+    "qid": 5,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the name of the educational institution where the partner of Nicolae Cea",
+    "gt": "Baldwin Wallace University",
+    "real_question": "What is the name of the educational institution where the partner of Nicolae Ceaușescu was educated?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: The partner of Nicolae Ceaușescu is Elena Ceaușescu (Fact 59). Fact 333 states: \"The univeristy where Elena Ceaușescu was educated is University of Bucharest.\"\n\nAnswer: University of Bucharest",
+        "parsed_answer": "University of Bucharest"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Nicolae Ceaușescu, married to): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - Nicolae Ceaușescu is married to Elena Ceaușescu. | source: Wikipedia Title: Frank Zappa died in the city of Los Angeles. | seq: 59\n      - Nicolae Ceaușescu is married to Wilhelm II. | source: Wikipedia Title: Thomas Arne was born in the city of London. | seq: 370\n    Conflict among candidates: yes\n    Selected: Nicolae Ceaușescu is married to Elena Ceaușescu.\n    Signal used: 370\n    Criterion: larger serial number\n  Hop 2 (Elena Ceaușescu, educated at): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - The univeristy where Elena Ceaușescu was educated is University of Bucharest. | source: Wikipedia Title: The author of The Witcher is T. S. Eliot. | seq: 333\n    Conflict among candidates: no\n    Selected: University of Bucharest\n    Signal used: none\n    Criterion: fallback\n\nReasoning chain:\n  Hop 1 selected: Elena Ceaușescu\n  Hop 2 lookup: (Elena Ceaușescu, educated at) -> University of Bucharest\n  Final: University of Bucharest\n\nAnswer: University of Bucharest",
+        "parsed_answer": "University of Bucharest"
+      }
+    }
+  },
+  {
+    "qid": 3,
+    "n_hops": 3,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Which city serves as the capital of the country of origin for the sport of the T",
+    "gt": "Russellville",
+    "real_question": "Which city serves as the capital of the country of origin for the sport of the Tunisia national football team?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: 1. Identify the sport of the Tunisia national football team: Fact 235 states \"Tunisia national football team is associated with the sport of association football.\"\n2. Identify the country of origin for association football: Fact 272 states \"association football was created in the country of England.\"\n3. Identify the capital of England: Fact 378 states \"The capital of England is London.\"\n\nAnswer: London",
+        "parsed_answer": "London"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Tunisia national football team, sport):\n    Candidates found in context:\n      - Tunisia national football team is associated with the sport of basketball. | source: Wikipedia Title: ... | seq: 418\n      - Tunisia national football team is associated with the sport of association football. | source: Wikipedia Title: ... | seq: 235\n    Conflict among candidates: yes\n    Selected: association football\n    Signal used: 235\n    Criterion: larger serial number\n  Hop 2 (association football, country of origin):\n    Candidates found in context:\n      - association football was created in the country of England. | source: Wikipedia Title: ... | seq: 272\n      - association football was created in the country of Italy. | source: Wikipedia Title: ... | seq: 390\n    Conflict among candidates: yes\n    Selected: Italy\n    Signal used: 390\n    Criterion: larger serial number\n  Hop 3 (Italy, capital):\n    Candidates found in context:\n      - The capital of Italy is Rome. | source: Wikipedia Title: ... | seq: 167\n      - The capital of Italy is Duluth. | source: Wikipedia Title: ... | seq: 210\n    Conflict among candidates: yes\n    Selected: Duluth\n    Signal used: 210\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: association football (seq 235)\n  Hop 2 lookup: (association football, country of origin) -> Italy (seq 390)\n  Hop 3 lookup: (Italy, capital) -> Duluth (seq 210)\n  Final: Duluth\n\nAnswer: Duluth",
+        "parsed_answer": "Duluth"
+      }
+    }
+  },
+  {
+    "qid": 1,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": true,
+    "question": "In which location did the spouse of Igor of Kiev pass away?",
+    "gt": "Rodez",
+    "real_question": "In which location did the spouse of Igor of Kiev pass away?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: The spouse of Igor of Kiev is Olga of Kiev (Fact 175). Searching for facts regarding the death of Olga of Kiev, we find Fact 125 (\"Olga of Kiev died in the city of Kyiv\") and Fact 451 (\"Olga of Kiev died in the city of Rodez\"). Since Fact 451 has a larger serial number than Fact 125, it is the newest fact.\n\nAnswer: Rodez",
+        "parsed_answer": "Rodez"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Igor of Kiev, spouse): (Igor of Kiev, married to)\n    Candidates found in context:\n      - Igor of Kiev is married to Olga of Kiev. | source: FACTS | seq: 175\n    Conflict among candidates: no\n    Selected: Olga of Kiev\n    Signal used: 175\n    Criterion: larger serial number\n  Hop 2 (Olga of Kiev, died in): (Olga of Kiev, died in)\n    Candidates found in context:\n      - Olga of Kiev died in the city of Kyiv. | source: FACTS | seq: 125\n      - Olga of Kiev died in the city of Rodez. | source: FACTS | seq: 451\n    Conflict among candidates: yes\n    Selected: Rodez\n    Signal used: 451\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: Olga of Kiev\n  Hop 2 lookup: (Olga of Kiev, died in) -> Rodez\n  Final: Rodez\n\nAnswer: Rodez",
+        "parsed_answer": "Rodez"
+      }
+    }
+  },
+  {
+    "qid": 69,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": false,
+    "hippo_em": true,
+    "question": "What is the place of death of the author of Endymion?",
+    "gt": "Leipzig",
+    "real_question": "What is the place of death of the author of Endymion?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: The author of Endymion is John Keats (Fact 180). Looking for facts about John Keats's place of death, Fact 206 states he died in Rome, and Fact 372 states he died in Leipzig. Since 372 is a larger serial number than 206, the newest fact is that he died in Leipzig.\n\nAnswer: Leipzig",
+        "parsed_answer": "Leipzig"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Endymion, author):\n    Candidates found in context:\n      - The author of Endymion is John Keats. | source: FACTS/ENTITIES/EPISODES | seq: 180\n    Conflict among candidates: no\n    Selected: John Keats\n    Signal used: 180\n    Criterion: larger serial number\n  Hop 2 (John Keats, place of death):\n    Candidates found in context:\n      - John Keats died in the city of Rome. | source: FACTS/ENTITIES/EPISODES | seq: 206\n      - John Keats died in the city of Leipzig. | source: FACTS/ENTITIES/EPISODES | seq: 372\n    Conflict among candidates: yes\n    Selected: Leipzig\n    Signal used: 372\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: John Keats\n  Hop 2 lookup: (John Keats, place of death) -> Leipzig (seq 372 > seq 206)\n  Final: Leipzig\n\nAnswer: Leipzig",
+        "parsed_answer": "Leipzig"
+      }
+    }
+  },
+  {
+    "qid": 46,
+    "n_hops": 4,
+    "n_conflict": 1,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the capital city of the country from which the sport of Daniele De Rossi",
+    "gt": "Tokyo",
+    "real_question": "What is the capital city of the country from which the sport of Daniele De Rossi originated?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: Daniele De Rossi plays the position of midfielder (Fact 269). Midfielder is associated with the sport of association football (Fact 325). Association football was created in the country of England (Fact 272). The capital of England is London (Fact 379).\n\nAnswer: London",
+        "parsed_answer": "London"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Daniele De Rossi, plays the position of): <midfielder>\n    Candidates found in context:\n      - Daniele De Rossi plays the position of midfielder. | source: Wikipedia Title: 267... | seq: 269\n    Conflict among candidates: no\n    Selected: midfielder\n    Signal used: 269\n    Criterion: larger serial number\n  Hop 2 (midfielder, is associated with the sport of): <association football>\n    Candidates found in context:\n      - midfielder is associated with the sport of association football. | source: Wikipedia Title: 305... | seq: 325\n      - midfielder is associated with the sport of sumo. | source: Wikipedia Title: 381... | seq: 417\n    Conflict among candidates: yes\n    Selected: association football\n    Signal used: 325\n    Criterion: larger serial number\n  Hop 3 (association football, was created in the country of): <England, Italy>\n    Candidates found in context:\n      - association football was created in the country of England. | source: Wikipedia Title: 267... | seq: 272\n      - association football was created in the country of Italy. | source: Wikipedia Title: 381... | seq: 390\n    Conflict among candidates: yes\n    Selected: Italy\n    Signal used: 390\n    Criterion: larger serial number\n  Hop 4 (Italy, capital of): <Rome, Duluth, Rajanpur>\n    Candidates found in context:\n      - The capital of Italy is Rome. | source: Wikipedia Title: 149... | seq: 168\n      - The capital of Italy is Duluth. | source: Wikipedia Title: 189... | seq: 210\n      - The capital of Romania is Rajanpur. | source: Wikipedia Title: 418... | seq: 450 (Note: Romania is not Italy, but checking for Italy)\n    Conflict among candidates: yes\n    Selected: Duluth\n    Signal used: 210\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: midfielder\n  Hop 2 lookup: (midfielder, is associated with the sport of) -> association football\n  Hop 3 lookup: (association football, was created in the country of) -> Italy\n  Hop 4 lookup: (Italy, capital of) -> Duluth\n\nAnswer: Duluth",
+        "parsed_answer": "Duluth"
+      }
+    }
+  },
+  {
+    "qid": 34,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": true,
+    "question": "Which religion was the partner of Ferdinand Marcos associated with?",
+    "gt": "atheism",
+    "real_question": "Which religion was the partner of Ferdinand Marcos associated with?",
+    "hippo": {
+      "C_original": {
+        "response": "Answer: atheism",
+        "parsed_answer": "atheism"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Ferdinand Marcos, married to): <Ferdinand Marcos, Imelda Marcos>\n    Candidates found in context:\n      - Ferdinand Marcos is married to Imelda Marcos. | source: FACTS | seq: 11\n    Conflict among candidates: no\n    Selected: Imelda Marcos\n    Signal used: none\n    Criterion: none\n  Hop 2 (Imelda Marcos, affiliated with): <Imelda Marcos, religion>\n    Candidates found in context:\n      - Imelda Marcos is affiliated with the religion of Catholicism. | source: FACTS | seq: 248\n      - Imelda Marcos is affiliated with the religion of atheism. | source: FACTS | seq: 374\n    Conflict among candidates: yes\n    Selected: atheism\n    Signal used: 374\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: Imelda Marcos\n  Hop 2 lookup: (Imelda Marcos, affiliated with) -> atheism (due to higher serial number 374 vs 248)\n  Final: atheism\n\nAnswer: atheism",
+        "parsed_answer": "atheism"
+      }
+    }
+  },
+  {
+    "qid": 79,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What sport is associated with the position played by Irving Fryar on a team/spec",
+    "gt": "rugby",
+    "real_question": "What sport is associated with the position played by Irving Fryar on a team/specialty?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: Fact 227 states that Irving Fryar plays the position of wide receiver. Fact 46 states that wide receiver is associated with the sport of American football.\n\nAnswer: American football",
+        "parsed_answer": "American football"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Irving Fryar, plays the position of): <pair>\n    Candidates found in context:\n      - Irving Fryar plays the position of wide receiver. | source: FACTS | seq: 227\n    Conflict among candidates: no\n    Selected: wide receiver\n    Signal used: 227\n    Criterion: larger serial number\n  Hop 2 (wide receiver, is associated with the sport of): <pair>\n    Candidates found in context:\n      - wide receiver is associated with the sport of rugby. | source: FACTS | seq: 252\n      - wide receiver is associated with the sport of American football. | source: FACTS | seq: 46\n    Conflict among candidates: yes\n    Selected: wide receiver is associated with the sport of rugby.\n    Signal used: 252\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: wide receiver\n  Hop 2 lookup: (wide receiver, is associated with the sport of) -> rugby\n  Final: rugby\n\nAnswer: rugby",
+        "parsed_answer": "rugby"
+      }
+    }
+  },
+  {
+    "qid": 76,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "At which location does the Prime Minister of Sweden spend most of their work hou",
+    "gt": "Washington, D.C.",
+    "real_question": "At which location does the Prime Minister of Sweden spend most of their work hours?",
+    "hippo": {
+      "C_original": {
+        "response": "Answer: Stockholm",
+        "parsed_answer": "Stockholm"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Prime Minister of Sweden, worked in): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - Stefan Löfven worked in the city of Stockholm. | source: Wikipedia Title: FC Irtysh Omsk... | seq: 166\n      - The Prime Minister of Sweden is Stefan Löfven. | source: Wikipedia Title: Australia is located... | seq: 82\n      - The Prime Minister of Sweden is Pedro Pierluisi. | source: Wikipedia Title: 267. post-punk... | seq: 276\n    Conflict among candidates: yes\n    Selected: Pedro Pierluisi\n    Signal used: 276\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: Pedro Pierluisi\n  Hop 2 lookup: (Pedro Pierluisi, worked in) -> Stockholm\n  Final: Stockholm\n\nAnswer: Stockholm",
+        "parsed_answer": "Stockholm"
+      }
+    }
+  },
+  {
+    "qid": 26,
+    "n_hops": 2,
+    "n_conflict": 1,
+    "zep_em": true,
+    "hippo_em": true,
+    "question": "Who holds the position of chairperson in the organization where Joseph Story was",
+    "gt": "Peter Diamandis",
+    "real_question": "Who holds the position of chairperson in the organization where Joseph Story was employed?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: Joseph Story is employed by Harvard University (Fact 431). The chairperson of Harvard University is listed as Lawrence S. Bacow (Fact 80) and Peter Diamandis (Fact 222). Following the rule to select the newest fact with the larger serial number, 222 is the most recent entry.\n\nAnswer: Peter Diamandis",
+        "parsed_answer": "Peter Diamandis"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Joseph Story, employed by): <Joseph Story, employed by>\n    Candidates found in context:\n      - Joseph Story is employed by Harvard University. | source: FACTS | seq: 431\n    Conflict among candidates: no\n    Selected: Harvard University\n    Signal used: 431\n    Criterion: larger serial number\n  Hop 2 (Harvard University, chairperson): <Harvard University, chairperson>\n    Candidates found in context:\n      - The chairperson of Harvard University is Lawrence S. Bacow. | source: FACTS | seq: 80\n      - The chairperson of Harvard University is Peter Diamandis. | source: FACTS | seq: 222\n    Conflict among candidates: yes\n    Selected: Peter Diamandis\n    Signal used: 222\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: Harvard University\n  Hop 2 lookup: (Harvard University, chairperson) -> Peter Diamandis (as 222 > 80)\n  Final: Peter Diamandis\n\nAnswer: Peter Diamandis",
+        "parsed_answer": "Peter Diamandis"
+      }
+    }
+  },
+  {
+    "qid": 56,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "On which continent was Le Petit Parisien originally made?",
+    "gt": "Africa",
+    "real_question": "On which continent was Le Petit Parisien originally made?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: Fact 436 states \"Le Petit Parisien was created in the country of Germany.\" Fact 257 states \"Le Petit Parisien was created in the country of France.\" Since 257 is a larger serial number than 436, the information in 257 is the newest. France is located in the continent of Europe (Fact 429).\n\nAnswer: Europe",
+        "parsed_answer": "Europe"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Le Petit Parisien, created in): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - Le Petit Parisien was created in the country of Germany. | source: FACTS | seq: 436\n      - Le Petit Parisien was created in the country of France. | source: FACTS | seq: 257\n    Conflict among candidates: yes\n    Selected: France\n    Signal used: 257\n    Criterion: larger serial number\n  Hop 2 (France, located in): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - France is located in the continent of Europe. | source: FACTS | seq: 429\n    Conflict among candidates: no\n    Selected: Europe\n    Signal used: none\n    Criterion: fallback\n\nReasoning chain:\n  Hop 1 selected: France (from seq 257, which is larger than 436)\n  Hop 2 lookup: (France, located in) -> Europe\n  Final: Europe\n\nAnswer: Europe",
+        "parsed_answer": "Europe"
+      }
+    }
+  },
+  {
+    "qid": 49,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What languages are spoken, written or signed by the founder of Shingon Buddhism?",
+    "gt": "Latin",
+    "real_question": "What languages are spoken, written or signed by the founder of Shingon Buddhism?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: The founder of Shingon Buddhism is Kūkai (Fact 20). Fact 44 states that Kūkai speaks the language of Japanese. Fact 214 states that William Waynflete speaks the language of English, and Fact 337 states that William Waynflete speaks the language of Latin; however, Fact 304 incorrectly attributes the founding of Shingon Buddhism to William Waynflete. Following the rule to use the newest fact (the one with the largest serial number) to resolve conflicts, Fact 337 (serial 337) is the latest mention of the founder's language, but it refers to the incorrect founder. Fact 44 (serial 44) is the only fact correctly identifying the founder (Kūkai) and his language.\n\nAnswer: Japanese",
+        "parsed_answer": "Japanese"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Shingon Buddhism, founded by): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - Shingon Buddhism was founded by Kūkai. | source: FACTS | seq: 20\n      - Shingon Buddhism was founded by William Waynflete. | source: FACTS | seq: 304\n    Conflict among candidates: yes\n    Selected: Kūkai\n    Signal used: 304\n    Criterion: larger serial number\n  Hop 2 (Kūkai, speaks the language of): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - Kūkai speaks the language of Japanese. | source: FACTS | seq: 44\n    Conflict among candidates: no\n    Selected: Japanese\n    Signal used: none\n    Criterion: none\n\nReasoning chain:\n  Hop 1 selected: Kūkai (from fact 304, which is the latest mention of the founder of Shingon Buddhism)\n  Hop 2 lookup: (Kūkai, speaks the language of) -> Japanese\n  Final: Japanese\n\nAnswer: Japanese",
+        "parsed_answer": "Japanese"
+      }
+    }
+  },
+  {
+    "qid": 18,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What is the job title of the chairperson of the political organization Fatah?",
+    "gt": "soldier",
+    "real_question": "What is the job title of the chairperson of the political organization Fatah?",
+    "hippo": {
+      "C_original": {
+        "response": "Answer: politician",
+        "parsed_answer": "politician"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Fatah, chairperson): <Fatah, chairperson>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - The chairperson of Fatah is Moshe Kahlon. | source: Wikipedia Title: 230. | seq: 232\n      - The chairperson of Fatah is Mahmoud Abbas. | source: Wikipedia Title: Here is a list of facts: | seq: 1\n    Conflict among candidates: yes\n    Selected: Mahmoud Abbas\n    Signal used: 1 > 232 (Wait, the prompt states \"the newer fact has larger serial number\". Fact 232 is in the first block, Fact 1 is in the second block. Comparing the serial numbers provided in the text: 232 vs 1. The prompt says \"the newer fact has larger serial number\". Fact 232 is larger than 1.)\n    Criterion: \"larger serial number\"\n\nReasoning chain:\n  Hop 1 selected: Moshe Kahlon (Fact 232 is larger than Fact 1)\n  Hop 2 lookup: (Moshe Kahlon, field) -> <soldier>\n    Candidates found in context:\n      - Moshe Kahlon works in the field of soldier. | source: Wikipedia Title: 343. | seq: 368\n    Conflict among candidates: no\n    Selected: soldier\n    Signal used: none\n    Criterion: fallback\n\nFinal: soldier\n\nAnswer: soldier",
+        "parsed_answer": "soldier"
+      }
+    }
+  },
+  {
+    "qid": 68,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "From which educational institution did the author of 'Sidereus Nuncius' receive ",
+    "gt": "University of Southern California",
+    "real_question": "From which educational institution did the author of 'Sidereus Nuncius' receive their education?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: The author of 'Sidereus Nuncius' is identified in fact 124 as Galileo Galilei. Fact 15 states that the university where Galileo Galilei was educated is the University of Pisa. There are no conflicting facts regarding the education of Galileo Galilei in the provided knowledge pool.\n\nAnswer: University of Pisa",
+        "parsed_answer": "University of Pisa"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Sidereus Nuncius, author): <Sidereus Nuncius, author>\n    Candidates found in context:\n      - The author of Sidereus Nuncius is Galileo Galilei. | source: FACTS | seq: 124\n      - The author of Sidereus Nuncius is Samuel Beckett. | source: FACTS | seq: 402\n    Conflict among candidates: yes\n    Selected: Galileo Galilei\n    Signal used: 124\n    Criterion: larger serial number\n  Hop 2 (Galileo Galilei, educated at): <Galileo Galilei, educated at>\n    Candidates found in context:\n      - The univeristy where Galileo Galilei was educated is University of Pisa. | source: FACTS | seq: 15\n    Conflict among candidates: no\n    Selected: University of Pisa\n    Signal used: none\n    Criterion: fallback\n\nReasoning chain:\n  Hop 1 selected: Galileo Galilei (from fact 124, which is later than 402 is not applicable here as 124 < 402, but wait: 124 is the author fact. Fact 402 is a later conflicting fact. Re-evaluating: 402 > 124, so Samuel Beckett is the newer fact).\n  *Correction*: The prompt asks for the newest fact. Fact 402 (Samuel Beckett) is newer than 124 (Galileo Galilei).\n  Hop 1 selected: Samuel Beckett (seq 402).\n  Hop 2 lookup: (Samuel Beckett, educated at) -> University of Southern California (seq 209).\n\nFinal: University of Southern California\n\nAnswer: University of Southern California",
+        "parsed_answer": "University of Southern California"
+      }
+    }
+  },
+  {
+    "qid": 97,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "what kind of music does \"Born in the U.S.A.\" fall under according to its perform",
+    "gt": "Australian hip hop",
+    "real_question": "what kind of music does \"Born in the U.S.A.\" fall under according to its performer?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: The knowledge pool contains two facts regarding \"Born in the U.S.A.\": fact 65 states it was performed by Bruce Springsteen, and fact 355 states the type of music that Bruce Springsteen plays is rock music. There is no conflicting information regarding the performer or the genre in the provided text.\n\nAnswer: rock music",
+        "parsed_answer": "rock music"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Born in the U.S.A., performed by): <Born in the U.S.A., performed by>\n    Candidates found in context:\n      - Born in the U.S.A. was performed by Bruce Springsteen. | source: Wikipedia Title: ... | seq: 65\n      - Born in the U.S.A. was performed by Dana International. | source: Wikipedia Title: ... | seq: 338\n    Conflict among candidates: yes\n    Selected: Bruce Springsteen\n    Signal used: 65\n    Criterion: larger serial number\n  Hop 2 (Bruce Springsteen, plays): <Bruce Springsteen, plays>\n    Candidates found in context:\n      - The type of music that Bruce Springsteen plays is rock music. | source: Wikipedia Title: ... | seq: 355\n    Conflict among candidates: no\n    Selected: rock music\n    Signal used: 355\n    Criterion: none\n\nReasoning chain:\n  Hop 1 selected: Bruce Springsteen (from seq 65, which is later than seq 338 in the context of the provided pool structure)\n  Hop 2 lookup: (Bruce Springsteen, plays) -> rock music\n  Final: rock music\n\nAnswer: rock music",
+        "parsed_answer": "rock music"
+      }
+    }
+  },
+  {
+    "qid": 25,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "What is the name of the person who is the chief executive officer of the develop",
+    "gt": "Adel al-Jubeir",
+    "real_question": "What is the name of the person who is the chief executive officer of the developer of F-22 Raptor?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: The F-22 Raptor was developed by Lockheed Martin (fact 275) and also by Boeing (fact 385). Since fact 385 has a larger serial number, it is the newest fact. The chief executive officer of Boeing is Adel al-Jubeir (fact 394).\n\nAnswer: Adel al-Jubeir",
+        "parsed_answer": "Adel al-Jubeir"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (F-22 Raptor, developed by): \n    Candidates found in context:\n      - F-22 Raptor was developed by Lockheed Martin. | source: Wikipedia Title: 267... | seq: 275\n      - F-22 Raptor was developed by Boeing. | source: Wikipedia Title: The headquarters of Berklee College of Music... | seq: 385\n    Conflict among candidates: yes\n    Selected: Boeing\n    Signal used: 385\n    Criterion: larger serial number\n  Hop 2 (Boeing, chief executive officer): \n    Candidates found in context:\n      - The chief executive officer of Boeing is Dennis Muilenburg. | source: Wikipedia Title: Mario Puzo is famous for The Godfather... | seq: 137\n      - The chief executive officer of Boeing is Adel al-Jubeir. | source: Wikipedia Title: The headquarters of Berklee College of Music... | seq: 394\n    Conflict among candidates: yes\n    Selected: Adel al-Jubeir\n    Signal used: 394\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: Boeing (from seq 385, overriding seq 275)\n  Hop 2 lookup: (Boeing, chief executive officer) -> Adel al-Jubeir (from seq 394, overriding seq 137)\n  Final: Adel al-Jubeir\n\nAnswer: Adel al-Jubeir",
+        "parsed_answer": "Adel al-Jubeir"
+      }
+    }
+  },
+  {
+    "qid": 23,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Where is the country of origin of FC Vorskla Poltava?",
+    "gt": "Soviet Union",
+    "real_question": "Where is the country of origin of FC Vorskla Poltava?",
+    "hippo": {
+      "C_original": {
+        "response": "Answer: basketball",
+        "parsed_answer": "basketball"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (FC Vorskla Poltava, country of origin): <FC Vorskla Poltava, country of origin>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - FC Vorskla Poltava is associated with the sport of association football. | source: Wikipedia Title: 104. | seq: 104\n      - FC Vorskla Poltava is associated with the sport of basketball. | source: Wikipedia Title: 134. | seq: 134\n    Conflict among candidates: yes\n    Selected: FC Vorskla Poltava is associated with the sport of basketball.\n    Signal used: 134\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: FC Vorskla Poltava is associated with the sport of basketball.\n  (Note: The provided knowledge pool does not contain a fact explicitly stating the country of origin for FC Vorskla Poltava. Reviewing all provided text for \"FC Vorskla Poltava\" reveals only associations with sports, not countries.)\n\nFinal: The provided knowledge pool does not contain information regarding the country of origin for FC Vorskla Poltava.\n\nAnswer: Information not provided",
+        "parsed_answer": "Information not provided"
+      }
+    }
+  },
+  {
+    "qid": 47,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "To which continent is the country of citizenship of Ferdinand von Richthofen loc",
+    "gt": "Asia",
+    "real_question": "To which continent is the country of citizenship of Ferdinand von Richthofen located?",
+    "hippo": {
+      "C_original": {
+        "response": "Answer: Canada",
+        "parsed_answer": "Canada"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Ferdinand von Richthofen, citizen of): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - Ferdinand von Richthofen is a citizen of Germany. | source: FACTS | seq: 24\n      - Ferdinand von Richthofen is a citizen of Canada. | source: FACTS | seq: 387\n    Conflict among candidates: yes\n    Selected: Canada\n    Signal used: 387\n    Criterion: larger serial number\n  Hop 2 (Canada, located in the continent of): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - Canada is located in the continent of North America. | source: FACTS | seq: 57\n      - Canada is located in the continent of Asia. | source: FACTS | seq: 440\n    Conflict among candidates: yes\n    Selected: Asia\n    Signal used: 440\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: Canada (from fact 387, which is newer than fact 24)\n  Hop 2 lookup: (Canada, located in the continent of) -> Asia (from fact 440, which is newer than fact 57)\n  Final: Asia\n\nAnswer: Asia",
+        "parsed_answer": "Asia"
+      }
+    }
+  },
+  {
+    "qid": 16,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "From which country does the sport, with which Carlos Gómez is associated, come f",
+    "gt": "Soviet Union",
+    "real_question": "From which country does the sport, with which Carlos Gómez is associated, come from?",
+    "hippo": {
+      "C_original": {
+        "response": "Answer: United States of America",
+        "parsed_answer": "United States of America"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Carlos Gómez, associated with sport): \n    Candidates found in context:\n      - Carlos Gómez is associated with the sport of basketball. | source: Wikipedia Title: ... | seq: 405\n      - Carlos Gómez is associated with the sport of baseball. | source: Wikipedia Title: ... | seq: 82\n    Conflict among candidates: yes\n    Selected: baseball\n    Signal used: 82\n    Criterion: larger serial number\n  Hop 2 (baseball, created in country): \n    Candidates found in context:\n      - baseball was created in the country of Japan. | source: Wikipedia Title: ... | seq: 382\n      - baseball was created in the country of United States of America. | source: Wikipedia Title: ... | seq: 161\n    Conflict among candidates: yes\n    Selected: United States of America\n    Signal used: 161\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: baseball (from seq 82, which is newer than 405 in the context of the provided pool's logic for the specific entity)\n  Hop 2 lookup: (baseball, created in country) -> United States of America (from seq 161, which is newer than 382)\n  Final: United States of America\n\nAnswer: United States of America",
+        "parsed_answer": "United States of America"
+      }
+    }
+  },
+  {
+    "qid": 70,
+    "n_hops": 3,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "In which city can the headquarters of the educational institution attended by th",
+    "gt": "Botevgrad",
+    "real_question": "In which city can the headquarters of the educational institution attended by the spouse of Sophia Hawthorne be found?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: 1. Identify the spouse of Sophia Hawthorne: Fact 407 states \"Sophia Hawthorne is married to Nathaniel Hawthorne.\"\n2. Identify the educational institution attended by Nathaniel Hawthorne: Fact 438 states \"The univeristy where Nathaniel Hawthorne was educated is Bowdoin College.\"\n3. Identify the city where the headquarters of Bowdoin College is located: Fact 131 states \"The headquarters of Bowdoin College is located in the city of Brunswick.\"\n\nAnswer: Brunswick",
+        "parsed_answer": "Brunswick"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Sophia Hawthorne, spouse): <pair>\n    Candidates found in context:\n      - Sophia Hawthorne is married to Joan Didion. | source: Wikipedia Title: ... | seq: 420\n      - Sophia Hawthorne is married to Nathaniel Hawthorne. | source: Wikipedia Title: ... | seq: 407\n    Conflict among candidates: yes\n    Selected: Sophia Hawthorne is married to Nathaniel Hawthorne.\n    Signal used: 407\n    Criterion: larger serial number\n  Hop 2 (Nathaniel Hawthorne, educated at): <pair>\n    Candidates found in context:\n      - The univeristy where Nathaniel Hawthorne was educated is Bowdoin College. | source: Wikipedia Title: ... | seq: 438\n    Conflict among candidates: no\n    Selected: Bowdoin College\n    Signal used: none\n    Criterion: fallback\n  Hop 3 (Bowdoin College, headquarters): <pair>\n    Candidates found in context:\n      - The headquarters of Bowdoin College is located in the city of Brunswick. | source: Wikipedia Title: ... | seq: 131\n    Conflict among candidates: no\n    Selected: Brunswick\n    Signal used: none\n    Criterion: fallback\n\nReasoning chain:\n  Hop 1 selected: Nathaniel Hawthorne\n  Hop 2 lookup: (Nathaniel Hawthorne, educated at) -> Bowdoin College\n  Hop 3 lookup: (Bowdoin College, headquarters) -> Brunswick\n  Final: Brunswick\n\nAnswer: Brunswick",
+        "parsed_answer": "Brunswick"
+      }
+    }
+  },
+  {
+    "qid": 93,
+    "n_hops": 4,
+    "n_conflict": 2,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Which city serves as the capital of the country where the spouse of the performe",
+    "gt": "Harare",
+    "real_question": "Which city serves as the capital of the country where the spouse of the performer of \"Viva Las Vegas\" is a citizen?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: The performer of \"Viva Las Vegas\" is Elvis Presley (Fact 273). Elvis Presley is married to Priscilla Presley (Fact 120). Priscilla Presley is a citizen of the United States of America (Fact 318). The capital of the United States of America is Washington, D.C. (Fact 248).\n\nAnswer: Washington, D.C.",
+        "parsed_answer": "Washington, D.C"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Viva Las Vegas, performed by): \n    Candidates found in context:\n      - 273. Viva Las Vegas was performed by Elvis Presley. | source: Wikipedia Title: 267... | seq: 273\n    Conflict among candidates: no\n    Selected: Elvis Presley\n    Signal used: 273\n    Criterion: larger serial number\n  Hop 2 (Elvis Presley, married to): \n    Candidates found in context:\n      - 120. Elvis Presley is married to Priscilla Presley. | source: Wikipedia Title: Mario Puzo... | seq: 120\n      - 139. Elvis Presley is married to Charles the Bold. | source: Wikipedia Title: Mario Puzo... | seq: 139\n    Conflict among candidates: yes\n    Selected: 139. Elvis Presley is married to Charles the Bold.\n    Signal used: 139\n    Criterion: larger serial number\n  Hop 3 (Charles the Bold, citizen of): \n    Candidates found in context:\n      - 372. Charles the Bold is a citizen of France. | source: Wikipedia Title: Thomas Arne... | seq: 372\n    Conflict among candidates: no\n    Selected: France\n    Signal used: 372\n    Criterion: larger serial number\n  Hop 4 (France, capital of): \n    Candidates found in context:\n      - 164. The capital of France is Paris. | source: Wikipedia Title: FC Irtysh Omsk... | seq: 164\n      - 172. The capital of France is Harare. | source: Wikipedia Title: FC Irtysh Omsk... | seq: 172\n    Conflict among candidates: yes\n    Selected: 172. The capital of France is Harare.\n    Signal used: 172\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: Elvis Presley\n  Hop 2 lookup: (Elvis Presley, married to) -> Charles the Bold (seq 139 > 120)\n  Hop 3 lookup: (Charles the Bold, citizen of) -> France\n  Hop 4 lookup: (France, capital of) -> Harare (seq 172 > 164)\n  Final: Harare\n\nAnswer: Harare",
+        "parsed_answer": "Harare"
+      }
+    }
+  },
+  {
+    "qid": 55,
+    "n_hops": 2,
+    "n_conflict": 2,
+    "zep_em": true,
+    "hippo_em": false,
+    "question": "In what place was the organization that Ron Dennis works for, first established?",
+    "gt": "Sweden",
+    "real_question": "In what place was the organization that Ron Dennis works for, first established?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: Ron Dennis is employed by McLaren Automotive (Fact 48). McLaren Automotive was founded in the city of Woking (Fact 143).\n\nAnswer: Woking",
+        "parsed_answer": "Woking"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Ron Dennis, employed by): <Ron Dennis, employed by>\n    Candidates found in context:\n      - Ron Dennis is employed by McLaren Automotive. | source: Wikipedia Title: Frank Zappa died in the city of Los Angeles. | seq: 48\n      - Ron Dennis is employed by Pakistan International Airlines. | source: Wikipedia Title: The headquarters of Berklee College of Music is located in the city of Boston. | seq: 386\n    Conflict among candidates: yes\n    Selected: Ron Dennis is employed by McLaren Automotive.\n    Signal used: 386\n    Criterion: larger serial number\n  Hop 2 (McLaren Automotive, founded in): <McLaren Automotive, founded in>\n    Candidates found in context:\n      - McLaren Automotive was founded in the city of Woking. | source: Wikipedia Title: Mario Puzo is famous for The Godfather. | seq: 143\n    Conflict among candidates: no\n    Selected: Woking\n    Signal used: none\n    Criterion: fallback\n\nReasoning chain:\n  Hop 1 selected: McLaren Automotive\n  Hop 2 lookup: (McLaren Automotive, founded in) -> Woking\n  Final: Woking\n\nAnswer: Woking",
+        "parsed_answer": "Woking"
+      }
+    }
+  },
+  {
+    "qid": 67,
+    "n_hops": 4,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Which city serves as the capital of the country that gave rise to the sport play",
+    "gt": "New Delhi",
+    "real_question": "Which city serves as the capital of the country that gave rise to the sport played by Rogério Ceni?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: Rogério Ceni plays the position of goalkeeper (Fact 6). Goalkeeper is associated with the sport of association football (Fact 437). Association football was created in the country of England (Fact 272). The capital of England is London (Fact 379).\n\nAnswer: London",
+        "parsed_answer": "London"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Rogério Ceni, plays the position of): <pair>\n    Candidates found in context:\n      - Rogério Ceni plays the position of goalkeeper. | source: FACTS | seq: 6\n      - Rogério Ceni plays the position of flanker. | source: FACTS | seq: 434\n    Conflict among candidates: yes\n    Selected: Rogério Ceni plays the position of flanker.\n    Signal used: 434\n    Criterion: larger serial number\n  Hop 2 (flanker, is associated with the sport of): <pair>\n    Candidates found in context:\n      - flanker is associated with the sport of rugby union. | source: FACTS | seq: 258\n    Conflict among candidates: no\n    Selected: rugby union\n    Signal used: none\n    Criterion: fallback\n  Hop 3 (rugby union, was created in the country of): <pair>\n    Candidates found in context:\n      - rugby union was created in the country of India. | source: FACTS | seq: 186\n      - rugby union was created in the country of England. | source: FACTS | seq: 100\n    Conflict among candidates: yes\n    Selected: rugby union was created in the country of India.\n    Signal used: 186\n    Criterion: larger serial number\n  Hop 4 (India, the capital of): <pair>\n    Candidates found in context:\n      - The capital of India is New Delhi. | source: FACTS | seq: 158\n      - The capital of India is Grosseto. | source: FACTS | seq: 341\n    Conflict among candidates: yes\n    Selected: The capital of India is Grosseto.\n    Signal used: 341\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: Rogério Ceni plays the position of flanker.\n  Hop 2 lookup: (flanker, is associated with the sport of) -> rugby union\n  Hop 3 lookup: (rugby union, was created in the country of) -> India\n  Hop 4 lookup: (India, the capital of) -> Grosseto\n  Final: Grosseto\n\nAnswer: Grosseto",
+        "parsed_answer": "Grosseto"
+      }
+    }
+  },
+  {
+    "qid": 53,
+    "n_hops": 3,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "What country does the genre of music associated with the spouse of Roy Rogers or",
+    "gt": "Russian Empire",
+    "real_question": "What country does the genre of music associated with the spouse of Roy Rogers originate from?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: Roy Rogers is married to Dale Evans (Fact 447). The type of music that Dale Evans plays is country music (Fact 83). Country music was created in the country of United States of America (Fact 163).\n\nAnswer: United States of America",
+        "parsed_answer": "United States of America"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Roy Rogers, spouse): <Roy Rogers, spouse>\n    Candidates found in context:\n      - Roy Rogers is married to Dale Evans. | source: FACTS | seq: 447\n      - Roy Rogers is married to John McVie. | source: FACTS | seq: 452\n    Conflict among candidates: yes\n    Selected: Roy Rogers is married to Dale Evans.\n    Signal used: 447\n    Criterion: larger serial number\n  Hop 2 (Dale Evans, type of music): <Dale Evans, type of music>\n    Candidates found in context:\n      - The type of music that Dale Evans plays is country music. | source: Wikipedia Title: Australia is located in the continent of Oceania. | seq: 83\n    Conflict among candidates: no\n    Selected: country music\n    Signal used: none\n    Criterion: fallback\n  Hop 3 (country music, created in country): <country music, created in country>\n    Candidates found in context:\n      - country music was created in the country of United States of America. | source: Wikipedia Title: FC Irtysh Omsk is associated with the sport of association football. | seq: 163\n    Conflict among candidates: no\n    Selected: United States of America\n    Signal used: none\n    Criterion: fallback\n\nReasoning chain:\n  Hop 1 selected: Dale Evans\n  Hop 2 lookup: (Dale Evans, type of music) -> country music\n  Hop 3 lookup: (country music, created in country) -> United States of America\n  Final: United States of America\n\nAnswer: United States of America",
+        "parsed_answer": "United States of America"
+      }
+    }
+  },
+  {
+    "qid": 54,
+    "n_hops": 4,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "In which city is the capital located of the country where the director/producer ",
+    "gt": "Beaumont",
+    "real_question": "In which city is the capital located of the country where the director/producer of \"666 Park Avenue\" is a citizen?",
+    "hippo": {
+      "C_original": {
+        "response": "Thought: The original broadcaster of \"666 Park Avenue\" is the American Broadcasting Company (Fact 363). The director of the American Broadcasting Company is Ernst Heinkel (Fact 393). Ernst Heinkel is a citizen of the Tang Empire (Fact 204). The capital of the Tang Empire is Beaumont (Fact 178).\n\nAnswer: Beaumont",
+        "parsed_answer": "Beaumont"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (666 Park Avenue, original broadcaster):\n    Candidates found in context:\n      - The origianl broadcaster of 666 Park Avenue is American Broadcasting Company. | source: Wikipedia Title: ... | seq: 363\n    Conflict among candidates: no\n    Selected: American Broadcasting Company\n    Signal used: 363\n    Criterion: larger serial number\n  Hop 2 (American Broadcasting Company, director):\n    Candidates found in context:\n      - The director of American Broadcasting Company is Ernst Heinkel. | source: Wikipedia Title: ... | seq: 393\n      - The director of American Broadcasting Company is Bob Iger. | source: Wikipedia Title: ... | seq: 65\n    Conflict among candidates: yes\n    Selected: Ernst Heinkel\n    Signal used: 393\n    Criterion: larger serial number\n  Hop 3 (Ernst Heinkel, citizen):\n    Candidates found in context:\n      - Ernst Heinkel is a citizen of Germany. | source: Wikipedia Title: ... | seq: 193\n      - Ernst Heinkel is a citizen of Tang Empire. | source: Wikipedia Title: ... | seq: 204\n    Conflict among candidates: yes\n    Selected: Tang Empire\n    Signal used: 204\n    Criterion: larger serial number\n  Hop 4 (Tang Empire, capital):\n    Candidates found in context:\n      - The capital of Tang Empire is Beaumont. | source: Wikipedia Title: ... | seq: 178\n    Conflict among candidates: no\n    Selected: Beaumont\n    Signal used: 178\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: American Broadcasting Company\n  Hop 2 lookup: (American Broadcasting Company, director) -> Ernst Heinkel\n  Hop 3 lookup: (Ernst Heinkel, citizen) -> Tang Empire\n  Hop 4 lookup: (Tang Empire, capital) -> Beaumont\n  Final: Beaumont\n\nAnswer: Beaumont",
+        "parsed_answer": "Beaumont"
+      }
+    }
+  },
+  {
+    "qid": 15,
+    "n_hops": 3,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "From which capital city did the Surrey Senior Cup, a sports competition, origina",
+    "gt": "Russellville",
+    "real_question": "From which capital city did the Surrey Senior Cup, a sports competition, originate?",
+    "hippo": {
+      "C_original": {
+        "response": "Answer: Not mentioned",
+        "parsed_answer": "Not mentioned"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Surrey Senior Cup, associated with): <sport>\n    Candidates found in context:\n      - Surrey Senior Cup is associated with the sport of association football. | source: FACTS | seq: 291\n      - Surrey Senior Cup is associated with the sport of basketball. | source: FACTS | seq: 316\n    Conflict among candidates: yes\n    Selected: Surrey Senior Cup is associated with the sport of basketball.\n    Signal used: 316\n    Criterion: larger serial number\n\nReasoning chain:\n  Hop 1 selected: basketball\n  Hop 2 lookup: (basketball, created in) -> ?\n    Candidates found in context:\n      - basketball was created in the country of Soviet Union. | source: FACTS | seq: 349\n      - basketball was created in the country of United States of America. | source: FACTS | seq: 217\n    Conflict among candidates: yes\n    Selected: basketball was created in the country of Soviet Union.\n    Signal used: 349\n    Criterion: larger serial number\n  Hop 3 lookup: (Soviet Union, capital) -> ?\n    Candidates found in context:\n      - The capital of Soviet Union is Moscow. | source: FACTS | seq: 156\n      - The capital of Soviet Union is Russellville. | source: FACTS | seq: 180\n    Conflict among candidates: yes\n    Selected: The capital of Soviet Union is Russellville.\n    Signal used: 180\n    Criterion: larger serial number\n\nAnswer: Russellville",
+        "parsed_answer": "Russellville"
+      }
+    }
+  },
+  {
+    "qid": 87,
+    "n_hops": 3,
+    "n_conflict": 3,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "Which city serves as the capital of the country where the sport that Sandy Alder",
+    "gt": "Duluth",
+    "real_question": "Which city serves as the capital of the country where the sport that Sandy Alderson is associated with originated?",
+    "hippo": {
+      "C_original": {
+        "response": "Answer: Washington, D.C.",
+        "parsed_answer": "Washington, D.C"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (Sandy Alderson, associated with): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - Sandy Alderson is associated with the sport of association football. | source: FACTS | seq: 340\n      - Sandy Alderson is associated with the sport of baseball. | source: FACTS | seq: 215\n    Conflict among candidates: yes\n    Selected: Sandy Alderson is associated with the sport of baseball.\n    Signal used: 340 > 215 (Wait, the rule is \"newer fact has larger serial number\". 340 is larger than 215.)\n    Criterion: \"larger serial number\"\n  Hop 2 (baseball, created in): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - baseball was created in the country of United States of America. | source: FACTS | seq: 161\n      - baseball was created in the country of Japan. | source: FACTS | seq: 383\n    Conflict among candidates: yes\n    Selected: baseball was created in the country of Japan.\n    Signal used: 383 > 161\n    Criterion: \"larger serial number\"\n  Hop 3 (Japan, capital): <pair>\n    Candidates found in context (list ALL matches, including conflicting versions; do NOT pre-filter):\n      - The capital of Japan is Tokyo. | source: FACTS | seq: 104\n    Conflict among candidates: no\n    Selected: Tokyo\n    Signal used: none\n    Criterion: \"fallback\"\n\nReasoning chain:\n  Hop 1 selected: baseball (seq 340 vs 215, 340 is larger)\n  Hop 2 lookup: (baseball, created in) -> Japan (seq 383 vs 161, 383 is larger)\n  Hop 3 lookup: (Japan, capital) -> Tokyo\n  Final: Tokyo\n\nAnswer: Tokyo",
+        "parsed_answer": "Tokyo"
+      }
+    }
+  },
+  {
+    "qid": 91,
+    "n_hops": 4,
+    "n_conflict": 4,
+    "zep_em": false,
+    "hippo_em": false,
+    "question": "In which city is the capital of the country, where the book \"The Birth of Traged",
+    "gt": "Duluth",
+    "real_question": "In which city is the capital of the country, where the book \"The Birth of Tragedy\" first came from, located?",
+    "hippo": {
+      "C_original": {
+        "response": "Answer: Berlin",
+        "parsed_answer": "Berlin"
+      },
+      "A_trace_first": {
+        "response": "Evidence:\n  Hop 1 (The Birth of Tragedy, author): (The Birth of Tragedy, author)\n    Candidates found in context:\n      - The author of The Birth of Tragedy is Friedrich Nietzsche. | source: Wikipedia Title: Australia is located in the continent of Oceania. | seq: 76\n      - The author of The Birth of Tragedy is Stephen Crane. | source: Wikipedia Title: Australia is located in the continent of Oceania. | seq: 77\n    Conflict among candidates: yes\n    Selected: Friedrich Nietzsche\n    Signal used: 77\n    Criterion: larger serial number\n  Hop 2 (Friedrich Nietzsche, famous for): (Friedrich Nietzsche, famous for)\n    Candidates found in context:\n      - Friedrich Nietzsche is famous for Thus Spoke Zarathustra. | source: Wikipedia Title: Frank Zappa died in the city of Los Angeles. | seq: 46\n    Conflict among candidates: no\n    Selected: Thus Spoke Zarathustra\n    Signal used: none\n    Criterion: none\n  Hop 3 (Thus Spoke Zarathustra, created in country): (Thus Spoke Zarathustra, created in country)\n    Candidates found in context:\n      - Thus Spoke Zarathustra was created in the country of Germany. | source: Wikipedia Title: Thomas Arne was born in the city of London. | seq: 346\n    Conflict among candidates: no\n    Selected: Germany\n    Signal used: none\n    Criterion: none\n  Hop 4 (Germany, capital): (Germany, capital)\n    Candidates found in context:\n      - The capital of Germany is Berlin. | source: Wikipedia Title: Here is a list of facts: | seq: 26\n    Conflict among candidates: no\n    Selected: Berlin\n    Signal used: none\n    Criterion: none\n\nReasoning chain:\n  Hop 1 selected: Friedrich Nietzsche (seq 77 > 76)\n  Hop 2 lookup: (Friedrich Nietzsche, famous for) -> Thus Spoke Zarathustra\n  Hop 3 lookup: (Thus Spoke Zarathustra, created in country) -> Germany\n  Hop 4 lookup: (Germany, capital) -> Berlin\n  Final: Berlin\n\nAnswer: Berlin",
+        "parsed_answer": "Berlin"
+      }
+    }
+  }
+]

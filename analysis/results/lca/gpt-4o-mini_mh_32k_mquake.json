@@ -1,0 +1,2692 @@
+[
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no0",
+    "case_id": 1680,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1924,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 475,
+        "old_seq": 398,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Christianity",
+    "gt_answer": "Taipei",
+    "old_answer": "Jerusalem",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no1",
+    "case_id": 6305,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1035,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1628,
+        "old_seq": 328,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1363,
+        "old_seq": 1241,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Africa",
+    "gt_answer": "Oceania",
+    "old_answer": "Europe",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no2",
+    "case_id": 5863,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 677,
+        "old_seq": 212,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1953,
+        "old_seq": 319,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2127,
+        "old_seq": 1822,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Paris",
+    "gt_answer": "Champa",
+    "old_answer": "Bethlehem",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no3",
+    "case_id": 6746,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2035,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1628,
+        "old_seq": 328,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 403,
+        "old_seq": 1777,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Oleg Tsarev",
+    "gt_answer": "Sergio Mattarella",
+    "old_answer": "Elizabeth II",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no4",
+    "case_id": 2926,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 710,
+        "old_seq": 626,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2023,
+        "old_seq": 1900,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "politician",
+    "gt_answer": "basketball player",
+    "old_answer": "politician",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no5",
+    "case_id": 8202,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2155,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1999,
+        "old_seq": 1340,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1322,
+        "old_seq": 1161,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2220,
+        "old_seq": 1189,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Asia",
+    "gt_answer": "South America",
+    "old_answer": "Europe",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no6",
+    "case_id": 3115,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1406,
+        "old_seq": 345,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 284,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "English",
+    "gt_answer": "Ukrainian",
+    "old_answer": "American English",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no7",
+    "case_id": 888,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1890,
+        "old_seq": 481,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2084,
+        "old_seq": 1195,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Jason Motte",
+    "gt_answer": "Roch Marc Christian Kaboré",
+    "old_answer": "Donald Trump",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no8",
+    "case_id": 8699,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2275,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1393,
+        "old_seq": 779,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1569,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1792,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Arabic",
+    "gt_answer": "French",
+    "old_answer": "American English",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no9",
+    "case_id": 7669,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 520,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1236,
+        "old_seq": 970,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1628,
+        "old_seq": 328,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1828,
+        "old_seq": 199,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Königsberg",
+    "gt_answer": "Duluth",
+    "old_answer": "London",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no10",
+    "case_id": 3909,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1423,
+        "old_seq": 1309,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1089,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Birmingham",
+    "gt_answer": "Portland",
+    "old_answer": "Classical Athens",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no11",
+    "case_id": 3444,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1531,
+        "old_seq": 965,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1305,
+        "old_seq": 115,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "London",
+    "gt_answer": "London",
+    "old_answer": "New York City",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no12",
+    "case_id": 5364,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2214,
+        "old_seq": 1593,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1572,
+        "old_seq": 1358,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 156,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "United States of America",
+    "gt_answer": "Japan",
+    "old_answer": "United States of America",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no13",
+    "case_id": 4439,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 720,
+        "old_seq": 148,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1489,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "United States of America",
+    "gt_answer": "United States of America",
+    "old_answer": "Iraq",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no14",
+    "case_id": 6626,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1995,
+        "old_seq": 1299,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1770,
+        "old_seq": 763,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1929,
+        "old_seq": 707,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Christian Science.",
+    "gt_answer": "Washington, D.C.",
+    "old_answer": "Galilee",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no15",
+    "case_id": 2504,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 375,
+        "old_seq": 125,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 621,
+        "old_seq": 219,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Greece",
+    "gt_answer": "Soviet Union",
+    "old_answer": "England",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no16",
+    "case_id": 751,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 2222,
+        "old_seq": 4,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1892,
+        "old_seq": 1692,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Montana State University - Bozeman",
+    "gt_answer": "Baldwin Wallace University",
+    "old_answer": "University of Bucharest",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no17",
+    "case_id": 1105,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2221,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1813,
+        "old_seq": 1217,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "Ernst Heinkel",
+    "gt_answer": "Ernst Heinkel",
+    "old_answer": "Bob Iger",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no18",
+    "case_id": 1201,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 2038,
+        "old_seq": 586,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1192,
+        "old_seq": 133,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "wide receiver",
+    "gt_answer": "rugby",
+    "old_answer": "American football",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no19",
+    "case_id": 6217,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1731,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1628,
+        "old_seq": 328,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1828,
+        "old_seq": 199,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Ballangen",
+    "gt_answer": "Duluth",
+    "old_answer": "London",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no20",
+    "case_id": 6055,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1001,
+        "old_seq": 353,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 413,
+        "old_seq": 137,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2033,
+        "old_seq": 671,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "United Kingdom",
+    "gt_answer": "Oleg Tsarev",
+    "old_answer": "Elizabeth II",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no21",
+    "case_id": 4862,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1721,
+        "old_seq": 554,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 206,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "English",
+    "gt_answer": "French",
+    "old_answer": "American English",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no22",
+    "case_id": 5805,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1696,
+        "old_seq": 1536,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1999,
+        "old_seq": 1340,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1322,
+        "old_seq": 1161,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "basketball",
+    "gt_answer": "Australia",
+    "old_answer": "United States of America",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no23",
+    "case_id": 5311,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1442,
+        "old_seq": 693,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 304,
+        "old_seq": 198,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2028,
+        "old_seq": 151,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "Australia",
+    "gt_answer": "Australia",
+    "old_answer": "England",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no24",
+    "case_id": 7450,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 902,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 595,
+        "old_seq": 217,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1206,
+        "old_seq": 1967,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 356,
+        "old_seq": 1427,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "San Francisco",
+    "gt_answer": "Tokyo",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no25",
+    "case_id": 3645,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1092,
+        "old_seq": 338,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1738,
+        "old_seq": 323,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "English",
+    "gt_answer": "Italian",
+    "old_answer": "English",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no26",
+    "case_id": 2168,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1849,
+        "old_seq": 1761,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1860,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "Asia",
+    "gt_answer": "Asia",
+    "old_answer": "Europe",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no27",
+    "case_id": 2069,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1746,
+        "old_seq": 1645,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2008,
+        "old_seq": 442,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Christian Science",
+    "gt_answer": "Scooter Braun",
+    "old_answer": "Jesus Christ",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no28",
+    "case_id": 3476,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1733,
+        "old_seq": 455,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 25,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Beaumont",
+    "gt_answer": "Nancy",
+    "old_answer": "Vilnius",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no29",
+    "case_id": 3259,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 664,
+        "old_seq": 631,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 740,
+        "old_seq": 678,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Mehriban Aliyeva",
+    "gt_answer": "Mahidol Adulyadej",
+    "old_answer": "Mehriban Aliyeva",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no30",
+    "case_id": 2288,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1526,
+        "old_seq": 532,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2278,
+        "old_seq": 245,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "rock music",
+    "gt_answer": "Australian hip hop",
+    "old_answer": "rock music",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no31",
+    "case_id": 6940,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2013,
+        "old_seq": 1148,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 933,
+        "old_seq": 402,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1658,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Beaumont",
+    "gt_answer": "Beirut",
+    "old_answer": "Bethlehem",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no32",
+    "case_id": 3979,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 331,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1813,
+        "old_seq": 1217,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "Ernst Heinkel",
+    "gt_answer": "Ernst Heinkel",
+    "old_answer": "Bob Iger",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no33",
+    "case_id": 9017,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1311,
+        "old_seq": 639,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 275,
+        "old_seq": 844,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 621,
+        "old_seq": 219,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1620,
+        "old_seq": 119,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Grosseto",
+    "gt_answer": "Russellville",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no34",
+    "case_id": 3433,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1840,
+        "old_seq": 1117,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1847,
+        "old_seq": 909,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Paris",
+    "gt_answer": "Montmélian",
+    "old_answer": "Paris",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no35",
+    "case_id": 6866,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1513,
+        "old_seq": 764,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1904,
+        "old_seq": 1078,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2217,
+        "old_seq": 1408,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "United Kingdom",
+    "gt_answer": "Melbourne",
+    "old_answer": "Japan",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no36",
+    "case_id": 4346,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 2183,
+        "old_seq": 1402,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 980,
+        "old_seq": 648,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "French",
+    "gt_answer": "Finnish",
+    "old_answer": "American English",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no37",
+    "case_id": 8786,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 751,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 908,
+        "old_seq": 8,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1398,
+        "old_seq": 1454,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 210,
+        "old_seq": 1034,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Goroka",
+    "gt_answer": "Paris",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no38",
+    "case_id": 5039,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 2276,
+        "old_seq": 2030,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2028,
+        "old_seq": 151,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1410,
+        "old_seq": 192,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "English",
+    "gt_answer": "Arabic",
+    "old_answer": "English",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no39",
+    "case_id": 3599,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2224,
+        "old_seq": 1939,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 158,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Peru",
+    "gt_answer": "United Kingdom",
+    "old_answer": "United States of America",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no40",
+    "case_id": 3586,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1412,
+        "old_seq": 987,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 546,
+        "old_seq": 181,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Paris",
+    "gt_answer": "Pune",
+    "old_answer": "Paris",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no41",
+    "case_id": 2086,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1319,
+        "old_seq": 330,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1478,
+        "old_seq": 931,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Robert Zimmer",
+    "gt_answer": "Sushma Swaraj",
+    "old_answer": "Robert Zimmer",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no42",
+    "case_id": 2533,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1719,
+        "old_seq": 1540,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 897,
+        "old_seq": 778,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "University of Louisville",
+    "gt_answer": "University of Oxford",
+    "old_answer": "Leiden University",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no43",
+    "case_id": 4804,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1042,
+        "old_seq": 12,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 892,
+        "old_seq": 299,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Hinduism",
+    "gt_answer": "atheism",
+    "old_answer": "Hinduism",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no44",
+    "case_id": 6050,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 977,
+        "old_seq": 237,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 438,
+        "old_seq": 1875,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 735,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "San Francisco",
+    "gt_answer": "Epworth",
+    "old_answer": "Bethlehem",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no45",
+    "case_id": 1797,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1366,
+        "old_seq": 207,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 997,
+        "old_seq": 515,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Beijing",
+    "gt_answer": "Plovdiv",
+    "old_answer": "Burbank",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no46",
+    "case_id": 2804,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 901,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1630,
+        "old_seq": 1130,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Andrzej Duda",
+    "gt_answer": "Connachta",
+    "old_answer": "Donald Trump",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no47",
+    "case_id": 6992,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 651,
+        "old_seq": 268,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 438,
+        "old_seq": 1875,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 735,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Los Angeles",
+    "gt_answer": "Epworth",
+    "old_answer": "Bethlehem",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no48",
+    "case_id": 1670,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 661,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1083,
+        "old_seq": 332,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "American football",
+    "gt_answer": "Muay Thai",
+    "old_answer": "American football",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no49",
+    "case_id": 1128,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1679,
+        "old_seq": 632,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1923,
+        "old_seq": 306,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Los Angeles",
+    "gt_answer": "Dykanka",
+    "old_answer": "Los Angeles",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no50",
+    "case_id": 4062,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 760,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1682,
+        "old_seq": 1492,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Asia",
+    "gt_answer": "North America",
+    "old_answer": "Europe",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no51",
+    "case_id": 8424,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 995,
+        "old_seq": 604,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1359,
+        "old_seq": 856,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2204,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 871,
+        "old_seq": 633,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Duluth",
+    "gt_answer": "Harrisville",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no52",
+    "case_id": 8831,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 981,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1813,
+        "old_seq": 1217,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2122,
+        "old_seq": 1884,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1602,
+        "old_seq": 15,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Ballangen",
+    "gt_answer": "Beaumont",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no53",
+    "case_id": 4582,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 313,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 621,
+        "old_seq": 219,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Japan",
+    "gt_answer": "Soviet Union",
+    "old_answer": "United States of America",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no54",
+    "case_id": 4372,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1219,
+        "old_seq": 1183,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1965,
+        "old_seq": 1298,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "Lüftelberg",
+    "gt_answer": "Lüftelberg",
+    "old_answer": "Modesto",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no55",
+    "case_id": 8086,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2162,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1223,
+        "old_seq": 813,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1834,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 871,
+        "old_seq": 633,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Marcapata",
+    "gt_answer": "Harrisville",
+    "old_answer": "Berlin",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no56",
+    "case_id": 1833,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1135,
+        "old_seq": 11,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 781,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Motihari",
+    "gt_answer": "Constantinople",
+    "old_answer": "Motihari",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no57",
+    "case_id": 1342,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1562,
+        "old_seq": 971,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1895,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "Spanish",
+    "gt_answer": "Spanish",
+    "old_answer": "English",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no58",
+    "case_id": 3879,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 2011,
+        "old_seq": 1169,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 819,
+        "old_seq": 502,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "United Kingdom",
+    "gt_answer": "Rupnagar",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no59",
+    "case_id": 8480,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 578,
+        "old_seq": 75,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1455,
+        "old_seq": 1441,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1221,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1972,
+        "old_seq": 1930,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Finnish",
+    "gt_answer": "Picard",
+    "old_answer": "Arabic",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no60",
+    "case_id": 3336,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 589,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1968,
+        "old_seq": 213,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "Danish",
+    "gt_answer": "Danish",
+    "old_answer": "English",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no61",
+    "case_id": 8857,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 575,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 976,
+        "old_seq": 195,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 0,
+        "old_seq": 569,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 85,
+        "old_seq": 1659,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Asia",
+    "gt_answer": "North America",
+    "old_answer": "Asia",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no62",
+    "case_id": 6072,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2118,
+        "old_seq": 1061,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2063,
+        "old_seq": 1851,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2089,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Washington, D.C.",
+    "gt_answer": "Riyadh Region",
+    "old_answer": "Galilee",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no63",
+    "case_id": 7180,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1708,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1628,
+        "old_seq": 328,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 403,
+        "old_seq": 1777,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Oleg Tsarev",
+    "gt_answer": "Sergio Mattarella",
+    "old_answer": "Elizabeth II",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no64",
+    "case_id": 4398,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 2206,
+        "old_seq": 1110,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2302,
+        "old_seq": 1112,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Glenn L. Martin Company",
+    "gt_answer": "Peter the Great",
+    "old_answer": "Henry Ford",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no65",
+    "case_id": 4553,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 756,
+        "old_seq": 390,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1068,
+        "old_seq": 27,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Camden Town",
+    "gt_answer": "Berlin",
+    "old_answer": "Camden Town",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no66",
+    "case_id": 4089,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 423,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 329,
+        "old_seq": 163,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "L. L. Zamenhof",
+    "gt_answer": "Stirling Silliphanta",
+    "old_answer": "Mikael Agricola",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no67",
+    "case_id": 7343,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 566,
+        "old_seq": 39,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1628,
+        "old_seq": 328,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1777,
+        "old_seq": 403,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "David Ige",
+    "gt_answer": "Alassane Dramane Ouattara",
+    "old_answer": "Elizabeth II",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no68",
+    "case_id": 1685,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 98,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1591,
+        "old_seq": 555,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Stuttgart",
+    "gt_answer": "Chicago",
+    "old_answer": "Stuttgart",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no69",
+    "case_id": 320,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1779,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1813,
+        "old_seq": 1217,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "Ernst Heinkel",
+    "gt_answer": "Ernst Heinkel",
+    "old_answer": "Bob Iger",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no70",
+    "case_id": 9133,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 525,
+        "old_seq": 184,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1397,
+        "old_seq": 110,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1707,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 2000,
+        "old_seq": 400,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Ballangen",
+    "gt_answer": "Amposta",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no71",
+    "case_id": 1233,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1888,
+        "old_seq": 951,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2233,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Spanish",
+    "gt_answer": "Japanese",
+    "old_answer": "English",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no72",
+    "case_id": 7617,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 742,
+        "old_seq": 469,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1999,
+        "old_seq": 1340,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1322,
+        "old_seq": 1161,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1629,
+        "old_seq": 1120,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Moscow",
+    "gt_answer": "Oderzo",
+    "old_answer": "London",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no73",
+    "case_id": 7429,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 278,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 908,
+        "old_seq": 8,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1454,
+        "old_seq": 1398,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1250,
+        "old_seq": 1756,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Grosseto",
+    "gt_answer": "New Delhi",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no74",
+    "case_id": 4942,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 615,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 891,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1828,
+        "old_seq": 199,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Grosseto",
+    "gt_answer": "Duluth",
+    "old_answer": "Rome",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no75",
+    "case_id": 5795,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1635,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1325,
+        "old_seq": 1198,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2246,
+        "old_seq": 1331,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Charlotte",
+    "gt_answer": "888 7th Avenue",
+    "old_answer": "Rome",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no76",
+    "case_id": 5465,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1886,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 2291,
+        "old_seq": 346,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1007,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Duluth",
+    "gt_answer": "Lima",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no77",
+    "case_id": 3734,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2159,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1956,
+        "old_seq": 467,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "London",
+    "gt_answer": "Ankara",
+    "old_answer": "Bucharest",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no78",
+    "case_id": 6659,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 687,
+        "old_seq": 363,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 438,
+        "old_seq": 1875,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 735,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Montana State University - Bozeman",
+    "gt_answer": "Epworth",
+    "old_answer": "Bethlehem",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no79",
+    "case_id": 7141,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2061,
+        "old_seq": 1253,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 402,
+        "old_seq": 933,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 183,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "University of Bucharest",
+    "gt_answer": "Edinburgh",
+    "old_answer": "Galilee",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no80",
+    "case_id": 4821,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 2179,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1922,
+        "old_seq": 1164,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Lili Bosse",
+    "gt_answer": "Ole Johan Vierdal",
+    "old_answer": "Donald Trump",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no81",
+    "case_id": 3258,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 927,
+        "old_seq": 786,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 634,
+        "old_seq": 563,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "association football",
+    "gt_answer": "field hockey",
+    "old_answer": "American football",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no82",
+    "case_id": 2684,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1907,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1659,
+        "old_seq": 85,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "North America",
+    "gt_answer": "Africa",
+    "old_answer": "North America",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no83",
+    "case_id": 1138,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1556,
+        "old_seq": 1297,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2216,
+        "old_seq": 1998,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "London",
+    "gt_answer": "Birmingham",
+    "old_answer": "London",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no84",
+    "case_id": 1313,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1575,
+        "old_seq": 815,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 968,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Ilham Aliyev",
+    "gt_answer": "Elizabeth II",
+    "old_answer": "Andrzej Duda",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no85",
+    "case_id": 822,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1327,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 833,
+        "old_seq": 211,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Bill Mantlo",
+    "gt_answer": "British Broadcasting Corporation",
+    "old_answer": "University of Wittenberg",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no86",
+    "case_id": 2201,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1280,
+        "old_seq": 389,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 189,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Grosseto",
+    "gt_answer": "Vienna",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no87",
+    "case_id": 6044,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 888,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1494,
+        "old_seq": 136,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 415,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Terry Collins is associated with the sport of baseball",
+    "gt_answer": "Shinzō Abe",
+    "old_answer": "Donald Trump",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no88",
+    "case_id": 7306,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1212,
+        "old_seq": 1081,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 438,
+        "old_seq": 1875,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 735,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Beirut",
+    "gt_answer": "Epworth",
+    "old_answer": "Bethlehem",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no89",
+    "case_id": 4534,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1274,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1813,
+        "old_seq": 1217,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "correct",
+    "parsed_output": "Ernst Heinkel",
+    "gt_answer": "Ernst Heinkel",
+    "old_answer": "Bob Iger",
+    "exact_match": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no90",
+    "case_id": 7963,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 235,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1813,
+        "old_seq": 1217,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1884,
+        "old_seq": 2122,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1339,
+        "old_seq": 1567,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Paris",
+    "gt_answer": "Berlin",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no91",
+    "case_id": 59,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 1123,
+        "old_seq": 518,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 223,
+        "old_seq": 186,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Asia",
+    "gt_answer": "South America",
+    "old_answer": "Europe",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no92",
+    "case_id": 1730,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 2004,
+        "old_seq": 405,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1517,
+        "old_seq": 134,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Washington, D.C.",
+    "gt_answer": "Austin",
+    "old_answer": "Paris",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no93",
+    "case_id": 3596,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 598,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 2111,
+        "old_seq": 1631,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "German",
+    "gt_answer": "English",
+    "old_answer": "German",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no94",
+    "case_id": 591,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1103,
+        "old_seq": 84,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 2177,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "pop music",
+    "gt_answer": "hip hop music",
+    "old_answer": "pop music",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no95",
+    "case_id": 1513,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 796,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1494,
+        "old_seq": 136,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "baseball",
+    "gt_answer": "Japan",
+    "old_answer": "United States of America",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no96",
+    "case_id": 6548,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "partial",
+    "hop_infos": [
+      {
+        "gt_seq": 1464,
+        "old_seq": 953,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1917,
+        "old_seq": null,
+        "conflict_type": "no_conflict_pair"
+      },
+      {
+        "gt_seq": 1673,
+        "old_seq": 10,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Asia",
+    "gt_answer": "Africa",
+    "old_answer": "North America",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no97",
+    "case_id": 8818,
+    "n_hops": 4,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 2293,
+        "old_seq": 3,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 550,
+        "old_seq": 514,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1138,
+        "old_seq": 314,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 498,
+        "old_seq": 491,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "Washington, D.C.",
+    "gt_answer": "Tromsø municipality",
+    "old_answer": "Washington, D.C.",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no98",
+    "case_id": 635,
+    "n_hops": 2,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 2125,
+        "old_seq": 1927,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 1811,
+        "old_seq": 1139,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "older_fact",
+    "parsed_output": "politician",
+    "gt_answer": "singer",
+    "old_answer": "politician",
+    "exact_match": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_32k_no99",
+    "case_id": 5948,
+    "n_hops": 3,
+    "conflict_type_any": "has_pair",
+    "conflict_type_all": "has_pair",
+    "hop_infos": [
+      {
+        "gt_seq": 2163,
+        "old_seq": 290,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 844,
+        "old_seq": 275,
+        "conflict_type": "has_pair"
+      },
+      {
+        "gt_seq": 413,
+        "old_seq": 137,
+        "conflict_type": "has_pair"
+      }
+    ],
+    "error_type": "entity_confused",
+    "parsed_output": "Japan",
+    "gt_answer": "Indonesia",
+    "old_answer": "United States of America",
+    "exact_match": false
+  }
+]

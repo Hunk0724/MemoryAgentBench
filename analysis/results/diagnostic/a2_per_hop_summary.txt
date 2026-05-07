@@ -1,0 +1,51 @@
+======================================================================
+Task A2 — Per-hop diagnosis for FC-MH (modified-prompt baseline)
+======================================================================
+Total questions: 100  |  EM correct: 23 (23.0%)  |  wrong: 77
+
+[1] Intermediate-answer alignment vs num_hops
+   match: 62
+    over: 12
+   under: 26
+
+[2] Per-hop prediction class distribution by conflict_type
+  conflict_type         correct   older_fact    other  missing
+  has_pair               34/188   61/188       68/188   25/188
+  no_conflict_pair       35/66     0/66        27/66     4/66 
+
+[3] First-error-hop distribution among 77 WRONG questions
+  conflict_type at 1st-error-hop:
+    has_pair                70 (91%)
+    no_conflict_pair         7 (9%)
+  pred class at 1st-error-hop:
+    older_fact              55 (71%)
+    other                   21 (27%)
+    missing                  1 (1%)
+  hop position of 1st-error:
+    hop 0                     53
+    hop 1                     23
+    hop 3                      1
+
+[4] First-error-hop conflict_type by num_hops
+  num_hops     has_pair  no_conflict  total wrong
+  2                  40            2           42
+  3                  17            3           20
+  4                  13            2           15
+
+[5] Per-group (num_hops, n_conflict) summary
+  group                     N     EM   fe_has    fe_no
+  2-hop, 1-conflict        25  13/25       10        2
+  2-hop, 2-conflict        36   6/36       30        0
+  3-hop, 1-conflict         5   3/5         1        1
+  3-hop, 2-conflict         9   0/9         7        2
+  3-hop, 3-conflict        10   1/10        9        0
+  4-hop, 1-conflict         3   0/3         2        1
+  4-hop, 2-conflict         3   0/3         2        1
+  4-hop, 3-conflict         7   0/7         7        0
+  4-hop, 4-conflict         2   0/2         2        0
+
+[6] Interpretation hints
+  - If [3] has_pair >> no_conflict_pair => MH failure dominated by conflict-hop errors; conflict resolution is the bottleneck.
+  - If [3] has notable no_conflict_pair share => chain reasoning itself fails on clean hops in noisy context (chain accumulation error).
+  - [2] older_fact rate at has_pair hops tells us how often LLM picks the OLD version even with the 'larger serial = newer' rule in prompt.
+======================================================================

@@ -1,0 +1,1602 @@
+[
+  {
+    "query_id": 0,
+    "gt_answer": "pesäpallo",
+    "pred_answer": "pesäpallo",
+    "raw_output": "To determine which sport the term \"goaltender\" is associated with, I will look for the most recent fact in the knowledge pool that mentions \"goaltender.\" The relevant fact states that \"goaltender is associated with the sport of pesäpallo.\" Since there are no newer facts contradicting this association, I will conclude based on this information.\n\nAnswer: pesäpallo",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5685,
+    "completion_tokens": 77
+  },
+  {
+    "query_id": 1,
+    "gt_answer": "The Fairly OddParents",
+    "pred_answer": "The knowledge pool does not specify what Nobuhiro Watsuki is famous for.",
+    "raw_output": "The knowledge pool indicates that Nobuhiro Watsuki is associated with the creation of Vito Corleone, but it also states that Vito Corleone was created by Mario Puzo. Since there is no direct mention of what Nobuhiro Watsuki is famous for, I will refer to the most recent relevant fact. The latest fact regarding Nobuhiro Watsuki does not provide a clear answer to the question. Therefore, I conclude that the knowledge pool does not contain sufficient information to answer the question directly. \n\nAnswer: The knowledge pool does not specify what Nobuhiro Watsuki is famous for.",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5682,
+    "completion_tokens": 127
+  },
+  {
+    "query_id": 2,
+    "gt_answer": "India",
+    "pred_answer": "India.",
+    "raw_output": "The knowledge pool contains conflicting information about the origin of rugby union. The most recent fact states that \"pesäpallo was created in the country of Philippines\" (fact 261), which is irrelevant to rugby union. However, earlier facts indicate that \"rugby union was created in the country of India\" (fact 186) and \"rugby union was created in the country of England\" (fact 57). The fact with the larger serial number is fact 186, which states that rugby union was created in India. \n\nAnswer: India.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5682,
+    "completion_tokens": 111
+  },
+  {
+    "query_id": 5,
+    "gt_answer": "Thomas Kyd",
+    "pred_answer": "Thomas Kyd",
+    "raw_output": "The author of The Marriage of Figaro is stated in the knowledge pool. The relevant fact is that the author is Thomas Kyd, but there is a conflict with the fact that states the author is Pierre Beaumarchais. The fact with the larger serial number is the one that should be considered. The last mention of the author of The Marriage of Figaro is Thomas Kyd, which is the most recent fact. \n\nAnswer: Thomas Kyd",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5708,
+    "completion_tokens": 91
+  },
+  {
+    "query_id": 6,
+    "gt_answer": "basketball",
+    "pred_answer": "basketball",
+    "raw_output": "The knowledge pool states that the Tunisia national football team is associated with basketball, but this fact is numbered 418. There are no newer facts contradicting this association. Therefore, the answer is based on the latest information available in the knowledge pool. \n\nAnswer: basketball",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5691,
+    "completion_tokens": 53
+  },
+  {
+    "query_id": 7,
+    "gt_answer": "Muay Thai",
+    "pred_answer": "Muay Thai",
+    "raw_output": "The knowledge pool indicates that the position of quarterback is associated with the sport of Muay Thai according to the fact with the largest serial number (334). Therefore, I will use this information to answer the question. \n\nAnswer: Muay Thai",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5690,
+    "completion_tokens": 48
+  },
+  {
+    "query_id": 8,
+    "gt_answer": "Swedish",
+    "pred_answer": "Swedish",
+    "raw_output": "The knowledge pool contains conflicting information regarding the official language of Japan. The most recent fact states that the official language of Japan is Swedish (serial number 439). Therefore, I will use this fact to answer the question. \n\nAnswer: Swedish",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5689,
+    "completion_tokens": 48
+  },
+  {
+    "query_id": 13,
+    "gt_answer": "Malaysia",
+    "pred_answer": "Unknown",
+    "raw_output": "The knowledge pool does not provide a specific fact regarding the country of citizenship of Cédric Klapisch. Therefore, I cannot determine an answer based on the provided information. \n\nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5693,
+    "completion_tokens": 39
+  },
+  {
+    "query_id": 14,
+    "gt_answer": "Samuel Beckett",
+    "pred_answer": "Samuel Beckett.",
+    "raw_output": "The author of Sidereus Nuncius is stated in the knowledge pool with the serial number 401. There are no newer conflicting facts regarding the authorship of Sidereus Nuncius. \nAnswer: Samuel Beckett.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5700,
+    "completion_tokens": 47
+  },
+  {
+    "query_id": 15,
+    "gt_answer": "Africa",
+    "pred_answer": "Africa.",
+    "raw_output": "Germany is located in the continent of Africa according to the most recent fact in the knowledge pool. \nAnswer: Africa.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5704,
+    "completion_tokens": 24
+  },
+  {
+    "query_id": 16,
+    "gt_answer": "Zoroastrianism",
+    "pred_answer": "Zoroastrianism.",
+    "raw_output": "The knowledge pool indicates that the Kingdom of Ireland is affiliated with the religion of Zoroastrianism according to the fact with the largest serial number (260). \nAnswer: Zoroastrianism.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5701,
+    "completion_tokens": 41
+  },
+  {
+    "query_id": 19,
+    "gt_answer": "Steve Jobs",
+    "pred_answer": "Steve Jobs",
+    "raw_output": "The knowledge pool indicates that the chief executive officer of Microsoft is Steve Jobs, according to the most recent fact with the largest serial number. \nAnswer: Steve Jobs",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5703,
+    "completion_tokens": 32
+  },
+  {
+    "query_id": 20,
+    "gt_answer": "Peter Diamandis",
+    "pred_answer": "None.",
+    "raw_output": "The knowledge pool does not contain any fact regarding the chairperson of Harvard University. Therefore, I cannot provide an answer based on the provided information. \nAnswer: None.",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5695,
+    "completion_tokens": 34
+  },
+  {
+    "query_id": 23,
+    "gt_answer": "Ernst Heinkel",
+    "pred_answer": "Narendra Modi",
+    "raw_output": "The knowledge pool contains multiple entries regarding the director of the American Broadcasting Company. The most recent entry states that the director is Narendra Modi, which has a higher serial number than any previous entries. \n\nAnswer: Narendra Modi",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5698,
+    "completion_tokens": 43
+  },
+  {
+    "query_id": 24,
+    "gt_answer": "United States of America",
+    "pred_answer": "United States of America.",
+    "raw_output": "The knowledge pool contains conflicting information about Gennady Rozhdestvensky's death location. The most recent fact states that he died in the city of the United States of America. Therefore, I will use this latest information to answer the question. \n\nAnswer: United States of America.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5703,
+    "completion_tokens": 58
+  },
+  {
+    "query_id": 25,
+    "gt_answer": "Beaumont",
+    "pred_answer": "Beaumont",
+    "raw_output": "The capital of the Tang Empire is mentioned in the knowledge pool with the serial number 177, which states that the capital is Beaumont. There are no newer conflicting facts regarding the capital of the Tang Empire. \n\nAnswer: Beaumont",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5692,
+    "completion_tokens": 45
+  },
+  {
+    "query_id": 26,
+    "gt_answer": "Narendra Modi",
+    "pred_answer": "Narendra Modi",
+    "raw_output": "The knowledge pool contains conflicting information regarding the director of the British Broadcasting Corporation (BBC). The most recent fact states that the director is Narendra Modi, which has a higher serial number than any previous conflicting entries. \n\nAnswer: Narendra Modi",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5712,
+    "completion_tokens": 46
+  },
+  {
+    "query_id": 29,
+    "gt_answer": "Guangzhou",
+    "pred_answer": "Unknown",
+    "raw_output": "Thought: The knowledge pool does not contain any information about the city where Oscar Wilde died. Therefore, I cannot provide an answer based on the available facts. \nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5689,
+    "completion_tokens": 35
+  },
+  {
+    "query_id": 30,
+    "gt_answer": "Japan",
+    "pred_answer": "Japan.",
+    "raw_output": "The knowledge pool contains conflicting information about the origin of baseball. The fact with the largest serial number states that baseball was created in Japan, while an earlier fact states it was created in England. Since the fact about Japan has a larger serial number, it is considered the most recent and therefore the correct answer according to the rules provided. \n\nAnswer: Japan.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5691,
+    "completion_tokens": 71
+  },
+  {
+    "query_id": 33,
+    "gt_answer": "Russian Empire",
+    "pred_answer": "Russian Empire",
+    "raw_output": "The knowledge pool contains conflicting information about the origin of rap rock. The fact with the larger serial number states that rap rock was created in the country of the Russian Empire. Therefore, I will use this fact to answer the question. \n\nAnswer: Russian Empire",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5691,
+    "completion_tokens": 51
+  },
+  {
+    "query_id": 35,
+    "gt_answer": "German",
+    "pred_answer": "German",
+    "raw_output": "The knowledge pool contains conflicting information regarding the official language of the United States of America. The most recent fact states that the official language is German, which has a larger serial number than any previous conflicting facts. \n\nAnswer: German",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5703,
+    "completion_tokens": 45
+  },
+  {
+    "query_id": 36,
+    "gt_answer": "Madonna",
+    "pred_answer": "Madonna",
+    "raw_output": "The knowledge pool indicates that \"Past Masters was performed by Madonna\" is the relevant fact. There are no newer conflicting facts regarding this performance. \n\nAnswer: Madonna",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5683,
+    "completion_tokens": 32
+  },
+  {
+    "query_id": 39,
+    "gt_answer": "ABB Group",
+    "pred_answer": "None.",
+    "raw_output": "The knowledge pool does not contain a fact about the developer of SteamOS. Therefore, I cannot provide an answer based on the provided information. \nAnswer: None.",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5686,
+    "completion_tokens": 33
+  },
+  {
+    "query_id": 40,
+    "gt_answer": "Ankara",
+    "pred_answer": "Ankara.",
+    "raw_output": "The knowledge pool contains conflicting information about the headquarters of the University of Bucharest. The most recent fact states that the headquarters is located in the city of Ankara. Therefore, I will use this latest information to answer the question. \n\nAnswer: Ankara.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5700,
+    "completion_tokens": 50
+  },
+  {
+    "query_id": 41,
+    "gt_answer": "rugby",
+    "pred_answer": "rugby.",
+    "raw_output": "To determine which sport is associated with the position of wide receiver, I will look for the most recent fact in the knowledge pool that mentions wide receiver. The relevant facts are:\n\n- Fact 252 states that \"wide receiver is associated with the sport of rugby.\"\n- Fact 36 states that \"Hines Ward plays the position of cornerback,\" which is not relevant to the question.\n\nSince fact 252 is the most recent and directly addresses the association of wide receiver with a sport, I will use that information.\n\nAnswer: rugby.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      4
+    ],
+    "passages_kept": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5700,
+    "completion_tokens": 107
+  },
+  {
+    "query_id": 43,
+    "gt_answer": "Oderzo",
+    "pred_answer": "Oderzo",
+    "raw_output": "The knowledge pool contains conflicting information about the capital of Australia. The most recent fact states that the capital of Australia is \"Oderzo,\" which is incorrect in the real world but is the latest entry in the provided knowledge pool. Therefore, I will use this fact to answer the question. \n\nAnswer: Oderzo",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5707,
+    "completion_tokens": 62
+  },
+  {
+    "query_id": 44,
+    "gt_answer": "Antarctica",
+    "pred_answer": "Antarctica.",
+    "raw_output": "The knowledge pool contains conflicting information about the continent where Malaysia is located. The most recent fact states that \"Malaysia is located in the continent of Antarctica\" with a serial number of 442. Therefore, according to the rule of selecting the newest fact, the answer will be based on this latest information. \n\nAnswer: Antarctica.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5681,
+    "completion_tokens": 65
+  },
+  {
+    "query_id": 45,
+    "gt_answer": "Pius XII",
+    "pred_answer": "Pius XII.",
+    "raw_output": "The author of A Wizard of Earthsea is stated in the knowledge pool, and the most recent fact regarding this is that it is attributed to Pius XII. \nAnswer: Pius XII.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5700,
+    "completion_tokens": 39
+  },
+  {
+    "query_id": 47,
+    "gt_answer": "Charles Darwin",
+    "pred_answer": "Charles Darwin.",
+    "raw_output": "The author of Our Mutual Friend is stated in the knowledge pool. The relevant facts indicate that the author is Charles Darwin, but there is a conflict with another fact that states the author is Charles Dickens. The fact with the larger serial number is the one that should be considered. The last mention of the author of Our Mutual Friend is Charles Darwin, which has a larger serial number than the one for Charles Dickens. \n\nAnswer: Charles Darwin.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5688,
+    "completion_tokens": 88
+  },
+  {
+    "query_id": 48,
+    "gt_answer": "Soviet Union",
+    "pred_answer": "Soviet Union.",
+    "raw_output": "The knowledge pool contains conflicting information regarding the origin of basketball. The fact with the larger serial number states that basketball was created in the country of the Soviet Union. Therefore, I will use this fact to answer the question. \n\nAnswer: Soviet Union.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5696,
+    "completion_tokens": 50
+  },
+  {
+    "query_id": 50,
+    "gt_answer": "Oceania",
+    "pred_answer": "Oceania.",
+    "raw_output": "The knowledge pool contains conflicting information about the location of Bengaluru. The fact with the largest serial number states that Bengaluru is located in the continent of Oceania. Therefore, based on the rule of selecting the newest fact, the answer is derived from that entry. \n\nAnswer: Oceania.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5695,
+    "completion_tokens": 57
+  },
+  {
+    "query_id": 51,
+    "gt_answer": "cricket",
+    "pred_answer": "cricket.",
+    "raw_output": "The knowledge pool indicates that the Slovakia national football team is associated with cricket according to the fact with the serial number 279. However, this fact is contradicted by the newer fact with the serial number 216, which states that basketball was created in the country of the United States of America. Since there is no newer fact that directly addresses the sport associated with the Slovakia national football team, I will rely on the most recent relevant information. \n\nAnswer: cricket.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5697,
+    "completion_tokens": 93
+  },
+  {
+    "query_id": 53,
+    "gt_answer": "atheism",
+    "pred_answer": "atheism",
+    "raw_output": "The knowledge pool indicates that Imelda Marcos is affiliated with the religion of atheism, as per fact 374. There are no newer conflicting facts regarding her religious affiliation. \nAnswer: atheism",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5703,
+    "completion_tokens": 39
+  },
+  {
+    "query_id": 54,
+    "gt_answer": "Australian hip hop",
+    "pred_answer": "Australian hip hop.",
+    "raw_output": "The knowledge pool indicates that the type of music Dana International plays is Australian hip hop, as per the fact with the largest serial number related to Dana International. \nAnswer: Australian hip hop.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5703,
+    "completion_tokens": 38
+  },
+  {
+    "query_id": 55,
+    "gt_answer": "Czech Republic",
+    "pred_answer": "Czech Republic.",
+    "raw_output": "The knowledge pool indicates that Sable is a citizen of the Czech Republic, and there are no conflicting facts with a larger serial number. \nAnswer: Czech Republic.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5691,
+    "completion_tokens": 33
+  },
+  {
+    "query_id": 56,
+    "gt_answer": "Italy",
+    "pred_answer": "Italy.",
+    "raw_output": "The knowledge pool indicates that Charlie Hebdo was created in Italy according to the fact with the largest serial number that mentions it. \nAnswer: Italy.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5683,
+    "completion_tokens": 30
+  },
+  {
+    "query_id": 58,
+    "gt_answer": "Kylie Minogue",
+    "pred_answer": "Kylie Minogue",
+    "raw_output": "The knowledge pool indicates that Hermione Granger was performed by Kylie Minogue, but there is no conflicting information that suggests otherwise. Therefore, I will provide the answer based on the most recent fact available. \n\nAnswer: Kylie Minogue",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5709,
+    "completion_tokens": 46
+  },
+  {
+    "query_id": 59,
+    "gt_answer": "association football",
+    "pred_answer": "association football",
+    "raw_output": "The knowledge pool indicates that Bo Ryan is associated with the sport of association football, but there are conflicting facts. The most recent fact regarding Bo Ryan states he is associated with association football. Therefore, I will use this fact to answer the question. \n\nAnswer: association football",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5705,
+    "completion_tokens": 54
+  },
+  {
+    "query_id": 60,
+    "gt_answer": "rap rock",
+    "pred_answer": "rap rock.",
+    "raw_output": "The knowledge pool indicates that John McVie plays rap rock according to the fact with the largest serial number related to him. \nAnswer: rap rock.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5694,
+    "completion_tokens": 30
+  },
+  {
+    "query_id": 61,
+    "gt_answer": "flanker",
+    "pred_answer": "flanker",
+    "raw_output": "Thought: I need to find the most recent fact regarding Rogério Ceni's position from the knowledge pool. The relevant fact states that Rogério Ceni plays the position of flanker, and there are no newer conflicting facts about his position. \nAnswer: flanker",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5696,
+    "completion_tokens": 54
+  },
+  {
+    "query_id": 62,
+    "gt_answer": "Bernard Arnault",
+    "pred_answer": "Bernard Arnault",
+    "raw_output": "The knowledge pool indicates that the chief executive officer of Twitter is Bernard Arnault, but there is a later fact that states the current head of the United States government is Donald Trump. Since the question specifically asks for the CEO of Twitter, I will focus on the relevant fact. The most recent fact regarding the CEO of Twitter is the one with the larger serial number. \n\nAnswer: Bernard Arnault",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5698,
+    "completion_tokens": 79
+  },
+  {
+    "query_id": 63,
+    "gt_answer": "German",
+    "pred_answer": "German",
+    "raw_output": "The knowledge pool contains conflicting information regarding the language spoken by Kylie Minogue. The most recent fact states that \"Kylie Minogue speaks the language of German\" (serial number 157). Therefore, I will use this fact to answer the question. \n\nAnswer: German",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5710,
+    "completion_tokens": 54
+  },
+  {
+    "query_id": 65,
+    "gt_answer": "rugby",
+    "pred_answer": "rugby.",
+    "raw_output": "The knowledge pool indicates that the position of placekicker is associated with the sport of rugby according to the fact with the largest serial number. \nAnswer: rugby.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5679,
+    "completion_tokens": 33
+  },
+  {
+    "query_id": 66,
+    "gt_answer": "journalist",
+    "pred_answer": "politician.",
+    "raw_output": "The most recent fact regarding Stephen McNeil states that he is the chairperson of the Congolese Party of Labour. Therefore, based on the rule of selecting the newest fact, the answer is derived from this information. \n\nAnswer: politician.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5702,
+    "completion_tokens": 49
+  },
+  {
+    "query_id": 67,
+    "gt_answer": "British Broadcasting Corporation",
+    "pred_answer": "Unknown",
+    "raw_output": "Thought: The knowledge pool does not provide a specific employer for Dave Filoni. Therefore, I cannot determine an answer based on the provided facts. \nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5696,
+    "completion_tokens": 33
+  },
+  {
+    "query_id": 70,
+    "gt_answer": "Canadair",
+    "pred_answer": "None.",
+    "raw_output": "The knowledge pool does not contain any information regarding the company that produced AP1000. Therefore, I cannot provide an answer based on the provided facts. \nAnswer: None.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      3
+    ],
+    "passages_kept": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5685,
+    "completion_tokens": 35
+  },
+  {
+    "query_id": 73,
+    "gt_answer": "Alan Jay Lerner",
+    "pred_answer": "Alan Jay Lerner.",
+    "raw_output": "The knowledge pool contains conflicting information about Tony Blair's marital status. The most recent fact states that Tony Blair is married to Alan Jay Lerner. Therefore, I will use this fact to answer the question. \n\nAnswer: Alan Jay Lerner.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5683,
+    "completion_tokens": 49
+  },
+  {
+    "query_id": 77,
+    "gt_answer": "Stephen McNeil",
+    "pred_answer": "Stephen McNeil.",
+    "raw_output": "The knowledge pool does not contain a fact regarding the chairperson of the Congolese Party of Labour. Therefore, I cannot provide an answer based on the provided information. \nAnswer: Stephen McNeil.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5702,
+    "completion_tokens": 41
+  },
+  {
+    "query_id": 80,
+    "gt_answer": "goaltender",
+    "pred_answer": "Goaltender.",
+    "raw_output": "The knowledge pool indicates that Lisa Leslie plays the position of goaltender. However, this fact is contradicted by the association of goaltender with ice hockey, and there is no newer fact that clarifies her position in basketball. Therefore, I will rely on the most recent information available. \n\nAnswer: Goaltender.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5698,
+    "completion_tokens": 66
+  },
+  {
+    "query_id": 81,
+    "gt_answer": "Elizabeth II",
+    "pred_answer": "Elizabeth II.",
+    "raw_output": "The knowledge pool contains conflicting facts about the current head of state in the Soviet Union. The most recent fact with a larger serial number states that the current head of state in the Soviet Union is Elizabeth II. \nAnswer: Elizabeth II.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5714,
+    "completion_tokens": 47
+  },
+  {
+    "query_id": 82,
+    "gt_answer": "Canada",
+    "pred_answer": "Unknown",
+    "raw_output": "The knowledge pool does not provide a specific fact regarding the country of citizenship of Ferdinand von Richthofen. Therefore, I cannot determine an answer based on the provided information. \n\nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5697,
+    "completion_tokens": 38
+  },
+  {
+    "query_id": 83,
+    "gt_answer": "Church of Scotland",
+    "pred_answer": "Church of Scotland.",
+    "raw_output": "The knowledge pool indicates that Karen Armstrong is affiliated with the religion of the Church of Scotland, which is the most recent fact provided. \nAnswer: Church of Scotland.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5686,
+    "completion_tokens": 33
+  },
+  {
+    "query_id": 84,
+    "gt_answer": "Nobuhiro Watsuki",
+    "pred_answer": "Nobuhiro Watsuki.",
+    "raw_output": "The knowledge pool indicates that Vito Corleone was created by Nobuhiro Watsuki, but there is a conflicting fact stating that he was created by Mario Puzo. The fact with the larger serial number is the one stating that Vito Corleone was created by Nobuhiro Watsuki. \n\nAnswer: Nobuhiro Watsuki.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5699,
+    "completion_tokens": 73
+  },
+  {
+    "query_id": 85,
+    "gt_answer": "Rajanpur",
+    "pred_answer": "Rajanpur",
+    "raw_output": "The knowledge pool contains conflicting information about the capital of Romania. The most recent fact states that the capital of Romania is Rajanpur (serial number 449). Therefore, I will use this fact to answer the question. \n\nAnswer: Rajanpur",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5696,
+    "completion_tokens": 50
+  },
+  {
+    "query_id": 86,
+    "gt_answer": "Africa",
+    "pred_answer": "Africa.",
+    "raw_output": "The knowledge pool contains conflicting information regarding the continent where India is located. The most recent fact states that \"India is located in the continent of Africa\" with a serial number of 341. Therefore, based on the rule of using the newest fact with the larger serial number, the answer is derived from this fact. \n\nAnswer: Africa.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5686,
+    "completion_tokens": 68
+  },
+  {
+    "query_id": 87,
+    "gt_answer": "Rodez",
+    "pred_answer": "Moscow.",
+    "raw_output": "The knowledge pool does not provide a fact regarding the city where Olga of Kiev died. Therefore, I cannot find a relevant answer based on the provided information. \nAnswer: Moscow.",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5692,
+    "completion_tokens": 36
+  },
+  {
+    "query_id": 88,
+    "gt_answer": "Walter Chrysler",
+    "pred_answer": "Walter Chrysler.",
+    "raw_output": "The knowledge pool contains conflicting information regarding the founder of the Sasanian Empire. The fact with the larger serial number states that the Sasanian Empire was founded by Walter Chrysler, which is the most recent and thus the authoritative fact in this context. \n\nAnswer: Walter Chrysler.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5683,
+    "completion_tokens": 56
+  },
+  {
+    "query_id": 90,
+    "gt_answer": "basketball",
+    "pred_answer": "basketball",
+    "raw_output": "The knowledge pool indicates that the Surrey Senior Cup is associated with basketball, but there are conflicting facts. The most recent fact regarding the Surrey Senior Cup is that it is associated with basketball. Therefore, I will select that fact as the answer. \n\nAnswer: basketball",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5697,
+    "completion_tokens": 52
+  },
+  {
+    "query_id": 91,
+    "gt_answer": "Australia",
+    "pred_answer": "Australia",
+    "raw_output": "The knowledge pool contains conflicting facts about Narendra Modi's citizenship. The most recent fact states that he is a citizen of Australia. Therefore, based on the rule of selecting the newest fact with the larger serial number, the answer is derived from that fact. \n\nAnswer: Australia",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5684,
+    "completion_tokens": 54
+  },
+  {
+    "query_id": 93,
+    "gt_answer": "Iran",
+    "pred_answer": "Iran",
+    "raw_output": "The knowledge pool states that Charles Messier is a citizen of Iran, and there are no conflicting facts with a larger serial number regarding his citizenship. \nAnswer: Iran",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      2
+    ],
+    "passages_kept": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5687,
+    "completion_tokens": 33
+  },
+  {
+    "query_id": 94,
+    "gt_answer": "Ferdowsi",
+    "pred_answer": "Ferdowsi.",
+    "raw_output": "The knowledge pool states that Rand al'Thor was created by Ferdowsi, and there are no conflicting facts with a larger serial number. \nAnswer: Ferdowsi.",
+    "exact_match": true,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5698,
+    "completion_tokens": 35
+  },
+  {
+    "query_id": 96,
+    "gt_answer": "Israel",
+    "pred_answer": "Unknown",
+    "raw_output": "The knowledge pool does not provide any information regarding the citizenship of Colin Irwin. Therefore, I cannot find a relevant fact to answer the question. \n\nAnswer: Unknown",
+    "exact_match": false,
+    "exact_match_before": false,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5714,
+    "completion_tokens": 33
+  },
+  {
+    "query_id": 97,
+    "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "pred_answer": "Charles Frederick, Duke of Holstein-Gottorp.",
+    "raw_output": "The knowledge pool does not contain a fact that correctly identifies Walter Chrysler's child. The fact provided states that \"Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp,\" but there is no newer fact that contradicts or confirms this. Therefore, I will use the most recent fact available. \n\nAnswer: Charles Frederick, Duke of Holstein-Gottorp.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5704,
+    "completion_tokens": 76
+  },
+  {
+    "query_id": 98,
+    "gt_answer": "Amala Paul",
+    "pred_answer": "Amala Paul.",
+    "raw_output": "The knowledge pool contains conflicting information regarding Charles Darwin's marital status. The most recent fact states that Charles Darwin is married to Amala Paul. Therefore, I will use this latest information to answer the question. \n\nAnswer: Amala Paul.",
+    "exact_match": true,
+    "exact_match_before": true,
+    "passages_removed": [
+      1
+    ],
+    "passages_kept": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_passages": 9,
+    "prompt_tokens": 5696,
+    "completion_tokens": 48
+  }
+]

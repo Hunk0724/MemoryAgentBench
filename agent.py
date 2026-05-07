@@ -105,7 +105,7 @@ class AgentWrapper:
                 )
         except Exception:
             pass
-        return OpenAI()
+        return OpenAI(max_retries=20)
 
     def _create_standard_response(self, output, input_tokens, output_tokens, memory_time, query_time):
         """Create standardized response dictionary."""
@@ -130,7 +130,14 @@ class AgentWrapper:
             )
         elif "gemini" in self.model:
             from google import genai
-            self.client = genai.Client(api_key=os.environ.get('Google_API_KEY'))
+            if os.environ.get('GOOGLE_GENAI_USE_VERTEXAI', '').lower() == 'true':
+                self.client = genai.Client(
+                    vertexai=True,
+                    project=os.environ.get('GOOGLE_CLOUD_PROJECT'),
+                    location=os.environ.get('GOOGLE_CLOUD_LOCATION', 'us-central1'),
+                )
+            else:
+                self.client = genai.Client(api_key=os.environ.get('Google_API_KEY'))
         else:
             raise NotImplementedError(f"Model not supported for long context agent: {self.model}")
 
@@ -217,8 +224,9 @@ class AgentWrapper:
     def _initialize_mem0_agent(self, agent_config, dataset_config):
         """Initialize Mem0 agent with retrieval configuration."""
         from mem0.memory.main import Memory
-        
+
         self.retrieve_num = agent_config['retrieve_num']
+        self.chunk_size = agent_config['agent_chunk_size']
         self.context = ''
         self.client = self._create_oai_client()
         self.memory = Memory()
@@ -243,7 +251,12 @@ class AgentWrapper:
         self.context_id = -1
 
         self.client = Zep(api_key=os.getenv("ZEP_API_KEY"))
-        self.oai_client = OpenAIAgent(model=self.model, source="azure", api_dict={"endpoint":os.environ.get("AZURE_OPENAI_ENDPOINT"), "api_version":os.environ.get("AZURE_OPENAI_API_VERSION"), "api_key":os.environ.get("AZURE_OPENAI_API_KEY")}, temperature=self.temperature)
+        # Use Azure OpenAI if env vars are set, otherwise fall back to OpenAI
+        azure_endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")
+        if azure_endpoint:
+            self.oai_client = OpenAIAgent(model=self.model, source="azure", api_dict={"endpoint":azure_endpoint, "api_version":os.environ.get("AZURE_OPENAI_API_VERSION"), "api_key":os.environ.get("AZURE_OPENAI_API_KEY")}, temperature=self.temperature)
+        else:
+            self.oai_client = OpenAIAgent(model=self.model, source="openai", api_dict={}, temperature=self.temperature)
         self.agent_start_time = time.time()
 
     def _initialize_rag_agent(self, agent_config, dataset_config):
@@ -378,19 +391,42 @@ class AgentWrapper:
         )
 
     def _query_gemini(self, formatted_message, start_time):
-        """Query Gemini model with proper configuration."""
+        """Query Gemini model with retry-with-backoff on 429/503."""
         from google.genai import types
-        response = self.client.models.generate_content(
-            model=self.model,
-            contents=formatted_message[1]["content"],
-            config=types.GenerateContentConfig(
-                system_instruction=formatted_message[0]["content"], 
-                temperature=self.temperature,
-                max_output_tokens=self.max_tokens
-            )      
+        from google.genai.errors import ClientError, ServerError
+        import re
+
+        config = types.GenerateContentConfig(
+            system_instruction=formatted_message[0]["content"],
+            temperature=self.temperature,
+            max_output_tokens=self.max_tokens,
+            thinking_config=types.ThinkingConfig(thinking_budget=0),
         )
+
+        max_retries = 10
+        for attempt in range(max_retries):
+            try:
+                response = self.client.models.generate_content(
+                    model=self.model,
+                    contents=formatted_message[1]["content"],
+                    config=config,
+                )
+                break
+            except (ClientError, ServerError) as e:
+                code = getattr(e, 'code', None)
+                if code not in (429, 503):
+                    raise
+                if attempt == max_retries - 1:
+                    raise
+                msg = str(e)
+                m = re.search(r"retry in (\d+(?:\.\d+)?)s", msg)
+                delay = float(m.group(1)) + 2 if m else min(2 ** attempt * 5, 60)
+                print(f"[gemini retry] {code} (attempt {attempt + 1}/{max_retries}), sleeping {delay:.1f}s", flush=True)
+                time.sleep(delay)
+
+        text = response.text if response.text is not None else ""
         return self._create_standard_response(
-            response.text,
+            text,
             response.usage_metadata.prompt_token_count,
             response.usage_metadata.candidates_token_count,
             0,
@@ -549,40 +585,36 @@ class AgentWrapper:
             system_message = get_template(self.sub_dataset, 'system', self.agent_name)
             memorize_template = get_template(self.sub_dataset, 'memorize', self.agent_name)
             formatted_message = memorize_template.format(context=message, **({'time_stamp': time.strftime("%Y-%m-%d %H:%M:%S")} if '{time_stamp}' in memorize_template else {}))
-            
-            # Generate Assistant response
-            # memory_messages = [{"role": "system", "content": system_message}, {"role": "user", "content": formatted_message}]
-            # response = OpenAI().chat.completions.create(
-            #             model=self.model,
-            #             messages=memory_messages,
-            #             max_tokens=1000,
-            #         )
-            # memory_messages = [
-            #     {"role": "system", "content": system_message}, 
-            #     {"role": "user", "content": formatted_message},
-            #     {"role": "assistant", "content": response.choices[0].message.content}
-            # ]
+
             memory_messages = [
-                {"role": "system", "content": system_message}, 
+                {"role": "system", "content": system_message},
                 {"role": "user", "content": formatted_message},
                 {"role": "assistant", "content": "I'll make sure to add the content into the memory."}
             ]
-            
+
             vector_results = self.memory.add(memory_messages, user_id=user_id)
             print(f"\n\n\nvector_results: {vector_results}\n\n\n")
+
+            # Save ingestion results (extracted facts)
+            ingest_save_dir = f"./outputs/rag_retrieved/{self.agent_name}/k_{self.retrieve_num}/{self.sub_dataset}/chunksize_{self.chunk_size}"
+            os.makedirs(ingest_save_dir, exist_ok=True)
+            ingest_path = os.path.join(ingest_save_dir, f"ingestion_context_{context_id}.jsonl")
+            with open(ingest_path, "a", encoding="utf-8") as f:
+                f.write(json.dumps({"query_id": query_id, "vector_results": vector_results}, ensure_ascii=False) + "\n")
+
             return "Memorized"
         else:
             # Retrieve relevant memories and generate response
             memory_construction_time = time.time() - self.agent_start_time
             relevant_memories = self.memory.search(query=message, user_id=user_id, limit=self.retrieve_num)
             print(f"\n\n\nrelevant_memories: {relevant_memories}\n\n\n")
-            
+
             memories_str = "\n".join(f"- {entry['memory']}" for entry in relevant_memories["results"])
-            
+
             # Generate assistant response
             system_prompt = f"You are a helpful AI. Answer the question based on query and memories.\n{memories_str}\n"
             llm_messages = [
-                {"role": "system", "content": system_prompt}, 
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": message + "\n\nCurrent Time: " + time.strftime("%Y-%m-%d %H:%M:%S")}
             ]
             response = self.client.chat.completions.create(
@@ -591,11 +623,11 @@ class AgentWrapper:
                 temperature=self.temperature,
                 max_tokens=self.max_tokens
             )
-            
+
             memory_retrieval_length = len(self.tokenizer.encode(memories_str, disallowed_special=()))
             query_time_len = time.time() - self.agent_start_time - memory_construction_time
             print(f"\nmemory_length: {memory_retrieval_length}\n")
-            
+
             output = self._create_standard_response(
                 response.choices[0].message.content,
                 response.usage.prompt_tokens + memory_retrieval_length,
@@ -604,6 +636,19 @@ class AgentWrapper:
                 query_time_len
             )
             self.agent_start_time = time.time()  # Reset time
+
+            # Save retrieved memories and full response
+            save_dir = f"./outputs/rag_retrieved/{self.agent_name}/k_{self.retrieve_num}/{self.sub_dataset}/chunksize_{self.chunk_size}/query_{query_id}_context_{context_id}.json"
+            os.makedirs(os.path.dirname(save_dir), exist_ok=True)
+            with open(save_dir, "w", encoding="utf-8") as f:
+                json.dump({
+                    "retrieved_memories": relevant_memories.get("results", []),
+                    "memories_str": memories_str,
+                    "system_prompt": system_prompt,
+                    "user_message": llm_messages[1]["content"],
+                    "response": response.choices[0].message.content,
+                }, f, ensure_ascii=False, indent=2)
+
             return output
     
     # Zep
@@ -620,14 +665,19 @@ class AgentWrapper:
                 
         # check the context id for user and session creation
         if self.context_id != context_id and memorizing:
-            # User creation
-            self.client.user.add(user_id=user_id)
-            
-            # Thread creation
-            self.client.thread.create(thread_id=thread_id, user_id=user_id)
-                    
-            # Graph creation
-            self.client.graph.create(graph_id=graph_id)
+            # Idempotent creation: ignore "already exists" errors
+            for op_name, op in [
+                ("user.add", lambda: self.client.user.add(user_id=user_id)),
+                ("thread.create", lambda: self.client.thread.create(thread_id=thread_id, user_id=user_id)),
+                ("graph.create", lambda: self.client.graph.create(graph_id=graph_id)),
+            ]:
+                try:
+                    op()
+                except Exception as e:
+                    if "already exists" in str(e).lower() or "400" in str(e):
+                        print(f"  {op_name} skipped (already exists): {user_id}/{graph_id}")
+                    else:
+                        raise
             self.context_id = context_id
         else:
             pass
@@ -647,15 +697,35 @@ class AgentWrapper:
             self.client.thread.add_messages(thread_id=thread_id, messages=messages)
             return "Memorized"
         else:
+            # Wait for Zep async processing on first query for this context
+            # (Zep can take >5 min for many chunks; use longer wait for smaller chunks)
+            if not getattr(self, '_zep_waited_for_context', None) == context_id:
+                wait_seconds = 360  # 6 minutes for async Zep graph processing
+                print(f"\nWaiting {wait_seconds}s for Zep async processing of context {context_id}...")
+                time.sleep(wait_seconds)
+                self._zep_waited_for_context = context_id
+
             memory_construction_time = time.time() - self.agent_start_time
-            
-            # graph search
+
+            # graph search with retry logic (Zep graph might still be processing)
             retrieval_query = get_retrieval_query(message)
             print(f"\n\n\nretrieval_query: {retrieval_query}\n\n\n")
 
-            edges_results = self.client.graph.search(graph_id=graph_id, query=retrieval_query[:399], scope='edges', limit=self.retrieve_num).edges
-            node_results = self.client.graph.search(graph_id=graph_id, query=retrieval_query[:399], scope='nodes', limit=self.retrieve_num).nodes
-            episode_results = self.client.graph.search(graph_id=graph_id, query=retrieval_query[:399], scope='episodes', limit=self.retrieve_num).episodes
+            def _search_with_retry(scope, retries=3, wait=30):
+                for attempt in range(retries):
+                    try:
+                        return self.client.graph.search(graph_id=graph_id, query=retrieval_query[:399], scope=scope, limit=self.retrieve_num)
+                    except Exception as e:
+                        if attempt < retries - 1:
+                            print(f"  Zep search {scope} failed ({e.__class__.__name__}), retry {attempt+1}/{retries} after {wait}s...")
+                            time.sleep(wait)
+                        else:
+                            raise
+                return None
+
+            edges_results = _search_with_retry('edges').edges
+            node_results = _search_with_retry('nodes').nodes
+            episode_results = _search_with_retry('episodes').episodes
             
             # print(f"\n\n\nepisode_results: {episode_results}\n\n\n")
             # print(f"\n\n\nedges_results: {edges_results}\n\n\n")
@@ -680,13 +750,45 @@ class AgentWrapper:
             )
             self.agent_start_time = time.time()  # Reset time
             
-            # save the context
+            # save the context + structured graph data
             save_dir = f"./outputs/rag_retrieved/{self.agent_name}/k_{self.retrieve_num}/{self.sub_dataset}/chunksize_{self.chunk_size}/query_{query_id}_context_{context_id}.json"
             os.makedirs(os.path.dirname(save_dir), exist_ok=True)
-            with open(save_dir, "w") as f:
+
+            def _serialize_edges(edges):
+                if not edges:
+                    return []
+                return [{"fact": e.fact, "name": e.name,
+                         "source_node": e.source_node_uuid, "target_node": e.target_node_uuid,
+                         "valid_at": str(e.valid_at) if e.valid_at else None,
+                         "invalid_at": str(e.invalid_at) if e.invalid_at else None,
+                         "uuid": str(e.uuid_) if hasattr(e, 'uuid_') else None}
+                        for e in edges]
+
+            def _serialize_nodes(nodes):
+                if not nodes:
+                    return []
+                return [{"name": n.name, "summary": n.summary,
+                         "uuid": str(n.uuid_) if hasattr(n, 'uuid_') else None}
+                        for n in nodes]
+
+            def _serialize_episodes(episodes):
+                if not episodes:
+                    return []
+                return [{"content": ep.content, "name": getattr(ep, 'name', None),
+                         "uuid": str(ep.uuid_) if hasattr(ep, 'uuid_') else None}
+                        for ep in episodes]
+
+            with open(save_dir, "w", encoding="utf-8") as f:
                 paragraphs = [p for p in retrieved_context.replace("\r\n", "\n").split("\n") if p.strip()]
-                json.dump({"retrieved_context_paragraphs": paragraphs, "response": response}, f, ensure_ascii=False, indent=2)
-            
+                json.dump({
+                    "retrieved_context_paragraphs": paragraphs,
+                    "edges": _serialize_edges(edges_results),
+                    "nodes": _serialize_nodes(node_results),
+                    "episodes": _serialize_episodes(episode_results),
+                    "context_block": context_block,
+                    "response": response,
+                }, f, ensure_ascii=False, indent=2)
+
             return output
     
     def _handle_rag_agent(self, message, memorizing, query_id, context_id):

@@ -1,0 +1,473 @@
+{
+  "total_invalidated_unique": 67,
+  "correct_invalidations": [
+    {
+      "fact": "The author of Our Mutual Friend is Charles Dickens.",
+      "invalid_seq": 107,
+      "counterpart_seq": 146,
+      "invalid_text": "The author of Our Mutual Friend is Charles Dickens",
+      "counterpart_text": "The author of Our Mutual Friend is Charles Darwin"
+    },
+    {
+      "fact": "Country Joe McDonald is a citizen of United States of America.",
+      "invalid_seq": 165,
+      "counterpart_seq": 250,
+      "invalid_text": "Country Joe McDonald is a citizen of United States of America",
+      "counterpart_text": "Country Joe McDonald is a citizen of Romania"
+    },
+    {
+      "fact": "Olga of Kiev died in the city of Kyiv.",
+      "invalid_seq": 125,
+      "counterpart_seq": 450,
+      "invalid_text": "Olga of Kiev died in the city of Kyiv",
+      "counterpart_text": "Olga of Kiev died in the city of Rodez"
+    },
+    {
+      "fact": "Steve Sax is associated with the sport of baseball.",
+      "invalid_seq": 35,
+      "counterpart_seq": 417,
+      "invalid_text": "Steve Sax is associated with the sport of baseball",
+      "counterpart_text": "Steve Sax is associated with the sport of association football"
+    },
+    {
+      "fact": "rugby union was created in the country of England.",
+      "invalid_seq": 100,
+      "counterpart_seq": 186,
+      "invalid_text": "rugby union was created in the country of England",
+      "counterpart_text": "rugby union was created in the country of India"
+    },
+    {
+      "fact": "Tunisia national football team is associated with the sport of association football.",
+      "invalid_seq": 235,
+      "counterpart_seq": 418,
+      "invalid_text": "Tunisia national football team is associated with the sport of association football",
+      "counterpart_text": "Tunisia national football team is associated with the sport of basketball"
+    },
+    {
+      "fact": "Slovakia national football team is associated with the sport of association football.",
+      "invalid_seq": 18,
+      "counterpart_seq": 279,
+      "invalid_text": "Slovakia national football team is associated with the sport of association football",
+      "counterpart_text": "Slovakia national football team is associated with the sport of cricket"
+    },
+    {
+      "fact": "Lisa Leslie plays the position of center.",
+      "invalid_seq": 14,
+      "counterpart_seq": 169,
+      "invalid_text": "Lisa Leslie plays the position of center",
+      "counterpart_text": "Lisa Leslie plays the position of goaltender"
+    },
+    {
+      "fact": "John Walsh is affiliated with the religion of Catholic Church.",
+      "invalid_seq": 282,
+      "counterpart_seq": 361,
+      "invalid_text": "John Walsh is affiliated with the religion of Catholic Church",
+      "counterpart_text": "John Walsh is affiliated with the religion of Methodism"
+    },
+    {
+      "fact": "Hines Ward plays the position of wide receiver.",
+      "invalid_seq": 3,
+      "counterpart_seq": 36,
+      "invalid_text": "Hines Ward plays the position of wide receiver",
+      "counterpart_text": "Hines Ward plays the position of cornerback"
+    },
+    {
+      "fact": "The univeristy where Lou Reed was educated is Syracuse University.",
+      "invalid_seq": 286,
+      "counterpart_seq": 399,
+      "invalid_text": "The univeristy where Lou Reed was educated is Syracuse University",
+      "counterpart_text": "The univeristy where Lou Reed was educated is Fordham University"
+    },
+    {
+      "fact": "The name of the current head of state in United Kingdom is Elizabeth II.",
+      "invalid_seq": 79,
+      "counterpart_seq": 115,
+      "invalid_text": "The name of the current head of state in United Kingdom is Elizabeth II",
+      "counterpart_text": "The name of the current head of state in United States of America is Donald Trump"
+    },
+    {
+      "fact": "Germany is located in the continent of Europe.",
+      "invalid_seq": 41,
+      "counterpart_seq": 435,
+      "invalid_text": "Germany is located in the continent of Europe",
+      "counterpart_text": "Germany is located in the continent of Africa"
+    },
+    {
+      "fact": "Colin Irwin is a citizen of United Kingdom.",
+      "invalid_seq": 55,
+      "counterpart_seq": 441,
+      "invalid_text": "Colin Irwin is a citizen of United Kingdom",
+      "counterpart_text": "Colin Irwin is a citizen of Israel"
+    },
+    {
+      "fact": "Kingdom of Ireland is affiliated with the religion of Catholic Church.",
+      "invalid_seq": 70,
+      "counterpart_seq": 260,
+      "invalid_text": "Kingdom of Ireland is affiliated with the religion of Catholic Church",
+      "counterpart_text": "Kingdom of Ireland is affiliated with the religion of Zoroastrianism"
+    },
+    {
+      "fact": "Buddhism was founded by Gautama Buddha.",
+      "invalid_seq": 67,
+      "counterpart_seq": 370,
+      "invalid_text": "Buddhism was founded by Gautama Buddha",
+      "counterpart_text": "Buddhism was founded by Mekere Morauta"
+    },
+    {
+      "fact": "Imelda Marcos is affiliated with the religion of Catholicism.",
+      "invalid_seq": 248,
+      "counterpart_seq": 374,
+      "invalid_text": "Imelda Marcos is affiliated with the religion of Catholicism",
+      "counterpart_text": "Imelda Marcos is affiliated with the religion of atheism"
+    },
+    {
+      "fact": "Karen Armstrong is affiliated with the religion of Catholic Church.",
+      "invalid_seq": 266,
+      "counterpart_seq": 412,
+      "invalid_text": "Karen Armstrong is affiliated with the religion of Catholic Church",
+      "counterpart_text": "Karen Armstrong is affiliated with the religion of Church of Scotland"
+    },
+    {
+      "fact": "Laura Bush is married to George W. Bush.",
+      "invalid_seq": 84,
+      "counterpart_seq": 135,
+      "invalid_text": "Laura Bush is married to George W",
+      "counterpart_text": "Laura Bush is married to Princess Alice, Duchess of Gloucester"
+    },
+    {
+      "fact": "Natalie Portman is affiliated with the religion of Judaism.",
+      "invalid_seq": 68,
+      "counterpart_seq": 410,
+      "invalid_text": "Natalie Portman is affiliated with the religion of Judaism",
+      "counterpart_text": "Natalie Portman is affiliated with the religion of interdenominational organization"
+    },
+    {
+      "fact": "Andrew Carnegie is a citizen of United States of America.",
+      "invalid_seq": 338,
+      "counterpart_seq": 367,
+      "invalid_text": "Andrew Carnegie is a citizen of United States of America",
+      "counterpart_text": "Andrew Carnegie is a citizen of United Kingdom"
+    },
+    {
+      "fact": "Surrey Senior Cup is associated with the sport of association football.",
+      "invalid_seq": 291,
+      "counterpart_seq": 315,
+      "invalid_text": "Surrey Senior Cup is associated with the sport of association football",
+      "counterpart_text": "Surrey Senior Cup is associated with the sport of basketball"
+    },
+    {
+      "fact": "Carlos Gómez is associated with the sport of baseball.",
+      "invalid_seq": 81,
+      "counterpart_seq": 405,
+      "invalid_text": "Carlos Gómez is associated with the sport of baseball",
+      "counterpart_text": "Carlos Gómez is associated with the sport of basketball"
+    },
+    {
+      "fact": "Madame du Barry is a citizen of France.",
+      "invalid_seq": 29,
+      "counterpart_seq": 123,
+      "invalid_text": "Madame du Barry is a citizen of France",
+      "counterpart_text": "Madame du Barry is a citizen of Great Britain"
+    },
+    {
+      "fact": "The chairperson of Fatah is Mahmoud Abbas.",
+      "invalid_seq": 1,
+      "counterpart_seq": 54,
+      "invalid_text": "The chairperson of Fatah is Mahmoud Abbas",
+      "counterpart_text": "The chairperson of Congolese Party of Labour is Denis Sassou-Nguesso"
+    },
+    {
+      "fact": "The chairperson of Harvard University is Lawrence S. Bacow.",
+      "invalid_seq": 80,
+      "counterpart_seq": 222,
+      "invalid_text": "The chairperson of Harvard University is Lawrence S",
+      "counterpart_text": "The chairperson of Harvard University is Peter Diamandis"
+    },
+    {
+      "fact": "William Waynflete speaks the language of English.",
+      "invalid_seq": 214,
+      "counterpart_seq": 336,
+      "invalid_text": "William Waynflete speaks the language of English",
+      "counterpart_text": "William Waynflete speaks the language of Latin"
+    },
+    {
+      "fact": "The Vampyre was written in the language of English.",
+      "invalid_seq": 278,
+      "counterpart_seq": 426,
+      "invalid_text": "The Vampyre was written in the language of English",
+      "counterpart_text": "The Vampyre was written in the language of German"
+    },
+    {
+      "fact": "Walter Chrysler's child is Walter Percy Chrysler Jr..",
+      "invalid_seq": 61,
+      "counterpart_seq": 231,
+      "invalid_text": "Walter Chrysler's child is Walter Percy Chrysler Jr",
+      "counterpart_text": "Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp"
+    },
+    {
+      "fact": "The author of Sidereus Nuncius is Galileo Galilei.",
+      "invalid_seq": 124,
+      "counterpart_seq": 401,
+      "invalid_text": "The author of Sidereus Nuncius is Galileo Galilei",
+      "counterpart_text": "The author of Sidereus Nuncius is Samuel Beckett"
+    },
+    {
+      "fact": "Vito Corleone was created by Mario Puzo.",
+      "invalid_seq": 256,
+      "counterpart_seq": 390,
+      "invalid_text": "Vito Corleone was created by Mario Puzo",
+      "counterpart_text": "Vito Corleone was created by Nobuhiro Watsuki"
+    },
+    {
+      "fact": "pesäpallo was created in the country of Finland.",
+      "invalid_seq": 59,
+      "counterpart_seq": 261,
+      "invalid_text": "pesäpallo was created in the country of Finland",
+      "counterpart_text": "pesäpallo was created in the country of Philippines"
+    },
+    {
+      "fact": "Joe Hockey is a citizen of Australia.",
+      "invalid_seq": 129,
+      "counterpart_seq": 427,
+      "invalid_text": "Joe Hockey is a citizen of Australia",
+      "counterpart_text": "Joe Hockey is a citizen of Italy"
+    },
+    {
+      "fact": "The capital of United States of America is Washington, D.C..",
+      "invalid_seq": 247,
+      "counterpart_seq": 396,
+      "invalid_text": "The capital of United States of America is Washington, D",
+      "counterpart_text": "The capital of United States of America is Harrisville"
+    },
+    {
+      "fact": "The headquarters of University of Bucharest is located in the city of Bucharest.",
+      "invalid_seq": 173,
+      "counterpart_seq": 409,
+      "invalid_text": "The headquarters of University of Bucharest is located in the city of Bucharest",
+      "counterpart_text": "The headquarters of University of Bucharest is located in the city of Ankara"
+    },
+    {
+      "fact": "Rocket Man was performed by Elton John.",
+      "invalid_seq": 71,
+      "counterpart_seq": 229,
+      "invalid_text": "Rocket Man was performed by Elton John",
+      "counterpart_text": "Rocket Man was performed by Ayumi Hamasaki"
+    },
+    {
+      "fact": "The official language of Moscow is Russian.",
+      "invalid_seq": 89,
+      "counterpart_seq": 99,
+      "invalid_text": "The official language of Moscow is Russian",
+      "counterpart_text": "The official language of England is English"
+    },
+    {
+      "fact": "The author of The Marriage of Figaro is Pierre Beaumarchais.",
+      "invalid_seq": 271,
+      "counterpart_seq": 398,
+      "invalid_text": "The author of The Marriage of Figaro is Pierre Beaumarchais",
+      "counterpart_text": "The author of The Marriage of Figaro is Thomas Kyd"
+    },
+    {
+      "fact": "Ferdinand von Richthofen is a citizen of Germany.",
+      "invalid_seq": 24,
+      "counterpart_seq": 386,
+      "invalid_text": "Ferdinand von Richthofen is a citizen of Germany",
+      "counterpart_text": "Ferdinand von Richthofen is a citizen of Canada"
+    },
+    {
+      "fact": "Ron Dennis is employed by McLaren Automotive.",
+      "invalid_seq": 47,
+      "counterpart_seq": 385,
+      "invalid_text": "Ron Dennis is employed by McLaren Automotive",
+      "counterpart_text": "Ron Dennis is employed by Pakistan International Airlines"
+    },
+    {
+      "fact": "Stephen McNeil works in the field of politician.",
+      "invalid_seq": 152,
+      "counterpart_seq": 320,
+      "invalid_text": "Stephen McNeil works in the field of politician",
+      "counterpart_text": "Stephen McNeil works in the field of journalist"
+    },
+    {
+      "fact": "Nobuhiro Watsuki is famous for Rurouni Kenshin.",
+      "invalid_seq": 91,
+      "counterpart_seq": 259,
+      "invalid_text": "Nobuhiro Watsuki is famous for Rurouni Kenshin",
+      "counterpart_text": "Nobuhiro Watsuki is famous for The Fairly OddParents"
+    },
+    {
+      "fact": "Le Petit Parisien was created in the country of France.",
+      "invalid_seq": 257,
+      "counterpart_seq": 436,
+      "invalid_text": "Le Petit Parisien was created in the country of France",
+      "counterpart_text": "Le Petit Parisien was created in the country of Germany"
+    },
+    {
+      "fact": "The capital of Tang Empire is Chang'an.",
+      "invalid_seq": 21,
+      "counterpart_seq": 26,
+      "invalid_text": "The capital of Tang Empire is Chang'an",
+      "counterpart_text": "The capital of Germany is Berlin"
+    },
+    {
+      "fact": "The director of The Beatles is Brian Epstein.",
+      "invalid_seq": 236,
+      "counterpart_seq": 443,
+      "invalid_text": "The director of The Beatles is Brian Epstein",
+      "counterpart_text": "The director of The Beatles is Joe Hockey"
+    },
+    {
+      "fact": "Rogério Ceni plays the position of goalkeeper.",
+      "invalid_seq": 6,
+      "counterpart_seq": 434,
+      "invalid_text": "Rogério Ceni plays the position of goalkeeper",
+      "counterpart_text": "Rogério Ceni plays the position of flanker"
+    },
+    {
+      "fact": "Sophia Hawthorne is married to Nathaniel Hawthorne.",
+      "invalid_seq": 407,
+      "counterpart_seq": 420,
+      "invalid_text": "Sophia Hawthorne is married to Nathaniel Hawthorne",
+      "counterpart_text": "Sophia Hawthorne is married to Joan Didion"
+    },
+    {
+      "fact": "The Prime Minister of Sweden is Stefan Löfven.",
+      "invalid_seq": 82,
+      "counterpart_seq": 276,
+      "invalid_text": "The Prime Minister of Sweden is Stefan Löfven",
+      "counterpart_text": "The Prime Minister of Sweden is Pedro Pierluisi"
+    },
+    {
+      "fact": "Cédric Klapisch is a citizen of France.",
+      "invalid_seq": 210,
+      "counterpart_seq": 239,
+      "invalid_text": "Cédric Klapisch is a citizen of France",
+      "counterpart_text": "Cédric Klapisch is a citizen of Malaysia"
+    },
+    {
+      "fact": "Charlie Hebdo was created in the country of France.",
+      "invalid_seq": 155,
+      "counterpart_seq": 358,
+      "invalid_text": "Charlie Hebdo was created in the country of France",
+      "counterpart_text": "Charlie Hebdo was created in the country of Italy"
+    },
+    {
+      "fact": "Charles Messier is a citizen of France.",
+      "invalid_seq": 204,
+      "counterpart_seq": 343,
+      "invalid_text": "Charles Messier is a citizen of France",
+      "counterpart_text": "Charles Messier is a citizen of Iran"
+    },
+    {
+      "fact": "Ford Motor Company was founded by Henry Ford.",
+      "invalid_seq": 132,
+      "counterpart_seq": 230,
+      "invalid_text": "Ford Motor Company was founded by Henry Ford",
+      "counterpart_text": "Ford Motor Company was founded by Henri Grégoire"
+    },
+    {
+      "fact": "New Firm is associated with the sport of association football.",
+      "invalid_seq": 296,
+      "counterpart_seq": 376,
+      "invalid_text": "New Firm is associated with the sport of association football",
+      "counterpart_text": "New Firm is associated with the sport of baseball"
+    },
+    {
+      "fact": "Alta IF is associated with the sport of association football.",
+      "invalid_seq": 19,
+      "counterpart_seq": 446,
+      "invalid_text": "Alta IF is associated with the sport of association football",
+      "counterpart_text": "Alta IF is associated with the sport of baseball"
+    }
+  ],
+  "wrong_invalidations": [
+    {
+      "fact": "The capital of Great Britain is London.",
+      "invalid_seq": 33,
+      "counterpart_seq": 21,
+      "invalid_text": "The capital of Great Britain is London",
+      "counterpart_text": "The capital of Tang Empire is Chang'an"
+    },
+    {
+      "fact": "The capital of Australia is Canberra.",
+      "invalid_seq": 284,
+      "counterpart_seq": 21,
+      "invalid_text": "The capital of Australia is Canberra",
+      "counterpart_text": "The capital of Tang Empire is Chang'an"
+    },
+    {
+      "fact": "The capital of Romania is Bucharest.",
+      "invalid_seq": 185,
+      "counterpart_seq": 21,
+      "invalid_text": "The capital of Romania is Bucharest",
+      "counterpart_text": "The capital of Tang Empire is Chang'an"
+    },
+    {
+      "fact": "The chairperson of Fatah is Moshe Kahlon.",
+      "invalid_seq": 232,
+      "counterpart_seq": 1,
+      "invalid_text": "The chairperson of Fatah is Moshe Kahlon",
+      "counterpart_text": "The chairperson of Fatah is Mahmoud Abbas"
+    },
+    {
+      "fact": "The chief executive officer of Boeing is Dennis Muilenburg.",
+      "invalid_seq": 136,
+      "counterpart_seq": 13,
+      "invalid_text": "The chief executive officer of Boeing is Dennis Muilenburg",
+      "counterpart_text": "The chief executive officer of Apple Inc"
+    },
+    {
+      "fact": "Sable is a citizen of Czech Republic.",
+      "invalid_seq": 299,
+      "counterpart_seq": 244,
+      "invalid_text": "Sable is a citizen of Czech Republic",
+      "counterpart_text": "Sable is a citizen of United States of America"
+    },
+    {
+      "fact": "The official language of Japan is Japanese.",
+      "invalid_seq": 240,
+      "counterpart_seq": 89,
+      "invalid_text": "The official language of Japan is Japanese",
+      "counterpart_text": "The official language of Moscow is Russian"
+    },
+    {
+      "fact": "The official language of United States of America is American English.",
+      "invalid_seq": 242,
+      "counterpart_seq": 184,
+      "invalid_text": "The official language of United States of America is American English",
+      "counterpart_text": "The official language of United Kingdom is English"
+    },
+    {
+      "fact": "The type of music that Dana International plays is pop music.",
+      "invalid_seq": 243,
+      "counterpart_seq": 83,
+      "invalid_text": "The type of music that Dana International plays is pop music",
+      "counterpart_text": "The type of music that Dale Evans plays is country music"
+    },
+    {
+      "fact": "The type of music that John McVie plays is rock music.",
+      "invalid_seq": 90,
+      "counterpart_seq": 83,
+      "invalid_text": "The type of music that John McVie plays is rock music",
+      "counterpart_text": "The type of music that Dale Evans plays is country music"
+    },
+    {
+      "fact": "Oscar Wilde died in the city of Guangzhou.",
+      "invalid_seq": 270,
+      "counterpart_seq": 128,
+      "invalid_text": "Oscar Wilde died in the city of Guangzhou",
+      "counterpart_text": "Oscar Wilde died in the city of Paris"
+    }
+  ],
+  "unclear": [
+    {
+      "fact": "Galwegians RFC is associated with the sport of rugby union.",
+      "invalid_seq": 23
+    },
+    {
+      "fact": "Denis Sassou-Nguesso works in the field of politician.",
+      "invalid_seq": 406
+    }
+  ],
+  "accuracy": 0.8307692307692308
+}

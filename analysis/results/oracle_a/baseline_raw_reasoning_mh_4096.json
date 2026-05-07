@@ -1,0 +1,497 @@
+[
+  {
+    "query_id": 0,
+    "output": "United Kingdom",
+    "raw_reasoning": "United Kingdom",
+    "prompt_tokens": 6635,
+    "completion_tokens": 2,
+    "gt_answer": "Belgium",
+    "exact_match": false
+  },
+  {
+    "query_id": 3,
+    "output": "London.",
+    "raw_reasoning": "London",
+    "prompt_tokens": 6640,
+    "completion_tokens": 1,
+    "gt_answer": "Russellville",
+    "exact_match": false
+  },
+  {
+    "query_id": 4,
+    "output": "American football.",
+    "raw_reasoning": "American football",
+    "prompt_tokens": 6630,
+    "completion_tokens": 2,
+    "gt_answer": "rugby",
+    "exact_match": false
+  },
+  {
+    "query_id": 5,
+    "output": "University of Bucharest.",
+    "raw_reasoning": "University of Bucharest",
+    "prompt_tokens": 6639,
+    "completion_tokens": 4,
+    "gt_answer": "Baldwin Wallace University",
+    "exact_match": false
+  },
+  {
+    "query_id": 7,
+    "output": "Europe.",
+    "raw_reasoning": "Europe",
+    "prompt_tokens": 6634,
+    "completion_tokens": 1,
+    "gt_answer": "Oceania",
+    "exact_match": false
+  },
+  {
+    "query_id": 8,
+    "output": "Asia",
+    "raw_reasoning": "Asia",
+    "prompt_tokens": 6632,
+    "completion_tokens": 1,
+    "gt_answer": "North America",
+    "exact_match": false
+  },
+  {
+    "query_id": 11,
+    "output": "Catholic Church.",
+    "raw_reasoning": "Catholic Church",
+    "prompt_tokens": 6636,
+    "completion_tokens": 3,
+    "gt_answer": "Zoroastrianism",
+    "exact_match": false
+  },
+  {
+    "query_id": 12,
+    "output": "London.",
+    "raw_reasoning": "London",
+    "prompt_tokens": 6640,
+    "completion_tokens": 1,
+    "gt_answer": "Duluth",
+    "exact_match": false
+  },
+  {
+    "query_id": 13,
+    "output": "United Methodist Church.",
+    "raw_reasoning": "United Methodist Church",
+    "prompt_tokens": 6629,
+    "completion_tokens": 3,
+    "gt_answer": "Anglicanism",
+    "exact_match": false
+  },
+  {
+    "query_id": 14,
+    "output": "Donald Trump",
+    "raw_reasoning": "Donald Trump",
+    "prompt_tokens": 6637,
+    "completion_tokens": 2,
+    "gt_answer": "Emmerson Mnangagwa",
+    "exact_match": false
+  },
+  {
+    "query_id": 16,
+    "output": "United States of America.",
+    "raw_reasoning": "United States of America",
+    "prompt_tokens": 6631,
+    "completion_tokens": 4,
+    "gt_answer": "Soviet Union",
+    "exact_match": false
+  },
+  {
+    "query_id": 20,
+    "output": "English.",
+    "raw_reasoning": "English",
+    "prompt_tokens": 6638,
+    "completion_tokens": 1,
+    "gt_answer": "Persian",
+    "exact_match": false
+  },
+  {
+    "query_id": 23,
+    "output": "Italy.",
+    "raw_reasoning": "Italy",
+    "prompt_tokens": 6633,
+    "completion_tokens": 1,
+    "gt_answer": "Soviet Union",
+    "exact_match": false
+  },
+  {
+    "query_id": 24,
+    "output": "Washington, D.C.",
+    "raw_reasoning": "Washington, D.C.",
+    "prompt_tokens": 6636,
+    "completion_tokens": 5,
+    "gt_answer": "Harare",
+    "exact_match": false
+  },
+  {
+    "query_id": 25,
+    "output": "Dennis Muilenburg.",
+    "raw_reasoning": "Dennis Muilenburg",
+    "prompt_tokens": 6641,
+    "completion_tokens": 4,
+    "gt_answer": "Adel al-Jubeir",
+    "exact_match": false
+  },
+  {
+    "query_id": 28,
+    "output": "Washington, D.C.",
+    "raw_reasoning": "Washington, D.C.",
+    "prompt_tokens": 6639,
+    "completion_tokens": 5,
+    "gt_answer": "Prague",
+    "exact_match": false
+  },
+  {
+    "query_id": 29,
+    "output": "Washington, D.C.",
+    "raw_reasoning": "Washington, D.C.",
+    "prompt_tokens": 6640,
+    "completion_tokens": 5,
+    "gt_answer": "Rajanpur",
+    "exact_match": false
+  },
+  {
+    "query_id": 30,
+    "output": "Minneapolis.",
+    "raw_reasoning": "Minneapolis",
+    "prompt_tokens": 6648,
+    "completion_tokens": 2,
+    "gt_answer": "New York City",
+    "exact_match": false
+  },
+  {
+    "query_id": 31,
+    "output": "Donald Trump",
+    "raw_reasoning": "Donald Trump",
+    "prompt_tokens": 6637,
+    "completion_tokens": 2,
+    "gt_answer": "Giuseppe Conte",
+    "exact_match": false
+  },
+  {
+    "query_id": 32,
+    "output": "Asia.",
+    "raw_reasoning": "Asia",
+    "prompt_tokens": 6633,
+    "completion_tokens": 1,
+    "gt_answer": "North America",
+    "exact_match": false
+  },
+  {
+    "query_id": 33,
+    "output": "Europe.",
+    "raw_reasoning": "Europe",
+    "prompt_tokens": 6631,
+    "completion_tokens": 1,
+    "gt_answer": "South America",
+    "exact_match": false
+  },
+  {
+    "query_id": 34,
+    "output": "Catholicism",
+    "raw_reasoning": "Catholicism",
+    "prompt_tokens": 6629,
+    "completion_tokens": 3,
+    "gt_answer": "atheism",
+    "exact_match": false
+  },
+  {
+    "query_id": 36,
+    "output": "United Kingdom.",
+    "raw_reasoning": "United Kingdom",
+    "prompt_tokens": 6634,
+    "completion_tokens": 2,
+    "gt_answer": "Japan",
+    "exact_match": false
+  },
+  {
+    "query_id": 37,
+    "output": "English.",
+    "raw_reasoning": "English",
+    "prompt_tokens": 6636,
+    "completion_tokens": 1,
+    "gt_answer": "German",
+    "exact_match": false
+  },
+  {
+    "query_id": 38,
+    "output": "United States of America.",
+    "raw_reasoning": "United States of America",
+    "prompt_tokens": 6630,
+    "completion_tokens": 4,
+    "gt_answer": "Canada",
+    "exact_match": false
+  },
+  {
+    "query_id": 39,
+    "output": "basketball.",
+    "raw_reasoning": "basketball",
+    "prompt_tokens": 6636,
+    "completion_tokens": 2,
+    "gt_answer": "Muay Thai",
+    "exact_match": false
+  },
+  {
+    "query_id": 41,
+    "output": "German",
+    "raw_reasoning": "German",
+    "prompt_tokens": 6642,
+    "completion_tokens": 1,
+    "gt_answer": "German",
+    "exact_match": true
+  },
+  {
+    "query_id": 44,
+    "output": "Washington, D.C.",
+    "raw_reasoning": "Washington, D.C.",
+    "prompt_tokens": 6642,
+    "completion_tokens": 5,
+    "gt_answer": "London",
+    "exact_match": false
+  },
+  {
+    "query_id": 45,
+    "output": "Gads Hill Place.",
+    "raw_reasoning": "Gads Hill Place",
+    "prompt_tokens": 6636,
+    "completion_tokens": 4,
+    "gt_answer": "London",
+    "exact_match": false
+  },
+  {
+    "query_id": 49,
+    "output": "Japanese.",
+    "raw_reasoning": "Japanese",
+    "prompt_tokens": 6635,
+    "completion_tokens": 1,
+    "gt_answer": "Latin",
+    "exact_match": false
+  },
+  {
+    "query_id": 50,
+    "output": "Moscow.",
+    "raw_reasoning": "Moscow",
+    "prompt_tokens": 6640,
+    "completion_tokens": 2,
+    "gt_answer": "Mansourah, Algeria",
+    "exact_match": false
+  },
+  {
+    "query_id": 51,
+    "output": "politician.",
+    "raw_reasoning": "politician",
+    "prompt_tokens": 6634,
+    "completion_tokens": 2,
+    "gt_answer": "journalist",
+    "exact_match": false
+  },
+  {
+    "query_id": 53,
+    "output": "United States of America.",
+    "raw_reasoning": "United States of America",
+    "prompt_tokens": 6635,
+    "completion_tokens": 4,
+    "gt_answer": "Russian Empire",
+    "exact_match": false
+  },
+  {
+    "query_id": 54,
+    "output": "Berlin",
+    "raw_reasoning": "Berlin",
+    "prompt_tokens": 6645,
+    "completion_tokens": 1,
+    "gt_answer": "Beaumont",
+    "exact_match": false
+  },
+  {
+    "query_id": 60,
+    "output": "Camden Town.",
+    "raw_reasoning": "Camden Town",
+    "prompt_tokens": 6636,
+    "completion_tokens": 3,
+    "gt_answer": "Berlin",
+    "exact_match": false
+  },
+  {
+    "query_id": 62,
+    "output": "director.",
+    "raw_reasoning": "director",
+    "prompt_tokens": 6638,
+    "completion_tokens": 1,
+    "gt_answer": "Ernst Heinkel",
+    "exact_match": false
+  },
+  {
+    "query_id": 63,
+    "output": "Paris.",
+    "raw_reasoning": "Paris",
+    "prompt_tokens": 6633,
+    "completion_tokens": 1,
+    "gt_answer": "Montmélian",
+    "exact_match": false
+  },
+  {
+    "query_id": 66,
+    "output": "English",
+    "raw_reasoning": "English",
+    "prompt_tokens": 6632,
+    "completion_tokens": 1,
+    "gt_answer": "German",
+    "exact_match": false
+  },
+  {
+    "query_id": 71,
+    "output": "Donald Trump.",
+    "raw_reasoning": "Donald Trump",
+    "prompt_tokens": 6639,
+    "completion_tokens": 2,
+    "gt_answer": "Connachta",
+    "exact_match": false
+  },
+  {
+    "query_id": 74,
+    "output": "Portland.",
+    "raw_reasoning": "Portland",
+    "prompt_tokens": 6636,
+    "completion_tokens": 2,
+    "gt_answer": "Wolverhampton",
+    "exact_match": false
+  },
+  {
+    "query_id": 77,
+    "output": "Washington, D.C.",
+    "raw_reasoning": "Washington, D.C.",
+    "prompt_tokens": 6640,
+    "completion_tokens": 5,
+    "gt_answer": "Rome",
+    "exact_match": false
+  },
+  {
+    "query_id": 80,
+    "output": "Asia.",
+    "raw_reasoning": "Asia",
+    "prompt_tokens": 6636,
+    "completion_tokens": 1,
+    "gt_answer": "Antarctica",
+    "exact_match": false
+  },
+  {
+    "query_id": 81,
+    "output": "Bucharest.",
+    "raw_reasoning": "Bucharest",
+    "prompt_tokens": 6639,
+    "completion_tokens": 3,
+    "gt_answer": "Ankara",
+    "exact_match": false
+  },
+  {
+    "query_id": 82,
+    "output": "Donald Trump",
+    "raw_reasoning": "Donald Trump",
+    "prompt_tokens": 6636,
+    "completion_tokens": 2,
+    "gt_answer": "Elizabeth II",
+    "exact_match": false
+  },
+  {
+    "query_id": 83,
+    "output": "Coco Chanel.",
+    "raw_reasoning": "Coco Chanel",
+    "prompt_tokens": 6642,
+    "completion_tokens": 3,
+    "gt_answer": "William Penn",
+    "exact_match": false
+  },
+  {
+    "query_id": 84,
+    "output": "Paris.",
+    "raw_reasoning": "Paris",
+    "prompt_tokens": 6630,
+    "completion_tokens": 1,
+    "gt_answer": "Tehran",
+    "exact_match": false
+  },
+  {
+    "query_id": 85,
+    "output": "United States of America.",
+    "raw_reasoning": "United States of America",
+    "prompt_tokens": 6634,
+    "completion_tokens": 4,
+    "gt_answer": "Philippines",
+    "exact_match": false
+  },
+  {
+    "query_id": 86,
+    "output": "Washington, D.C.",
+    "raw_reasoning": "Washington, D.C.",
+    "prompt_tokens": 6640,
+    "completion_tokens": 5,
+    "gt_answer": "New Delhi",
+    "exact_match": false
+  },
+  {
+    "query_id": 88,
+    "output": "American English.",
+    "raw_reasoning": "American English",
+    "prompt_tokens": 6641,
+    "completion_tokens": 2,
+    "gt_answer": "Arabic",
+    "exact_match": false
+  },
+  {
+    "query_id": 89,
+    "output": "United States of America.",
+    "raw_reasoning": "United States of America",
+    "prompt_tokens": 6634,
+    "completion_tokens": 4,
+    "gt_answer": "Australia",
+    "exact_match": false
+  },
+  {
+    "query_id": 90,
+    "output": "Polish.",
+    "raw_reasoning": "Polish",
+    "prompt_tokens": 6637,
+    "completion_tokens": 2,
+    "gt_answer": "French",
+    "exact_match": false
+  },
+  {
+    "query_id": 92,
+    "output": "Russian.",
+    "raw_reasoning": "Russian",
+    "prompt_tokens": 6643,
+    "completion_tokens": 1,
+    "gt_answer": "German",
+    "exact_match": false
+  },
+  {
+    "query_id": 93,
+    "output": "Washington, D.C.",
+    "raw_reasoning": "Washington, D.C.",
+    "prompt_tokens": 6639,
+    "completion_tokens": 5,
+    "gt_answer": "Harare",
+    "exact_match": false
+  },
+  {
+    "query_id": 96,
+    "output": "Guangzhou.",
+    "raw_reasoning": "Guangzhou",
+    "prompt_tokens": 6637,
+    "completion_tokens": 3,
+    "gt_answer": "Guangzhou",
+    "exact_match": true
+  },
+  {
+    "query_id": 97,
+    "output": "rock music.",
+    "raw_reasoning": "rock music",
+    "prompt_tokens": 6638,
+    "completion_tokens": 2,
+    "gt_answer": "Australian hip hop",
+    "exact_match": false
+  }
+]

@@ -1,0 +1,91 @@
+=================================================================
+FC-SH 6k HippoRAG-v2 chunk_size=512 分析報告（MQuAKE精確對應）
+=================================================================
+
+總題數：100  |  有效（MQuAKE對應成功）：100
+正確：77  |  錯誤：23
+Accuracy：77.0%
+
+────────────────────────────────────────
+Error type 分佈（全部有效題）
+────────────────────────────────────────
+  correct               :  77 題  (77.0%)
+  older_fact            :  23 題  (23.0%)
+
+────────────────────────────────────────
+Conflict type 分佈
+────────────────────────────────────────
+  has_pair              :  74 題
+  no_conflict_pair      :  26 題
+
+────────────────────────────────────────
+Fail cases 詳細分析（has_pair 23 題）
+────────────────────────────────────────
+
+[1] Error type 分佈（fail, has_pair）
+  older_fact            :  23 題  (100.0%)
+
+[2] 新舊事實的 retrieval 情況（fail, has_pair）
+  GT（新事實）被取回     : 22/23
+  Old（舊事實）被取回    : 23/23
+  兩者都被取回          : 22/23
+
+[3] 新舊事實的 retrieval 情況（pass, has_pair）對比
+  GT（新事實）被取回     : 51/51
+  Old（舊事實）被取回    : 51/51
+  兩者都被取回          : 51/51
+
+[4] Recency bias 分析（has_pair，兩者都被取回）
+  [pass, has_pair] 兩者都取回共 51 題
+    GT 靠後（有利 recency）: 39 題  |  GT 靠前（不利）: 12 題
+    平均 position_diff (gt_rank - old_rank): 1.02
+  [fail, has_pair] 兩者都取回共 22 題
+    GT 靠後（有利 recency）: 2 題  |  GT 靠前（不利）: 20 題
+    平均 position_diff (gt_rank - old_rank): -0.55
+
+[5] Fail cases 中 GT passage rank 分佈（新事實在第幾個 passage）
+  Rank  1:  20 題
+  Rank  2:   0 題
+  Rank  3:   1 題
+  Rank  4:   0 題
+  Rank  5:   0 題
+  Rank  6:   0 題
+  Rank  7:   1 題
+  Rank  8:   0 題
+  Rank  9:   0 題
+  Rank 10:   0 題
+
+[6] Pass cases 中 GT passage rank 分佈（新事實在第幾個 passage）
+  Rank  1:  11 題
+  Rank  2:  29 題
+  Rank  3:   8 題
+  Rank  4:   1 題
+  Rank  5:   2 題
+  Rank  6:   0 題
+  Rank  7:   0 題
+  Rank  8:   0 題
+  Rank  9:   0 題
+  Rank 10:   0 題
+
+[7] Update gap 統計（has_pair fail cases，gt_seq - old_seq）
+  筆數：23
+  平均：124.3
+  最小：11  最大：328
+    gap 1-10    : 0 題
+    gap 11-50   : 8 題
+    gap 51-100  : 2 題
+    gap 101+    : 13 題
+
+[8-0] PPR score 不均衡分析（old_ppr / gt_ppr 比值）
+  （比值越高 = 舊事實比新事實有更高的 PPR 分，模型可能更注意舊事實）
+  [pass, has_pair] n=51, avg ratio=1.77, max=7.76, ratio>2 count=12
+  [fail, has_pair] n=22, avg ratio=0.93, max=2.39, ratio>2 count=1
+
+[8] GT 相對位置（gt_seq / 455）分析
+  [pass, has_pair] avg relative pos = 0.700  (n=51)
+  [fail, has_pair] avg relative pos = 0.633  (n=23)
+
+────────────────────────────────────────
+No MQuAKE match cases
+────────────────────────────────────────
+  共 0 題：[]

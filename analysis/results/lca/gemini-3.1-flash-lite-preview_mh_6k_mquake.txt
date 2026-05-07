@@ -1,0 +1,18 @@
+=== gemini-3.1-flash-lite-preview × factconsolidation_mh_6k (MH) ===
+matched=100   correct=16   EM=16.0%
+
+Conflict-type breakdown:
+  has_pair            : n=100  correct= 16  acc=16.0%
+
+Error type distribution:
+  older_fact          :  50 (50.0%)
+  entity_confused     :  22 (22.0%)
+  correct             :  16 (16.0%)
+  empty               :  11 (11.0%)
+  hallucination       :   1 (1.0%)
+
+Hop-count distribution (acc per hop-count):
+  2-hop: n= 61  acc=21.3%
+  3-hop: n= 24  acc=12.5%
+  4-hop: n= 15  acc=0.0%
+No MQuAKE match: 0

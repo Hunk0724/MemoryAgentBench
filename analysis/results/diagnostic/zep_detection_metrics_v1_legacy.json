@@ -1,0 +1,34 @@
+{
+  "fc_sh": {
+    "label": "Zep FC-SH (gpt-4o-mini)",
+    "has_pair_in_dataset": 74,
+    "total_invalidations_made_by_zep": 48,
+    "TP_correct": 20,
+    "FP_wrong_direction": 25,
+    "FP_no_counterpart": 2,
+    "unknown": 1,
+    "FN_has_pair_not_invalidated": 54,
+    "precision": 0.4255,
+    "recall": 0.2703,
+    "f1": 0.3306
+  },
+  "fc_mh": {
+    "label": "Zep FC-MH (gpt-4o-mini, hop-level)",
+    "has_pair_in_dataset": 188,
+    "total_invalidations_made_by_zep": 67,
+    "TP_correct": 59,
+    "FP_wrong_direction": 3,
+    "FP_no_counterpart": 4,
+    "unknown": 1,
+    "FN_has_pair_not_invalidated": 129,
+    "precision": 0.8939,
+    "recall": 0.3138,
+    "f1": 0.4646
+  },
+  "notes": [
+    "Zep internal LLM = whatever Zep cloud uses (closed; not changeable to Gemini).",
+    "Inference-side LLM in our existing run = gpt-4o-mini.",
+    "TP / FP / FN are at the (s, r, OLD fact) level for SH and the hop level for MH.",
+    "Wrong direction (invalidate NEW instead of OLD) counted as FP \u2014 production system error mode."
+  ]
+}

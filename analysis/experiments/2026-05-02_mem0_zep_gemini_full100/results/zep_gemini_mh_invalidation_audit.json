@@ -1,0 +1,239 @@
+{
+  "label": "Zep × Gemini — FC-MH (hop-level)",
+  "total_invalidations_made_by_zep": 78,
+  "correct": 65,
+  "wrong": 7,
+  "false_positive": 6,
+  "unknown": 0,
+  "has_pair_in_dataset": 188,
+  "uniquely_correct_pairs": 65,
+  "precision_event_level": 0.8333,
+  "recall_pair_level": 0.3457,
+  "f1": 0.4887,
+  "correct_items": [
+    {
+      "edge_fact": "The capital of United States of America is Washington, D.C..",
+      "edge_invalid_at": "2026-05-02T14:30:15.209Z",
+      "matched_pair_qid": 27,
+      "gt_old": "The capital of United States of America is Washington, D.C..",
+      "gt_new": "The capital of United States of America is Harrisville."
+    },
+    {
+      "edge_fact": "The chairperson of Harvard University is Lawrence S. Bacow.",
+      "edge_invalid_at": "2026-05-02T14:30:13.308Z",
+      "matched_pair_qid": 26,
+      "gt_old": "The chairperson of Harvard University is Lawrence S. Bacow.",
+      "gt_new": "The chairperson of Harvard University is Peter Diamandis."
+    },
+    {
+      "edge_fact": "quarterback is associated with the sport of American football.",
+      "edge_invalid_at": "2026-05-02T14:30:11.698Z",
+      "matched_pair_qid": 39,
+      "gt_old": "quarterback is associated with the sport of American football.",
+      "gt_new": "quarterback is associated with the sport of Muay Thai."
+    },
+    {
+      "edge_fact": "The current head of state in United Kingdom is Elizabeth II.",
+      "edge_invalid_at": "2026-05-02T14:30:13Z",
+      "matched_pair_qid": 14,
+      "gt_old": "The name of the current head of state in United Kingdom is Elizabeth II.",
+      "gt_new": "The name of the current head of state in United Kingdom is Emmerson Mnangagwa."
+    },
+    {
+      "edge_fact": "The chairperson of Congolese Party of Labour is Denis Sassou-Nguesso.",
+      "edge_invalid_at": "2026-05-02T14:30:15.209Z",
+      "matched_pair_qid": 51,
+      "gt_old": "The chairperson of Congolese Party of Labour is Denis Sassou-Nguesso.",
+      "gt_new": "The chairperson of Congolese Party of Labour is Stephen McNeil."
+    },
+    {
+      "edge_fact": "The chief executive officer of Apple Inc. is Tim Cook.",
+      "edge_invalid_at": "2026-05-02T14:30:13.308Z",
+      "matched_pair_qid": 77,
+      "gt_old": "The chief executive officer of Apple Inc. is Tim Cook.",
+      "gt_new": "The chief executive officer of Apple Inc. is Vijay Mallya."
+    },
+    {
+      "edge_fact": "The Prime Minister of Sweden is Stefan Löfven.",
+      "edge_invalid_at": "2026-05-02T14:30:14Z",
+      "matched_pair_qid": 76,
+      "gt_old": "The Prime Minister of Sweden is Stefan Löfven.",
+      "gt_new": "The Prime Minister of Sweden is Pedro Pierluisi."
+    },
+    {
+      "edge_fact": "Yves Montand is married to Simone Signoret.",
+      "edge_invalid_at": "2026-05-02T14:30:13.695Z",
+      "matched_pair_qid": 75,
+      "gt_old": "Yves Montand is married to Simone Signoret.",
+      "gt_new": "Yves Montand is married to Natalie Portman."
+    },
+    {
+      "edge_fact": "Cédric Klapisch is a citizen of France.",
+      "edge_invalid_at": "2026-05-02T14:30:13.695Z",
+      "matched_pair_qid": 80,
+      "gt_old": "Cédric Klapisch is a citizen of France.",
+      "gt_new": "Cédric Klapisch is a citizen of Malaysia."
+    },
+    {
+      "edge_fact": "The capital of India is New Delhi.",
+      "edge_invalid_at": "2026-05-02T14:30:14.476Z",
+      "matched_pair_qid": 48,
+      "gt_old": "The capital of India is New Delhi.",
+      "gt_new": "The capital of India is Grosseto."
+    },
+    {
+      "edge_fact": "Blood on the Tracks was performed by Bob Dylan.",
+      "edge_invalid_at": "2026-05-02T14:30:12Z",
+      "matched_pair_qid": 30,
+      "gt_old": "Blood on the Tracks was performed by Bob Dylan.",
+      "gt_new": "Blood on the Tracks was performed by Lou Reed."
+    },
+    {
+      "edge_fact": "association football was created in the country of England.",
+      "edge_invalid_at": "2026-05-02T14:30:15.209Z",
+      "matched_pair_qid": 2,
+      "gt_old": "association football was created in the country of England.",
+      "gt_new": "association football was created in the country of Italy."
+    },
+    {
+      "edge_fact": "Australia is located in the continent of Oceania.",
+      "edge_invalid_at": "2026-05-02T14:30:13.308Z",
+      "matched_pair_qid": 33,
+      "gt_old": "Australia is located in the continent of Oceania.",
+      "gt_new": "Australia is located in the continent of South America."
+    },
+    {
+      "edge_fact": "The director of American Broadcasting Company is Bob Iger.",
+      "edge_invalid_at": "2026-05-02T14:30:15.209Z",
+      "matched_pair_qid": 54,
+      "gt_old": "The director of American Broadcasting Company is Bob Iger.",
+      "gt_new": "The director of American Broadcasting Company is Ernst Heinkel."
+    },
+    {
+      "edge_fact": "Israel was founded by David Ben-Gurion.",
+      "edge_invalid_at": "2026-05-02T14:30:12.118Z",
+      "matched_pair_qid": 40,
+      "gt_old": "Israel was founded by David Ben-Gurion.",
+      "gt_new": "Israel was founded by Philippe, Duke of Orléans."
+    },
+    {
+      "edge_fact": "Lisa Leslie plays the position of center.",
+      "edge_invalid_at": "2026-05-02T14:30:12Z",
+      "matched_pair_qid": 85,
+      "gt_old": "Lisa Leslie plays the position of center.",
+      "gt_new": "Lisa Leslie plays the position of goaltender."
+    },
+    {
+      "edge_fact": "The capital of Italy is Rome.",
+      "edge_invalid_at": "2026-05-02T14:30:13.308Z",
+      "matched_pair_qid": 12,
+      "gt_old": "The capital of Italy is Rome.",
+      "gt_new": "The capital of Italy is Duluth."
+    },
+    {
+      "edge_fact": "The author of The Witcher is Andrzej Sapkowski.",
+      "edge_invalid_at": "2026-05-02T14:30:14.065Z",
+      "matched_pair_qid": 90,
+      "gt_old": "The author of The Witcher is Andrzej Sapkowski.",
+      "gt_new": "The author of The Witcher is T. S. Eliot."
+    },
+    {
+      "edge_fact": "Born in the U.S.A. was performed by Bruce Springsteen.",
+      "edge_invalid_at": "2026-05-02T14:30:14.476Z",
+      "matched_pair_qid": 97,
+      "gt_old": "Born in the U.S.A. was performed by Bruce Springsteen.",
+      "gt_new": "Born in the U.S.A. was performed by Dana International."
+    },
+    {
+      "edge_fact": "Buddhism was founded by Gautama Buddha.",
+      "edge_invalid_at": "2026-05-02T14:30:14Z",
+      "matched_pair_qid": 95,
+      "gt_old": "Buddhism was founded by Gautama Buddha.",
+      "gt_new": "Buddhism was founded by Mekere Morauta."
+    }
+  ],
+  "wrong_items": [
+    {
+      "edge_fact": "The capital of Soviet Union is Russellville.",
+      "edge_invalid_at": "2026-05-02T14:30:14Z",
+      "matched_pair_qid": 3,
+      "gt_old": "The capital of Soviet Union is Moscow.",
+      "gt_new": "The capital of Soviet Union is Russellville.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "The chief executive officer of Twitter is Bernard Arnault.",
+      "edge_invalid_at": "2026-05-02T14:30:12.118Z",
+      "matched_pair_qid": 6,
+      "gt_old": "The chief executive officer of Twitter is Jack Dorsey.",
+      "gt_new": "The chief executive officer of Twitter is Bernard Arnault.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "Pakistan International Airlines was founded in the city of Sweden.",
+      "edge_invalid_at": "2026-05-02T14:30:15.209Z",
+      "matched_pair_qid": 55,
+      "gt_old": "Pakistan International Airlines was founded in the city of Karachi.",
+      "gt_new": "Pakistan International Airlines was founded in the city of Sweden.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "Andrew Carnegie is a citizen of United Kingdom.",
+      "edge_invalid_at": "2026-05-02T14:30:14.476Z",
+      "matched_pair_qid": 14,
+      "gt_old": "Andrew Carnegie is a citizen of United States of America.",
+      "gt_new": "Andrew Carnegie is a citizen of United Kingdom.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "John Walsh is affiliated with the religion of Methodism.",
+      "edge_invalid_at": "2026-05-02T14:30:14.065Z",
+      "matched_pair_qid": 9,
+      "gt_old": "John Walsh is affiliated with the religion of Catholic Church.",
+      "gt_new": "John Walsh is affiliated with the religion of Methodism.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "Sable is a citizen of Czech Republic.",
+      "edge_invalid_at": "2026-05-02T14:30:13.695Z",
+      "matched_pair_qid": 28,
+      "gt_old": "Sable is a citizen of United States of America.",
+      "gt_new": "Sable is a citizen of Czech Republic.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    },
+    {
+      "edge_fact": "Madame du Barry is a citizen of Great Britain.",
+      "edge_invalid_at": "2026-05-02T14:30:11.303Z",
+      "matched_pair_qid": 17,
+      "gt_old": "Madame du Barry is a citizen of France.",
+      "gt_new": "Madame du Barry is a citizen of Great Britain.",
+      "note": "Zep invalidated NEW (counterfactual bias)"
+    }
+  ],
+  "false_positive_items": [
+    {
+      "edge_fact": "Ferdowsi is famous for Shahnameh.",
+      "edge_invalid_at": "2026-05-02T14:30:15.209Z"
+    },
+    {
+      "edge_fact": "The capital of Great Britain is London.",
+      "edge_invalid_at": "2026-05-02T14:30:14Z"
+    },
+    {
+      "edge_fact": "center is associated with the sport of basketball.",
+      "edge_invalid_at": "2026-05-02T14:30:13.308Z"
+    },
+    {
+      "edge_fact": "Galwegians RFC is associated with the sport of rugby union.",
+      "edge_invalid_at": "2026-05-02T14:30:12.118Z"
+    },
+    {
+      "edge_fact": "The author of Endymion is John Keats.",
+      "edge_invalid_at": "2026-05-02T14:30:13.308Z"
+    },
+    {
+      "edge_fact": "sumo was created in the country of Japan.",
+      "edge_invalid_at": "2026-05-02T14:30:15.209Z"
+    }
+  ]
+}

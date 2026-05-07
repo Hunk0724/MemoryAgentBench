@@ -1,0 +1,4049 @@
+[
+  {
+    "query_id": 0,
+    "conflict_type": "has_pair",
+    "gt_answer": "pesäpallo",
+    "old_answer": "ice hockey",
+    "gt_fact_text": "goaltender is associated with the sport of pesäpallo.",
+    "old_fact_text": "goaltender is associated with the sport of ice hockey.",
+    "zep_em": false,
+    "zep_pred": "ice hockey",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0,
+      1
+    ],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 1,
+    "conflict_type": "has_pair",
+    "gt_answer": "The Fairly OddParents",
+    "old_answer": "Rurouni Kenshin",
+    "gt_fact_text": "Nobuhiro Watsuki is famous for The Fairly OddParents.",
+    "old_fact_text": "Nobuhiro Watsuki is famous for Rurouni Kenshin.",
+    "zep_em": true,
+    "zep_pred": "The Fairly OddParents",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      8
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0,
+      3
+    ],
+    "old_episode_idx": [
+      1
+    ],
+    "old_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "old_marked_invalid": true,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 2,
+    "conflict_type": "has_pair",
+    "gt_answer": "India",
+    "old_answer": "England",
+    "gt_fact_text": "rugby union was created in the country of India.",
+    "old_fact_text": "rugby union was created in the country of England.",
+    "zep_em": false,
+    "zep_pred": "England",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      2
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      1
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 3,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 3,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Shahnameh",
+    "old_answer": "",
+    "gt_fact_text": "Ferdowsi is famous for Shahnameh.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Shahnameh",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0,
+      1
+    ],
+    "gt_episode_idx": [
+      1
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:42Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 4,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "University of California, Berkeley",
+    "old_answer": "",
+    "gt_fact_text": "The univeristy where Joan Didion was educated is University of California, Berkeley.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "University of California, Berkeley",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      0
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 5,
+    "conflict_type": "has_pair",
+    "gt_answer": "Thomas Kyd",
+    "old_answer": "Pierre Beaumarchais",
+    "gt_fact_text": "The author of The Marriage of Figaro is Thomas Kyd.",
+    "old_fact_text": "The author of The Marriage of Figaro is Pierre Beaumarchais.",
+    "zep_em": true,
+    "zep_pred": "Thomas Kyd",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [
+      "2026-04-20T17:56:42Z"
+    ],
+    "old_marked_invalid": true,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 6,
+    "conflict_type": "has_pair",
+    "gt_answer": "basketball",
+    "old_answer": "association football",
+    "gt_fact_text": "Tunisia national football team is associated with the sport of basketball.",
+    "old_fact_text": "Tunisia national football team is associated with the sport of association football.",
+    "zep_em": false,
+    "zep_pred": "association football",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      7
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      9
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 7,
+    "conflict_type": "has_pair",
+    "gt_answer": "Muay Thai",
+    "old_answer": "American football",
+    "gt_fact_text": "quarterback is associated with the sport of Muay Thai.",
+    "old_fact_text": "quarterback is associated with the sport of American football.",
+    "zep_em": true,
+    "zep_pred": "Muay Thai",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      0
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 8,
+    "conflict_type": "has_pair",
+    "gt_answer": "Swedish",
+    "old_answer": "Japanese",
+    "gt_fact_text": "The official language of Japan is Swedish.",
+    "old_fact_text": "The official language of Japan is Japanese.",
+    "zep_em": true,
+    "zep_pred": "Swedish",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [
+      "2026-04-20T17:56:43Z"
+    ],
+    "old_marked_invalid": true,
+    "n_other_edges_invalid": 3,
+    "n_invalid_edges": 4
+  },
+  {
+    "query_id": 9,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Jonathan Rothschild",
+    "old_answer": "",
+    "gt_fact_text": "The name of the current head of the Tucson government is Jonathan Rothschild.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Jonathan Rothschild",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      7
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 4,
+    "n_invalid_edges": 4
+  },
+  {
+    "query_id": 10,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Giuseppe Conte",
+    "old_answer": "",
+    "gt_fact_text": "The name of the current head of the Italy government is Giuseppe Conte.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Giuseppe Conte",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 5,
+    "n_invalid_edges": 5
+  },
+  {
+    "query_id": 11,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Ellen Pompeo",
+    "old_answer": "",
+    "gt_fact_text": "Meredith Grey was performed by Ellen Pompeo.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Ellen Pompeo",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      1
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 12,
+    "conflict_type": "has_pair",
+    "gt_answer": "quarterback",
+    "old_answer": "center",
+    "gt_fact_text": "Robert Parish plays the position of quarterback.",
+    "old_fact_text": "Robert Parish plays the position of center.",
+    "zep_em": false,
+    "zep_pred": "center",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      5
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 13,
+    "conflict_type": "has_pair",
+    "gt_answer": "Malaysia",
+    "old_answer": "France",
+    "gt_fact_text": "Cédric Klapisch is a citizen of Malaysia.",
+    "old_fact_text": "Cédric Klapisch is a citizen of France.",
+    "zep_em": true,
+    "zep_pred": "Malaysia",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      1
+    ],
+    "gt_episode_idx": [
+      8
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      0,
+      3
+    ],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 5,
+    "n_invalid_edges": 5
+  },
+  {
+    "query_id": 14,
+    "conflict_type": "has_pair",
+    "gt_answer": "Samuel Beckett",
+    "old_answer": "Galileo Galilei",
+    "gt_fact_text": "The author of Sidereus Nuncius is Samuel Beckett.",
+    "old_fact_text": "The author of Sidereus Nuncius is Galileo Galilei.",
+    "zep_em": true,
+    "zep_pred": "Samuel Beckett",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 15,
+    "conflict_type": "has_pair",
+    "gt_answer": "Africa",
+    "old_answer": "Europe",
+    "gt_fact_text": "Germany is located in the continent of Africa.",
+    "old_fact_text": "Germany is located in the continent of Europe.",
+    "zep_em": true,
+    "zep_pred": "Africa",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [
+      0,
+      1,
+      2
+    ],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      1
+    ],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 16,
+    "conflict_type": "has_pair",
+    "gt_answer": "Zoroastrianism",
+    "old_answer": "Catholic Church",
+    "gt_fact_text": "Kingdom of Ireland is affiliated with the religion of Zoroastrianism.",
+    "old_fact_text": "Kingdom of Ireland is affiliated with the religion of Catholic Church.",
+    "zep_em": true,
+    "zep_pred": "Zoroastrianism",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      9
+    ],
+    "gt_episode_idx": [
+      8
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 17,
+    "conflict_type": "has_pair",
+    "gt_answer": "Italy",
+    "old_answer": "England",
+    "gt_fact_text": "association football was created in the country of Italy.",
+    "old_fact_text": "association football was created in the country of England.",
+    "zep_em": true,
+    "zep_pred": "Italy",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [
+      1
+    ],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [
+      "2026-04-20T17:56:42Z"
+    ],
+    "old_marked_invalid": true,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 18,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Microsoft",
+    "old_answer": "Satya Nadella",
+    "gt_fact_text": "Windows Phone was developed by Microsoft.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Microsoft",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0,
+      1
+    ],
+    "gt_episode_idx": [
+      2
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 19,
+    "conflict_type": "has_pair",
+    "gt_answer": "Steve Jobs",
+    "old_answer": "Satya Nadella",
+    "gt_fact_text": "The chief executive officer of Microsoft is Steve Jobs.",
+    "old_fact_text": "The chief executive officer of Microsoft is Satya Nadella.",
+    "zep_em": false,
+    "zep_pred": "Satya Nadella",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [
+      3
+    ],
+    "gt_episode_idx": [
+      2
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      1
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 20,
+    "conflict_type": "has_pair",
+    "gt_answer": "Peter Diamandis",
+    "old_answer": "Lawrence S. Bacow",
+    "gt_fact_text": "The chairperson of Harvard University is Peter Diamandis.",
+    "old_fact_text": "The chairperson of Harvard University is Lawrence S. Bacow.",
+    "zep_em": true,
+    "zep_pred": "Peter Diamandis",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      2
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      1
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 21,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "John Knox",
+    "old_answer": "",
+    "gt_fact_text": "Church of Scotland was founded by John Knox.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "John Knox",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0,
+      1
+    ],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 22,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "rugby union",
+    "old_answer": "England",
+    "gt_fact_text": "Galwegians RFC is associated with the sport of rugby union.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "rugby union",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      8
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 23,
+    "conflict_type": "has_pair",
+    "gt_answer": "Ernst Heinkel",
+    "old_answer": "Bob Iger",
+    "gt_fact_text": "The director of American Broadcasting Company is Ernst Heinkel.",
+    "old_fact_text": "The director of American Broadcasting Company is Bob Iger.",
+    "zep_em": true,
+    "zep_pred": "Ernst Heinkel",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 24,
+    "conflict_type": "has_pair",
+    "gt_answer": "United States of America",
+    "old_answer": "Moscow",
+    "gt_fact_text": "Gennady Rozhdestvensky died in the city of United States of America.",
+    "old_fact_text": "Gennady Rozhdestvensky died in the city of Moscow.",
+    "zep_em": true,
+    "zep_pred": "United States of America",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [
+      "2026-04-20T17:56:43Z"
+    ],
+    "old_marked_invalid": true,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 25,
+    "conflict_type": "has_pair",
+    "gt_answer": "Beaumont",
+    "old_answer": "Chang'an",
+    "gt_fact_text": "The capital of Tang Empire is Beaumont.",
+    "old_fact_text": "The capital of Tang Empire is Chang'an.",
+    "zep_em": true,
+    "zep_pred": "Beaumont",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      1
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      7
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 26,
+    "conflict_type": "has_pair",
+    "gt_answer": "Narendra Modi",
+    "old_answer": "Tony Hall, Baron Hall of Birkenhead",
+    "gt_fact_text": "The director of British Broadcasting Corporation is Narendra Modi.",
+    "old_fact_text": "The director of British Broadcasting Corporation is Tony Hall, Baron Hall of Birkenhead.",
+    "zep_em": true,
+    "zep_pred": "Narendra Modi",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      1
+    ],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      7
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 27,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Israel",
+    "old_answer": "David Ben-Gurion",
+    "gt_fact_text": "Benjamin Mazar is a citizen of Israel.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Israel",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0,
+      1
+    ],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 5,
+    "n_invalid_edges": 5
+  },
+  {
+    "query_id": 28,
+    "conflict_type": "has_pair",
+    "gt_answer": "post-punk",
+    "old_answer": "jazz",
+    "gt_fact_text": "The type of music that Michael Mantler plays is post-punk.",
+    "old_fact_text": "The type of music that Michael Mantler plays is jazz.",
+    "zep_em": true,
+    "zep_pred": "post-punk",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      4
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      4
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 29,
+    "conflict_type": "has_pair",
+    "gt_answer": "Guangzhou",
+    "old_answer": "Paris",
+    "gt_fact_text": "Oscar Wilde died in the city of Guangzhou.",
+    "old_fact_text": "Oscar Wilde died in the city of Paris.",
+    "zep_em": true,
+    "zep_pred": "Guangzhou",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      3
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 30,
+    "conflict_type": "has_pair",
+    "gt_answer": "Japan",
+    "old_answer": "United States of America",
+    "gt_fact_text": "baseball was created in the country of Japan.",
+    "old_fact_text": "baseball was created in the country of United States of America.",
+    "zep_em": true,
+    "zep_pred": "Japan",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      2
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 3,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 31,
+    "conflict_type": "has_pair",
+    "gt_answer": "Tang Empire",
+    "old_answer": "Germany",
+    "gt_fact_text": "Ernst Heinkel is a citizen of Tang Empire.",
+    "old_fact_text": "Ernst Heinkel is a citizen of Germany.",
+    "zep_em": false,
+    "zep_pred": "Germany",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [
+      1,
+      3
+    ],
+    "gt_episode_idx": [
+      3
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0,
+      2
+    ],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 4,
+    "n_invalid_edges": 4
+  },
+  {
+    "query_id": 32,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Philadelphia",
+    "old_answer": "",
+    "gt_fact_text": "The headquarters of The University of the Arts is located in the city of Philadelphia.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Philadelphia",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 33,
+    "conflict_type": "has_pair",
+    "gt_answer": "Russian Empire",
+    "old_answer": "United States of America",
+    "gt_fact_text": "rap rock was created in the country of Russian Empire.",
+    "old_fact_text": "rap rock was created in the country of United States of America.",
+    "zep_em": false,
+    "zep_pred": "United States of America",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      6
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 34,
+    "conflict_type": "has_pair",
+    "gt_answer": "Taipei",
+    "old_answer": "Jerusalem",
+    "gt_fact_text": "Christianity was founded in the city of Taipei.",
+    "old_fact_text": "Christianity was founded in the city of Jerusalem.",
+    "zep_em": false,
+    "zep_pred": "Christianity was founded in the city of Taipei",
+    "error_type": "hallucination_or_other",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      0
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 35,
+    "conflict_type": "has_pair",
+    "gt_answer": "German",
+    "old_answer": "American English",
+    "gt_fact_text": "The official language of United States of America is German.",
+    "old_fact_text": "The official language of United States of America is American English.",
+    "zep_em": false,
+    "zep_pred": "American English",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      4
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      1
+    ],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 36,
+    "conflict_type": "has_pair",
+    "gt_answer": "Madonna",
+    "old_answer": "The Beatles",
+    "gt_fact_text": "Past Masters was performed by Madonna.",
+    "old_fact_text": "Past Masters was performed by The Beatles.",
+    "zep_em": true,
+    "zep_pred": "Madonna",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 37,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Tokyo",
+    "old_answer": "",
+    "gt_fact_text": "The capital of Japan is Tokyo.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Tokyo",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      0
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 38,
+    "conflict_type": "has_pair",
+    "gt_answer": "Harare",
+    "old_answer": "Paris",
+    "gt_fact_text": "The capital of France is Harare.",
+    "old_fact_text": "The capital of France is Paris.",
+    "zep_em": true,
+    "zep_pred": "Harare",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      1
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      1
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 3,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 39,
+    "conflict_type": "has_pair",
+    "gt_answer": "ABB Group",
+    "old_answer": "Valve Corporation",
+    "gt_fact_text": "SteamOS was developed by ABB Group.",
+    "old_fact_text": "SteamOS was developed by Valve Corporation.",
+    "zep_em": false,
+    "zep_pred": "Valve Corporation",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      3
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0,
+      1
+    ],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 40,
+    "conflict_type": "has_pair",
+    "gt_answer": "Ankara",
+    "old_answer": "Bucharest",
+    "gt_fact_text": "The headquarters of University of Bucharest is located in the city of Ankara.",
+    "old_fact_text": "The headquarters of University of Bucharest is located in the city of Bucharest.",
+    "zep_em": true,
+    "zep_pred": "Ankara",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      2
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 41,
+    "conflict_type": "has_pair",
+    "gt_answer": "rugby",
+    "old_answer": "American football",
+    "gt_fact_text": "wide receiver is associated with the sport of rugby.",
+    "old_fact_text": "wide receiver is associated with the sport of American football.",
+    "zep_em": true,
+    "zep_pred": "rugby",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 42,
+    "conflict_type": "has_pair",
+    "gt_answer": "cornerback",
+    "old_answer": "wide receiver",
+    "gt_fact_text": "Hines Ward plays the position of cornerback.",
+    "old_fact_text": "Hines Ward plays the position of wide receiver.",
+    "zep_em": false,
+    "zep_pred": "Hines Ward plays the position of cornerback",
+    "error_type": "hallucination_or_other",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      1
+    ],
+    "gt_episode_idx": [
+      7
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "old_episode_idx": [
+      7
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 43,
+    "conflict_type": "has_pair",
+    "gt_answer": "Oderzo",
+    "old_answer": "Canberra",
+    "gt_fact_text": "The capital of Australia is Oderzo.",
+    "old_fact_text": "The capital of Australia is Canberra.",
+    "zep_em": true,
+    "zep_pred": "Oderzo",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      1
+    ],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 3,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 44,
+    "conflict_type": "has_pair",
+    "gt_answer": "Antarctica",
+    "old_answer": "Asia",
+    "gt_fact_text": "Malaysia is located in the continent of Antarctica.",
+    "old_fact_text": "Malaysia is located in the continent of Asia.",
+    "zep_em": false,
+    "zep_pred": "Asia",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      4
+    ],
+    "old_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "old_marked_invalid": true,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 45,
+    "conflict_type": "has_pair",
+    "gt_answer": "Pius XII",
+    "old_answer": "Ursula K. Le Guin",
+    "gt_fact_text": "The author of A Wizard of Earthsea is Pius XII.",
+    "old_fact_text": "The author of A Wizard of Earthsea is Ursula K. Le Guin.",
+    "zep_em": true,
+    "zep_pred": "Pius XII",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      3
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      7
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 46,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "The Beatles",
+    "old_answer": "Brian Epstein",
+    "gt_fact_text": "Free as a Bird was performed by The Beatles.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "The Beatles",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      1
+    ],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 47,
+    "conflict_type": "has_pair",
+    "gt_answer": "Charles Darwin",
+    "old_answer": "Charles Dickens",
+    "gt_fact_text": "The author of Our Mutual Friend is Charles Darwin.",
+    "old_fact_text": "The author of Our Mutual Friend is Charles Dickens.",
+    "zep_em": true,
+    "zep_pred": "Charles Darwin",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [
+      3
+    ],
+    "gt_episode_idx": [
+      8
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0,
+      2
+    ],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 48,
+    "conflict_type": "has_pair",
+    "gt_answer": "Soviet Union",
+    "old_answer": "United States of America",
+    "gt_fact_text": "basketball was created in the country of Soviet Union.",
+    "old_fact_text": "basketball was created in the country of United States of America.",
+    "zep_em": false,
+    "zep_pred": "United States of America",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 49,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "United States of America",
+    "old_answer": "Donald Trump",
+    "gt_fact_text": "Hal Needham is a citizen of United States of America.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "United States of America",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      0
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 5,
+    "n_invalid_edges": 5
+  },
+  {
+    "query_id": 50,
+    "conflict_type": "has_pair",
+    "gt_answer": "Oceania",
+    "old_answer": "Asia",
+    "gt_fact_text": "Bengaluru is located in the continent of Oceania.",
+    "old_fact_text": "Bengaluru is located in the continent of Asia.",
+    "zep_em": true,
+    "zep_pred": "Oceania",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      1
+    ],
+    "gt_episode_idx": [
+      8
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      6
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 51,
+    "conflict_type": "has_pair",
+    "gt_answer": "cricket",
+    "old_answer": "association football",
+    "gt_fact_text": "Slovakia national football team is associated with the sport of cricket.",
+    "old_fact_text": "Slovakia national football team is associated with the sport of association football.",
+    "zep_em": true,
+    "zep_pred": "cricket",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      4
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 52,
+    "conflict_type": "has_pair",
+    "gt_answer": "Connachta",
+    "old_answer": "Donald Trump",
+    "gt_fact_text": "The name of the current head of state in United States of America is Connachta.",
+    "old_fact_text": "The name of the current head of state in United States of America is Donald Trump.",
+    "zep_em": false,
+    "zep_pred": "Donald Trump",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      8
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 4,
+    "n_invalid_edges": 4
+  },
+  {
+    "query_id": 53,
+    "conflict_type": "has_pair",
+    "gt_answer": "atheism",
+    "old_answer": "Catholicism",
+    "gt_fact_text": "Imelda Marcos is affiliated with the religion of atheism.",
+    "old_fact_text": "Imelda Marcos is affiliated with the religion of Catholicism.",
+    "zep_em": false,
+    "zep_pred": "Catholicism",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [
+      5
+    ],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0,
+      1
+    ],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 54,
+    "conflict_type": "has_pair",
+    "gt_answer": "Australian hip hop",
+    "old_answer": "pop music",
+    "gt_fact_text": "The type of music that Dana International plays is Australian hip hop.",
+    "old_fact_text": "The type of music that Dana International plays is pop music.",
+    "zep_em": false,
+    "zep_pred": "pop music",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      3
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 55,
+    "conflict_type": "has_pair",
+    "gt_answer": "Czech Republic",
+    "old_answer": "United States of America",
+    "gt_fact_text": "Sable is a citizen of Czech Republic.",
+    "old_fact_text": "Sable is a citizen of United States of America.",
+    "zep_em": false,
+    "zep_pred": "United States of America",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      4
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 5,
+    "n_invalid_edges": 6
+  },
+  {
+    "query_id": 56,
+    "conflict_type": "has_pair",
+    "gt_answer": "Italy",
+    "old_answer": "France",
+    "gt_fact_text": "Charlie Hebdo was created in the country of Italy.",
+    "old_fact_text": "Charlie Hebdo was created in the country of France.",
+    "zep_em": false,
+    "zep_pred": "France",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:40Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      2
+    ],
+    "old_edge_invalid_at": [
+      "2026-04-20T17:56:43Z"
+    ],
+    "old_marked_invalid": true,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 57,
+    "conflict_type": "has_pair",
+    "gt_answer": "Charles the Bold",
+    "old_answer": "Priscilla Presley",
+    "gt_fact_text": "Elvis Presley is married to Charles the Bold.",
+    "old_fact_text": "Elvis Presley is married to Priscilla Presley.",
+    "zep_em": false,
+    "zep_pred": "Priscilla Presley",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      7
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      7
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 58,
+    "conflict_type": "has_pair",
+    "gt_answer": "Kylie Minogue",
+    "old_answer": "Emma Watson",
+    "gt_fact_text": "Hermione Granger was performed by Kylie Minogue.",
+    "old_fact_text": "Hermione Granger was performed by Emma Watson.",
+    "zep_em": true,
+    "zep_pred": "Kylie Minogue",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0,
+      1
+    ],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      9
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 59,
+    "conflict_type": "has_pair",
+    "gt_answer": "association football",
+    "old_answer": "basketball",
+    "gt_fact_text": "Bo Ryan is associated with the sport of association football.",
+    "old_fact_text": "Bo Ryan is associated with the sport of basketball.",
+    "zep_em": false,
+    "zep_pred": "Basketball",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0,
+      1
+    ],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 60,
+    "conflict_type": "has_pair",
+    "gt_answer": "rap rock",
+    "old_answer": "rock music",
+    "gt_fact_text": "The type of music that John McVie plays is rap rock.",
+    "old_fact_text": "The type of music that John McVie plays is rock music.",
+    "zep_em": true,
+    "zep_pred": "rap rock",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [
+      "2026-04-20T17:56:42Z"
+    ],
+    "old_marked_invalid": true,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 61,
+    "conflict_type": "has_pair",
+    "gt_answer": "flanker",
+    "old_answer": "goalkeeper",
+    "gt_fact_text": "Rogério Ceni plays the position of flanker.",
+    "old_fact_text": "Rogério Ceni plays the position of goalkeeper.",
+    "zep_em": false,
+    "zep_pred": "goalkeeper",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0,
+      1
+    ],
+    "old_episode_idx": [
+      7
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 62,
+    "conflict_type": "has_pair",
+    "gt_answer": "Bernard Arnault",
+    "old_answer": "Jack Dorsey",
+    "gt_fact_text": "The chief executive officer of Twitter is Bernard Arnault.",
+    "old_fact_text": "The chief executive officer of Twitter is Jack Dorsey.",
+    "zep_em": false,
+    "zep_pred": "Jack Dorsey",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      4
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:40.101Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      1
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 63,
+    "conflict_type": "has_pair",
+    "gt_answer": "German",
+    "old_answer": "English",
+    "gt_fact_text": "Kylie Minogue speaks the language of German.",
+    "old_fact_text": "Kylie Minogue speaks the language of English.",
+    "zep_em": true,
+    "zep_pred": "German",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0,
+      1
+    ],
+    "gt_episode_idx": [
+      2
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      7
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 64,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "baseball",
+    "old_answer": "United States of America",
+    "gt_fact_text": "Darryl Strawberry is associated with the sport of baseball.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Baseball",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [
+      0,
+      2
+    ],
+    "gt_episode_idx": [
+      3
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 65,
+    "conflict_type": "has_pair",
+    "gt_answer": "rugby",
+    "old_answer": "American football",
+    "gt_fact_text": "placekicker is associated with the sport of rugby.",
+    "old_fact_text": "placekicker is associated with the sport of American football.",
+    "zep_em": false,
+    "zep_pred": "American football",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [
+      2
+    ],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      1
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 66,
+    "conflict_type": "has_pair",
+    "gt_answer": "journalist",
+    "old_answer": "politician",
+    "gt_fact_text": "Stephen McNeil works in the field of journalist.",
+    "old_fact_text": "Stephen McNeil works in the field of politician.",
+    "zep_em": true,
+    "zep_pred": "journalist",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0,
+      3
+    ],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      2
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 67,
+    "conflict_type": "has_pair",
+    "gt_answer": "British Broadcasting Corporation",
+    "old_answer": "Lucasfilm",
+    "gt_fact_text": "Dave Filoni is employed by British Broadcasting Corporation.",
+    "old_fact_text": "Dave Filoni is employed by Lucasfilm.",
+    "zep_em": true,
+    "zep_pred": "British Broadcasting Corporation",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [
+      2
+    ],
+    "gt_episode_idx": [
+      2
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0,
+      1
+    ],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 68,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "North America",
+    "old_answer": "",
+    "gt_fact_text": "San Francisco is located in the continent of North America.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "North America",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 69,
+    "conflict_type": "has_pair",
+    "gt_answer": "Tucson",
+    "old_answer": "Montreal",
+    "gt_fact_text": "Canadair was founded in the city of Tucson.",
+    "old_fact_text": "Canadair was founded in the city of Montreal.",
+    "zep_em": true,
+    "zep_pred": "Tucson",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      9
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 70,
+    "conflict_type": "has_pair",
+    "gt_answer": "Canadair",
+    "old_answer": "Westinghouse Electric",
+    "gt_fact_text": "The company that produced AP1000 is Canadair.",
+    "old_fact_text": "The company that produced AP1000 is Westinghouse Electric.",
+    "zep_em": false,
+    "zep_pred": "Westinghouse Electric",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      2
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 71,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Japan",
+    "old_answer": "",
+    "gt_fact_text": "Ayumi Hamasaki is a citizen of Japan.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Japan",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [
+      0,
+      1
+    ],
+    "gt_episode_idx": [
+      4
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 4,
+    "n_invalid_edges": 4
+  },
+  {
+    "query_id": 72,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "placekicker",
+    "old_answer": "American football",
+    "gt_fact_text": "Blair Walsh plays the position of placekicker.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "placekicker",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      7
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 73,
+    "conflict_type": "has_pair",
+    "gt_answer": "Alan Jay Lerner",
+    "old_answer": "Cherie Blair",
+    "gt_fact_text": "Tony Blair is married to Alan Jay Lerner.",
+    "old_fact_text": "Tony Blair is married to Cherie Blair.",
+    "zep_em": true,
+    "zep_pred": "Alan Jay Lerner",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0,
+      1
+    ],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      7
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 74,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "John Keats",
+    "old_answer": "Rome",
+    "gt_fact_text": "The author of Endymion is John Keats.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "John Keats",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      1
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 75,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Oscar Wilde",
+    "old_answer": "Paris",
+    "gt_fact_text": "The author of Lady Windermere's Fan is Oscar Wilde.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Oscar Wilde",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      8
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 76,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Shinzō Abe",
+    "old_answer": "",
+    "gt_fact_text": "The name of the current head of the Japan government is Shinzō Abe.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Shinzō Abe",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      2
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 5,
+    "n_invalid_edges": 5
+  },
+  {
+    "query_id": 77,
+    "conflict_type": "has_pair",
+    "gt_answer": "Stephen McNeil",
+    "old_answer": "Denis Sassou-Nguesso",
+    "gt_fact_text": "The chairperson of Congolese Party of Labour is Stephen McNeil.",
+    "old_fact_text": "The chairperson of Congolese Party of Labour is Denis Sassou-Nguesso.",
+    "zep_em": true,
+    "zep_pred": "Stephen McNeil",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      0,
+      1
+    ],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 78,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "rugby union",
+    "old_answer": "",
+    "gt_fact_text": "flanker is associated with the sport of rugby union.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "rugby union",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 79,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Prague",
+    "old_answer": "",
+    "gt_fact_text": "The capital of Czech Republic is Prague.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Prague",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      2
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 3,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 80,
+    "conflict_type": "has_pair",
+    "gt_answer": "goaltender",
+    "old_answer": "center",
+    "gt_fact_text": "Lisa Leslie plays the position of goaltender.",
+    "old_fact_text": "Lisa Leslie plays the position of center.",
+    "zep_em": false,
+    "zep_pred": "center",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      2
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0,
+      1
+    ],
+    "old_episode_idx": [
+      7
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 81,
+    "conflict_type": "has_pair",
+    "gt_answer": "Elizabeth II",
+    "old_answer": "Mikhail Gorbachev",
+    "gt_fact_text": "The name of the current head of state in Soviet Union is Elizabeth II.",
+    "old_fact_text": "The name of the current head of state in Soviet Union is Mikhail Gorbachev.",
+    "zep_em": false,
+    "zep_pred": "Emmerson Mnangagwa",
+    "error_type": "hallucination_or_other",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:40Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      2
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 82,
+    "conflict_type": "has_pair",
+    "gt_answer": "Canada",
+    "old_answer": "Germany",
+    "gt_fact_text": "Ferdinand von Richthofen is a citizen of Canada.",
+    "old_fact_text": "Ferdinand von Richthofen is a citizen of Germany.",
+    "zep_em": true,
+    "zep_pred": "Canada",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      2
+    ],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      0,
+      1
+    ],
+    "old_episode_idx": [
+      7
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 4,
+    "n_invalid_edges": 4
+  },
+  {
+    "query_id": 83,
+    "conflict_type": "has_pair",
+    "gt_answer": "Church of Scotland",
+    "old_answer": "Catholic Church",
+    "gt_fact_text": "Karen Armstrong is affiliated with the religion of Church of Scotland.",
+    "old_fact_text": "Karen Armstrong is affiliated with the religion of Catholic Church.",
+    "zep_em": true,
+    "zep_pred": "Church of Scotland",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 84,
+    "conflict_type": "has_pair",
+    "gt_answer": "Nobuhiro Watsuki",
+    "old_answer": "Mario Puzo",
+    "gt_fact_text": "Vito Corleone was created by Nobuhiro Watsuki.",
+    "old_fact_text": "Vito Corleone was created by Mario Puzo.",
+    "zep_em": true,
+    "zep_pred": "Nobuhiro Watsuki",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      9
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 4,
+    "n_invalid_edges": 4
+  },
+  {
+    "query_id": 85,
+    "conflict_type": "has_pair",
+    "gt_answer": "Rajanpur",
+    "old_answer": "Bucharest",
+    "gt_fact_text": "The capital of Romania is Rajanpur.",
+    "old_fact_text": "The capital of Romania is Bucharest.",
+    "zep_em": true,
+    "zep_pred": "Rajanpur",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      1
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 3,
+    "n_invalid_edges": 3
+  },
+  {
+    "query_id": 86,
+    "conflict_type": "has_pair",
+    "gt_answer": "Africa",
+    "old_answer": "Asia",
+    "gt_fact_text": "India is located in the continent of Africa.",
+    "old_fact_text": "India is located in the continent of Asia.",
+    "zep_em": false,
+    "zep_pred": "Asia",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      4
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      1
+    ],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 87,
+    "conflict_type": "has_pair",
+    "gt_answer": "Rodez",
+    "old_answer": "Kyiv",
+    "gt_fact_text": "Olga of Kiev died in the city of Rodez.",
+    "old_fact_text": "Olga of Kiev died in the city of Kyiv.",
+    "zep_em": false,
+    "zep_pred": "Kyiv",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      8
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 88,
+    "conflict_type": "has_pair",
+    "gt_answer": "Walter Chrysler",
+    "old_answer": "Ardashir I",
+    "gt_fact_text": "Sasanian Empire was founded by Walter Chrysler.",
+    "old_fact_text": "Sasanian Empire was founded by Ardashir I.",
+    "zep_em": true,
+    "zep_pred": "Walter Chrysler",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      8
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 89,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "Washington, D.C.",
+    "old_answer": "",
+    "gt_fact_text": "Pedro Pierluisi worked in the city of Washington, D.C..",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Washington, D.C",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      7
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 90,
+    "conflict_type": "has_pair",
+    "gt_answer": "basketball",
+    "old_answer": "association football",
+    "gt_fact_text": "Surrey Senior Cup is associated with the sport of basketball.",
+    "old_fact_text": "Surrey Senior Cup is associated with the sport of association football.",
+    "zep_em": true,
+    "zep_pred": "Basketball",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [
+      4
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 2,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 91,
+    "conflict_type": "has_pair",
+    "gt_answer": "Australia",
+    "old_answer": "India",
+    "gt_fact_text": "Narendra Modi is a citizen of Australia.",
+    "old_fact_text": "Narendra Modi is a citizen of India.",
+    "zep_em": true,
+    "zep_pred": "Australia",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      3
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      2
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 6,
+    "n_invalid_edges": 6
+  },
+  {
+    "query_id": 92,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "David Beckham",
+    "old_answer": "midfielder",
+    "gt_fact_text": "Victoria Beckham is married to David Beckham.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "David Beckham",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0,
+      1
+    ],
+    "gt_episode_idx": [
+      6
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 93,
+    "conflict_type": "has_pair",
+    "gt_answer": "Iran",
+    "old_answer": "France",
+    "gt_fact_text": "Charles Messier is a citizen of Iran.",
+    "old_fact_text": "Charles Messier is a citizen of France.",
+    "zep_em": false,
+    "zep_pred": "France",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:41Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      3
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 5,
+    "n_invalid_edges": 6
+  },
+  {
+    "query_id": 94,
+    "conflict_type": "has_pair",
+    "gt_answer": "Ferdowsi",
+    "old_answer": "Robert Jordan",
+    "gt_fact_text": "Rand al'Thor was created by Ferdowsi.",
+    "old_fact_text": "Rand al'Thor was created by Robert Jordan.",
+    "zep_em": true,
+    "zep_pred": "Ferdowsi",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      5
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:40.101Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 1,
+    "n_invalid_edges": 2
+  },
+  {
+    "query_id": 95,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "point guard",
+    "old_answer": "basketball",
+    "gt_fact_text": "Mike D'Antoni plays the position of point guard.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "Point guard",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": false,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      1
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 96,
+    "conflict_type": "has_pair",
+    "gt_answer": "Israel",
+    "old_answer": "United Kingdom",
+    "gt_fact_text": "Colin Irwin is a citizen of Israel.",
+    "old_fact_text": "Colin Irwin is a citizen of United Kingdom.",
+    "zep_em": true,
+    "zep_pred": "Israel",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      1
+    ],
+    "gt_episode_idx": [
+      7
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      1
+    ],
+    "old_node_idx": [
+      0,
+      2
+    ],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 6,
+    "n_invalid_edges": 6
+  },
+  {
+    "query_id": 97,
+    "conflict_type": "has_pair",
+    "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "old_answer": "Walter Percy Chrysler Jr.",
+    "gt_fact_text": "Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp.",
+    "old_fact_text": "Walter Chrysler's child is Walter Percy Chrysler Jr..",
+    "zep_em": true,
+    "zep_pred": "Charles Frederick, Duke of Holstein-Gottorp",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      8
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      0
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  },
+  {
+    "query_id": 98,
+    "conflict_type": "has_pair",
+    "gt_answer": "Amala Paul",
+    "old_answer": "Emma Darwin",
+    "gt_fact_text": "Charles Darwin is married to Amala Paul.",
+    "old_fact_text": "Charles Darwin is married to Emma Darwin.",
+    "zep_em": false,
+    "zep_pred": "Emma Darwin",
+    "error_type": "older_fact",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": false,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      1
+    ],
+    "gt_node_idx": [],
+    "gt_episode_idx": [
+      3
+    ],
+    "gt_edge_invalid_at": [
+      "2026-04-20T17:56:40Z"
+    ],
+    "gt_marked_invalid": true,
+    "old_in_edges": true,
+    "old_in_nodes": true,
+    "old_in_episodes": true,
+    "old_in_any": true,
+    "old_edge_idx": [
+      0
+    ],
+    "old_node_idx": [
+      0
+    ],
+    "old_episode_idx": [
+      2
+    ],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 1
+  },
+  {
+    "query_id": 99,
+    "conflict_type": "no_conflict_pair",
+    "gt_answer": "wide receiver",
+    "old_answer": "American football",
+    "gt_fact_text": "Irving Fryar plays the position of wide receiver.",
+    "old_fact_text": "",
+    "zep_em": true,
+    "zep_pred": "wide receiver",
+    "error_type": "correct",
+    "n_edges": 10,
+    "gt_in_edges": true,
+    "gt_in_nodes": true,
+    "gt_in_episodes": true,
+    "gt_in_any": true,
+    "gt_edge_idx": [
+      0
+    ],
+    "gt_node_idx": [
+      0
+    ],
+    "gt_episode_idx": [
+      3
+    ],
+    "gt_edge_invalid_at": [],
+    "gt_marked_invalid": false,
+    "old_in_edges": false,
+    "old_in_nodes": false,
+    "old_in_episodes": false,
+    "old_in_any": false,
+    "old_edge_idx": [],
+    "old_node_idx": [],
+    "old_episode_idx": [],
+    "old_edge_invalid_at": [],
+    "old_marked_invalid": false,
+    "n_other_edges_invalid": 0,
+    "n_invalid_edges": 0
+  }
+]

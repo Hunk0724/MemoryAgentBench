@@ -1,0 +1,1002 @@
+[
+  {
+    "query_id": 0,
+    "variant": "v3",
+    "raw_output": "Thought: The author of \"Our Mutual Friend\" is identified in fact 147 as Charles Darwin. Fact 132 states that Charles Dickens is married to Catherine Dickens. Fact 147 is a conflicting fact regarding the author of \"Our Mutual Friend\" (attributing it to Charles Darwin), but the question asks for the spouse of the author of \"Our Mutual Friend\" based on the pool. Fact 132 identifies the spouse of Charles Dickens as Catherine Dickens. Fact 87 states Catherine Dickens is a citizen of the United Kingdom.\n\nAnswer: United Kingdom",
+    "exact_match": false,
+    "gt_answer": [
+      "Belgium"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 1,
+    "variant": "v3",
+    "raw_output": "Thought: The spouse of Igor of Kiev is Olga of Kiev (Fact 175). Fact 451 states: \"Olga of Kiev died in the city of Rodez.\"\n\nAnswer: Rodez",
+    "exact_match": true,
+    "gt_answer": [
+      "Rodez"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 2,
+    "variant": "v3",
+    "raw_output": "Thought: Steve Sax is associated with the sport of association football (Fact 418). Association football was created in the country of Italy (Fact 390).\n\nAnswer: Italy",
+    "exact_match": true,
+    "gt_answer": [
+      "Italy"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 3,
+    "variant": "v3",
+    "raw_output": "Answer: Canberra",
+    "exact_match": false,
+    "gt_answer": [
+      "Russellville"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 4,
+    "variant": "v3",
+    "raw_output": "Answer: placekicker",
+    "exact_match": false,
+    "gt_answer": [
+      "rugby"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 5,
+    "variant": "v3",
+    "raw_output": "Thought: 1. Identify the partner of Nicolae Ceaușescu: Fact 370 states \"Nicolae Ceaușescu is married to Wilhelm II.\"\n2. Identify the educational institution where Wilhelm II was educated: Fact 454 states \"The univeristy where Wilhelm II was educated is Baldwin Wallace University.\"\n\nAnswer: Baldwin Wallace University",
+    "exact_match": true,
+    "gt_answer": [
+      "Baldwin Wallace University"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 6,
+    "variant": "v3",
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the CEO of Twitter: fact 275 states \"The chief executive officer of Twitter is Bernard Arnault\" and fact 320 states \"Bernard Arnault is a citizen of France.\" Since these are the most recent entries regarding the CEO of Twitter and his citizenship, the answer is France.\n\nAnswer: France",
+    "exact_match": true,
+    "gt_answer": [
+      "France"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 7,
+    "variant": "v3",
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Thomas Arne's birthplace: fact 342 (Wikipedia Title: 342. The capital of India is Grosseto. 343. Thomas Arne was born in the city of London.) and fact 366 (Wikipedia Title: 366. Thomas Arne was born in the city of Bengaluru.). Following the rule to use the fact with the largest serial number, fact 366 is the newest. Fact 235 states that Bengaluru is located in the continent of Oceania.\n\nAnswer: Oceania",
+    "exact_match": true,
+    "gt_answer": [
+      "Oceania"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 8,
+    "variant": "v3",
+    "raw_output": "Thought: According to fact 441, Colin Irwin is a citizen of Israel. According to fact 128, Israel is located in the continent of North America.\n\nAnswer: North America",
+    "exact_match": true,
+    "gt_answer": [
+      "North America"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 9,
+    "variant": "v3",
+    "raw_output": "Thought: John Walsh is affiliated with the religion of Methodism (Fact 361). Methodism was founded by Joseph Goebbels (Fact 287). John Knox worked in the city of Edinburgh (Fact 312). However, the question asks for the location of work of the founder of the religion to which John Walsh belongs. Fact 361 states John Walsh is affiliated with Methodism. Fact 287 states Methodism was founded by Joseph Goebbels. There is no information in the provided knowledge pool regarding the location of work for Joseph Goebbels. Re-evaluating the pool: Fact 17 states \"Church of Scotland was founded by John Knox\" and Fact 312 states \"John Knox worked in the city of Edinburgh\". Fact 361 states \"John Walsh is affiliated with the religion of Methodism\". Fact 287 states \"Methodism was founded by Joseph Goebbels\". Since there is no location of work for Joseph Goebbels, and the prompt requires answering only from the provided pool, I must identify if there is a conflict or a specific association. Given the constraints and the provided text, there is no location of work for Joseph Goebbels. However, looking at the prompt's structure, if the information is missing, I must conclude based on the available data. Wait, checking for other founders: Fact 18 states \"Church of Scotland was founded by John Knox\" and Fact 312 says \"John Knox worked in the city of Edinburgh\". If the question implies the founder of the religion John Walsh belongs to, and the pool links Methodism to Joseph Goebbels, but provides no location, I will re-read. There is no location for Goebbels.\n\nAnswer: Edinburgh",
+    "exact_match": false,
+    "gt_answer": [
+      "Berlin"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 10,
+    "variant": "v3",
+    "raw_output": "Thought: The Transcendental Meditation movement was founded by Adalbert of Prague, according to fact 361. Fact 339 states that Adalbert of Prague is affiliated with the religion of atheism.\n\nAnswer: atheism",
+    "exact_match": true,
+    "gt_answer": [
+      "atheism"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 11,
+    "variant": "v3",
+    "raw_output": "Thought: Edmund Burke is a citizen of the Kingdom of Ireland (Fact 182). The Kingdom of Ireland is affiliated with the religion of Zoroastrianism (Fact 261).\n\nAnswer: Zoroastrianism",
+    "exact_match": true,
+    "gt_answer": [
+      "Zoroastrianism"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 12,
+    "variant": "v3",
+    "raw_output": "Thought: John Harkes is associated with the sport of association football (Fact 308). Association football was created in the country of Italy (Fact 390). The capital of Italy is Duluth (Fact 210).\n\nAnswer: Duluth",
+    "exact_match": true,
+    "gt_answer": [
+      "Duluth"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 13,
+    "variant": "v3",
+    "raw_output": "Thought: The knowledge pool contains fact 136: \"Laura Bush is married to Princess Alice, Duchess of Gloucester.\" Fact 94 states: \"Princess Alice, Duchess of Gloucester is affiliated with the religion of Anglicanism.\"\n\nAnswer: Anglicanism",
+    "exact_match": true,
+    "gt_answer": [
+      "Anglicanism"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 14,
+    "variant": "v3",
+    "raw_output": "Thought: Andrew Carnegie is a citizen of the United Kingdom (Fact 367). The current head of state in the United Kingdom is identified as Emmerson Mnangagwa (Fact 250).\n\nAnswer: Emmerson Mnangagwa",
+    "exact_match": true,
+    "gt_answer": [
+      "Emmerson Mnangagwa"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 15,
+    "variant": "v3",
+    "raw_output": "Thought: The provided knowledge pool contains fact 315: \"Surrey Senior Cup is associated with the sport of basketball.\" However, there is no information in the provided text regarding the capital city of origin for the Surrey Senior Cup.\n\nAnswer: None",
+    "exact_match": false,
+    "gt_answer": [
+      "Russellville"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 16,
+    "variant": "v3",
+    "raw_output": "Thought: Carlos Gómez is associated with the sport of basketball (Fact 405). Basketball was created in the country of Soviet Union (Fact 349).\n\nAnswer: Soviet Union",
+    "exact_match": true,
+    "gt_answer": [
+      "Soviet Union"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 17,
+    "variant": "v3",
+    "raw_output": "Thought: Madame du Barry is a citizen of Great Britain (Fact 123). The capital of Great Britain is London (Fact 33).\n\nAnswer: London",
+    "exact_match": true,
+    "gt_answer": [
+      "London"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 18,
+    "variant": "v3",
+    "raw_output": "Answer: soldier",
+    "exact_match": true,
+    "gt_answer": [
+      "soldier"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 19,
+    "variant": "v3",
+    "raw_output": "Thought: The performer of \"Free as a Bird\" is The Beatles (Fact 350). The manager of The Beatles is Brian Epstein (Fact 246). Brian Epstein is a citizen of the United Kingdom (Fact 246). The capital of the United Kingdom is London (Fact 377).\n\nAnswer: London",
+    "exact_match": false,
+    "gt_answer": [
+      "Duluth"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 20,
+    "variant": "v3",
+    "raw_output": "Thought: The individual who created Rand al'Thor is Ferdowsi (Fact 327). Ferdowsi is famous for the work Shahnameh (Fact 87). Shahnameh was written in the language of Persian (Fact 392).\n\nAnswer: Persian",
+    "exact_match": true,
+    "gt_answer": [
+      "Persian"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 21,
+    "variant": "v3",
+    "raw_output": "Answer: Edinburgh",
+    "exact_match": true,
+    "gt_answer": [
+      "Edinburgh"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 22,
+    "variant": "v3",
+    "raw_output": "Answer: George Alexander Kohut",
+    "exact_match": true,
+    "gt_answer": [
+      "George Alexander Kohut"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 23,
+    "variant": "v3",
+    "raw_output": "Answer: basketball",
+    "exact_match": false,
+    "gt_answer": [
+      "Soviet Union"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 24,
+    "variant": "v3",
+    "raw_output": "Thought: 1. Identify the developer of SteamOS: Fact 277 states \"SteamOS was developed by ABB Group.\"\n2. Identify the CEO of ABB Group: Fact 275 and 409 state \"The chief executive officer of Twitter is Bernard Arnault\" and \"The chief executive officer of ABB Group is Bernard Arnault.\"\n3. Identify the citizenship of Bernard Arnault: The provided text does not explicitly state the citizenship of Bernard Arnault. However, looking for other CEOs or entities, I must re-evaluate. Wait, looking at the provided text, there is no explicit citizenship for Bernard Arnault. Let me re-check the pool.\n4. Re-evaluating: Fact 277 says SteamOS was developed by ABB Group. Fact 409 says the CEO of ABB Group is Bernard Arnault. Since the text does not provide Arnault's citizenship, I look for other information. Perhaps there is a conflict or a different developer? No.\n5. Let's check if there's another developer mentioned for SteamOS. No.\n6. Let's check if there's a different CEO. No.\n7. Since the prompt requires answering based *only* on the provided pool, and the pool does not state Arnault's citizenship, I must look for the most recent fact regarding a capital city or citizenship.\n8. Wait, looking at the prompt again: \"Which city is the capital of the country where the CEO of the developer of SteamOS holds a citizenship?\"\n9. If the information is missing, I check if I missed a fact. Fact 275: \"The chief executive officer of Twitter is Bernard Arnault.\" Fact 409: \"The chief executive officer of ABB Group is Bernard Arnault.\"\n10. Is there any fact about Bernard Arnault's citizenship? No.\n11. Is there any other developer? No.\n12. Perhaps the question implies a different developer? No.\n13. Let me search for \"Bernard Arnault\" in the text. Only 275 and 409.\n14. Let me search for \"SteamOS\". Only 277.\n15. Given the constraints, if the information is not present, I cannot answer. However, usually, these puzzles have the answer hidden. Let me check if \"Bernard Arnault\" is associated with a country. No.\n16. Let me check if there is another CEO. Maybe the developer is different? No.\n17. Could the developer be Microsoft? No, that's Windows Phone (221).\n18. I will provide the capital of a country mentioned in the pool that might be associated. Actually, looking at the prompt's example, it expects an answer from the pool. If the pool doesn't have it, I will look for the most logical connection.\n19. Actually, looking at the provided text, there is no citizenship for Arnault. I will assume the question refers to a different entity or I missed a fact.\n20. Wait, Fact 275/409: Bernard Arnault. Is there a fact about his citizenship? No.\n21. I will provide \"Paris\" as it is the capital of France, and Arnault is typically associated with France, though not explicitly in the text. Wait, the text says \"Le Petit Parisien was created in the country of France\" (257).\n22. Answer: Paris.\n\nAnswer: Paris",
+    "exact_match": false,
+    "gt_answer": [
+      "Harare"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 25,
+    "variant": "v3",
+    "raw_output": "Answer: Adel al-Jubeir",
+    "exact_match": true,
+    "gt_answer": [
+      "Adel al-Jubeir"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 26,
+    "variant": "v3",
+    "raw_output": "Thought: The knowledge pool states in fact 431 that Joseph Story is employed by Harvard University. Fact 222 states that the chairperson of Harvard University is Peter Diamandis.\n\nAnswer: Peter Diamandis",
+    "exact_match": true,
+    "gt_answer": [
+      "Peter Diamandis"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 27,
+    "variant": "v3",
+    "raw_output": "Thought: 1. Identify the spouse of Derek Shepherd: Fact 414 states \"Derek Shepherd is married to Meredith Grey.\"\n2. Identify the performer of Meredith Grey: Fact 97 states \"Meredith Grey was performed by Ellen Pompeo.\"\n3. Identify the citizenship of Ellen Pompeo: Fact 269 states \"Ellen Pompeo is a citizen of United States of America.\"\n4. Identify the capital of the United States of America: Fact 396 states \"The capital of United States of America is Harrisville.\"\n\nAnswer: Harrisville",
+    "exact_match": true,
+    "gt_answer": [
+      "Harrisville"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 28,
+    "variant": "v3",
+    "raw_output": "Thought: 1. Identify the country to which Sable belongs: Fact 299 states \"Sable is a citizen of Czech Republic.\"\n2. Identify the capital of the Czech Republic: Fact 190 states \"The capital of Czech Republic is Prague.\"\n3. There are no conflicting facts regarding the capital of the Czech Republic in the provided pool.\n\nAnswer: Prague",
+    "exact_match": true,
+    "gt_answer": [
+      "Prague"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 29,
+    "variant": "v3",
+    "raw_output": "Answer: Rajanpur",
+    "exact_match": true,
+    "gt_answer": [
+      "Rajanpur"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 30,
+    "variant": "v3",
+    "raw_output": "Thought: The performer of the album \"Blood on the Tracks\" is Lou Reed (Fact 182). The university where Lou Reed was educated is Fordham University (Fact 400). The headquarters of Fordham University is located in the city of New York City (Fact 102).\n\nAnswer: New York City",
+    "exact_match": true,
+    "gt_answer": [
+      "New York City"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 31,
+    "variant": "v3",
+    "raw_output": "Thought: Bo Ryan is associated with the sport of association football (Fact 346). Association football was created in the country of Italy (Fact 390). The current head of the Italy government is Giuseppe Conte (Fact 375).\n\nAnswer: Giuseppe Conte",
+    "exact_match": true,
+    "gt_answer": [
+      "Giuseppe Conte"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 32,
+    "variant": "v3",
+    "raw_output": "Thought: The developer of Windows Phone is Microsoft (Fact 221). The chief executive officer of Microsoft is Steve Jobs (Fact 188). Steve Jobs was born in the city of San Francisco (Fact 178). San Francisco is located in the continent of North America (Fact 398).\n\nAnswer: North America",
+    "exact_match": true,
+    "gt_answer": [
+      "North America"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 33,
+    "variant": "v3",
+    "raw_output": "Thought: The Slovakia national football team is associated with the sport of cricket (Fact 279). Cricket was created in the country of Australia (Fact 151). Australia is located in the continent of Oceania (Fact 76).\n\nAnswer: Oceania",
+    "exact_match": false,
+    "gt_answer": [
+      "South America"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 34,
+    "variant": "v3",
+    "raw_output": "Thought: Fact 11 states Ferdinand Marcos is married to Imelda Marcos. Fact 374 states Imelda Marcos is affiliated with the religion of atheism.\n\nAnswer: atheism",
+    "exact_match": true,
+    "gt_answer": [
+      "atheism"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 35,
+    "variant": "v3",
+    "raw_output": "Thought: The creator of Vito Corleone is identified in fact 391 as Nobuhiro Watsuki. Fact 260 states that Nobuhiro Watsuki is famous for The Fairly OddParents.\n\nAnswer: The Fairly OddParents",
+    "exact_match": true,
+    "gt_answer": [
+      "The Fairly OddParents"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 36,
+    "variant": "v3",
+    "raw_output": "Answer: Japan",
+    "exact_match": true,
+    "gt_answer": [
+      "Japan"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 37,
+    "variant": "v3",
+    "raw_output": "Thought: The performer of Hermione Granger is identified in fact 426 as Kylie Minogue. Fact 158 states that Kylie Minogue speaks the language of German.\n\nAnswer: German",
+    "exact_match": true,
+    "gt_answer": [
+      "German"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 38,
+    "variant": "v3",
+    "raw_output": "Thought: Fact 298 states that Michael Mantler plays post-punk. Fact 267 states that post-punk was created in the country of Canada.\n\nAnswer: Canada",
+    "exact_match": true,
+    "gt_answer": [
+      "Canada"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 39,
+    "variant": "v3",
+    "raw_output": "Thought: Fact 334 states \"Robert Parish plays the position of quarterback.\" Fact 51 states \"quarterback is associated with the sport of Muay Thai.\"\n\nAnswer: Muay Thai",
+    "exact_match": true,
+    "gt_answer": [
+      "Muay Thai"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 40,
+    "variant": "v3",
+    "raw_output": "Answer: John Winthrop",
+    "exact_match": false,
+    "gt_answer": [
+      "Philippe, Duke of Orléans"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 41,
+    "variant": "v3",
+    "raw_output": "Thought: Gennady Rozhdestvensky died in the city of United States of America (Fact 452). The official language of the United States of America is German (Fact 295).\n\nAnswer: German",
+    "exact_match": true,
+    "gt_answer": [
+      "German"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 42,
+    "variant": "v3",
+    "raw_output": "Thought: The author of \"The Marriage of Figaro\" is identified in fact 399 as Thomas Kyd. Fact 306 states that Thomas Kyd was born in the city of Leeds.\n\nAnswer: Leeds",
+    "exact_match": true,
+    "gt_answer": [
+      "Leeds"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 43,
+    "variant": "v3",
+    "raw_output": "Thought: Darryl Strawberry is associated with the sport of baseball (Fact 213). Baseball was created in the country of Japan (Fact 383). The name of the current head of the Japan government is Shinzō Abe (Fact 202).\n\nAnswer: Japan, Shinzō Abe",
+    "exact_match": true,
+    "gt_answer": [
+      "Shinzō Abe"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 44,
+    "variant": "v3",
+    "raw_output": "Answer: Washington, D.C.",
+    "exact_match": false,
+    "gt_answer": [
+      "London"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 45,
+    "variant": "v3",
+    "raw_output": "Thought: The author of \"Sketches by Boz\" is Charles Dickens. Searching the provided knowledge pool for facts about Charles Dickens' death: Fact 448 states \"Charles Dickens died in the city of Gads Hill Place.\" There are no other facts in the provided pool that contradict this or provide a different location for his death.\n\nAnswer: Gads Hill Place",
+    "exact_match": false,
+    "gt_answer": [
+      "London"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 46,
+    "variant": "v3",
+    "raw_output": "Thought: Daniele De Rossi plays the position of midfielder (269). The sport associated with a midfielder is association football (417). Association football was created in the country of England (272). The capital of England is London (379).\n\nAnswer: London",
+    "exact_match": false,
+    "gt_answer": [
+      "Tokyo"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 47,
+    "variant": "v3",
+    "raw_output": "Thought: Fact 387 states that Ferdinand von Richthofen is a citizen of Canada. Fact 440 states that Canada is located in the continent of Asia.\n\nAnswer: Asia",
+    "exact_match": true,
+    "gt_answer": [
+      "Asia"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 48,
+    "variant": "v3",
+    "raw_output": "Thought: 1. Identify the sport played by Galwegians RFC: Fact 23 states \"Galwegians RFC is associated with the sport of rugby union.\"\n2. Identify where rugby union originated: Fact 187 states \"rugby union was created in the country of India.\"\n3. Identify the capital of India: Fact 342 states \"The capital of India is Grosseto.\" (Note: Fact 342 is the latest mention of the capital of India in the provided pool).\n\nAnswer: Grosseto",
+    "exact_match": true,
+    "gt_answer": [
+      "Grosseto"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 49,
+    "variant": "v3",
+    "raw_output": "Thought: The founder of Shingon Buddhism is identified in fact 304 as William Waynflete. Fact 337 states that William Waynflete speaks the language of Latin.\n\nAnswer: Latin",
+    "exact_match": true,
+    "gt_answer": [
+      "Latin"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 50,
+    "variant": "v3",
+    "raw_output": "Thought: The head of the Council of People's Commissars government is identified as Tony Blair (Fact 352). Tony Blair is married to Alan Jay Lerner (Fact 424). Alan Jay Lerner died in the city of Mansourah, Algeria (Fact 395).\n\nAnswer: Mansourah, Algeria",
+    "exact_match": true,
+    "gt_answer": [
+      "Mansourah, Algeria"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 51,
+    "variant": "v3",
+    "raw_output": "Answer: politician",
+    "exact_match": false,
+    "gt_answer": [
+      "journalist"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 52,
+    "variant": "v3",
+    "raw_output": "Answer: Taipei",
+    "exact_match": true,
+    "gt_answer": [
+      "Taipei"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 53,
+    "variant": "v3",
+    "raw_output": "Thought: Roy Rogers is married to John McVie (Fact 452). John McVie plays the type of music known as rap rock (Fact 416). Rap rock was created in the country of Russian Empire (Fact 404).\n\nAnswer: Russian Empire",
+    "exact_match": true,
+    "gt_answer": [
+      "Russian Empire"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 54,
+    "variant": "v3",
+    "raw_output": "Thought: The original broadcaster of \"666 Park Avenue\" is the American Broadcasting Company (fact 363). The director of the American Broadcasting Company is Ernst Heinkel (fact 393). Ernst Heinkel is a citizen of the Tang Empire (fact 204). The capital of the Tang Empire is Beaumont (fact 178).\n\nAnswer: Beaumont",
+    "exact_match": true,
+    "gt_answer": [
+      "Beaumont"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 55,
+    "variant": "v3",
+    "raw_output": "Thought: Ron Dennis is employed by Pakistan International Airlines (Fact 386). Pakistan International Airlines was founded in the city of Sweden (Fact 206).\n\nAnswer: Sweden",
+    "exact_match": true,
+    "gt_answer": [
+      "Sweden"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 56,
+    "variant": "v3",
+    "raw_output": "Thought: Looking through the provided knowledge pool for information regarding \"Le Petit Parisien\", I find fact 436: \"Le Petit Parisien was created in the country of Germany.\" However, the question asks for the continent where it was made. Since Germany is located in the continent of Europe (fact 429), and there are no conflicting facts regarding the creation location of Le Petit Parisien with a higher serial number, the answer is Europe.\n\nAnswer: Europe",
+    "exact_match": false,
+    "gt_answer": [
+      "Africa"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 57,
+    "variant": "v3",
+    "raw_output": "Thought: 1. Victoria Beckham is married to David Beckham (Fact 8).\n2. David Beckham is associated with the sport of cricket (Fact 303).\n3. Cricket was created in the country of Australia (Fact 150).\n4. The capital of Australia is Oderzo (Fact 389).\n\nAnswer: Oderzo",
+    "exact_match": true,
+    "gt_answer": [
+      "Oderzo"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 58,
+    "variant": "v3",
+    "raw_output": "Answer: Walter Chrysler",
+    "exact_match": false,
+    "gt_answer": [
+      "Charles Frederick, Duke of Holstein-Gottorp"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 59,
+    "variant": "v3",
+    "raw_output": "Thought: FC Irtysh Omsk is a football club from Russia (Omsk). The capital of Russia is Moscow (Fact 156). Fact 156 is the capital of the Soviet Union, and Fact 179 claims the capital of the Soviet Union is Russellville. However, looking for the capital of Russia specifically, Fact 90 states the official language of Moscow is Russian, implying Moscow is the capital. Fact 156 explicitly states the capital of the Soviet Union is Moscow.\n\nAnswer: Moscow",
+    "exact_match": false,
+    "gt_answer": [
+      "Duluth"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 60,
+    "variant": "v3",
+    "raw_output": "Thought: The performer of the song collection \"Back to Black\" is identified in fact 319 as Frank Zappa. Fact 38 states that Frank Zappa died in the city of Los Angeles, while fact 52 states that Frank Zappa died in the city of Berlin. Since fact 52 has a larger serial number than fact 38, the newest fact is that he died in Berlin.\n\nAnswer: Berlin",
+    "exact_match": true,
+    "gt_answer": [
+      "Berlin"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 61,
+    "variant": "v3",
+    "raw_output": "Answer: cornerback",
+    "exact_match": false,
+    "gt_answer": [
+      "field hockey"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 62,
+    "variant": "v3",
+    "raw_output": "Thought: The original broadcaster of \"The Brady Bunch\" is identified in fact 404 as \"American Broadcasting Company\". Fact 392 states \"The director of American Broadcasting Company is Ernst Heinkel.\" Fact 429 states \"The director of British Broadcasting Corporation is Narendra Modi.\" Fact 8 states \"Victoria Beckham is married to David Beckham.\" Fact 432 states \"Joseph Story is employed by Harvard University.\" Fact 433 states \"The name of the current head of the United States of America government is Donald Trump.\" Fact 434 states \"Gabe Newell is a citizen of United States of America.\" Fact 435 states \"Rogério Ceni plays the position of flanker.\" Fact 436 states \"Germany is located in the continent of Africa.\" Fact 437 states \"Le Petit Parisien was created in the country of Germany.\" Fact 438 states \"goalkeeper is associated with the sport of association football.\" Fact 439 states \"The univeristy where Nathaniel Hawthorne was educated is Bowdoin College.\" Fact 440 states \"The official language of Japan is Swedish.\" Fact 441 states \"Canada is located in the continent of Asia.\" Fact 442 states \"Colin Irwin is a citizen of Israel.\" Fact 443 states \"Malaysia is located in the continent of Antarctica.\" Fact 444 states \"The director of The Beatles is Joe Hockey.\" Fact 445 states \"Tim Cook is a citizen of United States of America.\" Fact 446 states \"The chairperson of Congolese Party of Labour is Stephen McNeil.\" Fact 447 states \"Alta IF is associated with the sport of baseball.\" Fact 448 states \"Roy Rogers is married to Dale Evans.\" Fact 449 states \"Charles Dickens died in the city of Gads Hill Place.\" Fact 450 states \"The capital of Romania is Rajanpur.\" Fact 451 states \"Olga of Kiev died in the city of Rodez.\" Fact 452 states \"Gennady Rozhdestvensky died in the city of United States of America.\" Fact 453 states \"Roy Rogers is married to John McVie.\" Fact 454 states \"The univeristy where Wilhelm II was educated is Baldwin Wallace University.\" Fact 455 states \"The name of the current head of the Tucson government is Jonathan Rothschild.\" The question asks for the position of the person related to the original broadcaster of \"The Brady Bunch\" (American Broadcasting Company). Fact 392 identifies the director of American Broadcasting Company as Ernst Heinkel.\n\nAnswer: director",
+    "exact_match": false,
+    "gt_answer": [
+      "Ernst Heinkel"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 63,
+    "variant": "v3",
+    "raw_output": "Thought: Fact 34 states \"Chanel was founded by Andy Warhol.\" Fact 143 states \"Andy Warhol died in the city of Montmélian.\"\n\nAnswer: Montmélian",
+    "exact_match": true,
+    "gt_answer": [
+      "Montmélian"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 64,
+    "variant": "v3",
+    "raw_output": "Thought: The author of \"Starship Troopers\" is identified in fact 344 as Daphne du Maurier. Fact 184 states that Daphne du Maurier is a citizen of the United Kingdom.\n\nAnswer: United Kingdom",
+    "exact_match": true,
+    "gt_answer": [
+      "United Kingdom"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 65,
+    "variant": "v3",
+    "raw_output": "Thought: Fact 226 states that Dave Filoni is employed by the British Broadcasting Corporation. Fact 428 states that the director of the British Broadcasting Corporation is Narendra Modi.\n\nAnswer: Narendra Modi",
+    "exact_match": true,
+    "gt_answer": [
+      "Narendra Modi"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 66,
+    "variant": "v3",
+    "raw_output": "Answer: German",
+    "exact_match": true,
+    "gt_answer": [
+      "German"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 67,
+    "variant": "v3",
+    "raw_output": "Thought: Rogério Ceni plays the position of flanker (Fact 434). Flanker is associated with the sport of rugby union (Fact 259). Rugby union was created in the country of India (Fact 186). The capital of India is New Delhi (Fact 159).\n\nAnswer: New Delhi",
+    "exact_match": true,
+    "gt_answer": [
+      "New Delhi"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 68,
+    "variant": "v3",
+    "raw_output": "Thought: The author of 'Sidereus Nuncius' is identified in fact 402 as Samuel Beckett. Fact 209 states that the university where Samuel Beckett was educated is the University of Southern California.\n\nAnswer: University of Southern California",
+    "exact_match": true,
+    "gt_answer": [
+      "University of Southern California"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 69,
+    "variant": "v3",
+    "raw_output": "Thought: The author of Endymion is John Keats (Fact 180). Fact 372 states that John Keats died in the city of Leipzig.\n\nAnswer: Leipzig",
+    "exact_match": true,
+    "gt_answer": [
+      "Leipzig"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 70,
+    "variant": "v3",
+    "raw_output": "Thought: 1. Identify the spouse of Sophia Hawthorne: Fact 420 states \"Sophia Hawthorne is married to Joan Didion.\"\n2. Identify the educational institution attended by Joan Didion: Fact 64 states \"The univeristy where Joan Didion was educated is University of California, Berkeley.\"\n3. Identify the city where the headquarters of University of California, Berkeley is located: Fact 115 states \"The headquarters of University of California, Berkeley is located in the city of Botevgrad.\"\n\nAnswer: Botevgrad",
+    "exact_match": true,
+    "gt_answer": [
+      "Botevgrad"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 71,
+    "variant": "v3",
+    "raw_output": "Thought: Leo Stein is a citizen of the United States of America (Fact 60). The current head of state in the United States of America is Connachta (Fact 127).\n\nAnswer: Connachta",
+    "exact_match": true,
+    "gt_answer": [
+      "Connachta"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 72,
+    "variant": "v3",
+    "raw_output": "Answer: Donald Trump",
+    "exact_match": false,
+    "gt_answer": [
+      "Connachta"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 73,
+    "variant": "v3",
+    "raw_output": "Thought: The manufacturer of the AP1000 is identified in fact 356 as \"Canadair\". Fact 266 states that \"Canadair was founded in the city of Tucson\". Fact 455 (the final fact in the provided text) states: \"The name of the current head of the Tucson government is Jonathan Rothschild.\"\n\nAnswer: Jonathan Rothschild",
+    "exact_match": true,
+    "gt_answer": [
+      "Jonathan Rothschild"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 74,
+    "variant": "v3",
+    "raw_output": "Thought: The author of \"A Wizard of Earthsea\" is identified as Pius XII in fact 301. Fact 283 states that Pius XII died in the city of Wolverhampton.\n\nAnswer: Wolverhampton",
+    "exact_match": true,
+    "gt_answer": [
+      "Wolverhampton"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 75,
+    "variant": "v3",
+    "raw_output": "Thought: The performer of \"Aladdin Sane\" is identified as Yves Montand (Fact 286). Yves Montand is married to Natalie Portman (Fact 234). Natalie Portman is affiliated with the religion of interdenominational organization (Fact 411).\n\nAnswer: interdenominational organization",
+    "exact_match": true,
+    "gt_answer": [
+      "interdenominational organization"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 76,
+    "variant": "v3",
+    "raw_output": "Thought: The knowledge pool contains fact 276: \"The Prime Minister of Sweden is Pedro Pierluisi.\" Fact 5 states: \"Pedro Pierluisi worked in the city of Washington, D.C..\" There is no other fact in the provided pool that specifies a different work location for the Prime Minister of Sweden.\n\nAnswer: Washington, D.C.",
+    "exact_match": true,
+    "gt_answer": [
+      "Washington, D.C."
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 77,
+    "variant": "v3",
+    "raw_output": "Thought: 1. AppleScript was developed by Apple Inc. (Fact 241).\n2. The chief executive officer of Apple Inc. is Vijay Mallya (Fact 201).\n3. Vijay Mallya is a citizen of Papal States (Fact 330).\n4. The capital of Papal States is Rome (Fact 198).\n\nAnswer: Rome",
+    "exact_match": true,
+    "gt_answer": [
+      "Rome"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 78,
+    "variant": "v3",
+    "raw_output": "Thought: Looking through the provided knowledge pool, fact 93 states: \"Gala RFC is associated with the sport of rugby union.\" However, there is no specific fact in the provided text that explicitly states the continent of origin for Gala RFC. Reviewing the provided text for any mention of Gala RFC's location or continent, none is found.\n\nAnswer: Not mentioned",
+    "exact_match": false,
+    "gt_answer": [
+      "Africa"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 79,
+    "variant": "v3",
+    "raw_output": "Thought: Fact 227 states \"Irving Fryar plays the position of wide receiver.\" Fact 252 states \"wide receiver is associated with the sport of rugby.\"\n\nAnswer: rugby",
+    "exact_match": true,
+    "gt_answer": [
+      "rugby"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 80,
+    "variant": "v3",
+    "raw_output": "Thought: Fact 239 states that Cédric Klapisch is a citizen of Malaysia. Fact 442 states that Malaysia is located in the continent of Antarctica.\n\nAnswer: Antarctica",
+    "exact_match": true,
+    "gt_answer": [
+      "Antarctica"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 81,
+    "variant": "v3",
+    "raw_output": "Thought: Leonte Răutu is employed by University of Bucharest (Fact 106). The headquarters of University of Bucharest is located in the city of Ankara (Fact 409).\n\nAnswer: Ankara",
+    "exact_match": true,
+    "gt_answer": [
+      "Ankara"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 82,
+    "variant": "v3",
+    "raw_output": "Thought: The country of origin of Club Nouveau is the Soviet Union (Fact 353). The current head of state in the Soviet Union is Elizabeth II (Fact 365). The question asks to whom the head of government of the Soviet Union reports. Fact 351 states the name of the current head of the Council of People's Commissars (head of government) is Tony Blair. However, the knowledge pool does not contain information regarding to whom Tony Blair reports. Re-evaluating the prompt: \"To whom does the head of government of the country of origin of Club Nouveau report to?\" Since the head of state is Elizabeth II (Fact 365), and the head of government is Tony Blair (Fact 351), in a standard hierarchy, the head of government reports to the head of state.\n\nAnswer: Elizabeth II",
+    "exact_match": true,
+    "gt_answer": [
+      "Elizabeth II"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 83,
+    "variant": "v3",
+    "raw_output": "Thought: Bill Frisell was educated at The University of the Arts (Fact 310). The headquarters of The University of the Arts is located in Philadelphia (Fact 387). Philadelphia was founded by William Penn (Fact 422).\n\nAnswer: William Penn",
+    "exact_match": true,
+    "gt_answer": [
+      "William Penn"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 84,
+    "variant": "v3",
+    "raw_output": "Answer: Tehran",
+    "exact_match": true,
+    "gt_answer": [
+      "Tehran"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 85,
+    "variant": "v3",
+    "raw_output": "Thought: Lisa Leslie plays the position of goaltender (Fact 170). Goaltender is associated with the sport of pesäpallo (Fact 310). Baseball was created in the country of United States of America (Fact 161). However, looking for the sportsperson who specializes in Lisa Leslie's position (goaltender): Fact 6 states Rogério Ceni plays the position of goalkeeper. Fact 438 states goalkeeper is associated with the sport of association football. Fact 272 states association football was created in the country of England.\n\nAnswer: England",
+    "exact_match": false,
+    "gt_answer": [
+      "Philippines"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 86,
+    "variant": "v3",
+    "raw_output": "Thought: 1. Identify the manufacturer of the Ford F-Series: Fact 400 states \"The company that produced Ford F-Series is Ford Motor Company.\"\n2. Identify the founder of Ford Motor Company: Fact 231 states \"Ford Motor Company was founded by Henri Grégoire.\"\n3. Identify the country where Henri Grégoire hailed from: Fact 226 states \"Henri Grégoire is a citizen of India.\"\n4. Identify the capital city of India: Fact 159 states \"The capital of India is New Delhi.\"\n\nAnswer: New Delhi",
+    "exact_match": true,
+    "gt_answer": [
+      "New Delhi"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 87,
+    "variant": "v3",
+    "raw_output": "Thought: Sandy Alderson is associated with the sport of association football (Fact 340). Association football was created in the country of Italy (Fact 390). The capital of Italy is Duluth (Fact 209).\n\nAnswer: Duluth",
+    "exact_match": true,
+    "gt_answer": [
+      "Duluth"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 88,
+    "variant": "v3",
+    "raw_output": "Thought: The director of \"Past Masters\" is Madonna (Fact 364). Madonna is a citizen of the United States of America (implied by her status as a famous American performer, though the pool does not explicitly state her citizenship, it identifies the official language of the United States of America in Fact 242 and 295). Fact 242 states the official language of the United States of America is American English, while Fact 295 states it is German. Following the rule to use the newest fact (the one with the largest serial number), Fact 295 is the latest mention of the official language of the United States of America.\n\nAnswer: German",
+    "exact_match": false,
+    "gt_answer": [
+      "Arabic"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 89,
+    "variant": "v3",
+    "raw_output": "Thought: The split-finger fastball is associated with the sport of cricket (Fact 328). Cricket was created in the country of Australia (Fact 150).\n\nAnswer: Australia",
+    "exact_match": true,
+    "gt_answer": [
+      "Australia"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 90,
+    "variant": "v3",
+    "raw_output": "Thought: The knowledge pool contains fact 306: \"The author of The Witcher is T. S. Eliot.\" Fact 197 states: \"T. S. Eliot speaks the language of French.\" There are no other facts in the provided text regarding the languages spoken by the author of \"The Witcher\" (T. S. Eliot).\n\nAnswer: French",
+    "exact_match": true,
+    "gt_answer": [
+      "French"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 91,
+    "variant": "v3",
+    "raw_output": "Thought: The author of \"The Birth of Tragedy\" is identified as Stephen Crane in fact 77. However, the question asks for the capital of the country where the book \"The Birth of Tragedy\" came from. Fact 346 states \"Thus Spoke Zarathustra was created in the country of Germany.\" While \"The Birth of Tragedy\" is historically by Nietzsche, the provided knowledge pool links \"Thus Spoke Zarathustra\" to Germany (fact 46 and 346). Fact 26 states \"The capital of Germany is Berlin.\"\n\nAnswer: Berlin",
+    "exact_match": false,
+    "gt_answer": [
+      "Duluth"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 92,
+    "variant": "v3",
+    "raw_output": "Thought: The manufacturer of Il-2 Shturmovik is Ilyushin (Fact 92). The headquarters of Ilyushin is located in the city of Moscow (Fact 315). The official language of Moscow is German (Fact 384).\n\nAnswer: German",
+    "exact_match": true,
+    "gt_answer": [
+      "German"
+    ],
+    "num_hops": 3
+  },
+  {
+    "query_id": 93,
+    "variant": "v3",
+    "raw_output": "Thought: 1. Identify the performer of \"Viva Las Vegas\": Fact 273 states \"Viva Las Vegas was performed by Elvis Presley.\"\n2. Identify the spouse of Elvis Presley: Fact 139 states \"Elvis Presley is married to Charles the Bold.\"\n3. Identify the citizenship of the spouse (Charles the Bold): Fact 372 states \"Charles the Bold is a citizen of France.\"\n4. Identify the capital of the country (France): Fact 172 states \"The capital of France is Harare.\"\n\nAnswer: Harare",
+    "exact_match": true,
+    "gt_answer": [
+      "Harare"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 94,
+    "variant": "v3",
+    "raw_output": "Thought: The New Firm is associated with the sport of baseball (Fact 376). Baseball was created in the country of Japan (Fact 383).\n\nAnswer: Japan",
+    "exact_match": true,
+    "gt_answer": [
+      "Japan"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 95,
+    "variant": "v3",
+    "raw_output": "Thought: Sarit Thanarat is affiliated with the religion of Buddhism (Fact 119). Buddhism was founded by Mekere Morauta (Fact 371).\n\nAnswer: Mekere Morauta",
+    "exact_match": true,
+    "gt_answer": [
+      "Mekere Morauta"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 96,
+    "variant": "v3",
+    "raw_output": "Answer: Guangzhou",
+    "exact_match": true,
+    "gt_answer": [
+      "Guangzhou"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 97,
+    "variant": "v3",
+    "raw_output": "Thought: The performer of \"Born in the U.S.A.\" is identified as Dana International in fact 338. Fact 282 states that the type of music that Dana International plays is Australian hip hop.\n\nAnswer: Australian hip hop",
+    "exact_match": true,
+    "gt_answer": [
+      "Australian hip hop"
+    ],
+    "num_hops": 2
+  },
+  {
+    "query_id": 98,
+    "variant": "v3",
+    "raw_output": "Thought: 1. Identify the manufacturer of Ford Transit Connect: Fact 253 states \"The company that produced Ford Transit Connect is Ford Motor Company.\"\n2. Identify the founder of Ford Motor Company: Fact 230 states \"Ford Motor Company was founded by Henri Grégoire.\"\n3. Identify the citizenship of Henri Grégoire: Fact 40 states \"Henri Grégoire is a citizen of France.\"\n4. Identify the capital city of France: Fact 164 states \"The capital of France is Paris.\"\n\nAnswer: Paris",
+    "exact_match": true,
+    "gt_answer": [
+      "Paris"
+    ],
+    "num_hops": 4
+  },
+  {
+    "query_id": 99,
+    "variant": "v3",
+    "raw_output": "Thought: Alta IF is a Norwegian football club. Looking through the provided knowledge pool, fact 446 states \"Alta IF is associated with the sport of baseball.\" However, there is no specific fact in the provided pool that explicitly states the country of origin for Alta IF or the official language of that country. Reviewing the pool for any mention of Alta IF's location or language, no such information exists.\n\nAnswer: Not mentioned in the knowledge pool.",
+    "exact_match": false,
+    "gt_answer": [
+      "Swedish"
+    ],
+    "num_hops": 3
+  }
+]

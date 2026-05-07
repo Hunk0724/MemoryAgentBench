@@ -1,0 +1,1292 @@
+{
+  "stats_hop": {
+    "new_in": 0,
+    "old_in": 0,
+    "both_in": 0,
+    "neither": 188,
+    "total_has_pair": 188
+  },
+  "stats_q": {
+    "all_new_in": 0,
+    "all_pair_old_in": 0,
+    "q_total": 100
+  },
+  "detail": [
+    {
+      "qid": 0,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 1,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 2,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 3,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 4,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 5,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 6,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 7,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 8,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 9,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 10,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 11,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 12,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 13,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 14,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 15,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 16,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 17,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 18,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 19,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 20,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 21,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 22,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 23,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 24,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 25,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 26,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 27,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 28,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 29,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 30,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 31,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 32,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 33,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 34,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 35,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 36,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 37,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 38,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 39,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 40,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 41,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 42,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 43,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 44,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 45,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 46,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 47,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 48,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 49,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 50,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 51,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 52,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 53,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 54,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 55,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 56,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 57,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 58,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 59,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 60,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 61,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 62,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 63,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 64,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 65,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 66,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 67,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 68,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 69,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 70,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 71,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 72,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 73,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 74,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 75,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 76,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 77,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 78,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 79,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 80,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 81,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 82,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 83,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 84,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 85,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 86,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 87,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 88,
+      "n_pair_hops": 4,
+      "chain_new_in": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 89,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 90,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 91,
+      "n_pair_hops": 4,
+      "chain_new_in": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 92,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 93,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 94,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 95,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 96,
+      "n_pair_hops": 1,
+      "chain_new_in": [
+        false
+      ],
+      "chain_old_in": [
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 97,
+      "n_pair_hops": 2,
+      "chain_new_in": [
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 98,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    },
+    {
+      "qid": 99,
+      "n_pair_hops": 3,
+      "chain_new_in": [
+        false,
+        false,
+        false
+      ],
+      "chain_old_in": [
+        false,
+        false,
+        false
+      ],
+      "n_retrieved": 0
+    }
+  ]
+}

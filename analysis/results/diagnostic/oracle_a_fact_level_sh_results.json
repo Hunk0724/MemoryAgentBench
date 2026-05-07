@@ -1,0 +1,2397 @@
+[
+  {
+    "query_id": 0,
+    "old_seqs": [
+      223
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 223,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the sport associated with \"goaltender\": fact 310 (\"goaltender is associated with the sport of pesäpallo\") and fact 169 (\"Lisa Leslie plays the position of goaltender\" - though this doesn't explicitly name the sport, it implies the position). However, looking for the most recent explicit association, fact 310 is the relevant entry.\n\nIntermediate answers: [pesäpallo]\nAnswer: pesäpallo",
+    "intermediate_answers": [
+      "pesäpallo"
+    ],
+    "pred_answer": "pesäpallo",
+    "gt_answer": [
+      "pesäpallo"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6448,
+    "completion_tokens": 107
+  },
+  {
+    "query_id": 1,
+    "old_seqs": [
+      91
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 91,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Nobuhiro Watsuki: \"260. Nobuhiro Watsuki is famous for The Fairly OddParents.\" and \"391. Vito Corleone was created by Nobuhiro Watsuki.\" (Wait, checking the list: 260 is \"Nobuhiro Watsuki is famous for The Fairly OddParents.\" and 391 is \"Vito Corleone was created by Nobuhiro Watsuki.\"). The question asks what he is famous for. Fact 260 explicitly states what he is famous for. Fact 391 describes a creation, not what he is famous for. Therefore, the newest fact regarding what he is famous for is 260.\n\nIntermediate answers: [The Fairly OddParents]\nAnswer: The Fairly OddParents",
+    "intermediate_answers": [
+      "The Fairly OddParents"
+    ],
+    "pred_answer": "The Fairly OddParents",
+    "gt_answer": [
+      "The Fairly OddParents"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6415,
+    "completion_tokens": 175
+  },
+  {
+    "query_id": 2,
+    "old_seqs": [
+      100
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 100,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two conflicting facts regarding the origin of rugby union: fact 93 states \"Gala RFC is associated with the sport of rugby union\" (which does not specify the country of origin), fact 186 states \"rugby union was created in the country of India\", and fact 259 states \"flanker is associated with the sport of rugby union\" (which does not specify the country of origin). Looking for the most recent fact regarding the creation of rugby union, fact 186 is the only one that explicitly states the country of creation.\n\nIntermediate answers: [India]\nAnswer: India",
+    "intermediate_answers": [
+      "India"
+    ],
+    "pred_answer": "India",
+    "gt_answer": [
+      "India"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6416,
+    "completion_tokens": 132
+  },
+  {
+    "query_id": 3,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: Looking through the provided knowledge pool for information about \"Ferdowsi\", I find fact 86: \"Ferdowsi is famous for Shahnameh.\" There are no other facts in the provided text that mention Ferdowsi or contradict this statement.\n\nIntermediate answers: [Shahnameh]\nAnswer: Shahnameh",
+    "intermediate_answers": [
+      "Shahnameh"
+    ],
+    "pred_answer": "Shahnameh",
+    "gt_answer": [
+      "Shahnameh"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6419,
+    "completion_tokens": 70
+  },
+  {
+    "query_id": 4,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the university where Joan Didion was educated, based on the provided knowledge pool. I need to find the fact with the highest serial number regarding this information. Fact 63 states: \"The univeristy where Joan Didion was educated is University of California, Berkeley.\" There are no other facts in the provided text that contradict or update this information with a higher serial number.\n\nIntermediate answers: [University of California, Berkeley]\nAnswer: University of California, Berkeley",
+    "intermediate_answers": [
+      "University of California",
+      "Berkeley"
+    ],
+    "pred_answer": "University of California, Berkeley",
+    "gt_answer": [
+      "University of California, Berkeley"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6423,
+    "completion_tokens": 100
+  },
+  {
+    "query_id": 5,
+    "old_seqs": [
+      271
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 271,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: I need to find the author of \"The Marriage of Figaro\" based on the provided knowledge pool, prioritizing the fact with the highest serial number in case of conflicts.\n- Fact 399: \"The author of The Marriage of Figaro is Thomas Kyd.\"\nThere are no other facts in the provided text that mention the author of \"The Marriage of Figaro\".\nIntermediate answers: [Thomas Kyd]\nAnswer: Thomas Kyd",
+    "intermediate_answers": [
+      "Thomas Kyd"
+    ],
+    "pred_answer": "Thomas Kyd",
+    "gt_answer": [
+      "Thomas Kyd"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6491,
+    "completion_tokens": 92
+  },
+  {
+    "query_id": 6,
+    "old_seqs": [
+      235
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 235,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 418: \"Tunisia national football team is associated with the sport of basketball.\" There are no other facts in the provided text that mention the Tunisia national football team. Therefore, the newest (and only) fact is that it is associated with basketball.\n\nIntermediate answers: [basketball]\n\nAnswer: basketball",
+    "intermediate_answers": [
+      "basketball"
+    ],
+    "pred_answer": "basketball",
+    "gt_answer": [
+      "basketball"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6415,
+    "completion_tokens": 71
+  },
+  {
+    "query_id": 7,
+    "old_seqs": [
+      31
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 31,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains multiple facts about the sport associated with \"quarterback\". Fact 321 states \"placekicker is associated with the sport of rugby\" (irrelevant). Fact 334 states \"Robert Parish plays the position of quarterback\" (irrelevant). Fact 51 states \"quarterback is associated with the sport of Muay Thai\". Fact 323 states \"cornerback is associated with the sport of American football\" (irrelevant). Fact 79 states \"placekicker is associated with the sport of American football\" (irrelevant). Fact 36 states \"Hines Ward plays the position of cornerback\" (irrelevant). Fact 3 states \"Hines Ward plays the position of wide receiver\" (irrelevant). Fact 51 is the only fact explicitly linking \"quarterback\" to a sport.\n\nIntermediate answers: [Muay Thai]\nAnswer: Muay Thai",
+    "intermediate_answers": [
+      "Muay Thai"
+    ],
+    "pred_answer": "Muay Thai",
+    "gt_answer": [
+      "Muay Thai"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6404,
+    "completion_tokens": 189
+  },
+  {
+    "query_id": 8,
+    "old_seqs": [
+      240
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 240,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the official language of Japan: fact 440 (\"The official language of Japan is Swedish.\") and fact 96 (\"sumo was created in the country of Japan.\"). Fact 440 is the only one specifying the official language.\n\nIntermediate answers: [Swedish]\nAnswer: Swedish",
+    "intermediate_answers": [
+      "Swedish"
+    ],
+    "pred_answer": "Swedish",
+    "gt_answer": [
+      "Swedish"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6418,
+    "completion_tokens": 70
+  },
+  {
+    "query_id": 9,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the current head of the Tucson government. Looking through the provided knowledge pool, fact 454 states: \"The name of the current head of the Tucson government is Jonathan Rothschild.\" This is the only fact provided regarding this specific entity.\n\nIntermediate answers: [Jonathan Rothschild]\n\nAnswer: Jonathan Rothschild",
+    "intermediate_answers": [
+      "Jonathan Rothschild"
+    ],
+    "pred_answer": "Jonathan Rothschild",
+    "gt_answer": [
+      "Jonathan Rothschild"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6486,
+    "completion_tokens": 67
+  },
+  {
+    "query_id": 10,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the current head of the Italy government based on the provided knowledge pool. I need to find all facts related to the \"head of the Italy government\" and select the one with the highest serial number.\nFact 375: \"The name of the current head of the Italy government is Giuseppe Conte.\"\nThere are no other facts in the provided text that mention the head of the Italy government with a higher serial number.\n\nIntermediate answers: [Giuseppe Conte]\nAnswer: Giuseppe Conte",
+    "intermediate_answers": [
+      "Giuseppe Conte"
+    ],
+    "pred_answer": "Giuseppe Conte",
+    "gt_answer": [
+      "Giuseppe Conte"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6536,
+    "completion_tokens": 106
+  },
+  {
+    "query_id": 11,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the performer of Meredith Grey. Searching the provided knowledge pool for \"Meredith Grey\", I find fact 96: \"Meredith Grey was performed by Ellen Pompeo.\" There are no other facts in the provided text that contradict or update this information with a higher serial number.\n\nIntermediate answers: [Ellen Pompeo]\n\nAnswer: Ellen Pompeo",
+    "intermediate_answers": [
+      "Ellen Pompeo"
+    ],
+    "pred_answer": "Ellen Pompeo",
+    "gt_answer": [
+      "Ellen Pompeo"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6484,
+    "completion_tokens": 74
+  },
+  {
+    "query_id": 12,
+    "old_seqs": [
+      330
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 330,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 334: \"Robert Parish plays the position of quarterback.\" There are no other facts in the provided text that mention Robert Parish's position.\n\nIntermediate answers: [quarterback]\nAnswer: quarterback",
+    "intermediate_answers": [
+      "quarterback"
+    ],
+    "pred_answer": "quarterback",
+    "gt_answer": [
+      "quarterback"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6423,
+    "completion_tokens": 50
+  },
+  {
+    "query_id": 13,
+    "old_seqs": [
+      210
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 210,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 239: \"Cédric Klapisch is a citizen of Malaysia.\" There are no other facts in the provided text that mention Cédric Klapisch's citizenship. Therefore, the newest (and only) fact regarding his citizenship is that he is a citizen of Malaysia.\n\nIntermediate answers: [Malaysia]\nAnswer: Malaysia",
+    "intermediate_answers": [
+      "Malaysia"
+    ],
+    "pred_answer": "Malaysia",
+    "gt_answer": [
+      "Malaysia"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6420,
+    "completion_tokens": 78
+  },
+  {
+    "query_id": 14,
+    "old_seqs": [
+      124
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 124,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 401: \"The author of Sidereus Nuncius is Samuel Beckett.\" There are no other facts in the provided text that mention the author of Sidereus Nuncius.\n\nIntermediate answers: [Samuel Beckett]\n\nAnswer: Samuel Beckett",
+    "intermediate_answers": [
+      "Samuel Beckett"
+    ],
+    "pred_answer": "Samuel Beckett",
+    "gt_answer": [
+      "Samuel Beckett"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6425,
+    "completion_tokens": 60
+  },
+  {
+    "query_id": 15,
+    "old_seqs": [
+      41
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 3,
+        "old_seq": 41,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the continent of Germany: fact 429 states \"France is located in the continent of Europe\" (not Germany), fact 435 states \"Germany is located in the continent of Africa\", and there are no other facts explicitly stating Germany's continent with a higher serial number. Therefore, based on the provided knowledge pool, the newest (and only) fact regarding Germany's location is 435.\n\nIntermediate answers: [Africa]\nAnswer: Africa",
+    "intermediate_answers": [
+      "Africa"
+    ],
+    "pred_answer": "Africa",
+    "gt_answer": [
+      "Africa"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6420,
+    "completion_tokens": 106
+  },
+  {
+    "query_id": 16,
+    "old_seqs": [
+      70
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 3,
+        "old_seq": 70,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 260: \"Kingdom of Ireland is affiliated with the religion of Zoroastrianism.\" There are no other facts in the provided text that mention the religion of the Kingdom of Ireland. Therefore, the newest (and only) fact is Zoroastrianism.\n\nIntermediate answers: [Zoroastrianism]\n\nAnswer: Zoroastrianism",
+    "intermediate_answers": [
+      "Zoroastrianism"
+    ],
+    "pred_answer": "Zoroastrianism",
+    "gt_answer": [
+      "Zoroastrianism"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6416,
+    "completion_tokens": 79
+  },
+  {
+    "query_id": 17,
+    "old_seqs": [
+      272
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 272,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains multiple facts regarding the origin of association football. Fact 291 states \"Surrey Senior Cup is associated with the sport of association football.\" Fact 296 states \"New Firm is associated with the sport of association football.\" Fact 105 states \"FC Vorskla Poltava is associated with the sport of association football.\" Fact 418 states \"Tunisia national football team is associated with the sport of basketball.\" Fact 438 states \"goalkeeper is associated with the sport of association football.\" Fact 19 states \"Alta IF is associated with the sport of association football.\" Fact 236 states \"Tunisia national football team is associated with the sport of association football.\" However, none of these facts explicitly state the country where association football was created. Reviewing the provided text for \"association football\" and \"created in\", there is no fact that explicitly links the creation of association football to a specific country. Re-evaluating the prompt's requirement to use the provided knowledge pool, I must identify if any fact mentions the creation of association football. Since no fact in the provided pool explicitly states the country of origin for association football, I will look for the most relevant information or acknowledge the limitation. Wait, looking closer at the provided text, there is no fact stating where association football was created.\n\nIntermediate answers: [None]\nAnswer: None",
+    "intermediate_answers": [
+      "None"
+    ],
+    "pred_answer": "None",
+    "gt_answer": [
+      "Italy"
+    ],
+    "exact_match": false,
+    "prompt_tokens": 6416,
+    "completion_tokens": 290
+  },
+  {
+    "query_id": 18,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: Searching the knowledge pool for \"Windows Phone\" reveals fact 221: \"Windows Phone was developed by Microsoft.\" There are no other facts mentioning the developer of Windows Phone with a higher serial number.\n\nIntermediate answers: [Microsoft]\nAnswer: Microsoft",
+    "intermediate_answers": [
+      "Microsoft"
+    ],
+    "pred_answer": "Microsoft",
+    "gt_answer": [
+      "Microsoft"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6476,
+    "completion_tokens": 54
+  },
+  {
+    "query_id": 19,
+    "old_seqs": [
+      85
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 85,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the chief executive officer of Microsoft: fact 188 (\"The chief executive officer of Microsoft is Steve Jobs.\") and fact 221 (\"Windows Phone was developed by Microsoft.\"). Fact 188 is the only one explicitly stating the CEO. Searching for other mentions of \"chief executive officer of Microsoft\" in the provided text, I find no other entries with a higher serial number.\n\nIntermediate answers: [Steve Jobs]\nAnswer: Steve Jobs",
+    "intermediate_answers": [
+      "Steve Jobs"
+    ],
+    "pred_answer": "Steve Jobs",
+    "gt_answer": [
+      "Steve Jobs"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6464,
+    "completion_tokens": 101
+  },
+  {
+    "query_id": 20,
+    "old_seqs": [
+      80
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 80,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 222: \"The chairperson of Harvard University is Peter Diamandis.\" There are no other facts in the provided text that mention the chairperson of Harvard University with a higher serial number.\n\nIntermediate answers: [Peter Diamandis]\nAnswer: Peter Diamandis",
+    "intermediate_answers": [
+      "Peter Diamandis"
+    ],
+    "pred_answer": "Peter Diamandis",
+    "gt_answer": [
+      "Peter Diamandis"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6424,
+    "completion_tokens": 63
+  },
+  {
+    "query_id": 21,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the founder of the Church of Scotland: fact 17 (\"Church of Scotland was founded by John Knox.\") and fact 413 (\"Karen Armstrong is affiliated with the religion of Church of Scotland.\"). Fact 17 is the only one identifying a founder.\n\nIntermediate answers: [John Knox]\nAnswer: John Knox",
+    "intermediate_answers": [
+      "John Knox"
+    ],
+    "pred_answer": "John Knox",
+    "gt_answer": [
+      "John Knox"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6453,
+    "completion_tokens": 75
+  },
+  {
+    "query_id": 22,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: Looking through the provided knowledge pool for \"Galwegians RFC\", I find fact 23: \"Galwegians RFC is associated with the sport of rugby union.\" There are no other facts mentioning Galwegians RFC with a higher serial number.\n\nIntermediate answers: [rugby union]\n\nAnswer: rugby union",
+    "intermediate_answers": [
+      "rugby union"
+    ],
+    "pred_answer": "rugby union",
+    "gt_answer": [
+      "rugby union"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6433,
+    "completion_tokens": 66
+  },
+  {
+    "query_id": 23,
+    "old_seqs": [
+      64
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 64,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the director of the American Broadcasting Company: \"392. The director of American Broadcasting Company is Ernst Heinkel.\" and \"429. The director of British Broadcasting Corporation is Narendra Modi.\" (Wait, checking for other mentions). Looking through the provided text, fact 392 is the only one mentioning the director of the American Broadcasting Company.\n\nIntermediate answers: [Ernst Heinkel]\nAnswer: Ernst Heinkel",
+    "intermediate_answers": [
+      "Ernst Heinkel"
+    ],
+    "pred_answer": "Ernst Heinkel",
+    "gt_answer": [
+      "Ernst Heinkel"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6418,
+    "completion_tokens": 97
+  },
+  {
+    "query_id": 24,
+    "old_seqs": [
+      292
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 292,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 451: \"Gennady Rozhdestvensky died in the city of United States of America.\" There are no other facts regarding the death city of Gennady Rozhdestvensky in the provided text.\n\nIntermediate answers: [United States of America]\nAnswer: United States of America",
+    "intermediate_answers": [
+      "United States of America"
+    ],
+    "pred_answer": "United States of America",
+    "gt_answer": [
+      "United States of America"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6409,
+    "completion_tokens": 70
+  },
+  {
+    "query_id": 25,
+    "old_seqs": [
+      21
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 21,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the capital of the Tang Empire: fact 177 (\"The capital of Tang Empire is Beaumont.\") and no other conflicting facts with a higher serial number.\n\nIntermediate answers: [Beaumont]\nAnswer: Beaumont",
+    "intermediate_answers": [
+      "Beaumont"
+    ],
+    "pred_answer": "Beaumont",
+    "gt_answer": [
+      "Beaumont"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6450,
+    "completion_tokens": 53
+  },
+  {
+    "query_id": 26,
+    "old_seqs": [
+      7
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 7,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the director of the British Broadcasting Corporation. Searching the provided knowledge pool for \"director of British Broadcasting Corporation\":\nFact 226: \"Dave Filoni is employed by British Broadcasting Corporation.\"\nFact 428: \"The director of British Broadcasting Corporation is Narendra Modi.\"\nSince fact 428 has a larger serial number than fact 226, it is the newest fact.\n\nIntermediate answers: [Narendra Modi]\nAnswer: Narendra Modi",
+    "intermediate_answers": [
+      "Narendra Modi"
+    ],
+    "pred_answer": "Narendra Modi",
+    "gt_answer": [
+      "Narendra Modi"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6413,
+    "completion_tokens": 103
+  },
+  {
+    "query_id": 27,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 313: \"Benjamin Mazar is a citizen of Israel.\" There are no other facts in the provided text that mention Benjamin Mazar's citizenship.\n\nIntermediate answers: [Israel]\nAnswer: Israel",
+    "intermediate_answers": [
+      "Israel"
+    ],
+    "pred_answer": "Israel",
+    "gt_answer": [
+      "Israel"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6439,
+    "completion_tokens": 51
+  },
+  {
+    "query_id": 28,
+    "old_seqs": [
+      289
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 289,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 298: \"The type of music that Michael Mantler plays is post-punk.\" There are no other facts in the provided text that mention Michael Mantler's musical style, so this is the most recent and only relevant fact.\n\nIntermediate answers: [post-punk]\nAnswer: post-punk",
+    "intermediate_answers": [
+      "post-punk"
+    ],
+    "pred_answer": "post-punk",
+    "gt_answer": [
+      "post-punk"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6472,
+    "completion_tokens": 72
+  },
+  {
+    "query_id": 29,
+    "old_seqs": [
+      128
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 128,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 270: \"Oscar Wilde died in the city of Guangzhou.\" There are no other facts in the provided text that mention the city where Oscar Wilde died. Therefore, the newest (and only) fact regarding this is Guangzhou.\n\nIntermediate answers: [Guangzhou]\nAnswer: Guangzhou",
+    "intermediate_answers": [
+      "Guangzhou"
+    ],
+    "pred_answer": "Guangzhou",
+    "gt_answer": [
+      "Guangzhou"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6420,
+    "completion_tokens": 67
+  },
+  {
+    "query_id": 30,
+    "old_seqs": [
+      160
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 160,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains multiple facts regarding the country where baseball was created: fact 174 (split-finger fastball is associated with baseball, but doesn't state the country), fact 213 (Darryl Strawberry is associated with baseball), fact 215 (Sandy Alderson is associated with baseball), fact 382 (baseball was created in the country of Japan), and fact 447 (Alta IF is associated with baseball). Fact 382 is the most recent and specific statement regarding the creation of baseball in the provided pool.\n\nIntermediate answers: [Japan]\n\nAnswer: Japan",
+    "intermediate_answers": [
+      "Japan"
+    ],
+    "pred_answer": "Japan",
+    "gt_answer": [
+      "Japan"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6469,
+    "completion_tokens": 130
+  },
+  {
+    "query_id": 31,
+    "old_seqs": [
+      192
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 192,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the citizenship of Ernst Heinkel: fact 203 (\"Ernst Heinkel is a citizen of Tang Empire\") and fact 392 (\"The director of American Broadcasting Company is Ernst Heinkel\"). Fact 203 is the only one that explicitly states his citizenship. Therefore, the newest (and only) fact regarding his citizenship is Tang Empire.\nIntermediate answers: [Tang Empire]\nAnswer: Tang Empire",
+    "intermediate_answers": [
+      "Tang Empire"
+    ],
+    "pred_answer": "Tang Empire",
+    "gt_answer": [
+      "Tang Empire"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6453,
+    "completion_tokens": 95
+  },
+  {
+    "query_id": 32,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the headquarters of The University of the Arts: fact 310 mentions the university in the context of Bill Frisell's education, and fact 387 explicitly states \"The headquarters of The University of the Arts is located in the city of Philadelphia.\" Since 387 is the largest serial number associated with this information, it is the correct answer.\n\nIntermediate answers: [Philadelphia]\nAnswer: Philadelphia",
+    "intermediate_answers": [
+      "Philadelphia"
+    ],
+    "pred_answer": "Philadelphia",
+    "gt_answer": [
+      "Philadelphia"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6486,
+    "completion_tokens": 94
+  },
+  {
+    "query_id": 33,
+    "old_seqs": [
+      359
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 359,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the origin of \"rap rock\": fact 403 (\"rap rock was created in the country of Russian Empire\") and fact 162 (\"post-punk was created in the country of United Kingdom\" - irrelevant). Fact 403 is the only one mentioning the origin of rap rock.\n\nIntermediate answers: [Russian Empire]\n\nAnswer: Russian Empire",
+    "intermediate_answers": [
+      "Russian Empire"
+    ],
+    "pred_answer": "Russian Empire",
+    "gt_answer": [
+      "Russian Empire"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6469,
+    "completion_tokens": 84
+  },
+  {
+    "query_id": 34,
+    "old_seqs": [
+      40
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 40,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 43: \"Christianity was founded in the city of Taipei.\" There are no other facts in the provided text that mention the founding location of Christianity. Therefore, based on the provided knowledge pool, the answer is Taipei.\n\nIntermediate answers: [Taipei]\nAnswer: Taipei",
+    "intermediate_answers": [
+      "Taipei"
+    ],
+    "pred_answer": "Taipei",
+    "gt_answer": [
+      "Taipei"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6415,
+    "completion_tokens": 65
+  },
+  {
+    "query_id": 35,
+    "old_seqs": [
+      242
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 242,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the official language of the United States of America: fact 296 (\"The official language of United States of America is German.\") and fact 185 (\"The official language of United Kingdom is English.\"). Fact 296 is the only one explicitly stating the official language of the United States of America.\n\nIntermediate answers: [German]\nAnswer: German",
+    "intermediate_answers": [
+      "German"
+    ],
+    "pred_answer": "German",
+    "gt_answer": [
+      "German"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6472,
+    "completion_tokens": 84
+  },
+  {
+    "query_id": 36,
+    "old_seqs": [
+      251
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 251,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks who performed \"Past Masters\". Looking through the provided knowledge pool, fact 364 states: \"Past Masters was performed by Madonna.\" There are no other facts in the provided text that mention \"Past Masters\". Therefore, the newest (and only) fact is 364.\n\nIntermediate answers: [Madonna]\nAnswer: Madonna",
+    "intermediate_answers": [
+      "Madonna"
+    ],
+    "pred_answer": "Madonna",
+    "gt_answer": [
+      "Madonna"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6448,
+    "completion_tokens": 74
+  },
+  {
+    "query_id": 37,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the capital of Japan: \"103. The capital of Japan is Tokyo.\" and \"440. Canada is located in the continent of Asia.\" (Wait, checking for other mentions). Fact 103 states \"The capital of Japan is Tokyo.\" There are no other facts in the provided text that contradict or update the capital of Japan with a higher serial number.\n\nIntermediate answers: [Tokyo]\nAnswer: Tokyo",
+    "intermediate_answers": [
+      "Tokyo"
+    ],
+    "pred_answer": "Tokyo",
+    "gt_answer": [
+      "Tokyo"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6430,
+    "completion_tokens": 97
+  },
+  {
+    "query_id": 38,
+    "old_seqs": [
+      163
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 163,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains multiple facts regarding the capital of France. Fact 155 states \"Charlie Hebdo was created in the country of France.\" Fact 171 states \"The capital of France is Harare.\" Fact 258 states \"Le Petit Parisien was created in the country of France.\" Fact 430 states \"France is located in the continent of Europe.\" Fact 171 is the only fact explicitly defining the capital of France, and it is the most recent relevant entry in the provided text.\n\nIntermediate answers: [Harare]\nAnswer: Harare",
+    "intermediate_answers": [
+      "Harare"
+    ],
+    "pred_answer": "Harare",
+    "gt_answer": [
+      "Harare"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6451,
+    "completion_tokens": 122
+  },
+  {
+    "query_id": 39,
+    "old_seqs": [
+      238
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 238,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 277: \"SteamOS was developed by ABB Group.\" There are no other facts in the provided text that mention the developer of SteamOS.\n\nIntermediate answers: [ABB Group]\nAnswer: ABB Group",
+    "intermediate_answers": [
+      "ABB Group"
+    ],
+    "pred_answer": "ABB Group",
+    "gt_answer": [
+      "ABB Group"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6451,
+    "completion_tokens": 51
+  },
+  {
+    "query_id": 40,
+    "old_seqs": [
+      173
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 173,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the headquarters of the University of Bucharest: fact 409 (\"The headquarters of University of Bucharest is located in the city of Ankara\") and fact 106 (\"Leonte Răutu is employed by University of Bucharest\"). Fact 409 is the only one specifying the location, and it is the newest relevant fact provided in the pool.\n\nIntermediate answers: [Ankara]\nAnswer: Ankara",
+    "intermediate_answers": [
+      "Ankara"
+    ],
+    "pred_answer": "Ankara",
+    "gt_answer": [
+      "Ankara"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6467,
+    "completion_tokens": 93
+  },
+  {
+    "query_id": 41,
+    "old_seqs": [
+      46
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 6,
+        "old_seq": 46,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains multiple facts regarding the sport associated with \"wide receiver\". Fact 3 states \"Hines Ward plays the position of wide receiver.\" Fact 252 states \"wide receiver is associated with the sport of rugby.\" Fact 321 states \"placekicker is associated with the sport of rugby.\" Fact 31 states \"quarterback is associated with the sport of American football.\" Fact 36 states \"Hines Ward plays the position of cornerback.\" Fact 227 states \"Irving Fryar plays the position of wide receiver.\" Since the rule is to find the newest fact (the one with the largest serial number) that addresses the question, I look for the highest serial number mentioning \"wide receiver\". Fact 252 is the latest mention of the association of the position \"wide receiver\" with a sport.\n\nIntermediate answers: [252]\nAnswer: rugby",
+    "intermediate_answers": [
+      "252"
+    ],
+    "pred_answer": "rugby",
+    "gt_answer": [
+      "rugby"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6404,
+    "completion_tokens": 188
+  },
+  {
+    "query_id": 42,
+    "old_seqs": [
+      3
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 3,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Hines Ward's position: fact 36 states \"Hines Ward plays the position of cornerback.\" There are no other facts mentioning Hines Ward's position with a higher serial number.\n\nIntermediate answers: [cornerback]\nAnswer: cornerback",
+    "intermediate_answers": [
+      "cornerback"
+    ],
+    "pred_answer": "cornerback",
+    "gt_answer": [
+      "cornerback"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6418,
+    "completion_tokens": 59
+  },
+  {
+    "query_id": 43,
+    "old_seqs": [
+      284
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 284,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains multiple facts regarding the capital of Australia. Fact 388 states \"The capital of Australia is Oderzo.\" There are no higher-numbered facts in the provided text that contradict this specific claim about the capital of Australia.\n\nIntermediate answers: [Oderzo]\n\nAnswer: Oderzo",
+    "intermediate_answers": [
+      "Oderzo"
+    ],
+    "pred_answer": "Oderzo",
+    "gt_answer": [
+      "Oderzo"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6462,
+    "completion_tokens": 65
+  },
+  {
+    "query_id": 44,
+    "old_seqs": [
+      373
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 373,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 442: \"Malaysia is located in the continent of Antarctica.\" There are no other facts regarding the continent of Malaysia in the provided text.\n\nIntermediate answers: [Antarctica]\nAnswer: Antarctica",
+    "intermediate_answers": [
+      "Antarctica"
+    ],
+    "pred_answer": "Antarctica",
+    "gt_answer": [
+      "Antarctica"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6415,
+    "completion_tokens": 49
+  },
+  {
+    "query_id": 45,
+    "old_seqs": [
+      10
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 10,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 301: \"The author of A Wizard of Earthsea is Pius XII.\" There are no other facts in the provided text that mention the author of \"A Wizard of Earthsea\". Therefore, the newest (and only) fact is 301.\n\nIntermediate answers: [Pius XII]\n\nAnswer: Pius XII",
+    "intermediate_answers": [
+      "Pius XII"
+    ],
+    "pred_answer": "Pius XII",
+    "gt_answer": [
+      "Pius XII"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6419,
+    "completion_tokens": 75
+  },
+  {
+    "query_id": 46,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 350: \"Free as a Bird was performed by The Beatles.\" There are no other facts in the provided text that mention \"Free as a Bird\" or its performer. Therefore, the newest (and only) fact is that it was performed by The Beatles.\n\nIntermediate answers: [The Beatles]\nAnswer: The Beatles",
+    "intermediate_answers": [
+      "The Beatles"
+    ],
+    "pred_answer": "The Beatles",
+    "gt_answer": [
+      "The Beatles"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6463,
+    "completion_tokens": 75
+  },
+  {
+    "query_id": 47,
+    "old_seqs": [
+      107
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 107,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two conflicting facts regarding the author of \"Our Mutual Friend\": fact 146 states \"The author of Our Mutual Friend is Charles Darwin\", and there are no other facts provided in the pool that contradict or update this specific claim with a higher serial number. Therefore, based on the provided knowledge pool, the author is Charles Darwin.\n\nIntermediate answers: [Charles Darwin]\nAnswer: Charles Darwin",
+    "intermediate_answers": [
+      "Charles Darwin"
+    ],
+    "pred_answer": "Charles Darwin",
+    "gt_answer": [
+      "Charles Darwin"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6420,
+    "completion_tokens": 86
+  },
+  {
+    "query_id": 48,
+    "old_seqs": [
+      216
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 216,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the country where basketball was created: \"168. center is associated with the sport of basketball\" (not relevant), \"349. basketball was created in the country of Soviet Union.\" There are no other facts in the provided text that state a different country for the creation of basketball with a higher serial number.\n\nIntermediate answers: [Soviet Union]\nAnswer: Soviet Union",
+    "intermediate_answers": [
+      "Soviet Union"
+    ],
+    "pred_answer": "Soviet Union",
+    "gt_answer": [
+      "Soviet Union"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6469,
+    "completion_tokens": 87
+  },
+  {
+    "query_id": 49,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: Looking through the provided knowledge pool for information regarding \"Hal Needham\", I find fact 73: \"Hal Needham is a citizen of United States of America.\" There are no other facts in the provided text that mention Hal Needham's citizenship to conflict with this.\n\nIntermediate answers: [United States of America]\nAnswer: United States of America",
+    "intermediate_answers": [
+      "United States of America"
+    ],
+    "pred_answer": "United States of America",
+    "gt_answer": [
+      "United States of America"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6466,
+    "completion_tokens": 72
+  },
+  {
+    "query_id": 50,
+    "old_seqs": [
+      4
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 4,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the location of Bengaluru: fact 188 (\"Hyderabad is located in the continent of Asia\") and fact 235 (\"Bengaluru is located in the continent of Oceania\"). Since the question asks for the location of Bengaluru and fact 235 has a higher serial number than any other mention of Bengaluru's location, I must use fact 235.\n\nIntermediate answers: [Oceania]\n\nAnswer: Oceania",
+    "intermediate_answers": [
+      "Oceania"
+    ],
+    "pred_answer": "Oceania",
+    "gt_answer": [
+      "Oceania"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6417,
+    "completion_tokens": 97
+  },
+  {
+    "query_id": 51,
+    "old_seqs": [
+      18
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 18,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 279: \"Slovakia national football team is associated with the sport of cricket.\" There are no other facts in the provided text that mention the Slovakia national football team. Therefore, the newest (and only) fact is that it is associated with cricket.\n\nIntermediate answers: [cricket]\nAnswer: cricket",
+    "intermediate_answers": [
+      "cricket"
+    ],
+    "pred_answer": "cricket",
+    "gt_answer": [
+      "cricket"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6416,
+    "completion_tokens": 72
+  },
+  {
+    "query_id": 52,
+    "old_seqs": [
+      115
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 115,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains multiple facts regarding the head of state of the United States of America. Fact 126 states the head of state is Connachta. Fact 433 states the name of the current head of the United States of America government is Donald Trump. Since 433 is a larger serial number than 126, it is the newest fact.\n\nIntermediate answers: [Donald Trump]\n\nAnswer: Donald Trump",
+    "intermediate_answers": [
+      "Donald Trump"
+    ],
+    "pred_answer": "Donald Trump",
+    "gt_answer": [
+      "Connachta"
+    ],
+    "exact_match": false,
+    "prompt_tokens": 6517,
+    "completion_tokens": 92
+  },
+  {
+    "query_id": 53,
+    "old_seqs": [
+      248
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 248,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Imelda Marcos's religion: fact 374 states \"Imelda Marcos is affiliated with the religion of atheism.\" There are no other facts in the provided text that mention Imelda Marcos's religion. Therefore, the only available information is that she is affiliated with atheism.\n\nIntermediate answers: [atheism]\nAnswer: atheism",
+    "intermediate_answers": [
+      "atheism"
+    ],
+    "pred_answer": "atheism",
+    "gt_answer": [
+      "atheism"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6472,
+    "completion_tokens": 81
+  },
+  {
+    "query_id": 54,
+    "old_seqs": [
+      243
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 243,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the type of music Dana International plays: fact 281 (\"The type of music that Dana International plays is Australian hip hop.\") and fact 338 (\"Born in the U.S.A. was performed by Dana International.\"). Fact 281 is the only one specifying the music genre.\n\nIntermediate answers: [Australian hip hop]\nAnswer: Australian hip hop",
+    "intermediate_answers": [
+      "Australian hip hop"
+    ],
+    "pred_answer": "Australian hip hop",
+    "gt_answer": [
+      "Australian hip hop"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6459,
+    "completion_tokens": 87
+  },
+  {
+    "query_id": 55,
+    "old_seqs": [
+      244
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 3,
+        "old_seq": 244,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 299: \"Sable is a citizen of Czech Republic.\" There are no other facts in the provided text that mention Sable's citizenship. Therefore, the newest (and only) fact regarding Sable's citizenship is that she is a citizen of the Czech Republic.\n\nIntermediate answers: [Czech Republic]\n\nAnswer: Czech Republic",
+    "intermediate_answers": [
+      "Czech Republic"
+    ],
+    "pred_answer": "Czech Republic",
+    "gt_answer": [
+      "Czech Republic"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6417,
+    "completion_tokens": 76
+  },
+  {
+    "query_id": 56,
+    "old_seqs": [
+      155
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 155,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the country of origin for Charlie Hebdo: fact 358 states \"Charlie Hebdo was created in the country of Italy.\" Since there are no other facts with a higher serial number for this specific entity, 358 is the newest and only relevant fact.\n\nIntermediate answers: [Italy]\nAnswer: Italy",
+    "intermediate_answers": [
+      "Italy"
+    ],
+    "pred_answer": "Italy",
+    "gt_answer": [
+      "Italy"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6416,
+    "completion_tokens": 75
+  },
+  {
+    "query_id": 57,
+    "old_seqs": [
+      120
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 120,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Elvis Presley's marriage: \"139. Elvis Presley is married to Charles the Bold.\" and \"234. Yves Montand is married to Natalie Portman.\" (Wait, checking for other mentions). Looking through the provided text, fact 139 states \"Elvis Presley is married to Charles the Bold.\" There are no other facts in the provided pool that contradict or update the marriage status of Elvis Presley with a higher serial number.\n\nIntermediate answers: [Charles the Bold]\nAnswer: Charles the Bold",
+    "intermediate_answers": [
+      "Charles the Bold"
+    ],
+    "pred_answer": "Charles the Bold",
+    "gt_answer": [
+      "Charles the Bold"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6505,
+    "completion_tokens": 114
+  },
+  {
+    "query_id": 58,
+    "old_seqs": [
+      413
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 413,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the performer of the character Hermione Granger. Searching the provided knowledge pool for \"Hermione Granger\", I find fact 426: \"Hermione Granger was performed by Kylie Minogue.\" Since there are no other facts in the provided pool that contradict this or provide a newer serial number for this specific information, I will use this fact.\n\nIntermediate answers: [Kylie Minogue]\n\nAnswer: Kylie Minogue",
+    "intermediate_answers": [
+      "Kylie Minogue"
+    ],
+    "pred_answer": "Kylie Minogue",
+    "gt_answer": [
+      "Kylie Minogue"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6515,
+    "completion_tokens": 90
+  },
+  {
+    "query_id": 59,
+    "old_seqs": [
+      194
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 194,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 346: \"Bo Ryan is associated with the sport of association football.\" There are no other facts in the provided text that mention Bo Ryan or associate him with a different sport. Therefore, the newest (and only) fact regarding Bo Ryan's associated sport is association football.\n\nIntermediate answers: [association football]\n\nAnswer: association football",
+    "intermediate_answers": [
+      "association football"
+    ],
+    "pred_answer": "association football",
+    "gt_answer": [
+      "association football"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6477,
+    "completion_tokens": 78
+  },
+  {
+    "query_id": 60,
+    "old_seqs": [
+      90
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 3,
+        "old_seq": 90,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the type of music John McVie plays based on the provided knowledge pool. I need to find the fact with the largest serial number related to John McVie's music.\nFact 415: \"The type of music that John McVie plays is rap rock.\"\nThere are no other facts in the provided text that mention John McVie's music.\nIntermediate answers: [rap rock]\nAnswer: rap rock",
+    "intermediate_answers": [
+      "rap rock"
+    ],
+    "pred_answer": "rap rock",
+    "gt_answer": [
+      "rap rock"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6472,
+    "completion_tokens": 94
+  },
+  {
+    "query_id": 61,
+    "old_seqs": [
+      6
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 6,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 434: \"Rogério Ceni plays the position of flanker.\" There are no other facts in the provided text that mention Rogério Ceni's position.\n\nIntermediate answers: [flanker]\n\nAnswer: flanker",
+    "intermediate_answers": [
+      "flanker"
+    ],
+    "pred_answer": "flanker",
+    "gt_answer": [
+      "flanker"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6419,
+    "completion_tokens": 56
+  },
+  {
+    "query_id": 62,
+    "old_seqs": [
+      109
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 109,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the CEO of Twitter: \"275. The chief executive officer of Twitter is Bernard Arnault.\" There are no other facts mentioning the CEO of Twitter with a higher serial number.\n\nIntermediate answers: [Bernard Arnault]\nAnswer: Bernard Arnault",
+    "intermediate_answers": [
+      "Bernard Arnault"
+    ],
+    "pred_answer": "Bernard Arnault",
+    "gt_answer": [
+      "Bernard Arnault"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6476,
+    "completion_tokens": 64
+  },
+  {
+    "query_id": 63,
+    "old_seqs": [
+      122
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 3,
+        "old_seq": 122,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 157: \"Kylie Minogue speaks the language of German.\" There are no other facts in the provided text that mention the language spoken by Kylie Minogue, so this is the only and therefore the newest fact available.\nIntermediate answers: [German]\nAnswer: German",
+    "intermediate_answers": [
+      "German"
+    ],
+    "pred_answer": "German",
+    "gt_answer": [
+      "German"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6517,
+    "completion_tokens": 65
+  },
+  {
+    "query_id": 64,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 213: \"Darryl Strawberry is associated with the sport of baseball.\" There are no other facts in the provided text that mention Darryl Strawberry, so this is the only and therefore the newest information available regarding his associated sport.\n\nIntermediate answers: [baseball]\n\nAnswer: baseball",
+    "intermediate_answers": [
+      "baseball"
+    ],
+    "pred_answer": "baseball",
+    "gt_answer": [
+      "baseball"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6437,
+    "completion_tokens": 66
+  },
+  {
+    "query_id": 65,
+    "old_seqs": [
+      78
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 3,
+        "old_seq": 78,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the sport associated with \"placekicker\": fact 321 (\"placekicker is associated with the sport of rugby\") and fact 420 (\"Blair Walsh plays the position of placekicker\"). Fact 321 explicitly links the position to a sport. Since there are no higher-numbered facts contradicting the association of placekicker with rugby, I will use the information provided in fact 321.\n\nIntermediate answers: [rugby]\nAnswer: rugby",
+    "intermediate_answers": [
+      "rugby"
+    ],
+    "pred_answer": "rugby",
+    "gt_answer": [
+      "rugby"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6404,
+    "completion_tokens": 109
+  },
+  {
+    "query_id": 66,
+    "old_seqs": [
+      152
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 3,
+        "old_seq": 152,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Stephen McNeil: fact 445 (\"The chairperson of Congolese Party of Labour is Stephen McNeil\") and fact 320 (\"Stephen McNeil works in the field of journalist\"). Following the rule to select the newest fact (the one with the larger serial number), fact 445 is the most recent. However, fact 445 identifies his role as chairperson, while fact 320 identifies his field of work. Re-evaluating the question \"What kind of work does Stephen McNeil do?\", fact 320 explicitly states he works in the field of journalist.\n\nIntermediate answers: [journalist]\nAnswer: journalist",
+    "intermediate_answers": [
+      "journalist"
+    ],
+    "pred_answer": "journalist",
+    "gt_answer": [
+      "journalist"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6479,
+    "completion_tokens": 139
+  },
+  {
+    "query_id": 67,
+    "old_seqs": [
+      38
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 38,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 226: \"Dave Filoni is employed by British Broadcasting Corporation.\" There are no other facts in the provided text that mention Dave Filoni's employer. Therefore, the newest (and only) fact regarding his employer is the British Broadcasting Corporation.\n\nIntermediate answers: [British Broadcasting Corporation]\n\nAnswer: British Broadcasting Corporation",
+    "intermediate_answers": [
+      "British Broadcasting Corporation"
+    ],
+    "pred_answer": "British Broadcasting Corporation",
+    "gt_answer": [
+      "British Broadcasting Corporation"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6452,
+    "completion_tokens": 76
+  },
+  {
+    "query_id": 68,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the continent where San Francisco is located based on the provided knowledge pool. I need to find the fact with the largest serial number that mentions San Francisco's location.\n- Fact 179: \"Steve Jobs was born in the city of San Francisco.\" (Does not mention continent)\n- Fact 397: \"San Francisco is located in the continent of North America.\"\nThere are no other facts in the provided text that mention the continent of San Francisco with a higher serial number.\n\nIntermediate answers: [North America]\nAnswer: North America",
+    "intermediate_answers": [
+      "North America"
+    ],
+    "pred_answer": "North America",
+    "gt_answer": [
+      "North America"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6418,
+    "completion_tokens": 121
+  },
+  {
+    "query_id": 69,
+    "old_seqs": [
+      237
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 237,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the founding location of Canadair: \"265. Canadair was founded in the city of Tucson.\" and there are no other facts mentioning the founding location of Canadair with a higher serial number.\n\nIntermediate answers: [Tucson]\nAnswer: Tucson",
+    "intermediate_answers": [
+      "Tucson"
+    ],
+    "pred_answer": "Tucson",
+    "gt_answer": [
+      "Tucson"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6414,
+    "completion_tokens": 63
+  },
+  {
+    "query_id": 70,
+    "old_seqs": [
+      196
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 196,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 356: \"The company that produced AP1000 is Canadair.\" There are no other facts in the provided text that mention the producer of AP1000.\n\nIntermediate answers: [Canadair]\n\nAnswer: Canadair",
+    "intermediate_answers": [
+      "Canadair"
+    ],
+    "pred_answer": "Canadair",
+    "gt_answer": [
+      "Canadair"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6472,
+    "completion_tokens": 60
+  },
+  {
+    "query_id": 71,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the citizenship of Ayumi Hamasaki: fact 230 (\"Rocket Man was performed by Ayumi Hamasaki\") and fact 293 (\"Ayumi Hamasaki is a citizen of Japan\"). Fact 293 is the newest (largest serial number) and explicitly states her citizenship.\n\nIntermediate answers: [Japan]\nAnswer: Japan",
+    "intermediate_answers": [
+      "Japan"
+    ],
+    "pred_answer": "Japan",
+    "gt_answer": [
+      "Japan"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6435,
+    "completion_tokens": 80
+  },
+  {
+    "query_id": 72,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 419: \"Blair Walsh plays the position of placekicker.\" There are no other facts in the provided text that mention Blair Walsh or his position.\n\nIntermediate answers: [placekicker]\nAnswer: placekicker",
+    "intermediate_answers": [
+      "placekicker"
+    ],
+    "pred_answer": "placekicker",
+    "gt_answer": [
+      "placekicker"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6417,
+    "completion_tokens": 56
+  },
+  {
+    "query_id": 73,
+    "old_seqs": [
+      141
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 141,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the spouse of Tony Blair based on the provided knowledge pool. I need to search for facts mentioning \"Tony Blair\" and identify the one with the highest serial number to resolve any potential conflicts.\nFact 425: \"Tony Blair is married to Alan Jay Lerner.\"\nFact 352: \"The name of the current head of the Council of People's Commissars government is Tony Blair.\"\nFact 425 is the only fact in the pool that specifies a spouse for Tony Blair.\n\nIntermediate answers: [Alan Jay Lerner]\nAnswer: Alan Jay Lerner",
+    "intermediate_answers": [
+      "Alan Jay Lerner"
+    ],
+    "pred_answer": "Alan Jay Lerner",
+    "gt_answer": [
+      "Alan Jay Lerner"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6437,
+    "completion_tokens": 125
+  },
+  {
+    "query_id": 74,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the author of \"Endymion\" based on the provided knowledge pool. Scanning the provided text, fact 180 states: \"The author of Endymion is John Keats.\" There are no conflicting facts regarding the author of Endymion in the provided text.\n\nIntermediate answers: [John Keats]\nAnswer: John Keats",
+    "intermediate_answers": [
+      "John Keats"
+    ],
+    "pred_answer": "John Keats",
+    "gt_answer": [
+      "John Keats"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6435,
+    "completion_tokens": 77
+  },
+  {
+    "query_id": 75,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 147: \"The author of Lady Windermere's Fan is Oscar Wilde.\" There are no other facts in the provided text that mention the author of \"Lady Windermere's Fan\" with a higher serial number.\n\nIntermediate answers: [Oscar Wilde]\nAnswer: Oscar Wilde",
+    "intermediate_answers": [
+      "Oscar Wilde"
+    ],
+    "pred_answer": "Oscar Wilde",
+    "gt_answer": [
+      "Oscar Wilde"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6480,
+    "completion_tokens": 69
+  },
+  {
+    "query_id": 76,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the current head of the Japan government based on the provided knowledge pool. I need to find all facts related to the head of the Japan government and select the one with the highest serial number.\n- Fact 202: \"The name of the current head of the Japan government is Shinzō Abe.\"\nThere are no other facts in the provided text that mention the head of the Japan government.\nIntermediate answers: [Shinzō Abe]\nAnswer: Shinzō Abe",
+    "intermediate_answers": [
+      "Shinzō Abe"
+    ],
+    "pred_answer": "Shinzō Abe",
+    "gt_answer": [
+      "Shinzō Abe"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6536,
+    "completion_tokens": 105
+  },
+  {
+    "query_id": 77,
+    "old_seqs": [
+      54
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 54,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the chairperson of the Congolese Party of Labour based on the provided knowledge pool. Searching the text for \"Congolese Party of Labour\", I find fact 446: \"The chairperson of Congolese Party of Labour is Stephen McNeil. 446.\" There are no other facts mentioning the chairperson of this party with a higher serial number.\nIntermediate answers: [Stephen McNeil]\nAnswer: Stephen McNeil",
+    "intermediate_answers": [
+      "Stephen McNeil"
+    ],
+    "pred_answer": "Stephen McNeil",
+    "gt_answer": [
+      "Stephen McNeil"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6446,
+    "completion_tokens": 87
+  },
+  {
+    "query_id": 78,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the sport associated with \"flanker\": fact 434 (\"Rogério Ceni plays the position of flanker\") and fact 258 (\"flanker is associated with the sport of rugby union\"). Fact 258 is the relevant entry defining the sport association for the position of flanker.\n\nIntermediate answers: [rugby union]\nAnswer: rugby union",
+    "intermediate_answers": [
+      "rugby union"
+    ],
+    "pred_answer": "rugby union",
+    "gt_answer": [
+      "rugby union"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6431,
+    "completion_tokens": 86
+  },
+  {
+    "query_id": 79,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 190: \"The capital of Czech Republic is Prague.\" There are no other facts in the provided text that mention the capital of the Czech Republic with a higher serial number.\nIntermediate answers: [Prague]\nAnswer: Prague",
+    "intermediate_answers": [
+      "Prague"
+    ],
+    "pred_answer": "Prague",
+    "gt_answer": [
+      "Prague"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6464,
+    "completion_tokens": 56
+  },
+  {
+    "query_id": 80,
+    "old_seqs": [
+      14
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 14,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the position Lisa Leslie plays based on the provided knowledge pool. I need to search for \"Lisa Leslie\" in the provided text and identify the fact with the highest serial number if there are conflicts. Fact 170 states: \"Lisa Leslie plays the position of goaltender. 170.\" There are no other facts mentioning Lisa Leslie's position in the provided text.\n\nIntermediate answers: [goaltender]\n\nAnswer: goaltender",
+    "intermediate_answers": [
+      "goaltender"
+    ],
+    "pred_answer": "goaltender",
+    "gt_answer": [
+      "goaltender"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6422,
+    "completion_tokens": 97
+  },
+  {
+    "query_id": 81,
+    "old_seqs": [
+      159
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 159,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the head of state of the Soviet Union: fact 156 (\"The capital of Soviet Union is Moscow\") and fact 179 (\"The capital of Soviet Union is Russellville\")—wait, looking for \"head of state\": fact 156 is about capital, fact 365 (\"The name of the current head of state in Soviet Union is Elizabeth II.\") is the relevant entry. There are no other entries for the head of state of the Soviet Union with a higher serial number.\n\nIntermediate answers: [Elizabeth II]\nAnswer: Elizabeth II",
+    "intermediate_answers": [
+      "Elizabeth II"
+    ],
+    "pred_answer": "Elizabeth II",
+    "gt_answer": [
+      "Elizabeth II"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6516,
+    "completion_tokens": 126
+  },
+  {
+    "query_id": 82,
+    "old_seqs": [
+      24
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 24,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 386: \"Ferdinand von Richthofen is a citizen of Canada.\" There are no other facts regarding the citizenship of Ferdinand von Richthofen in the provided text.\n\nIntermediate answers: [Canada]\nAnswer: Canada",
+    "intermediate_answers": [
+      "Canada"
+    ],
+    "pred_answer": "Canada",
+    "gt_answer": [
+      "Canada"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6454,
+    "completion_tokens": 56
+  },
+  {
+    "query_id": 83,
+    "old_seqs": [
+      266
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 266,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Karen Armstrong's religious affiliation: fact 412 states \"Karen Armstrong is affiliated with the religion of Church of Scotland.\" There are no other facts in the provided text that mention Karen Armstrong. Therefore, the newest (and only) fact is 412.\n\nIntermediate answers: [Church of Scotland]\nAnswer: Church of Scotland",
+    "intermediate_answers": [
+      "Church of Scotland"
+    ],
+    "pred_answer": "Church of Scotland",
+    "gt_answer": [
+      "Church of Scotland"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6448,
+    "completion_tokens": 79
+  },
+  {
+    "query_id": 84,
+    "old_seqs": [
+      256
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 256,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the creator of Vito Corleone based on the provided knowledge pool. Searching the pool for \"Vito Corleone\", I find fact 390: \"Vito Corleone was created by Nobuhiro Watsuki.\" There are no other facts in the provided text that mention the creator of Vito Corleone, so this is the only and therefore the newest fact available.\n\nIntermediate answers: [Nobuhiro Watsuki]\n\nAnswer: Nobuhiro Watsuki",
+    "intermediate_answers": [
+      "Nobuhiro Watsuki"
+    ],
+    "pred_answer": "Nobuhiro Watsuki",
+    "gt_answer": [
+      "Nobuhiro Watsuki"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6504,
+    "completion_tokens": 104
+  },
+  {
+    "query_id": 85,
+    "old_seqs": [
+      185
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 185,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the capital of Romania: \"449. The capital of Romania is Rajanpur.\" and there are no other facts mentioning the capital of Romania with a higher serial number.\n\nIntermediate answers: [Rajanpur]\nAnswer: Rajanpur",
+    "intermediate_answers": [
+      "Rajanpur"
+    ],
+    "pred_answer": "Rajanpur",
+    "gt_answer": [
+      "Rajanpur"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6463,
+    "completion_tokens": 60
+  },
+  {
+    "query_id": 86,
+    "old_seqs": [
+      228
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 228,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains multiple facts about the continent where India is located. Fact 187 states \"Hyderabad is located in the continent of Asia\" (implying India is in Asia), but fact 280 explicitly states \"India is located in the continent of Africa.\" Fact 374 states \"Malaysia is located in the continent of Asia,\" but does not mention India. Looking for the highest serial number regarding India's location, fact 280 (India is located in the continent of Africa) has a higher serial number than fact 187.\n\nIntermediate answers: [Africa]\nAnswer: Africa",
+    "intermediate_answers": [
+      "Africa"
+    ],
+    "pred_answer": "Africa",
+    "gt_answer": [
+      "Africa"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6411,
+    "completion_tokens": 131
+  },
+  {
+    "query_id": 87,
+    "old_seqs": [
+      125
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 125,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding the death of Olga of Kiev: \"176. Igor of Kiev is married to Olga of Kiev.\" and \"451. Olga of Kiev died in the city of Rodez.\" Since 451 is the larger serial number, it is the newest fact.\n\nIntermediate answers: [Rodez]\nAnswer: Rodez",
+    "intermediate_answers": [
+      "Rodez"
+    ],
+    "pred_answer": "Rodez",
+    "gt_answer": [
+      "Rodez"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6409,
+    "completion_tokens": 79
+  },
+  {
+    "query_id": 88,
+    "old_seqs": [
+      224
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 224,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the founder of the Sasanian Empire based on the provided knowledge pool. I need to search for facts related to the \"Sasanian Empire\" and identify the one with the highest serial number to resolve any potential conflicts. Fact 264 states: \"Sasanian Empire was founded by Walter Chrysler.\" There are no other facts in the provided text mentioning the founder of the Sasanian Empire.\n\nIntermediate answers: [Walter Chrysler]\nAnswer: Walter Chrysler",
+    "intermediate_answers": [
+      "Walter Chrysler"
+    ],
+    "pred_answer": "Walter Chrysler",
+    "gt_answer": [
+      "Walter Chrysler"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6446,
+    "completion_tokens": 101
+  },
+  {
+    "query_id": 89,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 5: \"Pedro Pierluisi worked in the city of Washington, D.C..\" There are no other facts in the provided text that mention the city where Pedro Pierluisi worked. Therefore, the newest (and only) fact regarding this is Washington, D.C.\n\nIntermediate answers: [Washington, D.C.]\nAnswer: Washington, D.C.",
+    "intermediate_answers": [
+      "Washington",
+      "D.C"
+    ],
+    "pred_answer": "Washington, D.C.",
+    "gt_answer": [
+      "Washington, D.C."
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6465,
+    "completion_tokens": 84
+  },
+  {
+    "query_id": 90,
+    "old_seqs": [
+      291
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 291,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 315: \"Surrey Senior Cup is associated with the sport of basketball.\" There are no other facts in the provided text that mention the \"Surrey Senior Cup\". Therefore, the newest (and only) fact is 315.\n\nIntermediate answers: [basketball]\nAnswer: basketball",
+    "intermediate_answers": [
+      "basketball"
+    ],
+    "pred_answer": "basketball",
+    "gt_answer": [
+      "basketball"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6419,
+    "completion_tokens": 69
+  },
+  {
+    "query_id": 91,
+    "old_seqs": [
+      176
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 176,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Narendra Modi's citizenship: fact 217 (\"Narendra Modi is a citizen of Australia\") and fact 429 (which mentions Narendra Modi as the director of the British Broadcasting Corporation, but does not explicitly state his citizenship). Fact 217 is the only one defining his citizenship.\n\nIntermediate answers: [Australia]\nAnswer: Australia",
+    "intermediate_answers": [
+      "Australia"
+    ],
+    "pred_answer": "Australia",
+    "gt_answer": [
+      "Australia"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6420,
+    "completion_tokens": 82
+  },
+  {
+    "query_id": 92,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 8: \"Victoria Beckham is married to David Beckham.\" There are no other facts in the provided text that mention Victoria Beckham's spouse.\n\nIntermediate answers: [David Beckham]\nAnswer: David Beckham",
+    "intermediate_answers": [
+      "David Beckham"
+    ],
+    "pred_answer": "David Beckham",
+    "gt_answer": [
+      "David Beckham"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6451,
+    "completion_tokens": 49
+  },
+  {
+    "query_id": 93,
+    "old_seqs": [
+      204
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 204,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Charles Messier's citizenship: \"343. Charles Messier is a citizen of Iran.\" and there are no other facts mentioning Charles Messier's citizenship with a higher serial number. Therefore, the newest (and only) fact is that he is a citizen of Iran.\nIntermediate answers: [Iran]\nAnswer: Iran",
+    "intermediate_answers": [
+      "Iran"
+    ],
+    "pred_answer": "Iran",
+    "gt_answer": [
+      "Iran"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6453,
+    "completion_tokens": 78
+  },
+  {
+    "query_id": 94,
+    "old_seqs": [
+      66
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 66,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The question asks for the creator of Rand al'Thor based on the provided knowledge pool. Searching the text for \"Rand al'Thor\", I find fact 327: \"Rand al'Thor was created by Ferdowsi. 327.\" There are no other facts mentioning Rand al'Thor in the provided text.\n\nIntermediate answers: [Ferdowsi]\nAnswer: Ferdowsi",
+    "intermediate_answers": [
+      "Ferdowsi"
+    ],
+    "pred_answer": "Ferdowsi",
+    "gt_answer": [
+      "Ferdowsi"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6419,
+    "completion_tokens": 86
+  },
+  {
+    "query_id": 95,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: Searching the provided knowledge pool for \"Mike D'Antoni\", I find fact 110: \"Mike D'Antoni plays the position of point guard.\" There are no other facts in the provided text that mention Mike D'Antoni's position to create a conflict.\n\nIntermediate answers: [point guard]\nAnswer: point guard",
+    "intermediate_answers": [
+      "point guard"
+    ],
+    "pred_answer": "point guard",
+    "gt_answer": [
+      "point guard"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6436,
+    "completion_tokens": 73
+  },
+  {
+    "query_id": 96,
+    "old_seqs": [
+      55
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 55,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains the fact \"Colin Irwin is a citizen of Israel. 442.\" Since this is the only fact provided regarding Colin Irwin's citizenship, it is the newest and only relevant information.\n\nIntermediate answers: [Israel]\n\nAnswer: Israel",
+    "intermediate_answers": [
+      "Israel"
+    ],
+    "pred_answer": "Israel",
+    "gt_answer": [
+      "Israel"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6475,
+    "completion_tokens": 56
+  },
+  {
+    "query_id": 97,
+    "old_seqs": [
+      61
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 2,
+        "old_seq": 61,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 231: \"Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp.\" There are no other facts in the provided text that mention Walter Chrysler's child.\n\nIntermediate answers: [Charles Frederick, Duke of Holstein-Gottorp]\nAnswer: Charles Frederick, Duke of Holstein-Gottorp",
+    "intermediate_answers": [
+      "Charles Frederick",
+      "Duke of Holstein-Gottorp"
+    ],
+    "pred_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "gt_answer": [
+      "Charles Frederick, Duke of Holstein-Gottorp"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6454,
+    "completion_tokens": 76
+  },
+  {
+    "query_id": 98,
+    "old_seqs": [
+      164
+    ],
+    "n_old_facts_removed": 1,
+    "removal_log": [
+      {
+        "rank": 1,
+        "old_seq": 164,
+        "n_removed": 1
+      }
+    ],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains two facts regarding Charles Darwin's marriage: \"132. Charles Dickens is married to Catherine Dickens.\" (which does not mention Darwin), \"147. The author of Our Mutual Friend is Charles Darwin.\" and \"335. Charles Darwin is married to Amala Paul.\" Fact 335 has a higher serial number than any other fact mentioning Charles Darwin's marriage.\n\nIntermediate answers: [Amala Paul]\nAnswer: Amala Paul",
+    "intermediate_answers": [
+      "Amala Paul"
+    ],
+    "pred_answer": "Amala Paul",
+    "gt_answer": [
+      "Amala Paul"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6476,
+    "completion_tokens": 101
+  },
+  {
+    "query_id": 99,
+    "old_seqs": [],
+    "n_old_facts_removed": 0,
+    "removal_log": [],
+    "n_passages_with_content": 10,
+    "raw_output": "Thought: The knowledge pool contains fact 227: \"Irving Fryar plays the position of wide receiver.\" There are no other facts in the provided text that mention Irving Fryar's position, so this is the only and therefore the newest fact available.\n\nIntermediate answers: [wide receiver]\n\nAnswer: wide receiver",
+    "intermediate_answers": [
+      "wide receiver"
+    ],
+    "pred_answer": "wide receiver",
+    "gt_answer": [
+      "wide receiver"
+    ],
+    "exact_match": true,
+    "prompt_tokens": 6431,
+    "completion_tokens": 67
+  }
+]

@@ -1,0 +1,100 @@
+======================================================================
+FC-SH (100 questions) — Zep mechanism summary
+======================================================================
+
+Total: 100  has_pair: 74  no_conflict_pair: 26  other: 0
+Zep overall EM: 70/100
+
+──────────────────────────────────────────────────────────────────────
+[has_pair, n=74]   ideal: GT retrieved (valid), Old retrieved AND marked invalid
+──────────────────────────────────────────────────────────────────────
+  retrieval recall (3 scopes — top-10 each):
+  scope                   GT in         Old in           both
+  edges           50/74 = 67.6%  51/74 = 68.9%  38/74 = 51.4%
+  nodes           29/74 = 39.2%  40/74 = 54.1%  15/74 = 20.3%
+  episodes       74/74 = 100.0% 74/74 = 100.0% 74/74 = 100.0%
+  any            74/74 = 100.0% 74/74 = 100.0% 74/74 = 100.0%
+
+  edges-only breakdown (for supersession analysis below):
+    only GT in edges:   12
+    only Old in edges:  13
+    neither in edges:   11
+
+  supersession outcome on both-retrieved subset (n=38):
+    Old marked invalid (correct):           7/38 = 18.4%
+    GT NOT marked invalid (correct):        24/38 = 63.2%
+    Perfect: Old invalid AND GT active:     6/38 = 15.8%
+    GT falsely marked invalid (error):      14
+
+  Zep EM conditional on supersession:
+    when Old invalid+GT active (perfect):    EM=6/6 = 100.0%
+    when Old still active (no supersession): EM=16/31 = 51.6%
+
+  failure-mode breakdown (has_pair):
+    correct                44
+    older_fact             27
+    hallucination_or_other 3
+
+──────────────────────────────────────────────────────────────────────
+[no_conflict_pair, n=26]   ideal: GT retrieved (valid), no false invalidations
+──────────────────────────────────────────────────────────────────────
+  GT in edges   : 20/26 = 76.9%
+  GT in nodes   : 19/26 = 73.1%
+  GT in episodes: 26/26 = 100.0%
+  GT in any     : 26/26 = 100.0%
+  GT marked invalid (wrong):   2/26
+  any edge marked invalid in top-10: 19/26
+  total OTHER edges marked invalid (false positives, summed): 47
+  Zep EM: 26/26
+
+======================================================================
+FC-MH (100 questions, hop-level mechanism) — Zep mechanism summary
+======================================================================
+
+Questions: 100, total hops: 254
+  has_pair hops: 188
+  no_conflict_pair hops: 66
+Zep overall EM: 25/100
+
+──────────────────────────────────────────────────────────────────────
+[has_pair hops, n=188]
+──────────────────────────────────────────────────────────────────────
+  retrieval recall (3 scopes, hop-level):
+  scope                     GT in           Old in             both
+  edges           100/188 = 53.2%  102/188 = 54.3%   91/188 = 48.4%
+  nodes            78/188 = 41.5%   66/188 = 35.1%   28/188 = 14.9%
+  episodes        176/188 = 93.6%  177/188 = 94.1%  167/188 = 88.8%
+  any             181/188 = 96.3%  185/188 = 98.4%  178/188 = 94.7%
+
+  edges-only breakdown:
+    only GT:   9
+    only Old:  11
+    neither:   77
+
+  supersession outcome on both-retrieved hops (n=91):
+    Old marked invalid (correct):       48/91 = 52.7%
+    GT NOT marked invalid (correct):    88/91 = 96.7%
+    Perfect (Old invalid AND GT active):47/91 = 51.6%
+    GT falsely marked invalid (error):  3
+
+──────────────────────────────────────────────────────────────────────
+[per-question rollup: all has_pair hops perfectly superseded?]
+──────────────────────────────────────────────────────────────────────
+  Questions with has_pair hops:    100
+    all hops perfectly superseded: 14 (EM=10/14)
+    some hops perfectly superseded:30 (EM=9/30)
+    no hops perfectly superseded:  56 (EM=6/56)
+
+  failure-mode breakdown (question-level):
+    older_fact             40
+    hallucination_or_other 35
+    correct                25
+
+──────────────────────────────────────────────────────────────────────
+[no_conflict_pair hops, n=66]
+──────────────────────────────────────────────────────────────────────
+  GT in edges   : 37/66 = 56.1%
+  GT in nodes   : 41/66 = 62.1%
+  GT in episodes: 63/66 = 95.5%
+  GT in any     : 65/66 = 98.5%
+  GT marked invalid (wrong):    1/66
