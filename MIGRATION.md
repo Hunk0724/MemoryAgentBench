@@ -1,8 +1,10 @@
 # Migration Guide — Restoring this repo on a new machine
 
 > 從 GX10-2 遷移到任何相容硬體的完整步驟。
-> Last updated: 2026-05-07
+> Last updated: 2026-05-11
 > Maintainer: Hunk0724
+>
+> **2026-05-11 update**: 加 §11 v1 method 實作計畫(下次 GB10 開機要做的事)+ §12 baseline integrity 報告(vs upstream MemoryAgentBench diff 結論)
 
 ## 1. 這個 repo 是什麼
 
@@ -194,6 +196,189 @@ python analysis/profile_nvembed_vram.py
 # 看實驗結果完整 breakdown
 python analysis/aligned_full_breakdown.py
 ```
+
+---
+
+## §11 v1 Method 實作計畫 (2026-05-11 加, 下次 GB10 開機後執行)
+
+### 11.1 上下文 (給 GB10 的 Claude Code 看)
+
+我們在 mac 端跟 Claude(chat + code 兩條 session)做了完整的方法設計, 階段如下:
+
+1. ✅ Motivation 完整定稿 — [`analysis/paper_motivation/motivation_narrative.md`](analysis/paper_motivation/motivation_narrative.md)(2 claim, 量化 evidence, FC-MH 失敗根因拆解到 KU+MH 交集的 emergent gap 25.8pp)
+2. ✅ 方法設計討論定稿 — [`claude_chat_method_design_experiment.md`](claude_chat_method_design_experiment.md):
+   - §B.1-B.4: 與 chat 的高層討論(3 phase 架構, decision rationale)
+   - §B.7: 程式碼端讀 HippoRAG.py 後的補充(KG 真實組成, fact_key, relation collapse, hop 2+ satellite 非對稱, PPR temporal blindness)
+3. ✅ v1 spec 鎖死 — [`analysis/paper_motivation/method_v1_spec.md`](analysis/paper_motivation/method_v1_spec.md):
+   - §2 設計決策 Q1-Q4 全部 locked
+   - §3 HippoRAG.py 切入點 + pseudo-code
+   - §5 Falsifiable assertions(每 phase 必跑的驗證)
+   - §6 實驗執行順序
+
+### 11.2 V0 已棄用
+
+之前的 V0 prototype([`analysis/phase1_v0_auto_supersession.py`](analysis/phase1_v0_auto_supersession.py))**已棄用**:
+- 它的 fact-line excision 依靠 FC corpus 的 numbered fact list 結構紅利, 不可 generalize
+- 44% EM 不算 v1 baseline, 僅當 diagnostic 不寫進 paper
+- 棄用理由詳見 method_v1_spec.md §0
+
+### 11.3 GB10 上應該做的事(優先序)
+
+按 method_v1_spec.md §6 執行:
+
+```bash
+# Step 0 — Sanity baseline (~半天)
+git tag vanilla-baseline-2026-05-11 HEAD  # 鎖定當前 vanilla state 方便對照
+bash run_hipporag_gemini.sh                # 驗證 FC-MH=22%, FC-SH=77%
+
+# Step 0.5 — chunks vs raw_chunks delta sanity check (~30-60 min)
+# 詳見 method_v1_spec.md §6 Step 0.5
+# 暫時 revert agent.py L909 docs=self.chunks, 跑 vanilla, 量 delta vs 22%
+
+# Step 1 — Phase 1 only (~1 天)
+# 實作 _phase1_scan_supersession + superseded_facts/chunk_to_fact_keys dicts
+# 加 enable_supersession flag (default False)
+# 驗證 A1.1 (EM=22% ± 1pp), A1.2 (detection recall ≥ 41%)
+
+# Step 2 — Phase 1 + Phase 2 (~1 天)
+# 修 run_ppr return signature 多回 full_pagerank_scores
+# 實作 _phase2_filter_chain_old
+# 加 enable_phase2_filter flag
+# 驗證 A2.1 (EM ∈ [35%, 50%]), A2.2 (precision ≥ 85%), A2.3 (FC-SH 退步 < 3pp)
+
+# Step 3 — Phase 3 (~半天)
+# 在 rag_qa system prompt 加 universal scaffold + enable_phase3_scaffold flag
+# 跑 4-way ablation: vanilla / P1+P2 / P3 only / P1+P2+P3 全套
+# 驗證 A3.1, A4.1
+
+# Step 4 — Generalization check (~半天)
+# 跑 MuSiQue / 2Wiki 驗證 A3.2 (scaffold 不傷非 KU multi-hop)
+
+# Step 5 — 量化 hop 2+ satellite (~半天)
+# 對 FC-MH 答錯題目人工/LLM annotate Type-1/2/3 比例, 決定 v2 方向
+```
+
+### 11.3.1 v1 整體硬體資源預估 (FC-MH 6k Gemini Vertex)
+
+| 階段 | GPU peak | GPU 占用時間 | CPU | RAM | 100 queries 耗時 | API call |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| vanilla (已 cache) | <1 GB | <1 sec/query | 4-8 core | <8 GB | ~5-10 min | rerank+QA each 100 |
+| vanilla (fresh reindex) | **14.6 GB** | 30-60 sec | 同上 | 16-32 GB | ~15 min | + OpenIE 12 calls |
+| Phase 1 only | 14.6 GB | 30-60 sec(reindex) | 同上 | 同上 | ~15 min | 同 vanilla |
+| Phase 1+2 (不 reindex) | <1 GB | <1 sec/query | 同上 | <8 GB | ~10 min | 同 vanilla |
+| Phase 1+2+3 | <1 GB | <1 sec/query | 同上 | <8 GB | ~10 min | 同 vanilla |
+
+**Step 0-5 整體時間(在 GB10 上)**:
+| Step | 計算時間 | 含 impl/debug |
+|---|---|---|
+| 0 baseline + 0.5 chunks delta | 30-60 min | 半天 |
+| 1 Phase 1 | 30 min | 1 天 |
+| 2 Phase 2 + calibration | 1-2 hr | 1 天 |
+| 3 全套 ablation | 40 min | 半天 |
+| 4 MuSiQue/2Wiki | 1-2 hr | 半天 |
+| 5 annotate satellite | 1-2 hr(LLM judge) | 半天 |
+| **小計** | **~4-6 hr 純計算** | **~3-4 天 wall-clock** |
+
+**API cost 估算**: 全 v1 矩陣總計 ~5-10M input + ~2-3M output tokens, Gemini 3.1 Flash-Lite Preview 約 **$5-15 美元**
+
+**Bottleneck**: 不在 GPU/CPU, 在 (a) Gemini API rate limit (Vertex 通常很寬), (b) debug 時間, (c) 等實驗結果的決策時間。GB10 GPU 用不到一半時間,可放心同時做別的事。
+
+### 11.3.2 監測指令
+
+```bash
+# GPU 即時占用
+watch -n 1 nvidia-smi
+
+# 看 disk(KG cache 約 200 MB-2 GB / config)
+du -sh outputs/rag_retrieved/
+
+# 看 OpenIE cache 命中
+ls -la outputs/rag_retrieved/NV-Embed-v2/factconsolidation_mh_6k/chunksize_512/context_id_0/openie_results_*.json
+```
+
+### 11.4 重要設計約束
+
+- **Feature flag preservation**: 所有 v1 改動必須包在 `enable_supersession` / `enable_phase2_filter` / `enable_phase3_scaffold` 三個 flag 後, default 全 False。這樣 vanilla baseline 永遠可跑(不需要切 branch)
+- **Phase 1 metadata 在 fact_key 層**, 不在 graph edge 層(因 relation collapse, 詳見 chat §B.7.1)
+- **Phase 2 high-mass 用 PPR 收斂後 phrase node mass top-20%**(不能用 `top_k_facts` 的 entities, 會永遠 trigger)
+- **Phase 2 hard filter 對齊 OracleClean-ThisChain ceiling 設計**, 若觀察到問題再迭代到 demote
+- **量化 Type-2/3 satellite leakage 是 v2 起點**, 對應 chat §B.7.2
+
+### 11.5 結果存哪
+
+- Phase 1 supersession index: `outputs/rag_retrieved/.../supersession_index.json`(新增, 跟既有 graph cache 並列)
+- Phase 1/2/3 EM 結果: `outputs/gemini-3.1-flash-lite-preview-hippo_rag_v2_nv/Conflict_Resolution/factconsolidation_mh_6k_*_results.json`(沿用既有命名)
+- Ablation logs: `analysis/results/phase_v1/{vanilla,p1_only,p3_only,p1p2,p1p2p3}_mh_results.json`(新建 directory)
+- 觀察記錄: `analysis/experiments/2026-05-{actual_date}_v1_phase_results/`(timestamp directory)
+
+---
+
+## §12 Baseline Integrity Report (vs upstream MemoryAgentBench, 2026-05-11)
+
+**目的**: 確認 private fork 對 vanilla baseline 行為的影響, 避免實驗依賴 untrusted patched baseline。
+
+### 12.1 對 upstream commit 569241d 的 diff 分類
+
+| 檔案 | 改動性質 | 影響 vanilla? |
+|---|---|---|
+| `methods/hipporag/HippoRAG.py` | `VLLMOfflineOpenIE` 改 lazy import(2 行) | ❌ vanilla 走 online OpenIE 不 trigger |
+| `methods/hipporag/embedding_model/__init__.py` | `GritLM` 改 lazy import(2 行) | ❌ vanilla 用 NV-Embed-v2 不 trigger |
+| `methods/hipporag/llm/__init__.py` | 加 Gemini fork point(4 行) | ❌ OpenAI baseline 路徑不變 |
+| `methods/hipporag/llm/gemini_llm.py` | 新增 128 行 Gemini support | ❌ 新增模組, 不修既有 |
+| `methods/hipporag/prompts/prompt_template_manager.py` | import path fallback 修正 | ❌ 純機制修復 |
+| `agent.py` Gemini section | Vertex AI + retry + `thinking_budget=0` | ❌ 只影響 Gemini 路徑 |
+| `agent.py` mem0/Zep | logging 加性 + idempotent + 360s Zep wait + retry | ⚠️ Zep wait 是 cloud API 必要 |
+| `agent.py` L909 `docs = self.raw_chunks` | HippoRAG indexing input 換 raw content | ⚠️ **唯一 baseline 行為灰色地帶, 見 §12.2** |
+| `configs/data/Factconsolidation_*_6k.yaml` | `max_test_samples: 1 → null` | ⚠️ 修 upstream debug 殘留(必要) |
+| `configs/data/Factconsolidation_*_512.yaml` | 全新增 | ❌ 純加性 |
+| `configs/data/Factconsolidation_*_baseline_b.yaml` | 全新增 | ❌ 純加性 |
+| `configs/agent_conf/.../gemini*.yaml` | 全新增 | ❌ 純加性 |
+
+### 12.2 唯一灰色地帶 — `raw_chunks` for HippoRAG indexing
+
+**Commit**: `a4845b4` "Fix: use raw_chunks for HippoRAG indexing to stabilize hash_ids"
+
+**改動**:
+- Before: `docs = self.chunks`(含 memorize template wrapper + `{time_stamp}`)
+- After: `docs = self.raw_chunks`(純對話內容, 不含 wrapper)
+
+**wrapper 在 FC 上的真實內容** ([utils/templates.py:78](utils/templates.py#L78)):
+```
+'Dialogue between User and Assistant {time_stamp} \n
+<User> The following context is the facts I have learned: 
+{context}
+<Assistant> I have learned the facts and I will answer the question you ask.'
+```
+`{time_stamp}` = `time.strftime("%Y-%m-%d %H:%M:%S")` = run 當下 wall-clock time。
+
+**評估**: **reproducibility correction, 不是任意修改**
+- Upstream 行為下 `{time_stamp}` 讓每次 run 的 chunk hash 都不同, KG cache 無法復用(每次重 index ~30 min)
+- 餵給 OpenIE 的文字含時間戳雜訊, 抽 triples 結果可能不穩定(wrapper-derived triples 如 `(User, said, ...)` 進 KG)
+- 此修改是 baseline cleanup, 不影響 HippoRAG-v2 演算法本身, 只影響 input cleanliness
+
+→ **vanilla HippoRAG-v2 演算法本身** 100% 等同 upstream
+→ **vanilla HippoRAG-v2 在 FC 上的 reproducibility** 受惠於此修正
+
+**GB10 上必跑 Step 0.5 量化 delta**: 在動 v1 之前, 暫時 revert raw_chunks 跑一次 vanilla, 比 EM。詳見 [method_v1_spec.md §6 Step 0.5](analysis/paper_motivation/method_v1_spec.md)。
+
+→ 若 delta < 2pp: 保留 raw_chunks, paper §6 disclose
+→ 若 delta ≥ 2pp: 重新考慮 motivation 數字是否需要重跑
+
+### 12.3 結論
+
+- ✅ vanilla HippoRAG-v2 baseline 在 OpenAI / Gemini 路徑上行為等同 upstream(差異僅在 lazy import / Vertex fork / reproducibility fixes)
+- ✅ Mem0 baseline 需配 `analysis/run_mem0_gemini_aligned.py` 的 L1 prompt 修正(motivation §1 註 2)
+- ✅ Zep baseline 行為等同 upstream(僅加 retry/wait, 不改 query/ingestion 邏輯)
+- ✅ 不需要切換到 upstream MemoryAgentBench(/Users/yhchiang/MemoryAgentBench/ 可當 reference 但不需 import)
+
+### 12.4 v1 實作期間的 baseline 保護機制
+
+加 v1 method 改動時, 必須遵守:
+
+1. **Git tag 鎖 baseline**: `git tag vanilla-baseline-2026-05-11 HEAD` 在動 HippoRAG.py 之前打 tag, 之後可隨時 checkout 回對照
+2. **Feature flag default False**: 所有 v1 改動包在三個 flag 後(method_v1_spec.md §4), 預設行為 = vanilla
+3. **不改 vanilla 函式 signature** : 若需修改 `run_ppr` return(method_v1_spec.md §3 Phase 2 要求), 維持 backward-compatible — 新欄位放在 tuple 最後 + optional return
+4. **跑 v1 之前先驗 vanilla**: 每次重啟實驗環境, 先跑一次 `run_hipporag_gemini.sh` confirm EM=22%, 再開 v1 flag
 
 ---
 
