@@ -736,6 +736,141 @@ A4.1 fail (37% < 45% stretch lower) 觸發 v2 動作:
 
 ---
 
+## §13 v1 Post-mortem & v2 Discussion Points (2026-05-13)
+
+> v1 跑完後拿著結果+程式碼分析回頭討論方法方針。本節記錄使用者觀察 + 程式碼端實作端建議, 作為帶去跟 claude chat 重新討論方法方針的 input。
+
+### §13.1 GT chain_old 結構釐清(corrects chat §B.7.2 framing)
+
+跑完 root cause 分析(`analysis/eval_phase1_root_cause.py`)後, 把 chat §B.7.2 提的 Type-2/3 概念跟 FC-MH 6k GT 對齊:
+
+**Fact**: FC-MH 6k GT 中 **188/188 = 100% 標註 chain_old 都是 Type-1**(每個 hop 都用同 S 不同 O 結構)。GT 不直接標 Type-2 / Type-3。
+
+**含意**:
+- chat §B.7.2 的 Type-2/3 是「retrieval-time 多帶進來的雜訊概念」, 不是 GT 標註的 chain_old
+- 對「我們漏 detect 的 120 個 chain_old」分析,**全部是 Type-1**, 結論是 **detection 困難不在 Type 結構, 在 OpenIE surface variation**
+- Type-2/3 真實存在但是另一個問題: hop 2+ 上, 因 chain_old hop_1 entity (e.g., Emma Darwin) 拉進來相關但 GT 沒標的 satellite facts(這個 v1 沒處理也不在 GT 評估)
+
+### §13.2 三個 v1 後的觀察(2026-05-13)
+
+#### Observation 1 — OpenIE coverage gap 但 HippoRAG 有 raw passage fallback
+
+**現象**: Phase 1 root cause 顯示 **30% missed 是 OpenIE 完全沒抽到 chain_old triple**(e.g., `Methodism founded by Joseph Goebbels` 沒被抽到)。
+
+**HippoRAG 的緩衝機制**: vanilla v2 在 PPR 之外**有 dense passage retrieval (DPR) 後備**([HippoRAG.py L1132 `dense_passage_retrieval`](../../methods/hipporag/HippoRAG.py#L1132)), 跟 PPR mass score 一起組合進 `node_weights`(L1284-1289)。Chunk 中即使沒被抽 triple 的 raw fact 文字 **仍能被 passage embedding 直接打中**, 進 top-N retrieval。
+
+→ Phase 1 漏 detect 不等於 LLM 看不到該 fact;raw passage 還在 retrieval pool 內
+→ **問題不在 retrieval, 在 LLM 拿到混合 chain context 時混淆**(motivation §4.4 的 retrieval vs reading 解耦)
+→ Phase 1 detect 失敗 ≠ Phase 2 無法 filter,**只要該 chunk 中另一個 triple 被 Phase 1 標到** → Phase 2 仍會 filter 整個 chunk
+
+**v2 implication**: Phase 1 detection recall < 50% 不一定致命, 因為:
+- 同 chunk 中常有多個 chain_old fact → 只要其中一個被 detect → Phase 2 拿掉整個 chunk
+- 上文觀察的 P1+P2-99 結果(MH +6pp, SH +7pp)已 capitalize 這個 chunk-level capture 效應
+
+#### Observation 2 — 語意相同 / surface 不同 是純字串比對的盲區
+
+**現象**: 35% missed 是 same S 不同 R surface 形式(e.g., `married to` vs `is the spouse of`); 加上「(D) 同 S 同 R 但 false-match」38% (大半也是 surface 變體),**約 70%+ missed 是 surface variation 問題**。
+
+**含意**: deterministic `(S, R, ≠O)` 規則在 OpenIE 不一致下有結構性 ceiling。語意層面的偵測方法**是必要的**。
+
+**v2 候選實作方向**(從便宜到貴):
+- **(a) Relation alias normalization (利用既有 synonymy edges)**: HippoRAG 已建 entity-level synonymy edges, 把 relation 字串也跑同樣 KNN + threshold 合併。便宜 + 不需新 LLM call。預期 detection 36% → 50-60%
+- **(b) Fact-embedding pair-wise cosine + threshold**: 利用既有 fact_embeddings(`vdb_fact.parquet`), 對 top-similar fact 對做 (S 共享 OR O 共享) 判斷, 偵測「語意相同 fact 但表達不同」。需要 KNN search 但無 LLM call
+- **(c) LLM judge on top-similar fact pairs**: 對 (a)+(b) 找出的候選, 用 LLM judge "are these the same statement?"。高 precision 但 cost 不可忽略
+
+#### Observation 3 — Phase 1/2 分工的根本問題
+
+**使用者疑問**: 既然 Phase 1 偵測到衝突,**為什麼還要分 Phase 2?直接刪除不就好了?**
+
+**答**:Phase 2 存在的理由是 motivation §2.A 的核心發現:
+- 移除「本題」chain_old → +34pp
+- 移除「其他題」chain_olds(query-agnostic) → 只 +5pp
+
+→ filter **必須 query-aware**, 否則退化成 Mem0 風格的 write-time delete, 喪失多 query 的可重用性。
+
+**但**: 使用者點出 v1 Phase 2 設計確實有 risk —「PPR top-X% phrase nodes 不一定是 query 推理鏈 entity」, 可能誤 filter。
+
+**Phase 2 設計選項對比**:
+
+| 選項 | 機制 | 精準度 | 工程量 |
+|---|---|---|---|
+| 現在的 Phase 2 v0 | PPR top-X% phrase × 兩端 high mass → filter passage | proxy(percentile 嚴才精準) | low |
+| **(d) Fact-level excision** | Phase 1 標的 superseded fact 直接從 passage 文字裡刪除該行 | 精準(只動該 fact) | mid(text surgery) |
+| **(e) Soft demote** | superseded fact 對應的 passage PPR score × decay | recall-friendly | low |
+| **(f) Query-S exact match gate** | parse query 的 hop_1 entity → 只 filter S = hop_1 entity 的 superseded fact | 精準(query-driven) | mid(query NLP)|
+| **(g) Subgraph injection** | 把 KG 上 active chain 摘要注入 prompt(讓 LLM 看清 active state)| 高(不刪只補)| high |
+
+**使用者傾向 (d)**: 既然 Phase 1 已 unique 標每個 superseded fact_key,**Phase 2 應只刪該 fact 對應的文字**, 而非整個 passage。
+
+**程式碼端考量**:
+- HippoRAG 把 passage 整段送 LLM, 沒 "per-fact" 文字結構, 要做 (d) 需要 fact-line 切除 (V0 prototype 用 regex 切 numbered fact list — FC 特例)
+- 對 generic corpus(非 FC numbered list 格式), fact-line 切除需要 OpenIE triple → passage text span 對齊 — 不簡單
+- 替代:**(c) annotate-not-delete** 在 passage 中加 `[SUPERSEDED]` 標籤, 讓 LLM 自判 — 折衷方案
+
+**使用者擔心 Phase 2 v0 設計不太好**: 同意。PPR top-X% phrase mass 是 graph 結構 proxy, 非 query semantic relevance proxy。v2 應該嘗試:
+- (f) Query-S exact match 直接從 query 文字找 hop_1 entity, 跟 superseded fact 的 S 做 string match
+- 結合 (d) fact-level 刪除, 解 user 擔心的「誤刪不該刪」問題
+
+### §13.3 我的程式碼端建議(給 claude chat 參考)
+
+**短期 v2 建議**(可直接動, 不大改架構):
+
+1. **Phase 1.1 alias on relation**(便宜):
+   - 對 OpenIE 抽出的 relation 字串, 跑 entity_embedding_store 同樣的 synonymy KNN(可 reuse `retrieve_knn`)
+   - 把 cosine ≥ threshold 的 relation 視為同義, 把所有 (S, alias-R, O) 視為同 (S, R) bucket
+   - 預期 detection 36% → 50-60%(對應 root cause 的 35% relation-alias 群組)
+   - 風險: relation 字串短, embedding 質量 可能差(NV-Embed-v2 對短 string 不一定好)— 需驗證
+
+2. **Phase 2 v1 替換 → query-S exact match gate**:
+   - parse query 文字找 entities (簡單 NER 或 regex), 對應 `node_name_to_vertex_idx`
+   - 只 filter superseded fact 中 S = query-mentioned-entity 的
+   - 不再用 PPR mass top-X% 當 proxy
+   - 預期 SH 不再 over-filter(因 SH no_pair 問題 query 中沒提到 chain_old entity, gate 不 trigger)
+   - 工程量: NER 簡單(spaCy 或 LLM 一次 parse), KG 查 vertex 已現成
+
+3. **Phase 2 v1 補充 → 同 chunk 多 superseded fact 聚合**:
+   - 利用 Observation 1 觀察, **如果 chunk 中 多個 fact 都 superseded → 整 chunk filter 是合理的**(因 chunk 多半同一個語意脈絡)
+   - 如果只一個 superseded fact + 其他都是 unrelated → 只 demote(soft, score × 0.5), 不 hard filter
+   - 跟使用者 (d) fact-level excision 的精神接近但實作較簡單(passage-level decision 用 fact density 當權重)
+
+**長期 v2 建議**(架構性改動):
+
+4. **Semantic conflict detection via fact embeddings**(對應 user observation 2):
+   - 對所有 fact 算 pair-wise cosine similarity 找 top-K 近鄰
+   - 對 cosine > threshold 的 fact 對, 判斷是否 same-S-different-O(用 entity string 比對或 embedding 比對)
+   - 若是 → 標 superseded
+   - 用 NV-Embed-v2 fact embedding 已 cache, 不需重 inference, 純 numpy KNN
+   - 預期解決 (C/D) 35-65% relation surface 問題, 不需 OpenIE 改
+
+5. **OpenIE coverage improvement**(對應 user observation 1, A 群):
+   - 改 OpenIE prompt 要求更高 recall(目前只抽明顯的 SVO)
+   - 或加二輪 LLM pass: 對每 passage, 給 prompt 「list every (subject, relation, object) fact」
+   - 風險: cost 翻倍
+
+**完全不同思路 — observation 3 user 的 (d)+(f) combined**:
+
+6. **「Query-S anchored fact-level excision」**(整合 user 兩個 idea):
+   - Query 階段:
+     - parse query NER → get hop_1 entity E
+     - 對每 retrieved passage, 找其中所有 fact 對應的 triples (chunk_to_fact_keys)
+     - 對每 superseded fact, 若 S ≈ E → 從 passage 文字裡 excise 該 triple 對應的 sentence/span
+     - 其他 superseded fact 不動(避免誤刪)
+   - 工程量:
+     - NER: 簡單(query 文字短, regex 或 spaCy 都可)
+     - Fact text span 對齊: 需要 OpenIE 給每 triple 記錄 source span(目前沒有)— 替代方案: 用 (S, O) 字串 grep passage, 找句子 boundary
+
+**個人意見**: **短期 1+2 最有 ROI**(便宜可動, 預期顯著改善); **長期 4 是最 elegant 的方向**(完全用 KG-native embedding 解 semantic detection); **6 是 user 對 Phase 2 不滿意的具體解, 但 fact span 對齊難度較高**。
+
+### §13.4 帶去 claude chat 討論的核心問題
+
+1. **Phase 1 detection 該往哪個方向**: 字串 alias(relation alias 用既有 synonymy)vs embedding KNN(fact-pair semantic detection)vs LLM judge?
+2. **Phase 2 該換掉**: 換成 query-S exact match gate? 還是繼續 PPR top-X% 但加 fact-level excision?
+3. **OpenIE 30% gap 該補嗎**: 改 prompt? 加 LLM 二輪? 或接受 passage-level retrieval 為後備?
+4. **整體 framing**: v2 主軸是「improve detection」還是「rethink Phase 2 design」? 兩個各有 35-50pp 改善空間估算依據嗎?
+5. **是否該 collapse Phase 1/2**: user 問題仍開放 — 純 Phase 1 detection + write-time delete 可不可行? 還是 query-aware filter 永遠必要?
+
+---
+
 ## §11 Vanilla Rollback Quick Reference
 
 實驗中如果想驗證 vanilla baseline 是否仍可重現:

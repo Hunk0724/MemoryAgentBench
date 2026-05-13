@@ -1,0 +1,711 @@
+{
+  "n_detected": 68,
+  "n_missed": 120,
+  "root_cause_distribution": {
+    "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed": 42,
+    "(D) Same S same R but Phase1 didn't catch \u2014 investigate": 38,
+    "(A2) Only chain_new extracted (not chain_old) \u2014 corpus / OpenIE coverage": 13,
+    "(A1) Only chain_old extracted (not chain_new) \u2014 corpus / OpenIE coverage": 16,
+    "(A3) NEITHER extracted \u2014 OpenIE missed both": 8,
+    "(B) Both extracted, DIFFERENT S surfaces \u2014 alias S (entity canonicalize) needed": 3
+  },
+  "v2_implications": {
+    "A_openie_coverage": 37,
+    "B_entity_alias": 3,
+    "C_relation_alias": 42,
+    "D_bug": 38
+  },
+  "missed_examples": [
+    {
+      "qid": 0,
+      "hop_idx": 0,
+      "gt_text": "The author of Our Mutual Friend is Charles Darwin.",
+      "old_text": "The author of Our Mutual Friend is Charles Dickens.",
+      "gt_obj": "darwin",
+      "old_obj": "dickens",
+      "n_chain_new_triples": 2,
+      "n_chain_old_triples": 3,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "our mutual friend"
+        ]
+      }
+    },
+    {
+      "qid": 0,
+      "hop_idx": 1,
+      "gt_text": "Charles Darwin is married to Amala Paul.",
+      "old_text": "Charles Darwin is married to Emma Darwin.",
+      "gt_obj": "amala paul",
+      "old_obj": "emma darwin",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 1,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "charles darwin"
+        ]
+      }
+    },
+    {
+      "qid": 2,
+      "hop_idx": 1,
+      "gt_text": "association football was created in the country of Italy.",
+      "old_text": "association football was created in the country of England.",
+      "gt_obj": "italy",
+      "old_obj": "england",
+      "n_chain_new_triples": 5,
+      "n_chain_old_triples": 5,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "association football"
+        ]
+      }
+    },
+    {
+      "qid": 3,
+      "hop_idx": 0,
+      "gt_text": "Tunisia national football team is associated with the sport of basketball.",
+      "old_text": "Tunisia national football team is associated with the sport of association football.",
+      "gt_obj": "basketball",
+      "old_obj": "association football",
+      "n_chain_new_triples": 6,
+      "n_chain_old_triples": 13,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "surrey senior cup",
+          "shared_rels": [
+            "associated with"
+          ]
+        },
+        {
+          "s": "bo ryan",
+          "shared_rels": [
+            "associated with"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 3,
+      "hop_idx": 2,
+      "gt_text": "The capital of Soviet Union is Russellville.",
+      "old_text": "The capital of Soviet Union is Moscow.",
+      "gt_obj": "russellville",
+      "old_obj": "moscow",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 5,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "soviet union",
+          "shared_rels": [
+            "capital"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 5,
+      "hop_idx": 0,
+      "gt_text": "Nicolae Ceau\u0219escu is married to Wilhelm II.",
+      "old_text": "Nicolae Ceau\u0219escu is married to Elena Ceau\u0219escu.",
+      "gt_obj": "wilhelm ii",
+      "old_obj": "elena ceau\u0219escu",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 1,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "nicolae ceau\u0219escu",
+          "shared_rels": [
+            "married to"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 6,
+      "hop_idx": 0,
+      "gt_text": "The chief executive officer of Twitter is Bernard Arnault.",
+      "old_text": "The chief executive officer of Twitter is Jack Dorsey.",
+      "gt_obj": "bernard arnault",
+      "old_obj": "jack dorsey",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 0,
+      "root_cause": "(A2) Only chain_new extracted (not chain_old) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "new_subjects": [
+          "abb group"
+        ]
+      }
+    },
+    {
+      "qid": 7,
+      "hop_idx": 0,
+      "gt_text": "Thomas Arne was born in the city of Bengaluru.",
+      "old_text": "Thomas Arne was born in the city of London.",
+      "gt_obj": "bengaluru",
+      "old_obj": "london",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 3,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "thomas arne",
+          "shared_rels": [
+            "born in"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 8,
+      "hop_idx": 1,
+      "gt_text": "Israel is located in the continent of North America.",
+      "old_text": "Israel is located in the continent of Asia.",
+      "gt_obj": "north america",
+      "old_obj": "asia",
+      "n_chain_new_triples": 3,
+      "n_chain_old_triples": 6,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "canada",
+          "shared_rels": [
+            "located in"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 9,
+      "hop_idx": 1,
+      "gt_text": "Methodism was founded by Joseph Goebbels.",
+      "old_text": "Methodism was founded by John Wesley.",
+      "gt_obj": "joseph goebbels",
+      "old_obj": "john wesley",
+      "n_chain_new_triples": 0,
+      "n_chain_old_triples": 1,
+      "root_cause": "(A1) Only chain_old extracted (not chain_new) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "old_subjects": [
+          "methodism"
+        ]
+      }
+    },
+    {
+      "qid": 10,
+      "hop_idx": 0,
+      "gt_text": "Transcendental Meditation movement was founded by Adalbert of Prague.",
+      "old_text": "Transcendental Meditation movement was founded by Maharishi Mahesh Yogi.",
+      "gt_obj": "adalbert of prague",
+      "old_obj": "maharishi mahesh yogi",
+      "n_chain_new_triples": 0,
+      "n_chain_old_triples": 1,
+      "root_cause": "(A1) Only chain_old extracted (not chain_new) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "old_subjects": [
+          "transcendental meditation movement"
+        ]
+      }
+    },
+    {
+      "qid": 10,
+      "hop_idx": 1,
+      "gt_text": "Adalbert of Prague is affiliated with the religion of atheism.",
+      "old_text": "Adalbert of Prague is affiliated with the religion of Catholic Church.",
+      "gt_obj": "atheism",
+      "old_obj": "catholic church",
+      "n_chain_new_triples": 2,
+      "n_chain_old_triples": 4,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "adalbert of prague"
+        ]
+      }
+    },
+    {
+      "qid": 12,
+      "hop_idx": 1,
+      "gt_text": "association football was created in the country of Italy.",
+      "old_text": "association football was created in the country of England.",
+      "gt_obj": "italy",
+      "old_obj": "england",
+      "n_chain_new_triples": 5,
+      "n_chain_old_triples": 5,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "association football"
+        ]
+      }
+    },
+    {
+      "qid": 12,
+      "hop_idx": 2,
+      "gt_text": "The capital of Italy is Duluth.",
+      "old_text": "The capital of Italy is Rome.",
+      "gt_obj": "duluth",
+      "old_obj": "rome",
+      "n_chain_new_triples": 0,
+      "n_chain_old_triples": 2,
+      "root_cause": "(A1) Only chain_old extracted (not chain_new) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "old_subjects": [
+          "john keats",
+          "italy"
+        ]
+      }
+    },
+    {
+      "qid": 13,
+      "hop_idx": 0,
+      "gt_text": "Laura Bush is married to Princess Alice, Duchess of Gloucester.",
+      "old_text": "Laura Bush is married to George W. Bush.",
+      "gt_obj": "princess alice, duchess of gloucester",
+      "old_obj": "george w. bush",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 1,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "laura bush"
+        ]
+      }
+    },
+    {
+      "qid": 14,
+      "hop_idx": 1,
+      "gt_text": "The name of the current head of state in United Kingdom is Emmerson Mnangagwa.",
+      "old_text": "The name of the current head of state in United Kingdom is Elizabeth II.",
+      "gt_obj": "emmerson mnangagwa",
+      "old_obj": "elizabeth ii",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 0,
+      "root_cause": "(A2) Only chain_new extracted (not chain_old) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "new_subjects": [
+          "united kingdom"
+        ]
+      }
+    },
+    {
+      "qid": 15,
+      "hop_idx": 2,
+      "gt_text": "The capital of Soviet Union is Russellville.",
+      "old_text": "The capital of Soviet Union is Moscow.",
+      "gt_obj": "russellville",
+      "old_obj": "moscow",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 5,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "soviet union",
+          "shared_rels": [
+            "capital"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 16,
+      "hop_idx": 0,
+      "gt_text": "Carlos G\u00f3mez is associated with the sport of basketball.",
+      "old_text": "Carlos G\u00f3mez is associated with the sport of baseball.",
+      "gt_obj": "basketball",
+      "old_obj": "baseball",
+      "n_chain_new_triples": 6,
+      "n_chain_old_triples": 7,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "carlos g\u00f3mez",
+          "shared_rels": [
+            "associated with"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 17,
+      "hop_idx": 0,
+      "gt_text": "Madame du Barry is a citizen of Great Britain.",
+      "old_text": "Madame du Barry is a citizen of France.",
+      "gt_obj": "great britain",
+      "old_obj": "france",
+      "n_chain_new_triples": 2,
+      "n_chain_old_triples": 8,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "madame du barry"
+        ]
+      }
+    },
+    {
+      "qid": 18,
+      "hop_idx": 0,
+      "gt_text": "The chairperson of Fatah is Moshe Kahlon.",
+      "old_text": "The chairperson of Fatah is Mahmoud Abbas.",
+      "gt_obj": "moshe kahlon",
+      "old_obj": "mahmoud abbas",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 0,
+      "root_cause": "(A2) Only chain_new extracted (not chain_old) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "new_subjects": [
+          "fatah"
+        ]
+      }
+    },
+    {
+      "qid": 18,
+      "hop_idx": 1,
+      "gt_text": "Moshe Kahlon works in the field of soldier.",
+      "old_text": "Moshe Kahlon works in the field of politician.",
+      "gt_obj": "soldier",
+      "old_obj": "politician",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 4,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "moshe kahlon"
+        ]
+      }
+    },
+    {
+      "qid": 19,
+      "hop_idx": 1,
+      "gt_text": "The director of The Beatles is Joe Hockey.",
+      "old_text": "The director of The Beatles is Brian Epstein.",
+      "gt_obj": "joe hockey",
+      "old_obj": "brian epstein",
+      "n_chain_new_triples": 0,
+      "n_chain_old_triples": 1,
+      "root_cause": "(A1) Only chain_old extracted (not chain_new) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "old_subjects": [
+          "the beatles"
+        ]
+      }
+    },
+    {
+      "qid": 19,
+      "hop_idx": 2,
+      "gt_text": "Joe Hockey is a citizen of Italy.",
+      "old_text": "Joe Hockey is a citizen of Australia.",
+      "gt_obj": "italy",
+      "old_obj": "australia",
+      "n_chain_new_triples": 5,
+      "n_chain_old_triples": 5,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "joe hockey"
+        ]
+      }
+    },
+    {
+      "qid": 19,
+      "hop_idx": 3,
+      "gt_text": "The capital of Italy is Duluth.",
+      "old_text": "The capital of Italy is Rome.",
+      "gt_obj": "duluth",
+      "old_obj": "rome",
+      "n_chain_new_triples": 0,
+      "n_chain_old_triples": 2,
+      "root_cause": "(A1) Only chain_old extracted (not chain_new) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "old_subjects": [
+          "john keats",
+          "italy"
+        ]
+      }
+    },
+    {
+      "qid": 20,
+      "hop_idx": 0,
+      "gt_text": "Rand al'Thor was created by Ferdowsi.",
+      "old_text": "Rand al'Thor was created by Robert Jordan.",
+      "gt_obj": "ferdowsi",
+      "old_obj": "robert jordan",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 1,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "rand al'thor",
+          "shared_rels": [
+            "created by"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 22,
+      "hop_idx": 1,
+      "gt_text": "Aristotle's child is George Alexander Kohut.",
+      "old_text": "Aristotle's child is Nicomachus.",
+      "gt_obj": "george alexander kohut",
+      "old_obj": "nicomachus",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 0,
+      "root_cause": "(A2) Only chain_new extracted (not chain_old) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "new_subjects": [
+          "aristotle"
+        ]
+      }
+    },
+    {
+      "qid": 23,
+      "hop_idx": 0,
+      "gt_text": "FC Vorskla Poltava is associated with the sport of basketball.",
+      "old_text": "FC Vorskla Poltava is associated with the sport of association football.",
+      "gt_obj": "basketball",
+      "old_obj": "association football",
+      "n_chain_new_triples": 6,
+      "n_chain_old_triples": 13,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "surrey senior cup",
+          "shared_rels": [
+            "associated with"
+          ]
+        },
+        {
+          "s": "bo ryan",
+          "shared_rels": [
+            "associated with"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 24,
+      "hop_idx": 1,
+      "gt_text": "The chief executive officer of ABB Group is Bernard Arnault.",
+      "old_text": "The chief executive officer of ABB Group is Ulrich Spiesshofer.",
+      "gt_obj": "bernard arnault",
+      "old_obj": "ulrich spiesshofer",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 0,
+      "root_cause": "(A2) Only chain_new extracted (not chain_old) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "new_subjects": [
+          "abb group"
+        ]
+      }
+    },
+    {
+      "qid": 24,
+      "hop_idx": 3,
+      "gt_text": "The capital of France is Harare.",
+      "old_text": "The capital of France is Paris.",
+      "gt_obj": "harare",
+      "old_obj": "paris",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 4,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "france",
+          "shared_rels": [
+            "capital"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 25,
+      "hop_idx": 0,
+      "gt_text": "F-22 Raptor was developed by Boeing.",
+      "old_text": "F-22 Raptor was developed by Lockheed Martin.",
+      "gt_obj": "boeing",
+      "old_obj": "lockheed martin",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 2,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "f-22 raptor",
+          "shared_rels": [
+            "developed by"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 25,
+      "hop_idx": 1,
+      "gt_text": "The chief executive officer of Boeing is Adel al-Jubeir.",
+      "old_text": "The chief executive officer of Boeing is Dennis Muilenburg.",
+      "gt_obj": "adel al-jubeir",
+      "old_obj": "dennis muilenburg",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 1,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "boeing"
+        ]
+      }
+    },
+    {
+      "qid": 26,
+      "hop_idx": 1,
+      "gt_text": "The chairperson of Harvard University is Peter Diamandis.",
+      "old_text": "The chairperson of Harvard University is Lawrence S. Bacow.",
+      "gt_obj": "peter diamandis",
+      "old_obj": "lawrence s. bacow",
+      "n_chain_new_triples": 0,
+      "n_chain_old_triples": 0,
+      "root_cause": "(A3) NEITHER extracted \u2014 OpenIE missed both",
+      "extra": {}
+    },
+    {
+      "qid": 27,
+      "hop_idx": 3,
+      "gt_text": "The capital of United States of America is Harrisville.",
+      "old_text": "The capital of United States of America is Washington, D.C..",
+      "gt_obj": "harrisville",
+      "old_obj": "washington, d.c",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 2,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "united states of america"
+        ]
+      }
+    },
+    {
+      "qid": 29,
+      "hop_idx": 1,
+      "gt_text": "The capital of Romania is Rajanpur.",
+      "old_text": "The capital of Romania is Bucharest.",
+      "gt_obj": "rajanpur",
+      "old_obj": "bucharest",
+      "n_chain_new_triples": 0,
+      "n_chain_old_triples": 4,
+      "root_cause": "(A1) Only chain_old extracted (not chain_new) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "old_subjects": [
+          "romania",
+          "leonte r\u0103utu",
+          "university of bucharest"
+        ]
+      }
+    },
+    {
+      "qid": 30,
+      "hop_idx": 0,
+      "gt_text": "Blood on the Tracks was performed by Lou Reed.",
+      "old_text": "Blood on the Tracks was performed by Bob Dylan.",
+      "gt_obj": "lou reed",
+      "old_obj": "bob dylan",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 1,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "blood on the tracks"
+        ]
+      }
+    },
+    {
+      "qid": 31,
+      "hop_idx": 1,
+      "gt_text": "association football was created in the country of Italy.",
+      "old_text": "association football was created in the country of England.",
+      "gt_obj": "italy",
+      "old_obj": "england",
+      "n_chain_new_triples": 5,
+      "n_chain_old_triples": 5,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "association football"
+        ]
+      }
+    },
+    {
+      "qid": 32,
+      "hop_idx": 1,
+      "gt_text": "The chief executive officer of Microsoft is Steve Jobs.",
+      "old_text": "The chief executive officer of Microsoft is Satya Nadella.",
+      "gt_obj": "steve jobs",
+      "old_obj": "satya nadella",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 0,
+      "root_cause": "(A2) Only chain_new extracted (not chain_old) \u2014 corpus / OpenIE coverage",
+      "extra": {
+        "new_subjects": [
+          "microsoft"
+        ]
+      }
+    },
+    {
+      "qid": 33,
+      "hop_idx": 1,
+      "gt_text": "cricket was created in the country of Australia.",
+      "old_text": "cricket was created in the country of England.",
+      "gt_obj": "australia",
+      "old_obj": "england",
+      "n_chain_new_triples": 5,
+      "n_chain_old_triples": 5,
+      "root_cause": "(C) Both extracted, SAME S, DIFFERENT R surfaces \u2014 alias R needed",
+      "extra": {
+        "shared_subjects": [
+          "cricket"
+        ]
+      }
+    },
+    {
+      "qid": 37,
+      "hop_idx": 1,
+      "gt_text": "Kylie Minogue speaks the language of German.",
+      "old_text": "Kylie Minogue speaks the language of English.",
+      "gt_obj": "german",
+      "old_obj": "english",
+      "n_chain_new_triples": 8,
+      "n_chain_old_triples": 10,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "the vampyre",
+          "shared_rels": [
+            "written in"
+          ]
+        }
+      ]
+    },
+    {
+      "qid": 38,
+      "hop_idx": 0,
+      "gt_text": "The type of music that Michael Mantler plays is post-punk.",
+      "old_text": "The type of music that Michael Mantler plays is jazz.",
+      "gt_obj": "post-punk",
+      "old_obj": "jazz",
+      "n_chain_new_triples": 1,
+      "n_chain_old_triples": 1,
+      "root_cause": "(D) Same S same R but Phase1 didn't catch \u2014 investigate",
+      "extra": [
+        {
+          "s": "michael mantler",
+          "shared_rels": [
+            "plays"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "n_total_has_pair_hops": 188,
+  "n_detected": 68,
+  "n_missed": 120,
+  "type_distribution_all": {
+    "Type-1": 188,
+    "Type-2": 0
+  },
+  "detection_rate_by_type": {
+    "Type-1": {
+      "detected": 68,
+      "total": 188,
+      "rate": 0.3617021276595745
+    },
+    "Type-2": {
+      "detected": 0,
+      "total": 0,
+      "rate": 0
+    }
+  },
+  "missed_type1_examples": [
+    {
+      "qid": 0,
+      "hop_idx": 0,
+      "type": "Type-1",
+      "s_gt": "the author of our mutual friend",
+      "s_old": "the author of our mutual friend",
+      "old_fact": "The author of Our Mutual Friend is Charles Dickens.",
+      "gt_fact": "The author of Our Mutual Friend is Charles Darwin."
+    },
+    {
+      "qid": 0,
+      "hop_idx": 1,
+      "type": "Type-1",
+      "s_gt": "charles darwin",
+      "s_old": "charles darwin",
+      "old_fact": "Charles Darwin is married to Emma Darwin.",
+      "gt_fact": "Charles Darwin is married to Amala Paul."
+    },
+    {
+      "qid": 2,
+      "hop_idx": 1,
+      "type": "Type-1",
+      "s_gt": "association football",
+      "s_old": "association football",
+      "old_fact": "association football was created in the country of England.",
+      "gt_fact": "association football was created in the country of Italy."
+    },
+    {
+      "qid": 3,
+      "hop_idx": 0,
+      "type": "Type-1",
+      "s_gt": "tunisia national football team",
+      "s_old": "tunisia national football team",
+      "old_fact": "Tunisia national football team is associated with the sport of association football.",
+      "gt_fact": "Tunisia national football team is associated with the sport of basketball."
+    },
+    {
+      "qid": 3,
+      "hop_idx": 2,
+      "type": "Type-1",
+      "s_gt": "the capital of soviet union",
+      "s_old": "the capital of soviet union",
+      "old_fact": "The capital of Soviet Union is Moscow.",
+      "gt_fact": "The capital of Soviet Union is Russellville."
+    },
+    {
+      "qid": 5,
+      "hop_idx": 0,
+      "type": "Type-1",
+      "s_gt": "nicolae ceau\u0219escu",
+      "s_old": "nicolae ceau\u0219escu",
+      "old_fact": "Nicolae Ceau\u0219escu is married to Elena Ceau\u0219escu.",
+      "gt_fact": "Nicolae Ceau\u0219escu is married to Wilhelm II."
+    },
+    {
+      "qid": 6,
+      "hop_idx": 0,
+      "type": "Type-1",
+      "s_gt": "the chief executive officer of twitter",
+      "s_old": "the chief executive officer of twitter",
+      "old_fact": "The chief executive officer of Twitter is Jack Dorsey.",
+      "gt_fact": "The chief executive officer of Twitter is Bernard Arnault."
+    },
+    {
+      "qid": 7,
+      "hop_idx": 0,
+      "type": "Type-1",
+      "s_gt": "thomas arne",
+      "s_old": "thomas arne",
+      "old_fact": "Thomas Arne was born in the city of London.",
+      "gt_fact": "Thomas Arne was born in the city of Bengaluru."
+    },
+    {
+      "qid": 8,
+      "hop_idx": 1,
+      "type": "Type-1",
+      "s_gt": "israel",
+      "s_old": "israel",
+      "old_fact": "Israel is located in the continent of Asia.",
+      "gt_fact": "Israel is located in the continent of North America."
+    },
+    {
+      "qid": 9,
+      "hop_idx": 1,
+      "type": "Type-1",
+      "s_gt": "methodism",
+      "s_old": "methodism",
+      "old_fact": "Methodism was founded by John Wesley.",
+      "gt_fact": "Methodism was founded by Joseph Goebbels."
+    },
+    {
+      "qid": 10,
+      "hop_idx": 0,
+      "type": "Type-1",
+      "s_gt": "transcendental meditation movement",
+      "s_old": "transcendental meditation movement",
+      "old_fact": "Transcendental Meditation movement was founded by Maharishi Mahesh Yogi.",
+      "gt_fact": "Transcendental Meditation movement was founded by Adalbert of Prague."
+    },
+    {
+      "qid": 10,
+      "hop_idx": 1,
+      "type": "Type-1",
+      "s_gt": "adalbert of prague",
+      "s_old": "adalbert of prague",
+      "old_fact": "Adalbert of Prague is affiliated with the religion of Catholic Church.",
+      "gt_fact": "Adalbert of Prague is affiliated with the religion of atheism."
+    },
+    {
+      "qid": 12,
+      "hop_idx": 1,
+      "type": "Type-1",
+      "s_gt": "association football",
+      "s_old": "association football",
+      "old_fact": "association football was created in the country of England.",
+      "gt_fact": "association football was created in the country of Italy."
+    },
+    {
+      "qid": 12,
+      "hop_idx": 2,
+      "type": "Type-1",
+      "s_gt": "the capital of italy",
+      "s_old": "the capital of italy",
+      "old_fact": "The capital of Italy is Rome.",
+      "gt_fact": "The capital of Italy is Duluth."
+    },
+    {
+      "qid": 13,
+      "hop_idx": 0,
+      "type": "Type-1",
+      "s_gt": "laura bush",
+      "s_old": "laura bush",
+      "old_fact": "Laura Bush is married to George W. Bush.",
+      "gt_fact": "Laura Bush is married to Princess Alice, Duchess of Gloucester."
+    },
+    {
+      "qid": 14,
+      "hop_idx": 1,
+      "type": "Type-1",
+      "s_gt": "the name of the current head of state in united kingdom",
+      "s_old": "the name of the current head of state in united kingdom",
+      "old_fact": "The name of the current head of state in United Kingdom is Elizabeth II.",
+      "gt_fact": "The name of the current head of state in United Kingdom is Emmerson Mnangagwa."
+    },
+    {
+      "qid": 15,
+      "hop_idx": 2,
+      "type": "Type-1",
+      "s_gt": "the capital of soviet union",
+      "s_old": "the capital of soviet union",
+      "old_fact": "The capital of Soviet Union is Moscow.",
+      "gt_fact": "The capital of Soviet Union is Russellville."
+    },
+    {
+      "qid": 16,
+      "hop_idx": 0,
+      "type": "Type-1",
+      "s_gt": "carlos g\u00f3mez",
+      "s_old": "carlos g\u00f3mez",
+      "old_fact": "Carlos G\u00f3mez is associated with the sport of baseball.",
+      "gt_fact": "Carlos G\u00f3mez is associated with the sport of basketball."
+    },
+    {
+      "qid": 17,
+      "hop_idx": 0,
+      "type": "Type-1",
+      "s_gt": "madame du barry",
+      "s_old": "madame du barry",
+      "old_fact": "Madame du Barry is a citizen of France.",
+      "gt_fact": "Madame du Barry is a citizen of Great Britain."
+    },
+    {
+      "qid": 18,
+      "hop_idx": 0,
+      "type": "Type-1",
+      "s_gt": "the chairperson of fatah",
+      "s_old": "the chairperson of fatah",
+      "old_fact": "The chairperson of Fatah is Mahmoud Abbas.",
+      "gt_fact": "The chairperson of Fatah is Moshe Kahlon."
+    }
+  ],
+  "missed_type2_examples": []
+}
