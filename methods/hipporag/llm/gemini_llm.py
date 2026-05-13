@@ -125,4 +125,21 @@ class CacheGemini(BaseLLM):
             "completion_tokens": getattr(um, "candidates_token_count", 0),
             "finish_reason": str(getattr(response.candidates[0], "finish_reason", "stop")) if response.candidates else "stop",
         }
+
+        # API usage logging hook (only fires on cache miss; @cache_response wraps this fn)
+        api_log = os.environ.get("API_USAGE_LOG")
+        if api_log:
+            try:
+                import json as _json
+                with open(api_log, "a") as _f:
+                    _f.write(_json.dumps({
+                        "ts": time.time(),
+                        "model": params["model"],
+                        "prompt_tokens": metadata["prompt_tokens"],
+                        "completion_tokens": metadata["completion_tokens"],
+                        "cache_hit": False,
+                    }) + "\n")
+            except Exception:
+                pass  # never let logging break the call
+
         return text, metadata

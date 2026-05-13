@@ -382,6 +382,80 @@ ls -la outputs/rag_retrieved/NV-Embed-v2/factconsolidation_mh_6k/chunksize_512/c
 
 ---
 
+## §13 Vanilla Rollback Procedures (加 v1 改動後如何驗證/回退)
+
+加完 Phase 1/2/3 改動後, 有 3 層獨立的 rollback 機制, 任何時候要驗 vanilla 可走任一條:
+
+### 13.1 Layer 1 — Feature Flag (cover 99% method 改動, 最常用)
+
+**所有 Phase 1/2/3 改動都包在 flag 後, default False = vanilla 行為**。
+
+驗 vanilla 只需確保 env var 沒設:
+
+```bash
+# 確保沒設 phase flags
+unset HIPPORAG_ENABLE_SUPERSESSION
+unset HIPPORAG_ENABLE_PHASE2_FILTER
+unset HIPPORAG_ENABLE_PHASE3_SCAFFOLD
+
+# 跑 → BaseConfig 預設 enable_*=False → vanilla 行為(graph 構建 + PPR + QA 完全不變)
+bash run_hipporag_gemini.sh
+```
+
+驗證 flag 為 False 的證據(`hw_phase_summary.md` 旁的 `manifest.json` 會記錄環境變數)。
+
+### 13.2 Layer 2 — Env Var Override (cover hardware-optim 改動, 跑實驗用)
+
+我們的硬體優化用 env var, **沒設就是 upstream 行為**:
+
+```bash
+# 完整 upstream hardware behavior
+unset HIPPORAG_EMBED_FP16          # → fp32 (upstream)
+unset HIPPORAG_EMBED_BATCH_SIZE    # → 16 (upstream)
+
+# 我們日常實驗用的 hardware-optim 版本
+export HIPPORAG_EMBED_FP16=1       # fp16 (節省 GPU 27 GB, EM 已驗等價)
+export HIPPORAG_EMBED_BATCH_SIZE=8 # 不變 EM, 影響速度
+```
+
+### 13.3 Layer 3 — Git Tag Hard Reset (要驗 5/11 lock 的完整 vanilla)
+
+如果懷疑 5/12 之後的非 flag 改動(如 no_grad patch、bug fix)影響結果, 完全回退:
+
+```bash
+# 切到 5/11 lock 的乾淨 vanilla baseline
+git checkout vanilla-baseline-2026-05-11
+
+# 跑 vanilla(這是 commit e144fcc 對應的版本, 沒有 Phase 1/2/3 改動, 沒有 no_grad patch, 沒有 fp16 env override)
+bash run_hipporag_gemini.sh
+
+# 完了切回工作分支
+git checkout exp/chunk-size
+```
+
+### 13.4 三層 rollback 對照表
+
+| 場景 | 需要哪一層? | 命令 |
+|---|---|---|
+| 驗證 Phase 1/2/3 method 沒打開時行為 = vanilla | Layer 1 (env var unset) | `unset HIPPORAG_ENABLE_*` |
+| 驗證 fp16 vs fp32 EM 等價 | Layer 2 (env var unset) | `unset HIPPORAG_EMBED_FP16` |
+| 驗證 5/12 改動(含 no_grad / sidecar / Phase 1 code)沒影響 vanilla EM | Layer 3 (git hard reset) | `git checkout vanilla-baseline-2026-05-11` |
+| 完整 reproducibility benchmark for paper(submission 時) | Layer 3 + 跑兩遍(tag + working branch with all flags off)| 跑 vanilla-baseline-2026-05-11, 跟 exp/chunk-size + all flags off, 比對 EM 差 |
+
+### 13.5 Non-flagged 改動清單(5/12 後永久 in-tree)
+
+這些改動 **不在 flag 後**, 但跟 vanilla 行為差異理論上為零(inference-time bit-identical):
+
+| 改動 | 檔案 | 影響 | 為何不 flag |
+|---|---|---|---|
+| `no_grad` wrap | [`NVEmbedV2.py:91`](methods/hipporag/embedding_model/NVEmbedV2.py#L91) | -27 GB GPU at indexing, 0 影響 EM | inference 永遠不需要 autograd, 是純優化 |
+| `raw_chunks` (繼承自 5/11) | [`agent.py:912`](agent.py#L912) | hash 穩定, EM 影響 < 2pp(§12.2 灰色地帶) | reproducibility 修正, 不是演算法改 |
+| sidecar/monitoring infrastructure | `scripts/run_with_monitoring.sh`, `scripts/hw_monitor_sidecar.py` | 0 影響 HippoRAG | 純 wrapper 外觀測量 |
+
+→ 要驗證這些 non-flagged 改動沒影響, 走 Layer 3 (`git checkout vanilla-baseline-2026-05-11`)。
+
+---
+
 ## 後續維護
 
-如果之後又改了關鍵環境設定 / 硬體,記得回頭更新本檔(尤其 §5 API keys 跟 §7 預期 EM 數字)。
+如果之後又改了關鍵環境設定 / 硬體,記得回頭更新本檔(尤其 §5 API keys 跟 §7 預期 EM 數字 跟 §11 v1 plan progress)。

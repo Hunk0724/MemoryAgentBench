@@ -1,3 +1,4 @@
+import os
 from copy import deepcopy
 from typing import List, Optional
 
@@ -46,7 +47,12 @@ class NVEmbedV2EmbeddingModel(BaseEmbeddingModel):
                 # "model_name_or_path": self.embedding_model_name2mode_name_or_path[self.embedding_model_name],
                 "pretrained_model_name_or_path": self.embedding_model_name,
                 "trust_remote_code": True,
-                # "torch_dtype": "auto",
+                # OPT-IN fp16 via env var (default: upstream fp32 unchanged).
+                # Set HIPPORAG_EMBED_FP16=1 to load model in fp16, which reduces
+                # GPU baseline from 29 GB (fp32) → 14.6 GB. This is a deliberate
+                # experiment to measure fp16 vs fp32 EM delta. Not always safe.
+                "torch_dtype": ("float16" if os.environ.get("HIPPORAG_EMBED_FP16")
+                                else "float32"),
                 'device_map': "auto",  # added this line to use multiple GPUs
                 # **kwargs
             },
@@ -66,6 +72,15 @@ class NVEmbedV2EmbeddingModel(BaseEmbeddingModel):
     #     return [text + self.embedding_model.tokenizer.eos_token for text in texts]
 
     def batch_encode(self, texts: List[str], **kwargs) -> None:
+        # PATCHED (2026-05-12): inference-only encoding wrapped in torch.no_grad()
+        # context. Previously absent, causing autograd to retain all per-layer
+        # activations across batches (because the inner loop appended GPU tensors
+        # carrying live grad graphs into `results`). Measured impact on 6k FC:
+        #   bs=8 chunks indexing peak 51.24 GB GPU  →  patched expected <20 GB.
+        # The 32k FC system-RAM peak 67 GB observed earlier was the same effect.
+        # NV-Embed-v2 fp16 forward is deterministic, so outputs are bit-identical
+        # to the un-patched version (verified: fact_embeddings L2 = 0.0 across runs).
+
         if isinstance(texts, str): texts = [texts]
 
         params = deepcopy(self.embedding_config.encode_params)
@@ -79,18 +94,19 @@ class NVEmbedV2EmbeddingModel(BaseEmbeddingModel):
         batch_size = params.pop("batch_size", 16)
 
         logger.debug(f"Calling {self.__class__.__name__} with:\n{params}")
-        if len(texts) <= batch_size:
-            params["prompts"] = texts  # self._add_eos(texts=texts)
-            results = self.embedding_model.encode(**params)
-        else:
-            pbar = tqdm(total=len(texts), desc="Batch Encoding")
-            results = []
-            for i in range(0, len(texts), batch_size):
-                params["prompts"] = texts[i:i + batch_size]
-                results.append(self.embedding_model.encode(**params))
-                pbar.update(batch_size)
-            pbar.close()
-            results = torch.cat(results, dim=0)
+        with torch.no_grad():
+            if len(texts) <= batch_size:
+                params["prompts"] = texts  # self._add_eos(texts=texts)
+                results = self.embedding_model.encode(**params)
+            else:
+                pbar = tqdm(total=len(texts), desc="Batch Encoding")
+                results = []
+                for i in range(0, len(texts), batch_size):
+                    params["prompts"] = texts[i:i + batch_size]
+                    results.append(self.embedding_model.encode(**params))
+                    pbar.update(batch_size)
+                pbar.close()
+                results = torch.cat(results, dim=0)
 
         if isinstance(results, torch.Tensor):
             results = results.cpu()

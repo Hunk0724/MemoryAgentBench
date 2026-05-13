@@ -1,0 +1,36 @@
+============================================================
+Smoke test for hw_monitor_sidecar.py
+pid: 10387
+============================================================
+05/12/2026 17:00:00 - INFO - smoke - Running test on factconsolidation_smoke_6k
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+/home/yhchiang/miniconda3/envs/hipporag_env/lib/python3.10/site-packages/transformers/utils/hub.py:128: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[smoke] loading NV-Embed-v2...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]/home/yhchiang/miniconda3/envs/hipporag_env/lib/python3.10/site-packages/torch/cuda/__init__.py:435: UserWarning: 
+    Found GPU0 NVIDIA GB10 which is of cuda capability 12.1.
+    Minimum and Maximum cuda capability supported by this version of PyTorch is
+    (8.0) - (12.0)
+    
+  queued_call()
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:20<01:00, 20.23s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:42<00:43, 21.68s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:05<00:21, 21.86s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:09<00:00, 14.88s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:09<00:00, 17.30s/it]
+[smoke] model loaded in 70.6s
+[smoke] CUDA allocated: 14.62 GB
+[smoke] encoding 1 short text...
+/home/yhchiang/MemoryAgentBench/.cache/huggingface/modules/transformers_modules/nvidia/NV-Embed-v2/3fa59658547db50a1e8e3346cf057fd0c77ed6ef/modeling_nvembed.py:347: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  'input_ids': torch.tensor(batch_dict.get('input_ids').to(batch_dict.get('input_ids')).long()),
+/home/yhchiang/miniconda3/envs/hipporag_env/lib/python3.10/contextlib.py:103: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+[smoke] encoded, embedding shape: (1, 4096)
+[smoke] CUDA peak so far: 14.89 GB
+
+
+HippoRAG build vectorstore finished...
+
+
+[smoke] simulating query loop...
+  query 1 done
+  query 2 done
+  query 3 done
+05/12/2026 17:01:30 - INFO - smoke - Total time taken: 90.0
+[smoke] done

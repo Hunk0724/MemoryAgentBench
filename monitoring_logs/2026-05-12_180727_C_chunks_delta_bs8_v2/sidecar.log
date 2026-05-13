@@ -1,0 +1,4 @@
+[sidecar] starting poll loop, pid=18834, interval=2.0s
+[sidecar] phase → setup/mh_6k (matched: 05/12/2026 18:07:29 - INFO - conversation_creator - Running test on factconsolid)
+[sidecar] phase → indexing/mh_6k (matched: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A[A)
+[sidecar] wrote /home/yhchiang/MemoryAgentBench/monitoring_logs/2026-05-12_180727_C_chunks_delta_bs8_v2/hw_timeline.csv

@@ -8,6 +8,11 @@ cache/
 **/__pycache__/
 
 # =====================================================
+# Local-only backup (transient experimental state, 5/12 - v1 iterations)
+# =====================================================
+.baseline_backup_*/
+
+# =====================================================
 # Source-tree noise (already established)
 # =====================================================
 data

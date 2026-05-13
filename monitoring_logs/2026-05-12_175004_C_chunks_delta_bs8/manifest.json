@@ -1,0 +1,11 @@
+{
+  "run_name": "C_chunks_delta_bs8",
+  "command": "conda run -n hipporag_env --no-capture-output python main.py         --agent_config configs/agent_conf/RAG_Agents/gemini-3.1-flash-lite-preview/Structure_rag_gemini-3.1-flash-lite-hippo_rag_v2_nv.yaml         --dataset_config configs/data_conf/Conflict_Resolution/Factconsolidation_mh_6k.yaml         --chunk_size_ablation 512",
+  "start_time_iso": "2026-05-12T17:50:04+08:00",
+  "git_sha": "e144fcc",
+  "git_dirty_files": 398,
+  "embedding_batch_size_env": "8",
+  "hf_home": "/home/yhchiang/MemoryAgentBench/.cache/huggingface",
+  "end_time_iso": "2026-05-12T17:56:26.593394",
+  "cmd_exit_code": 143
+}

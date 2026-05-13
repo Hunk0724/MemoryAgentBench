@@ -1,0 +1,376 @@
+{
+  "run_label": "phase1_v0_fp16_bs8_SH",
+  "supersession_index_path": "/home/yhchiang/MemoryAgentBench/outputs/rag_retrieved/NV-Embed-v2/factconsolidation_sh_6k/chunksize_512/context_id_0/gemini-3.1-flash-lite-preview_nvidia_NV-Embed-v2/supersession_index.json",
+  "gt_path": "/home/yhchiang/MemoryAgentBench/analysis/results/sh_512_mquake_analysis.json",
+  "n_superseded_total": 72,
+  "n_gt_has_pair_hops": 74,
+  "n_total_questions": 100,
+  "per_hop": {
+    "detected": 30,
+    "total": 74,
+    "recall": 0.40540540540540543,
+    "baseline_mem0_mh": 0.5904255319148937,
+    "baseline_zep_mh": 0.3776595744680851,
+    "a1_2_target": 0.41,
+    "a1_2_pass": false
+  },
+  "precision": {
+    "tp": 30,
+    "fp": 42,
+    "precision": 0.4166666666666667,
+    "fp_examples": [
+      {
+        "s": "thomas kyd",
+        "r": "born in",
+        "o_old": "london",
+        "o_new": "leeds"
+      },
+      {
+        "s": "rog rio ceni",
+        "r": "plays position",
+        "o_old": "goalkeeper",
+        "o_new": "flanker"
+      },
+      {
+        "s": "alta if",
+        "r": "associated with",
+        "o_old": "association football",
+        "o_new": "baseball"
+      },
+      {
+        "s": "aladdin sane",
+        "r": "performed by",
+        "o_old": "david bowie",
+        "o_new": "yves montand"
+      },
+      {
+        "s": "pakistan international airlines",
+        "r": "founded in",
+        "o_old": "karachi",
+        "o_new": "sweden"
+      },
+      {
+        "s": "london",
+        "r": "capital of",
+        "o_old": "great britain",
+        "o_new": "england"
+      },
+      {
+        "s": "steve sax",
+        "r": "associated with",
+        "o_old": "baseball",
+        "o_new": "association football"
+      },
+      {
+        "s": "vijay mallya",
+        "r": "citizen of",
+        "o_old": "india",
+        "o_new": "papal states"
+      }
+    ]
+  },
+  "per_question_bucket": {
+    "all_detected": 30,
+    "partial_detected": 0,
+    "no_detected": 44,
+    "no_pair_bucket": 26
+  },
+  "per_q_detail": {
+    "0": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "1": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "2": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "5": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "6": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "7": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "8": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "12": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "13": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "14": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "15": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "16": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "17": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "19": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "20": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "23": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "24": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "25": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "26": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "28": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "29": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "30": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "31": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "33": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "34": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "35": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "36": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "38": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "39": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "40": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "41": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "42": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "43": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "44": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "45": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "47": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "48": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "50": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "51": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "52": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "53": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "54": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "55": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "56": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "57": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "58": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "59": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "60": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "61": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "62": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "63": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "65": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "66": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "67": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "69": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "70": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "73": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "77": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "80": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "81": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "82": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "83": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "84": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "85": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "86": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "87": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "88": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "90": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "91": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "93": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "94": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "96": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "97": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "98": {
+      "total_hops": 1,
+      "detected": 0
+    }
+  }
+}

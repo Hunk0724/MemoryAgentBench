@@ -1,0 +1,49 @@
+/home/yhchiang/miniconda3/envs/hipporag_env/lib/python3.10/site-packages/transformers/utils/hub.py:128: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+============================================================
+Smoke test: REAL 6k chunks via HippoRAG wrapper batch_encode
+pid: 22168
+============================================================
+05/12/2026 17:00:00 - INFO - smoke - Running test on factconsolidation_smoke_6k
+[smoke] loaded 12 real chunks, first chunk 2129 chars
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+[smoke] BaseConfig embedding_batch_size=16, embedding_max_seq_len=2048
+/home/yhchiang/miniconda3/envs/hipporag_env/lib/python3.10/site-packages/torch/cuda/__init__.py:435: UserWarning: 
+    Found GPU0 NVIDIA GB10 which is of cuda capability 12.1.
+    Minimum and Maximum cuda capability supported by this version of PyTorch is
+    (8.0) - (12.0)
+    
+  queued_call()
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.08it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.11it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.11it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.61it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.38it/s]
+[smoke] wrapper loaded, CUDA alloc=29.25 GB
+
+[smoke] === testing bs=1 (real 12 chunks) ===
+Batch Encoding:   0%|          | 0/12 [00:00<?, ?it/s]/home/yhchiang/MemoryAgentBench/.cache/huggingface/modules/transformers_modules/nvidia/NV-Embed-v2/3fa59658547db50a1e8e3346cf057fd0c77ed6ef/modeling_nvembed.py:347: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  'input_ids': torch.tensor(batch_dict.get('input_ids').to(batch_dict.get('input_ids')).long()),
+/home/yhchiang/miniconda3/envs/hipporag_env/lib/python3.10/contextlib.py:103: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+Batch Encoding:   8%|▊         | 1/12 [00:01<00:14,  1.35s/it]Batch Encoding:  17%|█▋        | 2/12 [00:01<00:06,  1.51it/s]Batch Encoding:  25%|██▌       | 3/12 [00:01<00:04,  1.82it/s]Batch Encoding:  33%|███▎      | 4/12 [00:02<00:03,  2.01it/s]Batch Encoding:  42%|████▏     | 5/12 [00:02<00:03,  2.13it/s]Batch Encoding:  50%|█████     | 6/12 [00:03<00:02,  2.21it/s]Batch Encoding:  58%|█████▊    | 7/12 [00:03<00:02,  2.26it/s]Batch Encoding:  67%|██████▋   | 8/12 [00:04<00:01,  2.29it/s]Batch Encoding:  75%|███████▌  | 9/12 [00:04<00:01,  2.32it/s]Batch Encoding:  83%|████████▎ | 10/12 [00:04<00:00,  2.33it/s]Batch Encoding:  92%|█████████▏| 11/12 [00:05<00:00,  2.35it/s]Batch Encoding: 100%|██████████| 12/12 [00:05<00:00,  2.36it/s]Batch Encoding: 100%|██████████| 12/12 [00:05<00:00,  2.09it/s]
+[smoke bs=1] done in 6.0s, peak=43.80 GB (pre-alloc=29.25 GB, delta=14.55 GB)
+  embedding shape: (12, 4096)
+
+[smoke] === testing bs=4 (real 12 chunks) ===
+Batch Encoding:   0%|          | 0/12 [00:00<?, ?it/s]Batch Encoding:  33%|███▎      | 4/12 [00:01<00:02,  3.26it/s]Batch Encoding:  67%|██████▋   | 8/12 [00:01<00:00,  5.02it/s]Batch Encoding: 100%|██████████| 12/12 [00:02<00:00,  4.16it/s]Batch Encoding: 100%|██████████| 12/12 [00:02<00:00,  4.16it/s]
+[smoke bs=4] done in 3.4s, peak=45.61 GB (pre-alloc=29.26 GB, delta=16.35 GB)
+  embedding shape: (12, 4096)
+
+[smoke] === testing bs=8 (real 12 chunks) ===
+Batch Encoding:   0%|          | 0/12 [00:00<?, ?it/s]Batch Encoding:  67%|██████▋   | 8/12 [00:01<00:00,  5.24it/s]Batch Encoding: 16it [00:02,  6.72it/s]                       Batch Encoding: 16it [00:02,  6.44it/s]
+[smoke bs=8] done in 3.1s, peak=48.12 GB (pre-alloc=29.26 GB, delta=18.86 GB)
+  embedding shape: (12, 4096)
+
+[smoke] SUMMARY (real 6k chunks via HippoRAG wrapper):
+  bs= 1  peak=43.80 GB  [FAIL <20GB]
+  bs= 4  peak=45.61 GB  [FAIL <20GB]
+  bs= 8  peak=48.12 GB  [FAIL <20GB]
+
+
+HippoRAG build vectorstore finished...
+
+
+05/12/2026 17:01:30 - INFO - smoke - Total time taken: 60.0
+[smoke] done

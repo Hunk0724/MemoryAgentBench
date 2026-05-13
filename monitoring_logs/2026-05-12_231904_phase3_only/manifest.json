@@ -1,0 +1,11 @@
+{
+  "run_name": "phase3_only",
+  "command": "bash run_hipporag_gemini.sh",
+  "start_time_iso": "2026-05-12T23:19:04+08:00",
+  "git_sha": "e144fcc",
+  "git_dirty_files": 402,
+  "embedding_batch_size_env": "8",
+  "hf_home": "/home/yhchiang/MemoryAgentBench/.cache/huggingface",
+  "end_time_iso": "2026-05-12T23:31:25.743143",
+  "cmd_exit_code": 0
+}

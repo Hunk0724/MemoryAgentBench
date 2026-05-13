@@ -1,0 +1,6 @@
+[sidecar] starting poll loop, pid=20355, interval=2.0s
+[sidecar] phase → setup/smoke_6k (matched: 05/12/2026 17:00:00 - INFO - smoke - Running test on factconsolidation_smoke_6k)
+[sidecar] phase → indexing/smoke_6k (matched: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s])
+[sidecar] phase → query/smoke_6k (matched: HippoRAG build vectorstore finished...)
+[sidecar] phase → done/smoke_6k (matched: 05/12/2026 17:01:30 - INFO - smoke - Total time taken: 90.0)
+[sidecar] wrote /home/yhchiang/MemoryAgentBench/monitoring_logs/2026-05-12_181038_smoke_test_max_len_compare/hw_timeline.csv

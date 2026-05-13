@@ -1,0 +1,480 @@
+{
+  "run_label": "phase1_v0_fp16_bs8",
+  "supersession_index_path": "/home/yhchiang/MemoryAgentBench/outputs/rag_retrieved/NV-Embed-v2/factconsolidation_mh_6k/chunksize_512/context_id_0/gemini-3.1-flash-lite-preview_nvidia_NV-Embed-v2/supersession_index.json",
+  "gt_path": "/home/yhchiang/MemoryAgentBench/analysis/results/mh_512_mquake_analysis.json",
+  "n_superseded_total": 72,
+  "n_gt_has_pair_hops": 188,
+  "n_total_questions": 100,
+  "per_hop": {
+    "detected": 68,
+    "total": 188,
+    "recall": 0.3617021276595745,
+    "baseline_mem0_mh": 0.5904255319148937,
+    "baseline_zep_mh": 0.3776595744680851,
+    "a1_2_target": 0.41,
+    "a1_2_pass": false
+  },
+  "precision": {
+    "tp": 63,
+    "fp": 9,
+    "precision": 0.875,
+    "fp_examples": [
+      {
+        "s": "rog rio ceni",
+        "r": "plays position",
+        "o_old": "goalkeeper",
+        "o_new": "flanker"
+      },
+      {
+        "s": "london",
+        "r": "capital of",
+        "o_old": "great britain",
+        "o_new": "england"
+      },
+      {
+        "s": "nicolae ceau escu",
+        "r": "married to",
+        "o_old": "elena ceau escu",
+        "o_new": "wilhelm ii"
+      },
+      {
+        "s": "pes pallo",
+        "r": "created in",
+        "o_old": "finland",
+        "o_new": "philippines"
+      },
+      {
+        "s": "born in the u s a",
+        "r": "performed by",
+        "o_old": "bruce springsteen",
+        "o_new": "dana international"
+      },
+      {
+        "s": "rand al thor",
+        "r": "created by",
+        "o_old": "robert jordan",
+        "o_new": "ferdowsi"
+      },
+      {
+        "s": "carlos g mez",
+        "r": "associated with",
+        "o_old": "baseball",
+        "o_new": "basketball"
+      },
+      {
+        "s": "f 22 raptor",
+        "r": "developed by",
+        "o_old": "lockheed martin",
+        "o_new": "boeing"
+      }
+    ]
+  },
+  "per_question_bucket": {
+    "all_detected": 19,
+    "partial_detected": 37,
+    "no_detected": 44,
+    "no_pair_bucket": 0
+  },
+  "per_q_detail": {
+    "0": {
+      "total_hops": 3,
+      "detected": 1
+    },
+    "1": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "2": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "3": {
+      "total_hops": 3,
+      "detected": 1
+    },
+    "4": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "5": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "6": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "7": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "8": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "9": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "10": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "11": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "12": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "13": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "14": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "15": {
+      "total_hops": 3,
+      "detected": 2
+    },
+    "16": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "17": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "18": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "19": {
+      "total_hops": 3,
+      "detected": 0
+    },
+    "20": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "21": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "22": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "23": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "24": {
+      "total_hops": 3,
+      "detected": 1
+    },
+    "25": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "26": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "27": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "28": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "29": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "30": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "31": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "32": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "33": {
+      "total_hops": 3,
+      "detected": 2
+    },
+    "34": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "35": {
+      "total_hops": 2,
+      "detected": 2
+    },
+    "36": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "37": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "38": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "39": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "40": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "41": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "42": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "43": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "44": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "45": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "46": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "47": {
+      "total_hops": 2,
+      "detected": 2
+    },
+    "48": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "49": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "50": {
+      "total_hops": 3,
+      "detected": 0
+    },
+    "51": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "52": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "53": {
+      "total_hops": 3,
+      "detected": 1
+    },
+    "54": {
+      "total_hops": 3,
+      "detected": 0
+    },
+    "55": {
+      "total_hops": 2,
+      "detected": 2
+    },
+    "56": {
+      "total_hops": 2,
+      "detected": 2
+    },
+    "57": {
+      "total_hops": 3,
+      "detected": 0
+    },
+    "58": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "59": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "60": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "61": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "62": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "63": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "64": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "65": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "66": {
+      "total_hops": 2,
+      "detected": 2
+    },
+    "67": {
+      "total_hops": 3,
+      "detected": 0
+    },
+    "68": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "69": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "70": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "71": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "72": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "73": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "74": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "75": {
+      "total_hops": 3,
+      "detected": 3
+    },
+    "76": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "77": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "78": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "79": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "80": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "81": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "82": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "83": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "84": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "85": {
+      "total_hops": 3,
+      "detected": 1
+    },
+    "86": {
+      "total_hops": 3,
+      "detected": 0
+    },
+    "87": {
+      "total_hops": 3,
+      "detected": 1
+    },
+    "88": {
+      "total_hops": 4,
+      "detected": 0
+    },
+    "89": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "90": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "91": {
+      "total_hops": 4,
+      "detected": 1
+    },
+    "92": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "93": {
+      "total_hops": 2,
+      "detected": 0
+    },
+    "94": {
+      "total_hops": 2,
+      "detected": 2
+    },
+    "95": {
+      "total_hops": 1,
+      "detected": 0
+    },
+    "96": {
+      "total_hops": 1,
+      "detected": 1
+    },
+    "97": {
+      "total_hops": 2,
+      "detected": 1
+    },
+    "98": {
+      "total_hops": 3,
+      "detected": 0
+    },
+    "99": {
+      "total_hops": 3,
+      "detected": 3
+    }
+  }
+}

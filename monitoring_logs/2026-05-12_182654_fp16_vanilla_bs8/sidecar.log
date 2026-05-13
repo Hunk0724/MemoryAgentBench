@@ -1,0 +1,10 @@
+[sidecar] starting poll loop, pid=28581, interval=2.0s
+[sidecar] phase → setup/sh_6k (matched: 05/12/2026 18:26:57 - INFO - conversation_creator - Running test on factconsolid)
+[sidecar] phase → indexing/sh_6k (matched: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A[A)
+[sidecar] phase → query/sh_6k (matched: HippoRAG build vectorstore finished...)
+[sidecar] phase → done/sh_6k (matched: 05/12/2026 18:39:30 - INFO - __main__ - Total time taken: 752.7616267204285)
+[sidecar] phase → setup/mh_6k (matched: 05/12/2026 18:39:33 - INFO - conversation_creator - Running test on factconsolid)
+[sidecar] phase → indexing/mh_6k (matched: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A[A)
+[sidecar] phase → query/mh_6k (matched: HippoRAG build vectorstore finished...)
+[sidecar] phase → done/mh_6k (matched: 05/12/2026 18:46:56 - INFO - __main__ - Total time taken: 442.7184932231903)
+[sidecar] wrote /home/yhchiang/MemoryAgentBench/monitoring_logs/2026-05-12_182654_fp16_vanilla_bs8/hw_timeline.csv

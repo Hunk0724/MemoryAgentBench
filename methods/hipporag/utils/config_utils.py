@@ -114,8 +114,12 @@ class BaseConfig:
         metadata={"help": "Class name indicating which embedding model to use."}
     )
     embedding_batch_size: int = field(
-        default=16,
-        metadata={"help": "Batch size of calling embedding model."}
+        default_factory=lambda: int(os.environ.get("HIPPORAG_EMBED_BATCH_SIZE", "16")),
+        metadata={"help": "Batch size of calling embedding model. "
+                          "Default 16 matches upstream MemoryAgentBench (benchmark default). "
+                          "Override via env: HIPPORAG_EMBED_BATCH_SIZE=4 bash ... to control GPU peak. "
+                          "See docs/hardware_request_6k.md for per-bs measured peaks. "
+                          "NV-Embed-v2 fp16 forward is deterministic so bs only affects speed/memory, not output."}
     )
     embedding_return_as_normalized: bool = field(
         default=True,
@@ -148,6 +152,32 @@ class BaseConfig:
     is_directed_graph: bool = field(
         default=False,
         metadata={"help": "Whether the graph is directed or not."}
+    )
+
+    # ===== v1 conflict mechanism flags (default False = upstream vanilla) =====
+    # Added 2026-05-12 for FactConsolidation conflict-aware extension.
+    # method_v1_spec.md §4 — Feature flag preservation.
+    enable_supersession: bool = field(
+        default=False,
+        metadata={"help": "Phase 1: scan OpenIE triples for same (S, R) different O conflicts "
+                          "and mark earlier fact_keys as superseded. Stores metadata in "
+                          "self.superseded_facts dict + self.chunk_to_fact_keys map, "
+                          "persisted as supersession_index.json next to graph.graphml. "
+                          "Does NOT modify graph structure — vanilla retrieval/PPR unchanged."}
+    )
+    enable_phase2_filter: bool = field(
+        default=False,
+        metadata={"help": "Phase 2: query-time chain-aware passage filter. Requires "
+                          "enable_supersession=True (depends on Phase 1 metadata)."}
+    )
+    enable_phase3_scaffold: bool = field(
+        default=False,
+        metadata={"help": "Phase 3: append universal multi-hop reasoning scaffold to rag_qa system prompt."}
+    )
+    phase2_high_mass_percentile: float = field(
+        default=80.0,
+        metadata={"help": "Phase 2: phrase node PPR-mass percentile threshold for 'query-relevant entity' set. "
+                          "Default 80.0 = top 20%. Higher = stricter (less filtering)."}
     )
     
     
@@ -213,3 +243,27 @@ class BaseConfig:
             if self.dataset is None: self.save_dir = 'outputs' # running freely
             else: self.save_dir = os.path.join('outputs', self.dataset) # customize your dataset's output dir here
         logger.debug(f"Initializing the highest level of save_dir to be {self.save_dir}")
+
+        # ===== v1 conflict mechanism flags — env var override (2026-05-12) =====
+        # Lets us toggle phases from shell without yaml edits:
+        #   HIPPORAG_ENABLE_SUPERSESSION=1 bash run_hipporag_gemini.sh
+        # Accepted truthy values: "1", "true", "yes" (case-insensitive). Anything else = False.
+        # When env var is UNSET, the dataclass default (False) wins → vanilla behavior preserved.
+        for flag_attr, env_name in [
+            ("enable_supersession", "HIPPORAG_ENABLE_SUPERSESSION"),
+            ("enable_phase2_filter", "HIPPORAG_ENABLE_PHASE2_FILTER"),
+            ("enable_phase3_scaffold", "HIPPORAG_ENABLE_PHASE3_SCAFFOLD"),
+        ]:
+            env_val = os.environ.get(env_name)
+            if env_val is not None:
+                setattr(self, flag_attr, env_val.lower() in ("1", "true", "yes"))
+                logger.info(f"[config] env override: {flag_attr} = {getattr(self, flag_attr)} (from {env_name}={env_val!r})")
+
+        # Phase 2 percentile (numeric) — env var override for percentile sweep
+        pct_env = os.environ.get("HIPPORAG_PHASE2_PERCENTILE")
+        if pct_env is not None:
+            try:
+                self.phase2_high_mass_percentile = float(pct_env)
+                logger.info(f"[config] env override: phase2_high_mass_percentile = {self.phase2_high_mass_percentile} (from HIPPORAG_PHASE2_PERCENTILE={pct_env!r})")
+            except ValueError:
+                logger.warning(f"[config] HIPPORAG_PHASE2_PERCENTILE={pct_env!r} not a float, ignoring")

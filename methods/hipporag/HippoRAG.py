@@ -154,6 +154,16 @@ class HippoRAG:
 
         self.start_time = time.time()
 
+        # ===== v1 Phase 1: Conflict-Aware Fact Annotation =====
+        # Added 2026-05-12. method_v1_spec.md §3 Phase 1.
+        # Two dicts populated by _phase1_scan_supersession() when enable_supersession=True.
+        # superseded_facts: fact_key -> {by_fact_key, observed_chunk_idx, superseder_chunk_idx, s, r, o_old, o_new}
+        # chunk_to_fact_keys: chunk_key -> [fact_key, ...]  (for Phase 2 passage→fact reverse lookup)
+        self.superseded_facts: Dict[str, Dict] = {}
+        self.chunk_to_fact_keys: Dict[str, List[str]] = {}
+        self.supersession_index_path = os.path.join(self.working_dir, "supersession_index.json")
+        self._load_supersession_index()  # idempotent: loads if file exists, else no-op
+
     def initialize_graph(self):
         """
         Initializes a graph using a GraphML file if available or creates a new graph.
@@ -261,6 +271,15 @@ class HippoRAG:
 
         self.add_fact_edges(chunk_ids, chunk_triples)
         num_new_chunks = self.add_passage_edges(chunk_ids, chunk_triple_entities)
+
+        # ===== v1 Phase 1: Conflict-Aware Fact Annotation =====
+        # Hook here (after KG edges built, before synonymy KNN). Reads chunk_triples
+        # (already in scope), writes self.superseded_facts + self.chunk_to_fact_keys.
+        # Persisted to supersession_index.json next to graph.graphml.
+        # Behavior preserved when enable_supersession=False (no-op).
+        if getattr(self.global_config, 'enable_supersession', False):
+            self._phase1_scan_supersession(chunk_ids, chunk_triples)
+            self._save_supersession_index()
 
         if num_new_chunks > 0:
             logger.info(f"Found {num_new_chunks} new chunks to save into graph.")
@@ -432,6 +451,17 @@ class HippoRAG:
         else:
             return queries_solutions, all_response_message, all_metadata
 
+    # ===== v1 Phase 3: Universal Reasoning Scaffold =====
+    # 2026-05-12. method_v1_spec.md §3 Phase 3.
+    # Universal (no conflict / supersedence / seq references) → safe for non-KU tasks.
+    # Conditional on "when the answer requires connecting multiple facts" so
+    # single-hop questions skip naturally.
+    _PHASE3_SCAFFOLD_TEXT = (
+        "When the answer requires connecting multiple facts, briefly list "
+        "the intermediate entities or facts you use, and ensure that any "
+        "entity appearing in multiple steps is referenced consistently."
+    )
+
     def qa(self, queries: List[QuerySolution]) -> Tuple[List[QuerySolution], List[str], List[Dict]]:
         """
         Executes question-answering (QA) inference using a provided set of query solutions and a language model.
@@ -458,6 +488,13 @@ class HippoRAG:
             prompt_user = ''
             for passage in retrieved_passages:
                 prompt_user += f'Wikipedia Title: {passage}\n\n'
+
+            # ===== Phase 3 hook: append scaffold before the question =====
+            # Placed AFTER passages and BEFORE "Question:" line so it acts as an
+            # instruction parsable by the LLM as guidance, not as additional context.
+            if getattr(self.global_config, 'enable_phase3_scaffold', False):
+                prompt_user += self._PHASE3_SCAFFOLD_TEXT + '\n\n'
+
             prompt_user += 'Question: ' + query_solution.question + '\nThought: '
 
             if self.prompt_template_manager.is_template_name_valid(name=f'rag_qa_{self.global_config.dataset}'):
@@ -766,6 +803,212 @@ class HippoRAG:
 
         logger.info(f"Graph construction completed!")
         print(self.get_graph_info())
+
+    # ============================================================================
+    # v1 Phase 1: Conflict-Aware Fact Annotation
+    # Added 2026-05-12. See method_v1_spec.md §3 Phase 1 + claude_chat...md §B.7.1
+    #
+    # Detection rule: group all OpenIE triples by (subject.lower(), relation.lower()).
+    # Any (S, R) bucket with >1 distinct object → conflict candidate. Latest chunk's
+    # objects are 'active', objects from earlier chunks marked superseded at fact_key
+    # level (NOT graph-edge level — graph edges collapse relation; see chat §B.7.1).
+    # ============================================================================
+    def _phase1_scan_supersession(self, chunk_ids: List[str], chunk_triples: List[List[Tuple]]):
+        """Scan chunk_triples for same-(S,R)-different-O conflicts; mark earlier fact_keys
+        as superseded.
+
+        Populates:
+          self.superseded_facts[fact_key] = {by_fact_key, observed_chunk_idx,
+                                              superseder_chunk_idx, s, r, o_old, o_new}
+          self.chunk_to_fact_keys[chunk_key] = [fact_key, ...]
+
+        Idempotent: clears existing state first, so re-running on the same corpus
+        gives identical results.
+        """
+        # Reset prior state (e.g., when re-indexing same corpus)
+        self.superseded_facts = {}
+        self.chunk_to_fact_keys = {}
+
+        # Group all facts by (s_norm, r_norm)
+        sr_to_occurrences = defaultdict(list)
+        # Each occurrence: (chunk_idx_int, chunk_key, o_str_orig, fact_key)
+
+        for chunk_idx, (chunk_key, triples) in enumerate(zip(chunk_ids, chunk_triples)):
+            self.chunk_to_fact_keys.setdefault(chunk_key, [])
+            for triple in triples:
+                if not (isinstance(triple, (list, tuple)) and len(triple) == 3):
+                    continue
+                s, r, o = [str(x).strip() for x in triple]
+                if not s or not r or not o:
+                    continue
+                # fact_key matches HippoRAG's existing scheme (see add_fact_edges L527)
+                fact_key = compute_mdhash_id(content=str(tuple(triple)), prefix="fact-")
+                self.chunk_to_fact_keys[chunk_key].append(fact_key)
+                sr_to_occurrences[(s.lower(), r.lower())].append(
+                    (chunk_idx, chunk_key, o, fact_key)
+                )
+
+        # For each (S, R) bucket with multiple distinct objects, mark earlier as superseded.
+        # Tie-breaking: latest chunk_idx wins; if multiple facts in latest chunk share (S,R)
+        # but different O, all of them are 'active' (rare, but possible).
+        n_conflicts = 0
+        for (s_low, r_low), occurrences in sr_to_occurrences.items():
+            # Get unique (object, fact_key) pairs across occurrences
+            distinct_o = {(o, fk) for _, _, o, fk in occurrences}
+            if len({o for o, _ in distinct_o}) <= 1:
+                continue  # All same object, no conflict
+
+            latest_chunk_idx = max(idx for idx, _, _, _ in occurrences)
+            latest_fact_keys = {fk for idx, _, _, fk in occurrences if idx == latest_chunk_idx}
+            latest_objects = {o for idx, _, o, _ in occurrences if idx == latest_chunk_idx}
+
+            for idx, chunk_key, o, fk in occurrences:
+                # Skip facts that ARE in the latest chunk (they're active)
+                if fk in latest_fact_keys:
+                    continue
+                # Already marked (handle duplicate fact_key across chunks)
+                if fk in self.superseded_facts:
+                    continue
+                self.superseded_facts[fk] = {
+                    "by_fact_key": next(iter(latest_fact_keys)),
+                    "observed_chunk_idx": idx,
+                    "observed_chunk_key": chunk_key,
+                    "superseder_chunk_idx": latest_chunk_idx,
+                    "s": s_low,
+                    "r": r_low,
+                    "o_old": o,
+                    "o_new": next(iter(latest_objects)),
+                }
+                n_conflicts += 1
+
+        logger.info(
+            f"[Phase 1] scanned {sum(len(v) for v in self.chunk_to_fact_keys.values())} facts "
+            f"across {len(self.chunk_to_fact_keys)} chunks; "
+            f"detected {n_conflicts} superseded fact_keys "
+            f"({len([(s, r) for (s, r), occs in sr_to_occurrences.items() if len({o for _, _, o, _ in occs}) > 1])} conflict (S,R) buckets)"
+        )
+
+    def _save_supersession_index(self):
+        """Persist superseded_facts + chunk_to_fact_keys to JSON."""
+        payload = {
+            "version": 1,
+            "schema_note": "v1 Phase 1 supersession index. fact_key -> {by_fact_key, observed_chunk_idx, "
+                           "superseder_chunk_idx, s, r, o_old, o_new}. chunk_to_fact_keys: chunk_key -> [fact_key,...]",
+            "superseded_facts": self.superseded_facts,
+            "chunk_to_fact_keys": self.chunk_to_fact_keys,
+            "n_superseded": len(self.superseded_facts),
+            "n_chunks": len(self.chunk_to_fact_keys),
+        }
+        os.makedirs(os.path.dirname(self.supersession_index_path), exist_ok=True)
+        with open(self.supersession_index_path, "w") as f:
+            json.dump(payload, f, indent=2)
+        logger.info(f"[Phase 1] saved supersession index to {self.supersession_index_path} "
+                    f"({len(self.superseded_facts)} superseded facts)")
+
+    def _load_supersession_index(self):
+        """Load supersession index from JSON if file exists. Safe no-op otherwise."""
+        if not os.path.exists(self.supersession_index_path):
+            return
+        try:
+            with open(self.supersession_index_path) as f:
+                payload = json.load(f)
+            self.superseded_facts = payload.get("superseded_facts", {})
+            self.chunk_to_fact_keys = payload.get("chunk_to_fact_keys", {})
+            logger.info(f"[Phase 1] loaded supersession index from {self.supersession_index_path} "
+                        f"({len(self.superseded_facts)} superseded facts)")
+        except Exception as e:
+            logger.warning(f"[Phase 1] failed to load supersession index ({e}), starting fresh")
+            self.superseded_facts = {}
+            self.chunk_to_fact_keys = {}
+
+    # ============================================================================
+    # v1 Phase 2: Chain-Aware Passage Filtering
+    # Added 2026-05-12. See method_v1_spec.md §3 Phase 2.
+    #
+    # Rule: among top-N PPR-ranked passages, filter any passage whose constituent
+    # superseded facts have BOTH endpoints (s, o_old) in the top-X% PPR-mass
+    # phrase set. "Both endpoints high mass" ≈ "this superseded fact is on the
+    # current query's reasoning chain" (proxy: query-aware filter, not
+    # query-agnostic delete).
+    #
+    # Depends on Phase 1 metadata (self.superseded_facts + chunk_to_fact_keys).
+    # ============================================================================
+    def _phase2_filter_chain_old(self,
+                                 sorted_doc_ids: np.ndarray,
+                                 sorted_doc_scores: np.ndarray,
+                                 pagerank_scores: np.ndarray,
+                                 top_n: int = 20):
+        """Filter passages whose superseded constituent facts have both endpoints
+        in high-mass phrase set.
+
+        Args:
+            sorted_doc_ids: indices into self.passage_node_idxs (passage rank, length N_passages)
+            sorted_doc_scores: parallel PPR doc scores
+            pagerank_scores: full PPR mass array (length=#graph_vertices)
+            top_n: only examine top-N ranked passages (avoid scanning long tail)
+
+        Returns:
+            (filtered_sorted_doc_ids, filtered_sorted_doc_scores) — same dtype/shape as inputs
+            (just possibly shorter if some passages dropped)
+        """
+        if not self.superseded_facts or not self.chunk_to_fact_keys:
+            logger.debug("[Phase 2] no supersession metadata available, skip filter")
+            return sorted_doc_ids, sorted_doc_scores
+
+        # 1. Compute high-mass phrase set: top-X% by PPR mass over phrase (entity) nodes only
+        percentile = getattr(self.global_config, "phase2_high_mass_percentile", 80.0)
+        # entity_node_idxs are graph vertex indices of phrase nodes
+        entity_pagerank = np.array([pagerank_scores[v] for v in self.entity_node_idxs])
+        if len(entity_pagerank) == 0:
+            return sorted_doc_ids, sorted_doc_scores
+        threshold = float(np.percentile(entity_pagerank, percentile))
+        # vertex-idx set: graph vertices with PPR mass >= threshold, restricted to phrase nodes
+        high_mass_vertex_idxs = {
+            self.entity_node_idxs[i]
+            for i, score in enumerate(entity_pagerank)
+            if score >= threshold
+        }
+
+        # 2. Iterate top-N passages and check for triggered superseded facts
+        keep_mask = np.ones(len(sorted_doc_ids), dtype=bool)
+        n_filtered = 0
+        filter_events = []
+        actual_top_n = min(top_n, len(sorted_doc_ids))
+        for rank in range(actual_top_n):
+            passage_doc_idx = int(sorted_doc_ids[rank])
+            chunk_key = self.passage_node_keys[passage_doc_idx]
+            fact_keys = self.chunk_to_fact_keys.get(chunk_key, [])
+            if not fact_keys:
+                continue
+            for fk in fact_keys:
+                if fk not in self.superseded_facts:
+                    continue
+                sf = self.superseded_facts[fk]
+                s_entity_key = compute_mdhash_id(content=sf["s"], prefix="entity-")
+                o_old_entity_key = compute_mdhash_id(content=sf["o_old"], prefix="entity-")
+                s_vertex_idx = self.node_name_to_vertex_idx.get(s_entity_key)
+                o_old_vertex_idx = self.node_name_to_vertex_idx.get(o_old_entity_key)
+                if (s_vertex_idx is not None and o_old_vertex_idx is not None
+                        and s_vertex_idx in high_mass_vertex_idxs
+                        and o_old_vertex_idx in high_mass_vertex_idxs):
+                    keep_mask[rank] = False
+                    n_filtered += 1
+                    filter_events.append({
+                        "rank": rank, "chunk_key": chunk_key, "trigger_fact_key": fk,
+                        "s": sf["s"], "r": sf["r"], "o_old": sf["o_old"], "o_new": sf["o_new"],
+                    })
+                    break  # one trigger is enough to filter this passage
+
+        if n_filtered > 0:
+            logger.info(
+                f"[Phase 2] filtered {n_filtered} passages in top-{actual_top_n} "
+                f"(threshold={threshold:.4f} @ p{percentile}, "
+                f"high_mass_entities={len(high_mass_vertex_idxs)}/{len(self.entity_node_idxs)})"
+            )
+            # Store last filter events on self for inspection (optional, low cost)
+            self._last_phase2_filter_events = filter_events
+
+        return sorted_doc_ids[keep_mask], sorted_doc_scores[keep_mask]
 
     def add_new_nodes(self):
         """
@@ -1159,10 +1402,20 @@ class HippoRAG:
         assert sum(node_weights) > 0, f'No phrases found in the graph for the given facts: {top_k_facts}'
 
         #Running PPR algorithm based on the passage and phrase weights previously assigned
-        ppr_sorted_doc_ids, ppr_sorted_doc_scores = self.run_ppr(node_weights, damping=self.global_config.damping)
+        ppr_sorted_doc_ids, ppr_sorted_doc_scores, pagerank_scores = self.run_ppr(node_weights, damping=self.global_config.damping)
 
         assert len(ppr_sorted_doc_ids) == len(
             self.passage_node_idxs), f"Doc prob length {len(ppr_sorted_doc_ids)} != corpus length {len(self.passage_node_idxs)}"
+
+        # ===== v1 Phase 2: Chain-Aware Passage Filtering =====
+        # 2026-05-12. method_v1_spec.md §3 Phase 2.
+        # Apply AFTER PPR converges (so we have full mass distribution), BEFORE
+        # return (so downstream rerank_filter / qa see filtered passages).
+        # No-op when enable_phase2_filter=False or supersession_facts empty.
+        if getattr(self.global_config, 'enable_phase2_filter', False):
+            ppr_sorted_doc_ids, ppr_sorted_doc_scores = self._phase2_filter_chain_old(
+                ppr_sorted_doc_ids, ppr_sorted_doc_scores, pagerank_scores
+            )
 
         return ppr_sorted_doc_ids, ppr_sorted_doc_scores
 
@@ -1202,7 +1455,7 @@ class HippoRAG:
     
     def run_ppr(self,
                 reset_prob: np.ndarray,
-                damping: float =0.5) -> Tuple[np.ndarray, np.ndarray]:
+                damping: float =0.5) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
         Runs Personalized PageRank (PPR) on a graph and computes relevance scores for
         nodes corresponding to document passages. The method utilizes a damping
@@ -1218,11 +1471,13 @@ class HippoRAG:
                 computation. Defaults to 0.5 if not provided or set to `None`.
 
         Returns:
-            Tuple[np.ndarray, np.ndarray]: A tuple containing two numpy arrays. The
-                first array represents the sorted node IDs of document passages based
-                on their relevance scores in descending order. The second array
-                contains the corresponding relevance scores of each document passage
-                in the same order.
+            Tuple[np.ndarray, np.ndarray, np.ndarray]: 3-tuple:
+                - sorted_doc_ids: indices into self.passage_node_idxs, ranked desc by PPR mass
+                - sorted_doc_scores: PPR scores for the passages in sorted_doc_ids order
+                - pagerank_scores: full PPR mass array, length=#graph_nodes (added 2026-05-12
+                    for Phase 2 chain-aware filter, which needs phrase node mass distribution
+                    to pick high-mass entities). Backward-compat note: existing callers
+                    unpacking `(a, b)` will break — update them too.
         """
 
         if damping is None: damping = 0.5 # for potential compatibility
@@ -1235,9 +1490,10 @@ class HippoRAG:
             reset=reset_prob,
             implementation='prpack'
         )
+        pagerank_scores_arr = np.asarray(pagerank_scores)
 
         doc_scores = np.array([pagerank_scores[idx] for idx in self.passage_node_idxs])
         sorted_doc_ids = np.argsort(doc_scores)[::-1]
         sorted_doc_scores = doc_scores[sorted_doc_ids.tolist()]
 
-        return sorted_doc_ids, sorted_doc_scores
+        return sorted_doc_ids, sorted_doc_scores, pagerank_scores_arr

@@ -1,0 +1,145 @@
+05/12/2026 17:50:06 - INFO - conversation_creator - Running test on factconsolidation_mh_6k
+
+
+Using new chunk_size: 512
+
+
+Dataset: factconsolidation_mh_6k
+Loading factconsolidation_mh_6k from Hugging Face dataset: ai-hyz/MemoryAgentBench
+Loaded 8 samples from Conflict_Resolution
+Filtered to 1 samples matching source 'factconsolidation_mh_6k' (from 8 total)
+Dataset length: 1, each sample has 100 qa pairs
+  0%|          | 0/1 [00:00<?, ?it/s]
+
+ Agent Memorizing...
+
+
+
+Processing experiments 1/1:   0%|          | 0/12 [00:00<?, ?it/s][AProcessing experiments 1/1: 100%|██████████| 12/12 [00:00<00:00, 128397.06it/s]
+
+
+ Agent not saved (not implemented for this agent type) 
+
+
+
+!!!!!Processing 100 queries for context 0!!!!!
+
+
+  0%|          | 0/100 [00:00<?, ?it/s][A/home/yhchiang/miniconda3/envs/hipporag_env/lib/python3.10/site-packages/torch/cuda/__init__.py:435: UserWarning: 
+    Found GPU0 NVIDIA GB10 which is of cuda capability 12.1.
+    Minimum and Maximum cuda capability supported by this version of PyTorch is
+    (8.0) - (12.0)
+    
+  queued_call()
+
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A[A
+
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.11it/s][A[A
+
+Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.09it/s][A[A
+
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.07it/s][A[A
+
+Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.53it/s][A[ALoading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.33it/s]
+
+
+Batch Encoding:   0%|          | 0/12 [00:00<?, ?it/s][A[A/home/yhchiang/MemoryAgentBench/.cache/huggingface/modules/transformers_modules/nvidia/NV-Embed-v2/3fa59658547db50a1e8e3346cf057fd0c77ed6ef/modeling_nvembed.py:347: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  'input_ids': torch.tensor(batch_dict.get('input_ids').to(batch_dict.get('input_ids')).long()),
+/home/yhchiang/miniconda3/envs/hipporag_env/lib/python3.10/contextlib.py:103: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+
+
+Batch Encoding:  67%|██████▋   | 8/12 [00:02<00:01,  2.88it/s][A[A
+
+Batch Encoding: 16it [00:03,  5.56it/s]                       [A[ABatch Encoding: 16it [00:03,  4.88it/s]
+
+
+NER:   0%|          | 0/12 [00:00<?, ?it/s][A[A05/12/2026 17:50:20 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:   0%|          | 0/12 [00:01<?, ?it/s, total_prompt_tokens=828, total_completion_tokens=16, num_cache_hit=0][A[A
+
+NER:   8%|▊         | 1/12 [00:01<00:15,  1.37s/it, total_prompt_tokens=828, total_completion_tokens=16, num_cache_hit=0][A[A05/12/2026 17:50:20 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:   8%|▊         | 1/12 [00:01<00:15,  1.37s/it, total_prompt_tokens=1646, total_completion_tokens=32, num_cache_hit=0][A[A05/12/2026 17:50:20 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:   8%|▊         | 1/12 [00:01<00:15,  1.37s/it, total_prompt_tokens=2457, total_completion_tokens=48, num_cache_hit=0][A[A
+
+NER:  25%|██▌       | 3/12 [00:01<00:03,  2.51it/s, total_prompt_tokens=2457, total_completion_tokens=48, num_cache_hit=0][A[A05/12/2026 17:50:20 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:  25%|██▌       | 3/12 [00:01<00:03,  2.51it/s, total_prompt_tokens=3219, total_completion_tokens=64, num_cache_hit=0][A[A05/12/2026 17:50:20 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:  25%|██▌       | 3/12 [00:01<00:03,  2.51it/s, total_prompt_tokens=4037, total_completion_tokens=80, num_cache_hit=0][A[A05/12/2026 17:50:20 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:  25%|██▌       | 3/12 [00:01<00:03,  2.51it/s, total_prompt_tokens=4867, total_completion_tokens=96, num_cache_hit=0][A[A
+
+NER:  50%|█████     | 6/12 [00:01<00:01,  5.36it/s, total_prompt_tokens=4867, total_completion_tokens=96, num_cache_hit=0][A[A05/12/2026 17:50:20 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:  50%|█████     | 6/12 [00:01<00:01,  5.36it/s, total_prompt_tokens=5640, total_completion_tokens=112, num_cache_hit=0][A[A05/12/2026 17:50:20 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:  50%|█████     | 6/12 [00:01<00:01,  5.36it/s, total_prompt_tokens=6434, total_completion_tokens=128, num_cache_hit=0][A[A
+
+NER:  67%|██████▋   | 8/12 [00:01<00:00,  6.89it/s, total_prompt_tokens=6434, total_completion_tokens=128, num_cache_hit=0][A[A05/12/2026 17:50:21 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:  67%|██████▋   | 8/12 [00:02<00:00,  6.89it/s, total_prompt_tokens=7251, total_completion_tokens=480, num_cache_hit=0][A[A05/12/2026 17:50:21 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:  67%|██████▋   | 8/12 [00:02<00:00,  6.89it/s, total_prompt_tokens=8068, total_completion_tokens=928, num_cache_hit=0][A[A
+
+NER:  83%|████████▎ | 10/12 [00:02<00:00,  5.44it/s, total_prompt_tokens=8068, total_completion_tokens=928, num_cache_hit=0][A[A05/12/2026 17:50:21 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:  83%|████████▎ | 10/12 [00:02<00:00,  5.44it/s, total_prompt_tokens=8882, total_completion_tokens=1353, num_cache_hit=0][A[A05/12/2026 17:50:21 - WARNING - methods.hipporag.information_extraction.openie_openai - 'NoneType' object has no attribute 'group'
+
+
+NER:  83%|████████▎ | 10/12 [00:03<00:00,  5.44it/s, total_prompt_tokens=9667, total_completion_tokens=1806, num_cache_hit=0][A[A
+
+NER: 100%|██████████| 12/12 [00:03<00:00,  4.10it/s, total_prompt_tokens=9667, total_completion_tokens=1806, num_cache_hit=0][A[ANER: 100%|██████████| 12/12 [00:03<00:00,  3.95it/s, total_prompt_tokens=9667, total_completion_tokens=1806, num_cache_hit=0]
+
+
+Extracting triples:   0%|          | 0/12 [00:00<?, ?it/s][A[A
+
+Extracting triples:   0%|          | 0/12 [00:02<?, ?it/s, total_prompt_tokens=1149, total_completion_tokens=606, num_cache_hit=0][A[A
+
+Extracting triples:   8%|▊         | 1/12 [00:02<00:24,  2.25s/it, total_prompt_tokens=1149, total_completion_tokens=606, num_cache_hit=0][A[A
+
+Extracting triples:   8%|▊         | 1/12 [00:02<00:24,  2.25s/it, total_prompt_tokens=2297, total_completion_tokens=1337, num_cache_hit=0][A[A
+
+Extracting triples:  17%|█▋        | 2/12 [00:02<00:12,  1.22s/it, total_prompt_tokens=2297, total_completion_tokens=1337, num_cache_hit=0][A[A
+
+Extracting triples:  17%|█▋        | 2/12 [00:03<00:12,  1.22s/it, total_prompt_tokens=3458, total_completion_tokens=2294, num_cache_hit=0][A[A
+
+Extracting triples:  25%|██▌       | 3/12 [00:03<00:07,  1.23it/s, total_prompt_tokens=3458, total_completion_tokens=2294, num_cache_hit=0][A[A
+
+Extracting triples:  25%|██▌       | 3/12 [00:03<00:07,  1.23it/s, total_prompt_tokens=4617, total_completion_tokens=3272, num_cache_hit=0][A[A
+
+Extracting triples:  33%|███▎      | 4/12 [00:03<00:04,  1.88it/s, total_prompt_tokens=4617, total_completion_tokens=3272, num_cache_hit=0][A[A
+
+Extracting triples:  33%|███▎      | 4/12 [00:03<00:04,  1.88it/s, total_prompt_tokens=5766, total_completion_tokens=4197, num_cache_hit=0][A[A
+
+Extracting triples:  33%|███▎      | 4/12 [00:03<00:04,  1.88it/s, total_prompt_tokens=6911, total_completion_tokens=5078, num_cache_hit=0][A[A
+
+Extracting triples:  33%|███▎      | 4/12 [00:03<00:04,  1.88it/s, total_prompt_tokens=8053, total_completion_tokens=5994, num_cache_hit=0][A[A
+
+Extracting triples:  58%|█████▊    | 7/12 [00:03<00:01,  3.92it/s, total_prompt_tokens=8053, total_completion_tokens=5994, num_cache_hit=0][A[A
+
+Extracting triples:  58%|█████▊    | 7/12 [00:03<00:01,  3.92it/s, total_prompt_tokens=9157, total_completion_tokens=6831, num_cache_hit=0][A[A
+
+Extracting triples:  58%|█████▊    | 7/12 [00:03<00:01,  3.92it/s, total_prompt_tokens=10273, total_completion_tokens=7718, num_cache_hit=0][A[A
+
+Extracting triples:  75%|███████▌  | 9/12 [00:03<00:00,  5.53it/s, total_prompt_tokens=10273, total_completion_tokens=7718, num_cache_hit=0][A[A
+
+Extracting triples:  75%|███████▌  | 9/12 [00:03<00:00,  5.53it/s, total_prompt_tokens=11398, total_completion_tokens=8621, num_cache_hit=0][A[A
+
+Extracting triples:  75%|███████▌  | 9/12 [00:06<00:00,  5.53it/s, total_prompt_tokens=12491, total_completion_tokens=9555, num_cache_hit=0][A[A
+
+Extracting triples:  92%|█████████▏| 11/12 [00:06<00:00,  1.55it/s, total_prompt_tokens=12491, total_completion_tokens=9555, num_cache_hit=0][A[A/tmp/tmpxlx_zmbm: line 3: 11291 Killed                  python main.py --agent_config configs/agent_conf/RAG_Agents/gemini-3.1-flash-lite-preview/Structure_rag_gemini-3.1-flash-lite-hippo_rag_v2_nv.yaml --dataset_config configs/data_conf/Conflict_Resolution/Factconsolidation_mh_6k.yaml --chunk_size_ablation 512

@@ -1,10 +1,27 @@
 # 硬體需求說明 — HippoRAG-v2 × NV-Embed-v2 × 6k 對話歷史
 
 > 撰寫日期: 2026-05-07
+> **2026-05-12 update**: 加 §0 fp16 採用聲明 + §2.5 fp16 vs fp32 EM 等價性驗證
 > 適用範圍: FactConsolidation 6k FC-SH / FC-MH 兩個 dataset
 > 量測方法: [analysis/profile_nvembed_vram.py](../analysis/profile_nvembed_vram.py)
 > 量測平台: NVIDIA GB10 (unified memory pool 119.6 GB), hipporag_env (PyTorch 2.10 + CUDA 13)
 > 後續若擴展到 32k / 128k 將另外發請求
+
+## 0. ⚠️ fp16 採用聲明(2026-05-12 加)
+
+**Upstream HippoRAG-v2 預設用 fp32 載入 NV-Embed-v2**(我們先前 §2 數字基於 fp16 profile,沒明示)。實測:
+
+| 模式 | Model load 地板 | bs=8 indexing peak (real chunks) | EM (SH/MH) |
+|---|---|---|---|
+| **upstream fp32** | 29 GB | **48 GB** | SH 75% / MH 19% |
+| **fp16 (我們採用)** | 14.6 GB | **21 GB** | SH 75% / MH 19% |
+
+**A/B 驗證結果 (2026-05-12 實測, n=200 題)**: fp16 vs fp32 EM **完全一致(0/100 SH 不一致, 0/100 MH 不一致)**;fact_embeddings L2 mean 0.0012 (微小漂移但不影響 retrieval rank)。
+
+→ **6k FC 階段我們採用 fp16**,啟用方式:`HIPPORAG_EMBED_FP16=1` env var(NVEmbedV2.py 預設仍為 upstream fp32, 不破壞 vanilla)。**Paper 會在 caveats 章節 disclose**:
+> "NV-Embed-v2 was loaded in fp16 for inference. We verified EM equivalence (0/200 disagreement on FC-SH+MH 6k) vs the upstream fp32 default."
+
+→ **32k+ 規模、其他 benchmark 需重新驗證 fp16 vs fp32 EM 等價性**(本次只在 6k FC 上驗過)。
 
 ## 1. 我們在做什麼
 
@@ -55,11 +72,23 @@ OpenIE(三元組抽取)走 Gemini API 不吃本地 GPU;PPR(graph 計算)走 CPU�
 
 > chunks 是 512-token 滿載序列,activation 真正展開,所以 batch_size 對 peak 的影響更明顯。
 
-### 2.4 整體實測 peak
+### 2.4 整體實測 peak (profile script, isolated forward)
 
 - **Phase 5 + 6 全部 chunks indexing 結束 final allocation: 14.63 GB**(GC 後落回模型權重)
 - **observed peak across all configs: 23.16 GB**(facts bs=32,我們不會用這配置)
 - **觀察到 6k FC 真正會用到的配置(chunks bs≤8 max_len≤512): peak ≤ 19 GB**
+
+### 2.5 ⚠️ Real HippoRAG end-to-end indexing peak (2026-05-12 補測)
+
+§2.2-2.4 的 profile script 量的是「單一 batch isolated forward」。HippoRAG 真實 indexing 還有額外步驟 (chunk + entity + fact + KNN + 部分 CUDA fragmentation reserve), 真實 peak 略高:
+
+| 模式 | bs | Indexing 真實 GPU peak | Query 階段 GPU 常駐 | EM (n=100 MH) |
+|---|---|---|---|---|
+| **fp16 + bs=8 + no_grad patch** | 8 | **21.10 GB** | 15.40 GB | 19% |
+| fp32 + bs=8 + no_grad patch (vanilla) | 8 | **48.12 GB** | 29 GB | 19% (相同) |
+| fp16 + bs=1 (預估) | 1 | ~17-18 GB | 15.40 GB | 19% (預期) |
+
+→ 採用 fp16 配 bs=8 → **真實 GPU peak ≈ 21 GB**(略超 20 GB 1 GB 內), 配 bs=4 預期可壓 < 20 GB。
 
 ## 3. 結論 — 6k FC 跑 HippoRAG-v2 + NV-Embed-v2 的硬體需求
 
@@ -76,15 +105,18 @@ OpenIE(三元組抽取)走 Gemini API 不吃本地 GPU;PPR(graph 計算)走 CPU�
 
 實測 RSS 全程 ≤ 1.71 GB(僅 NV-Embed-v2 + tokenizer 部分)。完整 HippoRAG-v2 indexing 加上 OpenIE 結果 + KG + spaCy + igraph,6k 規模實務上我們從 32k 的 67 GB 線性外推 + 固定 model load overhead 估 **20-30 GB 系統 RAM peak**(尚未做 6k 完整 pipeline 直接量測,但保守估)。
 
-### 3.3 硬體需求總表
+### 3.3 硬體需求總表(2026-05-12 修正:基於 fp16 採用 + real end-to-end 量測)
 
 | 資源 | 最低可跑 | **建議** | 理由 |
 |---|---|---|---|
-| **GPU memory** | 16 GB | **20 GB** | NV-Embed-v2 fp16 = 14.62 GB 地板;bs=4-8 indexing 加 2-5 GB activation |
+| **GPU memory (fp16)** | 18 GB | **22 GB** | bs=8 real chunks indexing peak 21 GB (含 entity+fact+KNN + frag);bs=4 可壓更低 |
+| **GPU memory (fp32 vanilla)** | 40 GB | **50 GB** | bs=8 real indexing peak 48 GB;bs=1 也要 44 GB |
 | 系統 RAM | 32 GB | 64 GB | OpenIE results + KG + Python overhead + 安全餘裕 |
 | CUDA driver | 12.0+ | 12.x | hipporag_env PyTorch 2.10 對應 CUDA 13 wheels |
 | Disk | 30 GB | 50 GB | NV-Embed-v2 model 15 GB + HippoRAG cache + 多版本實驗結果 |
 | CPU 核 | 8 | 16+ | spaCy / OpenIE 並行 |
+
+→ 我們採 fp16,**對外承諾 ~22 GB GPU**(留 1 GB safety margin);若論文最後需要 fp32 reproducibility,改用 50 GB GPU。
 
 ### 3.4 推薦對應機器(基於現有可用列表)
 

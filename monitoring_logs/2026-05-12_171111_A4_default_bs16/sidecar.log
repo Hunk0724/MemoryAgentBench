@@ -1,0 +1,6 @@
+[sidecar] starting poll loop, pid=5167, interval=2.0s
+[sidecar] phase → query (matched: !!!!!Processing 100 queries for context 0!!!!!)
+[sidecar] phase → transition (matched: HippoRAG build vectorstore finished...)
+[sidecar] phase → query (matched: !!!!!Processing 100 queries for context 0!!!!!)
+[sidecar] phase → transition (matched: HippoRAG build vectorstore finished...)
+[sidecar] wrote /home/yhchiang/MemoryAgentBench/monitoring_logs/2026-05-12_171111_A4_default_bs16/hw_timeline.csv
