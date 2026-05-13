@@ -753,18 +753,23 @@ A4.1 fail (37% < 45% stretch lower) 觸發 v2 動作:
 
 ### §13.2 三個 v1 後的觀察(2026-05-13)
 
-#### Observation 1 — OpenIE coverage gap 但 HippoRAG 有 raw passage fallback
+#### Observation 1 — Retrieval unit 是 chunk,raw passage 即使沒抽 triple 仍在 pool
 
 **現象**: Phase 1 root cause 顯示 **30% missed 是 OpenIE 完全沒抽到 chain_old triple**(e.g., `Methodism founded by Joseph Goebbels` 沒被抽到)。
 
-**HippoRAG 的緩衝機制**: vanilla v2 在 PPR 之外**有 dense passage retrieval (DPR) 後備**([HippoRAG.py L1132 `dense_passage_retrieval`](../../methods/hipporag/HippoRAG.py#L1132)), 跟 PPR mass score 一起組合進 `node_weights`(L1284-1289)。Chunk 中即使沒被抽 triple 的 raw fact 文字 **仍能被 passage embedding 直接打中**, 進 top-N retrieval。
+**HippoRAG 真實 retrieval 機制** ([HippoRAG.py L366](../../methods/hipporag/HippoRAG.py#L366) verified):
+```python
+top_k_docs = [self.chunk_embedding_store.get_row(self.passage_node_keys[idx])["content"]
+              for idx in sorted_doc_ids[:num_to_retrieve]]
+```
+→ 最終 return 給 LLM 的單位就是 **raw chunk content text**(passage),不是 triple。
+→ 每個 chunk 都有 passage node 在 KG 中,由 PPR mass score(seed 由 fact retrieval + 少量 DPR)排序。
+→ **即使 OpenIE 沒抽某 fact 為 triple, 該 fact 的 chunk 仍在 retrieval pool 內**, 仍能被 top-N 撈到。
 
-→ Phase 1 漏 detect 不等於 LLM 看不到該 fact;raw passage 還在 retrieval pool 內
-→ **問題不在 retrieval, 在 LLM 拿到混合 chain context 時混淆**(motivation §4.4 的 retrieval vs reading 解耦)
-→ Phase 1 detect 失敗 ≠ Phase 2 無法 filter,**只要該 chunk 中另一個 triple 被 Phase 1 標到** → Phase 2 仍會 filter 整個 chunk
-
-**v2 implication**: Phase 1 detection recall < 50% 不一定致命, 因為:
-- 同 chunk 中常有多個 chain_old fact → 只要其中一個被 detect → Phase 2 拿掉整個 chunk
+**v2 implication**:
+- Phase 1 detection recall < 50% **不一定致命**, 因為 retrieval 層 raw passage 保留全部 fact 文字
+- 真正的瓶頸是 Phase 2 filter 是 **passage-level 顆粒度**: 即使有 triple 被 detect, 也是 filter 整個 chunk
+- 同 chunk 中常有多個 chain_old fact → 只要其中一個被 detect → Phase 2 仍 filter 整個 chunk
 - 上文觀察的 P1+P2-99 結果(MH +6pp, SH +7pp)已 capitalize 這個 chunk-level capture 效應
 
 #### Observation 2 — 語意相同 / surface 不同 是純字串比對的盲區
@@ -861,7 +866,52 @@ A4.1 fail (37% < 45% stretch lower) 觸發 v2 動作:
 
 **個人意見**: **短期 1+2 最有 ROI**(便宜可動, 預期顯著改善); **長期 4 是最 elegant 的方向**(完全用 KG-native embedding 解 semantic detection); **6 是 user 對 Phase 2 不滿意的具體解, 但 fact span 對齊難度較高**。
 
-### §13.4 帶去 claude chat 討論的核心問題
+### §13.4 EM 不是 filter 真實準確度的好指標(2026-05-13 加)
+
+**觀察**: 目前我們看 P1+P2 的 EM 改變(MH +6pp at P2-99), 把這歸功於「Phase 2 filter 設計成功」。但 EM 變化是**多種行為的混和**, 不能直接反推 method 真實 contribution。
+
+**Filter 行為四象限**:
+
+| 情境 | EM 影響 | Method 真實貢獻 |
+|---|---|---|
+| **(P) 真實貢獻** Filter 掉只含 chain_old 的 passage(或主要 chain_old, chain_new 不在內) | ↑ 上升 | ✓ 設計成功 |
+| **(Q) 誤殺主要 hop** Filter 掉同時含 chain_old + 該 query 某 hop 必要 chain_new 的 passage | ↓ 下降 | ❌ 誤殺(設計失敗) |
+| **(R) 誤打誤撞** Filter 掉「other-old」passage,但該 passage 巧合也含此 query 的 chain_old | ↑ 上升 | ⚠️ 不是設計貢獻,是巧合 |
+| **(S) 純誤觸發** Filter 掉純 unrelated passage(unmask superseded fact 在裡面但跟 query 無關) | 平 / ↓ | ❌ 誤殺 |
+
+→ 目前 P2-99 net wins/losses(MH 9/3, SH 11/4)等同於「(P+R) - (Q+S)」, 看不到 (P) 真實貢獻佔多少
+→ 想知道 method 真實 contribution, 需要 **per-filter-event diagnostic**
+
+**Diagnostic 方案**:
+
+1. **Log every Phase 2 filter event** during run:
+   - query_id, hop_idx (which hop's reasoning this affects)
+   - chunk_key filtered
+   - trigger_fact_key (which superseded fact triggered the rule)
+   - PPR mass values for s, o_old, neighbors
+2. **Cross-reference with GT**:
+   - For each filtered chunk, check what facts it contains via `chunk_to_fact_keys`
+   - Compare with `mh_512_mquake_analysis.json`: which GT chain_old / chain_new facts are in this chunk?
+3. **Classify per-event**:
+   - (P) True positive filter: chunk has THIS query's chain_old AND no chain_new for THIS query's any hop
+   - (Q) Collateral damage: chunk has THIS query's chain_new for some hop(filtering breaks that hop)
+   - (R) Lucky FP: trigger_fact_key not in THIS query's chain_old set, but chunk does contain THIS query's chain_old
+   - (S) Pure FP: chunk has no chain_old for THIS query
+
+**Implementation 工程量(初估)**:
+- 加 `phase2_debug_log` env var 開關
+- 在 `_phase2_filter_chain_old` 加 JSONL write hook
+- 寫 post-process script `analysis/eval_phase2_filter_accuracy.py`(讀 log + GT, classify, output 四象限分布)
+- Re-run 既有 P2-99 + Full v1 配置(cache hit, 5-10 min 而已)
+
+**v2 framing impact**:
+- 若 (P) 真實貢獻佔多數 → 現在 Phase 2 設計合理, 只是 Phase 1 detection 是 bottleneck
+- 若 (R) 誤打誤撞 比例高 → **method contribution 比 EM 顯示的低**, paper 要謹慎
+- 若 (Q) 多 → Phase 2 過度激進, 設計需改
+
+→ **建議在進 v2 設計前先做這個 diagnostic**, 才知道 v1 的 EM gain 真實組成
+
+### §13.5 帶去 claude chat 討論的核心問題
 
 1. **Phase 1 detection 該往哪個方向**: 字串 alias(relation alias 用既有 synonymy)vs embedding KNN(fact-pair semantic detection)vs LLM judge?
 2. **Phase 2 該換掉**: 換成 query-S exact match gate? 還是繼續 PPR top-X% 但加 fact-level excision?
