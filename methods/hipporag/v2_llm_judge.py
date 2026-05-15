@@ -133,6 +133,10 @@ class LLMJudgeDetector:
         seq = the smallest chunk_idx among chunks containing this fact (the chunk
         that first introduced it). If a fact appears only once, this is just its
         host chunk's idx.
+
+        fact_text_natural: if fact_content_map value parses as a 3-tuple, format
+        as "s r o"; otherwise use the value as-is (allows callers to supply
+        pre-built natural sentences via the same fact_content_map).
         """
         fact_first_seq: Dict[str, int] = {}
         for ck in top_n_chunk_keys:
@@ -147,19 +151,22 @@ class LLMJudgeDetector:
 
         pool = []
         for fk, seq in fact_first_seq.items():
-            content_tuple_str = self.fact_content_map[fk]
-            # Convert ('charles darwin', 'is married to', 'emma darwin') →
-            # natural-ish text "charles darwin is married to emma darwin"
-            try:
-                triple = eval(content_tuple_str)
-                if isinstance(triple, tuple) and len(triple) == 3:
-                    nat = f"{triple[0]} {triple[1]} {triple[2]}"
-                else:
-                    nat = content_tuple_str
-            except Exception:
-                nat = content_tuple_str
+            content_str = self.fact_content_map[fk]
+            # If content looks like a tuple-string, eval it. Otherwise treat as
+            # already-natural text.
+            nat = content_str
+            if isinstance(content_str, str) and content_str.startswith("("):
+                try:
+                    triple = eval(content_str)
+                    if isinstance(triple, tuple) and len(triple) == 3:
+                        # Skip empty fields cleanly to avoid leading/trailing spaces
+                        parts = [str(x).strip() for x in triple if str(x).strip()]
+                        if parts:
+                            nat = " ".join(parts)
+                except Exception:
+                    pass
             pool.append((int(seq), nat, fk))
-        # Sort by seq for stable prompt order (helps LLM cache hit + readability)
+        # Sort by seq for stable prompt order
         pool.sort(key=lambda x: x[0])
         return pool
 

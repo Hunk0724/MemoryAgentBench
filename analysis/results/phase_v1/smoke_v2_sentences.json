@@ -1,0 +1,614 @@
+{
+  "n_queries": 5,
+  "top_k_facts": 30,
+  "aggregate": {
+    "tot_gt": 10,
+    "tot_caught": 3,
+    "recall": 0.3,
+    "tot_chain_new_falsely_flagged": 4,
+    "tot_unclassified": 22,
+    "tot_flagged": 26
+  },
+  "per_query": [
+    {
+      "qid": 0,
+      "n_facts_sent": 30,
+      "n_chain_old_flagged": 5,
+      "n_conflict_groups": 5,
+      "gt_chain_old_texts": [
+        "The author of Our Mutual Friend is Charles Dickens.",
+        "Charles Darwin is married to Emma Darwin.",
+        "Amala Paul is a citizen of India."
+      ],
+      "gt_chain_new_texts": [
+        "The author of Our Mutual Friend is Charles Darwin.",
+        "Charles Darwin is married to Amala Paul.",
+        "Amala Paul is a citizen of Belgium."
+      ],
+      "flagged_sentences": [
+        "The author of Sketches by Boz is Charles Dickens",
+        "The author of Our Mutual Friend is Charles Dickens",
+        "Igor of Kiev is married to Olga of Kiev",
+        "Sophia Hawthorne is married to Nathaniel Hawthorne",
+        "Charles Messier is a citizen of France"
+      ],
+      "n_gt_old_caught": 1,
+      "n_gt_new_falsely_flagged": 1,
+      "n_unclassified": 3,
+      "unclassified_sample": [
+        "Igor of Kiev is married to Olga of Kiev",
+        "Sophia Hawthorne is married to Nathaniel Hawthorne",
+        "Charles Messier is a citizen of France"
+      ],
+      "conflict_groups_raw": [
+        [
+          {
+            "seq": 2,
+            "fact_key": "fact-80724a54836207041a3f44513c1b7425",
+            "sentence": "The author of Our Mutual Friend is Charles Dickens"
+          },
+          {
+            "seq": 3,
+            "fact_key": "fact-3facc82f03486108cf267ce6305b7c60",
+            "sentence": "Madame du Barry is a citizen of Great Britain"
+          }
+        ],
+        [
+          {
+            "seq": 5,
+            "fact_key": "fact-cc23ce8f3008176f23e5bc6f73109b01",
+            "sentence": "Charles Messier is a citizen of France"
+          },
+          {
+            "seq": 6,
+            "fact_key": "fact-512e199e436ddb2d5eded184386ae8c1",
+            "sentence": "C\u00e9dric Klapisch is a citizen of Malaysia"
+          }
+        ],
+        [
+          {
+            "seq": 8,
+            "fact_key": "fact-62c15133e1732ea519d5f89f6e0ef922",
+            "sentence": "The author of Sketches by Boz is Charles Dickens"
+          },
+          {
+            "seq": 9,
+            "fact_key": "fact-7d876c69af7e37b75ebe942901b05825",
+            "sentence": "Nicolae Ceau\u0219escu is married to Wilhelm II"
+          }
+        ],
+        [
+          {
+            "seq": 4,
+            "fact_key": "fact-a889497612d5f7d70450a8f0451006ae",
+            "sentence": "Igor of Kiev is married to Olga of Kiev"
+          },
+          {
+            "seq": 8,
+            "fact_key": "fact-62c15133e1732ea519d5f89f6e0ef922",
+            "sentence": "The author of Sketches by Boz is Charles Dickens"
+          }
+        ],
+        [
+          {
+            "seq": 10,
+            "fact_key": "fact-0ca9af894a2d9f04976c892b94f86f66",
+            "sentence": "Sophia Hawthorne is married to Nathaniel Hawthorne"
+          },
+          {
+            "seq": 11,
+            "fact_key": "fact-2d44a038dc2e85a891fc907777aab1a6",
+            "sentence": "Tim Cook is a citizen of United States of America"
+          }
+        ]
+      ]
+    },
+    {
+      "qid": 20,
+      "n_facts_sent": 30,
+      "n_chain_old_flagged": 5,
+      "n_conflict_groups": 5,
+      "gt_chain_old_texts": [
+        "Rand al'Thor was created by Robert Jordan."
+      ],
+      "gt_chain_new_texts": [
+        "Rand al'Thor was created by Ferdowsi."
+      ],
+      "flagged_sentences": [
+        "Vito Corleone was created by Mario Puzo",
+        "The author of A Wizard of Earthsea is Ursula K. Le Guin",
+        "The author of Sidereus Nuncius is Galileo Galilei",
+        "The Vampyre was written in the language of English",
+        "K\u016bkai speaks the language of Japanese"
+      ],
+      "n_gt_old_caught": 0,
+      "n_gt_new_falsely_flagged": 0,
+      "n_unclassified": 5,
+      "unclassified_sample": [
+        "Vito Corleone was created by Mario Puzo",
+        "The author of A Wizard of Earthsea is Ursula K. Le Guin",
+        "The author of Sidereus Nuncius is Galileo Galilei",
+        "The Vampyre was written in the language of English",
+        "K\u016bkai speaks the language of Japanese"
+      ],
+      "conflict_groups_raw": [
+        [
+          {
+            "seq": 0,
+            "fact_key": "fact-398ab500ffd0c19cfe8e66231d49c09f",
+            "sentence": "The author of A Wizard of Earthsea is Ursula K. Le Guin"
+          },
+          {
+            "seq": 7,
+            "fact_key": "fact-7049969ac7ecf4cf0451a53c700e883e",
+            "sentence": "The Vampyre was written in the language of English"
+          }
+        ],
+        [
+          {
+            "seq": 1,
+            "fact_key": "fact-76b2cb8ec72dbb04e58e992307516d7f",
+            "sentence": "K\u016bkai speaks the language of Japanese"
+          },
+          {
+            "seq": 8,
+            "fact_key": "fact-3e6542d4a7ca54178b02ed19318dec49",
+            "sentence": "The Witcher author T. S. Eliot"
+          }
+        ],
+        [
+          {
+            "seq": 3,
+            "fact_key": "fact-2b06f515b8ed20551911dccf02e6e804",
+            "sentence": "The author of Sidereus Nuncius is Galileo Galilei"
+          },
+          {
+            "seq": 10,
+            "fact_key": "fact-c6f78243be72a3586a7b41e9ae5e0a35",
+            "sentence": "Shahnameh was written in the language of Persian"
+          }
+        ],
+        [
+          {
+            "seq": 6,
+            "fact_key": "fact-78565e18619bfcad5009db1602634aec",
+            "sentence": "Vito Corleone was created by Mario Puzo"
+          },
+          {
+            "seq": 10,
+            "fact_key": "fact-c6f78243be72a3586a7b41e9ae5e0a35",
+            "sentence": "Shahnameh was written in the language of Persian"
+          }
+        ],
+        [
+          {
+            "seq": 7,
+            "fact_key": "fact-7049969ac7ecf4cf0451a53c700e883e",
+            "sentence": "The Vampyre was written in the language of English"
+          },
+          {
+            "seq": 11,
+            "fact_key": "fact-1dab85c5551a4d0654875ed87d1f6106",
+            "sentence": "The official language of Japan is Swedish"
+          }
+        ]
+      ]
+    },
+    {
+      "qid": 45,
+      "n_facts_sent": 30,
+      "n_chain_old_flagged": 5,
+      "n_conflict_groups": 9,
+      "gt_chain_old_texts": [
+        "The author of Sketches by Boz is Charles Dickens."
+      ],
+      "gt_chain_new_texts": [
+        "The author of Sketches by Boz is Sigmund Freud."
+      ],
+      "flagged_sentences": [
+        "Alan Jay Lerner died in the city of New York City",
+        "The author of Sketches by Boz is Charles Dickens",
+        "Catherine Dickens is a citizen of United Kingdom",
+        "Andy Warhol died in the city of Montm\u00e9lian",
+        "John Keats died in the city of Rome"
+      ],
+      "n_gt_old_caught": 1,
+      "n_gt_new_falsely_flagged": 1,
+      "n_unclassified": 4,
+      "unclassified_sample": [
+        "Alan Jay Lerner died in the city of New York City",
+        "Catherine Dickens is a citizen of United Kingdom",
+        "Andy Warhol died in the city of Montm\u00e9lian",
+        "John Keats died in the city of Rome"
+      ],
+      "conflict_groups_raw": [
+        [
+          {
+            "seq": 1,
+            "fact_key": "fact-2eed00136486861b2e55f860d713fd91",
+            "sentence": "Frank Zappa died in the city of Berlin"
+          },
+          {
+            "seq": 1,
+            "fact_key": "fact-2eed00136486861b2e55f860d713fd91",
+            "sentence": "Frank Zappa died in the city of Berlin"
+          }
+        ],
+        [
+          {
+            "seq": 2,
+            "fact_key": "fact-5decaed4502404f38fc9c988338584ed",
+            "sentence": "Catherine Dickens is a citizen of United Kingdom"
+          },
+          {
+            "seq": 3,
+            "fact_key": "fact-9a173433a669c05de9d4db2b65bb6e3d",
+            "sentence": "Andy Warhol died in the city of Montm\u00e9lian"
+          }
+        ],
+        [
+          {
+            "seq": 3,
+            "fact_key": "fact-9a173433a669c05de9d4db2b65bb6e3d",
+            "sentence": "Andy Warhol died in the city of Montm\u00e9lian"
+          },
+          {
+            "seq": 3,
+            "fact_key": "fact-9a173433a669c05de9d4db2b65bb6e3d",
+            "sentence": "Andy Warhol died in the city of Montm\u00e9lian"
+          }
+        ],
+        [
+          {
+            "seq": 3,
+            "fact_key": "fact-9a173433a669c05de9d4db2b65bb6e3d",
+            "sentence": "Andy Warhol died in the city of Montm\u00e9lian"
+          },
+          {
+            "seq": 7,
+            "fact_key": "fact-c1aebc423d2f627d8fe362c5259b9c28",
+            "sentence": "Pius XII died in the city of Wolverhampton"
+          }
+        ],
+        [
+          {
+            "seq": 4,
+            "fact_key": "fact-23525a91732ef83759a686517c6af9b6",
+            "sentence": "Alan Jay Lerner died in the city of New York City"
+          },
+          {
+            "seq": 10,
+            "fact_key": "fact-432c57acb9bda9bbfa26f0f630770f3a",
+            "sentence": "Alan Jay Lerner died in the city of Mansourah, Algeria"
+          }
+        ],
+        [
+          {
+            "seq": 5,
+            "fact_key": "fact-6ff67cfc4ca6a69fd3d9ba87c02872aa",
+            "sentence": "John Keats died in the city of Rome"
+          },
+          {
+            "seq": 9,
+            "fact_key": "fact-a34f34ec774f16a82862252cc57cddc7",
+            "sentence": "Thomas Arne born in London"
+          }
+        ],
+        [
+          {
+            "seq": 7,
+            "fact_key": "fact-c1aebc423d2f627d8fe362c5259b9c28",
+            "sentence": "Pius XII died in the city of Wolverhampton"
+          },
+          {
+            "seq": 7,
+            "fact_key": "fact-c1aebc423d2f627d8fe362c5259b9c28",
+            "sentence": "Pius XII died in the city of Wolverhampton"
+          }
+        ],
+        [
+          {
+            "seq": 8,
+            "fact_key": "fact-62c15133e1732ea519d5f89f6e0ef922",
+            "sentence": "The author of Sketches by Boz is Charles Dickens"
+          },
+          {
+            "seq": 11,
+            "fact_key": "fact-efbaf1a9284862f6f3fa3927d2247cb4",
+            "sentence": "Olga of Kiev died in the city of Rodez"
+          }
+        ],
+        [
+          {
+            "seq": 3,
+            "fact_key": "fact-9a173433a669c05de9d4db2b65bb6e3d",
+            "sentence": "Andy Warhol died in the city of Montm\u00e9lian"
+          },
+          {
+            "seq": 11,
+            "fact_key": "fact-efbaf1a9284862f6f3fa3927d2247cb4",
+            "sentence": "Olga of Kiev died in the city of Rodez"
+          }
+        ]
+      ]
+    },
+    {
+      "qid": 65,
+      "n_facts_sent": 30,
+      "n_chain_old_flagged": 5,
+      "n_conflict_groups": 9,
+      "gt_chain_old_texts": [
+        "Dave Filoni is employed by Lucasfilm.",
+        "The director of British Broadcasting Corporation is Tony Hall, Baron Hall of Birkenhead."
+      ],
+      "gt_chain_new_texts": [
+        "Dave Filoni is employed by British Broadcasting Corporation.",
+        "The director of British Broadcasting Corporation is Narendra Modi."
+      ],
+      "flagged_sentences": [
+        "The chief executive officer of Valve Corporation is Gabe Newell. 75",
+        "C\u00e9dric Klapisch is a citizen of Malaysia",
+        "Pedro Pierluisi worked in Washington, D.C.",
+        "The chief executive officer of Apple Inc. is Vijay Mallya",
+        "The chief executive officer of Microsoft is Satya Nadella"
+      ],
+      "n_gt_old_caught": 0,
+      "n_gt_new_falsely_flagged": 0,
+      "n_unclassified": 5,
+      "unclassified_sample": [
+        "The chief executive officer of Valve Corporation is Gabe Newell. 75",
+        "C\u00e9dric Klapisch is a citizen of Malaysia",
+        "Pedro Pierluisi worked in Washington, D.C.",
+        "The chief executive officer of Apple Inc. is Vijay Mallya",
+        "The chief executive officer of Microsoft is Satya Nadella"
+      ],
+      "conflict_groups_raw": [
+        [
+          {
+            "seq": 0,
+            "fact_key": "fact-e5b16c656538a304c6ff21f7152713ef",
+            "sentence": "Pedro Pierluisi worked in Washington, D.C."
+          },
+          {
+            "seq": 11,
+            "fact_key": "fact-ab2bb3b7d90ccc871b31e92596931e02",
+            "sentence": "Gabe Newell is a citizen of United States of America"
+          }
+        ],
+        [
+          {
+            "seq": 0,
+            "fact_key": "fact-e5b16c656538a304c6ff21f7152713ef",
+            "sentence": "Pedro Pierluisi worked in Washington, D.C."
+          },
+          {
+            "seq": 5,
+            "fact_key": "fact-ac769cd0dd4323019b38431ce7b7d0d6",
+            "sentence": "The chief executive officer of Apple Inc. is Vijay Mallya"
+          }
+        ],
+        [
+          {
+            "seq": 1,
+            "fact_key": "fact-73d780b3cf399fcf3f8d7da262a1a447",
+            "sentence": "The chief executive officer of Valve Corporation is Gabe Newell. 75"
+          },
+          {
+            "seq": 10,
+            "fact_key": "fact-4e79b687c76021b0aa571dead5d42df8",
+            "sentence": "Ron Dennis is employed by Pakistan International Airlines"
+          }
+        ],
+        [
+          {
+            "seq": 1,
+            "fact_key": "fact-73d780b3cf399fcf3f8d7da262a1a447",
+            "sentence": "The chief executive officer of Valve Corporation is Gabe Newell. 75"
+          },
+          {
+            "seq": 10,
+            "fact_key": "fact-4e79b687c76021b0aa571dead5d42df8",
+            "sentence": "Ron Dennis is employed by Pakistan International Airlines"
+          }
+        ],
+        [
+          {
+            "seq": 2,
+            "fact_key": "fact-4116dd0b5d32d41bc6c31a11fddcfd93",
+            "sentence": "The chief executive officer of Microsoft is Satya Nadella"
+          },
+          {
+            "seq": 4,
+            "fact_key": "fact-f28b869c52bbd5bd43b75cbfaefc1497",
+            "sentence": "Stefan L\u00f6fven worked in the city of Stockholm"
+          }
+        ],
+        [
+          {
+            "seq": 5,
+            "fact_key": "fact-ac769cd0dd4323019b38431ce7b7d0d6",
+            "sentence": "The chief executive officer of Apple Inc. is Vijay Mallya"
+          },
+          {
+            "seq": 9,
+            "fact_key": "fact-bd09932fc244bee29917b53dcf97bf4e",
+            "sentence": "The chief executive officer of ABB Group is Ulrich Spiesshofer"
+          }
+        ],
+        [
+          {
+            "seq": 5,
+            "fact_key": "fact-ac769cd0dd4323019b38431ce7b7d0d6",
+            "sentence": "The chief executive officer of Apple Inc. is Vijay Mallya"
+          },
+          {
+            "seq": 6,
+            "fact_key": "fact-512e199e436ddb2d5eded184386ae8c1",
+            "sentence": "C\u00e9dric Klapisch is a citizen of Malaysia"
+          }
+        ],
+        [
+          {
+            "seq": 6,
+            "fact_key": "fact-512e199e436ddb2d5eded184386ae8c1",
+            "sentence": "C\u00e9dric Klapisch is a citizen of Malaysia"
+          },
+          {
+            "seq": 11,
+            "fact_key": "fact-ab2bb3b7d90ccc871b31e92596931e02",
+            "sentence": "Gabe Newell is a citizen of United States of America"
+          }
+        ],
+        [
+          {
+            "seq": 1,
+            "fact_key": "fact-73d780b3cf399fcf3f8d7da262a1a447",
+            "sentence": "The chief executive officer of Valve Corporation is Gabe Newell. 75"
+          },
+          {
+            "seq": 10,
+            "fact_key": "fact-4e79b687c76021b0aa571dead5d42df8",
+            "sentence": "Ron Dennis is employed by Pakistan International Airlines"
+          }
+        ]
+      ]
+    },
+    {
+      "qid": 85,
+      "n_facts_sent": 30,
+      "n_chain_old_flagged": 6,
+      "n_conflict_groups": 8,
+      "gt_chain_old_texts": [
+        "Lisa Leslie plays the position of center.",
+        "goaltender is associated with the sport of ice hockey.",
+        "pes\u00e4pallo was created in the country of Finland."
+      ],
+      "gt_chain_new_texts": [
+        "Lisa Leslie plays the position of goaltender.",
+        "goaltender is associated with the sport of pes\u00e4pallo.",
+        "pes\u00e4pallo was created in the country of Philippines."
+      ],
+      "flagged_sentences": [
+        "Amala Paul is a citizen of India",
+        "pes\u00e4pallo was created in the country of Finland",
+        "Hines Ward plays the position of wide receiver",
+        "baseball was created in the country of Japan",
+        "cricket was created in the country of Australia",
+        "point guard is associated with the sport of cricket"
+      ],
+      "n_gt_old_caught": 1,
+      "n_gt_new_falsely_flagged": 2,
+      "n_unclassified": 5,
+      "unclassified_sample": [
+        "Amala Paul is a citizen of India",
+        "Hines Ward plays the position of wide receiver",
+        "baseball was created in the country of Japan",
+        "cricket was created in the country of Australia",
+        "point guard is associated with the sport of cricket"
+      ],
+      "conflict_groups_raw": [
+        [
+          {
+            "seq": 0,
+            "fact_key": "fact-45aaba004c0bb9d90fd63b43f76ad627",
+            "sentence": "Hines Ward plays the position of wide receiver"
+          },
+          {
+            "seq": 4,
+            "fact_key": "fact-7c03a3e7b6f286975cfdefd5bf7a8fd8",
+            "sentence": "cricket was created in the country of Australia"
+          }
+        ],
+        [
+          {
+            "seq": 0,
+            "fact_key": "fact-45aaba004c0bb9d90fd63b43f76ad627",
+            "sentence": "Hines Ward plays the position of wide receiver"
+          },
+          {
+            "seq": 8,
+            "fact_key": "fact-f364d624462d70bc64f577656d4e842c",
+            "sentence": "Amala Paul is a citizen of Belgium"
+          }
+        ],
+        [
+          {
+            "seq": 0,
+            "fact_key": "fact-45aaba004c0bb9d90fd63b43f76ad627",
+            "sentence": "Hines Ward plays the position of wide receiver"
+          },
+          {
+            "seq": 11,
+            "fact_key": "fact-a8fb30e7748d75b0e5e5cb74bb2e8bc8",
+            "sentence": "Blair Walsh plays the position of placekicker"
+          }
+        ],
+        [
+          {
+            "seq": 1,
+            "fact_key": "fact-00670c36c777cc44235859ee3b2e22f8",
+            "sentence": "pes\u00e4pallo was created in the country of Finland"
+          },
+          {
+            "seq": 6,
+            "fact_key": "fact-512e199e436ddb2d5eded184386ae8c1",
+            "sentence": "C\u00e9dric Klapisch is a citizen of Malaysia"
+          }
+        ],
+        [
+          {
+            "seq": 4,
+            "fact_key": "fact-7c03a3e7b6f286975cfdefd5bf7a8fd8",
+            "sentence": "cricket was created in the country of Australia"
+          },
+          {
+            "seq": 5,
+            "fact_key": "fact-6b4a0549feb9be402bd2112b623293ed",
+            "sentence": "point guard is associated with the sport of cricket"
+          },
+          {
+            "seq": 9,
+            "fact_key": "fact-a1d58c67bc9b7f73674b75b19130c567",
+            "sentence": "basketball was created in the country of Soviet Union"
+          }
+        ],
+        [
+          {
+            "seq": 4,
+            "fact_key": "fact-7c03a3e7b6f286975cfdefd5bf7a8fd8",
+            "sentence": "cricket was created in the country of Australia"
+          },
+          {
+            "seq": 10,
+            "fact_key": "fact-475327ce5e7e209ecd23678538467f20",
+            "sentence": "baseball was created in the country of Japan"
+          }
+        ],
+        [
+          {
+            "seq": 7,
+            "fact_key": "fact-0c82bd59a1659d10d80a20fc62acfa2a",
+            "sentence": "Amala Paul is a citizen of India"
+          },
+          {
+            "seq": 8,
+            "fact_key": "fact-f364d624462d70bc64f577656d4e842c",
+            "sentence": "Amala Paul is a citizen of Belgium"
+          }
+        ],
+        [
+          {
+            "seq": 10,
+            "fact_key": "fact-475327ce5e7e209ecd23678538467f20",
+            "sentence": "baseball was created in the country of Japan"
+          },
+          {
+            "seq": 11,
+            "fact_key": "fact-a8fb30e7748d75b0e5e5cb74bb2e8bc8",
+            "sentence": "Blair Walsh plays the position of placekicker"
+          }
+        ]
+      ]
+    }
+  ]
+}
