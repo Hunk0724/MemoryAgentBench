@@ -288,6 +288,101 @@ PropRAG 的 explicit beam search 對應 paper narrative §6 候選 contribution:
 
 ## §H Session 2026-05-15 累積 finding(v2 LLM judge 路線)
 
+### H.0 心路歷程 — 為什麼從 "v1 P1 升級" 走到 "LLM detection pivot"
+
+這次 session 不是直接決定走 LLM judge,**而是在嘗試 v1 升級的過程中逐步發現 rule-based 結構性過不去**,才被迫 pivot。完整 narrative:
+
+#### Step 1 — G.11 數據暴露 v1 P1 是最大瓶頸
+跑完 G.11 P/Q/R-P1/R-P2/S diagnostic(MH n=182 hops):
+- **R-P1 = 109 (59.9%)** — chain_old 在 top-N 但 **P1 沒抓到 superseded label**
+- R-P2 = 38 (20.9%) — P1 抓到但 P2 chain-anchor 沒觸發
+- B (P-filtered) = 35 (19.2%) — 真正 filter 對的
+
+→ 60% 的 hops 連 detection 這關都沒過,**P1 detection 是 v1 的天花板**。
+
+#### Step 2 — 歸因 P1 失敗:**relation surface variation**
+跑 root cause 分析:
+- 30% missed: OpenIE 完全沒抽到 chain_old
+- 35% missed: same S 但 R surface form 不同(e.g., "married to" vs "spouse of")
+- 38% missed: same (S, R) 但 false match(大半也是 surface 變體)
+
+→ **70%+ 是 surface variation**,deterministic `(S, R, ≠O)` exact match 結構性過不去。
+
+#### Step 3 — Variant B 嘗試:用 fact-embedding cosine 補 P1
+假設:**用 NV-Embed-v2 embed triple,跑 pairwise cosine 找語意相似但 O 不同的 pair**,能繞過 R 的 surface 變體問題。
+
+Feasibility 結果(120 GT conflict pairs):
+- Cosine mean=0.88, random pair p95=0.64 → partial separation
+- t=0.80 → 97% conflict recall, 0.35% random FP
+- **看起來 work** — 比 v1 P1 的 40% recall 高,ceiling 64% (OpenIE bound)
+
+#### Step 4 — 但 Variant B **仍是 rule-based 變體**,還是 (S, R, ≠O) 邏輯
+仔細想 Variant B 機制:
+- 用 fact-embedding cosine 找 candidate pair → 還是要 **same-S gate** 收 precision
+- 否則 random pair 也會誤判(e.g., "X likes apple" + "X likes banana")
+- 等於把 deterministic R exact match 換成 cosine-based R synonym,**核心邏輯沒變**
+
+→ 還是 rule-based。**Apple/Banana 反例、employment 多值關係**這些 ambiguous case 全都過不去。
+
+#### Step 5 — Gemini chat 對話 + insight_discussion.md 揭露文獻 paradigm
+看了 [insight_discussion.md](docs/insight_discussion.md) 的五大 Agent memory paradigm 對比:
+
+| 系統 | 偵測機制 |
+|---|---|
+| Mem0 / EMG-RAG | LLM CRUD judge(write-time)|
+| Zep | LLM semantic exclusion + 時間視窗 |
+| AriGraph | LLM episodic consolidation |
+| LightMem | LLM reader-resolution |
+
+**零個用 rule-based**。全部用 LLM 語意判斷。
+
+→ 認知到:
+1. **MQuAKE 構造刻意只用 functional 衝突**,所以 v1 deterministic 在 FC 上看似 work(36% recall + 1.4% FP),**但 FP 1.4% 是 dataset 偏差不是 method robust**
+2. 真實世界 conflict 是 **semantic 概念**,要區分 functional / cumulative / temporal-functional / aggregated(Wikidata cardinality)
+3. **v1 整套思路在 FC 上 work 但無法泛化**
+
+#### Step 6 — Pivot 到 LLM detection
+基於 Step 5 認知,放棄 rule-based 升級路線,改用 **LLM judge as detection mechanism**:
+- 用 Wikidata-style taxonomy 寫 prompt
+- LLM 只做 conflict grouping(semantic 強項)
+- Direction 用 chunk_idx mechanical 推(避免 LLM world-knowledge prior 干擾)
+
+#### Step 7 — Small-pool LLM judge 90% recall 看似 work
+5 個 MH query × 7-11 facts(GT pair + 5 distractors):
+- Direction recall **90%**(9/10)
+- Precision **100%**
+- Distractor 完全沒誤判
+- Multi-value 規則生效(qid=65 LLM 把 employment 當 multi-value 不 group,FC 角度漏抓但 generalization 角度對)
+
+#### Step 8 — Production-scale 一上 30-449 facts pool 直接崩
+- K=ALL (449 facts): **0% recall**
+- K=30 cosine pre-filter: **20% recall**
+- K=10: **10% recall**(連 chain_old + chain_new 都可能不在 pool 內)
+- LLM 開始 **garbage grouping**(把 share token 但不同 (s, r) 的 fact group 在一起)
+
+#### Step 9 — Option 0 驗證 surface variation 是部分原因
+重建 FC numbered-list passage 的 fact_key → source_sentence 綁定,把 LLM 看的從 stringified triple 換成 natural sentence:
+- K=30 triple form: 20% → K=30 sentence form: **30%**
+- +10pp 改善,**證明 surface 是因素之一**
+- 但**遠低於 small-pool 90%**,**還有其他 root cause**
+
+#### Step 10 — 認知到需 architectural pivot,不能只動 prompt 或表面
+未解問題:
+- (a) OpenIE relation surface 變動(sentence 部分救)
+- (b) Multi-fact-per-chunk → seq collision → direction 反查可能錯
+- (c) LLM attention 在大 pool 中 degrade
+- (d) Query 相關 vs corpus 全域 conflict 混淆
+
+→ **單靠 prompt / fact representation 無法解**,要動架構:
+- PropRAG-style proposition-level KG(解 a+b)
+- HippoRAG-v2 synonymy edges 擴展到 relation alias(解 a)
+- 保留 v1 rule + LLM verify hybrid(解 a+d)
+- 或更 query-scoped 篩選(解 c+d)
+
+→ **這就是現在需要跟 chat 對齊的決策點**。
+
+---
+
 ### H.1 G.11 完整 diagnostic 數據(MH n=182 hops, P1+P2-99 lock 配置)
 
 | Status | Count | % | EM rate |
