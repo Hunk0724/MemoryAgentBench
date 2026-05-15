@@ -164,6 +164,18 @@ class HippoRAG:
         self.supersession_index_path = os.path.join(self.working_dir, "supersession_index.json")
         self._load_supersession_index()  # idempotent: loads if file exists, else no-op
 
+        # ===== G.11 Phase 2 per-event dump (env-gated, no-op when unset) =====
+        # When HIPPORAG_PHASE2_DUMP_PATH=<jsonl> is set, _phase2_filter_chain_old
+        # appends one JSON line per query call with full top-N candidate state for
+        # offline P/Q/R-P1/R-P2/S quadrant analysis (G.11 diagnostic).
+        self._phase2_dump_path: Optional[str] = os.environ.get("HIPPORAG_PHASE2_DUMP_PATH")
+        self._phase2_query_counter: int = 0
+        if self._phase2_dump_path:
+            # Truncate at init so each run produces a fresh file (no cross-run merge).
+            os.makedirs(os.path.dirname(self._phase2_dump_path) or ".", exist_ok=True)
+            open(self._phase2_dump_path, "w").close()
+            logger.info(f"[G.11] Phase 2 dump enabled → {self._phase2_dump_path}")
+
     def initialize_graph(self):
         """
         Initializes a graph using a GraphML file if available or creates a new graph.
@@ -973,12 +985,21 @@ class HippoRAG:
         keep_mask = np.ones(len(sorted_doc_ids), dtype=bool)
         n_filtered = 0
         filter_events = []
+        dump_candidates = []  # G.11: per-passage state for offline P/Q/R analysis
         actual_top_n = min(top_n, len(sorted_doc_ids))
         for rank in range(actual_top_n):
             passage_doc_idx = int(sorted_doc_ids[rank])
             chunk_key = self.passage_node_keys[passage_doc_idx]
             fact_keys = self.chunk_to_fact_keys.get(chunk_key, [])
+            cand_record = {
+                "rank": rank, "chunk_key": chunk_key,
+                "ppr_score": float(sorted_doc_scores[rank]),
+                "n_fact_keys": len(fact_keys),
+                "superseded_fact_details": [],  # all superseded facts inside this passage
+                "filter_triggered": False, "filter_trigger_fact_key": None,
+            }
             if not fact_keys:
+                dump_candidates.append(cand_record)
                 continue
             for fk in fact_keys:
                 if fk not in self.superseded_facts:
@@ -988,16 +1009,29 @@ class HippoRAG:
                 o_old_entity_key = compute_mdhash_id(content=sf["o_old"], prefix="entity-")
                 s_vertex_idx = self.node_name_to_vertex_idx.get(s_entity_key)
                 o_old_vertex_idx = self.node_name_to_vertex_idx.get(o_old_entity_key)
-                if (s_vertex_idx is not None and o_old_vertex_idx is not None
-                        and s_vertex_idx in high_mass_vertex_idxs
-                        and o_old_vertex_idx in high_mass_vertex_idxs):
+                endpoints_in_high_mass = (
+                    s_vertex_idx is not None and o_old_vertex_idx is not None
+                    and s_vertex_idx in high_mass_vertex_idxs
+                    and o_old_vertex_idx in high_mass_vertex_idxs
+                )
+                cand_record["superseded_fact_details"].append({
+                    "fact_key": fk, "s": sf["s"], "r": sf["r"],
+                    "o_old": sf["o_old"], "o_new": sf["o_new"],
+                    "s_in_high_mass": s_vertex_idx is not None and s_vertex_idx in high_mass_vertex_idxs,
+                    "o_old_in_high_mass": o_old_vertex_idx is not None and o_old_vertex_idx in high_mass_vertex_idxs,
+                })
+                if endpoints_in_high_mass and not cand_record["filter_triggered"]:
                     keep_mask[rank] = False
                     n_filtered += 1
+                    cand_record["filter_triggered"] = True
+                    cand_record["filter_trigger_fact_key"] = fk
                     filter_events.append({
                         "rank": rank, "chunk_key": chunk_key, "trigger_fact_key": fk,
                         "s": sf["s"], "r": sf["r"], "o_old": sf["o_old"], "o_new": sf["o_new"],
                     })
-                    break  # one trigger is enough to filter this passage
+                    # Don't break: continue scanning so dump_candidates records ALL
+                    # superseded facts in this passage (for full diagnostic visibility).
+            dump_candidates.append(cand_record)
 
         if n_filtered > 0:
             logger.info(
@@ -1007,6 +1041,25 @@ class HippoRAG:
             )
             # Store last filter events on self for inspection (optional, low cost)
             self._last_phase2_filter_events = filter_events
+
+        # G.11: dump per-query state if env var set (no-op otherwise)
+        if self._phase2_dump_path:
+            try:
+                with open(self._phase2_dump_path, "a") as f:
+                    json.dump({
+                        "q_idx": self._phase2_query_counter,
+                        "percentile": percentile,
+                        "threshold": threshold,
+                        "n_high_mass_entities": len(high_mass_vertex_idxs),
+                        "n_total_entities": len(self.entity_node_idxs),
+                        "actual_top_n": actual_top_n,
+                        "n_filtered": n_filtered,
+                        "candidates": dump_candidates,
+                    }, f)
+                    f.write("\n")
+            except Exception as e:
+                logger.warning(f"[G.11] dump write failed: {e}")
+            self._phase2_query_counter += 1
 
         return sorted_doc_ids[keep_mask], sorted_doc_scores[keep_mask]
 

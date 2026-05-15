@@ -43,6 +43,13 @@ outputs/**/*.lock
 outputs/**/.DS_Store
 
 # =====================================================
+# v1 G.11 diagnostic + smoke test runtime artifacts
+# (LLM cache + per-run logs are non-deterministic noise)
+# =====================================================
+monitoring_logs/
+outputs/smoke_test_cache/
+
+# =====================================================
 # 顯式 unblock — keep these out of any wildcard sweeps
 # =====================================================
 !docs/

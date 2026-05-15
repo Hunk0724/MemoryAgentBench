@@ -1,0 +1,476 @@
+{
+  "n_queries": 5,
+  "aggregate": {
+    "tot_gt": 10,
+    "tot_flagged": 9,
+    "tot_tp": 9,
+    "tot_fp": 0,
+    "tot_fn": 1,
+    "recall": 0.9,
+    "precision": 1.0
+  },
+  "per_query": [
+    {
+      "qid": 0,
+      "n_facts": 11,
+      "n_conflict_pairs_gt": 3,
+      "n_distractors": 5,
+      "gt_pairs": [
+        [
+          107,
+          146
+        ],
+        [
+          164,
+          335
+        ],
+        [
+          294,
+          322
+        ]
+      ],
+      "llm_groups": [
+        [
+          164,
+          335
+        ],
+        [
+          294,
+          322
+        ],
+        [
+          107,
+          146
+        ]
+      ],
+      "pair_recall_hits": 3,
+      "gt_old_seqs": [
+        107,
+        164,
+        294
+      ],
+      "flagged_seqs": [
+        107,
+        164,
+        294
+      ],
+      "tp": [
+        107,
+        164,
+        294
+      ],
+      "fp": [],
+      "fn": [],
+      "false_chain_new": [],
+      "false_distractor": [],
+      "raw_response": "{\"conflict_groups\": [[164, 335], [322, 294], [146, 107]]}",
+      "parsed_response": {
+        "conflict_groups": [
+          [
+            164,
+            335
+          ],
+          [
+            322,
+            294
+          ],
+          [
+            146,
+            107
+          ]
+        ]
+      },
+      "facts_sent": [
+        [
+          164,
+          "Charles Darwin is married to Emma Darwin."
+        ],
+        [
+          335,
+          "Charles Darwin is married to Amala Paul."
+        ],
+        [
+          322,
+          "Amala Paul is a citizen of Belgium."
+        ],
+        [
+          755,
+          "Sigmund Freud died in the city of London."
+        ],
+        [
+          294,
+          "Amala Paul is a citizen of India."
+        ],
+        [
+          229,
+          "Benjamin Mazar is a citizen of Israel."
+        ],
+        [
+          146,
+          "The author of Our Mutual Friend is Charles Darwin."
+        ],
+        [
+          251,
+          "William Waynflete speaks the language of Latin."
+        ],
+        [
+          107,
+          "The author of Our Mutual Friend is Charles Dickens."
+        ],
+        [
+          143,
+          "Sable is a citizen of Czech Republic."
+        ],
+        [
+          105,
+          "The univeristy where Samuel Beckett was educated is University of Southern California."
+        ]
+      ]
+    },
+    {
+      "qid": 20,
+      "n_facts": 7,
+      "n_conflict_pairs_gt": 1,
+      "n_distractors": 5,
+      "gt_pairs": [
+        [
+          66,
+          326
+        ]
+      ],
+      "llm_groups": [
+        [
+          66,
+          326
+        ]
+      ],
+      "pair_recall_hits": 1,
+      "gt_old_seqs": [
+        66
+      ],
+      "flagged_seqs": [
+        66
+      ],
+      "tp": [
+        66
+      ],
+      "fp": [],
+      "fn": [],
+      "false_chain_new": [],
+      "false_distractor": [],
+      "raw_response": "{\"conflict_groups\": [[66, 326]]}",
+      "parsed_response": {
+        "conflict_groups": [
+          [
+            66,
+            326
+          ]
+        ]
+      },
+      "facts_sent": [
+        [
+          460,
+          "Igor of Kiev is married to Olga of Kiev."
+        ],
+        [
+          604,
+          "Born in the U.S.A. was performed by Dana International."
+        ],
+        [
+          226,
+          "Philadelphia was founded by William Penn."
+        ],
+        [
+          430,
+          "Natalie Portman is affiliated with the religion of interdenominational organization."
+        ],
+        [
+          66,
+          "Rand al'Thor was created by Robert Jordan."
+        ],
+        [
+          326,
+          "Rand al'Thor was created by Ferdowsi."
+        ],
+        [
+          559,
+          "The type of music that Michael Mantler plays is post-punk."
+        ]
+      ]
+    },
+    {
+      "qid": 45,
+      "n_facts": 7,
+      "n_conflict_pairs_gt": 1,
+      "n_distractors": 5,
+      "gt_pairs": [
+        [
+          327,
+          430
+        ]
+      ],
+      "llm_groups": [
+        [
+          327,
+          430
+        ]
+      ],
+      "pair_recall_hits": 1,
+      "gt_old_seqs": [
+        327
+      ],
+      "flagged_seqs": [
+        327
+      ],
+      "tp": [
+        327
+      ],
+      "fp": [],
+      "fn": [],
+      "false_chain_new": [],
+      "false_distractor": [],
+      "raw_response": "{\"conflict_groups\": [[327, 430]]}",
+      "parsed_response": {
+        "conflict_groups": [
+          [
+            327,
+            430
+          ]
+        ]
+      },
+      "facts_sent": [
+        [
+          390,
+          "Ford Motor Company was founded by Henri Gr\u00e9goire."
+        ],
+        [
+          327,
+          "The author of Sketches by Boz is Charles Dickens."
+        ],
+        [
+          368,
+          "cricket was created in the country of England."
+        ],
+        [
+          430,
+          "The author of Sketches by Boz is Sigmund Freud."
+        ],
+        [
+          868,
+          "Joseph Story is employed by Harvard University."
+        ],
+        [
+          100,
+          "Hermione Granger was performed by Kylie Minogue."
+        ],
+        [
+          95,
+          "F-22 Raptor was developed by Boeing."
+        ]
+      ]
+    },
+    {
+      "qid": 65,
+      "n_facts": 9,
+      "n_conflict_pairs_gt": 2,
+      "n_distractors": 5,
+      "gt_pairs": [
+        [
+          38,
+          226
+        ],
+        [
+          7,
+          428
+        ]
+      ],
+      "llm_groups": [
+        [
+          7,
+          428
+        ]
+      ],
+      "pair_recall_hits": 1,
+      "gt_old_seqs": [
+        7,
+        38
+      ],
+      "flagged_seqs": [
+        7
+      ],
+      "tp": [
+        7
+      ],
+      "fp": [],
+      "fn": [
+        38
+      ],
+      "false_chain_new": [],
+      "false_distractor": [],
+      "raw_response": "{\"conflict_groups\": [[428, 7]]}",
+      "parsed_response": {
+        "conflict_groups": [
+          [
+            428,
+            7
+          ]
+        ]
+      },
+      "facts_sent": [
+        [
+          428,
+          "The director of British Broadcasting Corporation is Narendra Modi."
+        ],
+        [
+          301,
+          "Henri Gr\u00e9goire is a citizen of France."
+        ],
+        [
+          634,
+          "The headquarters of The University of the Arts is located in the city of Philadelphia."
+        ],
+        [
+          38,
+          "Dave Filoni is employed by Lucasfilm."
+        ],
+        [
+          644,
+          "Imelda Marcos is affiliated with the religion of atheism."
+        ],
+        [
+          226,
+          "Dave Filoni is employed by British Broadcasting Corporation."
+        ],
+        [
+          907,
+          "The type of music that Michael Mantler plays is post-punk."
+        ],
+        [
+          7,
+          "The director of British Broadcasting Corporation is Tony Hall, Baron Hall of Birkenhead."
+        ],
+        [
+          850,
+          "John Keats died in the city of Leipzig."
+        ]
+      ]
+    },
+    {
+      "qid": 85,
+      "n_facts": 11,
+      "n_conflict_pairs_gt": 3,
+      "n_distractors": 5,
+      "gt_pairs": [
+        [
+          14,
+          169
+        ],
+        [
+          223,
+          310
+        ],
+        [
+          59,
+          261
+        ]
+      ],
+      "llm_groups": [
+        [
+          59,
+          261
+        ],
+        [
+          14,
+          169
+        ],
+        [
+          223,
+          310
+        ]
+      ],
+      "pair_recall_hits": 3,
+      "gt_old_seqs": [
+        14,
+        59,
+        223
+      ],
+      "flagged_seqs": [
+        14,
+        59,
+        223
+      ],
+      "tp": [
+        14,
+        59,
+        223
+      ],
+      "fp": [],
+      "fn": [],
+      "false_chain_new": [],
+      "false_distractor": [],
+      "raw_response": "{\"conflict_groups\": [[261, 59], [14, 169], [223, 310]]}",
+      "parsed_response": {
+        "conflict_groups": [
+          [
+            261,
+            59
+          ],
+          [
+            14,
+            169
+          ],
+          [
+            223,
+            310
+          ]
+        ]
+      },
+      "facts_sent": [
+        [
+          465,
+          "Nicolae Ceau\u0219escu is married to Wilhelm II."
+        ],
+        [
+          261,
+          "pes\u00e4pallo was created in the country of Philippines."
+        ],
+        [
+          285,
+          "Daphne du Maurier is a citizen of United Kingdom."
+        ],
+        [
+          14,
+          "Lisa Leslie plays the position of center."
+        ],
+        [
+          169,
+          "Lisa Leslie plays the position of goaltender."
+        ],
+        [
+          374,
+          "Dave Filoni is employed by British Broadcasting Corporation."
+        ],
+        [
+          651,
+          "The official language of Japan is Swedish."
+        ],
+        [
+          223,
+          "goaltender is associated with the sport of ice hockey."
+        ],
+        [
+          855,
+          "Leo Stein is a citizen of United States of America."
+        ],
+        [
+          59,
+          "pes\u00e4pallo was created in the country of Finland."
+        ],
+        [
+          310,
+          "goaltender is associated with the sport of pes\u00e4pallo."
+        ]
+      ]
+    }
+  ]
+}

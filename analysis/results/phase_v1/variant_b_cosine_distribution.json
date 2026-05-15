@@ -1,0 +1,211 @@
+{
+  "n_total_hops": 188,
+  "n_both_found": 120,
+  "n_gt_only": 13,
+  "n_old_only": 22,
+  "n_neither": 33,
+  "conflict_cosine_stats": {
+    "n": 120,
+    "mean": 0.87663381199042,
+    "median": 0.8785403370857239,
+    "min": 0.7320298552513123,
+    "max": 0.9504120349884033,
+    "std": 0.036935681527432845,
+    "percentiles": {
+      "p5": 0.8117525398731231,
+      "p25": 0.8633746653795242,
+      "p50": 0.8785403370857239,
+      "p75": 0.8998454064130783,
+      "p95": 0.9284159958362579
+    }
+  },
+  "random_cosine_stats": {
+    "n": 1992,
+    "mean": 0.522624671459198,
+    "max": 0.9020878672599792,
+    "p95": 0.6443961262702942,
+    "p99": 0.7439761161804199
+  },
+  "pair_data_sample": [
+    {
+      "qid": 0,
+      "hop_idx": 0,
+      "gt_text": "The author of Our Mutual Friend is Charles Darwin.",
+      "old_text": "The author of Our Mutual Friend is Charles Dickens.",
+      "gt_idx": 83,
+      "old_idx": 142,
+      "cosine": 0.8810079097747803
+    },
+    {
+      "qid": 0,
+      "hop_idx": 1,
+      "gt_text": "Charles Darwin is married to Amala Paul.",
+      "old_text": "Charles Darwin is married to Emma Darwin.",
+      "gt_idx": 44,
+      "old_idx": 364,
+      "cosine": 0.8635976910591125
+    },
+    {
+      "qid": 0,
+      "hop_idx": 2,
+      "gt_text": "Amala Paul is a citizen of Belgium.",
+      "old_text": "Amala Paul is a citizen of India.",
+      "gt_idx": 100,
+      "old_idx": 43,
+      "cosine": 0.8940647840499878
+    },
+    {
+      "qid": 1,
+      "hop_idx": 1,
+      "gt_text": "Olga of Kiev died in the city of Rodez.",
+      "old_text": "Olga of Kiev died in the city of Kyiv.",
+      "gt_idx": 85,
+      "old_idx": 75,
+      "cosine": 0.896359920501709
+    },
+    {
+      "qid": 2,
+      "hop_idx": 0,
+      "gt_text": "Steve Sax is associated with the sport of association football.",
+      "old_text": "Steve Sax is associated with the sport of baseball.",
+      "gt_idx": 182,
+      "old_idx": 368,
+      "cosine": 0.8630451560020447
+    },
+    {
+      "qid": 2,
+      "hop_idx": 1,
+      "gt_text": "association football was created in the country of Italy.",
+      "old_text": "association football was created in the country of England.",
+      "gt_idx": 149,
+      "old_idx": 87,
+      "cosine": 0.8637679815292358
+    },
+    {
+      "qid": 3,
+      "hop_idx": 0,
+      "gt_text": "Tunisia national football team is associated with the sport of basketball.",
+      "old_text": "Tunisia national football team is associated with the sport of association football.",
+      "gt_idx": 435,
+      "old_idx": 215,
+      "cosine": 0.7856535911560059
+    },
+    {
+      "qid": 3,
+      "hop_idx": 1,
+      "gt_text": "basketball was created in the country of Soviet Union.",
+      "old_text": "basketball was created in the country of United States of America.",
+      "gt_idx": 231,
+      "old_idx": 412,
+      "cosine": 0.8741258382797241
+    },
+    {
+      "qid": 3,
+      "hop_idx": 2,
+      "gt_text": "The capital of Soviet Union is Russellville.",
+      "old_text": "The capital of Soviet Union is Moscow.",
+      "gt_idx": 380,
+      "old_idx": 252,
+      "cosine": 0.8824409246444702
+    },
+    {
+      "qid": 4,
+      "hop_idx": 1,
+      "gt_text": "placekicker is associated with the sport of rugby.",
+      "old_text": "placekicker is associated with the sport of American football.",
+      "gt_idx": 214,
+      "old_idx": 426,
+      "cosine": 0.9148976802825928
+    },
+    {
+      "qid": 5,
+      "hop_idx": 1,
+      "gt_text": "The univeristy where Wilhelm II was educated is Baldwin Wallace University.",
+      "old_text": "The univeristy where Wilhelm II was educated is University of Bonn.",
+      "gt_idx": 76,
+      "old_idx": 233,
+      "cosine": 0.8897855281829834
+    },
+    {
+      "qid": 7,
+      "hop_idx": 0,
+      "gt_text": "Thomas Arne was born in the city of Bengaluru.",
+      "old_text": "Thomas Arne was born in the city of London.",
+      "gt_idx": 180,
+      "old_idx": 151,
+      "cosine": 0.8862326741218567
+    },
+    {
+      "qid": 7,
+      "hop_idx": 1,
+      "gt_text": "Bengaluru is located in the continent of Oceania.",
+      "old_text": "Bengaluru is located in the continent of Asia.",
+      "gt_idx": 428,
+      "old_idx": 287,
+      "cosine": 0.8665391802787781
+    },
+    {
+      "qid": 8,
+      "hop_idx": 0,
+      "gt_text": "Colin Irwin is a citizen of Israel.",
+      "old_text": "Colin Irwin is a citizen of United Kingdom.",
+      "gt_idx": 24,
+      "old_idx": 97,
+      "cosine": 0.9153203964233398
+    },
+    {
+      "qid": 8,
+      "hop_idx": 1,
+      "gt_text": "Israel is located in the continent of North America.",
+      "old_text": "Israel is located in the continent of Asia.",
+      "gt_idx": 256,
+      "old_idx": 284,
+      "cosine": 0.8709966540336609
+    },
+    {
+      "qid": 9,
+      "hop_idx": 0,
+      "gt_text": "John Walsh is affiliated with the religion of Methodism.",
+      "old_text": "John Walsh is affiliated with the religion of Catholic Church.",
+      "gt_idx": 157,
+      "old_idx": 54,
+      "cosine": 0.8749809265136719
+    },
+    {
+      "qid": 10,
+      "hop_idx": 1,
+      "gt_text": "Adalbert of Prague is affiliated with the religion of atheism.",
+      "old_text": "Adalbert of Prague is affiliated with the religion of Catholic Church.",
+      "gt_idx": 96,
+      "old_idx": 409,
+      "cosine": 0.8314443826675415
+    },
+    {
+      "qid": 11,
+      "hop_idx": 1,
+      "gt_text": "Kingdom of Ireland is affiliated with the religion of Zoroastrianism.",
+      "old_text": "Kingdom of Ireland is affiliated with the religion of Catholic Church.",
+      "gt_idx": 45,
+      "old_idx": 32,
+      "cosine": 0.8463433980941772
+    },
+    {
+      "qid": 12,
+      "hop_idx": 1,
+      "gt_text": "association football was created in the country of Italy.",
+      "old_text": "association football was created in the country of England.",
+      "gt_idx": 149,
+      "old_idx": 87,
+      "cosine": 0.8637679815292358
+    },
+    {
+      "qid": 14,
+      "hop_idx": 0,
+      "gt_text": "Andrew Carnegie is a citizen of United Kingdom.",
+      "old_text": "Andrew Carnegie is a citizen of United States of America.",
+      "gt_idx": 342,
+      "old_idx": 152,
+      "cosine": 0.9362717270851135
+    }
+  ]
+}

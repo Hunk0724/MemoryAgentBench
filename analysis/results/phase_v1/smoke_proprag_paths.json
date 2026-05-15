@@ -1,0 +1,290 @@
+{
+  "n_queries": 5,
+  "aggregate": {
+    "tot_gt": 11,
+    "tot_covered": 8,
+    "coverage_rate": 0.7272727272727273
+  },
+  "per_query": [
+    {
+      "qid": 0,
+      "query": "What is the country of citizenship of the spouse of the author of Our Mutual Friend?",
+      "n_paths": 12,
+      "top3_paths": [
+        {
+          "score": 0.38886675238609314,
+          "path": [
+            307
+          ],
+          "fact_texts": [
+            "('catherine dickens', 'citizen of', 'united kingdom')"
+          ]
+        },
+        {
+          "score": 0.38455289602279663,
+          "path": [
+            83
+          ],
+          "fact_texts": [
+            "('our mutual friend', 'was authored by', 'charles darwin')"
+          ]
+        },
+        {
+          "score": 0.37775495648384094,
+          "path": [
+            83,
+            142
+          ],
+          "fact_texts": [
+            "('our mutual friend', 'was authored by', 'charles darwin')",
+            "('our mutual friend', 'author', 'charles dickens')"
+          ]
+        }
+      ],
+      "gt_facts": [
+        {
+          "fact_idx": 44,
+          "role": "chain_new",
+          "hop_idx": 1,
+          "content": "('charles darwin', 'married to', 'amala paul')",
+          "covered_in_top10": false
+        },
+        {
+          "fact_idx": 364,
+          "role": "chain_old",
+          "hop_idx": 1,
+          "content": "('charles darwin', 'spouse', 'emma darwin')",
+          "covered_in_top10": true
+        },
+        {
+          "fact_idx": 100,
+          "role": "chain_new",
+          "hop_idx": 2,
+          "content": "('amala paul', 'citizen of', 'belgium')",
+          "covered_in_top10": false
+        },
+        {
+          "fact_idx": 43,
+          "role": "chain_old",
+          "hop_idx": 2,
+          "content": "('amala paul', 'citizen of', 'india')",
+          "covered_in_top10": false
+        }
+      ],
+      "n_gt": 4,
+      "n_covered": 1
+    },
+    {
+      "qid": 20,
+      "query": "What is the language of the work that was created by the individual who created Rand al'Thor?",
+      "n_paths": 12,
+      "top3_paths": [
+        {
+          "score": 0.550085723400116,
+          "path": [
+            105
+          ],
+          "fact_texts": [
+            "('rand al thor', 'created by', 'robert jordan')"
+          ]
+        },
+        {
+          "score": 0.5283583402633667,
+          "path": [
+            105,
+            121
+          ],
+          "fact_texts": [
+            "('rand al thor', 'created by', 'robert jordan')",
+            "('rand al thor', 'created by', 'ferdowsi')"
+          ]
+        },
+        {
+          "score": 0.5066309571266174,
+          "path": [
+            121
+          ],
+          "fact_texts": [
+            "('rand al thor', 'created by', 'ferdowsi')"
+          ]
+        }
+      ],
+      "gt_facts": [
+        {
+          "fact_idx": 121,
+          "role": "chain_new",
+          "hop_idx": 0,
+          "content": "('rand al thor', 'created by', 'ferdowsi')",
+          "covered_in_top10": true
+        },
+        {
+          "fact_idx": 105,
+          "role": "chain_old",
+          "hop_idx": 0,
+          "content": "('rand al thor', 'created by', 'robert jordan')",
+          "covered_in_top10": true
+        }
+      ],
+      "n_gt": 2,
+      "n_covered": 2
+    },
+    {
+      "qid": 45,
+      "query": "At what location did the author of \"Sketches by Boz\" breathe his last?",
+      "n_paths": 12,
+      "top3_paths": [
+        {
+          "score": 0.41626405715942383,
+          "path": [
+            127
+          ],
+          "fact_texts": [
+            "('sketches by boz', 'author', 'charles dickens')"
+          ]
+        },
+        {
+          "score": 0.3923990726470947,
+          "path": [
+            127,
+            70
+          ],
+          "fact_texts": [
+            "('sketches by boz', 'author', 'charles dickens')",
+            "('charles dickens', 'died in', 'gads hill place')"
+          ]
+        },
+        {
+          "score": 0.3896405100822449,
+          "path": [
+            127,
+            253
+          ],
+          "fact_texts": [
+            "('sketches by boz', 'author', 'charles dickens')",
+            "('sigmund freud', 'author of', 'sketches by boz')"
+          ]
+        }
+      ],
+      "gt_facts": [],
+      "n_gt": 0,
+      "n_covered": 0
+    },
+    {
+      "qid": 65,
+      "query": "Which individual holds the position of director/manager at the company that employs Dave Filoni?",
+      "n_paths": 12,
+      "top3_paths": [
+        {
+          "score": 0.4727172255516052,
+          "path": [
+            173
+          ],
+          "fact_texts": [
+            "('dave filoni', 'employed by', 'lucasfilm')"
+          ]
+        },
+        {
+          "score": 0.4226325750350952,
+          "path": [
+            173,
+            206
+          ],
+          "fact_texts": [
+            "('dave filoni', 'employed by', 'lucasfilm')",
+            "('dave filoni', 'employed by', 'british broadcasting corporation')"
+          ]
+        },
+        {
+          "score": 0.39275988936424255,
+          "path": [
+            173,
+            106
+          ],
+          "fact_texts": [
+            "('dave filoni', 'employed by', 'lucasfilm')",
+            "('kathleen kennedy', 'director of', 'lucasfilm')"
+          ]
+        }
+      ],
+      "gt_facts": [
+        {
+          "fact_idx": 206,
+          "role": "chain_new",
+          "hop_idx": 0,
+          "content": "('dave filoni', 'employed by', 'british broadcasting corporation')",
+          "covered_in_top10": true
+        },
+        {
+          "fact_idx": 173,
+          "role": "chain_old",
+          "hop_idx": 0,
+          "content": "('dave filoni', 'employed by', 'lucasfilm')",
+          "covered_in_top10": true
+        }
+      ],
+      "n_gt": 2,
+      "n_covered": 2
+    },
+    {
+      "qid": 85,
+      "query": "Which country does the sportsperson who specializes in Lisa Leslie's position originally come from?",
+      "n_paths": 12,
+      "top3_paths": [
+        {
+          "score": 0.4294940233230591,
+          "path": [
+            413
+          ],
+          "fact_texts": [
+            "('lisa leslie', 'plays position', 'center')"
+          ]
+        },
+        {
+          "score": 0.4055980443954468,
+          "path": [
+            413,
+            390
+          ],
+          "fact_texts": [
+            "('lisa leslie', 'plays position', 'center')",
+            "('lisa leslie', 'position', 'goaltender')"
+          ]
+        },
+        {
+          "score": 0.38170209527015686,
+          "path": [
+            390
+          ],
+          "fact_texts": [
+            "('lisa leslie', 'position', 'goaltender')"
+          ]
+        }
+      ],
+      "gt_facts": [
+        {
+          "fact_idx": 390,
+          "role": "chain_new",
+          "hop_idx": 0,
+          "content": "('lisa leslie', 'position', 'goaltender')",
+          "covered_in_top10": true
+        },
+        {
+          "fact_idx": 413,
+          "role": "chain_old",
+          "hop_idx": 0,
+          "content": "('lisa leslie', 'plays position', 'center')",
+          "covered_in_top10": true
+        },
+        {
+          "fact_idx": 22,
+          "role": "chain_old",
+          "hop_idx": 1,
+          "content": "('goaltender', 'associated with', 'ice hockey')",
+          "covered_in_top10": true
+        }
+      ],
+      "n_gt": 3,
+      "n_covered": 3
+    }
+  ]
+}
