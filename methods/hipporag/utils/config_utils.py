@@ -179,9 +179,41 @@ class BaseConfig:
         metadata={"help": "Phase 2: phrase node PPR-mass percentile threshold for 'query-relevant entity' set. "
                           "Default 80.0 = top 20%. Higher = stricter (less filtering)."}
     )
-    
-    
-    
+
+    # ===== v2 LLM-judge detection flags (default off = upstream vanilla) =====
+    # Added 2026-05-14 after v1+G.11 pivot. method_v2 design:
+    # query-time semantic detection via LLM grouping + mechanical seq direction.
+    enable_v2_detect: bool = field(
+        default=False,
+        metadata={"help": "v2: query-time LLM judge detection on top-N passage facts. "
+                          "Replaces (or augments) v1 P1+P2 deterministic detection. "
+                          "Uses Wikidata-style functional/cumulative/temporal-functional "
+                          "taxonomy in prompt; direction resolved by chunk_idx (=seq)."}
+    )
+    v2_mode: Literal["filter", "annotate", "both", "off"] = field(
+        default="off",
+        metadata={"help": "v2 output mode: 'filter' drops chain_old passages (like v1 P2); "
+                          "'annotate' keeps passages but appends 'note: facts X are outdated' "
+                          "to QA prompt; 'both' applies filter + annotation; 'off' detect-only "
+                          "(useful for diagnostic without affecting EM)."}
+    )
+    v2_top_n_passages: int = field(
+        default=20,
+        metadata={"help": "v2: how many PPR-ranked passages to extract facts from for LLM judge."}
+    )
+    v2_top_k_facts: Optional[int] = field(
+        default=None,
+        metadata={"help": "v2: optional cosine pre-filter cap. When set, only the top-K facts "
+                          "by cosine(query, fact_emb) are sent to LLM judge. None = send all "
+                          "facts from top-N passages (may overwhelm LLM at large corpus). "
+                          "Recommended: 30-50 for FC-MH 6k (where corpus = 449 facts)."}
+    )
+    v2_llm_temperature: float = field(
+        default=0.0,
+        metadata={"help": "v2: temperature for LLM judge detector (deterministic by default)."}
+    )
+
+
     # Retrieval specific attributes
     linking_top_k: int = field(
         default=5,
@@ -267,3 +299,33 @@ class BaseConfig:
                 logger.info(f"[config] env override: phase2_high_mass_percentile = {self.phase2_high_mass_percentile} (from HIPPORAG_PHASE2_PERCENTILE={pct_env!r})")
             except ValueError:
                 logger.warning(f"[config] HIPPORAG_PHASE2_PERCENTILE={pct_env!r} not a float, ignoring")
+
+        # ===== v2 LLM-judge env overrides (2026-05-14) =====
+        v2_detect_env = os.environ.get("HIPPORAG_ENABLE_V2_DETECT")
+        if v2_detect_env is not None:
+            self.enable_v2_detect = v2_detect_env.lower() in ("1", "true", "yes")
+            logger.info(f"[config] env override: enable_v2_detect = {self.enable_v2_detect} (from HIPPORAG_ENABLE_V2_DETECT={v2_detect_env!r})")
+
+        v2_mode_env = os.environ.get("HIPPORAG_V2_MODE")
+        if v2_mode_env is not None:
+            if v2_mode_env in ("filter", "annotate", "both", "off"):
+                self.v2_mode = v2_mode_env
+                logger.info(f"[config] env override: v2_mode = {self.v2_mode!r} (from HIPPORAG_V2_MODE={v2_mode_env!r})")
+            else:
+                logger.warning(f"[config] HIPPORAG_V2_MODE={v2_mode_env!r} not a valid mode, ignoring")
+
+        v2_topn_env = os.environ.get("HIPPORAG_V2_TOP_N_PASSAGES")
+        if v2_topn_env is not None:
+            try:
+                self.v2_top_n_passages = int(v2_topn_env)
+                logger.info(f"[config] env override: v2_top_n_passages = {self.v2_top_n_passages} (from HIPPORAG_V2_TOP_N_PASSAGES={v2_topn_env!r})")
+            except ValueError:
+                logger.warning(f"[config] HIPPORAG_V2_TOP_N_PASSAGES={v2_topn_env!r} not an int, ignoring")
+
+        v2_topk_env = os.environ.get("HIPPORAG_V2_TOP_K_FACTS")
+        if v2_topk_env is not None:
+            try:
+                self.v2_top_k_facts = int(v2_topk_env)
+                logger.info(f"[config] env override: v2_top_k_facts = {self.v2_top_k_facts} (from HIPPORAG_V2_TOP_K_FACTS={v2_topk_env!r})")
+            except ValueError:
+                logger.warning(f"[config] HIPPORAG_V2_TOP_K_FACTS={v2_topk_env!r} not an int, ignoring")

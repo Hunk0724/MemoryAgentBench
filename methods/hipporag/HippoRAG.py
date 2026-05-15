@@ -176,6 +176,20 @@ class HippoRAG:
             open(self._phase2_dump_path, "w").close()
             logger.info(f"[G.11] Phase 2 dump enabled → {self._phase2_dump_path}")
 
+        # ===== v2 LLM-judge detector (env-gated, no-op when enable_v2_detect=False) =====
+        # Added 2026-05-14. Query-time semantic detection on top-N passage facts.
+        # Lazy-init: detector built on first call to graph_search (needs chunk_to_fact_keys
+        # populated by index()).
+        self._v2_detector = None
+        self._v2_chunk_key_to_idx: Dict[str, int] = {}  # chunk_key -> chunk_idx (seq)
+        self._v2_last_annotation: str = ""  # per-query, set during retrieve, read during qa
+        self._v2_query_to_annotation: Dict[str, str] = {}  # query_text -> annotation
+        self._v2_dump_path: Optional[str] = os.environ.get("HIPPORAG_V2_DUMP_PATH")
+        if self._v2_dump_path:
+            os.makedirs(os.path.dirname(self._v2_dump_path) or ".", exist_ok=True)
+            open(self._v2_dump_path, "w").close()
+            logger.info(f"[v2] Detection dump enabled → {self._v2_dump_path}")
+
     def initialize_graph(self):
         """
         Initializes a graph using a GraphML file if available or creates a new graph.
@@ -284,9 +298,14 @@ class HippoRAG:
         self.add_fact_edges(chunk_ids, chunk_triples)
         num_new_chunks = self.add_passage_edges(chunk_ids, chunk_triple_entities)
 
+        # ===== Build chunk_to_fact_keys mapping (always, regardless of Phase 1) =====
+        # Needed by Phase 2 filter (v1) and v2 LLM judge detector.
+        # Cheap to build; deterministic from OpenIE triples.
+        self._build_chunk_to_fact_keys(chunk_ids, chunk_triples)
+
         # ===== v1 Phase 1: Conflict-Aware Fact Annotation =====
         # Hook here (after KG edges built, before synonymy KNN). Reads chunk_triples
-        # (already in scope), writes self.superseded_facts + self.chunk_to_fact_keys.
+        # (already in scope), writes self.superseded_facts.
         # Persisted to supersession_index.json next to graph.graphml.
         # Behavior preserved when enable_supersession=False (no-op).
         if getattr(self.global_config, 'enable_supersession', False):
@@ -376,6 +395,11 @@ class HippoRAG:
                                                                                          passage_node_weight=self.global_config.passage_node_weight)
 
             top_k_docs = [self.chunk_embedding_store.get_row(self.passage_node_keys[idx])["content"] for idx in sorted_doc_ids[:num_to_retrieve]]
+
+            # v2: align annotation key — graph_search uses retrieval_query, but
+            # qa() looks up by full query. Copy under full key.
+            if getattr(self.global_config, 'enable_v2_detect', False):
+                self._v2_query_to_annotation[query] = self._v2_last_annotation
 
             retrieval_results.append(QuerySolution(question=query, docs=top_k_docs, doc_scores=sorted_doc_scores[:num_to_retrieve]))
 
@@ -500,6 +524,16 @@ class HippoRAG:
             prompt_user = ''
             for passage in retrieved_passages:
                 prompt_user += f'Wikipedia Title: {passage}\n\n'
+
+            # ===== v2 annotation hook (annotate or both mode) =====
+            # Append LLM-detected chain_old annotation between passages and question.
+            # Keyed by query text (set during graph_search_with_fact_entities).
+            v2_mode = getattr(self.global_config, 'v2_mode', 'off')
+            if (getattr(self.global_config, 'enable_v2_detect', False)
+                    and v2_mode in ('annotate', 'both')):
+                ann = self._v2_query_to_annotation.get(query_solution.question, "")
+                if ann:
+                    prompt_user += ann + '\n\n'
 
             # ===== Phase 3 hook: append scaffold before the question =====
             # Placed AFTER passages and BEFORE "Question:" line so it acts as an
@@ -825,26 +859,13 @@ class HippoRAG:
     # objects are 'active', objects from earlier chunks marked superseded at fact_key
     # level (NOT graph-edge level — graph edges collapse relation; see chat §B.7.1).
     # ============================================================================
-    def _phase1_scan_supersession(self, chunk_ids: List[str], chunk_triples: List[List[Tuple]]):
-        """Scan chunk_triples for same-(S,R)-different-O conflicts; mark earlier fact_keys
-        as superseded.
+    def _build_chunk_to_fact_keys(self, chunk_ids: List[str], chunk_triples: List[List[Tuple]]):
+        """Always-built mapping: chunk_key -> [fact_key, ...].
 
-        Populates:
-          self.superseded_facts[fact_key] = {by_fact_key, observed_chunk_idx,
-                                              superseder_chunk_idx, s, r, o_old, o_new}
-          self.chunk_to_fact_keys[chunk_key] = [fact_key, ...]
-
-        Idempotent: clears existing state first, so re-running on the same corpus
-        gives identical results.
+        Decoupled from Phase 1 so v2 LLM judge can use it without requiring
+        enable_supersession=True. Deterministic from OpenIE chunk_triples.
         """
-        # Reset prior state (e.g., when re-indexing same corpus)
-        self.superseded_facts = {}
         self.chunk_to_fact_keys = {}
-
-        # Group all facts by (s_norm, r_norm)
-        sr_to_occurrences = defaultdict(list)
-        # Each occurrence: (chunk_idx_int, chunk_key, o_str_orig, fact_key)
-
         for chunk_idx, (chunk_key, triples) in enumerate(zip(chunk_ids, chunk_triples)):
             self.chunk_to_fact_keys.setdefault(chunk_key, [])
             for triple in triples:
@@ -853,9 +874,35 @@ class HippoRAG:
                 s, r, o = [str(x).strip() for x in triple]
                 if not s or not r or not o:
                     continue
-                # fact_key matches HippoRAG's existing scheme (see add_fact_edges L527)
                 fact_key = compute_mdhash_id(content=str(tuple(triple)), prefix="fact-")
                 self.chunk_to_fact_keys[chunk_key].append(fact_key)
+
+    def _phase1_scan_supersession(self, chunk_ids: List[str], chunk_triples: List[List[Tuple]]):
+        """Scan chunk_triples for same-(S,R)-different-O conflicts; mark earlier fact_keys
+        as superseded.
+
+        Populates:
+          self.superseded_facts[fact_key] = {by_fact_key, observed_chunk_idx,
+                                              superseder_chunk_idx, s, r, o_old, o_new}
+
+        Assumes self.chunk_to_fact_keys already populated by _build_chunk_to_fact_keys.
+        Idempotent: clears existing superseded_facts state first.
+        """
+        # Reset prior state (e.g., when re-indexing same corpus)
+        self.superseded_facts = {}
+
+        # Group all facts by (s_norm, r_norm)
+        sr_to_occurrences = defaultdict(list)
+        # Each occurrence: (chunk_idx_int, chunk_key, o_str_orig, fact_key)
+
+        for chunk_idx, (chunk_key, triples) in enumerate(zip(chunk_ids, chunk_triples)):
+            for triple in triples:
+                if not (isinstance(triple, (list, tuple)) and len(triple) == 3):
+                    continue
+                s, r, o = [str(x).strip() for x in triple]
+                if not s or not r or not o:
+                    continue
+                fact_key = compute_mdhash_id(content=str(tuple(triple)), prefix="fact-")
                 sr_to_occurrences[(s.lower(), r.lower())].append(
                     (chunk_idx, chunk_key, o, fact_key)
                 )
@@ -1062,6 +1109,111 @@ class HippoRAG:
             self._phase2_query_counter += 1
 
         return sorted_doc_ids[keep_mask], sorted_doc_scores[keep_mask]
+
+    def _ensure_v2_detector(self):
+        """Lazy-init the v2 LLMJudgeDetector. Requires chunk_to_fact_keys populated."""
+        if self._v2_detector is not None:
+            return
+        from .v2_llm_judge import LLMJudgeDetector
+        # Build chunk_key -> chunk_idx (seq) by iterating passage nodes in order
+        if not self._v2_chunk_key_to_idx:
+            for idx, ck in enumerate(self.passage_node_keys):
+                self._v2_chunk_key_to_idx[ck] = idx
+        # Build fact_key -> content map from fact_embedding_store
+        fact_rows = self.fact_embedding_store.get_text_for_all_rows()
+        fact_content_map = {fk: row["content"] for fk, row in fact_rows.items()}
+        self._v2_detector = LLMJudgeDetector(
+            llm_model=self.llm_model,
+            chunk_to_fact_keys=self.chunk_to_fact_keys,
+            fact_content_map=fact_content_map,
+            chunk_key_to_idx=self._v2_chunk_key_to_idx,
+        )
+        logger.info(f"[v2] LLMJudgeDetector ready "
+                    f"(n_chunks={len(self.chunk_to_fact_keys)}, n_facts={len(fact_content_map)})")
+
+    def _v2_llm_judge_apply(self, query: str, sorted_doc_ids: np.ndarray,
+                             sorted_doc_scores: np.ndarray,
+                             query_fact_scores: Optional[np.ndarray] = None):
+        """v2 detection: run LLM judge on top-N passages, then filter and/or
+        store annotation per global_config.v2_mode.
+
+        Args:
+            query_fact_scores: optional precomputed cosine scores between query
+                and each fact (indexed by self.fact_node_keys). Enables top-K
+                fact pre-filter via global_config.v2_top_k_facts.
+        """
+        v2_mode = getattr(self.global_config, 'v2_mode', 'off')
+        if v2_mode == 'off':
+            return sorted_doc_ids, sorted_doc_scores
+        if not self.chunk_to_fact_keys:
+            logger.debug("[v2] no chunk_to_fact_keys (was indexing skipped?), skip detection")
+            return sorted_doc_ids, sorted_doc_scores
+        self._ensure_v2_detector()
+
+        top_n = getattr(self.global_config, 'v2_top_n_passages', 20)
+        actual_top_n = min(top_n, len(sorted_doc_ids))
+        top_n_chunk_keys = [self.passage_node_keys[int(sorted_doc_ids[r])]
+                            for r in range(actual_top_n)]
+
+        # Build fact_key → query cosine score map (for optional top-K pre-filter)
+        fact_key_to_score = None
+        top_k_facts = getattr(self.global_config, 'v2_top_k_facts', None)
+        if top_k_facts is not None and query_fact_scores is not None:
+            try:
+                # query_fact_scores is indexed by fact_node_keys
+                fact_key_to_score = dict(zip(self.fact_node_keys, query_fact_scores))
+            except Exception as e:
+                logger.warning(f"[v2] failed to build fact_key→score map: {e}")
+                fact_key_to_score = None
+
+        result = self._v2_detector.detect(query, top_n_chunk_keys,
+                                          fact_key_to_query_score=fact_key_to_score,
+                                          top_k_facts=top_k_facts)
+        chain_old_chunk_keys = result["chain_old_chunk_keys"]
+        annotation_text = result["annotation_text"]
+
+        # Store annotation for qa() (keyed by query text)
+        self._v2_query_to_annotation[query] = annotation_text
+        self._v2_last_annotation = annotation_text
+
+        # Dump per-query state if env var set
+        if self._v2_dump_path:
+            try:
+                with open(self._v2_dump_path, "a") as f:
+                    json.dump({
+                        "query": query, "v2_mode": v2_mode,
+                        "actual_top_n": actual_top_n,
+                        "n_facts_sent": result["n_facts_sent"],
+                        "n_chain_old_fact_keys": len(result["chain_old_fact_keys"]),
+                        "n_chain_old_chunk_keys": len(chain_old_chunk_keys),
+                        "conflict_groups": [
+                            [{"seq": s, "fact_key": fk} for s, fk in grp]
+                            for grp in result["conflict_groups"]
+                        ],
+                        "chain_old_chunk_keys": sorted(chain_old_chunk_keys),
+                        "annotation_text": annotation_text,
+                    }, f)
+                    f.write("\n")
+            except Exception as e:
+                logger.warning(f"[v2] dump write failed: {e}")
+
+        # Filter mode: drop passages whose chunk_key is in chain_old set
+        if v2_mode in ('filter', 'both') and chain_old_chunk_keys:
+            keep_mask = np.ones(len(sorted_doc_ids), dtype=bool)
+            n_filtered = 0
+            for rank in range(actual_top_n):
+                ck = self.passage_node_keys[int(sorted_doc_ids[rank])]
+                if ck in chain_old_chunk_keys:
+                    keep_mask[rank] = False
+                    n_filtered += 1
+            if n_filtered > 0:
+                logger.info(
+                    f"[v2] mode={v2_mode}: filtered {n_filtered} passages "
+                    f"from top-{actual_top_n} (chain_old detected by LLM judge)"
+                )
+            return sorted_doc_ids[keep_mask], sorted_doc_scores[keep_mask]
+
+        return sorted_doc_ids, sorted_doc_scores
 
     def add_new_nodes(self):
         """
@@ -1468,6 +1620,16 @@ class HippoRAG:
         if getattr(self.global_config, 'enable_phase2_filter', False):
             ppr_sorted_doc_ids, ppr_sorted_doc_scores = self._phase2_filter_chain_old(
                 ppr_sorted_doc_ids, ppr_sorted_doc_scores, pagerank_scores
+            )
+
+        # ===== v2 LLM judge detection (filter and/or annotate modes) =====
+        # 2026-05-14. Query-time LLM judge on top-N passage facts; mechanical
+        # seq direction (chunk_idx); filter chain_old passages and/or store
+        # annotation text for qa() to read.
+        if getattr(self.global_config, 'enable_v2_detect', False):
+            ppr_sorted_doc_ids, ppr_sorted_doc_scores = self._v2_llm_judge_apply(
+                query, ppr_sorted_doc_ids, ppr_sorted_doc_scores,
+                query_fact_scores=query_fact_scores
             )
 
         return ppr_sorted_doc_ids, ppr_sorted_doc_scores

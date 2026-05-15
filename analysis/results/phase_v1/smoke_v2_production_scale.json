@@ -1,0 +1,580 @@
+{
+  "n_queries": 5,
+  "aggregate": {
+    "tot_gt_chain_old": 10,
+    "tot_caught": 1,
+    "recall": 0.1,
+    "tot_chain_new_falsely_flagged": 2,
+    "tot_unclassified_flagged": 7,
+    "tot_flagged": 10,
+    "avg_facts_sent": 10.0
+  },
+  "per_query": [
+    {
+      "qid": 0,
+      "n_facts_sent": 10,
+      "n_chain_old_flagged": 2,
+      "n_conflict_groups": 2,
+      "gt_chain_old_texts": [
+        "The author of Our Mutual Friend is Charles Dickens.",
+        "Charles Darwin is married to Emma Darwin.",
+        "Amala Paul is a citizen of India."
+      ],
+      "gt_chain_new_texts": [
+        "The author of Our Mutual Friend is Charles Darwin.",
+        "Charles Darwin is married to Amala Paul.",
+        "Amala Paul is a citizen of Belgium."
+      ],
+      "flagged_old_texts": [
+        "charles dickens is married to catherine dickens",
+        "our mutual friend author charles dickens"
+      ],
+      "n_gt_old_caught": 1,
+      "n_gt_new_falsely_flagged": 1,
+      "n_unclassified_flagged": 0,
+      "unclassified_flagged_sample": [],
+      "pool_sent_to_llm": [
+        {
+          "seq": 0,
+          "text": "victoria beckham married to david beckham",
+          "fact_key": "fact-dcb09e50c8a2fd38b7245dcf4847a55c",
+          "cosine": 0.25498923659324646
+        },
+        {
+          "seq": 2,
+          "text": "catherine dickens citizen of united kingdom",
+          "fact_key": "fact-5decaed4502404f38fc9c988338584ed",
+          "cosine": 0.38886675238609314
+        },
+        {
+          "seq": 2,
+          "text": "our mutual friend author charles dickens",
+          "fact_key": "fact-80724a54836207041a3f44513c1b7425",
+          "cosine": 0.37095701694488525
+        },
+        {
+          "seq": 3,
+          "text": "our mutual friend was authored by charles darwin",
+          "fact_key": "fact-097f3d0c64c399e33017270476776514",
+          "cosine": 0.38455289602279663
+        },
+        {
+          "seq": 3,
+          "text": "charles dickens is married to catherine dickens",
+          "fact_key": "fact-ca7a1b183a75d87fca440a53b5eb07ef",
+          "cosine": 0.33364367485046387
+        },
+        {
+          "seq": 4,
+          "text": "charles darwin spouse emma darwin",
+          "fact_key": "fact-0a3739d980832c00008e32e25552a712",
+          "cosine": 0.3159387707710266
+        },
+        {
+          "seq": 4,
+          "text": "daphne du maurier citizen of united kingdom",
+          "fact_key": "fact-189bce49b2be7119833ce715179bf37b",
+          "cosine": 0.31158164143562317
+        },
+        {
+          "seq": 4,
+          "text": "igor of kiev spouse olga of kiev",
+          "fact_key": "fact-a889497612d5f7d70450a8f0451006ae",
+          "cosine": 0.2637748122215271
+        },
+        {
+          "seq": 8,
+          "text": "charles darwin married to amala paul",
+          "fact_key": "fact-bb94f0d328d9b6fa1fd674de51637758",
+          "cosine": 0.26514166593551636
+        },
+        {
+          "seq": 10,
+          "text": "elton john citizen of united kingdom",
+          "fact_key": "fact-ce974dbbf4e2768cfb222aef38c697c4",
+          "cosine": 0.25954481959342957
+        }
+      ],
+      "conflict_groups_raw": [
+        [
+          {
+            "seq": 2,
+            "text": "our mutual friend author charles dickens",
+            "fact_key": "fact-80724a54836207041a3f44513c1b7425"
+          },
+          {
+            "seq": 3,
+            "text": "charles dickens is married to catherine dickens",
+            "fact_key": "fact-ca7a1b183a75d87fca440a53b5eb07ef"
+          }
+        ],
+        [
+          {
+            "seq": 3,
+            "text": "charles dickens is married to catherine dickens",
+            "fact_key": "fact-ca7a1b183a75d87fca440a53b5eb07ef"
+          },
+          {
+            "seq": 8,
+            "text": "charles darwin married to amala paul",
+            "fact_key": "fact-bb94f0d328d9b6fa1fd674de51637758"
+          }
+        ]
+      ]
+    },
+    {
+      "qid": 20,
+      "n_facts_sent": 10,
+      "n_chain_old_flagged": 2,
+      "n_conflict_groups": 2,
+      "gt_chain_old_texts": [
+        "Rand al'Thor was created by Robert Jordan."
+      ],
+      "gt_chain_new_texts": [
+        "Rand al'Thor was created by Ferdowsi."
+      ],
+      "flagged_old_texts": [
+        "friedrich nietzsche famous for thus spoke zarathustra",
+        "vito corleone created by mario puzo"
+      ],
+      "n_gt_old_caught": 0,
+      "n_gt_new_falsely_flagged": 0,
+      "n_unclassified_flagged": 2,
+      "unclassified_flagged_sample": [
+        "friedrich nietzsche famous for thus spoke zarathustra",
+        "vito corleone created by mario puzo"
+      ],
+      "pool_sent_to_llm": [
+        {
+          "seq": 0,
+          "text": "robert a  heinlein author of starship troopers",
+          "fact_key": "fact-52283ad0d1453531f31fcc6f54316b68",
+          "cosine": 0.27329784631729126
+        },
+        {
+          "seq": 1,
+          "text": "rand al thor created by robert jordan",
+          "fact_key": "fact-73aeed0839cf251fdd2a544ff23decb9",
+          "cosine": 0.550085723400116
+        },
+        {
+          "seq": 1,
+          "text": "friedrich nietzsche famous for thus spoke zarathustra",
+          "fact_key": "fact-530764ad012a344cc06a918e6b146baa",
+          "cosine": 0.2578297555446625
+        },
+        {
+          "seq": 2,
+          "text": "andrzej sapkowski speaks polish",
+          "fact_key": "fact-60b4e4021443dd9106dfafb077f777d6",
+          "cosine": 0.2613283693790436
+        },
+        {
+          "seq": 5,
+          "text": "the wheel of time written in english",
+          "fact_key": "fact-05fd72795b680ec7449328f1eb526ef4",
+          "cosine": 0.3415257930755615
+        },
+        {
+          "seq": 6,
+          "text": "robert jordan famous for the wheel of time",
+          "fact_key": "fact-fdc2ef87d6882510bda296e640830f84",
+          "cosine": 0.34550103545188904
+        },
+        {
+          "seq": 6,
+          "text": "vito corleone created by mario puzo",
+          "fact_key": "fact-78565e18619bfcad5009db1602634aec",
+          "cosine": 0.27938899397850037
+        },
+        {
+          "seq": 8,
+          "text": "rand al thor created by ferdowsi",
+          "fact_key": "fact-6719a3d71efabd54e63c9d627f4db917",
+          "cosine": 0.5066309571266174
+        },
+        {
+          "seq": 9,
+          "text": "thus spoke zarathustra created in germany",
+          "fact_key": "fact-5a76bc1779b1263c2f8b8e971e0e930f",
+          "cosine": 0.32846909761428833
+        },
+        {
+          "seq": 10,
+          "text": "vito corleone created by nobuhiro watsuki",
+          "fact_key": "fact-7624293941073497c1f9d13360a4eaf7",
+          "cosine": 0.2607898712158203
+        }
+      ],
+      "conflict_groups_raw": [
+        [
+          {
+            "seq": 1,
+            "text": "friedrich nietzsche famous for thus spoke zarathustra",
+            "fact_key": "fact-530764ad012a344cc06a918e6b146baa"
+          },
+          {
+            "seq": 8,
+            "text": "rand al thor created by ferdowsi",
+            "fact_key": "fact-6719a3d71efabd54e63c9d627f4db917"
+          }
+        ],
+        [
+          {
+            "seq": 6,
+            "text": "vito corleone created by mario puzo",
+            "fact_key": "fact-78565e18619bfcad5009db1602634aec"
+          },
+          {
+            "seq": 10,
+            "text": "vito corleone created by nobuhiro watsuki",
+            "fact_key": "fact-7624293941073497c1f9d13360a4eaf7"
+          }
+        ]
+      ]
+    },
+    {
+      "qid": 45,
+      "n_facts_sent": 10,
+      "n_chain_old_flagged": 2,
+      "n_conflict_groups": 2,
+      "gt_chain_old_texts": [
+        "The author of Sketches by Boz is Charles Dickens."
+      ],
+      "gt_chain_new_texts": [
+        "The author of Sketches by Boz is Sigmund Freud."
+      ],
+      "flagged_old_texts": [
+        "john keats died in rome",
+        "oscar wilde died in paris"
+      ],
+      "n_gt_old_caught": 0,
+      "n_gt_new_falsely_flagged": 0,
+      "n_unclassified_flagged": 2,
+      "unclassified_flagged_sample": [
+        "john keats died in rome",
+        "oscar wilde died in paris"
+      ],
+      "pool_sent_to_llm": [
+        {
+          "seq": 2,
+          "text": "our mutual friend author charles dickens",
+          "fact_key": "fact-80724a54836207041a3f44513c1b7425",
+          "cosine": 0.23336291313171387
+        },
+        {
+          "seq": 3,
+          "text": "oscar wilde died in paris",
+          "fact_key": "fact-3da8ed221fd5160e88d29b83d3197830",
+          "cosine": 0.25416189432144165
+        },
+        {
+          "seq": 5,
+          "text": "john keats died in rome",
+          "fact_key": "fact-6ff67cfc4ca6a69fd3d9ba87c02872aa",
+          "cosine": 0.24924348294734955
+        },
+        {
+          "seq": 7,
+          "text": "sigmund freud died in london",
+          "fact_key": "fact-ffa6783b06ef52d13c08ddb55585be3c",
+          "cosine": 0.28441572189331055
+        },
+        {
+          "seq": 7,
+          "text": "oscar wilde died in guangzhou",
+          "fact_key": "fact-a7f60cde017a6c02e6100f075f61c24d",
+          "cosine": 0.2508017420768738
+        },
+        {
+          "seq": 7,
+          "text": "gennady rozhdestvensky died in moscow",
+          "fact_key": "fact-9241c9a7ad0c33541e9479c4f247bc6f",
+          "cosine": 0.23554283380508423
+        },
+        {
+          "seq": 8,
+          "text": "sketches by boz author charles dickens",
+          "fact_key": "fact-62c15133e1732ea519d5f89f6e0ef922",
+          "cosine": 0.41626399755477905
+        },
+        {
+          "seq": 9,
+          "text": "john keats died in leipzig",
+          "fact_key": "fact-3c50efb35c5a771f4dfdb6415843157a",
+          "cosine": 0.25373682379722595
+        },
+        {
+          "seq": 11,
+          "text": "charles dickens died in gads hill place",
+          "fact_key": "fact-c7d894b2f06f45b95cf7fd3ca0e99afa",
+          "cosine": 0.36853402853012085
+        },
+        {
+          "seq": 11,
+          "text": "sigmund freud author of sketches by boz",
+          "fact_key": "fact-3156d614bb643844ec51e923c3986cd6",
+          "cosine": 0.3630169630050659
+        }
+      ],
+      "conflict_groups_raw": [
+        [
+          {
+            "seq": 3,
+            "text": "oscar wilde died in paris",
+            "fact_key": "fact-3da8ed221fd5160e88d29b83d3197830"
+          },
+          {
+            "seq": 7,
+            "text": "gennady rozhdestvensky died in moscow",
+            "fact_key": "fact-9241c9a7ad0c33541e9479c4f247bc6f"
+          }
+        ],
+        [
+          {
+            "seq": 5,
+            "text": "john keats died in rome",
+            "fact_key": "fact-6ff67cfc4ca6a69fd3d9ba87c02872aa"
+          },
+          {
+            "seq": 9,
+            "text": "john keats died in leipzig",
+            "fact_key": "fact-3c50efb35c5a771f4dfdb6415843157a"
+          }
+        ]
+      ]
+    },
+    {
+      "qid": 65,
+      "n_facts_sent": 10,
+      "n_chain_old_flagged": 3,
+      "n_conflict_groups": 2,
+      "gt_chain_old_texts": [
+        "Dave Filoni is employed by Lucasfilm.",
+        "The director of British Broadcasting Corporation is Tony Hall, Baron Hall of Birkenhead."
+      ],
+      "gt_chain_new_texts": [
+        "Dave Filoni is employed by British Broadcasting Corporation.",
+        "The director of British Broadcasting Corporation is Narendra Modi."
+      ],
+      "flagged_old_texts": [
+        "narendra modi director of madonna",
+        "guy oseary is director of madonna",
+        "ron dennis employed by mclaren automotive"
+      ],
+      "n_gt_old_caught": 0,
+      "n_gt_new_falsely_flagged": 1,
+      "n_unclassified_flagged": 2,
+      "unclassified_flagged_sample": [
+        "guy oseary is director of madonna",
+        "ron dennis employed by mclaren automotive"
+      ],
+      "pool_sent_to_llm": [
+        {
+          "seq": 0,
+          "text": "tony hall  baron hall of birkenhead director of british broadcasting corporation",
+          "fact_key": "fact-3f20b4b72bd6308345f17ca366615f18",
+          "cosine": 0.17545677721500397
+        },
+        {
+          "seq": 1,
+          "text": "dave filoni employed by lucasfilm",
+          "fact_key": "fact-8220b0ef4a38f6fcb0405fc859ab6d90",
+          "cosine": 0.4727172255516052
+        },
+        {
+          "seq": 1,
+          "text": "bob iger director of american broadcasting company",
+          "fact_key": "fact-2585137fcff19d47b48e6ecf1f9faeaf",
+          "cosine": 0.24248307943344116
+        },
+        {
+          "seq": 1,
+          "text": "ron dennis employed by mclaren automotive",
+          "fact_key": "fact-4e1b1b2282c65541fb264b5c202825e1",
+          "cosine": 0.22435691952705383
+        },
+        {
+          "seq": 5,
+          "text": "dave filoni employed by british broadcasting corporation",
+          "fact_key": "fact-a1bc23b99b6cd4e68b3e60dfab445b6e",
+          "cosine": 0.3725479245185852
+        },
+        {
+          "seq": 5,
+          "text": "guy oseary is director of madonna",
+          "fact_key": "fact-470b9f5712a4b71f81eb037611c7f48c",
+          "cosine": 0.22760429978370667
+        },
+        {
+          "seq": 6,
+          "text": "the beatles director brian epstein",
+          "fact_key": "fact-f8dff06b1de6e7578e53960a7094e282",
+          "cosine": 0.21200250089168549
+        },
+        {
+          "seq": 7,
+          "text": "kathleen kennedy director of lucasfilm",
+          "fact_key": "fact-f017135413ad1377725010868a42008d",
+          "cosine": 0.3128025531768799
+        },
+        {
+          "seq": 9,
+          "text": "narendra modi director of madonna",
+          "fact_key": "fact-69cb53e080c1c1f912b2fa00ed6d7cd6",
+          "cosine": 0.18162788450717926
+        },
+        {
+          "seq": 11,
+          "text": "narendra modi director of british broadcasting corporation",
+          "fact_key": "fact-7278f07798b887b3f256ac1bfe09dc21",
+          "cosine": 0.18593591451644897
+        }
+      ],
+      "conflict_groups_raw": [
+        [
+          {
+            "seq": 1,
+            "text": "ron dennis employed by mclaren automotive",
+            "fact_key": "fact-4e1b1b2282c65541fb264b5c202825e1"
+          },
+          {
+            "seq": 5,
+            "text": "guy oseary is director of madonna",
+            "fact_key": "fact-470b9f5712a4b71f81eb037611c7f48c"
+          }
+        ],
+        [
+          {
+            "seq": 5,
+            "text": "guy oseary is director of madonna",
+            "fact_key": "fact-470b9f5712a4b71f81eb037611c7f48c"
+          },
+          {
+            "seq": 9,
+            "text": "narendra modi director of madonna",
+            "fact_key": "fact-69cb53e080c1c1f912b2fa00ed6d7cd6"
+          },
+          {
+            "seq": 11,
+            "text": "narendra modi director of british broadcasting corporation",
+            "fact_key": "fact-7278f07798b887b3f256ac1bfe09dc21"
+          }
+        ]
+      ]
+    },
+    {
+      "qid": 85,
+      "n_facts_sent": 10,
+      "n_chain_old_flagged": 1,
+      "n_conflict_groups": 2,
+      "gt_chain_old_texts": [
+        "Lisa Leslie plays the position of center.",
+        "goaltender is associated with the sport of ice hockey.",
+        "pes\u00e4pallo was created in the country of Finland."
+      ],
+      "gt_chain_new_texts": [
+        "Lisa Leslie plays the position of goaltender.",
+        "goaltender is associated with the sport of pes\u00e4pallo.",
+        "pes\u00e4pallo was created in the country of Philippines."
+      ],
+      "flagged_old_texts": [
+        "rog rio ceni plays position goalkeeper"
+      ],
+      "n_gt_old_caught": 0,
+      "n_gt_new_falsely_flagged": 0,
+      "n_unclassified_flagged": 1,
+      "unclassified_flagged_sample": [
+        "rog rio ceni plays position goalkeeper"
+      ],
+      "pool_sent_to_llm": [
+        {
+          "seq": 0,
+          "text": "lisa leslie plays position center",
+          "fact_key": "fact-53dd21ddbbf0548340885e6568ae4eae",
+          "cosine": 0.4294940233230591
+        },
+        {
+          "seq": 0,
+          "text": "rog rio ceni plays position goalkeeper",
+          "fact_key": "fact-b514fdd302594ed7880c407773d29ff2",
+          "cosine": 0.1725725531578064
+        },
+        {
+          "seq": 2,
+          "text": "mike d antoni plays position point guard",
+          "fact_key": "fact-4153c530efe21121f9c3debc54a355b2",
+          "cosine": 0.16342023015022278
+        },
+        {
+          "seq": 4,
+          "text": "lisa leslie position goaltender",
+          "fact_key": "fact-8e1fb2e7f015f0082969eb2ae498ac61",
+          "cosine": 0.38170209527015686
+        },
+        {
+          "seq": 4,
+          "text": "center sport basketball",
+          "fact_key": "fact-b35a79814636189546e059f6d121236c",
+          "cosine": 0.2344168722629547
+        },
+        {
+          "seq": 7,
+          "text": "daniele de rossi plays position midfielder",
+          "fact_key": "fact-ce9944b6348ae1f4a703f6361d5478c2",
+          "cosine": 0.1732395589351654
+        },
+        {
+          "seq": 8,
+          "text": "robert parish position center",
+          "fact_key": "fact-69ec360a1ddc58e5be194087c06127e2",
+          "cosine": 0.2292734682559967
+        },
+        {
+          "seq": 9,
+          "text": "basketball created in soviet union",
+          "fact_key": "fact-a1d58c67bc9b7f73674b75b19130c567",
+          "cosine": 0.15276621282100677
+        },
+        {
+          "seq": 11,
+          "text": "rog rio ceni plays position flanker",
+          "fact_key": "fact-cc29ef5d9a2761cdcc05cebaba261edd",
+          "cosine": 0.18336254358291626
+        },
+        {
+          "seq": 11,
+          "text": "tunisia associated with basketball",
+          "fact_key": "fact-992b958e8de81205f23df69d6d034701",
+          "cosine": 0.18139052391052246
+        }
+      ],
+      "conflict_groups_raw": [
+        [
+          {
+            "seq": 0,
+            "text": "rog rio ceni plays position goalkeeper",
+            "fact_key": "fact-b514fdd302594ed7880c407773d29ff2"
+          },
+          {
+            "seq": 4,
+            "text": "center sport basketball",
+            "fact_key": "fact-b35a79814636189546e059f6d121236c"
+          }
+        ],
+        [
+          {
+            "seq": 0,
+            "text": "rog rio ceni plays position goalkeeper",
+            "fact_key": "fact-b514fdd302594ed7880c407773d29ff2"
+          },
+          {
+            "seq": 11,
+            "text": "tunisia associated with basketball",
+            "fact_key": "fact-992b958e8de81205f23df69d6d034701"
+          }
+        ]
+      ]
+    }
+  ]
+}
