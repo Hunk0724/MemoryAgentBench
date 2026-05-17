@@ -50,6 +50,14 @@ monitoring_logs/
 outputs/smoke_test_cache/
 
 # =====================================================
+# v2.0.2 W1.1+ proposition index (~54 MB per dataset, regenerable
+# via analysis/build_proposition_index_w1.py in ~3 min)
+# Convert to parquet during W2/I3c KG integration to make tracking practical.
+# =====================================================
+outputs/**/proposition_index.json
+logs/proposition_extraction_sentinels.jsonl
+
+# =====================================================
 # 顯式 unblock — keep these out of any wildcard sweeps
 # =====================================================
 !docs/

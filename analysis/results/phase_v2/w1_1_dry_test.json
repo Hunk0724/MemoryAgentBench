@@ -1,0 +1,1847 @@
+{
+  "config": {
+    "n_chunks": 3,
+    "selected_chunk_indices": [
+      0,
+      1,
+      7
+    ],
+    "llm": "gemini-3.1-flash-lite-preview",
+    "max_new_tokens": 2048
+  },
+  "summary": {
+    "avg_proposition_yield_ratio": 0.981981981981982,
+    "total_entities_not_in_input": 0
+  },
+  "per_chunk": [
+    {
+      "chunk_idx": 0,
+      "chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+      "n_numbered_facts": 37,
+      "n_triples": 37,
+      "n_triple_entities": 68,
+      "passage_chars": 2129,
+      "propositions": [
+        {
+          "id": "prop-9f8d365eef7cd266581a9de4e6f8907a",
+          "text": "Thomas Kyd was born in the city of London.",
+          "entities": [
+            "Thomas Kyd",
+            "London"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            0
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-c708370896e52413cca8e086e6d014d2",
+          "text": "Mahmoud Abbas is the chairperson of Fatah.",
+          "entities": [
+            "Mahmoud Abbas",
+            "Fatah"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            1
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-e5ce603f3e9ed8d6602e5a7d8c1441fe",
+          "text": "Amy Winehouse died in the city of Camden Town.",
+          "entities": [
+            "Amy Winehouse",
+            "Camden Town"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            2
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-00daea310cface2010b8a31a0147d355",
+          "text": "Hines Ward plays the position of wide receiver.",
+          "entities": [
+            "Hines Ward",
+            "wide receiver"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            3
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-3da78fb67b7e4a4a6c598789c60ad568",
+          "text": "Bengaluru is located in the continent of Asia.",
+          "entities": [
+            "Bengaluru",
+            "Asia"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            4
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-2e65148f47bb529c72dfd963ecd737cc",
+          "text": "Pedro Pierluisi worked in the city of Washington, D.C..",
+          "entities": [
+            "Pedro Pierluisi",
+            "Washington, D.C."
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            5
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-4ea53e3a0d9de5a9a9de10e0068fff9f",
+          "text": "Rog\u00e9rio Ceni plays the position of goalkeeper.",
+          "entities": [
+            "Rog\u00e9rio Ceni",
+            "goalkeeper"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            6
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-0bee93634c951c936ac7f5e57eed1bc9",
+          "text": "Tony Hall, Baron Hall of Birkenhead is the director of British Broadcasting Corporation.",
+          "entities": [
+            "Tony Hall, Baron Hall of Birkenhead",
+            "British Broadcasting Corporation"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            7
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-a788d487c0e6ebc34ec3a1d498d6eb11",
+          "text": "Victoria Beckham is married to David Beckham.",
+          "entities": [
+            "Victoria Beckham",
+            "David Beckham"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            8
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-65a0c9fde81fc91efdea00dfe035b494",
+          "text": "The headquarters of University of Minnesota is located in the city of Minneapolis.",
+          "entities": [
+            "University of Minnesota",
+            "Minneapolis"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            9
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d943c3beed89ea9490e8ac2dba755ebc",
+          "text": "Ursula K. Le Guin is the author of A Wizard of Earthsea.",
+          "entities": [
+            "Ursula K. Le Guin",
+            "A Wizard of Earthsea"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            10
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-aacbcf59b9389fb14c87505da14c60ee",
+          "text": "Ferdinand Marcos is married to Imelda Marcos.",
+          "entities": [
+            "Ferdinand Marcos",
+            "Imelda Marcos"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            11
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-ee985a51aab72106a1fb6e0d4b5e9bc5",
+          "text": "The headquarters of University of California, Berkeley is located in the city of Berkeley.",
+          "entities": [
+            "University of California, Berkeley",
+            "Berkeley"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            12
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-11f35243c4396e831cd2a688c64817bf",
+          "text": "Tim Cook is the chief executive officer of Apple Inc.",
+          "entities": [
+            "Tim Cook",
+            "Apple Inc."
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            13
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d2e1c1d75c3d09db1321ba15733e1639",
+          "text": "Lisa Leslie plays the position of center.",
+          "entities": [
+            "Lisa Leslie",
+            "center"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            14
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-3e073e4bd8f42fbc68745f112e8e8d87",
+          "text": "Galileo Galilei was educated at the University of Pisa.",
+          "entities": [
+            "Galileo Galilei",
+            "University of Pisa"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            15
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-2f3b2331f2501b53ffce601848f819bb",
+          "text": "Chanel was founded by Coco Chanel.",
+          "entities": [
+            "Chanel",
+            "Coco Chanel"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            16
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-234b23f1964916da0b5b8b0e4f05a590",
+          "text": "Church of Scotland was founded by John Knox.",
+          "entities": [
+            "Church of Scotland",
+            "John Knox"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            17
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-7797be161d18734338a82f541e118804",
+          "text": "Slovakia national football team is associated with the sport of association football.",
+          "entities": [
+            "Slovakia national football team",
+            "association football"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            18
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-483d448aef64f72df3a1029930f75032",
+          "text": "Alta IF is associated with the sport of association football.",
+          "entities": [
+            "Alta IF",
+            "association football"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            19
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-e364c7c5deac1498ed80441f2ffb1c57",
+          "text": "Shingon Buddhism was founded by K\u016bkai.",
+          "entities": [
+            "Shingon Buddhism",
+            "K\u016bkai"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            20
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-76432f37851c44008ca92b94b7e06234",
+          "text": "Chang'an is the capital of Tang Empire.",
+          "entities": [
+            "Chang'an",
+            "Tang Empire"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            21
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-1cdb7d0108d31ff735c7548494ea3802",
+          "text": "Robert A. Heinlein is a citizen of United States of America.",
+          "entities": [
+            "Robert A. Heinlein",
+            "United States of America"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            22
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d3f82e88024340026f1466dc089170ba",
+          "text": "Galwegians RFC is associated with the sport of rugby union.",
+          "entities": [
+            "Galwegians RFC",
+            "rugby union"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            23
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-90fcfb0133b844e94374490ca4147907",
+          "text": "Ferdinand von Richthofen is a citizen of Germany.",
+          "entities": [
+            "Ferdinand von Richthofen",
+            "Germany"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            24
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d13bb18fdbafc3d9822b866d245c770c",
+          "text": "Aladdin Sane was performed by David Bowie.",
+          "entities": [
+            "Aladdin Sane",
+            "David Bowie"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            25
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-1905a4b96178b7ec65a08c58ebcf400d",
+          "text": "Berlin is the capital of Germany.",
+          "entities": [
+            "Berlin",
+            "Germany"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            26
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-27711ae39baf43202dbedbb1c3c594d7",
+          "text": "Robert A. Heinlein is the author of Starship Troopers.",
+          "entities": [
+            "Robert A. Heinlein",
+            "Starship Troopers"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            27
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-201e49d6d9b72049d7c32ff2ac16b67d",
+          "text": "Satya Nadella was born in the city of Hyderabad.",
+          "entities": [
+            "Satya Nadella",
+            "Hyderabad"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            28
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-50a596a55b8f96d3ddc5f9516607683b",
+          "text": "Madame du Barry is a citizen of France.",
+          "entities": [
+            "Madame du Barry",
+            "France"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            29
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-c742c7fad8175bc0a686b8350445858f",
+          "text": "Pakistan International Airlines was founded in the city of Karachi.",
+          "entities": [
+            "Pakistan International Airlines",
+            "Karachi"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            30
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-31631afcca6c2bc9e18e8b278b0265d9",
+          "text": "The position of quarterback is associated with the sport of American football.",
+          "entities": [
+            "quarterback",
+            "American football"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            31
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-456aff7914e9b75f67d64075b03cd9f5",
+          "text": "Andrzej Sapkowski is the author of The Witcher.",
+          "entities": [
+            "Andrzej Sapkowski",
+            "The Witcher"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            32
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-fe2165d8b6fa74e7ef5687cb4b0bf41e",
+          "text": "London is the capital of Great Britain.",
+          "entities": [
+            "London",
+            "Great Britain"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            33
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-06dba357fdc5cafa93ad5db7893de61b",
+          "text": "Chanel was founded by Andy Warhol.",
+          "entities": [
+            "Chanel",
+            "Andy Warhol"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            34
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-a8696593b115737b2cf7d46dd23d6889",
+          "text": "Steve Sax is associated with the sport of baseball.",
+          "entities": [
+            "Steve Sax",
+            "baseball"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            35
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-98ba620685fcb5e01cfe619a47e60f0b",
+          "text": "Hines Ward plays the position of cornerback.",
+          "entities": [
+            "Hines Ward",
+            "cornerback"
+          ],
+          "source_chunk_id": "chunk-chunk-362feee8cbc2534dfd4bd0c5f17da1c0",
+          "timestamp": [
+            0,
+            36
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        }
+      ],
+      "sentinel_history": [
+        {
+          "proposition_count_per_chunk": 37,
+          "expected_proposition_count": 37,
+          "entities_not_in_input": 0,
+          "finish_reason_length": false,
+          "raw_response_char_count": 5102,
+          "cache_hit": false,
+          "proposition_yield_ratio": 1.0,
+          "alarms": []
+        }
+      ],
+      "final_alarms": []
+    },
+    {
+      "chunk_idx": 1,
+      "chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+      "n_numbered_facts": 37,
+      "n_triples": 35,
+      "n_triple_entities": 66,
+      "passage_chars": 2087,
+      "propositions": [
+        {
+          "id": "prop-0036b479eedd01f47740a0eee5435bae",
+          "text": "Frank Zappa died in the city of Los Angeles.",
+          "entities": [
+            "Frank Zappa",
+            "Los Angeles"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            0
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-e108090ddd57a31bef5f0e4b0923646f",
+          "text": "Dave Filoni is employed by Lucasfilm.",
+          "entities": [
+            "Dave Filoni",
+            "Lucasfilm"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            1
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-acd171604244423aa5a51a454bc7c693",
+          "text": "Henri Gr\u00e9goire is a citizen of France.",
+          "entities": [
+            "Henri Gr\u00e9goire",
+            "France"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            2
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-3a2e19dd99dedb3b3c97b0fa8b391672",
+          "text": "Christianity was founded in the city of Jerusalem.",
+          "entities": [
+            "Christianity",
+            "Jerusalem"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            3
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-589f11e3774a38a08e08895a676b3ae9",
+          "text": "Germany is located in the continent of Europe.",
+          "entities": [
+            "Germany",
+            "Europe"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            4
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d26a20a48a0f517218bd16c8f2431bd5",
+          "text": "Vijay Mallya is a citizen of India.",
+          "entities": [
+            "Vijay Mallya",
+            "India"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            5
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-6f61579527bc7e6058f2f924174d9ec3",
+          "text": "Christianity was founded in the city of Taipei.",
+          "entities": [
+            "Christianity",
+            "Taipei"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            6
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-b5d7d1a24161a25ed9e5fb4c934bf592",
+          "text": "K\u016bkai speaks the language of Japanese.",
+          "entities": [
+            "K\u016bkai",
+            "Japanese"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            7
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-c1beea87c30862afe44e544c1d47f8a1",
+          "text": "Friedrich Nietzsche is famous for Thus Spoke Zarathustra.",
+          "entities": [
+            "Friedrich Nietzsche",
+            "Thus Spoke Zarathustra"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            8
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-57cb35f78adb268b87c318cc671a48aa",
+          "text": "Ron Dennis is employed by McLaren Automotive.",
+          "entities": [
+            "Ron Dennis",
+            "McLaren Automotive"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            9
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-3af61b33fe0eed22a5705ed0476a83af",
+          "text": "Israel was founded by David Ben-Gurion.",
+          "entities": [
+            "Israel",
+            "David Ben-Gurion"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            10
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-07eddb117503cc029b20eae951103429",
+          "text": "Israel was founded by Philippe, Duke of Orl\u00e9ans.",
+          "entities": [
+            "Israel",
+            "Philippe, Duke of Orl\u00e9ans"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            11
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-9efe6b820afebc875dfeceea4da9d180",
+          "text": "Frank Zappa died in the city of Berlin.",
+          "entities": [
+            "Frank Zappa",
+            "Berlin"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            12
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-1ac921f65b3ccf74e3707b022c7a882a",
+          "text": "Blood on the Tracks was performed by Bob Dylan.",
+          "entities": [
+            "Blood on the Tracks",
+            "Bob Dylan"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            13
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-79e697b0e4a017c25b165af073dc5672",
+          "text": "Ursula K. Le Guin died in the city of Portland.",
+          "entities": [
+            "Ursula K. Le Guin",
+            "Portland"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            14
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-eb3e4f0a0abe1d72a50f9439c59366cf",
+          "text": "The chairperson of Congolese Party of Labour is Denis Sassou-Nguesso.",
+          "entities": [
+            "Congolese Party of Labour",
+            "Denis Sassou-Nguesso"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            15
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-4c3d3e91f5c8888f8d0966595ca877f5",
+          "text": "Colin Irwin is a citizen of United Kingdom.",
+          "entities": [
+            "Colin Irwin",
+            "United Kingdom"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            16
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-107357870669aeebd3298955ab8a9fb8",
+          "text": "Canada is located in the continent of North America.",
+          "entities": [
+            "Canada",
+            "North America"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            17
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-38dcb540bf089f118f5332040309bf5c",
+          "text": "cricket was created in the country of England.",
+          "entities": [
+            "cricket",
+            "England"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            18
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-69a0cc7e4e36e1af7761e4333b3fa97b",
+          "text": "Nicolae Ceau\u0219escu is married to Elena Ceau\u0219escu.",
+          "entities": [
+            "Nicolae Ceau\u0219escu",
+            "Elena Ceau\u0219escu"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            19
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-483599d6b67338005a485583528a9bd5",
+          "text": "pes\u00e4pallo was created in the country of Finland.",
+          "entities": [
+            "pes\u00e4pallo",
+            "Finland"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            20
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-8fdf5966c77e74431557e7e7a94f73b2",
+          "text": "Leo Stein is a citizen of United States of America.",
+          "entities": [
+            "Leo Stein",
+            "United States of America"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            21
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-b1c16f9488b1c54ccb84d4cb33d4336c",
+          "text": "Walter Chrysler's child is Walter Percy Chrysler Jr..",
+          "entities": [
+            "Walter Chrysler",
+            "Walter Percy Chrysler Jr."
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            22
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-9361bd49f6a28e7a018502befdbc5f39",
+          "text": "Yves Montand is married to Simone Signoret.",
+          "entities": [
+            "Yves Montand",
+            "Simone Signoret"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            23
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-1881db53988f6d3efb0aacc4acc19010",
+          "text": "The university where Joan Didion was educated is University of California, Berkeley.",
+          "entities": [
+            "Joan Didion",
+            "University of California, Berkeley"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            24
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-65a630f1be3d3064bf570585a7f0d533",
+          "text": "The director of American Broadcasting Company is Bob Iger.",
+          "entities": [
+            "American Broadcasting Company",
+            "Bob Iger"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            25
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-c3e5a74a5de827ed9a77d7bf06628dc4",
+          "text": "Born in the U.S.A. was performed by Bruce Springsteen.",
+          "entities": [
+            "Born in the U.S.A.",
+            "Bruce Springsteen"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            26
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-2ebc9d67373eead96b268d99a5f37175",
+          "text": "Rand al'Thor was created by Robert Jordan.",
+          "entities": [
+            "Rand al'Thor",
+            "Robert Jordan"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            27
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-8b8aa51f17f012de81375d3b9b560549",
+          "text": "Buddhism was founded by Gautama Buddha.",
+          "entities": [
+            "Buddhism",
+            "Gautama Buddha"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            28
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-16d88c61cfaaaac4869389db14b76d23",
+          "text": "Natalie Portman is affiliated with the religion of Judaism.",
+          "entities": [
+            "Natalie Portman",
+            "Judaism"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            29
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-da9b7563cbf231676b523b03e93bb4df",
+          "text": "Kingdom of Ireland is affiliated with the religion of Catholic Church.",
+          "entities": [
+            "Kingdom of Ireland",
+            "Catholic Church"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            30
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-83b84b1ce7e8d8b21f8805c2736a1318",
+          "text": "Rocket Man was performed by Elton John.",
+          "entities": [
+            "Rocket Man",
+            "Elton John"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            31
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-0cdb1f2074318384776ed3be4c7738a8",
+          "text": "Stephen Crane is famous for The Red Badge of Courage.",
+          "entities": [
+            "Stephen Crane",
+            "The Red Badge of Courage"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            32
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d5eb1a87440f1ebc394f7c56c5873810",
+          "text": "Hal Needham is a citizen of United States of America.",
+          "entities": [
+            "Hal Needham",
+            "United States of America"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            33
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-90f771ffef6b066ff42878696948545e",
+          "text": "The chief executive officer of Valve Corporation is Gabe Newell.",
+          "entities": [
+            "Valve Corporation",
+            "Gabe Newell"
+          ],
+          "source_chunk_id": "chunk-chunk-69bd442bc577d8f58b1979bf430085fe",
+          "timestamp": [
+            1,
+            34
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        }
+      ],
+      "sentinel_history": [
+        {
+          "proposition_count_per_chunk": 35,
+          "expected_proposition_count": 37,
+          "entities_not_in_input": 0,
+          "finish_reason_length": false,
+          "raw_response_char_count": 4707,
+          "cache_hit": false,
+          "proposition_yield_ratio": 0.9459459459459459,
+          "alarms": []
+        }
+      ],
+      "final_alarms": []
+    },
+    {
+      "chunk_idx": 7,
+      "chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+      "n_numbered_facts": 38,
+      "n_triples": 38,
+      "n_triple_entities": 66,
+      "passage_chars": 2142,
+      "propositions": [
+        {
+          "id": "prop-8f264e4392bde1c58757c0de124a17d1",
+          "text": "post-punk was created in the country of Canada.",
+          "entities": [
+            "post-punk",
+            "Canada"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            0
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-45abb62f94d4553bca00808d19262179",
+          "text": "Ellen Pompeo is a citizen of United States of America.",
+          "entities": [
+            "Ellen Pompeo",
+            "United States of America"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            1
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-099fabeb29a08c022f09576b214223c8",
+          "text": "Daniele De Rossi plays the position of midfielder.",
+          "entities": [
+            "Daniele De Rossi",
+            "midfielder"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            2
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-b04357780bee8cae9273770dd51ddbc6",
+          "text": "Oscar Wilde died in the city of Guangzhou.",
+          "entities": [
+            "Oscar Wilde",
+            "Guangzhou"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            3
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-33eb7695407ac98ed1efa1774670d478",
+          "text": "The author of The Marriage of Figaro is Pierre Beaumarchais.",
+          "entities": [
+            "The Marriage of Figaro",
+            "Pierre Beaumarchais"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            4
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-7160aca8da69436b6ec20a3cf3dd2003",
+          "text": "association football was created in the country of England.",
+          "entities": [
+            "association football",
+            "England"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            5
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-ccf9a65ed6895a68e6fbd620047ddec6",
+          "text": "Viva Las Vegas was performed by Elvis Presley.",
+          "entities": [
+            "Viva Las Vegas",
+            "Elvis Presley"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            6
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d58c0362fe2d028ac7f8c08550b38a93",
+          "text": "F-22 Raptor was developed by Lockheed Martin.",
+          "entities": [
+            "F-22 Raptor",
+            "Lockheed Martin"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            7
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-df562372a3cf46e453d9dcc1893226aa",
+          "text": "The chief executive officer of Twitter is Bernard Arnault.",
+          "entities": [
+            "Twitter",
+            "Bernard Arnault"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            8
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-b02772ef6bf307f3d82c9872c4aa2acd",
+          "text": "The Prime Minister of Sweden is Pedro Pierluisi.",
+          "entities": [
+            "Sweden",
+            "Pedro Pierluisi"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            9
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-2714fd0ddb8a936890880d0e609b89fc",
+          "text": "SteamOS was developed by ABB Group.",
+          "entities": [
+            "SteamOS",
+            "ABB Group"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            10
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-40b99ae13d7bc4761d2499952ba7faa9",
+          "text": "The Vampyre was written in the language of English.",
+          "entities": [
+            "The Vampyre",
+            "English"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            11
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-104cfd8306b841335743790c815651e6",
+          "text": "Slovakia national football team is associated with the sport of cricket.",
+          "entities": [
+            "Slovakia national football team",
+            "cricket"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            12
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-3c2dea4eb0c37611e7cb4be21fe2ebdc",
+          "text": "India is located in the continent of Africa.",
+          "entities": [
+            "India",
+            "Africa"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            13
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-8037043963f76f660ab20d5d69221f83",
+          "text": "The type of music that Dana International plays is Australian hip hop.",
+          "entities": [
+            "Dana International",
+            "Australian hip hop"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            14
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-99d2870133dccb62e389a6df0fc5f683",
+          "text": "John Walsh is affiliated with the religion of Catholic Church.",
+          "entities": [
+            "John Walsh",
+            "Catholic Church"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            15
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-9d2bbb554b0e35a4c1323d868aba555f",
+          "text": "Pius XII died in the city of Wolverhampton.",
+          "entities": [
+            "Pius XII",
+            "Wolverhampton"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            16
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-f093c17f26e602196cf1337db447e452",
+          "text": "The capital of Australia is Canberra.",
+          "entities": [
+            "Australia",
+            "Canberra"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            17
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-22d8eccc99d53ee8d899ebf4eb48707e",
+          "text": "Aladdin Sane was performed by Yves Montand.",
+          "entities": [
+            "Aladdin Sane",
+            "Yves Montand"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            18
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d4e99339120751b3b8933e9fef2852c5",
+          "text": "The university where Lou Reed was educated is Syracuse University.",
+          "entities": [
+            "Lou Reed",
+            "Syracuse University"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            19
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-efa00173c177e303379ab184e40a372b",
+          "text": "Methodism was founded by Joseph Goebbels.",
+          "entities": [
+            "Methodism",
+            "Joseph Goebbels"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            20
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d6854ec9e77543616e8dbc6e934f955b",
+          "text": "Back to Black was performed by Amy Winehouse.",
+          "entities": [
+            "Back to Black",
+            "Amy Winehouse"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            21
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-01bc8cb111ea31a2c44efdb5b871eb09",
+          "text": "The type of music that Michael Mantler plays is jazz.",
+          "entities": [
+            "Michael Mantler",
+            "jazz"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            22
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-901f437579f225d4c12eb12e4dd09e21",
+          "text": "The director of Lucasfilm is Kathleen Kennedy.",
+          "entities": [
+            "Lucasfilm",
+            "Kathleen Kennedy"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            23
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-fd6e49db06bd50a7320406e2586ba1a8",
+          "text": "Surrey Senior Cup is associated with the sport of association football.",
+          "entities": [
+            "Surrey Senior Cup",
+            "association football"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            24
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-056445c03681091ab389973304709593",
+          "text": "Gennady Rozhdestvensky died in the city of Moscow.",
+          "entities": [
+            "Gennady Rozhdestvensky",
+            "Moscow"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            25
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-97e33cdcf30b6e5445fa0fd8574c7ddf",
+          "text": "Ayumi Hamasaki is a citizen of Japan.",
+          "entities": [
+            "Ayumi Hamasaki",
+            "Japan"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            26
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-1a351b69112411cdd9835b6b781b3885",
+          "text": "Amala Paul is a citizen of India.",
+          "entities": [
+            "Amala Paul",
+            "India"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            27
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-4c7010e22a82bd6111b159a4354da10d",
+          "text": "The official language of United States of America is German.",
+          "entities": [
+            "United States of America",
+            "German"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            28
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-b623f8b73e3331d8f05facdebaabbc11",
+          "text": "New Firm is associated with the sport of association football.",
+          "entities": [
+            "New Firm",
+            "association football"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            29
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d18a422597916d733c5c6b3a918374c7",
+          "text": "Playboy was written in the language of English.",
+          "entities": [
+            "Playboy",
+            "English"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            30
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-e67494768cb877e8b6335d51f63fe5f3",
+          "text": "The type of music that Michael Mantler plays is post-punk.",
+          "entities": [
+            "Michael Mantler",
+            "post-punk"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            31
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-cda17123bab057f6a88906d1677e886d",
+          "text": "Sable is a citizen of Czech Republic.",
+          "entities": [
+            "Sable",
+            "Czech Republic"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            32
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-be46f9313cf4eec1e6b49fc5c6f07beb",
+          "text": "Sigmund Freud died in the city of London.",
+          "entities": [
+            "Sigmund Freud",
+            "London"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            33
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-a2896a40e292777af0cb2490256301e7",
+          "text": "The author of A Wizard of Earthsea is Pius XII.",
+          "entities": [
+            "A Wizard of Earthsea",
+            "Pius XII"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            34
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-d7891b3b2fbe468d322d3e7105898ef3",
+          "text": "Nadezhda Krupskaya died in the city of Moscow.",
+          "entities": [
+            "Nadezhda Krupskaya",
+            "Moscow"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            35
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-bd5e317f4e6771128361ceeec8aaba44",
+          "text": "David Beckham is associated with the sport of cricket.",
+          "entities": [
+            "David Beckham",
+            "cricket"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            36
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        },
+        {
+          "id": "prop-c40c83390be7737ad3b265e893b41c4a",
+          "text": "Shingon Buddhism was founded by William Waynflete.",
+          "entities": [
+            "Shingon Buddhism",
+            "William Waynflete"
+          ],
+          "source_chunk_id": "chunk-chunk-d1571253726c67247f58e70c1ee95d1b",
+          "timestamp": [
+            7,
+            37
+          ],
+          "entity_node_ids": [],
+          "embedding": null,
+          "candidate_supersedees": null
+        }
+      ],
+      "sentinel_history": [
+        {
+          "proposition_count_per_chunk": 38,
+          "expected_proposition_count": 38,
+          "entities_not_in_input": 0,
+          "finish_reason_length": false,
+          "raw_response_char_count": 5078,
+          "cache_hit": false,
+          "proposition_yield_ratio": 1.0,
+          "alarms": []
+        }
+      ],
+      "final_alarms": []
+    }
+  ]
+}

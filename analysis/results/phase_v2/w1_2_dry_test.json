@@ -1,0 +1,820 @@
+{
+  "n_queries": 5,
+  "per_query": [
+    {
+      "qid": 0,
+      "query": "What is the country of citizenship of the spouse of the author of Our Mutual Friend?",
+      "query_entities_linked": [
+        "Our Mutual Friend"
+      ],
+      "active_region_size": 50,
+      "gt_chain_new": [
+        "The author of Our Mutual Friend is Charles Darwin.",
+        "Charles Darwin is married to Amala Paul.",
+        "Amala Paul is a citizen of Belgium."
+      ],
+      "gt_chain_old": [
+        "The author of Our Mutual Friend is Charles Dickens.",
+        "Charles Darwin is married to Emma Darwin.",
+        "Amala Paul is a citizen of India."
+      ],
+      "top_chains": [
+        {
+          "id": "chain-c57141d122cb6e8820d18fedd76db9e4",
+          "proposition_ids": [
+            "prop-fea1480e1a8b3f27d885317c324ba88b",
+            "prop-5f75b6ea2d10cba4a57b90cf163de315",
+            "prop-6036a21f2fbeb85864c5aa53b98f7744"
+          ],
+          "shared_entity_path": [
+            [
+              "Our Mutual Friend"
+            ],
+            [
+              "Charles Dickens"
+            ]
+          ],
+          "score": 2.033011329174042,
+          "score_breakdown": {
+            "relevance": 1.6941761076450348,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.6941761076450348
+          },
+          "prop_texts": [
+            "The author of Our Mutual Friend is Charles Darwin.",
+            "Charles Dickens is the author of Our Mutual Friend.",
+            "Charles Dickens is married to Catherine Dickens."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 0
+        },
+        {
+          "id": "chain-d9e459a8fd30aef5ad351217c29e4771",
+          "proposition_ids": [
+            "prop-5f75b6ea2d10cba4a57b90cf163de315",
+            "prop-fea1480e1a8b3f27d885317c324ba88b",
+            "prop-fde91aad4a419a5f79ea4cbbf487f184"
+          ],
+          "shared_entity_path": [
+            [
+              "Our Mutual Friend"
+            ],
+            [
+              "Charles Darwin"
+            ]
+          ],
+          "score": 1.9449089527130126,
+          "score_breakdown": {
+            "relevance": 1.6207574605941772,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.6207574605941772
+          },
+          "prop_texts": [
+            "Charles Dickens is the author of Our Mutual Friend.",
+            "The author of Our Mutual Friend is Charles Darwin.",
+            "Charles Darwin is married to Emma Darwin."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-f3a8294f4f6d7231a576334502ff4676",
+          "proposition_ids": [
+            "prop-5f75b6ea2d10cba4a57b90cf163de315",
+            "prop-fea1480e1a8b3f27d885317c324ba88b",
+            "prop-dcfe58a6942e5ce1e05cbc8209e970fd"
+          ],
+          "shared_entity_path": [
+            [
+              "Our Mutual Friend"
+            ],
+            [
+              "Charles Darwin"
+            ]
+          ],
+          "score": 1.8551819801330567,
+          "score_breakdown": {
+            "relevance": 1.5459849834442139,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.5459849834442139
+          },
+          "prop_texts": [
+            "Charles Dickens is the author of Our Mutual Friend.",
+            "The author of Our Mutual Friend is Charles Darwin.",
+            "Charles Darwin is married to Amala Paul."
+          ],
+          "gt_new_hits": 2,
+          "gt_old_hits": 0
+        },
+        {
+          "id": "chain-b5593d424116d47f65e156791e9df73a",
+          "proposition_ids": [
+            "prop-fea1480e1a8b3f27d885317c324ba88b",
+            "prop-5f75b6ea2d10cba4a57b90cf163de315",
+            "prop-51a84a1ea6a4edf28fe1f8f43c3b68f2"
+          ],
+          "shared_entity_path": [
+            [
+              "Our Mutual Friend"
+            ],
+            [
+              "Charles Dickens"
+            ]
+          ],
+          "score": 1.829474329948425,
+          "score_breakdown": {
+            "relevance": 1.5245619416236877,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.5245619416236877
+          },
+          "prop_texts": [
+            "The author of Our Mutual Friend is Charles Darwin.",
+            "Charles Dickens is the author of Our Mutual Friend.",
+            "Charles Dickens died in the city of Gads Hill Place."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 0
+        },
+        {
+          "id": "chain-35d0b4cf12a6c197ad76e46d4422bdce",
+          "proposition_ids": [
+            "prop-fea1480e1a8b3f27d885317c324ba88b",
+            "prop-5f75b6ea2d10cba4a57b90cf163de315",
+            "prop-708b19c7b79d33711d88222d8ddb1678"
+          ],
+          "shared_entity_path": [
+            [
+              "Our Mutual Friend"
+            ],
+            [
+              "Charles Dickens"
+            ]
+          ],
+          "score": 1.8170415401458742,
+          "score_breakdown": {
+            "relevance": 1.514201283454895,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.514201283454895
+          },
+          "prop_texts": [
+            "The author of Our Mutual Friend is Charles Darwin.",
+            "Charles Dickens is the author of Our Mutual Friend.",
+            "Charles Dickens is the author of Sketches by Boz."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 0
+        }
+      ]
+    },
+    {
+      "qid": 20,
+      "query": "What is the language of the work that was created by the individual who created Rand al'Thor?",
+      "query_entities_linked": [
+        "Rand al'Thor"
+      ],
+      "active_region_size": 50,
+      "gt_chain_new": [
+        "Rand al'Thor was created by Ferdowsi."
+      ],
+      "gt_chain_old": [
+        "Rand al'Thor was created by Robert Jordan."
+      ],
+      "top_chains": [
+        {
+          "id": "chain-66a10ff5a59431f0d7fc3b04c95c4834",
+          "proposition_ids": [
+            "prop-f4747212bfb46b8bed2a73ddb3bc7685",
+            "prop-2ebc9d67373eead96b268d99a5f37175",
+            "prop-c58171b63cea8bee3de82e108d5bfefd"
+          ],
+          "shared_entity_path": [
+            [
+              "Rand al'Thor"
+            ],
+            [
+              "Robert Jordan"
+            ]
+          ],
+          "score": 2.1595329523086546,
+          "score_breakdown": {
+            "relevance": 1.7996107935905457,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.7996107935905457
+          },
+          "prop_texts": [
+            "Rand al'Thor was created by Ferdowsi.",
+            "Rand al'Thor was created by Robert Jordan.",
+            "Robert Jordan is famous for The Wheel of Time."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-5f5e0f4bf7f2564180e7e41440edfe90",
+          "proposition_ids": [
+            "prop-2ebc9d67373eead96b268d99a5f37175",
+            "prop-c58171b63cea8bee3de82e108d5bfefd",
+            "prop-ac4c87ff0a7f453487130109b6dcfca3"
+          ],
+          "shared_entity_path": [
+            [
+              "Robert Jordan"
+            ],
+            [
+              "The Wheel of Time"
+            ]
+          ],
+          "score": 1.9559238195419313,
+          "score_breakdown": {
+            "relevance": 1.6299365162849426,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.6299365162849426
+          },
+          "prop_texts": [
+            "Rand al'Thor was created by Robert Jordan.",
+            "Robert Jordan is famous for The Wheel of Time.",
+            "The Wheel of Time was written in the language of English."
+          ],
+          "gt_new_hits": 0,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-4cea1820dd1490f5c427c15a3ff94173",
+          "proposition_ids": [
+            "prop-2ebc9d67373eead96b268d99a5f37175",
+            "prop-f4747212bfb46b8bed2a73ddb3bc7685",
+            "prop-c23795462f62269c2954fc92b396c3c7"
+          ],
+          "shared_entity_path": [
+            [
+              "Rand al'Thor"
+            ],
+            [
+              "Ferdowsi"
+            ]
+          ],
+          "score": 1.9236881017684937,
+          "score_breakdown": {
+            "relevance": 1.6030734181404114,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.6030734181404114
+          },
+          "prop_texts": [
+            "Rand al'Thor was created by Robert Jordan.",
+            "Rand al'Thor was created by Ferdowsi.",
+            "Ferdowsi is famous for the work Shahnameh."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-46424a800ba24506b0a98ae5492f5df0",
+          "proposition_ids": [
+            "prop-2ebc9d67373eead96b268d99a5f37175",
+            "prop-f4747212bfb46b8bed2a73ddb3bc7685"
+          ],
+          "shared_entity_path": [
+            [
+              "Rand al'Thor"
+            ]
+          ],
+          "score": 1.7775803327560427,
+          "score_breakdown": {
+            "relevance": 1.3979836106300354,
+            "coherence": 1.0,
+            "length_penalty": -0.2,
+            "ppr_coverage": 1.3979836106300354
+          },
+          "prop_texts": [
+            "Rand al'Thor was created by Robert Jordan.",
+            "Rand al'Thor was created by Ferdowsi."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-8d9946bbba89f9626b0ac0533f2befc4",
+          "proposition_ids": [
+            "prop-2ebc9d67373eead96b268d99a5f37175",
+            "prop-c58171b63cea8bee3de82e108d5bfefd"
+          ],
+          "shared_entity_path": [
+            [
+              "Robert Jordan"
+            ]
+          ],
+          "score": 1.4961466550827027,
+          "score_breakdown": {
+            "relevance": 1.1634555459022522,
+            "coherence": 1.0,
+            "length_penalty": -0.2,
+            "ppr_coverage": 1.1634555459022522
+          },
+          "prop_texts": [
+            "Rand al'Thor was created by Robert Jordan.",
+            "Robert Jordan is famous for The Wheel of Time."
+          ],
+          "gt_new_hits": 0,
+          "gt_old_hits": 1
+        }
+      ]
+    },
+    {
+      "qid": 45,
+      "query": "At what location did the author of \"Sketches by Boz\" breathe his last?",
+      "query_entities_linked": [
+        "Sketches by Boz"
+      ],
+      "active_region_size": 50,
+      "gt_chain_new": [
+        "The author of Sketches by Boz is Sigmund Freud."
+      ],
+      "gt_chain_old": [
+        "The author of Sketches by Boz is Charles Dickens."
+      ],
+      "top_chains": [
+        {
+          "id": "chain-201a83942caaa5796e293fc02e8887ce",
+          "proposition_ids": [
+            "prop-36e7d8c4575814078252981b2a1a17c1",
+            "prop-708b19c7b79d33711d88222d8ddb1678",
+            "prop-51a84a1ea6a4edf28fe1f8f43c3b68f2"
+          ],
+          "shared_entity_path": [
+            [
+              "Sketches by Boz"
+            ],
+            [
+              "Charles Dickens"
+            ]
+          ],
+          "score": 2.158511531352997,
+          "score_breakdown": {
+            "relevance": 1.7987596094608307,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.7987596094608307
+          },
+          "prop_texts": [
+            "The author of Sketches by Boz is Sigmund Freud.",
+            "Charles Dickens is the author of Sketches by Boz.",
+            "Charles Dickens died in the city of Gads Hill Place."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 0
+        },
+        {
+          "id": "chain-b1decb5878be3e06d578e8f3524fd28e",
+          "proposition_ids": [
+            "prop-36e7d8c4575814078252981b2a1a17c1",
+            "prop-708b19c7b79d33711d88222d8ddb1678",
+            "prop-5f75b6ea2d10cba4a57b90cf163de315"
+          ],
+          "shared_entity_path": [
+            [
+              "Sketches by Boz"
+            ],
+            [
+              "Charles Dickens"
+            ]
+          ],
+          "score": 2.016581654548645,
+          "score_breakdown": {
+            "relevance": 1.6804847121238708,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.6804847121238708
+          },
+          "prop_texts": [
+            "The author of Sketches by Boz is Sigmund Freud.",
+            "Charles Dickens is the author of Sketches by Boz.",
+            "Charles Dickens is the author of Our Mutual Friend."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 0
+        },
+        {
+          "id": "chain-233a64efe148a46b4527c770f19964e9",
+          "proposition_ids": [
+            "prop-708b19c7b79d33711d88222d8ddb1678",
+            "prop-36e7d8c4575814078252981b2a1a17c1",
+            "prop-be46f9313cf4eec1e6b49fc5c6f07beb"
+          ],
+          "shared_entity_path": [
+            [
+              "Sketches by Boz"
+            ],
+            [
+              "Sigmund Freud"
+            ]
+          ],
+          "score": 1.9717198491096497,
+          "score_breakdown": {
+            "relevance": 1.6430998742580414,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.6430998742580414
+          },
+          "prop_texts": [
+            "Charles Dickens is the author of Sketches by Boz.",
+            "The author of Sketches by Boz is Sigmund Freud.",
+            "Sigmund Freud died in the city of London."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 0
+        },
+        {
+          "id": "chain-396cdb63db6834a41e8a6884f4f22aa9",
+          "proposition_ids": [
+            "prop-36e7d8c4575814078252981b2a1a17c1",
+            "prop-708b19c7b79d33711d88222d8ddb1678",
+            "prop-6036a21f2fbeb85864c5aa53b98f7744"
+          ],
+          "shared_entity_path": [
+            [
+              "Sketches by Boz"
+            ],
+            [
+              "Charles Dickens"
+            ]
+          ],
+          "score": 1.9217602729797363,
+          "score_breakdown": {
+            "relevance": 1.6014668941497803,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.6014668941497803
+          },
+          "prop_texts": [
+            "The author of Sketches by Boz is Sigmund Freud.",
+            "Charles Dickens is the author of Sketches by Boz.",
+            "Charles Dickens is married to Catherine Dickens."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 0
+        },
+        {
+          "id": "chain-e93694fee853d5f40153712d82868804",
+          "proposition_ids": [
+            "prop-708b19c7b79d33711d88222d8ddb1678",
+            "prop-51a84a1ea6a4edf28fe1f8f43c3b68f2",
+            "prop-5f75b6ea2d10cba4a57b90cf163de315"
+          ],
+          "shared_entity_path": [
+            [
+              "Charles Dickens"
+            ],
+            [
+              "Charles Dickens"
+            ]
+          ],
+          "score": 1.8274176478385924,
+          "score_breakdown": {
+            "relevance": 1.5228480398654938,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.5228480398654938
+          },
+          "prop_texts": [
+            "Charles Dickens is the author of Sketches by Boz.",
+            "Charles Dickens died in the city of Gads Hill Place.",
+            "Charles Dickens is the author of Our Mutual Friend."
+          ],
+          "gt_new_hits": 0,
+          "gt_old_hits": 0
+        }
+      ]
+    },
+    {
+      "qid": 65,
+      "query": "Which individual holds the position of director/manager at the company that employs Dave Filoni?",
+      "query_entities_linked": [
+        "Dave Filoni"
+      ],
+      "active_region_size": 50,
+      "gt_chain_new": [
+        "Dave Filoni is employed by British Broadcasting Corporation.",
+        "The director of British Broadcasting Corporation is Narendra Modi."
+      ],
+      "gt_chain_old": [
+        "Dave Filoni is employed by Lucasfilm.",
+        "The director of British Broadcasting Corporation is Tony Hall, Baron Hall of Birkenhead."
+      ],
+      "top_chains": [
+        {
+          "id": "chain-b53bfa2b1a04d03d0c0ccd1890725f0c",
+          "proposition_ids": [
+            "prop-13f2c8f578cbb39bc37a0ca0a329c483",
+            "prop-e108090ddd57a31bef5f0e4b0923646f",
+            "prop-901f437579f225d4c12eb12e4dd09e21"
+          ],
+          "shared_entity_path": [
+            [
+              "Dave Filoni"
+            ],
+            [
+              "Lucasfilm"
+            ]
+          ],
+          "score": 2.0720294594764708,
+          "score_breakdown": {
+            "relevance": 1.7266912162303925,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.7266912162303925
+          },
+          "prop_texts": [
+            "Dave Filoni is employed by British Broadcasting Corporation.",
+            "Dave Filoni is employed by Lucasfilm.",
+            "The director of Lucasfilm is Kathleen Kennedy."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-5bf5d7095bda6c67b2606b3a9b243d77",
+          "proposition_ids": [
+            "prop-e108090ddd57a31bef5f0e4b0923646f",
+            "prop-13f2c8f578cbb39bc37a0ca0a329c483",
+            "prop-52b22d23b390d4cc4197108aad1cfa76"
+          ],
+          "shared_entity_path": [
+            [
+              "Dave Filoni"
+            ],
+            [
+              "British Broadcasting Corporation"
+            ]
+          ],
+          "score": 1.7651466429233549,
+          "score_breakdown": {
+            "relevance": 1.4709555357694626,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.4709555357694626
+          },
+          "prop_texts": [
+            "Dave Filoni is employed by Lucasfilm.",
+            "Dave Filoni is employed by British Broadcasting Corporation.",
+            "The director of British Broadcasting Corporation is Narendra Modi."
+          ],
+          "gt_new_hits": 2,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-0025457c832f63ff759ca1fb70d36198",
+          "proposition_ids": [
+            "prop-e108090ddd57a31bef5f0e4b0923646f",
+            "prop-13f2c8f578cbb39bc37a0ca0a329c483",
+            "prop-0bee93634c951c936ac7f5e57eed1bc9"
+          ],
+          "shared_entity_path": [
+            [
+              "Dave Filoni"
+            ],
+            [
+              "British Broadcasting Corporation"
+            ]
+          ],
+          "score": 1.7291308879852296,
+          "score_breakdown": {
+            "relevance": 1.440942406654358,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.440942406654358
+          },
+          "prop_texts": [
+            "Dave Filoni is employed by Lucasfilm.",
+            "Dave Filoni is employed by British Broadcasting Corporation.",
+            "Tony Hall, Baron Hall of Birkenhead is the director of British Broadcasting Corporation."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-b5a0ba03b775cf492136cd3aef09fe7b",
+          "proposition_ids": [
+            "prop-e108090ddd57a31bef5f0e4b0923646f",
+            "prop-13f2c8f578cbb39bc37a0ca0a329c483"
+          ],
+          "shared_entity_path": [
+            [
+              "Dave Filoni"
+            ]
+          ],
+          "score": 1.6059938430786134,
+          "score_breakdown": {
+            "relevance": 1.2549948692321777,
+            "coherence": 1.0,
+            "length_penalty": -0.2,
+            "ppr_coverage": 1.2549948692321777
+          },
+          "prop_texts": [
+            "Dave Filoni is employed by Lucasfilm.",
+            "Dave Filoni is employed by British Broadcasting Corporation."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-54fa5e62d9c801fe36956a4097fb7655",
+          "proposition_ids": [
+            "prop-e108090ddd57a31bef5f0e4b0923646f",
+            "prop-901f437579f225d4c12eb12e4dd09e21"
+          ],
+          "shared_entity_path": [
+            [
+              "Lucasfilm"
+            ]
+          ],
+          "score": 1.5063797116279602,
+          "score_breakdown": {
+            "relevance": 1.1719830930233002,
+            "coherence": 1.0,
+            "length_penalty": -0.2,
+            "ppr_coverage": 1.1719830930233002
+          },
+          "prop_texts": [
+            "Dave Filoni is employed by Lucasfilm.",
+            "The director of Lucasfilm is Kathleen Kennedy."
+          ],
+          "gt_new_hits": 0,
+          "gt_old_hits": 1
+        }
+      ]
+    },
+    {
+      "qid": 85,
+      "query": "Which country does the sportsperson who specializes in Lisa Leslie's position originally come from?",
+      "query_entities_linked": [
+        "Lisa Leslie"
+      ],
+      "active_region_size": 50,
+      "gt_chain_new": [
+        "Lisa Leslie plays the position of goaltender.",
+        "goaltender is associated with the sport of pes\u00e4pallo.",
+        "pes\u00e4pallo was created in the country of Philippines."
+      ],
+      "gt_chain_old": [
+        "Lisa Leslie plays the position of center.",
+        "goaltender is associated with the sport of ice hockey.",
+        "pes\u00e4pallo was created in the country of Finland."
+      ],
+      "top_chains": [
+        {
+          "id": "chain-ea469c8143ba35b6f0a69ee44200cdf2",
+          "proposition_ids": [
+            "prop-3121c991a2d220d6c91319768c8a37b8",
+            "prop-d2e1c1d75c3d09db1321ba15733e1639",
+            "prop-3ec0078a170ec62969eede9a7411555c"
+          ],
+          "shared_entity_path": [
+            [
+              "Lisa Leslie"
+            ],
+            [
+              "center"
+            ]
+          ],
+          "score": 1.9853005170822142,
+          "score_breakdown": {
+            "relevance": 1.654417097568512,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.654417097568512
+          },
+          "prop_texts": [
+            "Lisa Leslie plays the position of goaltender.",
+            "Lisa Leslie plays the position of center.",
+            "Center is associated with the sport of basketball."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-e9dda98aa5143311b0cd27cacf8cca4f",
+          "proposition_ids": [
+            "prop-3121c991a2d220d6c91319768c8a37b8",
+            "prop-d2e1c1d75c3d09db1321ba15733e1639",
+            "prop-934050aeedc28da49e52ad80bef2a6fb"
+          ],
+          "shared_entity_path": [
+            [
+              "Lisa Leslie"
+            ],
+            [
+              "center"
+            ]
+          ],
+          "score": 1.940170419216156,
+          "score_breakdown": {
+            "relevance": 1.61680868268013,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.61680868268013
+          },
+          "prop_texts": [
+            "Lisa Leslie plays the position of goaltender.",
+            "Lisa Leslie plays the position of center.",
+            "Robert Parish plays the position of center."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-00422d3c57135ed93fb7cafd2cd4544d",
+          "proposition_ids": [
+            "prop-d2e1c1d75c3d09db1321ba15733e1639",
+            "prop-3121c991a2d220d6c91319768c8a37b8",
+            "prop-e1232d79f910247c7eefdd0ad850b57a"
+          ],
+          "shared_entity_path": [
+            [
+              "Lisa Leslie"
+            ],
+            [
+              "goaltender"
+            ]
+          ],
+          "score": 1.787675964832306,
+          "score_breakdown": {
+            "relevance": 1.4897299706935883,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.4897299706935883
+          },
+          "prop_texts": [
+            "Lisa Leslie plays the position of center.",
+            "Lisa Leslie plays the position of goaltender.",
+            "The goaltender position is associated with the sport of pes\u00e4pallo."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-0932a799a8407ccb13a4e1b0315aaef9",
+          "proposition_ids": [
+            "prop-d2e1c1d75c3d09db1321ba15733e1639",
+            "prop-3ec0078a170ec62969eede9a7411555c",
+            "prop-934050aeedc28da49e52ad80bef2a6fb"
+          ],
+          "shared_entity_path": [
+            [
+              "center"
+            ],
+            [
+              "center"
+            ]
+          ],
+          "score": 1.7099433302879332,
+          "score_breakdown": {
+            "relevance": 1.4249527752399445,
+            "coherence": 1.0,
+            "length_penalty": -0.30000000000000004,
+            "ppr_coverage": 1.4249527752399445
+          },
+          "prop_texts": [
+            "Lisa Leslie plays the position of center.",
+            "Center is associated with the sport of basketball.",
+            "Robert Parish plays the position of center."
+          ],
+          "gt_new_hits": 0,
+          "gt_old_hits": 1
+        },
+        {
+          "id": "chain-ca0db11856c6845dc3375184acd184a5",
+          "proposition_ids": [
+            "prop-d2e1c1d75c3d09db1321ba15733e1639",
+            "prop-3121c991a2d220d6c91319768c8a37b8"
+          ],
+          "shared_entity_path": [
+            [
+              "Lisa Leslie"
+            ]
+          ],
+          "score": 1.6113144159317019,
+          "score_breakdown": {
+            "relevance": 1.2594286799430847,
+            "coherence": 1.0,
+            "length_penalty": -0.2,
+            "ppr_coverage": 1.2594286799430847
+          },
+          "prop_texts": [
+            "Lisa Leslie plays the position of center.",
+            "Lisa Leslie plays the position of goaltender."
+          ],
+          "gt_new_hits": 1,
+          "gt_old_hits": 1
+        }
+      ]
+    }
+  ]
+}

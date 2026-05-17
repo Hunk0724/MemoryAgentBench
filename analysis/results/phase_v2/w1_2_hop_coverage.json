@@ -1,0 +1,153 @@
+{
+  "n_queries": 5,
+  "aggregate": {
+    "total_hops": 10,
+    "new_in_top1": 5,
+    "old_in_top1": 4,
+    "new_in_top5": 8,
+    "old_in_top5": 6,
+    "both_in_same_chain": 5
+  },
+  "per_query": [
+    {
+      "qid": 0,
+      "n_hops": 3,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "gt_new": "The author of Our Mutual Friend is Charles Darwin.",
+          "gt_old": "The author of Our Mutual Friend is Charles Dickens.",
+          "new_in_top1": true,
+          "old_in_top1": true,
+          "new_in_top5": true,
+          "old_in_top5": true,
+          "both_in_same_chain": true,
+          "same_chain_rank": 0
+        },
+        {
+          "hop_idx": 1,
+          "gt_new": "Charles Darwin is married to Amala Paul.",
+          "gt_old": "Charles Darwin is married to Emma Darwin.",
+          "new_in_top1": false,
+          "old_in_top1": false,
+          "new_in_top5": true,
+          "old_in_top5": true,
+          "both_in_same_chain": false,
+          "same_chain_rank": -1
+        },
+        {
+          "hop_idx": 2,
+          "gt_new": "Amala Paul is a citizen of Belgium.",
+          "gt_old": "Amala Paul is a citizen of India.",
+          "new_in_top1": false,
+          "old_in_top1": false,
+          "new_in_top5": false,
+          "old_in_top5": false,
+          "both_in_same_chain": false,
+          "same_chain_rank": -1
+        }
+      ]
+    },
+    {
+      "qid": 20,
+      "n_hops": 1,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "gt_new": "Rand al'Thor was created by Ferdowsi.",
+          "gt_old": "Rand al'Thor was created by Robert Jordan.",
+          "new_in_top1": true,
+          "old_in_top1": true,
+          "new_in_top5": true,
+          "old_in_top5": true,
+          "both_in_same_chain": true,
+          "same_chain_rank": 0
+        }
+      ]
+    },
+    {
+      "qid": 45,
+      "n_hops": 1,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "gt_new": "The author of Sketches by Boz is Sigmund Freud.",
+          "gt_old": "The author of Sketches by Boz is Charles Dickens.",
+          "new_in_top1": true,
+          "old_in_top1": false,
+          "new_in_top5": true,
+          "old_in_top5": true,
+          "both_in_same_chain": true,
+          "same_chain_rank": 3
+        }
+      ]
+    },
+    {
+      "qid": 65,
+      "n_hops": 2,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "gt_new": "Dave Filoni is employed by British Broadcasting Corporation.",
+          "gt_old": "Dave Filoni is employed by Lucasfilm.",
+          "new_in_top1": true,
+          "old_in_top1": true,
+          "new_in_top5": true,
+          "old_in_top5": true,
+          "both_in_same_chain": true,
+          "same_chain_rank": 0
+        },
+        {
+          "hop_idx": 1,
+          "gt_new": "The director of British Broadcasting Corporation is Narendra Modi.",
+          "gt_old": "The director of British Broadcasting Corporation is Tony Hall, Baron Hall of Birkenhead.",
+          "new_in_top1": false,
+          "old_in_top1": false,
+          "new_in_top5": true,
+          "old_in_top5": false,
+          "both_in_same_chain": false,
+          "same_chain_rank": -1
+        }
+      ]
+    },
+    {
+      "qid": 85,
+      "n_hops": 3,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "gt_new": "Lisa Leslie plays the position of goaltender.",
+          "gt_old": "Lisa Leslie plays the position of center.",
+          "new_in_top1": true,
+          "old_in_top1": true,
+          "new_in_top5": true,
+          "old_in_top5": true,
+          "both_in_same_chain": true,
+          "same_chain_rank": 0
+        },
+        {
+          "hop_idx": 1,
+          "gt_new": "goaltender is associated with the sport of pes\u00e4pallo.",
+          "gt_old": "goaltender is associated with the sport of ice hockey.",
+          "new_in_top1": false,
+          "old_in_top1": false,
+          "new_in_top5": true,
+          "old_in_top5": false,
+          "both_in_same_chain": false,
+          "same_chain_rank": -1
+        },
+        {
+          "hop_idx": 2,
+          "gt_new": "pes\u00e4pallo was created in the country of Philippines.",
+          "gt_old": "pes\u00e4pallo was created in the country of Finland.",
+          "new_in_top1": false,
+          "old_in_top1": false,
+          "new_in_top5": false,
+          "old_in_top5": false,
+          "both_in_same_chain": false,
+          "same_chain_rank": -1
+        }
+      ]
+    }
+  ]
+}
