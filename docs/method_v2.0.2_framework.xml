@@ -1,0 +1,116 @@
+<mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="850" background="#ffffff">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <mxCell id="phase1" value="Phase 1: Offline Indexing (Write-time)" style="swimlane;whiteSpace=wrap;html=1;startSize=30;dashed=1;fillColor=#FAFAFA;strokeColor=#b0bec5;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+      <mxGeometry x="40" y="40" width="300" height="760" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="phase2" value="Phase 2: Online Retrieval (Core Contribution: Verdict + Filter)" style="swimlane;whiteSpace=wrap;html=1;startSize=30;dashed=1;fillColor=#FAFAFA;strokeColor=#b0bec5;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+      <mxGeometry x="360" y="40" width="400" height="780" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="phase3" value="Phase 3: Inference (Read-time)" style="swimlane;whiteSpace=wrap;html=1;startSize=30;dashed=1;fillColor=#FAFAFA;strokeColor=#b0bec5;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+      <mxGeometry x="780" y="40" width="340" height="760" as="geometry" />
+    </mxCell>
+
+    <mxCell id="n1" value="New Dialogue Chunk" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontStyle=1" vertex="1" parent="phase1">
+      <mxGeometry x="50" y="60" width="200" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="n2" value="HippoRAG OpenIE &amp;amp; Embedding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#64b5f6;strokeWidth=2;fontColor=#0d47a1;" vertex="1" parent="phase1">
+      <mxGeometry x="50" y="140" width="200" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="n3" value="&lt;b&gt;Proposition Layer&lt;/b&gt;&lt;br&gt;Atomic fact unit w/ timestamp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#f06292;strokeWidth=2;fontColor=#880e4f;" vertex="1" parent="phase1">
+      <mxGeometry x="40" y="260" width="220" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="n4" value="Knowledge Graph&lt;br&gt;(Entities + Passages)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff8e1;strokeColor=#ffd54f;strokeWidth=2;fontColor=#ff6f00;" vertex="1" parent="phase1">
+      <mxGeometry x="50" y="380" width="200" height="70" as="geometry" />
+    </mxCell>
+
+    <mxCell id="e1" edge="1" parent="phase1" source="n1" target="n2"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e2" edge="1" parent="phase1" source="n2" target="n3"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e3" edge="1" parent="phase1" source="n2" target="n4"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <mxCell id="n6" value="User Query" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontStyle=1" vertex="1" parent="phase2">
+      <mxGeometry x="100" y="60" width="200" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="n7" value="Entity Importance Scoring&lt;br&gt;&lt;i&gt;(HippoRAG PPR)&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#64b5f6;strokeWidth=2;fontColor=#0d47a1;" vertex="1" parent="phase2">
+      <mxGeometry x="100" y="140" width="200" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="n8" value="&lt;b&gt;Find Candidate Reasoning Chains&lt;/b&gt;&lt;br&gt;(propositions linked by shared entities)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#64b5f6;strokeWidth=2;fontColor=#0d47a1;" vertex="1" parent="phase2">
+      <mxGeometry x="80" y="240" width="240" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="n9" value="Candidate Chains" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#fff8e1;strokeColor=#ffd54f;strokeWidth=2;fontColor=#ff6f00;" vertex="1" parent="phase2">
+      <mxGeometry x="100" y="350" width="200" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="n10" value="&lt;b&gt;Build Context Pool for Each Chain Prop&lt;/b&gt;&lt;br&gt;(semantically/lexically related propositions)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#81c784;strokeWidth=3;fontColor=#1b5e20;" vertex="1" parent="phase2">
+      <mxGeometry x="80" y="450" width="240" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="n11" value="&lt;b&gt;LLM: identify which props contradict&lt;/b&gt;&lt;br&gt;&lt;b&gt;Code: decide direction by timestamp&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#f06292;strokeWidth=2;fontColor=#880e4f;" vertex="1" parent="phase2">
+      <mxGeometry x="80" y="560" width="240" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="n12" value="Drop Outdated Passages" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#64b5f6;strokeWidth=2;fontColor=#0d47a1;" vertex="1" parent="phase2">
+      <mxGeometry x="100" y="680" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="e5" edge="1" parent="phase2" source="n6" target="n7"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e6" edge="1" parent="phase2" source="n7" target="n8"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e7" edge="1" parent="phase2" source="n8" target="n9"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e8" edge="1" parent="phase2" source="n9" target="n10"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e9" edge="1" parent="phase2" source="n10" target="n11"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e10" edge="1" parent="phase2" source="n11" target="n12"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <mxCell id="n13" value="Add Hints &amp;amp; Change Log&lt;br&gt;&lt;i&gt;(future work)&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#e3f2fd;strokeColor=#64b5f6;strokeWidth=2;fontColor=#0d47a1;" vertex="1" parent="phase3">
+      <mxGeometry x="70" y="100" width="200" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="n14" value="Cleaned Passages" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#fff8e1;strokeColor=#ffd54f;strokeWidth=2;fontColor=#ff6f00;" vertex="1" parent="phase3">
+      <mxGeometry x="40" y="230" width="120" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="n15" value="Reasoning Hints" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;dashed=1;fillColor=#fff8e1;strokeColor=#ffd54f;strokeWidth=2;fontColor=#ff6f00;" vertex="1" parent="phase3">
+      <mxGeometry x="180" y="230" width="120" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="n16" value="Change Log" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;dashed=1;fillColor=#fff8e1;strokeColor=#ffd54f;strokeWidth=2;fontColor=#ff6f00;" vertex="1" parent="phase3">
+      <mxGeometry x="110" y="330" width="120" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="n17" value="QA LLM Inference&lt;br&gt;&lt;i&gt;(prompt template unchanged)&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#f06292;strokeWidth=2;fontColor=#880e4f;" vertex="1" parent="phase3">
+      <mxGeometry x="70" y="450" width="200" height="70" as="geometry" />
+    </mxCell>
+
+    <mxCell id="e11" edge="1" parent="phase3" source="n13" target="n14"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="85" y="150"/></Array></mxGeometry></mxCell>
+    <mxCell id="e12" edge="1" parent="phase3" source="n13" target="n15"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="255" y="150"/></Array></mxGeometry></mxCell>
+    <mxCell id="e13" edge="1" parent="phase3" source="n13" target="n16"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="e14" edge="1" parent="phase3" source="n14" target="n17"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="85" y="390"/></Array></mxGeometry></mxCell>
+    <mxCell id="e15" edge="1" parent="phase3" source="n15" target="n17"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="255" y="390"/></Array></mxGeometry></mxCell>
+    <mxCell id="e16" edge="1" parent="phase3" source="n16" target="n17"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <mxCell id="e17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#424242;fontColor=#424242;" edge="1" parent="1" source="n4" target="n7">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="320" y="450"/>
+          <mxPoint x="320" y="205"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <mxCell id="e19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#424242;fontColor=#424242;" edge="1" parent="1" source="n12" target="n13">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="750" y="730"/>
+          <mxPoint x="750" y="130"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <mxCell id="c1_label" value="&lt;b&gt;Component 1&lt;/b&gt;&lt;br&gt;Proposition Layer" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fillColor=#fff3e0;strokeColor=#fb8c00;fontSize=12;fontColor=#e65100;" vertex="1" parent="1">
+      <mxGeometry x="60" y="20" width="260" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="c2_label" value="&lt;b&gt;Component 2&lt;/b&gt;&lt;br&gt;Chain-Restricted Verdict" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fillColor=#fff3e0;strokeColor=#fb8c00;fontSize=12;fontColor=#e65100;" vertex="1" parent="1">
+      <mxGeometry x="380" y="20" width="360" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="c3_label" value="&lt;b&gt;Component 3&lt;/b&gt;&lt;br&gt;Verdict-Driven Output" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fillColor=#fff3e0;strokeColor=#fb8c00;fontSize=12;fontColor=#e65100;" vertex="1" parent="1">
+      <mxGeometry x="800" y="20" width="300" height="30" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>

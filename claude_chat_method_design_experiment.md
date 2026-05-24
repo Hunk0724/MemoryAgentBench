@@ -321,8 +321,9 @@ Feasibility 結果(120 GT conflict pairs):
 - 用 fact-embedding cosine 找 candidate pair → 還是要 **same-S gate** 收 precision
 - 否則 random pair 也會誤判(e.g., "X likes apple" + "X likes banana")
 - 等於把 deterministic R exact match 換成 cosine-based R synonym,**核心邏輯沒變**
+- 之後可以再把 fail case 抓出來舉例
 
-→ 還是 rule-based。**Apple/Banana 反例、employment 多值關係**這些 ambiguous case 全都過不去。
+→ 還是 rule-based。**Apple/Banana 反例(這是純舉例並非真正有遇到的)、employment 多值關係**這些 ambiguous case 全都過不去。
 
 #### Step 5 — Gemini chat 對話 + insight_discussion.md 揭露文獻 paradigm
 看了 [insight_discussion.md](docs/insight_discussion.md) 的五大 Agent memory paradigm 對比:
@@ -340,6 +341,7 @@ Feasibility 結果(120 GT conflict pairs):
 1. **MQuAKE 構造刻意只用 functional 衝突**,所以 v1 deterministic 在 FC 上看似 work(36% recall + 1.4% FP),**但 FP 1.4% 是 dataset 偏差不是 method robust**
 2. 真實世界 conflict 是 **semantic 概念**,要區分 functional / cumulative / temporal-functional / aggregated(Wikidata cardinality)
 3. **v1 整套思路在 FC 上 work 但無法泛化**
+- 之後可以再把 fail case 抓出來舉例
 
 #### Step 6 — Pivot 到 LLM detection
 基於 Step 5 認知,放棄 rule-based 升級路線,改用 **LLM judge as detection mechanism**:

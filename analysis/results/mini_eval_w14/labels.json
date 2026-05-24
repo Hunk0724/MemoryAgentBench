@@ -1,0 +1,1442 @@
+[
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no18",
+    "query_id": 18,
+    "question": "What is the job title of the chairperson of the political organization Fatah?",
+    "gt_answer": "soldier",
+    "num_hops": 2,
+    "all_pair": true,
+    "w13_correct": true,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Who is the chairperson of Fatah?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The chairperson of Fatah is Moshe Kahlon.",
+        "old_fact_text": "The chairperson of Fatah is Mahmoud Abbas.",
+        "gt_seq": 232,
+        "old_seq": 1,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-f0ada014e63c32412f51c94d773aa3f5",
+            "prop_text": "Moshe Kahlon is the chairperson of Fatah.",
+            "timestamp": [
+              6,
+              4
+            ],
+            "source_chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-c708370896e52413cca8e086e6d014d2",
+            "prop_text": "Mahmoud Abbas is the chairperson of Fatah.",
+            "timestamp": [
+              0,
+              1
+            ],
+            "source_chunk_id": "chunk-362feee8cbc2534dfd4bd0c5f17da1c0"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "What kind of work does Moshe Kahlon do?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Moshe Kahlon works in the field of soldier.",
+        "old_fact_text": "Moshe Kahlon works in the field of politician.",
+        "gt_seq": 368,
+        "old_seq": 134,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-4637868a6dbcd404ebbc991c446baf4c",
+            "prop_text": "Moshe Kahlon works in the field of soldier.",
+            "timestamp": [
+              9,
+              26
+            ],
+            "source_chunk_id": "chunk-32a878dca6714565c17ed8cba57f71d9"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-82e6bf48402efcfa75ee38091e399ca2",
+            "prop_text": "Moshe Kahlon works in the field of politician.",
+            "timestamp": [
+              3,
+              22
+            ],
+            "source_chunk_id": "chunk-6e52ef8d31e5a75bec8aae2a2f36b98e"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no2",
+    "query_id": 2,
+    "question": "Which country is the birthplace of the sport associated with Steve Sax?",
+    "gt_answer": "Italy",
+    "num_hops": 2,
+    "all_pair": true,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Which sport is Steve Sax associated with?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Steve Sax is associated with the sport of association football.",
+        "old_fact_text": "Steve Sax is associated with the sport of baseball.",
+        "gt_seq": 417,
+        "old_seq": 35,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-9d5b70cd7187e6362440bea5877daa63",
+            "prop_text": "Steve Sax is associated with the sport of association football.",
+            "timestamp": [
+              11,
+              0
+            ],
+            "source_chunk_id": "chunk-4b2f4f5396b53beeb82b45f2fba8362a"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-a8696593b115737b2cf7d46dd23d6889",
+            "prop_text": "Steve Sax is associated with the sport of baseball.",
+            "timestamp": [
+              0,
+              35
+            ],
+            "source_chunk_id": "chunk-362feee8cbc2534dfd4bd0c5f17da1c0"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Which country was association football created in?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "association football was created in the country of Italy.",
+        "old_fact_text": "association football was created in the country of England.",
+        "gt_seq": 389,
+        "old_seq": 272,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-9e53cb2d0671d1e3a08ce443136394e7",
+            "prop_text": "Association football was created in Italy.",
+            "timestamp": [
+              10,
+              9
+            ],
+            "source_chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-7160aca8da69436b6ec20a3cf3dd2003",
+            "prop_text": "association football was created in the country of England.",
+            "timestamp": [
+              7,
+              5
+            ],
+            "source_chunk_id": "chunk-d1571253726c67247f58e70c1ee95d1b"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no34",
+    "query_id": 34,
+    "question": "Which religion was the partner of Ferdinand Marcos associated with?",
+    "gt_answer": "atheism",
+    "num_hops": 2,
+    "all_pair": false,
+    "w13_correct": true,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Who is Ferdinand Marcos married to?",
+        "conflict_type": "no_conflict_pair",
+        "gt_fact_text": "Ferdinand Marcos is married to Imelda Marcos.",
+        "old_fact_text": null,
+        "gt_seq": 11,
+        "old_seq": null,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-aacbcf59b9389fb14c87505da14c60ee",
+            "prop_text": "Ferdinand Marcos is married to Imelda Marcos.",
+            "timestamp": [
+              0,
+              11
+            ],
+            "source_chunk_id": "chunk-362feee8cbc2534dfd4bd0c5f17da1c0"
+          }
+        ],
+        "chain_old_matches": []
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Which religion is Imelda Marcos affiliated with?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Imelda Marcos is affiliated with the religion of atheism.",
+        "old_fact_text": "Imelda Marcos is affiliated with the religion of Catholicism.",
+        "gt_seq": 374,
+        "old_seq": 248,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-8d9e0d74ea083ff9a05626dc20264d0c",
+            "prop_text": "Imelda Marcos is affiliated with the religion of atheism.",
+            "timestamp": [
+              9,
+              32
+            ],
+            "source_chunk_id": "chunk-32a878dca6714565c17ed8cba57f71d9"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-e4ea235dbbb5fb114a2fc5ebe660ee6a",
+            "prop_text": "Imelda Marcos is affiliated with the religion of Catholicism.",
+            "timestamp": [
+              6,
+              20
+            ],
+            "source_chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no52",
+    "query_id": 52,
+    "question": "Where did the religion associated with the Bagratuni Dynasty come into existence?",
+    "gt_answer": "Taipei",
+    "num_hops": 2,
+    "all_pair": false,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Which religion is Bagratuni Dynasty affiliated with?",
+        "conflict_type": "no_conflict_pair",
+        "gt_fact_text": "Bagratuni Dynasty is affiliated with the religion of Christianity.",
+        "old_fact_text": null,
+        "gt_seq": 172,
+        "old_seq": null,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-ebb708351d279af334fead697ade02be",
+            "prop_text": "Bagratuni Dynasty is affiliated with the religion of Christianity.",
+            "timestamp": [
+              4,
+              23
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ],
+        "chain_old_matches": []
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Where was Christianity founded?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Christianity was founded in the city of Taipei.",
+        "old_fact_text": "Christianity was founded in the city of Jerusalem.",
+        "gt_seq": 43,
+        "old_seq": 40,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-6f61579527bc7e6058f2f924174d9ec3",
+            "prop_text": "Christianity was founded in the city of Taipei.",
+            "timestamp": [
+              1,
+              6
+            ],
+            "source_chunk_id": "chunk-69bd442bc577d8f58b1979bf430085fe"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-3a2e19dd99dedb3b3c97b0fa8b391672",
+            "prop_text": "Christianity was founded in the city of Jerusalem.",
+            "timestamp": [
+              1,
+              3
+            ],
+            "source_chunk_id": "chunk-69bd442bc577d8f58b1979bf430085fe"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no99",
+    "query_id": 99,
+    "question": "In what language are the official documents of the country where Alta IF originates written?",
+    "gt_answer": "Swedish",
+    "num_hops": 3,
+    "all_pair": true,
+    "w13_correct": true,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Which sport is Alta IF associated with?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Alta IF is associated with the sport of baseball.",
+        "old_fact_text": "Alta IF is associated with the sport of association football.",
+        "gt_seq": 446,
+        "old_seq": 19,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-faee56a2f9c856bb07c05f014af4aa76",
+            "prop_text": "Alta IF is associated with the sport of baseball.",
+            "timestamp": [
+              11,
+              29
+            ],
+            "source_chunk_id": "chunk-4b2f4f5396b53beeb82b45f2fba8362a"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-483d448aef64f72df3a1029930f75032",
+            "prop_text": "Alta IF is associated with the sport of association football.",
+            "timestamp": [
+              0,
+              19
+            ],
+            "source_chunk_id": "chunk-362feee8cbc2534dfd4bd0c5f17da1c0"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Which country was baseball created in?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "baseball was created in the country of Japan.",
+        "old_fact_text": "baseball was created in the country of United States of America.",
+        "gt_seq": 382,
+        "old_seq": 160,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-eb44b3e31aa6596a92530a5cf49c8bcb",
+            "prop_text": "Baseball was created in Japan.",
+            "timestamp": [
+              10,
+              2
+            ],
+            "source_chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-8e70923e26a128b1698c48f6629e2fc8",
+            "prop_text": "Baseball was created in the country of United States of America.",
+            "timestamp": [
+              4,
+              11
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ]
+      },
+      {
+        "hop_idx": 2,
+        "hop_question": "What is the official language of Japan?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The official language of Japan is Swedish.",
+        "old_fact_text": "The official language of Japan is Japanese.",
+        "gt_seq": 439,
+        "old_seq": 240,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-edb09e3f0567c7b08522095be5a36e00",
+            "prop_text": "The official language of Japan is Swedish.",
+            "timestamp": [
+              11,
+              22
+            ],
+            "source_chunk_id": "chunk-4b2f4f5396b53beeb82b45f2fba8362a"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-8ff16ab31f0b692b532d4d36291ca355",
+            "prop_text": "The official language of Japan is Japanese.",
+            "timestamp": [
+              6,
+              12
+            ],
+            "source_chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no15",
+    "query_id": 15,
+    "question": "From which capital city did the Surrey Senior Cup, a sports competition, originate?",
+    "gt_answer": "Russellville",
+    "num_hops": 3,
+    "all_pair": true,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Which sport is Surrey Senior Cup associated with?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Surrey Senior Cup is associated with the sport of basketball.",
+        "old_fact_text": "Surrey Senior Cup is associated with the sport of association football.",
+        "gt_seq": 315,
+        "old_seq": 291,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-81422a9a192b4dc92c9c3df773648687",
+            "prop_text": "The Surrey Senior Cup is associated with the sport of basketball.",
+            "timestamp": [
+              8,
+              10
+            ],
+            "source_chunk_id": "chunk-d443e86369c315cc415d2dc744df1e50"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-fd6e49db06bd50a7320406e2586ba1a8",
+            "prop_text": "Surrey Senior Cup is associated with the sport of association football.",
+            "timestamp": [
+              7,
+              24
+            ],
+            "source_chunk_id": "chunk-d1571253726c67247f58e70c1ee95d1b"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Which country was basketball created in?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "basketball was created in the country of Soviet Union.",
+        "old_fact_text": "basketball was created in the country of United States of America.",
+        "gt_seq": 348,
+        "old_seq": 216,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-1bfff8c26655ff14eb8d03380024209d",
+            "prop_text": "Basketball was created in the Soviet Union.",
+            "timestamp": [
+              9,
+              6
+            ],
+            "source_chunk_id": "chunk-32a878dca6714565c17ed8cba57f71d9"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-0cfa94c07d424f28a9715f33684f0678",
+            "prop_text": "Basketball was created in the country of United States of America.",
+            "timestamp": [
+              5,
+              27
+            ],
+            "source_chunk_id": "chunk-78fa90647e7540ad0240c45ebf830327"
+          }
+        ]
+      },
+      {
+        "hop_idx": 2,
+        "hop_question": "What is the capital of Soviet Union?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The capital of Soviet Union is Russellville.",
+        "old_fact_text": "The capital of Soviet Union is Moscow.",
+        "gt_seq": 179,
+        "old_seq": 156,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-72f6a64bc1342fa4f8af730d2b00e034",
+            "prop_text": "The capital of Soviet Union is Russellville.",
+            "timestamp": [
+              4,
+              30
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-d26ce8d06e284d7132dc0405843c2022",
+            "prop_text": "The capital of Soviet Union is Moscow.",
+            "timestamp": [
+              4,
+              7
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no83",
+    "query_id": 83,
+    "question": "Which individual is responsible for founding the organization that has its headquarters in the same location where Bill Frisell received his education?",
+    "gt_answer": "William Penn",
+    "num_hops": 3,
+    "all_pair": false,
+    "w13_correct": true,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Which university was Bill Frisell educated at?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The univeristy where Bill Frisell was educated is The University of the Arts.",
+        "old_fact_text": "The univeristy where Bill Frisell was educated is Berklee College of Music.",
+        "gt_seq": 309,
+        "old_seq": 144,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-e2b7ad5413a4d2adde8c940c8723251f",
+            "prop_text": "Bill Frisell was educated at The University of the Arts.",
+            "timestamp": [
+              8,
+              4
+            ],
+            "source_chunk_id": "chunk-d443e86369c315cc415d2dc744df1e50"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-6b99fefd49fbc026426a1f438e16f618",
+            "prop_text": "Bill Frisell was educated at Berklee College of Music.",
+            "timestamp": [
+              3,
+              32
+            ],
+            "source_chunk_id": "chunk-6e52ef8d31e5a75bec8aae2a2f36b98e"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Which city is the headquarter of The University of the Arts located in?",
+        "conflict_type": "no_conflict_pair",
+        "gt_fact_text": "The headquarters of The University of the Arts is located in the city of Philadelphia.",
+        "old_fact_text": null,
+        "gt_seq": 387,
+        "old_seq": null,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-0421688aa0cab092a832aa3846c1ee01",
+            "prop_text": "The headquarters of The University of the Arts is located in Philadelphia.",
+            "timestamp": [
+              10,
+              7
+            ],
+            "source_chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3"
+          }
+        ],
+        "chain_old_matches": []
+      },
+      {
+        "hop_idx": 2,
+        "hop_question": "Who founded Philadelphia?",
+        "conflict_type": "no_conflict_pair",
+        "gt_fact_text": "Philadelphia was founded by William Penn.",
+        "old_fact_text": null,
+        "gt_seq": 421,
+        "old_seq": null,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-fdd114ff25f8845b1a02ec22704271fa",
+            "prop_text": "Philadelphia was founded by William Penn.",
+            "timestamp": [
+              11,
+              4
+            ],
+            "source_chunk_id": "chunk-4b2f4f5396b53beeb82b45f2fba8362a"
+          }
+        ],
+        "chain_old_matches": []
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no12",
+    "query_id": 12,
+    "question": "What is the capital city of the country where the sport associated with John Harkes has its origin?",
+    "gt_answer": "Duluth",
+    "num_hops": 3,
+    "all_pair": false,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Which sport is John Harkes associated with?",
+        "conflict_type": "no_conflict_pair",
+        "gt_fact_text": "John Harkes is associated with the sport of association football.",
+        "old_fact_text": null,
+        "gt_seq": 308,
+        "old_seq": null,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-762d150bf9b5e0e1626fe02d159c2166",
+            "prop_text": "John Harkes is associated with the sport of association football.",
+            "timestamp": [
+              8,
+              3
+            ],
+            "source_chunk_id": "chunk-d443e86369c315cc415d2dc744df1e50"
+          }
+        ],
+        "chain_old_matches": []
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Which country was association football created in?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "association football was created in the country of Italy.",
+        "old_fact_text": "association football was created in the country of England.",
+        "gt_seq": 389,
+        "old_seq": 272,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-9e53cb2d0671d1e3a08ce443136394e7",
+            "prop_text": "Association football was created in Italy.",
+            "timestamp": [
+              10,
+              9
+            ],
+            "source_chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-7160aca8da69436b6ec20a3cf3dd2003",
+            "prop_text": "association football was created in the country of England.",
+            "timestamp": [
+              7,
+              5
+            ],
+            "source_chunk_id": "chunk-d1571253726c67247f58e70c1ee95d1b"
+          }
+        ]
+      },
+      {
+        "hop_idx": 2,
+        "hop_question": "What is the capital of Italy?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The capital of Italy is Duluth.",
+        "old_fact_text": "The capital of Italy is Rome.",
+        "gt_seq": 209,
+        "old_seq": 167,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-b50fe44b2e83cb46693b4bd4c91a234f",
+            "prop_text": "The capital of Italy is Duluth.",
+            "timestamp": [
+              5,
+              20
+            ],
+            "source_chunk_id": "chunk-78fa90647e7540ad0240c45ebf830327"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-e1ad11bd553bb673181ad46472891df1",
+            "prop_text": "The capital of Italy is Rome.",
+            "timestamp": [
+              4,
+              18
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no88",
+    "query_id": 88,
+    "question": "Which language is the official language of the country whose citizenship is held by the director/manager of \"Past Masters\"?",
+    "gt_answer": "Arabic",
+    "num_hops": 4,
+    "all_pair": true,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Who performed Past Masters?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Past Masters was performed by Madonna.",
+        "old_fact_text": "Past Masters was performed by The Beatles.",
+        "gt_seq": 364,
+        "old_seq": 251,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-474b32c26b2d361d019d3ee4d26598f6",
+            "prop_text": "Past Masters was performed by Madonna.",
+            "timestamp": [
+              9,
+              22
+            ],
+            "source_chunk_id": "chunk-32a878dca6714565c17ed8cba57f71d9"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-3456ec24d9b53d901c1f4bd8850534a0",
+            "prop_text": "The Beatles performed Past Masters.",
+            "timestamp": [
+              6,
+              23
+            ],
+            "source_chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Who is the director of Madonna?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The director of Madonna is Narendra Modi.",
+        "old_fact_text": "The director of Madonna is Guy Oseary.",
+        "gt_seq": 354,
+        "old_seq": 207,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-e8bcf70f54b179dc2c664f7624064c85",
+            "prop_text": "Narendra Modi is the director of Madonna.",
+            "timestamp": [
+              9,
+              12
+            ],
+            "source_chunk_id": "chunk-32a878dca6714565c17ed8cba57f71d9"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-0796bb12a80aea647d2fbf45e096059b",
+            "prop_text": "Guy Oseary is the director of Madonna.",
+            "timestamp": [
+              5,
+              18
+            ],
+            "source_chunk_id": "chunk-78fa90647e7540ad0240c45ebf830327"
+          }
+        ]
+      },
+      {
+        "hop_idx": 2,
+        "hop_question": "What is the country of citizenship of Narendra Modi?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Narendra Modi is a citizen of Australia.",
+        "old_fact_text": "Narendra Modi is a citizen of India.",
+        "gt_seq": 217,
+        "old_seq": 176,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-f864566da8d056aa1a6c7c7c8f1c5be2",
+            "prop_text": "Narendra Modi is a citizen of Australia.",
+            "timestamp": [
+              5,
+              28
+            ],
+            "source_chunk_id": "chunk-78fa90647e7540ad0240c45ebf830327"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-05cc359acab3fc91625ba4bc4c17ca65",
+            "prop_text": "Narendra Modi is a citizen of India.",
+            "timestamp": [
+              4,
+              27
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ]
+      },
+      {
+        "hop_idx": 3,
+        "hop_question": "What is the official language of Australia?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The official language of Australia is Arabic.",
+        "old_fact_text": "The official language of Australia is English.",
+        "gt_seq": 151,
+        "old_seq": 116,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-11b02b758b6b264673ea9a15bc34cd38",
+            "prop_text": "The official language of Australia is Arabic.",
+            "timestamp": [
+              4,
+              2
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-f8bca70b467d5e872e347a487d54341a",
+            "prop_text": "The official language of Australia is English.",
+            "timestamp": [
+              3,
+              4
+            ],
+            "source_chunk_id": "chunk-6e52ef8d31e5a75bec8aae2a2f36b98e"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no91",
+    "query_id": 91,
+    "question": "In which city is the capital of the country, where the book \"The Birth of Tragedy\" first came from, located?",
+    "gt_answer": "Duluth",
+    "num_hops": 4,
+    "all_pair": true,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Who is the author of The Birth of Tragedy?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The author of The Birth of Tragedy is Stephen Crane.",
+        "old_fact_text": "The author of The Birth of Tragedy is Friedrich Nietzsche.",
+        "gt_seq": 77,
+        "old_seq": 76,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-12941d4e13c93306c33c61150c405abb",
+            "prop_text": "Stephen Crane is the author of The Birth of Tragedy.",
+            "timestamp": [
+              2,
+              2
+            ],
+            "source_chunk_id": "chunk-81b59e8deeb071e99e2ebce95f594541"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-b9d225ab0fa926a11bc88c7814e7c148",
+            "prop_text": "Friedrich Nietzsche is the author of The Birth of Tragedy.",
+            "timestamp": [
+              2,
+              1
+            ],
+            "source_chunk_id": "chunk-81b59e8deeb071e99e2ebce95f594541"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "What is Stephen Crane famous for?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Stephen Crane is famous for Charlie Hebdo.",
+        "old_fact_text": "Stephen Crane is famous for The Red Badge of Courage.",
+        "gt_seq": 423,
+        "old_seq": 72,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-91f2b05112a48f36c0c6e0b9a03a8fb9",
+            "prop_text": "Stephen Crane is famous for Charlie Hebdo.",
+            "timestamp": [
+              11,
+              6
+            ],
+            "source_chunk_id": "chunk-4b2f4f5396b53beeb82b45f2fba8362a"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-0cdb1f2074318384776ed3be4c7738a8",
+            "prop_text": "Stephen Crane is famous for The Red Badge of Courage.",
+            "timestamp": [
+              1,
+              32
+            ],
+            "source_chunk_id": "chunk-69bd442bc577d8f58b1979bf430085fe"
+          }
+        ]
+      },
+      {
+        "hop_idx": 2,
+        "hop_question": "Which country was Charlie Hebdo created in?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Charlie Hebdo was created in the country of Italy.",
+        "old_fact_text": "Charlie Hebdo was created in the country of France.",
+        "gt_seq": 358,
+        "old_seq": 155,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-707429b1f5bcf306e28c3aa692eac779",
+            "prop_text": "Charlie Hebdo was created in Italy.",
+            "timestamp": [
+              9,
+              16
+            ],
+            "source_chunk_id": "chunk-32a878dca6714565c17ed8cba57f71d9"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-ed459907f1e27925a837fd97b34a7a5e",
+            "prop_text": "Charlie Hebdo was created in the country of France.",
+            "timestamp": [
+              4,
+              6
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ]
+      },
+      {
+        "hop_idx": 3,
+        "hop_question": "What is the capital of Italy?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The capital of Italy is Duluth.",
+        "old_fact_text": "The capital of Italy is Rome.",
+        "gt_seq": 209,
+        "old_seq": 167,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-b50fe44b2e83cb46693b4bd4c91a234f",
+            "prop_text": "The capital of Italy is Duluth.",
+            "timestamp": [
+              5,
+              20
+            ],
+            "source_chunk_id": "chunk-78fa90647e7540ad0240c45ebf830327"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-e1ad11bd553bb673181ad46472891df1",
+            "prop_text": "The capital of Italy is Rome.",
+            "timestamp": [
+              4,
+              18
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no27",
+    "query_id": 27,
+    "question": "What city serves as the capital of the country where the performer who is the spouse of Derek Shepherd holds citizenship?",
+    "gt_answer": "Harrisville",
+    "num_hops": 4,
+    "all_pair": false,
+    "w13_correct": true,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Who is Derek Shepherd married to?",
+        "conflict_type": "no_conflict_pair",
+        "gt_fact_text": "Derek Shepherd is married to Meredith Grey.",
+        "old_fact_text": null,
+        "gt_seq": 414,
+        "old_seq": null,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-f05a9b1e3356c1bad265d997514895b7",
+            "prop_text": "Derek Shepherd is married to Meredith Grey.",
+            "timestamp": [
+              10,
+              34
+            ],
+            "source_chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3"
+          }
+        ],
+        "chain_old_matches": []
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Who performed Meredith Grey?",
+        "conflict_type": "no_conflict_pair",
+        "gt_fact_text": "Meredith Grey was performed by Ellen Pompeo.",
+        "old_fact_text": null,
+        "gt_seq": 96,
+        "old_seq": null,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-8af6cca83a008c32861acf1a3038c3bf",
+            "prop_text": "Meredith Grey was performed by Ellen Pompeo.",
+            "timestamp": [
+              2,
+              21
+            ],
+            "source_chunk_id": "chunk-81b59e8deeb071e99e2ebce95f594541"
+          }
+        ],
+        "chain_old_matches": []
+      },
+      {
+        "hop_idx": 2,
+        "hop_question": "What is the country of citizenship of Ellen Pompeo?",
+        "conflict_type": "no_conflict_pair",
+        "gt_fact_text": "Ellen Pompeo is a citizen of United States of America.",
+        "old_fact_text": null,
+        "gt_seq": 268,
+        "old_seq": null,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-45abb62f94d4553bca00808d19262179",
+            "prop_text": "Ellen Pompeo is a citizen of United States of America.",
+            "timestamp": [
+              7,
+              1
+            ],
+            "source_chunk_id": "chunk-d1571253726c67247f58e70c1ee95d1b"
+          }
+        ],
+        "chain_old_matches": []
+      },
+      {
+        "hop_idx": 3,
+        "hop_question": "What is the capital of United States of America?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The capital of United States of America is Harrisville.",
+        "old_fact_text": "The capital of United States of America is Washington, D.C..",
+        "gt_seq": 396,
+        "old_seq": 247,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-27227caae0c89893a4344478b4d91fcd",
+            "prop_text": "The capital of United States of America is Harrisville.",
+            "timestamp": [
+              10,
+              16
+            ],
+            "source_chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-21a6a70988775f5977e6693edc4bd80e",
+            "prop_text": "Washington, D.C. is the capital of United States of America.",
+            "timestamp": [
+              6,
+              19
+            ],
+            "source_chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no19",
+    "query_id": 19,
+    "question": "Which city is the capital of the country where the performer of \"Free as a Bird\"'s director/manager comes from?",
+    "gt_answer": "Duluth",
+    "num_hops": 4,
+    "all_pair": false,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Who performed Free as a Bird?",
+        "conflict_type": "no_conflict_pair",
+        "gt_fact_text": "Free as a Bird was performed by The Beatles.",
+        "old_fact_text": null,
+        "gt_seq": 350,
+        "old_seq": null,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-b4b12c6b3f2b591013e2cf335c18468e",
+            "prop_text": "Free as a Bird was performed by The Beatles.",
+            "timestamp": [
+              9,
+              8
+            ],
+            "source_chunk_id": "chunk-32a878dca6714565c17ed8cba57f71d9"
+          }
+        ],
+        "chain_old_matches": []
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Who is the director of The Beatles?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The director of The Beatles is Joe Hockey.",
+        "old_fact_text": "The director of The Beatles is Brian Epstein.",
+        "gt_seq": 443,
+        "old_seq": 236,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-e7d18df8309f9b5346a2df1bdf6e4b5a",
+            "prop_text": "The director of The Beatles is Joe Hockey.",
+            "timestamp": [
+              11,
+              26
+            ],
+            "source_chunk_id": "chunk-4b2f4f5396b53beeb82b45f2fba8362a"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-4c0ef8055a7124ab83ce5d418d2f4b90",
+            "prop_text": "Brian Epstein is the director of The Beatles.",
+            "timestamp": [
+              6,
+              8
+            ],
+            "source_chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8"
+          }
+        ]
+      },
+      {
+        "hop_idx": 2,
+        "hop_question": "What is the country of citizenship of Joe Hockey?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Joe Hockey is a citizen of Italy.",
+        "old_fact_text": "Joe Hockey is a citizen of Australia.",
+        "gt_seq": 427,
+        "old_seq": 129,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-cc1dc7d65249da64b870e93f0d3501ff",
+            "prop_text": "Joe Hockey is a citizen of Italy.",
+            "timestamp": [
+              11,
+              10
+            ],
+            "source_chunk_id": "chunk-4b2f4f5396b53beeb82b45f2fba8362a"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-c8e73a2c42e5bf255c7760c9724698db",
+            "prop_text": "Joe Hockey is a citizen of Australia.",
+            "timestamp": [
+              3,
+              17
+            ],
+            "source_chunk_id": "chunk-6e52ef8d31e5a75bec8aae2a2f36b98e"
+          }
+        ]
+      },
+      {
+        "hop_idx": 3,
+        "hop_question": "What is the capital of Italy?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The capital of Italy is Duluth.",
+        "old_fact_text": "The capital of Italy is Rome.",
+        "gt_seq": 209,
+        "old_seq": 167,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-b50fe44b2e83cb46693b4bd4c91a234f",
+            "prop_text": "The capital of Italy is Duluth.",
+            "timestamp": [
+              5,
+              20
+            ],
+            "source_chunk_id": "chunk-78fa90647e7540ad0240c45ebf830327"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-e1ad11bd553bb673181ad46472891df1",
+            "prop_text": "The capital of Italy is Rome.",
+            "timestamp": [
+              4,
+              18
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no8",
+    "query_id": 8,
+    "question": "To which continent does the country of citizenship of Colin Irwin pertain?",
+    "gt_answer": "North America",
+    "num_hops": 2,
+    "all_pair": true,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "What is the country of citizenship of Colin Irwin?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Colin Irwin is a citizen of Israel.",
+        "old_fact_text": "Colin Irwin is a citizen of United Kingdom.",
+        "gt_seq": 441,
+        "old_seq": 55,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-bf8fcb577f7e1d49318c9e9e72958296",
+            "prop_text": "Colin Irwin is a citizen of Israel.",
+            "timestamp": [
+              11,
+              24
+            ],
+            "source_chunk_id": "chunk-4b2f4f5396b53beeb82b45f2fba8362a"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-4c3d3e91f5c8888f8d0966595ca877f5",
+            "prop_text": "Colin Irwin is a citizen of United Kingdom.",
+            "timestamp": [
+              1,
+              16
+            ],
+            "source_chunk_id": "chunk-69bd442bc577d8f58b1979bf430085fe"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Which continent is Israel located in?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Israel is located in the continent of North America.",
+        "old_fact_text": "Israel is located in the continent of Asia.",
+        "gt_seq": 127,
+        "old_seq": 98,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-fb49698a7b96b3d17980971e6af63df7",
+            "prop_text": "Israel is located in the continent of North America.",
+            "timestamp": [
+              3,
+              15
+            ],
+            "source_chunk_id": "chunk-6e52ef8d31e5a75bec8aae2a2f36b98e"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-dd11172bfa4fb310e71c371680cd4048",
+            "prop_text": "Israel is located in the continent of Asia.",
+            "timestamp": [
+              2,
+              23
+            ],
+            "source_chunk_id": "chunk-81b59e8deeb071e99e2ebce95f594541"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no28",
+    "query_id": 28,
+    "question": "What is the name of the city that serves as the capital of the country to which Sable belongs?",
+    "gt_answer": "Prague",
+    "num_hops": 2,
+    "all_pair": false,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "What is the country of citizenship of Sable?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Sable is a citizen of Czech Republic.",
+        "old_fact_text": "Sable is a citizen of United States of America.",
+        "gt_seq": 299,
+        "old_seq": 244,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-cda17123bab057f6a88906d1677e886d",
+            "prop_text": "Sable is a citizen of Czech Republic.",
+            "timestamp": [
+              7,
+              32
+            ],
+            "source_chunk_id": "chunk-d1571253726c67247f58e70c1ee95d1b"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-8c6f81e4bfb827844f5246f03608c723",
+            "prop_text": "Sable is a citizen of United States of America.",
+            "timestamp": [
+              6,
+              16
+            ],
+            "source_chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "What is the capital of Czech Republic?",
+        "conflict_type": "no_conflict_pair",
+        "gt_fact_text": "The capital of Czech Republic is Prague.",
+        "old_fact_text": null,
+        "gt_seq": 190,
+        "old_seq": null,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-fe52eb5868f2905f3e36d97def1974b4",
+            "prop_text": "The capital of Czech Republic is Prague.",
+            "timestamp": [
+              5,
+              1
+            ],
+            "source_chunk_id": "chunk-78fa90647e7540ad0240c45ebf830327"
+          }
+        ],
+        "chain_old_matches": []
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no29",
+    "query_id": 29,
+    "question": "In which city serves as the capital of the country of citizenship of Country Joe McDonald?",
+    "gt_answer": "Rajanpur",
+    "num_hops": 2,
+    "all_pair": true,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "What is the country of citizenship of Country Joe McDonald?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Country Joe McDonald is a citizen of Romania.",
+        "old_fact_text": "Country Joe McDonald is a citizen of United States of America.",
+        "gt_seq": 250,
+        "old_seq": 165,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-396f4eee8fd718c3093996d2dd586696",
+            "prop_text": "Country Joe McDonald is a citizen of Romania.",
+            "timestamp": [
+              6,
+              22
+            ],
+            "source_chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-81c7a1d41f7b2800078f4be114f0dfe8",
+            "prop_text": "Country Joe McDonald is a citizen of United States of America.",
+            "timestamp": [
+              4,
+              16
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "What is the capital of Romania?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "The capital of Romania is Rajanpur.",
+        "old_fact_text": "The capital of Romania is Bucharest.",
+        "gt_seq": 449,
+        "old_seq": 185,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-602aa95e869e195fe371f8db7cce5fa2",
+            "prop_text": "The capital of Romania is Rajanpur.",
+            "timestamp": [
+              11,
+              32
+            ],
+            "source_chunk_id": "chunk-4b2f4f5396b53beeb82b45f2fba8362a"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-4568e660bea3a58fa40ed60ec922c32d",
+            "prop_text": "The capital of Romania is Bucharest.",
+            "timestamp": [
+              4,
+              36
+            ],
+            "source_chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no58",
+    "query_id": 58,
+    "question": "What is the name of the political entity that was established from the successor of the Sasanian Empire?",
+    "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "num_hops": 2,
+    "all_pair": true,
+    "w13_correct": false,
+    "hops": [
+      {
+        "hop_idx": 0,
+        "hop_question": "Who founded Sasanian Empire?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Sasanian Empire was founded by Walter Chrysler.",
+        "old_fact_text": "Sasanian Empire was founded by Ardashir I.",
+        "gt_seq": 264,
+        "old_seq": 224,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-208f301f19193ee5aeb7e89d0ac7db58",
+            "prop_text": "Walter Chrysler founded the Sasanian Empire.",
+            "timestamp": [
+              6,
+              34
+            ],
+            "source_chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-03b09f0eb99f9fc1bb4ac48a6e5cc30c",
+            "prop_text": "Ardashir I founded the Sasanian Empire.",
+            "timestamp": [
+              5,
+              35
+            ],
+            "source_chunk_id": "chunk-78fa90647e7540ad0240c45ebf830327"
+          }
+        ]
+      },
+      {
+        "hop_idx": 1,
+        "hop_question": "Who is Walter Chrysler's child?",
+        "conflict_type": "has_pair",
+        "gt_fact_text": "Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp.",
+        "old_fact_text": "Walter Chrysler's child is Walter Percy Chrysler Jr..",
+        "gt_seq": 231,
+        "old_seq": 61,
+        "chain_new_matches": [
+          {
+            "prop_id": "prop-c6dcbdf00924e2ef6a8a665db6722058",
+            "prop_text": "Charles Frederick is the child of Walter Chrysler.",
+            "timestamp": [
+              6,
+              2
+            ],
+            "source_chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8"
+          }
+        ],
+        "chain_old_matches": [
+          {
+            "prop_id": "prop-b1c16f9488b1c54ccb84d4cb33d4336c",
+            "prop_text": "Walter Chrysler's child is Walter Percy Chrysler Jr..",
+            "timestamp": [
+              1,
+              22
+            ],
+            "source_chunk_id": "chunk-69bd442bc577d8f58b1979bf430085fe"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -213,6 +213,69 @@ class BaseConfig:
         metadata={"help": "v2: temperature for LLM judge detector (deterministic by default)."}
     )
 
+    # ===== v2.0.2 W1.3 Phase 2 chain-restricted detection flags =====
+    enable_phase2_chain_detection: bool = field(
+        default=False,
+        metadata={"help": "v2.0.2: enable Phase 2.a + 2.b pipeline (chain id + verdict). "
+                          "Requires proposition_index.json from W1.1 build script. "
+                          "Independent of legacy enable_v2_detect (W1 LLM judge prototype)."}
+    )
+    enable_proposition_hyperedge: bool = field(
+        default=False,
+        metadata={"help": "W2 I3c (option B): PropRAG-style proposition hyperedges. "
+                          "DEPRECATED 2026-05-24 on FC corpus: atomic-prop regime "
+                          "(2 entities/prop) → hyperedge adds 0 edges (verified 996→996). "
+                          "Function kept for non-atomic-prop datasets. "
+                          "Default OFF. De-coupled from enable_phase2_chain_detection. "
+                          "See docs/B_remove_hyperedge_design.md."}
+    )
+    v2_phase2_region_topK: int = field(
+        default=50,
+        metadata={"help": "Phase 2.a active region: top-K propositions by mass."}
+    )
+    v2_phase2_M: int = field(
+        default=5,
+        metadata={"help": "Phase 2.a: max # candidate chains to return."}
+    )
+    v2_phase2_L: int = field(
+        default=3,
+        metadata={"help": "Phase 2.a: max chain depth (# propositions)."}
+    )
+    v2_phase2_beam: int = field(
+        default=8,
+        metadata={"help": "Phase 2.a: beam width for path enumeration."}
+    )
+    v2_phase2_ppr_aggregation: str = field(
+        default="mean",
+        metadata={"help": "Phase 2.a: PPR aggregation method for prop_mass "
+                          "(Q5 spec: 'mean' default, 'max' for ablation)."}
+    )
+
+    # ===== v2.0.2 W3 Phase 3 enriched context flags =====
+    enable_phase3_v2_enriched: bool = field(
+        default=False,
+        metadata={"help": "v2.0.2 W3: master switch for Phase 3 enriched context (Reasoning "
+                          "Hints + Recent Updates). Spec §B.4.2 LOCKED format. "
+                          "Mutex with enable_phase3_scaffold (v1 universal scaffold)."}
+    )
+    # Sub-flags (only effective when enable_phase3_v2_enriched=True) for ablation:
+    enable_phase3_v2_reasoning_hints: bool = field(
+        default=True,
+        metadata={"help": "W3 ablation: render Reasoning Hints block. Default True. "
+                          "Set False to test 'Recent Updates only' variant."}
+    )
+    enable_phase3_v2_recent_updates: bool = field(
+        default=True,
+        metadata={"help": "W3 ablation: render Recent Updates block. Default True. "
+                          "Set False to test 'Reasoning Hints only' variant."}
+    )
+    enable_phase2_filter_passages: bool = field(
+        default=True,
+        metadata={"help": "v2.0.2 W1.3: filter top-20 passages containing chain_old props "
+                          "(with rescue if passage also contains a chain_current prop). "
+                          "Default True. Set False to disable filter (pure W3 evaluation)."}
+    )
+
 
     # Retrieval specific attributes
     linking_top_k: int = field(
@@ -285,6 +348,10 @@ class BaseConfig:
             ("enable_supersession", "HIPPORAG_ENABLE_SUPERSESSION"),
             ("enable_phase2_filter", "HIPPORAG_ENABLE_PHASE2_FILTER"),
             ("enable_phase3_scaffold", "HIPPORAG_ENABLE_PHASE3_SCAFFOLD"),
+            ("enable_phase3_v2_enriched", "HIPPORAG_ENABLE_PHASE3_V2_ENRICHED"),
+            ("enable_phase3_v2_reasoning_hints", "HIPPORAG_ENABLE_PHASE3_V2_HINTS"),
+            ("enable_phase3_v2_recent_updates", "HIPPORAG_ENABLE_PHASE3_V2_UPDATES"),
+            ("enable_phase2_filter_passages", "HIPPORAG_ENABLE_PHASE2_FILTER_PASSAGES"),
         ]:
             env_val = os.environ.get(env_name)
             if env_val is not None:
@@ -329,3 +396,22 @@ class BaseConfig:
                 logger.info(f"[config] env override: v2_top_k_facts = {self.v2_top_k_facts} (from HIPPORAG_V2_TOP_K_FACTS={v2_topk_env!r})")
             except ValueError:
                 logger.warning(f"[config] HIPPORAG_V2_TOP_K_FACTS={v2_topk_env!r} not an int, ignoring")
+
+        # ===== v2.0.2 W1.3 Phase 2 chain-detection env overrides =====
+        p2cd_env = os.environ.get("HIPPORAG_ENABLE_PHASE2_CHAIN_DETECTION")
+        if p2cd_env is not None:
+            self.enable_phase2_chain_detection = p2cd_env.lower() in ("1", "true", "yes")
+            logger.info(f"[config] env override: enable_phase2_chain_detection = {self.enable_phase2_chain_detection} (from HIPPORAG_ENABLE_PHASE2_CHAIN_DETECTION={p2cd_env!r})")
+        for attr, env_name, caster in [
+            ("v2_phase2_region_topK", "HIPPORAG_V2_PHASE2_REGION_TOPK", int),
+            ("v2_phase2_M", "HIPPORAG_V2_PHASE2_M", int),
+            ("v2_phase2_L", "HIPPORAG_V2_PHASE2_L", int),
+            ("v2_phase2_beam", "HIPPORAG_V2_PHASE2_BEAM", int),
+        ]:
+            val = os.environ.get(env_name)
+            if val is not None:
+                try:
+                    setattr(self, attr, caster(val))
+                    logger.info(f"[config] env override: {attr} = {getattr(self, attr)} (from {env_name}={val!r})")
+                except ValueError:
+                    logger.warning(f"[config] {env_name}={val!r} not parseable, ignoring")

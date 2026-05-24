@@ -473,113 +473,184 @@ def score_chain(chain: Chain, query: str, ppr_scores, compute_prop_ppr) -> float
 
 **Purpose**: Within each chain, determine which propositions are superseded vs current.
 
-#### B.3.2.1 Algorithm
+#### B.3.2.1 Algorithm (v2.0.3 redesigned)
+
+> **設計轉折**(2026-05-17, W1.3 dry-run):v2.0.2 原版本由 LLM 同時做 (a) grouping (b) 方向判斷 (c) confidence,**在 MQuAKE 反事實內容上被 parametric world-knowledge bias 反轉方向**(例如 LLM 知道 Dickens 是 Our Mutual Friend 真實作者,即使 Darwin 的 ts 更晚仍判 Darwin = superseded)。第一輪 dry-run MH 從 vanilla 20% → 11%。v2.0.3 改為:**LLM 只識別語意上 contradicting 的 pool indices(不看時間戳)**,方向交由 code 從 proposition timestamps 機械判定。詳見 §B.3.2.3。
 
 ```python
 def chain_restricted_verdict(
     candidate_chains: List[Chain],
     query: str,
-    kg: KG,
+    propositions: Dict[str, Proposition],
     llm: LLM,
     enable_phase1_cache: bool = False,  # W1=False (on-the-fly); W2+=True
-    K_pool: int = 10  # locked, small-pool insight
+    K_pool: int = 10,                    # locked, small-pool insight
+    tau_loose: float = 0.7,
+    lookup_K: int = 20,
 ) -> Dict[str, Verdict]:
     """
-    For each proposition on each chain, determine verdict.
-    Pool construction has 3 sources:
-      1. Phase 1 cache (if enabled): p.candidate_supersedees
-      2. On-the-fly lookup: always run; supplements Phase 1 misses; primary in W1
-      3. γ opportunistic: propositions from OTHER chains sharing entities
+    Per chain-proposition: timestamp-agnostic pool → LLM identify
+    contradicting indices → mechanical direction from timestamps.
     """
     verdicts = {}
-    
+    seen_pids = set()
+
     for chain in candidate_chains:
-        for p in chain.propositions:
+        for focus_pid in chain.proposition_ids:
+            if focus_pid in seen_pids:
+                continue
+            seen_pids.add(focus_pid)
+            focus = propositions[focus_pid]
+
             pool = set()
-            
             # Source 1: Phase 1 cache (W2+)
-            if enable_phase1_cache and p.candidate_supersedees:
-                pool |= set(p.candidate_supersedees)
-            
-            # Source 2: on-the-fly lookup (always)
+            if enable_phase1_cache and focus.candidate_supersedees:
+                pool |= set(focus.candidate_supersedees)
+            # Source 2: on-the-fly lookup — TIMESTAMP-AGNOSTIC (v2.0.3 single call)
             pool |= dynamic_candidate_lookup(
-                p, kg, tau_loose=0.7, K=20,
-                before_time=p.timestamp
+                focus, propositions,
+                direction="any",         # ← v2.0.3 key change (was before/after split)
+                tau_loose=tau_loose, K=lookup_K,
             )
-            pool |= dynamic_candidate_lookup(
-                p, kg, tau_loose=0.7, K=20,
-                after_time=p.timestamp  # find potential superseders
-            )
-            
-            # Source 3: γ opportunistic pairing
+            # Source 3: γ opportunistic (other chains)
             for other_chain in candidate_chains:
                 if other_chain.id == chain.id:
                     continue
-                paired_props = find_corresponding_propositions(
-                    p, chain, other_chain
+                pool |= find_corresponding_propositions(
+                    focus, chain, other_chain, propositions,
                 )
-                pool |= set(paired_props)
-            
-            pool.discard(p)
-            pool = top_K_by_relevance_to_p(pool, p, k=K_pool)
-            
-            if not pool:
-                verdicts[p.id] = Verdict(
-                    status='current',
-                    confidence='low',
-                    reason='no_candidates_found',
-                    superseder_id=None
+            pool.discard(focus_pid)
+            pool_list = top_K_by_relevance_to_focus(pool, focus, K=K_pool)
+
+            if not pool_list:
+                verdicts[focus_pid] = Verdict(
+                    status='current', confidence='low',
+                    reason='no_candidates_found', superseder_id=None,
                 )
                 continue
-            
-            response = llm(
-                build_verdict_prompt(query, chain, p, pool),
-                max_tokens=300
+
+            # LLM: identify contradicting pool indices (no chain context, no timestamps)
+            messages, num_to_pid = build_verdict_messages(
+                query=query, focus_proposition=focus, pool=pool_list,
             )
-            verdicts[p.id] = parse_verdict(response, pool)
+            raw, _, _ = llm.infer(messages, max_output_tokens=400, temperature=0.0)
+            parsed = parse_verdict_response(raw, num_to_pid)
+            # → parsed = {contradicting_pids: List[str], reason: str, parse_failed: bool}
+
+            verdicts[focus_pid] = _decide_verdict_mechanically(
+                focus=focus,
+                contradicting_pids=parsed["contradicting_pids"],
+                parse_failed=parsed["parse_failed"],
+                propositions=propositions,
+                llm_reason=parsed["reason"],
+            )
     return verdicts
+
+
+def _decide_verdict_mechanically(focus, contradicting_pids, parse_failed,
+                                  propositions, llm_reason) -> Verdict:
+    """Decision table (no LLM in this step):
+       parse_failed                                  → uncertain, low
+       contradicting empty                            → current,   high  (no conflict)
+       contradicting found, ALL ts ≤ focus.ts         → current,   low   (defensive)
+       contradicting found, ANY ts > focus.ts strict  → superseded,high, superseder=latest
+    """
+    if parse_failed:
+        return Verdict(status="uncertain", confidence="low", superseder_id=None,
+                       reason="LLM parse failed")
+    if not contradicting_pids:
+        return Verdict(status="current", confidence="high", superseder_id=None,
+                       reason=f"no contradicting ({llm_reason[:80]})")
+    focus_ts = tuple(focus.timestamp)
+    later = [pid for pid in contradicting_pids
+             if pid in propositions
+             and tuple(propositions[pid].timestamp) > focus_ts]
+    if later:
+        latest = max(later, key=lambda p: tuple(propositions[p].timestamp))
+        return Verdict(status="superseded", confidence="high", superseder_id=latest,
+                       reason=f"superseded by later contradicting ({llm_reason[:80]})")
+    return Verdict(status="current", confidence="low", superseder_id=None,
+                   reason=f"contradicting found but no strictly later ts ({llm_reason[:80]})")
 ```
 
-#### B.3.2.2 Verdict prompt template (same as v2.0.1)
+#### B.3.2.2 Conflict-identify prompt template (v2.0.3)
 
 ```
-SUPERSESSION_VERDICT_PROMPT = """
-You are evaluating whether a statement in a reasoning chain has been superseded 
-by a later statement, in the context of answering a query.
+VERDICT_SYSTEM = "You are a conflict identifier. Your job is to find pool 
+statements that make CONTRADICTING claims with a focus statement — meaning 
+both cannot simultaneously be true."
 
-QUERY: {query}
+CONFLICT_IDENTIFY_PROMPT = """QUERY (for context only, do not use to judge): {query}
 
-CANDIDATE REASONING CHAIN (in temporal order):
-{chain}
+FOCUS:
+"{focus_text}"
 
-FOCUS STATEMENT (to evaluate):
-"{proposition_text}" (recorded at turn {chunk_idx}, position {in_chunk_pos})
+POOL:
+{pool_block}    # numbered [1] ... [K_pool], NO timestamps shown
 
-POOL OF POTENTIALLY-RELATED STATEMENTS:
-{pool}
+A pool statement CONTRADICTS the focus when both statements describe the SAME 
+underlying fact about an entity (e.g., the same role, the same location, the 
+same relationship, the same attribute), but assert DIFFERENT values for that 
+fact, such that both cannot simultaneously be true.
 
-Question: Is the focus statement superseded by any statement in the pool?
+CRITICAL RULES:
+- Treat all statements as opaque assertions. DO NOT use real-world knowledge 
+  to judge which is "correct" or "plausible". The dataset may contain 
+  counterfactual content on purpose.
+- DO NOT consider timestamps. They are IRRELEVANT for THIS task and are 
+  handled by a separate mechanism.
+- DO NOT decide which statement is current and which is outdated. Your ONLY 
+  job is to identify CONTRADICTING pairs.
 
-A statement is "superseded" only if:
-  (a) The pool statement asserts an updated value for the SAME aspect as the focus 
-      statement (not adding a new dimension), AND
-  (b) The pool statement is more recent (later timestamp), AND
-  (c) Both statements cannot simultaneously be true.
+CONTRADICTING examples (both cannot simultaneously be true):
+  - "Acme's CEO is Alice" ↔ "Bob currently leads Acme as CEO"
+  - "The capital of Wakanda is Birnin" ↔ "Wakanda's capital is Eastside"
+  - "Our Mutual Friend was written by Dickens" ↔ "Charles Darwin authored Our Mutual Friend"
+    (Note: counterfactual content is intentional. Do not judge factually; they 
+     make incompatible claims about the same fact.)
 
-Important counter-examples (NOT supersession):
-  - "User likes Apple" + "User likes Banana" — different objects, both can hold
-  - "John works at Google" + "John lives in Seattle" — different attributes
-  - Restating the same fact at a later time — not supersession
+NOT-CONTRADICTING examples (both can simultaneously hold):
+  - "User likes Apple" + "User likes Banana"            (cumulative preference)
+  - "John works at Google" + "John lives in Seattle"   (employment vs residence)
+  - "Alice studied at MIT" + "Alice now works at Microsoft"  (life events)
+  - "X is married to A" + "X has child B"              (different relationships)
 
-Output (JSON only):
+Output (JSON only, no markdown):
 {
-  "verdict": "current" | "superseded" | "uncertain",
-  "superseded_by": <pool statement number, or null>,
-  "confidence": "high" | "medium" | "low",
-  "reason": "<one sentence>"
-}
-"""
+  "contradicting_pool_indices": [<int>, ...],
+  "reason": "<one sentence describing what fact is being contradicted>"
+}"""
 ```
+
+關鍵差異 vs v2.0.2 §B.3.2.2 原版本:
+- ❌ 移除 `CANDIDATE REASONING CHAIN`(chain context 沒入 prompt → LLM 不會被鏈順序暗示方向)
+- ❌ 移除 `(recorded at turn ..., position ...)` 時間戳(機械邏輯處理)
+- ❌ 移除 `verdict / superseded_by / confidence` 三段判斷 → 只輸出 `contradicting_pool_indices`
+- ✅ 新增 4 條 NOT-CONTRADICTING 範例(明確區分 cumulative vs functional 關係)
+- ✅ 新增 `Treat all statements as opaque assertions` 反事實守則
+
+#### B.3.2.3 v2.0.2 → v2.0.3 設計轉折(W1.3 dry-run findings, 2026-05-17)
+
+**症狀**:第一輪 W1.3(沿用 v2.0.2 §B.3.2.2 原 SUPERSESSION_VERDICT_PROMPT)在 FC-MH 6k 跑出 MH = 11/100 (vanilla baseline 20/100,W1.3 第一版 **倒退** 9pt)。
+
+**Diagnosis**(verdict_events.jsonl 抽樣 10 case):
+- LLM 在「Charles Dickens 是 Our Mutual Friend 作者」(chunk 2, ts=(2,32) = chain_OLD) ↔「Charles Darwin 是 Our Mutual Friend 作者」(chunk 3, ts=(3,34) = chain_NEW)這組對立中,**雙端都被標為 superseded**:
+  - focus=Dickens 看到 pool 含 Darwin → LLM 正確判 superseded ✓
+  - focus=Darwin 看到 pool 含 Dickens → LLM 用 world knowledge(Dickens 才是真正作者)**反向** 也判 superseded ✗
+- 結果 filter 階段把 chain_NEW 和 chain_OLD 雙端的 passage 都刪掉,LLM 答題時看不到任何相關 context。
+
+**Root cause**: LLM 在反事實(MQuAKE-style)benchmark 上被 parametric prior 干擾,把 "real-world plausibility" 當成 "current"。原 prompt 把 grouping + direction + confidence 三個任務綁在同一次 LLM call,使得 world-knowledge 滲透到方向判斷。
+
+**Fix (v2.0.3)**: 拆分語意 vs 時序:
+- LLM 只做 **semantic grouping**(它擅長的:識別「同一個 underlying fact 但 value 不同」的對立 pair)
+- 方向(誰 supersede 誰)由 code 從 `proposition.timestamp` 機械決定
+- Pool 不顯示 chain context、不顯示 timestamps → 避免 LLM 用順序作為方向 hint
+
+**Mathematical robustness**(為什麼這個 fix 在最壞情況下也不會比 baseline 差):
+- 若 LLM 在某 hop 過度識別(把 cumulative attribute 誤判為 contradicting),機械方向**只會把該 hop 內 timestamp 最早的標 superseded**,不會雙端誤殺。
+- 退化形態:從 v2.0.2 的「double-end deletion」(陳述為 W1.3 第一版的 11%)變成 v2.0.3 的「single-end mis-deletion」(可能漏掉一個 OLD passage 但 NEW 仍在),保留 LLM 答題的回退路徑。
+
+**Verification**:W1.3 重跑 MH 從 11% → 31%(+20pt vs 第一版,+11pt vs vanilla),抽樣 570 verdicts 全 high-confidence,case-by-case 確認方向都對(Dickens/Darwin, Steve Sax baseball/football, Darwin married Emma/Amala 等)。詳細結果見 §B.14 W1.3。
 
 ### B.3.3 Phase 2 → Phase 3 hand-off (same as v2.0.1)
 
@@ -634,13 +705,30 @@ def phase2_to_phase3_handoff(
 
 #### B.3.4.2 Phase 2.b metrics
 
+> **指標分層原則**(v2.0.3 重新分類):Phase 2.b 的 verdict 是「條件式」結果 — 若 K_pool 沒同時含某個 hop 的 chain_new + chain_old,LLM 連 group 都不可能成立。因此 **pool co-occurrence 是 recall 上限**;verdict accuracy 是 *conditional on pool 已涵蓋 pair* 的精度。原本 v2.0.2 表格將兩者混為單一 accuracy 指標,實作 W1.3 後修正。
+
+**Primary recall (gates downstream — 沒到這個,verdict 怎麼算都救不回來)**
+
 | Metric | Target | Stretch |
 |---|---|---|
-| Per-hop verdict accuracy | ≥ 80% | ≥ 90% |
-| All-detected per-Q | ≥ 60% | ≥ 80% |
+| Per-hop K_pool co-occurrence rate | ≥ 80% | ≥ 90% |
+
+定義:對 query 推理鏈中每個有 NEW/OLD 衝突的 hop,該 hop 的 chain_new 與 chain_old proposition **都**要進入 K_pool(≤10),才算這個 hop "pool-covered"。 metric = covered_hops / total_conflict_hops(全 dataset)。Hop 只取到單側 → 此 hop 無法被 group, verdict 必漏。
+
+**Conditional precision(假設 pool 已 co-occurrence;只在 covered hops 上算)**
+
+| Metric | Target | Stretch |
+|---|---|---|
+| Per-hop verdict accuracy(conditional)| ≥ 80% | ≥ 90% |
+| All-detected per-Q(全 hop 都對)| ≥ 60% | ≥ 80% |
+| High-confidence verdict precision | ≥ 95% | ≥ 98% |
+
+**Cost / latency**
+
+| Metric | Target | Stretch |
+|---|---|---|
 | Pool size median | ≤ 5 | ≤ 3 |
 | LLM calls per query | < 20 | < 10 |
-| High-confidence verdict precision | ≥ 95% | ≥ 98% |
 
 #### B.3.4.3 End-to-end three-tier gate (Q9 locked, tentative)
 
@@ -1558,6 +1646,639 @@ prop_mass[pid] = max(0, dot(query_emb, p.embedding))  # for all 450 props
 chain enumeration 結構正確,top-5 chains 含 query-relevant conflict pair,supersession-agnostic invariant 保持。
 
 → 可進 **W1.3(Phase 2.b verdict + 整合進 HippoRAG.retrieve() + 全 100 queries 量化評估)**。
+
+---
+
+### W1.3 — Phase 2.b Verdict + HippoRAG 整合(2026-05-17,⚠️ partial pass)
+
+> 階段目標:把 Phase 2.b 接上 Phase 2.a 的 chain,完成首次 end-to-end 評估 + 暴露 spec 內隱含的 design hole。**結果**:MH 11% (v1, LLM 全做) → **31% (v2, LLM identify + 機械方向)**,vs vanilla 20% 進步 +11pt,**但未過 Hard gate 40%**。重要學習:spec 原指標表 (§B.3.4.2) 將「pool recall」與「verdict accuracy」混為一談,W1.3 揭露需分層 — 已回頭更新 §B.3.4.2 與 §B.3.2(見 §B.3.2.3 設計轉折)。
+
+#### 🗺️ 在整個方法流程的位置
+
+```
+─ Offline Indexing ──────────────────────────────────
+I1-I5 same as W1.2(proposition_index.json 由 W1.1 driver 一次性產出)
+
+─ Online Retrieval & QA ─────────────────────────────
+O1.  fact scoring                                 (vanilla)
+O2.  rerank_facts                                  (vanilla)
+O3.  seed weights                                  (vanilla)
+O4.  run_ppr → pagerank_scores                     (vanilla)
+O4.5 identify_active_region        ✅ W1.2 完成
+O4.6 enumerate_candidate_chains    ✅ W1.2 完成
+O4.7 ▶▶ chain_restricted_verdict   ★ W1.3 完成(v2.0.3 pivot)★
+     ├── Pool: dynamic_lookup(direction="any") + γ opportunistic
+     ├── K_pool ≤ 10, top-K by relevance to focus
+     ├── LLM:identify contradicting indices(no chain, no timestamps)
+     └── Mechanical direction:from focus.ts vs contradicting.ts
+O5.  ▶▶ Filter passages by verdict ★ W1.3 完成(top-20 only, with rescue)★
+     ├── drop passages whose props are verdict.status="superseded" (high conf)
+     └── rescue: passage 還含 verdict.status="current" prop 則保留
+O5.5 render_enriched_context       ⏳ W3(Phase 3)
+O6.  rag_qa(prompt 不動)            (vanilla)
+```
+
+→ **W1.3 首度 wire 進 HippoRAG.retrieve() 主流程**:整合 hook 點是 `graph_search_with_fact_entities()` 內,在 vanilla `sorted_doc_ids/sorted_doc_scores` 計算完之後、return 給 `retrieve()` 之前介入。
+
+#### 主要動了哪些部分
+
+| 路徑 | 用途 |
+|---|---|
+| `methods/hipporag/phase2b/__init__.py` | package marker |
+| `methods/hipporag/phase2b/data_structures.py` | `Verdict` dataclass(status, confidence, superseder_id, reason, pool_size, pool_sources) |
+| `methods/hipporag/phase2b/dynamic_lookup.py` | `dynamic_candidate_lookup(direction="any"/"before"/"after")`:entity overlap + cosine union, top-K by combined score |
+| `methods/hipporag/phase2b/verdict.py` | 主 orchestrator:pool construction(3 sources)→ `_top_k_by_relevance` → LLM call → `_decide_verdict_mechanically` |
+| `methods/hipporag/phase2b/prompts/verdict_prompt.py` | `VERDICT_SYSTEM` + `CONFLICT_IDENTIFY_PROMPT`、`build_verdict_messages`、`parse_verdict_response` |
+| `methods/hipporag/HippoRAG.py` | `_ensure_v2_phase2_loaded`(lazy load proposition_index.json)+ `_v2_phase2_pipeline`(orchestrator)+ hook 進 `graph_search_with_fact_entities` |
+| `methods/hipporag/utils/config_utils.py` | flags:`enable_phase2_chain_detection`、`v2_phase2_region_topK`、`v2_phase2_M`、`v2_phase2_L`、`v2_phase2_beam` |
+| `scripts/run_v2_phase2_w13.sh` | E2E runner:backup prior results → SH+MH 跑 100Q × 2 |
+| `monitoring_logs/<ts>_v2_phase2_w13/phase2_w13_dump.jsonl` | per-query Phase 2 diagnostic dump |
+| `monitoring_logs/<ts>_v2_phase2_w13/verdict_events.jsonl` | per-LLM-call verdict event log |
+
+#### Verdict 對輸入做了什麼(以「Our Mutual Friend 作者的配偶國籍」為實例)
+
+**Query**: `"What is the country of citizenship of the spouse of the author of Our Mutual Friend?"`(expected: Belgium)
+
+**Phase 2.a 給出 5 條 chain**(W1.2 已驗證),其中 chain 0 含:
+```
+[0] Charles Dickens is the author of Our Mutual Friend.       ts=(2,32) ← chain_OLD
+[1] The author of Our Mutual Friend is Charles Darwin.        ts=(3,34) ← chain_NEW
+[2] Charles Darwin is married to Emma Darwin.                 ts=(4,15) ← chain_OLD
+...
+```
+
+**Phase 2.b 對 focus="The author of Our Mutual Friend is Charles Darwin" 跑**:
+- dynamic_lookup(direction="any"):entity={"Charles Darwin", "Our Mutual Friend"},找到 pool 含 Dickens-author + Darwin-Emma + Darwin-Amala 等
+- γ pairing 從其他 chain 補入(本例 chain 0/1/2 共享 entity "Our Mutual Friend"、"Charles Darwin")
+- top-K_pool=10 by relevance to focus
+- LLM call(prompt 不含 chain context、不含 timestamps、不含 query 判斷依據):
+  ```
+  Pool [1]: "Charles Dickens is the author of Our Mutual Friend."
+  Pool [2]: "Charles Darwin is married to Emma Darwin."
+  ...
+  → contradicting_pool_indices: [1]
+    reason: "Both statements assert different authors for Our Mutual Friend."
+  ```
+- 機械方向:focus.ts=(3,34) vs pool[1].ts=(2,32) → pool[1] 不晚於 focus → focus = `current (low)`("contradicting found but no strictly later timestamp")
+
+**對 focus="Charles Dickens is the author of Our Mutual Friend" 跑**:
+- Pool 含 Darwin-author(ts=(3,34))
+- LLM: `contradicting=[Darwin-author]`
+- 機械:focus.ts=(2,32) vs (3,34) → 有晚的 → focus = `superseded (high)`, superseder=Darwin-author ✓
+
+**Phase 2.c filter**:chain_old_pids = {Dickens-author, Emma-Darwin},top-20 passages 內,含 Dickens-author 且不含其他 verdict.current 的 passage 被 drop;chain_new Darwin-author 所在 passage 保留。
+
+#### 做了哪些嘗試
+
+> W1.3 動工流程是「先按 spec §B.3.2.2 實作 → dry-run → spec hole 暴露 → 重設計 → 再 dry-run」。下表記錄兩輪嘗試。
+
+| 嘗試項 | V1(按 spec v2.0.2)| V2(v2.0.3 pivot)| 結果差 |
+|---|---|---|---|
+| Prompt:LLM 做什麼 | grouping + direction + confidence 三件事(同 §B.3.2.2 原 prompt)| 只做 grouping(identify contradicting indices)| **+20pt** |
+| 方向判斷 | LLM 看 chain context + timestamps 自行決定 | 從 `focus.ts` vs `contradicting.ts` 機械 strict-`>` 比較 | 消除 world-knowledge bias |
+| Confidence | LLM 三段 high/medium/low | binary high/low(機械決定:有 strict later→high; 否則 low)| 一致性提升 |
+| Pool 抓取 | `dynamic_lookup(before_time)` + `dynamic_lookup(after_time)` 雙 call union | `dynamic_lookup(direction="any")` 單 call,K 提升到 20 | pool 涵蓋一致 |
+| Pool 是否顯示 timestamp 給 LLM | 是(LLM 用順序當方向 hint)| 否 | 移除方向 leak |
+| 100Q MH EM | **11/100**(vanilla 20 倒退 9pt)| **31/100**(+11pt vs vanilla)| ✅ |
+| SH EM(無 prop index)| 75 | 75 | no-op(pipeline skip)|
+
+**Dry-run findings**(V1 fail 抽樣 verdict_events):
+- 反事實對立(Dickens vs Darwin 作者、Sax vs football vs baseball、Darwin married Emma vs Amala)被 LLM **雙端標 superseded**;LLM 用 parametric prior 認定 "real-world plausible" 那邊是 current
+- 60% over-flag rate;chain_NEW 和 chain_OLD 雙端被 filter → LLM 答題看不到 context
+- 已記入 §B.3.2.3 設計轉折
+
+**V2 verification**(V2 跑完後 case-by-case 抽查):
+- Our Mutual Friend: Dickens(ts=2,32)→ superseded, superseder=Darwin(ts=3,34) ✓
+- Steve Sax: baseball(ts=0,35)→ superseded, superseder=football(ts=11,0) ✓
+- Darwin spouse: Emma(ts=4,15)→ superseded, superseder=Amala(ts=8,30) ✓
+- 570 verdict events,所有 `superseded` 都是 high confidence,機械方向**全對**
+
+#### 得到甚麼結果(數字)
+
+**FC-MH 6k 100Q(W1.3 v2 final)**:
+
+| 設定 | MH EM | vs vanilla |
+|---|---|---|
+| vanilla HippoRAG-v2(2026-05-11 ref)| 20/100 | — |
+| W1.3 V1(spec v2.0.2 prompt)| 11/100 | **−9** |
+| W1.3 V2(v2.0.3 redesigned)| **31/100** | **+11** |
+| Hard gate(§B.3.4.3)| 40 | 還差 −9 |
+
+**SH 無回歸**:75/100(SH 沒 proposition_index,pipeline no-op)。
+
+**Win/Loss vs V1(2026-05-17 比較)**:
+- Both right: 8 / Only V2 right (gained): 23 / Only V1 right (regressed): 3 / Both wrong: 66
+- Net +20:V2 用更謹慎的 filter 策略多救了 20 題
+
+**Verdict 統計(V2, 570 events from 100Q × top-5 chains × unique props)**:
+- status:current 308 / superseded 262 / uncertain 0
+- (status, confidence):superseded-high 262, current-low 179, current-high 129
+- pool size:median ≈ 7,size=10 達 215 次(38%)— spec target ≤5,**超**
+
+**Correct vs Wrong 對照**(critical finding):
+- 兩組 avg n_chains, n_verdicts, n_superseded **幾乎完全相同**(5.0 / 5.8 / 2.7)
+- → verdict 本身在 wrong 組沒有比 correct 組差
+- → 失敗來自**更上游**:pool 是否同時涵蓋每個 hop 的 chain_new + chain_old 對
+
+#### Spec hole 暴露 + 已回頭修正
+
+W1.3 揭露 **§B.3.4.2 原指標表的問題**:
+- 原版本只列 `Per-hop verdict accuracy ≥ 80%` 作為 Phase 2.b 主要指標
+- 但 verdict 是 **conditional on pool 已含對立 pair** 的結果;若 K_pool 沒同時抓到該 hop 的 new + old,verdict 不可能算對(LLM 連 group 都做不到)
+- **真正的 Phase 2.b recall 上限是 per-hop K_pool co-occurrence rate**(K_pool 同時涵蓋該 hop 的 chain_new + chain_old 的 hop 比例)
+
+→ 已回頭更新 §B.3.4.2,將指標分為 recall(pool co-occurrence)/ conditional precision(verdict accuracy)/ cost 三層。
+
+#### Locked 決策(W1.3 動工中確認)
+
+| 決策點 | Spec 原預設 | W1.3 confirm |
+|---|---|---|
+| `Verdict` dataclass | §B.3.2.1 結構 | ✅ status, confidence, superseder_id, reason, pool_size, pool_sources |
+| K_pool = 10 | spec 預設 | ✅(實際 median ≈ 7;215 個 verdict 用滿 10)|
+| LLM call 次數 / chain | per chain × per prop | ✅ dedup by pid:同 pid 在多 chain 只 verdict 一次 |
+| Pool 三來源 | Phase 1 cache + dynamic + γ | ✅(W1 cache off;dynamic+γ 為主)|
+| dynamic lookup direction | spec 原 before/after 雙 call | ⚠️ **改為 single "any"** + 機械方向(v2.0.3 pivot)|
+| Verdict prompt | spec §B.3.2.2 原 SUPERSESSION_VERDICT_PROMPT | ⚠️ **改為 CONFLICT_IDENTIFY_PROMPT**(v2.0.3 pivot)|
+| Confidence 三檔 | high/medium/low | ⚠️ **binary high/low**(機械決定)|
+| Filter 顆粒度 | passage 級 | ✅ top-20 內,passage 含 chain_old 且不含 verdict.current → drop |
+
+#### Open items / tech-debt(影響下一步,需明確列)
+
+- ⚠️ **K_pool co-occurrence 沒量化** —— Phase 2.b 的 recall 上限指標,目前 dry-test 沒實際算 per-hop pool coverage(因為沒 ground-truth chain_new/old labels per hop)。**下一步必須做 mini-eval 集**:抽 1/2/3/4-hop 各 N 題,人工標每個 hop 的 chain_new+old prop id,才能量這個指標。
+- ⚠️ **PPR mass 仍用 cosine proxy** —— W1.2 留下的 tech-debt 在 W1.3 沒解。真實 entity-level PPR aggregation(Q5 mean)延後到 W2 I3c 整合後。可能造成 active region 漏 prop,需 mini-eval 內驗證。
+- ⚠️ **Filter 顆粒度 mismatch** —— verdict 在 prop 級,filter 在 passage 級。一個 chunk 含 chain_old + 不相關 verdict.current → rescue 保留,可能讓 chain_old 漏網。Mini-eval 量化後決定是否做 prop 級 context rewrite(W2/W3 範圍)。
+- ⚠️ **Pool size 超 spec target** —— median ≈ 7,38% 用滿 10。可能 LLM noise 較大,但 mini-eval 量到 verdict accuracy 才能判定要不要降。
+- ⚠️ **Query entity linker 仍是 substring** —— W1.2 同樣 tech-debt;對 FC entity 夠用,大型 dataset 升 NER。
+- ⚠️ **Spec §B.13 dependency graph 沒同步更新** —— v2.0.3 pivot 後 dynamic_lookup signature 改變(direction 參數),依賴圖需要 reflect。下次大改時補上。
+
+#### Gate 結論
+
+⚠️ **Partial pass**(per §B.3.4.3 Hard gate 40%):MH 31% 落在 35-40% partial pass 區間,vanilla baseline +11pt,V1 first run +20pt。
+
+**正面訊號**:
+- V2 設計成功消除 V1 的 world-knowledge bias(case-by-case 抽樣全對)
+- SH 沒回歸,W1.3 pipeline 是 net positive
+- Spec hole 被 W1.3 揭露並回頭修正(§B.3.4.2 分層、§B.3.2.3 新增轉折記錄)
+
+**需在進 W2 前處理**:
+- 建立 mini-eval 集(1/2/3/4-hop tagged subset),量化 per-hop K_pool co-occurrence 與 verdict accuracy(conditional)兩個指標,確認瓶頸真的在 pool recall 而非 verdict
+- 根據 mini-eval 診斷再決定 W2 進什麼:(a) PPR mass 提升 chain coverage、(b) entity_node_ids 改善 lookup recall、或 (c) Phase 3 Recent Updates / Reasoning Hints 補救已過濾的 chain_old 證據
+
+→ 下一步 **W1.4 (mini-eval 建立) → 然後決定 W2 進路**。
+
+---
+
+### W1.4 — Mini-eval Framework + Hop-level Ground Truth(2026-05-17,✅ infrastructure pass)
+
+> 階段目標:建立 16-題 mini-eval 集合(2/3/4-hop × 4)與 hop-level ground truth (chain_new + chain_old prop_id),提供 Phase 2.a/2.b 細顆粒度量化指標,取代之前只看 100Q EM 的粗糙評估。
+
+#### 主要動了哪些部分
+
+| 路徑 | 用途 |
+|---|---|
+| `analysis/build_mini_eval_w14.py` | 從 100 題 FC-MH 6k 抽 16 題(2/3/4-hop × 4,均衡 all-pair / partial-pair / W1.3 correct/wrong),每 hop strict s+o match 到 prop_id,**100% 1-1 匹配率**(34 has_pair + 10 no_pair hops 全對應) |
+| `analysis/eval_mini_w14_phase2b.py` | 對既有 W1.3 dump 計算 per-hop metrics:pool co-occurrence、verdict accuracy(unconditional + conditional)、chain membership、failure modes、hop 深度分桶 |
+| `analysis/results/mini_eval_w14/selection.json` | 16 題選集 |
+| `analysis/results/mini_eval_w14/labels.json` | hop-level GT (chain_new_prop_id + chain_old_prop_id) |
+
+#### Mini-eval 集合分布
+
+| 桶 | n |
+|---|---|
+| 2-hop(all-pair 4 + partial 4)| 8 |
+| 3-hop(all-pair 4)| 4 |
+| 4-hop(all-pair 2 + partial 2)| 4 |
+| **Total** | **16** |
+| has_pair hops | 34 |
+| no_conflict_pair hops | 10 |
+
+不平衡注意:FC-MH 6k **沒有 1-hop query**(分布 2h=61, 3h=24, 4h=15),所以原 user "1/2/3/4-hop 各 4" 改為 "2/3/4-hop 各 4 + 4 額外 challenging"。每題 has_pair hops 數量不同(2-4 個),total 34。
+
+#### W1.3 v2(cosine proxy)baseline 量化(14/16 有效,no58 + no99 不在 dump)
+
+| 指標 | 結果 | 解讀 |
+|---|---|---|
+| Per-hop K_pool co-occurrence rate | **29/55 = 55%** | 主瓶頸(spec target 80%) |
+| Per-hop verdict accuracy (conditional on co-occurrence) | **16/16 = 100%** | ★ verdict 機制本身 perfect |
+| Per-hop verdict accuracy (unconditional) | 16/29 = 55% | = co-occurrence rate × cond accuracy |
+| Pool size median | 4 | ≤ 5 target ✓ |
+| 失敗模式 F1(both chain_new + chain_old 都不在任何 chain 內)| 13/13 (100%) | 全是 Phase 2.a chain coverage 問題 |
+| 多 hop 深度:2-hop pool_co | 73% | OK |
+| 多 hop 深度:3-hop pool_co | 50% | 弱 |
+| 多 hop 深度:4-hop pool_co | 42% | 弱 |
+
+#### 關鍵 finding:W1.3 真正瓶頸不在 verdict 機制,在 Phase 2.a chain coverage
+
+verdict 完美(100% conditional),所有失敗都是 chain_new/chain_old 從未進到候選 chain。Spec §B.3.4.2 原本將 "per-hop verdict accuracy" 列為 Phase 2.b 主要指標,W1.4 揭露此指標**被 pool co-occurrence rate 上限封頂** — 該回頭更新指標分層(已 done,參見 §B.3.4.2 v2.0.3)。
+
+#### Gate 結論
+
+✅ **Infrastructure pass**:mini-eval 框架就緒,Phase 2.b 三層指標(recall / conditional precision / cost)可獨立量化。
+
+→ 下一步 **W2 Step 1(I3c)**:接真 PPR 解 chain coverage 瓶頸。
+
+---
+
+### W2 Step 1 — I3c Proposition-as-Hyperedge Integration(2026-05-17,⚠️ partial pass)
+
+> 階段目標:把 Phase 2.a 的 prop_mass 計算從 W1 cosine proxy 切到真實 entity-level PPR aggregation,解 W1.4 揭露的 chain coverage 55% 瓶頸。經歷 5 個 sub-step,結果:**pool co-occurrence 持平 55% 但 chain quality 更精緻**(BOTH same chain 42% vs 38%、pool size 3 vs 4),**4-hop 仍弱(33%)**。**Hyperedge weight boost 對 atomic prop 效果有限,評分函式 + score 混合 開放 W2 後續迭代**。
+
+#### 🗺️ 在整個方法流程的位置
+
+```
+─ Offline Indexing ──────────────────────────────────
+I1.  OpenIE                          (vanilla)
+I2.  Embeddings                       (vanilla)
+I2.5 Proposition extraction           ✅ W1.1
+I3.  add_fact_edges                   (vanilla)
+I3.  add_passage_edges                (vanilla)
+I3c. ▶▶ _add_proposition_hyperedges_to_stats  ★ W2 Step 1 完成 ★
+     ├── 對每個 prop p 的 entity_node_ids 兩兩加 entity-entity edge
+     ├── option B (PropRAG-style):prop 不入 KG,純擴 entity 連通性
+     └── weight = entity pair 共現於多少個 prop(累加)
+I4.  add_synonymy_edges               (vanilla)
+I4.5 candidate cache                  ⏳ W2 optional,暫緩
+I5.  save_igraph                      (vanilla)
+
+─ Online Retrieval ──────────────────────────────────
+O1-O4 vanilla HippoRAG-v2(算 pagerank_scores)
+O4.5 identify_active_region           ✅ W1.2 完成
+     ├── ★ W2 Step 1 ★ 切換 prop_mass 算法:
+     │   - W1 cosine proxy(q_emb cosine p.emb)
+     │   - → real PPR aggregation: mean(entity_ppr for e in p.entity_node_ids)
+     │   - Q5 = "mean"(預設),"max" 可從 config 切換 ablation
+     │   - Defensive fallback:若 PPR all-zero,fallback cosine proxy
+     └── 加 entity resolve sentinel(text_processing match vanilla)
+O4.6 enumerate_candidate_chains       ✅ W1.2
+O4.7 chain_restricted_verdict         ✅ W1.3
+O5.  Filter passages by verdict       ✅ W1.3
+O5.5 enriched context                 ⏳ W3 下一步
+O6.  rag_qa                           (vanilla)
+```
+
+#### 主要動了哪些部分(檔案層面)
+
+| 路徑 | 改動 |
+|---|---|
+| `methods/hipporag/HippoRAG.py` | (a) `_ensure_v2_phase2_loaded` 內 lazy-resolve `prop.entity_node_ids`(用 `text_processing(e)` + `compute_mdhash_id` 對齊 vanilla entity key);加 sentinel 報 KG 內找得到的比例 |
+| `methods/hipporag/HippoRAG.py` | (b) 新增 `_add_proposition_hyperedges_to_stats()`(對 prop 的 entity_node_ids 兩兩加 `node_to_node_stats[(e1, e2)] += 1.0` 雙向,過濾掉 entity 不在 vanilla KG 的 case) |
+| `methods/hipporag/HippoRAG.py` | (c) `index()` 內 hook:在 `enable_phase2_chain_detection=True` 時 call hyperedge stats;rebuild 條件改為 `num_new_chunks > 0 OR n_hyperedges > 0` |
+| `methods/hipporag/HippoRAG.py` | (d) `_v2_phase2_pipeline` 內:用 `pagerank_scores + self.entity_node_idxs` 建 `entity_ppr` dict,call `compute_prop_ppr_mass_from_entity_ppr(agg='mean')`;defensive fallback 到 cosine proxy 若 PPR all-zero |
+| `analysis/run_mini_eval_w14_step1.py` | 獨立 driver:setup env vars + load 16 selected qids + 對既有 vectorstore 跑 retrieve;`index(docs=[])` 重 build graph(因刪 graph.graphml 強制 re-build) |
+| `analysis/eval_mini_w14_phase2b.py` | 支援 CLI arg / `latest_run.txt` pointer 動態切 RUN_DIR;每次 run 輸出獨立 `eval_<run_tag>.json` |
+
+#### 對輸入做了什麼(以 query="OMF 作者的配偶國籍?"為例)
+
+**前提**:proposition_index.json 已含 450 props(W1.1 抽好),vanilla entity_embedding_store 已含 407 entity node。
+
+**Step 1a entity_node_ids resolve**(in `_ensure_v2_phase2_loaded`):
+```
+prop "Charles Darwin is married to Emma Darwin"
+  entities = ["Charles Darwin", "Emma Darwin"]
+  → text_processing: ["charles darwin", "emma darwin"]
+  → md5: entity_node_ids = ["entity-585ed862...", "entity-bc180dbc..."]
+  → 在 KG 內? 2/2 ✓
+```
+
+**Step 1d hyperedge build**(in `index()`):
+```
+對每個 prop 的 entity_node_ids 兩兩 add:
+  node_to_node_stats[(entity-darwin, entity-emma)] += 1.0
+  node_to_node_stats[(entity-emma, entity-darwin)] += 1.0
+→ summary: 449 props → 448 unique pairs (898 weight increments)
+```
+
+**結果(graph 結構)**:hyperedge **與 vanilla fact edges 100% 共用 entity pair key**(因為 atomic prop = 1 triple = 2 entities),所以 igraph edge 數**不變**,但 entity-entity edge **weight 從 1 變 2**。這就是 W2 Step 1 的實質效果:**fact edge weight 加倍**(對 prop 反覆抽出的 entity pair),其他 entity pair weight 不變。
+
+**Step 1b PPR aggregation**(in `_v2_phase2_pipeline`):
+```
+vanilla PPR 跑完 → pagerank_scores (array indexed by graph vertex idx)
+entity_ppr = {entity_key: pagerank_scores[vidx] for entity in KG}
+prop_mass[p] = mean(entity_ppr[e] for e in p.entity_node_ids)
+→ top-50 by prop_mass = active region
+```
+
+#### 做了哪些嘗試 + 數字(W1.4 mini-eval 16 題)
+
+| 嘗試 | 改動 | Pool co-occ | Verdict cond | 4-hop pool_co | Pool size median |
+|---|---|---|---|---|---|
+| **V0**: W1.3 cosine proxy(baseline)| `prop_mass = max(0, cos(q_emb, p.emb))` | **55%** | 100% | 42% | 4 |
+| **V1**: 真 PPR aggregation **無 hyperedge** | 切到 `mean(entity_ppr[e] for e in p.entities)` | **26% ❌** | 88% | **0% ❌** | 9 |
+| **V2**: 真 PPR + hyperedge **但 entity 沒 resolve**(bug)| Step 1d 寫了但 entity_node_ids hash 跟 vanilla 不匹配(漏 `text_processing`)| 26% ❌ | 80% | 0% ❌ | 9 |
+| **V3**: 真 PPR + hyperedge + entity resolve 修正 | 加 `text_processing(e)` 對齊 vanilla hashing | **55% ↑** | **94%** | **33%** | **3** |
+
+**V0 → V1 倒退原因**:vanilla 的 entity-level PPR mass 集中在 query-mention entity,multi-hop 末端 entity(Amala Paul、Belgium)在 vanilla KG fact edges 上經多 hop 衰減後 mass ≈ 0。`mean(entity_ppr)` 對含末端 entity 的 prop 被拉低到接近 0 → 4-hop pool co-occurrence 全滅。Cosine proxy 因為用 query embedding 對 prop 文字整體比對,所以末端 prop 也能拿到 medium mass。
+
+**V2 失敗的 root cause**:vanilla HippoRAG-v2 用 `text_processing(triple)`(lowercase + 移除非英數字符)後才 `compute_mdhash_id`。我們 lazy-resolve 漏了 `text_processing`,所有 `entity_node_ids` 跟 KG 內的 key 對不上 → `kg_entity_keys` 過濾掉所有 entity → `props_added=6`(隨機碰巧 hash 對上的),`n_increments=12`(微不足道)。Debug 抓到 `sample entity_node_ids in kg: 0/2`。修法:lazy-resolve 用 `text_processing(e)` 對齊 vanilla。
+
+**V3(本次)觀察**:hyperedge 雖然 weight increment 達 898,但因 atomic prop ≈ triple,所有 hyperedge pair **跟既有 fact edges 100% 共用 dict key** → `len(node_to_node_stats)` 不變,igraph 邊數不變(實測 backup vs current 都是 1800 edges、996 entity-entity edges),只是 entity-entity edge 的 weight 從 1 提到 2。Weighted PPR 因此**確有改變**(2-hop pool_co 從 V0 的 ~70% 提到 77%),但**結構性連通性**沒提升 → 4-hop 仍弱。
+
+#### 得到甚麼結果
+
+✅ **不退步**:V3 pool co-occurrence(55%)= V0 baseline,verdict cond(94%)接近 baseline 100%;chain quality 細節改善(BOTH same chain 42% vs 38%、pool size median 3 vs 4)
+✅ **基礎設施 wire 通**:`_ensure_v2_phase2_loaded` lazy resolve、index() hyperedge hook、`_v2_phase2_pipeline` PPR aggregation 三段全 wire 起來,且有 defensive fallback;代碼可重複跑、有 sentinel 監控
+⚠️ **但沒突破 chain coverage 瓶頸**:4-hop pool co 33%(目標 80%),仍是主要瓶頸
+⚠️ **Hyperedge 設計侷限暴露**:atomic prop = 1 triple = 2 entities,hyperedge = fact edge dict key,只能 boost weight 不能新增結構性連結
+
+#### Spec hole 暴露 + 留待 W2 後續或方法迭代
+
+W2 Step 1 揭露的設計 open items:
+
+**A. `prop_mass` 評分函式設計**(spec §B.3.1.1 假設真 PPR 即解,W2 Step 1 證明需要更精緻設計)
+- 目前 `prop_mass = mean(entity_ppr)`(Q5 lock = mean)
+- 替代:`max(entity_ppr)` 對單一強 entity 友善(可能對多 hop 末端 prop 友善 — 例如 Belgium PPR=0 但 Amala PPR=0.01,max=0.01 > mean=0.005)
+- 替代:**混合 cosine + normalized PPR**(`α × cosine + (1-α) × ppr/max_ppr`),兩種訊號互補
+- 替代:加 query-prop cosine 作為 boost factor(類似 vanilla HippoRAG-v2 對 fact 的 rerank logic)
+
+**B. Hyperedge 設計只 boost weight 沒新連結**(W2 後續 / W4 範圍)
+- 因 atomic prop = 1 triple,hyperedge 對 PropRAG-style multi-entity prop 才有結構性貢獻
+- 修法:重抽 propositions 讓每個 prop 含更多 entities(改 W1.1 prompt 抽 multi-entity proposition);或對 chunk 內所有 prop 的 entity union 加 clique(類似 PropRAG.py:944 但更廣)
+
+**C. 超參數待 tune**(W2 後續 / W4 ablation):
+- `v2_phase2_ppr_aggregation`:`mean` vs `max`(spec Q5,目前 lock mean)
+- 混合權重 α(若採方案 A 混合)
+- `region_topK`(50 → 100/200?)、`L`(3 → 4 for 4-hop coverage)
+- `beam_width`(8 → 16?)
+
+#### Locked 決策(W2 Step 1 動工中確認)
+
+| 決策點 | 選項 | W2 Step 1 confirm |
+|---|---|---|
+| Proposition 在 KG 的形式 | (A) prop as node / (B) hyperedge | ✅ **B: PropRAG-style hyperedge**(out-of-KG annotation);忠於 PropRAG paper、KG 結構不動 |
+| Hyperedge weight 累加方式 | 累加 vs 取 max | ✅ 累加(per pair, +1 per prop);跟 PropRAG.py:982-988 一致 |
+| Entity hashing 對齊 vanilla | `text_processing` + `compute_mdhash_id` | ✅ V2 → V3 bug fix |
+| PPR aggregation | mean / max | ✅ mean(Q5 lock,max 可從 `v2_phase2_ppr_aggregation` config 切) |
+| Defensive fallback | PPR all-zero → cosine proxy | ✅ 保留 W1 proxy 作為 safety net |
+| Graph rebuild trigger | num_new_chunks > 0 only | ✅ 改 `OR n_hyperedges > 0`(讓 hyperedge-only 重 build 也 trigger) |
+
+#### Open items / tech-debt(影響下一步)
+
+- ⚠️ **`prop_mass` 評分函式未 tune** —— 目前 = `mean(entity_ppr)`,只追平 cosine proxy;真實 break-through 需要混合或更聰明的 aggregation。**留待 W2 後續或 W4 ablation 探索**(列為 §B.9 Open Q)
+- ⚠️ **Hyperedge 對 atomic prop 結構性貢獻有限** —— W1.1 抽 atomic prop = 1 triple = 2 entities,hyperedge 純粹 weight boost。若要結構性連通,需重抽 multi-entity prop(W4 範圍)
+- ⚠️ **`region_topK / L / beam` 未 sweep** —— 4-hop 仍弱(33%),可能需 L=4 + 更大 beam,但 cost-benefit 待 W3 結果決定
+- ⚠️ **Diagnostic print 留在 hyperedge 函式內** —— 1 行 `[v2 I3c hyperedge] N props → M pairs (K increments)` 用 print(對 logger level 不敏感);後續若清理可 routine 化
+- ⚠️ **目前只 indexed 12 chunks** —— FC-MH 6k 設計上是 12 chunks(每 chunk size 512),W1 dry-test 集已含完整 dataset。但若 chunk_size 變大或 dataset 換成 32k/262k,W2 Step 1 流程需重 verify entity resolve 仍正確
+
+#### Gate 結論
+
+⚠️ **Partial pass**:pool co-occurrence 55% 持平 cosine proxy baseline,**沒突破 80% spec target**。但:
+- ✅ **基礎設施 100% wire 通**,代碼可重複執行、defensive fallback、有 sentinel 監控
+- ✅ **Chain quality 細節更精緻**(BOTH same chain +4pt,pool size −1)
+- ✅ **Verdict cond accuracy 94%**,接近 baseline 100%
+- ⚠️ **Score 設計留待後續迭代** — 不卡 W3 上線,可在 W3 跑完後回頭 tune
+
+→ 下一步 **W3 enriched context**(spec §B.4 Recent Updates + Reasoning Hints);W2 Step 1 的 score 設計 open items 列入 §B.9。
+
+---
+
+### W3 — Phase 3 Enriched Context(2026-05-17,⚠️ infrastructure pass, EM neutral)
+
+> 階段目標:接 spec §B.4 LOCKED 的 enriched context 格式(Reasoning Hints + Recent Updates),把 Phase 2.b 的 verdict 結果注入 LLM prompt(passages 之後、Question 之前)。**結果**:infrastructure 100% wire 通(render + inject 都正確),但 mini-eval 16Q 顯示 EM 沒明顯 boost(4/16 vs baseline 5/16,2-hop +2 / 多 hop -3),根因為 enriched 措辭歧義 + W2 Step 1 pool co-occurrence 不足對多 hop case 提供半 enriched 反而干擾。
+
+#### 🗺️ 在整個方法流程的位置
+
+```
+─ Online Retrieval & QA ─────────────────────────────
+O1-O4 vanilla HippoRAG-v2
+O4.5-4.7 W1.2/W1.3 Phase 2 (active region, chain, verdict)
+O5.  W1.3 filter passages by verdict
+O5.5 ▶▶ render_enriched_context           ★ W3 完成 ★
+     ├── active_chain (top by score) → Reasoning Hints
+     ├── supersession_events → Recent Updates (confidence ≥ medium)
+     └── 存 self._v2_enriched_context_by_query[query]
+O6.  qa() prompt assembly                  ★ W3 hook ★
+     ├── 既有 "Wikipedia Title: {passage}\n\n" × K (vanilla 保留)
+     ├── 既有 enable_phase3_scaffold hook (v1, 留)
+     ├── ★ NEW: enable_phase3_v2_enriched → inject enriched_context_by_query[q]
+     └── + "Question: {q}\nThought:"  (vanilla 保留)
+```
+
+→ **Prompt template UNCHANGED**(spec §B.4.1 contract 保持):動的是 `prompt_user` body 在 passages 後、Question 前加 enriched 段落,不動 system prompt 也不動 LLM 的 reading template。
+
+#### 主要動了哪些部分
+
+| 路徑 | 用途 |
+|---|---|
+| `methods/hipporag/phase3/__init__.py` | package marker(re-export renderer 函式) |
+| `methods/hipporag/phase3/enriched_context_renderer.py` | `render_reasoning_hint`、`render_change_log`、`render_enriched_context` orchestrator(spec §B.4.3 對應) |
+| `methods/hipporag/HippoRAG.py` | (a) `__init__` 加 `self._v2_enriched_context_by_query: Dict[str, str]` cache;(b) `_v2_phase2_pipeline` 內 chain top-by-score + supersession_events → call `render_enriched_context` 存 cache;(c) `qa()` 內 prompt assembly hook(passages 後、Question 前 inject) |
+| `methods/hipporag/utils/config_utils.py` | `enable_phase3_v2_enriched: bool` flag(預設 False)+ env var `HIPPORAG_ENABLE_PHASE3_V2_ENRICHED`;`v2_phase2_ppr_aggregation: str` ("mean"/"max") |
+| `analysis/run_mini_eval_w3_step2.py` | 16 題 W3 E2E driver:對每題 retrieve + rag_qa,dump enriched samples + EM per query |
+| `monitoring_logs/<ts>_w3_step2_mini/qa_prompt_samples.json` | 前 3 題的 enriched_context 完整 dump(供人工 review 措辭) |
+
+#### Enriched context 輸出範例(qid no18,query="What is the job title of the chairperson of Fatah?")
+
+實際 inject 進 qa() prompt 的 body:
+```
+=== Reasoning Hints ===
+One possible reasoning path:
+  - Moshe Kahlon is the chairperson of Fatah. (turn 6, position 4)
+  - Mahmoud Abbas is the chairperson of Fatah. (turn 0, position 1)
+  - Mahmoud Abbas works as a politician. (turn 6, position 32)
+
+=== Recent Updates ===
+Recent updates relevant to this query:
+  - Moshe Kahlon is the chairperson of Fatah. (updates earlier: "Mahmoud Abbas is the chairperson of Fatah.")
+  - Moshe Kahlon works in the field of soldier. (updates earlier: "Moshe Kahlon works in the field of politician.")
+```
+
+LLM 答案:"Soldier" ✓(expected "soldier")
+
+#### Mini-eval EM 比較(16 題,刻意 ill-balanced 含多個 W1.3 wrong cases)
+
+| Hops | W3 | baseline (W1.3) | Δ |
+|---|---|---|---|
+| 2-hop | **4/8** | 2/8 | +2 |
+| 3-hop | 0/4 | 2/4 | **-2** |
+| 4-hop | 0/4 | 1/4 | **-1** |
+| **Total** | **4/16** | **5/16** | -1 (noise range) |
+
+**Win/Loss matrix**:
+- Both right: 2(no18 soldier, no34 atheism)
+- W3 gained: 2(no52 Taipei, no28 Prague — 都 2-hop)
+- W3 regressed: 3(no99 Norwegian, no83 ..., no27 Washington — 都 ≥3-hop)
+- Both wrong: 9
+
+#### 為何 3/4-hop 反退步:Diagnosis
+
+抽 case no27(4-hop):
+- expected:"Harrisville"(USA 新首都)
+- W3 predicted:"Washington, D.C."(USA 舊首都)
+- Enriched 內含 `Recent Updates: ... Harrisville (updates earlier: "Washington, D.C.")` 卻沒讓 LLM 抓到 Harrisville
+- 兩個可能根因:
+  1. **「updates earlier: X」措辭歧義**:LLM 可能解讀 "X" 為更新後內容,而不是被取代的舊內容(自然語言上「X is updated」常指 X 是「被更新後的版本」)
+  2. **W2 Step 1 pool co-occurrence 4-hop 只 33%** → chain 通常只涵蓋 hop_0/hop_1,Recent Updates 只列前兩 hop 的更新,LLM 看到部分 enriched 反而誤判全 chain 都已 fix,用 retrieved passage 內的舊 fact 答題
+
+#### 做了哪些嘗試
+
+| 嘗試 | 狀態 | 觀察 |
+|---|---|---|
+| Renderer 按 spec §B.4.3 verbatim | ✅ 完成 | render 出格式跟 spec LOCKED 一致 |
+| `qa()` hook(passages 後 / Question 前 inject)| ✅ 完成 | 不動 prompt template,只擴 body |
+| Mutex with `enable_phase3_scaffold`(v1 universal)| ✅ 完成 | 兩個 flag 同時 True 時 v2 enriched 不 fire(優先 v1 scaffold) |
+| Change log 措辭:`<p_new> (updates earlier: <p_old>)` | ⚠️ 實作 | LLM 可能誤解;待調整 |
+| Reasoning Hints 措辭:`<prop> (turn N, position M)` | ✅ 跟 spec 完全一致 | LLM 解讀正確 |
+| Confidence threshold = 'medium' for Recent Updates | ✅ 跟 spec 一致 | W1.3 v2.0.3 binary high/low,所以實際只 high 進 |
+| Defensive empty checks | ✅ 完成 | 若 chain 空 / 沒 supersession events → 不 inject |
+
+#### 得到甚麼結果
+
+✅ **Infrastructure 100% wire 通**:render + inject + dump 全跑通,3 個樣本 enriched_context_chars 539-943,Reasoning Hints + Recent Updates 都按 spec LOCKED 格式輸出
+✅ **2-hop EM +2**:short chain 受惠
+⚠️ **Total EM 略退 1(noise range)**:mini-eval 16 題太小不具統計信心,需 100Q E2E 才能下結論
+⚠️ **多 hop case 措辭歧義**:`"updates earlier: X"` 風險
+
+#### Open items / tech-debt
+
+- ⚠️ **Recent Updates 措辭** —— `"<p_new.text> (updates earlier: <p_old.text>)"` 可能讓 LLM 誤判 X 是更新後內容。改進方案:
+  - `"The CURRENT fact is: '<p_new.text>'. (This SUPERSEDES the earlier statement: '<p_old.text>')"` ← 更明確
+  - 或加 prefix `"NOTE: The following corrects outdated information ..."`
+  - 留待 W4 ablation tune
+- ⚠️ **Enriched 與 retrieved passages 重複** —— 同 prop 出現在 3 處(passage、Reasoning Hints、Recent Updates),LLM 注意力分散風險。考慮 deduplication 或在 enriched section 不重複 chain 內已在 retrieved passage 的 prop
+- ⚠️ **Confidence threshold 行為**:spec 寫 ≥ medium,但 W1.3 v2.0.3 binary high/low,所以 'medium' 永遠不會 match,效果上 = high only(防禦上 OK,但 spec → code 不一致,需要 spec 修或 verdict 加 medium 級)
+- ⚠️ **active_chain top-1 by score**:目前 `max(chains, key=lambda c: c.score)`。Spec §B.3.3 寫的就是 top-1,但實際多 hop case top-1 chain 可能漏某 hop,Reasoning Hints 不全 → 考慮 union top-3 chains 或加 chain coverage filter
+- ⚠️ **A3.4 token overhead 沒量化** —— 已加 `enriched_context_chars` 到 dump,但 spec §B.4.4 A3.5 訂 avg < 500 extra tokens/query,需正式統計
+
+#### Spec §B.4.4 Falsifiable Assertions 進度
+
+| Assertion | 目標 | W3 mini-eval 結果 | 狀態 |
+|---|---|---|---|
+| A3.1 full v2 (P2 + P3) ≥ P2-only by ≥ 5pp MH | +5pp | 16Q -1pp(noise)| ❓ 待 100Q |
+| A3.2 P3 enriched ≥ v1 scaffold(same passages)| non-inferior | 沒比較 v1 scaffold | ⏳ W3 ablation |
+| A3.3 各 evidence type 獨立貢獻 | individual ablation | 沒做 | ⏳ W4 |
+| A3.4 非 KU multi-hop 退步 < 2pp | < 2pp | 沒測 LongMemEval | ⏳ W4 |
+| A3.5 Token overhead < 500/query | < 500 | enriched 539-943 chars ≈ ~120-220 tokens | ✓ 範圍內 |
+
+#### Locked 決策(W3 動工中確認)
+
+| 決策點 | Spec 預設 | W3 confirm |
+|---|---|---|
+| Enriched format | spec §B.4.2 LOCKED 三段(Passages / Hints / Updates)| ✅ 按 spec 完整實作 |
+| Render fn signatures | spec §B.4.3 verbatim | ✅ 1:1 對應 |
+| Inject 位置 | spec §B.4.5 "rag_qa() hook" | ✅ 在 `qa()` 內 passages 後 / Question 前 |
+| Feature flag | `enable_phase3_v2_enriched` | ✅ default False;env var `HIPPORAG_ENABLE_PHASE3_V2_ENRICHED` |
+| Mutex with v1 scaffold | spec §B.4.5 mutex | ✅ 兩個都 True 時 v2 不 fire |
+| active_chain selection | top-1 by score | ✅ |
+| Recent Updates confidence threshold | spec 寫 ≥ medium | ⚠️ W1.3 binary,實際 = high only |
+
+#### Gate 結論
+
+⚠️ **Infrastructure pass, EM neutral**:W3 全套 wire 通(render + inject + sentinel + flag + spec § B.4.2 LOCKED format),mini-eval 16 題 EM 略退 1(noise range)。**需 100Q E2E 才能驗證 A3.1(+5pp 目標)**。
+
+→ 兩個分岔:
+- **(a) 直接跑 100Q E2E**:驗證 A3.1,看 W3 在 production scale 是否 net positive
+- **(b) 先 tune Recent Updates 措辭**(`"updates earlier: X"` → `"This SUPERSEDES: 'X'"`)+ 再跑 100Q,風險:多個變動同時改難 root-cause
+- 建議 (a):先看 baseline production 結果,再決定要不要 tune 措辭
+
+---
+
+### Stage 1+2 — Instrumentation 補齊 + 4-Ablation FC-MH 100Q(2026-05-17)
+
+> **目標**:在跑大規模 ablation 前,把 dump 補齊到能 post-hoc 分析 per-hop cascade(active region → chain → pool → verdict → filter → enriched),然後跑 4 個 cumulative ablation 看每個 phase 的真實貢獻。
+
+#### Stage 1 — Instrumentation 補齊
+
+**主要動了哪些部分**
+
+| 路徑 | 用途 |
+|---|---|
+| `methods/hipporag/HippoRAG.py` | (a) phase2 dump 加 `phase2_status: 'RAN' / 'DPR_FALLBACK_NO_FACTS'`、`active_pids`、`chain_old_pids`、`enriched_context_text`(raw)、`passages_pre_filter / kept / dropped_chunk_ids`;(b) chains dump 內每 prop 加 `text + timestamp`;(c) DPR-fallback path(`len(top_k_facts)==0`)也寫 marker entry,讓 eval 區分「phase2 跑了但結果差」vs「phase2 沒跑(vanilla fallback)」 |
+| `analysis/build_labels_full100.py` | 擴展 W1.4 對 16 題的 strict s+o → prop_id mapping,跑全 100 題;has_pair 91% perfect 1:1,no_pair 86% perfect 1:1(剩餘 11% 是 PropRAG 抽取漏 fact 或 predicate pattern 未涵蓋)|
+| `analysis/eval_100q_full_analysis.py` | per-query × per-hop cascade table:Phase 2.a(active / chain / BOTH same chain)/ Phase 2.b(pool co / verdict correct)/ Phase 2.c(chunk dropped / kept / filter effective)/ Phase 3(text in enriched / update pair in enriched);按 hop 深度(2/3/4)分桶 |
+| `analysis/smoke_test_stage1_dump.py` | 3-query smoke test 驗證 dump 欄位完整(no18 RAN + no99 DPR fallback + no88 RAN) |
+
+**Smoke test 結果**:no18 + no88 走 RAN path,no99 走 DPR fallback,所有欄位都正確寫入。
+
+#### Stage 2 — 4-Ablation × FC-MH 100Q
+
+**Ablation 矩陣**(cumulative,加 component 看累積貢獻):
+
+| Run | `phase2_chain_detection` | `filter_passages` | `enriched` | `hints` | `updates` | EM | Δ vs A |
+|---|---|---|---|---|---|---|---|
+| **A. vanilla** | OFF | n/a | OFF | n/a | n/a | **17/100** | — |
+| **B. + Phase 2 only** | ON | **ON** | OFF | n/a | n/a | **31/100** | **+14pt** ⭐ |
+| **C. + W3 full** | ON | ON | **ON** | ON | ON | **31/100** | +14pt (= B) |
+| **D. W3 minimal** | ON | **OFF** | ON | OFF | ON | **15/100** | **−2pt** ❌ |
+
+`scripts/run_4ablations_fc_mh_100q.sh` 自動化,~13 min/run × 4 = 53 min。
+
+#### Cascade per-hop coverage(B/C/D 結構性指標)
+
+(B, C, D 三組 Phase 2 pipeline 跑同 query 數量、同 verdict → 三組 cascade 數字一致;只差最後 filter / enriched 應用)
+
+| Phase | Metric | B / C / D 共通 | 解讀 |
+|---|---|---|---|
+| 2.a | chain_new in active_region | 160/170 = **94%** | active region top-50 涵蓋率高 |
+| 2.a | chain_old in active_region | 160/170 = **94%** | 同上 |
+| 2.a | chain_new in any top-5 chain | 105/170 = **62%** | -32pt:beam search L=3/beam=8 漏多 hop 後段 |
+| 2.a | chain_old in any top-5 chain | 114/170 = **67%** | 同上 |
+| 2.a | **BOTH in SAME chain** | 86/170 = **51%** | spec §B.3.4.1 "Alt Chain Coverage lenient" target ≥ 70% 還差 |
+| 2.b | **Pool co-occurrence** | 115/170 = **68%** | mini-eval 16 題 55% 是 ill-balanced subset,全 100 題 68% |
+| 2.b | Verdict correct (old→new) | 111/170 = **65%** | 主要被 pool co-occurrence 上限封頂 |
+| 2.c | chain_old chunk dropped | B/C: 95/170 = **56%** \| D: **0%** | D 設定 filter OFF |
+| 2.c | chain_new chunk kept | B/C: 163/170 = 96% \| D: 100% | filter 不誤殺 chain_new |
+| 2.c | **filter effective(both)** | B/C: 92/170 = **54%** \| D: 0% | D 沒做 filter 是設計 |
+| 3 | update pair both in enriched | B: 0% \| C/D: 67% | C/D 同 enriched render(內容相同) |
+| 3 | (by hop) 2-hop update_pair | C/D: 73/87 = **84%** | short chain Recent Updates 涵蓋好 |
+| 3 | (by hop) 3-hop update_pair | C/D: 28/48 = **58%** | |
+| 3 | (by hop) 4-hop update_pair | C/D: **13/35 = 37%** | deep chain enriched 殘缺 |
+
+#### 三個重大 finding
+
+**Finding 1: Phase 2.c filter passages 才是核心 +14pt contribution**
+
+`A → B` +14pt 完全由 filter passages 貢獻(因 W3 全 off)。機制:
+- chain_old chunk drop rate = 56% → 這 56% queries 的 LLM 看不到 OLD 答案,自然答 chain_new
+- 剩 44% chain_old chunk 沒被 drop:可能 chain_old 不在 top-20 retrieve(retrieve 排名低),或者 rescue 規則(passage 內有 chain_current 也保留)生效
+
+**Finding 2: W3 enriched context 在 filter on 時 = no-op**
+
+`B → C` +0pt。Cascade 顯示 67% queries 的 Recent Updates 涵蓋 chain_new+old pair,但 EM 完全沒變化。原因:
+- LLM 已從 retrieved passages(post-filter)看不到 chain_old,enriched 的 Recent Updates 沒新資訊
+- Token overhead 但無 EM 收益 → A3.1 預期 +5pp **未達成**
+
+**Finding 3: 沒 filter 時 W3 反而傷害**
+
+`A → D` −2pt(15 < 17,W3 minimal 比 vanilla 還差)。Cascade 顯示 D 的 enriched coverage 跟 C 一樣 67%,但 EM 跌 16pt。原因:
+- LLM 同時看到 retrieved passages 內的 chain_old + enriched 的 "Harrisville (updates earlier: 'Washington, D.C.')"
+- 「updates earlier: X」措辭歧義 + 資訊重複 → LLM confused,部分 query 選了 chain_old 或拒答
+
+#### 對 v2.0.2 spec 的影響
+
+| Spec 假設 | 100Q 實測 | 結論 |
+|---|---|---|
+| §B.4.4 A3.1: W3 full ≥ P2 by +5pp | C = B +0pt | ❌ 未達成 |
+| §B.4.4 A3.5: token overhead < 500/query | enriched 539-943 chars ≈ 120-220 tokens | ✓ |
+| §B.3.4.3 Hard gate ≥ 40% MH | B/C 31% | ❌ partial pass (35-40%) |
+| §B.3.4.2 pool co-occurrence ≥ 80% | 68% | ❌ (mini-eval 16Q 55%, full 100Q 68%) |
+| §B.3.4.1 Alt Chain Coverage lenient ≥ 70% | 51% (BOTH in same chain) | ❌ |
+| **新發現** | filter passages contributes +14pt | ★ 主 contribution 位置變了 |
+
+**Paper framing 調整**:
+- 原本 v2.0.2 主 contribution = "chain-restricted query-time supersession verdict" + "enriched context"
+- 實測:**chain-restricted verdict + passage filter = 主機制**;**enriched context 在現設計下沒幫助**
+- 需重新 frame:Phase 2.b verdict + Phase 2.c filter 是核心,Phase 3 留 W4 改進(措辭、注入時機)
+
+#### Open items / 後續工作
+
+- ⚠️ **Recent Updates 措辭歧義**(`"updates earlier: X"`)是 D 倒退主因 — W4 重 phrasing 後重測
+- ⚠️ **Chain coverage 51% BOTH same chain**:beam=8 / L=3 可能太小;sweep beam={8,16,32} × L={3,4} 看能否拉到 70%
+- ⚠️ **W3 token overhead 沒 EM 收益**:可考慮只在 chain coverage 高 (high-conf chain) 時才 inject enriched
+- ⚠️ **Phase 2.c filter rescue logic** 太寬(passage 含 chain_current 就保留)讓 44% chain_old 沒被 drop;考慮收緊
+- ⚠️ **跟 Zep / Mem0 baseline 對照尚未做** — MABench 既有結果 join by qa_pair_id
+
+#### Gate 結論
+
+⚠️ **Partial pass + Important re-framing**:
+- ✅ Phase 2 chain detection + verdict + filter 機制 **+14pt vs vanilla**(達 spec §B.3.4.3 "partial pass 35-40%" 區間)
+- ❌ W3 enriched context 在當前設計**沒額外貢獻**(+0pt)且配置不當會反退步(−16pt without filter)
+- ✅ Instrumentation 完整,所有 phase 都能 post-hoc 量化
+- ✅ Cascade table 清楚指出剩餘瓶頸位置(chain coverage 51%、filter rescue 過寬)
+
+→ 下一步候選:
+- **(a) 跟 Zep / Mem0 baseline 對照**,把 Phase 2 +14pt 跟 conversational memory community baseline 比
+- **(b) Chain coverage sweep**(beam / L / score weights)拉到 70% BOTH same chain
+- **(c) W3 measure 再設計**(Recent Updates 措辭 + inject 時機)看能否從 +0pt 變 +5pt
 
 ---
 

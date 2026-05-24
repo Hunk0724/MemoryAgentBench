@@ -137,8 +137,9 @@ print('Saved F2')
 
 # =====================================================================
 # F3 — Channel Ceiling Ladder (full 100)
+# Focus: chain_old × other_olds 的 2×2 ladder
 # =====================================================================
-fig, ax = plt.subplots(figsize=(11, 6.5))
+fig, ax = plt.subplots(figsize=(11.5, 6.5))
 
 # Setup labels: ✓/× notation showing what fact categories are KEPT in LLM context
 # (chain_new is always kept — that's the answer)
@@ -147,7 +148,7 @@ setups = [
     'OracleClean-\nOthers\n✓ chain_old\n× other_olds',
     'OracleClean-\nThisChain\n× chain_old\n✓ other_olds',
     'OracleClean-\nAll\n× chain_old\n× other_olds',
-    'PureChain\nOnly chain_new\n(0 distractors)',
+    'PureChain\n只有 chain_new\n(0 distractors)',
 ]
 vals = [20, 25, 55, 60, 97]
 colors = ['#e91e63', '#9e9e9e', '#1565c0', '#9e9e9e', '#9c27b0']
@@ -157,56 +158,22 @@ bars = ax.bar(x, vals, color=colors, edgecolor='black', linewidth=1.4, width=0.6
 for i, v in enumerate(vals):
     ax.text(i, v + 1.5, f'{v}%', ha='center', fontsize=13, fontweight='bold')
 
-# --- Inline semantic gap labels between adjacent bars ---
-
-# (a) Vanilla → OracleClean-Others: +5pp, "other_olds 影響小"
-ax.plot([0.3, 0.7], [25, 25], color='#666', lw=1.2, alpha=0.85)
-ax.plot([0.7, 0.7], [20, 25], color='#666', lw=1.2, alpha=0.85)
-ax.text(0.5, 33, '+5pp\nother_olds 影響小',
-        ha='center', va='center', color='#444', fontsize=10, style='italic',
-        bbox=dict(boxstyle='round,pad=0.3', fc='white', ec='#888', alpha=0.92, lw=0.8))
-
-# (b) OracleClean-ThisChain → OracleClean-All: +5pp, "other_olds 影響小 (再次驗證)"
-ax.plot([2.3, 2.7], [60, 60], color='#666', lw=1.2, alpha=0.85)
-ax.plot([2.7, 2.7], [55, 60], color='#666', lw=1.2, alpha=0.85)
-ax.text(2.5, 67, '+5pp\nother_olds 影響小\n(再次驗證)',
-        ha='center', va='center', color='#444', fontsize=10, style='italic',
-        bbox=dict(boxstyle='round,pad=0.3', fc='white', ec='#888', alpha=0.92, lw=0.8))
-
-# (c) OracleClean-All → PureChain: +37pp suspended question (no semantic, prompt for verbal bridge to fig4)
-ax.plot([3.3, 3.7], [97, 97], color='#444', lw=1.5, alpha=0.85)
-ax.plot([3.7, 3.7], [60, 97], color='#444', lw=1.5, alpha=0.85)
-ax.text(3.5, 80, '+37pp\n???',
-        ha='center', va='center', color='#222', fontsize=12, fontweight='bold',
-        bbox=dict(boxstyle='round,pad=0.35', fc='#fff9c4', ec='#f9a825', alpha=0.95, lw=1.5))
-
-# (d) Big spanning +35pp arrow from Vanilla → OracleClean-ThisChain — main story
-#     Single arrow is enough: the 2x2 ladder layout itself implicitly shows that
-#     OracleClean-Others → OracleClean-All gives the same +35pp (additive decomposition,
-#     chain_old's effect is independent of other_olds presence). No need to draw it twice.
-ax.annotate('', xy=(2, 55 + 0.5), xytext=(0, 20 + 0.5),
-            arrowprops=dict(arrowstyle='->', color='red', lw=3, connectionstyle="arc3,rad=-0.32"))
-ax.text(1.0, 50, '+35pp\nchain_old 是主因 ★',
-        ha='center', va='center', color='red', fontweight='bold', fontsize=14,
-        bbox=dict(boxstyle='round,pad=0.5', fc='white', ec='red', alpha=0.95, lw=2))
-
-# (e) PureChain annotation — pure multi-hop reasoning ceiling
-ax.text(4, 110, '純多跳推理 ceiling\n(no noise, no conflict)\n→ 理所當然解得了',
-        ha='center', va='center', color='#6a1b9a', fontsize=10, fontweight='bold',
-        bbox=dict(boxstyle='round,pad=0.3', fc='#f3e5f5', ec='#6a1b9a', alpha=0.92, lw=1))
+# --- 事實類別名詞說明 (top-left) ---
+ax.text(0.015, 0.97,
+        '事實類別 (chain_new = 答案鏈,永遠保留,故不列為變因):\n'
+        '  • chain_old   本題推理鏈上各 hop 的「舊版本事實」,與 chain_new 直接衝突\n'
+        '  • other_olds  與本題推理鏈無關的其他舊事實 (即其他題的 chain_old)\n'
+        '\n'
+        '  ✓ = 保留在 LLM context        × = 已移除',
+        transform=ax.transAxes, fontsize=10, va='top', ha='left',
+        color='#444',
+        bbox=dict(boxstyle='round,pad=0.5', fc='#f5f5f5', ec='#aaa', alpha=0.95))
 
 ax.set_xticks(x)
-ax.set_xticklabels(setups, fontsize=9.5)
+ax.set_xticklabels(setups, fontsize=10)
 ax.set_ylabel('FC-MH EM (orig prompt, n=100)', fontsize=12)
-ax.set_ylim(0, 122)
+ax.set_ylim(0, 112)
 ax.grid(axis='y', alpha=0.3)
-# Note explaining ✓/× convention (top-left)
-ax.text(0.01, 0.98,
-        '✓ = kept in LLM context | × = removed\n'
-        '(chain_new always kept — it is the answer chain)',
-        transform=ax.transAxes, fontsize=9, va='top', ha='left',
-        style='italic', color='#555',
-        bbox=dict(boxstyle='round,pad=0.35', fc='#f5f5f5', ec='#aaa', alpha=0.92))
 plt.tight_layout()
 plt.savefig(OUT / 'fig3_channel_ceiling_ladder.png', dpi=160, bbox_inches='tight')
 plt.close()
@@ -215,25 +182,24 @@ print('Saved F3')
 
 # =====================================================================
 # F4 — Cross-cleanness × Prompt (full 100)
-# Narrative: structured prompt designed to "stabilize multi-hop reasoning"
-# - V1 trailer designed first; big gain on chain_old-free settings
-# - V2/V3 added to test "is V1 overfit?" → similar gains, not overfit
-# - Setup motivates memory-side retrieval guidance (no inference prompt change)
+# 承接 fig3: 同樣三個記憶內容情境下,
+#         觀察 inference prompt 不同會讓 LLM 對 context 的使用有不同表現
 # =====================================================================
-fig, ax = plt.subplots(figsize=(11, 6.5))
+fig, ax = plt.subplots(figsize=(9, 6.5))
 
-cleanness = ['Vanilla', 'OracleClean-\nOthers',
-             'OracleClean-\nThisChain\n× chain_old\n✓ other_olds',
-             'OracleClean-\nAll\n× chain_old\n× other_olds',
-             'PureChain']
-no_struct = [20, 25, 55, 60, 97]
-v1_trailer = [23, 33, 83, 78, 98]
-chain_old_kept = [True, True, False, False, False]  # chain_old still in context?
+# X-axis labels — 與 fig3 註解一致,以「只移除 X」白話描述,避開 OracleClean-* 術語
+cleanness = [
+    'Vanilla\n(retrieval 含\nchain_old + other_olds)',
+    '只移除 other_olds\n(留 chain_old)',
+    '只移除 chain_old\n(留 other_olds)',
+]
+no_struct = [20, 25, 55]
+v1_trailer = [23, 33, 83]
 
 x = np.arange(len(cleanness))
 
-# Background tint: light green for "chain_old removed" settings (where prompt thrives)
-ax.axvspan(1.5, 3.5, alpha=0.13, color='#4caf50', zorder=0,
+# Background tint: light green for "chain_old removed" setting (where prompt thrives)
+ax.axvspan(1.5, 2.5, alpha=0.13, color='#4caf50', zorder=0,
            label='_chain_old removed (prompt 發揮空間)')
 
 # Plot lines
@@ -242,25 +208,17 @@ ax.plot(x, no_struct, 'o--', color='#9e9e9e', lw=2.2, markersize=10,
 ax.plot(x, v1_trailer, 'o-', color='#1976d2', lw=2.5, markersize=10,
         label='+ V1 trailer', zorder=4)
 
-# V2/V3 markers at OracleClean-ThisChain (cluster at i=2)
+# V2/V3 markers at "只移除 chain_old" (cluster at i=2)
 ax.plot([2], [86], 's', color='#e65100', markersize=14,
         label='+ V2 cite-source', zorder=5)
 ax.plot([2], [85], '^', color='#388e3c', markersize=14,
         label='+ V3 decompose', zorder=5)
 
-# --- Double-arrows showing prompt gain at the two chain_old-removed settings ---
-# Double arrow at OracleClean-ThisChain: orig 55 ↔ V1 83, +28pp
+# Double arrow at i=2 ("只移除 chain_old"): orig 55 ↔ V1 83, +28pp
 ax.annotate('', xy=(2 - 0.04, 83), xytext=(2 - 0.04, 55),
             arrowprops=dict(arrowstyle='<->', color='#2e7d32', lw=2.5))
 ax.text(2 - 0.32, 69, '+28pp',
-        ha='center', va='center', color='#2e7d32', fontweight='bold', fontsize=11,
-        bbox=dict(boxstyle='round,pad=0.3', fc='#e8f5e9', ec='#2e7d32', alpha=0.95))
-
-# Double arrow at OracleClean-All: orig 60 ↔ V1 78, +18pp
-ax.annotate('', xy=(3, 78), xytext=(3, 60),
-            arrowprops=dict(arrowstyle='<->', color='#2e7d32', lw=2.5))
-ax.text(3 - 0.28, 69, '+18pp',
-        ha='center', va='center', color='#2e7d32', fontweight='bold', fontsize=11,
+        ha='center', va='center', color='#2e7d32', fontweight='bold', fontsize=12,
         bbox=dict(boxstyle='round,pad=0.3', fc='#e8f5e9', ec='#2e7d32', alpha=0.95))
 
 # Plot data labels
@@ -272,22 +230,21 @@ for i, (n, v) in enumerate(zip(no_struct, v1_trailer)):
     else:
         ax.text(i, v + 3, f'{v}%', ha='center', fontsize=10, color='#1976d2', fontweight='bold')
 
-# V2/V3 labels at OA2
-ax.text(2 + 0.18, 86, '86%', ha='left', va='center', fontsize=10,
+# V2/V3 labels at i=2
+ax.text(2 + 0.12, 86, '86%', ha='left', va='center', fontsize=10,
         color='#e65100', fontweight='bold')
-ax.text(2 + 0.18, 79, '85%', ha='left', va='center', fontsize=10,
+ax.text(2 + 0.12, 79, '85%', ha='left', va='center', fontsize=10,
         color='#388e3c', fontweight='bold')
 
-# Annotations at extremes: trailer 救不了 / 已飽和
-ax.text(0, 38, 'chain_old 還在\nprompt 救不了\n(+3pp)', ha='center', fontsize=9,
+# Left annotation: chain_old 還在 → prompt 救不了
+ax.text(0, 40, 'chain_old 還在\nprompt 救不了\n(+3pp)', ha='center', fontsize=9.5,
         color='#999', style='italic',
         bbox=dict(boxstyle='round,pad=0.25', fc='white', ec='#bbb', alpha=0.85))
 
-ax.text(4, 88, '已飽和\n(+1pp)', ha='center', fontsize=9, color='#999', style='italic',
-        bbox=dict(boxstyle='round,pad=0.25', fc='white', ec='#bbb', alpha=0.85))
-
 # Top message
-ax.text(2.5, 110, '結構化 prompt 在「chain_old 移除」條件下大幅提升 → 多跳推理需要 reasoning guide',
+ax.text(1, 105,
+        '同樣的記憶內容,不同 inference prompt → LLM 使用 context 的表現差很多\n'
+        '結構化 prompt 在「chain_old 移除」條件下才大幅提升 → 多跳推理需要 reasoning guide',
         ha='center', fontsize=10.5, color='#2e7d32', fontweight='bold',
         bbox=dict(boxstyle='round,pad=0.4', fc='white', ec='#2e7d32', alpha=0.95))
 
@@ -295,7 +252,7 @@ ax.set_xticks(x)
 ax.set_xticklabels(cleanness, fontsize=10)
 ax.set_ylabel('FC-MH EM (n=100)', fontsize=12)
 ax.set_ylim(0, 120)
-ax.legend(loc='lower right', fontsize=9, frameon=True)
+ax.legend(loc='upper left', bbox_to_anchor=(0.02, 0.82), fontsize=9, frameon=True)
 ax.grid(axis='y', alpha=0.3)
 plt.tight_layout()
 plt.savefig(OUT / 'fig4_cross_cleanness_prompt.png', dpi=160, bbox_inches='tight')

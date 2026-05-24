@@ -3,6 +3,7 @@ import os
 import logging
 from dataclasses import dataclass, field, asdict
 from datetime import datetime
+from pathlib import Path
 from typing import Union, Optional, List, Set, Dict, Any, Tuple, Literal
 import numpy as np
 import importlib
@@ -190,6 +191,26 @@ class HippoRAG:
             open(self._v2_dump_path, "w").close()
             logger.info(f"[v2] Detection dump enabled → {self._v2_dump_path}")
 
+        # ===== v2.0.2 Phase 2 chain-restricted detection (W1.3) =====
+        # Loaded lazily on first retrieve() call (if enable_phase2_chain_detection=True).
+        # Requires proposition_index.json produced by W1.1 build script.
+        self._v2_chain_propositions: Dict[str, "Proposition"] = {}
+        self._v2_chunk_to_prop_ids: Dict[str, List[str]] = {}
+        self._v2_propositions_loaded: bool = False
+        self._v2_phase2_dump_path: Optional[str] = os.environ.get("HIPPORAG_PHASE2_W13_DUMP_PATH")
+        self._v2_phase2_verdict_log_path: Optional[str] = os.environ.get("HIPPORAG_PHASE2_W13_VERDICT_LOG")
+        if self._v2_phase2_dump_path:
+            os.makedirs(os.path.dirname(self._v2_phase2_dump_path) or ".", exist_ok=True)
+            open(self._v2_phase2_dump_path, "w").close()
+        if self._v2_phase2_verdict_log_path:
+            os.makedirs(os.path.dirname(self._v2_phase2_verdict_log_path) or ".", exist_ok=True)
+            open(self._v2_phase2_verdict_log_path, "w").close()
+
+        # ===== W3 Phase 3 enriched context (v2.0.2 §B.4) =====
+        # Populated by _v2_phase2_pipeline; consumed by qa() prompt assembly.
+        # Keyed by query text (matches v2 annotation hook pattern).
+        self._v2_enriched_context_by_query: Dict[str, str] = {}
+
     def initialize_graph(self):
         """
         Initializes a graph using a GraphML file if available or creates a new graph.
@@ -312,8 +333,21 @@ class HippoRAG:
             self._phase1_scan_supersession(chunk_ids, chunk_triples)
             self._save_supersession_index()
 
-        if num_new_chunks > 0:
-            logger.info(f"Found {num_new_chunks} new chunks to save into graph.")
+        # ===== W2 I3c (option B): PropRAG-style proposition hyperedges =====
+        # DEPRECATED 2026-05-24 (see docs/B_remove_hyperedge_design.md):
+        # Empirically adds 0 entity-entity edges on FC corpus (atomic-prop
+        # regime: each proposition has exactly 2 entities → hyperedge pair
+        # ≡ fact edge pair → 100% duplicate dict-key). Function is kept for
+        # future non-atomic-prop datasets but **call is gated by its own
+        # flag with default False**, no longer linked to Phase 2 chain
+        # detection. Spec §B.14 W2 Step 1d.
+        n_hyperedges = 0
+        if getattr(self.global_config, 'enable_proposition_hyperedge', False):
+            n_hyperedges = self._add_proposition_hyperedges_to_stats()
+
+        if num_new_chunks > 0 or n_hyperedges > 0:
+            logger.info(f"Found {num_new_chunks} new chunks + {n_hyperedges} proposition "
+                        f"hyperedge weight increments to save into graph.")
             self.add_synonymy_edges()
 
             self.augment_graph()
@@ -386,6 +420,31 @@ class HippoRAG:
             if len(top_k_facts) == 0:
                 logger.info('No facts found after reranking, return DPR results')
                 sorted_doc_ids, sorted_doc_scores = self.dense_passage_retrieval(retrieval_query)
+                # ─── DPR-fallback marker dump (Stage 1 instrumentation) ───
+                # Phase 2 pipeline NOT entered for this query → mark so eval can
+                # distinguish "phase 2 ran but yielded poor result" from
+                # "phase 2 never ran (vanilla fallback path)".
+                if self._v2_phase2_dump_path:
+                    try:
+                        with open(self._v2_phase2_dump_path, "a") as f:
+                            json.dump({
+                                "query": retrieval_query,
+                                "phase2_status": "DPR_FALLBACK_NO_FACTS",  # marker
+                                "n_active_props": 0,
+                                "n_chains": 0,
+                                "n_verdicts": 0,
+                                "n_chain_old_props": 0,
+                                "enriched_context_chars": 0,
+                                "enriched_context_text": "",
+                                "passages_pre_filter_chunk_ids": [],
+                                "passages_kept_chunk_ids": [],
+                                "passages_dropped_chunk_ids": [],
+                                "chains": [],
+                                "verdicts": {},
+                            }, f)
+                            f.write("\n")
+                    except Exception:
+                        pass
             else:
                 sorted_doc_ids, sorted_doc_scores = self.graph_search_with_fact_entities(query=retrieval_query,
                                                                                          link_top_k=self.global_config.linking_top_k,
@@ -540,6 +599,16 @@ class HippoRAG:
             # instruction parsable by the LLM as guidance, not as additional context.
             if getattr(self.global_config, 'enable_phase3_scaffold', False):
                 prompt_user += self._PHASE3_SCAFFOLD_TEXT + '\n\n'
+
+            # ===== W3 Phase 3 v2 enriched context hook =====
+            # Inject Reasoning Hints + Recent Updates between passages and Question line.
+            # Spec §B.4.2 LOCKED format. Prompt template unchanged — only prompt_user body extended.
+            # Mutex with enable_phase3_scaffold (v1 vs v2 paths).
+            if (getattr(self.global_config, 'enable_phase3_v2_enriched', False)
+                    and not getattr(self.global_config, 'enable_phase3_scaffold', False)):
+                enriched = self._v2_enriched_context_by_query.get(query_solution.question, "")
+                if enriched:
+                    prompt_user += enriched + '\n\n'
 
             prompt_user += 'Question: ' + query_solution.question + '\nThought: '
 
@@ -1215,6 +1284,369 @@ class HippoRAG:
 
         return sorted_doc_ids, sorted_doc_scores
 
+    # ────────────────────────────────────────────────────────────────────
+    # v2.0.2 Phase 2 chain-restricted detection pipeline (W1.3)
+    # Spec §B.3: 2.a (chain id) → 2.b (verdict) → passage filter
+    # ────────────────────────────────────────────────────────────────────
+    def _add_proposition_hyperedges_to_stats(self) -> int:
+        """W2 Step 1d (I3c, option B): PropRAG-style proposition hyperedges.
+
+        DEPRECATED 2026-05-24 (see docs/B_remove_hyperedge_design.md):
+          Empirically adds 0 entity-entity edges on FC corpus because each
+          atomic proposition has exactly 2 entities → the hyperedge pair
+          (e_i, e_j) is the same dict-key as the existing fact edge,
+          causing 100% duplicate weight increments. Verified: 996→996 edges.
+          Kept for future non-atomic-prop datasets. Gated by
+          `enable_proposition_hyperedge` (default False), de-coupled from
+          `enable_phase2_chain_detection`.
+
+        For each loaded proposition p:
+          - resolve p.entities → entity_node_ids (md5 of entity text)
+          - for every pair (e_i, e_j) of entities in p:
+              node_to_node_stats[(e_i, e_j)] += 1.0  (bidirectional)
+              (weight accumulates if multiple propositions share the same pair)
+
+        Proposition is treated as an implicit hyperedge — no proposition node
+        is added to KG (option B, out-of-KG annotation layer).
+
+        Returns:
+            Number of entity-entity edge increments performed
+            (sum of edges added across all propositions; one edge counted twice if bidirectional).
+
+        Reference: PropRAG.py:944-995 add_proposition_edges_with_entity_connections
+        """
+        self._ensure_v2_phase2_loaded()
+        if not self._v2_chain_propositions:
+            return 0
+
+        # Filter to entities that actually exist in vanilla KG (avoid orphan edges)
+        kg_entity_keys = set(self.entity_embedding_store.get_all_ids())
+
+        n_increments = 0
+        n_props_added = 0
+        n_pairs_unique = 0
+        seen_pairs: set = set()
+        for p in self._v2_chain_propositions.values():
+            if not p.entity_node_ids:
+                continue
+            # Dedup + keep only entities that exist in vanilla KG
+            keys = [k for k in dict.fromkeys(p.entity_node_ids) if k in kg_entity_keys]
+            if len(keys) < 2:
+                continue
+            n_props_added += 1
+            for i in range(len(keys)):
+                for j in range(i + 1, len(keys)):
+                    e1, e2 = keys[i], keys[j]
+                    pair = (e1, e2) if e1 < e2 else (e2, e1)
+                    if pair not in seen_pairs:
+                        n_pairs_unique += 1
+                        seen_pairs.add(pair)
+                    self.node_to_node_stats[(e1, e2)] = (
+                        self.node_to_node_stats.get((e1, e2), 0.0) + 1.0
+                    )
+                    self.node_to_node_stats[(e2, e1)] = (
+                        self.node_to_node_stats.get((e2, e1), 0.0) + 1.0
+                    )
+                    n_increments += 2
+        # Single summary line so grep'able even when logger level filters INFO
+        print(f"[v2 I3c hyperedge] {n_props_added} props → {n_pairs_unique} unique "
+              f"entity-entity pairs ({n_increments} weight increments)", flush=True)
+        return n_increments
+
+    def _ensure_v2_phase2_loaded(self):
+        """Lazy-load propositions from proposition_index.json (W1.1 artifact).
+
+        Path: <working_dir>/proposition_index.json
+        Built by analysis/build_proposition_index_w1.py.
+        """
+        if self._v2_propositions_loaded:
+            return
+        from .phase1.data_structures import Proposition
+        from .utils.misc_utils import compute_mdhash_id, text_processing
+        path = os.path.join(self.working_dir, "proposition_index.json")
+        if not os.path.exists(path):
+            logger.warning(f"[v2 Phase 2] proposition_index.json not found at {path}; "
+                           f"chain detection will be no-op")
+            self._v2_propositions_loaded = True
+            return
+        try:
+            with open(path) as f:
+                payload = json.load(f)
+            n_resolved = 0
+            n_total_ents = 0
+            for pd in payload.get("propositions", []):
+                p = Proposition.from_dict(pd)
+                # Lazy-resolve entity_node_ids (vanilla HippoRAG-v2 entity hashing).
+                # Option B (PropRAG-style): prop is out-of-KG, but entities must
+                # map to KG entity node keys for PPR aggregation downstream.
+                # Critical: vanilla applies text_processing() (lowercase + strip
+                # non-alphanumeric) BEFORE hashing — must replicate or entity_keys
+                # won't match KG. See HippoRAG.py:299 + utils/misc_utils.py:51.
+                if not p.entity_node_ids:
+                    p.entity_node_ids = [
+                        compute_mdhash_id(text_processing(e), prefix="entity-")
+                        for e in p.entities
+                    ]
+                # Sentinel: count how many resolved keys actually exist in KG.
+                # Only meaningful after self.graph is loaded; compute lazily.
+                n_total_ents += len(p.entity_node_ids)
+                self._v2_chain_propositions[p.id] = p
+                self._v2_chunk_to_prop_ids.setdefault(p.source_chunk_id, []).append(p.id)
+            # Validate entity_node_ids exist in vanilla KG (one-time diagnostic).
+            try:
+                kg_entity_keys = set(self.entity_embedding_store.get_all_ids())
+                for p in self._v2_chain_propositions.values():
+                    n_resolved += sum(1 for k in p.entity_node_ids if k in kg_entity_keys)
+                resolve_rate = n_resolved / max(n_total_ents, 1)
+                logger.info(f"[v2 Phase 2] loaded {len(self._v2_chain_propositions)} propositions "
+                            f"across {len(self._v2_chunk_to_prop_ids)} chunks from {path}; "
+                            f"entity resolve {n_resolved}/{n_total_ents}={resolve_rate:.0%}")
+            except Exception:
+                logger.info(f"[v2 Phase 2] loaded {len(self._v2_chain_propositions)} propositions "
+                            f"across {len(self._v2_chunk_to_prop_ids)} chunks from {path}")
+        except Exception as e:
+            logger.warning(f"[v2 Phase 2] failed to load proposition_index: {e}")
+        self._v2_propositions_loaded = True
+
+    def _v2_phase2_pipeline(self,
+                            query: str,
+                            sorted_doc_ids: np.ndarray,
+                            sorted_doc_scores: np.ndarray,
+                            pagerank_scores: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+        """v2.0.2 Phase 2 main pipeline (W1.3 first integration).
+
+        Algorithm:
+          1. Load propositions (lazy)
+          2. Compute proposition mass:
+             - W1.3 default: query-prop cosine proxy (matches W1.2 dry-test;
+               real PPR aggregation deferred to W2 when entity_node_ids
+               populated by I3c integration)
+          3. Phase 2.a: identify_active_region + enumerate_candidate_chains
+          4. Phase 2.b: chain_restricted_verdict (small-pool LLM)
+          5. Filter passages: drop those whose props are verdict-superseded,
+             UNLESS passage also contains a verdict-current chain-new prop
+             (R_same_passage rescue per spec §B.3.3)
+        """
+        self._ensure_v2_phase2_loaded()
+        if not self._v2_chain_propositions:
+            return sorted_doc_ids, sorted_doc_scores
+
+        from .phase2a.active_region import (
+            compute_prop_mass_proxy_from_query_cosine,
+            compute_prop_ppr_mass_from_entity_ppr,
+            identify_active_region,
+        )
+        from .phase2a.path_enumeration import enumerate_candidate_chains
+        from .phase2b.verdict import chain_restricted_verdict
+
+        # Encode query (use existing fact-embedding-instructed encoder)
+        try:
+            from .prompts.linking import get_query_instruction
+            q_emb_raw = self.embedding_model.batch_encode(
+                query,
+                instruction=get_query_instruction("query_to_fact"),
+                norm=True, disable_tqdm=True,
+            )
+            q_emb = np.asarray(q_emb_raw, dtype="float32").flatten()
+            q_emb /= max(np.linalg.norm(q_emb), 1e-8)
+        except Exception as e:
+            logger.warning(f"[v2 Phase 2] query encode failed: {e}; skip")
+            return sorted_doc_ids, sorted_doc_scores
+
+        # PPR mass: W2 (I3c hyperedge-style, option B) — aggregate entity PPR to prop.
+        # Falls back to cosine proxy if entity_ppr unavailable (defensive).
+        prop_mass = None
+        try:
+            # Build entity_ppr dict: entity_node_key → PPR score (from vanilla PPR run)
+            entity_ppr: Dict[str, float] = {}
+            for vidx in self.entity_node_idxs:
+                ent_key = self.graph.vs[vidx]["name"]
+                entity_ppr[ent_key] = float(pagerank_scores[vidx])
+            ppr_agg = getattr(self.global_config, 'v2_phase2_ppr_aggregation', 'mean')
+            prop_mass = compute_prop_ppr_mass_from_entity_ppr(
+                self._v2_chain_propositions, entity_ppr, aggregation=ppr_agg,
+            )
+            non_zero = sum(1 for v in prop_mass.values() if v > 0)
+            logger.info(f"[v2 Phase 2] real PPR aggregation ({ppr_agg}): "
+                        f"{non_zero}/{len(prop_mass)} props have non-zero mass")
+            if non_zero == 0:
+                logger.warning("[v2 Phase 2] all prop_mass=0; falling back to cosine proxy")
+                prop_mass = None
+        except Exception as e:
+            logger.warning(f"[v2 Phase 2] real PPR aggregation failed: {e}; "
+                           f"falling back to cosine proxy")
+            prop_mass = None
+
+        if prop_mass is None:
+            prop_mass = compute_prop_mass_proxy_from_query_cosine(
+                self._v2_chain_propositions, q_emb,
+            )
+
+        # Simple query entity linker: substring match against KG entities
+        all_entities = set()
+        for p in self._v2_chain_propositions.values():
+            all_entities |= set(p.entities)
+        q_low = query.lower()
+        query_entities = {e for e in all_entities
+                          if len(e) >= 4 and e.lower() in q_low}
+
+        # ─── Phase 2.a Step 1: active region ───
+        region_topK = getattr(self.global_config, 'v2_phase2_region_topK', 50)
+        active_pids = identify_active_region(
+            query=query,
+            propositions=self._v2_chain_propositions,
+            prop_ppr_mass=prop_mass,
+            query_entities=query_entities,
+            region_topK=region_topK,
+        )
+        active_props = {pid: self._v2_chain_propositions[pid] for pid in active_pids}
+
+        # ─── Phase 2.a Step 2-3: enumerate chains ───
+        M = getattr(self.global_config, 'v2_phase2_M', 5)
+        L = getattr(self.global_config, 'v2_phase2_L', 3)
+        beam = getattr(self.global_config, 'v2_phase2_beam', 8)
+        chains = enumerate_candidate_chains(
+            query_embedding=q_emb,
+            active_propositions=active_props,
+            prop_ppr_mass=prop_mass,
+            M=M, L=L, beam_width=beam, n_seed=20,
+            query_entities=query_entities,
+        )
+
+        # ─── Phase 2.b: chain-restricted verdict ───
+        verdict_log_path = Path(self._v2_phase2_verdict_log_path) if self._v2_phase2_verdict_log_path else None
+        verdicts = chain_restricted_verdict(
+            candidate_chains=chains,
+            query=query,
+            propositions=self._v2_chain_propositions,
+            llm_model=self.llm_model,
+            K_pool=10,
+            enable_phase1_cache=False,  # W1
+            tau_loose=0.7, lookup_K=20,
+            verdict_log_path=verdict_log_path,
+        )
+
+        # ─── Filter passages by verdict (§B.3.3 handoff logic) ───
+        # Compute chain_old_pids regardless of filter flag (used by W3 Recent Updates).
+        chain_old_pids = {pid for pid, v in verdicts.items()
+                          if v.status == "superseded" and v.confidence in ("high", "medium")}
+
+        # Capture filter decisions for instrumentation (Stage 1 W3 analysis).
+        passages_pre_filter: list = [
+            self.passage_node_keys[int(sorted_doc_ids[r])]
+            for r in range(min(20, len(sorted_doc_ids)))
+        ]
+        passages_dropped_chunk_ids: list = []
+        passages_kept_chunk_ids: list = list(passages_pre_filter)  # default: all kept
+
+        if chain_old_pids and getattr(self.global_config, 'enable_phase2_filter_passages', True):
+            keep_mask = np.ones(len(sorted_doc_ids), dtype=bool)
+            top_n = min(20, len(sorted_doc_ids))
+            n_filtered = 0
+            for rank in range(top_n):
+                ck = self.passage_node_keys[int(sorted_doc_ids[rank])]
+                psg_pids = self._v2_chunk_to_prop_ids.get(ck, [])
+                if not psg_pids:
+                    continue
+                has_chain_old = any(pid in chain_old_pids for pid in psg_pids)
+                if not has_chain_old:
+                    continue
+                # Rescue: if passage also contains a current prop, keep it
+                has_chain_new = any(
+                    verdicts.get(pid) and verdicts[pid].status == "current"
+                    for pid in psg_pids
+                )
+                if not has_chain_new:
+                    keep_mask[rank] = False
+                    n_filtered += 1
+                    passages_dropped_chunk_ids.append(ck)
+            if n_filtered > 0:
+                logger.info(f"[v2 Phase 2 W1.3] filtered {n_filtered} passages from top-{top_n} "
+                            f"(verdict-superseded; {len(chain_old_pids)} chain_old props)")
+            sorted_doc_ids = sorted_doc_ids[keep_mask]
+            sorted_doc_scores = sorted_doc_scores[keep_mask]
+            passages_kept_chunk_ids = [c for c in passages_pre_filter
+                                       if c not in set(passages_dropped_chunk_ids)]
+
+        # ─── W3 Phase 3: render enriched context (Reasoning Hints + Recent Updates) ───
+        # Stored by query text; consumed in qa() prompt assembly (spec §B.4.2 LOCKED).
+        # Only renders when enable_phase3_v2_enriched=True (mutex w/ enable_phase3_scaffold).
+        # Sub-flags allow ablation: hints / updates can be independently disabled.
+        enriched_ctx = ""
+        if getattr(self.global_config, 'enable_phase3_v2_enriched', False):
+            from .phase3 import render_enriched_context
+            active_chain_top = max(chains, key=lambda c: c.score) if chains else None
+            supersession_events = [
+                (pid, verdicts[pid].superseder_id)
+                for pid in chain_old_pids
+                if verdicts[pid].superseder_id is not None
+            ]
+            include_hints = getattr(self.global_config, 'enable_phase3_v2_reasoning_hints', True)
+            include_updates = getattr(self.global_config, 'enable_phase3_v2_recent_updates', True)
+            try:
+                enriched_ctx = render_enriched_context(
+                    active_chain=active_chain_top,
+                    supersession_events=supersession_events,
+                    propositions=self._v2_chain_propositions,
+                    verdicts=verdicts,
+                    include_hints=include_hints,
+                    include_updates=include_updates,
+                )
+                self._v2_enriched_context_by_query[query] = enriched_ctx
+                if enriched_ctx:
+                    logger.info(f"[v2 Phase 3 W3] rendered enriched context "
+                                f"(hints={include_hints}, updates={include_updates}): "
+                                f"{len(enriched_ctx)} chars")
+            except Exception as e:
+                logger.warning(f"[v2 Phase 3 W3] render failed: {e}")
+                self._v2_enriched_context_by_query[query] = ""
+
+        # ─── Diagnostic dump (Stage 1 W3 analysis instrumentation) ───
+        # Goal: capture enough state to answer per-hop questions post-hoc
+        # (active region coverage / chain coverage / pool / verdict / enriched
+        # context / passages kept-vs-dropped). join with mini-eval labels offline.
+        if self._v2_phase2_dump_path:
+            try:
+                # Enrich chains with prop_text + timestamp for offline join.
+                chains_with_text = []
+                for c in chains:
+                    cd = c.to_dict()
+                    cd["props"] = [
+                        {
+                            "prop_id": pid,
+                            "text": self._v2_chain_propositions[pid].text
+                                    if pid in self._v2_chain_propositions else "<missing>",
+                            "timestamp": list(self._v2_chain_propositions[pid].timestamp)
+                                         if pid in self._v2_chain_propositions else None,
+                        }
+                        for pid in c.proposition_ids
+                    ]
+                    chains_with_text.append(cd)
+
+                with open(self._v2_phase2_dump_path, "a") as f:
+                    json.dump({
+                        "query": query,
+                        "phase2_status": "RAN",
+                        "n_active_props": len(active_pids),
+                        "active_pids": list(active_pids),                # NEW
+                        "n_chains": len(chains),
+                        "n_verdicts": len(verdicts),
+                        "n_chain_old_props": len(chain_old_pids),
+                        "chain_old_pids": list(chain_old_pids),          # NEW
+                        "enriched_context_chars": len(enriched_ctx),
+                        "enriched_context_text": enriched_ctx,           # NEW (raw string)
+                        "passages_pre_filter_chunk_ids": passages_pre_filter,    # NEW
+                        "passages_kept_chunk_ids": passages_kept_chunk_ids,      # NEW
+                        "passages_dropped_chunk_ids": passages_dropped_chunk_ids,  # NEW
+                        "chains": chains_with_text,                      # NEW (with prop text/ts)
+                        "verdicts": {pid: v.to_dict() for pid, v in verdicts.items()},
+                    }, f)
+                    f.write("\n")
+            except Exception as e:
+                logger.warning(f"[v2 Phase 2 W1.3] dump write failed: {e}")
+
+        return sorted_doc_ids, sorted_doc_scores
+
     def add_new_nodes(self):
         """
         Adds new nodes to the graph from entity and passage embedding stores based on their attributes.
@@ -1630,6 +2062,16 @@ class HippoRAG:
             ppr_sorted_doc_ids, ppr_sorted_doc_scores = self._v2_llm_judge_apply(
                 query, ppr_sorted_doc_ids, ppr_sorted_doc_scores,
                 query_fact_scores=query_fact_scores
+            )
+
+        # ===== v2.0.2 Phase 2 chain-restricted detection (W1.3) =====
+        # 2026-05-16. Spec §B.3: chain id (2.a) + chain-restricted verdict (2.b).
+        # Requires proposition_index.json from W1.1 build script.
+        # No-op when enable_phase2_chain_detection=False.
+        if getattr(self.global_config, 'enable_phase2_chain_detection', False):
+            ppr_sorted_doc_ids, ppr_sorted_doc_scores = self._v2_phase2_pipeline(
+                query, ppr_sorted_doc_ids, ppr_sorted_doc_scores,
+                pagerank_scores=pagerank_scores,
             )
 
         return ppr_sorted_doc_ids, ppr_sorted_doc_scores

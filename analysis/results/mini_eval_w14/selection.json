@@ -1,0 +1,162 @@
+[
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no18",
+    "query_id": 18,
+    "question": "What is the job title of the chairperson of the political organization Fatah?",
+    "gt_answer": "soldier",
+    "num_hops": 2,
+    "n_pair_hops": 2,
+    "all_pair": true,
+    "w13_correct": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no2",
+    "query_id": 2,
+    "question": "Which country is the birthplace of the sport associated with Steve Sax?",
+    "gt_answer": "Italy",
+    "num_hops": 2,
+    "n_pair_hops": 2,
+    "all_pair": true,
+    "w13_correct": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no34",
+    "query_id": 34,
+    "question": "Which religion was the partner of Ferdinand Marcos associated with?",
+    "gt_answer": "atheism",
+    "num_hops": 2,
+    "n_pair_hops": 1,
+    "all_pair": false,
+    "w13_correct": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no52",
+    "query_id": 52,
+    "question": "Where did the religion associated with the Bagratuni Dynasty come into existence?",
+    "gt_answer": "Taipei",
+    "num_hops": 2,
+    "n_pair_hops": 1,
+    "all_pair": false,
+    "w13_correct": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no99",
+    "query_id": 99,
+    "question": "In what language are the official documents of the country where Alta IF originates written?",
+    "gt_answer": "Swedish",
+    "num_hops": 3,
+    "n_pair_hops": 3,
+    "all_pair": true,
+    "w13_correct": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no15",
+    "query_id": 15,
+    "question": "From which capital city did the Surrey Senior Cup, a sports competition, originate?",
+    "gt_answer": "Russellville",
+    "num_hops": 3,
+    "n_pair_hops": 3,
+    "all_pair": true,
+    "w13_correct": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no83",
+    "query_id": 83,
+    "question": "Which individual is responsible for founding the organization that has its headquarters in the same location where Bill Frisell received his education?",
+    "gt_answer": "William Penn",
+    "num_hops": 3,
+    "n_pair_hops": 1,
+    "all_pair": false,
+    "w13_correct": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no12",
+    "query_id": 12,
+    "question": "What is the capital city of the country where the sport associated with John Harkes has its origin?",
+    "gt_answer": "Duluth",
+    "num_hops": 3,
+    "n_pair_hops": 2,
+    "all_pair": false,
+    "w13_correct": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no88",
+    "query_id": 88,
+    "question": "Which language is the official language of the country whose citizenship is held by the director/manager of \"Past Masters\"?",
+    "gt_answer": "Arabic",
+    "num_hops": 4,
+    "n_pair_hops": 4,
+    "all_pair": true,
+    "w13_correct": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no91",
+    "query_id": 91,
+    "question": "In which city is the capital of the country, where the book \"The Birth of Tragedy\" first came from, located?",
+    "gt_answer": "Duluth",
+    "num_hops": 4,
+    "n_pair_hops": 4,
+    "all_pair": true,
+    "w13_correct": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no27",
+    "query_id": 27,
+    "question": "What city serves as the capital of the country where the performer who is the spouse of Derek Shepherd holds citizenship?",
+    "gt_answer": "Harrisville",
+    "num_hops": 4,
+    "n_pair_hops": 1,
+    "all_pair": false,
+    "w13_correct": true
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no19",
+    "query_id": 19,
+    "question": "Which city is the capital of the country where the performer of \"Free as a Bird\"'s director/manager comes from?",
+    "gt_answer": "Duluth",
+    "num_hops": 4,
+    "n_pair_hops": 3,
+    "all_pair": false,
+    "w13_correct": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no8",
+    "query_id": 8,
+    "question": "To which continent does the country of citizenship of Colin Irwin pertain?",
+    "gt_answer": "North America",
+    "num_hops": 2,
+    "n_pair_hops": 2,
+    "all_pair": true,
+    "w13_correct": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no28",
+    "query_id": 28,
+    "question": "What is the name of the city that serves as the capital of the country to which Sable belongs?",
+    "gt_answer": "Prague",
+    "num_hops": 2,
+    "n_pair_hops": 1,
+    "all_pair": false,
+    "w13_correct": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no29",
+    "query_id": 29,
+    "question": "In which city serves as the capital of the country of citizenship of Country Joe McDonald?",
+    "gt_answer": "Rajanpur",
+    "num_hops": 2,
+    "n_pair_hops": 2,
+    "all_pair": true,
+    "w13_correct": false
+  },
+  {
+    "qa_pair_id": "factconsolidation_mh_6k_no58",
+    "query_id": 58,
+    "question": "What is the name of the political entity that was established from the successor of the Sasanian Empire?",
+    "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "num_hops": 2,
+    "n_pair_hops": 2,
+    "all_pair": true,
+    "w13_correct": false
+  }
+]
