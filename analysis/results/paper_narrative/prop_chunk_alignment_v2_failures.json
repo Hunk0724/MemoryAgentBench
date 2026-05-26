@@ -1,0 +1,15 @@
+[
+  {
+    "prop_id": "prop-e8b615577e2fa1ecb596a6c1dfabb2bd",
+    "reason": "ambiguous_multi_match",
+    "prop_text": "The position of goalkeeper is associated with the sport of association football.",
+    "prop_entities": [
+      "association football"
+    ],
+    "n_matches": 2,
+    "candidates": [
+      "Steve Sax is associated with the sport of association football.",
+      "437. goalkeeper is associated with the sport of association football."
+    ]
+  }
+]

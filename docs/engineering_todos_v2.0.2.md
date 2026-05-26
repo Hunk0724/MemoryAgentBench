@@ -103,6 +103,35 @@
 
 ---
 
+### E9(新)— Verdict prompt 明示「空 list 是 expected」+ 重跑對照
+
+**內容**: `methods/hipporag/phase2b/prompts/verdict_prompt.py` 在 NOT-CONTRADICTING examples 後加一段:
+
+```
+IMPORTANT — Empty output is the expected behavior when no pool statement
+contradicts the focus. Many facts in memory have only ONE version. When focus
+is such a unique fact, output an empty list:
+  {"contradicting_pool_indices": [], "reason": "no pool statement contradicts the focus"}
+```
+
+**為何本輪不做**:
+- 跟 ablation A=17 / B=31 用同 prompt → 公平 cross-comparable
+- 為了 paper main result 不引入 prompt 變因,本輪先用現行 prompt 跑 C-v2(bidir + chunk_rebuild)
+- 跑完後從 `verdict_events.jsonl` 分析 `llm_contradicting_pids=[]` 的命中率,**用資料驗證需不需要改**
+
+**驗證流程**:
+1. C-v2 跑完後寫小腳本(`analysis/runtime/analyze_empty_verdict_outputs.py`):
+   - 從 verdict_events.jsonl 抽 `llm_contradicting_pids=[]` 的 events
+   - 對到 labels.json:focus_prop 是否屬 has_pair hop?
+     - YES → potential FN(LLM 該找到 twin 卻沒)
+     - NO → 正確(本來就無 GT 衝突)
+2. 若 FN 比例 > 5% → 進 E9 加 prompt 明示,重跑驗證
+3. paper appendix 寫「未明示 vs 明示」對照
+
+**成本**: 小(5 分鐘改 prompt + 1 hr GPU 重跑)
+
+---
+
 ### E6 — Mem0/Zep 衝突偵測 recall/precision 對照 🆚
 
 **內容**: 從 Mem0(write-time filter)和 Zep(inference annotation)的 run dump 裡,抽出他們**對 chain_old prop 的偵測決策**(命中 / 漏失 / 誤判),算 detection recall / precision。

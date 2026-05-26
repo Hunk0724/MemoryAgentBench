@@ -229,6 +229,28 @@ class BaseConfig:
                           "Default OFF. De-coupled from enable_phase2_chain_detection. "
                           "See docs/B_remove_hyperedge_design.md."}
     )
+    enable_phase2_filter_chunk_rebuild: bool = field(
+        default=False,
+        metadata={"help": "Phase 2.c B2: when a chunk contains any candidate-old prop, "
+                          "REBUILD the chunk from its remaining (non-old) props instead "
+                          "of dropping it. Chunk position in top-K is preserved; only the "
+                          "old fact-line texts are dropped. No prefix, no annotation — "
+                          "rebuilt content is `prop.text` joined by space, ordered by "
+                          "in_chunk_position. Generalizes across corpora (no regex of "
+                          "FC-specific format needed). "
+                          "Orthogonal to enable_phase2_filter_passages (legacy rescue). "
+                          "Default OFF. See docs/C_v2_chunk_rebuild_design.md."}
+    )
+    enable_phase2_verdict_bidirectional: bool = field(
+        default=False,
+        metadata={"help": "Phase 2.b verdict bidirectional: when verdict computes "
+                          "chain_old_pids, include BOTH (a) focus_pid whose status='superseded' "
+                          "AND (b) older_contradicting_pool_pids from any verdict event "
+                          "(focus is current but pool contains older twin). "
+                          "Symmetrizes the chain_old detection — fixes single-direction "
+                          "coverage gap. Default OFF for backwards-compat. "
+                          "See docs/C_v2_chunk_rebuild_design.md."}
+    )
     v2_phase2_region_topK: int = field(
         default=50,
         metadata={"help": "Phase 2.a active region: top-K propositions by mass."}
@@ -352,6 +374,10 @@ class BaseConfig:
             ("enable_phase3_v2_reasoning_hints", "HIPPORAG_ENABLE_PHASE3_V2_HINTS"),
             ("enable_phase3_v2_recent_updates", "HIPPORAG_ENABLE_PHASE3_V2_UPDATES"),
             ("enable_phase2_filter_passages", "HIPPORAG_ENABLE_PHASE2_FILTER_PASSAGES"),
+            # ───── C-v2 flags (2026-05-24) ─────
+            ("enable_phase2_verdict_bidirectional", "HIPPORAG_ENABLE_PHASE2_VERDICT_BIDIRECTIONAL"),
+            ("enable_phase2_filter_chunk_rebuild", "HIPPORAG_ENABLE_PHASE2_FILTER_CHUNK_REBUILD"),
+            ("enable_proposition_hyperedge", "HIPPORAG_ENABLE_PROPOSITION_HYPEREDGE"),
         ]:
             env_val = os.environ.get(env_name)
             if env_val is not None:

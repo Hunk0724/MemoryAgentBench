@@ -1,0 +1,1151 @@
+[
+  {
+    "chunk_id": "chunk-69bd442bc577d8f58b1979bf430085fe",
+    "fail_reason": "count_mismatch",
+    "n_facts_parsed": 37,
+    "n_props": 35,
+    "first_3_facts": [
+      [
+        38,
+        "Dave Filoni is employed by Lucasfilm."
+      ],
+      [
+        39,
+        "Henri Grégoire is a citizen of France."
+      ],
+      [
+        40,
+        "Christianity was founded in the city of Jerusalem."
+      ]
+    ],
+    "first_3_props_text": [
+      "Frank Zappa died in the city of Los Angeles.",
+      "Dave Filoni is employed by Lucasfilm.",
+      "Henri Grégoire is a citizen of France."
+    ]
+  },
+  {
+    "chunk_id": "chunk-81b59e8deeb071e99e2ebce95f594541",
+    "fail_reason": "count_mismatch",
+    "n_facts_parsed": 36,
+    "n_props": 37,
+    "first_3_facts": [
+      [
+        76,
+        "The author of The Birth of Tragedy is Friedrich Nietzsche."
+      ],
+      [
+        77,
+        "The author of The Birth of Tragedy is Stephen Crane."
+      ],
+      [
+        78,
+        "placekicker is associated with the sport of American football."
+      ]
+    ],
+    "first_3_props_text": [
+      "Australia is located in the continent of Oceania.",
+      "Friedrich Nietzsche is the author of The Birth of Tragedy.",
+      "Stephen Crane is the author of The Birth of Tragedy."
+    ]
+  },
+  {
+    "chunk_id": "chunk-6e52ef8d31e5a75bec8aae2a2f36b98e",
+    "fail_reason": "count_mismatch",
+    "n_facts_parsed": 36,
+    "n_props": 37,
+    "first_3_facts": [
+      [
+        113,
+        "London is located in the continent of Europe."
+      ],
+      [
+        114,
+        "The headquarters of University of California, Berkeley is located in the city of Botevgrad."
+      ],
+      [
+        115,
+        "The name of the current head of state in United States of America is Donald Trump."
+      ]
+    ],
+    "first_3_props_text": [
+      "Mario Puzo is famous for The Godfather.",
+      "London is located in the continent of Europe.",
+      "The headquarters of University of California, Berkeley is located in the city of Botevgrad."
+    ]
+  },
+  {
+    "chunk_id": "chunk-6edf71dd81b4918de9ccc0b69daa47ad",
+    "fail_reason": "count_mismatch",
+    "n_facts_parsed": 39,
+    "n_props": 40,
+    "first_3_facts": [
+      [
+        150,
+        "cricket was created in the country of Australia."
+      ],
+      [
+        151,
+        "The official language of Australia is Arabic."
+      ],
+      [
+        152,
+        "Stephen McNeil works in the field of politician."
+      ]
+    ],
+    "first_3_props_text": [
+      "FC Irtysh Omsk is associated with the sport of association football.",
+      "Cricket was created in the country of Australia.",
+      "The official language of Australia is Arabic."
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 0,
+    "fact_text": "Ford Motor Company was founded by Henri Grégoire.",
+    "prop_text": "Ayumi Hamasaki performed Rocket Man.",
+    "prop_entities": [
+      "Ayumi Hamasaki",
+      "Rocket Man"
+    ],
+    "missing_entities": [
+      "Ayumi Hamasaki",
+      "Rocket Man"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 1,
+    "fact_text": "Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp.",
+    "prop_text": "Henri Grégoire founded Ford Motor Company.",
+    "prop_entities": [
+      "Henri Grégoire",
+      "Ford Motor Company"
+    ],
+    "missing_entities": [
+      "Henri Grégoire",
+      "Ford Motor Company"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 2,
+    "fact_text": "The chairperson of Fatah is Moshe Kahlon.",
+    "prop_text": "Charles Frederick is the child of Walter Chrysler.",
+    "prop_entities": [
+      "Charles Frederick",
+      "Walter Chrysler"
+    ],
+    "missing_entities": [
+      "Charles Frederick",
+      "Walter Chrysler"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 3,
+    "fact_text": "Yves Montand is married to Natalie Portman.",
+    "prop_text": "Charles Frederick holds the title of Duke of Holstein-Gottorp.",
+    "prop_entities": [
+      "Charles Frederick",
+      "Duke of Holstein-Gottorp"
+    ],
+    "missing_entities": [
+      "Charles Frederick",
+      "Duke of Holstein-Gottorp"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 4,
+    "fact_text": "Bengaluru is located in the continent of Oceania.",
+    "prop_text": "Moshe Kahlon is the chairperson of Fatah.",
+    "prop_entities": [
+      "Moshe Kahlon",
+      "Fatah"
+    ],
+    "missing_entities": [
+      "Moshe Kahlon",
+      "Fatah"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 5,
+    "fact_text": "Tunisia national football team is associated with the sport of association football.",
+    "prop_text": "Yves Montand is married to Natalie Portman.",
+    "prop_entities": [
+      "Yves Montand",
+      "Natalie Portman"
+    ],
+    "missing_entities": [
+      "Yves Montand",
+      "Natalie Portman"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 6,
+    "fact_text": "The director of The Beatles is Brian Epstein.",
+    "prop_text": "Bengaluru is located in the continent of Oceania.",
+    "prop_entities": [
+      "Bengaluru",
+      "Oceania"
+    ],
+    "missing_entities": [
+      "Bengaluru",
+      "Oceania"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 7,
+    "fact_text": "Canadair was founded in the city of Montreal.",
+    "prop_text": "The Tunisia national football team is associated with the sport of association football.",
+    "prop_entities": [
+      "Tunisia national football team",
+      "association football"
+    ],
+    "missing_entities": [
+      "Tunisia national football team",
+      "association football"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 8,
+    "fact_text": "SteamOS was developed by Valve Corporation.",
+    "prop_text": "Brian Epstein is the director of The Beatles.",
+    "prop_entities": [
+      "Brian Epstein",
+      "The Beatles"
+    ],
+    "missing_entities": [
+      "Brian Epstein",
+      "The Beatles"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 9,
+    "fact_text": "Cédric Klapisch is a citizen of Malaysia.",
+    "prop_text": "Canadair was founded in the city of Montreal.",
+    "prop_entities": [
+      "Canadair",
+      "Montreal"
+    ],
+    "missing_entities": [
+      "Canadair",
+      "Montreal"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 10,
+    "fact_text": "The official language of Japan is Japanese.",
+    "prop_text": "Valve Corporation developed SteamOS.",
+    "prop_entities": [
+      "Valve Corporation",
+      "SteamOS"
+    ],
+    "missing_entities": [
+      "Valve Corporation",
+      "SteamOS"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 11,
+    "fact_text": "AppleScript was developed by Apple Inc..",
+    "prop_text": "Cédric Klapisch is a citizen of Malaysia.",
+    "prop_entities": [
+      "Cédric Klapisch",
+      "Malaysia"
+    ],
+    "missing_entities": [
+      "Cédric Klapisch",
+      "Malaysia"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 12,
+    "fact_text": "The official language of United States of America is American English.",
+    "prop_text": "The official language of Japan is Japanese.",
+    "prop_entities": [
+      "Japan",
+      "Japanese"
+    ],
+    "missing_entities": [
+      "Japan",
+      "Japanese"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 13,
+    "fact_text": "The type of music that Dana International plays is pop music.",
+    "prop_text": "Apple Inc. developed AppleScript.",
+    "prop_entities": [
+      "Apple Inc.",
+      "AppleScript"
+    ],
+    "missing_entities": [
+      "Apple Inc.",
+      "AppleScript"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 14,
+    "fact_text": "Sable is a citizen of United States of America.",
+    "prop_text": "The official language of United States of America is American English.",
+    "prop_entities": [
+      "United States of America",
+      "American English"
+    ],
+    "missing_entities": [
+      "American English"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 15,
+    "fact_text": "Brian Epstein is a citizen of United Kingdom.",
+    "prop_text": "Dana International plays pop music.",
+    "prop_entities": [
+      "Dana International",
+      "pop music"
+    ],
+    "missing_entities": [
+      "Dana International",
+      "pop music"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 16,
+    "fact_text": "Robert Jordan is famous for The Wheel of Time.",
+    "prop_text": "Sable is a citizen of United States of America.",
+    "prop_entities": [
+      "Sable",
+      "United States of America"
+    ],
+    "missing_entities": [
+      "Sable",
+      "United States of America"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 17,
+    "fact_text": "The capital of United States of America is Washington, D.C..",
+    "prop_text": "Brian Epstein is a citizen of United Kingdom.",
+    "prop_entities": [
+      "Brian Epstein",
+      "United Kingdom"
+    ],
+    "missing_entities": [
+      "Brian Epstein",
+      "United Kingdom"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 18,
+    "fact_text": "Imelda Marcos is affiliated with the religion of Catholicism.",
+    "prop_text": "Robert Jordan is famous for The Wheel of Time.",
+    "prop_entities": [
+      "Robert Jordan",
+      "The Wheel of Time"
+    ],
+    "missing_entities": [
+      "Robert Jordan",
+      "The Wheel of Time"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 19,
+    "fact_text": "The name of the current head of state in United Kingdom is Emmerson Mnangagwa.",
+    "prop_text": "Washington, D.C. is the capital of United States of America.",
+    "prop_entities": [
+      "Washington, D.C.",
+      "United States of America"
+    ],
+    "missing_entities": [
+      "Washington, D.C.",
+      "United States of America"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 20,
+    "fact_text": "Country Joe McDonald is a citizen of Romania.",
+    "prop_text": "Imelda Marcos is affiliated with the religion of Catholicism.",
+    "prop_entities": [
+      "Imelda Marcos",
+      "Catholicism"
+    ],
+    "missing_entities": [
+      "Imelda Marcos",
+      "Catholicism"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 21,
+    "fact_text": "Past Masters was performed by The Beatles.",
+    "prop_text": "Emmerson Mnangagwa is the current head of state in United Kingdom.",
+    "prop_entities": [
+      "Emmerson Mnangagwa",
+      "United Kingdom"
+    ],
+    "missing_entities": [
+      "Emmerson Mnangagwa",
+      "United Kingdom"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 22,
+    "fact_text": "wide receiver is associated with the sport of rugby.",
+    "prop_text": "Country Joe McDonald is a citizen of Romania.",
+    "prop_entities": [
+      "Country Joe McDonald",
+      "Romania"
+    ],
+    "missing_entities": [
+      "Country Joe McDonald",
+      "Romania"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 23,
+    "fact_text": "The company that produced Ford Transit Connect is Ford Motor Company.",
+    "prop_text": "The Beatles performed Past Masters.",
+    "prop_entities": [
+      "The Beatles",
+      "Past Masters"
+    ],
+    "missing_entities": [
+      "The Beatles",
+      "Past Masters"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 24,
+    "fact_text": "Henry Ford is a citizen of United States of America.",
+    "prop_text": "Ford Motor Company produced the Ford Transit Connect.",
+    "prop_entities": [
+      "Ford Motor Company",
+      "Ford Transit Connect"
+    ],
+    "missing_entities": [
+      "Ford Motor Company",
+      "Ford Transit Connect"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 25,
+    "fact_text": "The capital of Iran is Tehran.",
+    "prop_text": "Henry Ford is a citizen of United States of America.",
+    "prop_entities": [
+      "Henry Ford",
+      "United States of America"
+    ],
+    "missing_entities": [
+      "Henry Ford",
+      "United States of America"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 26,
+    "fact_text": "Vito Corleone was created by Mario Puzo.",
+    "prop_text": "Tehran is the capital of Iran.",
+    "prop_entities": [
+      "Tehran",
+      "Iran"
+    ],
+    "missing_entities": [
+      "Tehran",
+      "Iran"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 27,
+    "fact_text": "Le Petit Parisien was created in the country of France.",
+    "prop_text": "Mario Puzo created Vito Corleone.",
+    "prop_entities": [
+      "Mario Puzo",
+      "Vito Corleone"
+    ],
+    "missing_entities": [
+      "Mario Puzo",
+      "Vito Corleone"
+    ]
+  },
+  {
+    "chunk_id": "chunk-bc96416cd2756b0e408237723282a2e8",
+    "fail_reason": "entity_mismatch",
+    "position": 28,
+    "fact_text": "flanker is associated with the sport of rugby union.",
+    "prop_text": "Le Petit Parisien was created in France.",
+    "prop_entities": [
+      "Le Petit Parisien",
+      "France"
+    ],
+    "missing_entities": [
+      "Le Petit Parisien",
+      "France"
+    ]
+  },
+  {
+    "chunk_id": "chunk-d443e86369c315cc415d2dc744df1e50",
+    "fail_reason": "count_mismatch",
+    "n_facts_parsed": 36,
+    "n_props": 37,
+    "first_3_facts": [
+      [
+        306,
+        "Thomas Kyd was born in the city of Leeds."
+      ],
+      [
+        307,
+        "Jesus Christ worked in the city of Galilee."
+      ],
+      [
+        308,
+        "John Harkes is associated with the sport of association football."
+      ]
+    ],
+    "first_3_props_text": [
+      "T. S. Eliot is the author of The Witcher.",
+      "Thomas Kyd was born in the city of Leeds.",
+      "Jesus Christ worked in the city of Galilee."
+    ]
+  },
+  {
+    "chunk_id": "chunk-32a878dca6714565c17ed8cba57f71d9",
+    "fail_reason": "count_mismatch",
+    "n_facts_parsed": 37,
+    "n_props": 38,
+    "first_3_facts": [
+      [
+        343,
+        "Charles Messier is a citizen of Iran."
+      ],
+      [
+        344,
+        "The author of Starship Troopers is Daphne du Maurier."
+      ],
+      [
+        345,
+        "Thus Spoke Zarathustra was created in the country of Germany."
+      ]
+    ],
+    "first_3_props_text": [
+      "Thomas Arne was born in the city of London.",
+      "Charles Messier is a citizen of Iran.",
+      "Daphne du Maurier is the author of Starship Troopers."
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 0,
+    "fact_text": "Elton John is a citizen of United Kingdom.",
+    "prop_text": "The headquarters of Berklee College of Music is located in Boston.",
+    "prop_entities": [
+      "Berklee College of Music",
+      "Boston"
+    ],
+    "missing_entities": [
+      "Berklee College of Music",
+      "Boston"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 1,
+    "fact_text": "baseball was created in the country of Japan.",
+    "prop_text": "Elton John is a citizen of the United Kingdom.",
+    "prop_entities": [
+      "Elton John",
+      "United Kingdom"
+    ],
+    "missing_entities": [
+      "Elton John",
+      "United Kingdom"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 2,
+    "fact_text": "The official language of Moscow is German.",
+    "prop_text": "Baseball was created in Japan.",
+    "prop_entities": [
+      "baseball",
+      "Japan"
+    ],
+    "missing_entities": [
+      "baseball",
+      "Japan"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 3,
+    "fact_text": "F-22 Raptor was developed by Boeing.",
+    "prop_text": "The official language of Moscow is German.",
+    "prop_entities": [
+      "Moscow",
+      "German"
+    ],
+    "missing_entities": [
+      "Moscow",
+      "German"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 4,
+    "fact_text": "Ron Dennis is employed by Pakistan International Airlines.",
+    "prop_text": "F-22 Raptor was developed by Boeing.",
+    "prop_entities": [
+      "F-22 Raptor",
+      "Boeing"
+    ],
+    "missing_entities": [
+      "F-22 Raptor",
+      "Boeing"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 5,
+    "fact_text": "Ferdinand von Richthofen is a citizen of Canada.",
+    "prop_text": "Ron Dennis is employed by Pakistan International Airlines.",
+    "prop_entities": [
+      "Ron Dennis",
+      "Pakistan International Airlines"
+    ],
+    "missing_entities": [
+      "Ron Dennis",
+      "Pakistan International Airlines"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 6,
+    "fact_text": "The headquarters of The University of the Arts is located in the city of Philadelphia.",
+    "prop_text": "Ferdinand von Richthofen is a citizen of Canada.",
+    "prop_entities": [
+      "Ferdinand von Richthofen",
+      "Canada"
+    ],
+    "missing_entities": [
+      "Ferdinand von Richthofen",
+      "Canada"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 7,
+    "fact_text": "The capital of Australia is Oderzo.",
+    "prop_text": "The headquarters of The University of the Arts is located in Philadelphia.",
+    "prop_entities": [
+      "The University of the Arts",
+      "Philadelphia"
+    ],
+    "missing_entities": [
+      "The University of the Arts",
+      "Philadelphia"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 8,
+    "fact_text": "association football was created in the country of Italy.",
+    "prop_text": "The capital of Australia is Oderzo.",
+    "prop_entities": [
+      "Australia",
+      "Oderzo"
+    ],
+    "missing_entities": [
+      "Australia",
+      "Oderzo"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 9,
+    "fact_text": "Vito Corleone was created by Nobuhiro Watsuki.",
+    "prop_text": "Association football was created in Italy.",
+    "prop_entities": [
+      "association football",
+      "Italy"
+    ],
+    "missing_entities": [
+      "association football",
+      "Italy"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 10,
+    "fact_text": "Shahnameh was written in the language of Persian.",
+    "prop_text": "Vito Corleone was created by Nobuhiro Watsuki.",
+    "prop_entities": [
+      "Vito Corleone",
+      "Nobuhiro Watsuki"
+    ],
+    "missing_entities": [
+      "Vito Corleone",
+      "Nobuhiro Watsuki"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 11,
+    "fact_text": "The director of American Broadcasting Company is Ernst Heinkel.",
+    "prop_text": "Shahnameh was written in Persian.",
+    "prop_entities": [
+      "Shahnameh",
+      "Persian"
+    ],
+    "missing_entities": [
+      "Shahnameh",
+      "Persian"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 12,
+    "fact_text": "The chief executive officer of Boeing is Adel al-Jubeir.",
+    "prop_text": "The director of American Broadcasting Company is Ernst Heinkel.",
+    "prop_entities": [
+      "American Broadcasting Company",
+      "Ernst Heinkel"
+    ],
+    "missing_entities": [
+      "American Broadcasting Company",
+      "Ernst Heinkel"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 13,
+    "fact_text": "Alan Jay Lerner died in the city of Mansourah, Algeria.",
+    "prop_text": "The chief executive officer of Boeing is Adel al-Jubeir.",
+    "prop_entities": [
+      "Boeing",
+      "Adel al-Jubeir"
+    ],
+    "missing_entities": [
+      "Boeing",
+      "Adel al-Jubeir"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 14,
+    "fact_text": "Joseph Goebbels worked in the city of Berlin.",
+    "prop_text": "Alan Jay Lerner died in Mansourah.",
+    "prop_entities": [
+      "Alan Jay Lerner",
+      "Mansourah"
+    ],
+    "missing_entities": [
+      "Alan Jay Lerner",
+      "Mansourah"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 15,
+    "fact_text": "The capital of United States of America is Harrisville.",
+    "prop_text": "Joseph Goebbels worked in Berlin.",
+    "prop_entities": [
+      "Joseph Goebbels",
+      "Berlin"
+    ],
+    "missing_entities": [
+      "Joseph Goebbels",
+      "Berlin"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 16,
+    "fact_text": "San Francisco is located in the continent of North America.",
+    "prop_text": "The capital of United States of America is Harrisville.",
+    "prop_entities": [
+      "United States of America",
+      "Harrisville"
+    ],
+    "missing_entities": [
+      "United States of America",
+      "Harrisville"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 17,
+    "fact_text": "The author of The Marriage of Figaro is Thomas Kyd.",
+    "prop_text": "San Francisco is located in North America.",
+    "prop_entities": [
+      "San Francisco",
+      "North America"
+    ],
+    "missing_entities": [
+      "San Francisco",
+      "North America"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 18,
+    "fact_text": "The univeristy where Lou Reed was educated is Fordham University.",
+    "prop_text": "The author of The Marriage of Figaro is Thomas Kyd.",
+    "prop_entities": [
+      "The Marriage of Figaro",
+      "Thomas Kyd"
+    ],
+    "missing_entities": [
+      "The Marriage of Figaro",
+      "Thomas Kyd"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 19,
+    "fact_text": "The company that produced Ford F-Series is Ford Motor Company.",
+    "prop_text": "Lou Reed was educated at Fordham University.",
+    "prop_entities": [
+      "Lou Reed",
+      "Fordham University"
+    ],
+    "missing_entities": [
+      "Lou Reed",
+      "Fordham University"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 20,
+    "fact_text": "The author of Sidereus Nuncius is Samuel Beckett.",
+    "prop_text": "Ford Motor Company produced the Ford F-Series.",
+    "prop_entities": [
+      "Ford Motor Company",
+      "Ford F-Series"
+    ],
+    "missing_entities": [
+      "Ford Motor Company",
+      "Ford F-Series"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 21,
+    "fact_text": "Emma Watson speaks the language of English.",
+    "prop_text": "The author of Sidereus Nuncius is Samuel Beckett.",
+    "prop_entities": [
+      "Sidereus Nuncius",
+      "Samuel Beckett"
+    ],
+    "missing_entities": [
+      "Sidereus Nuncius",
+      "Samuel Beckett"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 22,
+    "fact_text": "rap rock was created in the country of Russian Empire.",
+    "prop_text": "Emma Watson speaks English.",
+    "prop_entities": [
+      "Emma Watson",
+      "English"
+    ],
+    "missing_entities": [
+      "Emma Watson",
+      "English"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 23,
+    "fact_text": "The origianl broadcaster of The Brady Bunch is American Broadcasting Company.",
+    "prop_text": "Rap rock was created in the Russian Empire.",
+    "prop_entities": [
+      "rap rock",
+      "Russian Empire"
+    ],
+    "missing_entities": [
+      "rap rock",
+      "Russian Empire"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 24,
+    "fact_text": "Carlos Gómez is associated with the sport of basketball.",
+    "prop_text": "The original broadcaster of The Brady Bunch is American Broadcasting Company.",
+    "prop_entities": [
+      "The Brady Bunch",
+      "American Broadcasting Company"
+    ],
+    "missing_entities": [
+      "The Brady Bunch",
+      "American Broadcasting Company"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 25,
+    "fact_text": "Denis Sassou-Nguesso works in the field of politician.",
+    "prop_text": "Carlos Gómez is associated with basketball.",
+    "prop_entities": [
+      "Carlos Gómez",
+      "basketball"
+    ],
+    "missing_entities": [
+      "Carlos Gómez",
+      "basketball"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 26,
+    "fact_text": "Sophia Hawthorne is married to Nathaniel Hawthorne.",
+    "prop_text": "Denis Sassou-Nguesso works as a politician.",
+    "prop_entities": [
+      "Denis Sassou-Nguesso",
+      "politician"
+    ],
+    "missing_entities": [
+      "Denis Sassou-Nguesso",
+      "politician"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 27,
+    "fact_text": "The chief executive officer of ABB Group is Bernard Arnault.",
+    "prop_text": "Sophia Hawthorne is married to Nathaniel Hawthorne.",
+    "prop_entities": [
+      "Sophia Hawthorne",
+      "Nathaniel Hawthorne"
+    ],
+    "missing_entities": [
+      "Sophia Hawthorne",
+      "Nathaniel Hawthorne"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 28,
+    "fact_text": "The headquarters of University of Bucharest is located in the city of Ankara.",
+    "prop_text": "The chief executive officer of ABB Group is Bernard Arnault.",
+    "prop_entities": [
+      "ABB Group",
+      "Bernard Arnault"
+    ],
+    "missing_entities": [
+      "ABB Group",
+      "Bernard Arnault"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 29,
+    "fact_text": "Natalie Portman is affiliated with the religion of interdenominational organization.",
+    "prop_text": "The headquarters of University of Bucharest is located in Ankara.",
+    "prop_entities": [
+      "University of Bucharest",
+      "Ankara"
+    ],
+    "missing_entities": [
+      "University of Bucharest",
+      "Ankara"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 30,
+    "fact_text": "Ardashir I's child is Shapur I.",
+    "prop_text": "Natalie Portman is affiliated with an interdenominational organization.",
+    "prop_entities": [
+      "Natalie Portman",
+      "interdenominational organization"
+    ],
+    "missing_entities": [
+      "Natalie Portman",
+      "interdenominational organization"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 31,
+    "fact_text": "Karen Armstrong is affiliated with the religion of Church of Scotland.",
+    "prop_text": "Shapur I is the child of Ardashir I.",
+    "prop_entities": [
+      "Shapur I",
+      "Ardashir I"
+    ],
+    "missing_entities": [
+      "Shapur I",
+      "Ardashir I"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 32,
+    "fact_text": "Hermione Granger was performed by Emma Watson.",
+    "prop_text": "Karen Armstrong is affiliated with the Church of Scotland.",
+    "prop_entities": [
+      "Karen Armstrong",
+      "Church of Scotland"
+    ],
+    "missing_entities": [
+      "Karen Armstrong",
+      "Church of Scotland"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 33,
+    "fact_text": "Derek Shepherd is married to Meredith Grey.",
+    "prop_text": "Hermione Granger was performed by Emma Watson.",
+    "prop_entities": [
+      "Hermione Granger",
+      "Emma Watson"
+    ],
+    "missing_entities": [
+      "Hermione Granger",
+      "Emma Watson"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 34,
+    "fact_text": "The type of music that John McVie plays is rap rock.",
+    "prop_text": "Derek Shepherd is married to Meredith Grey.",
+    "prop_entities": [
+      "Derek Shepherd",
+      "Meredith Grey"
+    ],
+    "missing_entities": [
+      "Derek Shepherd",
+      "Meredith Grey"
+    ]
+  },
+  {
+    "chunk_id": "chunk-1138989ca7bf0b22f3e2b53b27956ef3",
+    "fail_reason": "entity_mismatch",
+    "position": 35,
+    "fact_text": "midfielder is associated with the sport of sumo. 417.",
+    "prop_text": "John McVie plays rap rock.",
+    "prop_entities": [
+      "John McVie",
+      "rap rock"
+    ],
+    "missing_entities": [
+      "John McVie",
+      "rap rock"
+    ]
+  },
+  {
+    "chunk_id": "chunk-4b2f4f5396b53beeb82b45f2fba8362a",
+    "fail_reason": "count_mismatch",
+    "n_facts_parsed": 37,
+    "n_props": 38,
+    "first_3_facts": [
+      [
+        418,
+        "Tunisia national football team is associated with the sport of basketball."
+      ],
+      [
+        419,
+        "Blair Walsh plays the position of placekicker."
+      ],
+      [
+        420,
+        "Sophia Hawthorne is married to Joan Didion."
+      ]
+    ],
+    "first_3_props_text": [
+      "Steve Sax is associated with the sport of association football.",
+      "Tunisia is associated with the sport of basketball.",
+      "Blair Walsh plays the position of placekicker."
+    ]
+  }
+]

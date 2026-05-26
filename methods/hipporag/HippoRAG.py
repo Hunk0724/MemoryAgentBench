@@ -211,6 +211,13 @@ class HippoRAG:
         # Keyed by query text (matches v2 annotation hook pattern).
         self._v2_enriched_context_by_query: Dict[str, str] = {}
 
+        # ===== Phase 2.c chunk-rebuild override (B2, corpus-agnostic) =====
+        # Populated by _v2_phase2_pipeline when enable_phase2_filter_chunk_rebuild
+        # is True. Consumed by retrieve() when building top_k_docs.
+        # Dict: query → {chunk_id: rebuilt_chunk_text}.
+        # See docs/C_v2_chunk_rebuild_design.md.
+        self._v2_chunk_content_override: Dict[str, Dict[str, str]] = {}
+
     def initialize_graph(self):
         """
         Initializes a graph using a GraphML file if available or creates a new graph.
@@ -453,7 +460,20 @@ class HippoRAG:
                                                                                          top_k_fact_indices=top_k_fact_indices,
                                                                                          passage_node_weight=self.global_config.passage_node_weight)
 
-            top_k_docs = [self.chunk_embedding_store.get_row(self.passage_node_keys[idx])["content"] for idx in sorted_doc_ids[:num_to_retrieve]]
+            # ===== Phase 2.c chunk-rebuild override hook (B2) =====
+            # If _v2_phase2_pipeline populated overrides for this query
+            # (because enable_phase2_filter_chunk_rebuild=True), substitute
+            # the chunk content with the rebuilt-from-remaining-props version.
+            # Otherwise use the raw chunk text from store.
+            _content_override = self._v2_chunk_content_override.get(query, {}) \
+                if getattr(self.global_config, 'enable_phase2_filter_chunk_rebuild', False) else {}
+            top_k_docs = []
+            for idx in sorted_doc_ids[:num_to_retrieve]:
+                _chunk_id = self.passage_node_keys[int(idx)]
+                if _chunk_id in _content_override:
+                    top_k_docs.append(_content_override[_chunk_id])
+                else:
+                    top_k_docs.append(self.chunk_embedding_store.get_row(_chunk_id)["content"])
 
             # v2: align annotation key — graph_search uses retrieval_query, but
             # qa() looks up by full query. Copy under full key.
@@ -1528,8 +1548,34 @@ class HippoRAG:
 
         # ─── Filter passages by verdict (§B.3.3 handoff logic) ───
         # Compute chain_old_pids regardless of filter flag (used by W3 Recent Updates).
-        chain_old_pids = {pid for pid, v in verdicts.items()
-                          if v.status == "superseded" and v.confidence in ("high", "medium")}
+        # ─── BIDIRECTIONAL chain_old aggregation (when flag set) ───
+        # Single-direction (legacy): focus_pid is chain_old only when focus is
+        # the older side (status='superseded').
+        # Bidirectional: ALSO include pool pids that focus contradicts AND
+        # are strictly EARLIER than focus (focus is newer). Closes the
+        # asymmetry where focus='current' verdicts dropped the older-twin
+        # info on the floor. See docs/C_v2_chunk_rebuild_design.md.
+        _verdict_bidir = getattr(self.global_config, 'enable_phase2_verdict_bidirectional', False)
+        chain_old_pids = set()
+        for _focus_pid, _v in verdicts.items():
+            if _v.confidence not in ("high", "medium"):
+                # Skip low/uncertain confidence (same as before).
+                # NOTE: 'current' with confidence='low' can still carry
+                # older_contradicting_pool_pids (the LLM detected contradiction
+                # but no later twin). Bidirectional path picks those up below
+                # if flag is set — but only via the bidirectional branch,
+                # which still respects confidence on the FOCUS side.
+                if _verdict_bidir and _v.older_contradicting_pool_pids:
+                    # Even though focus is low-confidence current, the older
+                    # pool twin was identified by LLM as contradicting.
+                    # We currently skip these for safety (under-recall).
+                    # If A1a/A1b shows recall too low, revisit this gate.
+                    pass
+                continue
+            if _v.status == "superseded":
+                chain_old_pids.add(_focus_pid)
+            if _verdict_bidir and _v.older_contradicting_pool_pids:
+                chain_old_pids.update(_v.older_contradicting_pool_pids)
 
         # Capture filter decisions for instrumentation (Stage 1 W3 analysis).
         passages_pre_filter: list = [
@@ -1538,6 +1584,48 @@ class HippoRAG:
         ]
         passages_dropped_chunk_ids: list = []
         passages_kept_chunk_ids: list = list(passages_pre_filter)  # default: all kept
+
+        # ===== Phase 2.c chunk-rebuild override (B2) =====
+        # For each chunk containing any chain_old prop, rebuild the chunk
+        # from its REMAINING (non-old) props. The chunk keeps its position
+        # in top-K; only the old fact-line texts are replaced.
+        # Stored in self._v2_chunk_content_override[query] = {chunk_id: text}.
+        # Consumed by retrieve() when assembling top_k_docs.
+        # See docs/C_v2_chunk_rebuild_design.md.
+        if (chain_old_pids
+                and getattr(self.global_config, 'enable_phase2_filter_chunk_rebuild', False)):
+            from .phase2c.chunk_rebuild import rebuild_chunk_minus_old
+            # Group chain_old_pids by source_chunk_id to know which chunks
+            # are affected (have any old to remove).
+            affected_chunks: set = set()
+            for pid in chain_old_pids:
+                prop = self._v2_chain_propositions.get(pid)
+                if prop is None:
+                    continue
+                affected_chunks.add(prop.source_chunk_id)
+            # For each affected chunk, get ALL props in that chunk and rebuild.
+            overrides: Dict[str, str] = {}
+            for cid in affected_chunks:
+                pids_in_chunk = self._v2_chunk_to_prop_ids.get(cid, [])
+                if not pids_in_chunk:
+                    continue
+                try:
+                    original = self.chunk_embedding_store.get_row(cid)["content"]
+                except KeyError:
+                    continue
+                rebuilt = rebuild_chunk_minus_old(
+                    original_chunk_text=original,
+                    pids_in_chunk=pids_in_chunk,
+                    chain_old_pid_set=chain_old_pids,
+                    prop_idx=self._v2_chain_propositions,
+                )
+                if rebuilt != original:
+                    overrides[cid] = rebuilt
+            if overrides:
+                self._v2_chunk_content_override[query] = overrides
+                logger.info(f"[v2 Phase 2.c B2] chunk-rebuild built overrides for "
+                            f"{len(overrides)} chunks (chain_old props: {len(chain_old_pids)}, "
+                            f"bidir={_verdict_bidir})")
 
         if chain_old_pids and getattr(self.global_config, 'enable_phase2_filter_passages', True):
             keep_mask = np.ones(len(sorted_doc_ids), dtype=bool)

@@ -296,6 +296,7 @@ def _decide_verdict_mechanically(
         return Verdict(
             status="uncertain", confidence="low",
             superseder_id=None,
+            older_contradicting_pool_pids=[],
             reason="LLM parse failed; no verdict",
             pool_size=pool_size, pool_sources=sources,
         )
@@ -304,23 +305,30 @@ def _decide_verdict_mechanically(
         return Verdict(
             status="current", confidence="high",
             superseder_id=None,
+            older_contradicting_pool_pids=[],
             reason=f"no contradicting pool member ({llm_reason[:80]})",
             pool_size=pool_size, pool_sources=sources,
         )
 
     focus_ts = tuple(focus.timestamp)
-    later = []
+    later: list = []
+    earlier: list = []  # NEW: pool pids strictly EARLIER than focus (older twins)
     for pid in contradicting_pids:
         if pid not in propositions:
             continue
-        if tuple(propositions[pid].timestamp) > focus_ts:
+        pid_ts = tuple(propositions[pid].timestamp)
+        if pid_ts > focus_ts:
             later.append(pid)
+        elif pid_ts < focus_ts:
+            earlier.append(pid)
+        # pid_ts == focus_ts: skip (ambiguous; rare)
 
     if later:
         latest_pid = max(later, key=lambda p: tuple(propositions[p].timestamp))
         return Verdict(
             status="superseded", confidence="high",
             superseder_id=latest_pid,
+            older_contradicting_pool_pids=earlier,
             reason=f"superseded by later contradicting prop ({llm_reason[:80]})",
             pool_size=pool_size, pool_sources=sources,
         )
@@ -328,6 +336,7 @@ def _decide_verdict_mechanically(
         return Verdict(
             status="current", confidence="low",
             superseder_id=None,
+            older_contradicting_pool_pids=earlier,
             reason=f"contradicting found but no strictly later timestamp ({llm_reason[:80]})",
             pool_size=pool_size, pool_sources=sources,
         )
