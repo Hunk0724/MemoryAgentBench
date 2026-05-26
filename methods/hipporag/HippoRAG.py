@@ -1525,12 +1525,15 @@ class HippoRAG:
         M = getattr(self.global_config, 'v2_phase2_M', 5)
         L = getattr(self.global_config, 'v2_phase2_L', 3)
         beam = getattr(self.global_config, 'v2_phase2_beam', 8)
+        scoring_variant = getattr(self.global_config, 'phase2a_scoring_variant', 'adhoc')
         chains = enumerate_candidate_chains(
             query_embedding=q_emb,
             active_propositions=active_props,
             prop_ppr_mass=prop_mass,
             M=M, L=L, beam_width=beam, n_seed=20,
             query_entities=query_entities,
+            scoring_variant=scoring_variant,
+            embedding_model=self.embedding_model,  # needed for proprag_strict
         )
 
         # ─── Phase 2.b: chain-restricted verdict ───

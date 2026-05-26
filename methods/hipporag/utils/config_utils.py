@@ -251,6 +251,16 @@ class BaseConfig:
                           "coverage gap. Default OFF for backwards-compat. "
                           "See docs/C_v2_chunk_rebuild_design.md."}
     )
+    phase2a_scoring_variant: str = field(
+        default="adhoc",
+        metadata={"help": "Phase 2.a beam-search path scoring formula. "
+                          "Options: "
+                          "'adhoc' (default, v2.0.2 hand-designed: relevance + 0.3·coherence + 0.2·ppr − 0.1·len), "
+                          "'pure_relevance' (Σ cosine only, strawman to test if ad-hoc structure helps), "
+                          "'proprag_strict' (cosine(encode(concat path text), q), no structure terms; "
+                          "PropRAG Liu et al. EMNLP 2025 `concatenate` mode). "
+                          "Env var: HIPPORAG_PHASE2A_SCORING_VARIANT."}
+    )
     v2_phase2_region_topK: int = field(
         default=50,
         metadata={"help": "Phase 2.a active region: top-K propositions by mass."}
@@ -383,6 +393,17 @@ class BaseConfig:
             if env_val is not None:
                 setattr(self, flag_attr, env_val.lower() in ("1", "true", "yes"))
                 logger.info(f"[config] env override: {flag_attr} = {getattr(self, flag_attr)} (from {env_name}={env_val!r})")
+
+        # T1 scoring variant — string env override (2026-05-24)
+        sv_env = os.environ.get("HIPPORAG_PHASE2A_SCORING_VARIANT")
+        if sv_env is not None:
+            sv_env_norm = sv_env.strip().lower()
+            if sv_env_norm in ("adhoc", "pure_relevance", "proprag_strict"):
+                self.phase2a_scoring_variant = sv_env_norm
+                logger.info(f"[config] env override: phase2a_scoring_variant = {sv_env_norm!r}")
+            else:
+                logger.warning(f"[config] HIPPORAG_PHASE2A_SCORING_VARIANT={sv_env!r} not in "
+                               "{adhoc, pure_relevance, proprag_strict}, ignoring")
 
         # Phase 2 percentile (numeric) — env var override for percentile sweep
         pct_env = os.environ.get("HIPPORAG_PHASE2_PERCENTILE")

@@ -120,6 +120,8 @@ def enumerate_candidate_chains(
     beam_width: int = 8,
     n_seed: int = 20,
     query_entities: Optional[Set[str]] = None,
+    scoring_variant: str = "adhoc",
+    embedding_model: object = None,
 ) -> List[Chain]:
     """Bounded beam-search path enumeration over active region.
 
@@ -132,12 +134,18 @@ def enumerate_candidate_chains(
         beam_width: beam search width per depth
         n_seed: number of seed propositions to start beams from (top by mass)
         query_entities: optional, used to PREFER chains starting near query
+        scoring_variant: {"adhoc"(default), "pure_relevance", "proprag_strict"}
+            See scoring_variants.py.
+        embedding_model: required for "proprag_strict", ignored otherwise.
 
     Returns:
         List[Chain] sorted by score descending, length ≤ M.
     """
     if not active_propositions or M <= 0:
         return []
+
+    # Lazy import to avoid circular dep
+    from .scoring_variants import score_chains_batch
 
     # ─── Step 2a: seed beam with top-n_seed propositions by mass ───
     seed_pids = sorted(active_propositions.keys(),
@@ -177,30 +185,34 @@ def enumerate_candidate_chains(
                 new_candidates.append(new_path)
         if not new_candidates:
             break
-        # Score candidates and keep top-beam_width
-        scored_candidates = []
-        for cand in new_candidates:
-            score, _ = score_chain(
-                cand["prop_ids"], active_propositions, query_embedding,
-                prop_ppr_mass, cand["entities_path"],
-            )
-            scored_candidates.append((score, cand))
+        # Score candidates (batched — esp. important for proprag_strict)
+        # and keep top-beam_width.
+        scored = score_chains_batch(
+            new_candidates, active_propositions, query_embedding, prop_ppr_mass,
+            variant=scoring_variant, embedding_model=embedding_model,
+        )
+        scored_candidates = list(zip([s for s, _ in scored], new_candidates))
         scored_candidates.sort(key=lambda x: -x[0])
         beam = [c for _, c in scored_candidates[:beam_width]]
         all_chains.extend([dict(c) for c in beam])
 
     # ─── Step 3: score all collected chains, dedup, return top-M ───
     seen_keys = set()
-    final = []
+    deduped: List[dict] = []
     for cand in all_chains:
         key = tuple(sorted(cand["prop_ids"]))
         if key in seen_keys:
             continue
         seen_keys.add(key)
-        score, breakdown = score_chain(
-            cand["prop_ids"], active_propositions, query_embedding,
-            prop_ppr_mass, cand["entities_path"],
-        )
+        deduped.append(cand)
+
+    # Batched final scoring
+    scored_final = score_chains_batch(
+        deduped, active_propositions, query_embedding, prop_ppr_mass,
+        variant=scoring_variant, embedding_model=embedding_model,
+    )
+    final = []
+    for cand, (score, breakdown) in zip(deduped, scored_final):
         chain_id = compute_mdhash_id(
             content="|".join(cand["prop_ids"]),
             prefix="chain-",
