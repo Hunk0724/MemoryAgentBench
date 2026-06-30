@@ -25,7 +25,7 @@
 - **執行前先確認設計**:跑實驗/重要改動前先講清楚改動+理由,等確認再動手。
 - **驗證期用便宜模型**:judge/eval 先用 gpt-4o-mini,確認 pipeline、進論文前才用 gpt-4o 重跑。
 - **跨系統評估必先 pipeline 對齊**(raw-q retrieval ungated、同 chunker);baseline 不對齊是論文大忌。
-- **圖面精簡**:figure 只留 axis/legend/data label,判讀寫進 caption(三段論 what/observation/implication)。頂會用 line/bar、不用 pie(pie 留簡報)。
+- **圖表規範(指導教授)**:畫圖用 **matplotlib / seaborn / SciencePlots / plotnine**(**不要 Excel、不要 HTML output**);**黑白印出來也要清楚**(少用色,靠 linestyle/marker/hatch/灰階);長字用**縮寫**+ caption 註明 `(xx stands for ...)`;**bar 不是好圖** → 有趨勢用 **line**、無趨勢用 **table**、不用 pie(pie 留簡報)。圖面精簡(只留 axis/legend/data label),判讀寫進 caption(三段論 what/observation/implication)。
 - rigor:不腦補、先查證據(q8/q9 標註錯誤的教訓)。
 
 ## 關鍵位置
