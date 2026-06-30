@@ -49,6 +49,12 @@
 6. **最快驗證(不需重 ingest)**:`python docs/0615_.../scripts/make_bank_recall.py` 等 `make_*.py`(讀已 commit 的 `analysis/results/phase0/*.json`)→ 圖重生 = python/matplotlib/資料檔 OK。
 7. **全鏈驗證(需 API key)**:`RUN_OAI_KEY_NAME=OPENAI_API_KEY_A bash docs/0615_.../scripts/run_fc_sh.sh 6k ours` 跑小量 → 確認 mem0+openai+qdrant 接線。stores/caches 不在 git → 首跑會重新 ingest。
 
+### 近期實際在跑的方法(換機後要能重跑這些)
+- **FC-SH**:`run_fc_sh.sh <L> <ours|vanilla|b>`(ours / mem0=vanilla / mem0+ours storage=b);**LCA(=gpt-4o-mini full-context)**、**Zep** 走各自路徑(`run_zep_fc.sh`/`run_zep_query_only.py`)。
+- **LongMemEval**:`run_lme_ku.sh` / `run_lme_ku_parallel.sh`(ours 已完;baselines 待 resume);Zep-LME=`run_zep_lme_*.sh`。
+- **不需要**:`outputs/rag_retrieved/NV-Embed-v2/*`、HippoRAG-v2(已不跑)→ 已從 git 移除、勿重建。
+- **未來 local model(Gemma-3-4B,weak-model 主張用)**:目前全 API(gpt-4o-mini);跑 Gemma-3-4B 需另接 vllm/ollama/transformers + 模型權重(本地 RTX 4050 / MacStudio),屬 next-step、非現有環境。
+
 ## 下一步(優先序)
 - **P0**:LongMemEval full baselines(resume)+ all-in-one-call ablation(證 decomposition 的貢獻)。
 - **P1**:qid29 case study、weak-model × method dose-response、gpt-4o judge 重跑。
