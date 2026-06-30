@@ -82,3 +82,6 @@ model_cache/
 .session_backups/
 *.sqlite
 *.sqlite.lock
+
+# scattered regenerable caches at analysis/results root
+analysis/results/*_cache_*.json
