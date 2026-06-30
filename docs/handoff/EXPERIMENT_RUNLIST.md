@@ -1,7 +1,8 @@
 # 換機後實驗執行優先序(per-device runlist)
 
 > 搭配 `CLAUDE.md`(環境/復現步驟)與 [RESEARCH_CONTEXT.md](RESEARCH_CONTEXT.md)。
-> 全程:conda env `MABench`、gpt-4o-mini temp 0、chunk 512、top-100。驗證期 judge 用 **gpt-4o-mini**,進論文前才換正式 **gpt-4o** 重跑。
+> 全程:conda env `MABench`、**系統 backbone** gpt-4o-mini temp 0、embedding text-embedding-3-small、chunk 512、top-100。
+> **LongMemEval 的 LLM judge**(官方預設 gpt-4o)驗證期暫用 **gpt-4o-mini** 省成本,**最終是否回 gpt-4o 未定**;**FC-SH 用 exact_match、無 LLM judge**。backbone 的 model sweep 方向往「更小」(weak-model,優先測比 gpt-4o-mini 小者),非往 gpt-4o。
 
 ## 執行原則(為什麼是這個順序)
 

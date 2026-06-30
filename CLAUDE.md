@@ -30,7 +30,7 @@
 
 ## 工作規則(來自累積回饋)
 - **執行前先確認設計**:跑實驗/重要改動前先講清楚改動+理由,等確認再動手。
-- **驗證期用便宜模型**:judge/eval 先用 gpt-4o-mini,確認 pipeline、進論文前才用 gpt-4o 重跑。
+- **驗證期用便宜模型(僅 LongMemEval judge)**:LongMemEval 的 QA 用 LLM judge(官方 `evaluate_qa.py` 預設 gpt-4o)→ 驗證期暫用 gpt-4o-mini 省成本,**最終是否回 gpt-4o judge 未定**(非既定計畫);**FC-SH 用 exact_match、無 LLM judge,不適用**。⚠ 別跟**系統 backbone model** 混淆:backbone 目前 gpt-4o-mini,**model sweep 方向往「更小」**(優先測比 gpt-4o-mini 小的 weak-model,扣 intro narrative),**不是往 gpt-4o**。
 - **跨系統評估必先 pipeline 對齊**(raw-q retrieval ungated、同 chunker);baseline 不對齊是論文大忌。
 - **圖表規範(指導教授)**:畫圖用 **matplotlib / seaborn / SciencePlots / plotnine**(**不要 Excel、不要 HTML output**);**黑白印出來也要清楚**(少用色,靠 linestyle/marker/hatch/灰階);長字用**縮寫**+ caption 註明 `(xx stands for ...)`;**bar 不是好圖** → 有趨勢用 **line**、無趨勢用 **table**、不用 pie(pie 留簡報)。圖面精簡(只留 axis/legend/data label),判讀寫進 caption(三段論 what/observation/implication)。
 - rigor:不腦補、先查證據(q8/q9 標註錯誤的教訓)。
@@ -82,4 +82,4 @@ held-fixed baseline(`b`、`ours_struct`)會**重用 `ours` 的 extraction cache*
 5. **決定寫作方向** — 依上述結果定 framing;同步補 narrative 所需文獻。
 6. **FC-MH 多跳** — 跑 FactConsolidation **multi-hop** 看多跳情況。
 
-> 仍待補(來自 conclusion,視上面結果穿插):LongMemEval baselines(mem0/vanilla/Zep)full、gpt-4o judge paper-final、Zep@4096 公平對照、多 seed variance。
+> 仍待補(來自 conclusion,視上面結果穿插):LongMemEval baselines(mem0/vanilla/Zep)full、**LongMemEval 是否回官方 gpt-4o judge(未定,非既定)**、Zep@4096 公平對照、多 seed variance。

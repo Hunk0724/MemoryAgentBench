@@ -57,9 +57,9 @@
 
 1. **驗證論文核心主張:表現是否主要來自 structural 貢獻**
    - 先做 **ablation(structural-only)**:`(S,P)` group + 確定性 temporal,關掉 LLM grouping + conflict-type,對照 full phase2。腳本已備:`run_fc_sh.sh <L> ours_struct` vs `run_fc_sh.sh <L> ours`。**結果出來才決定怎麼 claim**(對照:FC-SH conflict-type 97% freshness → structural 很可能就是 workhorse)。
-2. **驗證 weak-model regime 前提**:小模型下 ours 是否如預期(**ours 平緩、prior work drop**)。跑不同 model size:**Gemma-3-4B(small)→ mid model(Gemma 中型,之後可用 Google AI Studio API)**。先確認本地 RTX 4050 / Mac Studio 能否跑 local model。
+2. **驗證 weak-model regime 前提**:小模型下 ours 是否如預期(**ours 平緩、prior work drop**)。**model sweep 方向 = 往「比 gpt-4o-mini 更小」優先**(直接扣 intro narrative),跑不同 model size:**Gemma-3-4B(small)→ mid model(Gemma 中型,之後可用 Google AI Studio API)**。先確認本地 RTX 4050 / Mac Studio 能否跑 local model。(注意:這是**系統 backbone** 的 model 選擇,與 LongMemEval 的 judge model 無關。)
 3. **找 prior work 結構性失敗模式**:手動分析 mem0 / Zep 的失敗 case(**qid29** 是起點:mem0 write-time 把新版刪掉留舊版)。
 4. **強化 narrative:完整 ablation**:量化每個 component(identity grouping / conflict-type / temporal)的貢獻。
 5. **決定寫作方向**:依上述結果定 framing;**同步補 narrative 所需文獻**(與第 3 節定位連動)。
 
-> 之後穿插:LongMemEval baselines full、gpt-4o judge paper-final、Zep@4096、多 seed variance、FC-MH 多跳。
+> 之後穿插:LongMemEval baselines full、**LongMemEval 是否回官方 gpt-4o judge(未定,非既定;FC-SH 是 exact_match 無 judge)**、Zep@4096、多 seed variance、FC-MH 多跳。
