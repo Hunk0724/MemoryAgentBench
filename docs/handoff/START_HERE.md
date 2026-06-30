@@ -37,7 +37,7 @@
 ## 工作規則(務必遵守)
 - **全程繁體中文**(台灣資工學術用語 + 領域英文術語)。
 - **執行前先確認設計**:跑實驗 / 重要改動前,先講清楚「改什麼 + 為什麼」,等我確認再動手,別自行開跑。
-- **驗證期用便宜模型**:judge/eval 先用 **gpt-4o-mini**,確認 pipeline、進論文前才用 **gpt-4o** 重跑。
+- **驗證期用便宜模型(僅指 LongMemEval judge)**:LongMemEval 的 QA 用 LLM judge(官方預設 **gpt-4o**)→ 驗證期暫用 **gpt-4o-mini** 省成本,**最終是否回 gpt-4o judge 未定**(非既定計畫);**FC-SH 用 exact_match、無 LLM judge,不適用**。⚠ 別跟**系統 backbone model** 混淆——backbone 目前 gpt-4o-mini,**model sweep 方向往「更小」**(優先測比 gpt-4o-mini 小的 weak-model:Gemma-3-4B 等,扣 intro narrative),**不是往 gpt-4o**。
 - **跨系統評估先 pipeline 對齊**(raw-q retrieval ungated、同 chunker);不動 metric / query template / GT / baseline prompt。
 - **圖表規範**:matplotlib / seaborn / SciencePlots / plotnine(不要 Excel/HTML);黑白可讀為主;長字縮寫 + caption 註明;bar 不佳 → 趨勢用 line、無趨勢用 table、不用 pie。
 - **rigor**:不腦補、先查證據。
