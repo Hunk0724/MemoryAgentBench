@@ -11,13 +11,6 @@
 - `conda activate MABench && pip install -r requirements-core.txt`
   - 這版**新增 4 個主路徑必裝套件**:`torch / transformers / langchain-core / editdistance`(`agent.py`、`utils/eval_other_utils.py` 頂層 import,API-only 也需要;torch CPU build 即可)。
   - 裝完跑 `pip freeze | grep -iE 'torch|transformers|langchain-core|editdistance'`,把**確切版本釘回** `requirements-core.txt` 並 commit(目前那 4 行未釘版)。
-- **(可選)讓持久記憶在本機自動載入**:Claude 的記憶夾 `~/.claude/.../memory/` 是每台機器本地的,不隨 git 走。要完整繼承,把 repo 的備份複製進去一次即可:
-  ```bash
-  # 路徑依你的 OS/帳號調整;目的地是「該專案的 memory 夾」
-  mkdir -p ~/.claude/projects/<該專案路徑>/memory
-  cp docs/claude_memory/*.md ~/.claude/projects/<該專案路徑>/memory/
-  ```
-  不做也沒關係——精華已在 `CLAUDE.md`(自動載入)+ 本檔,新 session 照樣接得上脈絡。
 
 ## 1. 先讀(建立脈絡,務必先讀再動手)
 - `CLAUDE.md` — 自動載入:語言規則、研究主張、方法、環境、復現步驟、**migration proof 已過 + 換機兩個雷**。
