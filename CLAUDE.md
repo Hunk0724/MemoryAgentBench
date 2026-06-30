@@ -2,6 +2,12 @@
 
 > 換機器後新的 Claude Code session 會自動讀這份。完整個人記憶備份在 `docs/claude_memory/`。
 
+## ★ 換機後優先讀(handoff,接續本研究脈絡)
+- [`docs/handoff/RESEARCH_CONTEXT.md`](docs/handoff/RESEARCH_CONTEXT.md) — 研究脈絡 + 目前成果 + **最關鍵的「研究定位」難題** + 下一步 1–5。**續談實作/寫作前先讀。**
+- [`docs/handoff/EXPERIMENT_RUNLIST.md`](docs/handoff/EXPERIMENT_RUNLIST.md) — 換機後實驗執行優先序(方法路徑優先於長度廣度;6k 先跑通即代表該方法可擴各長度)。
+- [`docs/handoff/competitive_landscape_agentic_memory.md`](docs/handoff/competitive_landscape_agentic_memory.md) — agentic memory 生態盤點 + 正交性判讀(定位用)。
+- **我現在最缺的不是實驗,是「不知道怎麼定位研究」**(KU 窄題 vs 一堆 memory 大題/平台、比較對象太少)→ 見 RESEARCH_CONTEXT 第 3 節,協助 framing 與選對 baseline/文獻。
+
 ## 語言
 - **所有回覆一律繁體中文(台灣資工學術用語 + 領域英文術語)。**
 
