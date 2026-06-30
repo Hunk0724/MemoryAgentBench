@@ -36,7 +36,7 @@ SHARDSFX=""
 [[ "$NSHARD" -gt 1 ]] && SHARDSFX="_s${SHARD}n${NSHARD}"
 
 DATA=$LME_DATA_DIR/longmemeval_s_cleaned.json
-JUDGE_PY=$REPO_ROOT/llm_based_eval/longmem_qa_evaluate.py
+JUDGE_PY=$REPO_ROOT/llm_based_eval/evaluate_qa_official.py
 SUBDS="longmemeval_s_ku${SHARDSFX}"
 AGDIR=configs/agent_conf/RAG_Agents/gpt-4o-mini
 LOGROOT=docs/0615_intro_framework_after_problem_statement/logs

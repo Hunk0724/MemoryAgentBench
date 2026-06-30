@@ -18,7 +18,7 @@ N=${#ZK[@]}
 SC=docs/0615_intro_framework_after_problem_statement/scripts
 LOGROOT=docs/0615_intro_framework_after_problem_statement/logs
 HYPDIR=docs/0615_intro_framework_after_problem_statement/lme_hyps
-JUDGE_PY=$REPO_ROOT/llm_based_eval/longmem_qa_evaluate.py
+JUDGE_PY=$REPO_ROOT/llm_based_eval/evaluate_qa_official.py
 DATA=$LME_DATA_DIR/longmemeval_s_cleaned.json
 export OPENAI_API_KEY="${!OAIK}"
 

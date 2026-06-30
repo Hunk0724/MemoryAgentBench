@@ -39,7 +39,7 @@ echo "[orch] concatenated -> $FINAL ($(wc -l < "$FINAL" 2>/dev/null) lines)"
 
 # judge once (gpt-4o-mini for validation; set JUDGE_MODEL=gpt-4o for paper-final)
 JUDGE_MODEL="${JUDGE_MODEL:-gpt-4o-mini}"
-JUDGE_PY=$REPO_ROOT/llm_based_eval/longmem_qa_evaluate.py
+JUDGE_PY=$REPO_ROOT/llm_based_eval/evaluate_qa_official.py
 DATA=$LME_DATA_DIR/longmemeval_s_cleaned.json
 FINAL_ABS="$PWD/$FINAL"
 source "$CONDA_SH"; conda activate MABench

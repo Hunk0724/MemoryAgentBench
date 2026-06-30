@@ -46,7 +46,7 @@
    - repo 內含 patched `mem0/`(本地目錄,從 repo 根目錄執行時會覆蓋 pip 的 mem0ai)→ 寫入/抽取改動隨 git 走,不需另裝。
    - **local Gemma(weak-model)才另裝**:torch(對應 CUDA build)+ transformers + bitsandbytes / Ollama(各裝置自己裝對的版本;vLLM 在 Windows 需 WSL2)。
 3. 建 `.env`(不在 git):`OPENAI_API_KEY_A`..`E`、`ZEP_API_KEY_A`/`B`。
-4. 資料:FC 由 `datasets` 自動抓 HF `ai-hyz/MemoryAgentBench`;LongMemEval 需手動下載 `xiaowu0162/longmemeval-cleaned` 的 `longmemeval_s_cleaned.json`/`oracle` 到本機 data 夾。
+4. 資料:FC 由 `datasets` 自動抓 HF `ai-hyz/MemoryAgentBench`;LongMemEval 需手動下載 `xiaowu0162/longmemeval-cleaned` 的 `longmemeval_s_cleaned.json`/`oracle` 到 `data/longmemeval/`。**官方 judge 已 vendor 進 repo**(`llm_based_eval/evaluate_qa_official.py`,= 我們實際用的那支)→ judge 也不依賴外部。
 5. **路徑可攜性(已處理)**:`docs/0615_.../scripts/` 的核心 `*.sh`/`*.py` 與 mem0/zep yaml 已改成 **env 變數帶預設**——`REPO_ROOT` 由 `$(dirname $0)/../../..` 或 `__file__` 自動推、conda 用 `$HOME/miniconda3`、store path 改 relative。換機**通常零改**;若 conda 不在 `$HOME/miniconda3` 或 LME data 放別處,設 `CONDA_SH=` / `LME_DATA_DIR=` 覆蓋即可。(舊 `analyze_*`/`make_figures.py` 等次要腳本仍有寫死路徑,要用再改。)
 6. **最快驗證(不需重 ingest)**:`python docs/0615_.../scripts/make_bank_recall.py` 等 `make_*.py`(讀已 commit 的 `analysis/results/phase0/*.json`)→ 圖重生 = python/matplotlib/資料檔 OK。
 7. **全鏈驗證(需 API key)**:`RUN_OAI_KEY_NAME=OPENAI_API_KEY_A bash docs/0615_.../scripts/run_fc_sh.sh 6k ours` 跑小量 → 確認 mem0+openai+qdrant 接線。stores/caches 不在 git → 首跑會重新 ingest。

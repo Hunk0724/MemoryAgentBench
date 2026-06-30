@@ -14,7 +14,7 @@ export ZEP_API_KEY="${ZEP_API_KEY_A:?need ZEP_API_KEY_A}"
 export OPENAI_API_KEY="${OPENAI_API_KEY_A:?need OPENAI_API_KEY_A}"
 DATA=$LME_DATA_DIR/longmemeval_s_cleaned.json
 HYP=docs/0615_intro_framework_after_problem_statement/lme_hyps/lme_ku_zep_smoke2.jsonl
-JUDGE_PY=$REPO_ROOT/llm_based_eval/longmem_qa_evaluate.py
+JUDGE_PY=$REPO_ROOT/llm_based_eval/evaluate_qa_official.py
 rm -f "$HYP"
 
 echo "[zep-smoke] polling 2 graphs until EPISODE count stabilizes (ingestion done) ($(date))"
