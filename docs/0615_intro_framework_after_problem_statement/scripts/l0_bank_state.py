@@ -14,7 +14,7 @@ import json, re, os
 from collections import defaultdict
 from qdrant_client import QdrantClient
 
-ROOT = "/home/yhchiang/MemoryAgentBench"
+ROOT = __import__("os").environ.get("REPO_ROOT") or str(__import__("pathlib").Path(__file__).resolve().parents[3])
 STORE = f"{ROOT}/analysis/results/expanded/stores"
 LENS = ["6k", "32k", "64k", "262k"]
 METH = {  # display -> store tag

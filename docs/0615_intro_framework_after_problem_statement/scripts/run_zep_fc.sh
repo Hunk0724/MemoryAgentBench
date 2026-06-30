@@ -5,10 +5,14 @@
 # NOTE: Zep is a cloud async service. If scores look anomalously low (empty
 # retrieval = graph not done processing), re-query with the refetch scripts.
 set -u
-source /home/yhchiang/miniconda3/etc/profile.d/conda.sh
+REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../../.." && pwd)}"
+CONDA_SH="${CONDA_SH:-$HOME/miniconda3/etc/profile.d/conda.sh}"
+LME_DATA_DIR="${LME_DATA_DIR:-$REPO_ROOT/data/longmemeval}"
+export LME_DATA="${LME_DATA:-$LME_DATA_DIR/longmemeval_s_cleaned.json}"
+source "$CONDA_SH"
 conda activate MABench
 export PYTHONUNBUFFERED=1 OMP_NUM_THREADS=1
-cd /home/yhchiang/MemoryAgentBench
+cd $REPO_ROOT
 set -a; [[ -f .env ]] && . .env; set +a
 [[ -n "${RUN_OAI_KEY_NAME:-}" ]] && export OPENAI_API_KEY="${!RUN_OAI_KEY_NAME}" && echo "[key] \$$RUN_OAI_KEY_NAME ...${OPENAI_API_KEY: -6}"
 [[ -z "${OPENAI_API_KEY:-}" ]] && { echo "[key] ERROR none"; exit 1; }

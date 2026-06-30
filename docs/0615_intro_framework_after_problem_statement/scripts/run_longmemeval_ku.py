@@ -29,7 +29,7 @@ Usage:
 """
 import argparse, json, os, sys, time
 
-sys.path.insert(0, "/home/yhchiang/MemoryAgentBench")
+sys.path.insert(0, __import__("os").environ.get("REPO_ROOT") or str(__import__("pathlib").Path(__file__).resolve().parents[3]))
 import yaml
 from agent import AgentWrapper
 from utils.templates import get_template

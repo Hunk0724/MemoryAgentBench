@@ -30,6 +30,6 @@ mem0_config:
     config:
       collection_name: mem0_gpt4o_512_openai_unified_smoke
       embedding_model_dims: 1536
-      path: /home/yhchiang/MemoryAgentBench/analysis/results/expanded/stores/qdrant_gpt4o_512_openai_unified_smoke
+      path: analysis/results/expanded/stores/qdrant_gpt4o_512_openai_unified_smoke
       on_disk: true
   use_unified_extractor: true

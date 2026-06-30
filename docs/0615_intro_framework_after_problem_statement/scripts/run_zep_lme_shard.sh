@@ -5,9 +5,13 @@
 #   Env: ZEP_API_KEY, OPENAI_API_KEY, SHARD, NSHARD
 #   Usage: ZEP_API_KEY=.. OPENAI_API_KEY=.. SHARD=0 NSHARD=2 bash run_zep_lme_shard.sh
 set -u
-source /home/yhchiang/miniconda3/etc/profile.d/conda.sh; conda activate MABench
-cd /home/yhchiang/MemoryAgentBench
-DATA=/home/yhchiang/LongMemEval/data/longmemeval_s_cleaned.json
+REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../../.." && pwd)}"
+CONDA_SH="${CONDA_SH:-$HOME/miniconda3/etc/profile.d/conda.sh}"
+LME_DATA_DIR="${LME_DATA_DIR:-$REPO_ROOT/data/longmemeval}"
+export LME_DATA="${LME_DATA:-$LME_DATA_DIR/longmemeval_s_cleaned.json}"
+source "$CONDA_SH"; conda activate MABench
+cd $REPO_ROOT
+DATA=$LME_DATA_DIR/longmemeval_s_cleaned.json
 SC=docs/0615_intro_framework_after_problem_statement/scripts
 HYPDIR=docs/0615_intro_framework_after_problem_statement/lme_hyps
 SHARD="${SHARD:-0}"; NSHARD="${NSHARD:-1}"
@@ -23,7 +27,7 @@ import os, time, json
 from zep_cloud import Zep
 c = Zep(api_key=os.environ['ZEP_API_KEY'])
 S, N = int(os.environ['SHARD']), int(os.environ['NSHARD'])
-ku = [d for d in json.load(open('/home/yhchiang/LongMemEval/data/longmemeval_s_cleaned.json'))
+ku = [d for d in json.load(open(os.environ['LME_DATA']))
       if d['question_type'] == 'knowledge-update']
 mine = [d for i, d in enumerate(ku) if i % N == S]
 gids = [f"lme_ku_{d['question_id'].replace('-','_')}" for d in mine]

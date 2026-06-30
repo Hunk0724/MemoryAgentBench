@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 from pathlib import Path
 
-ROOT = "/home/yhchiang/MemoryAgentBench"
+ROOT = __import__("os").environ.get("REPO_ROOT") or str(__import__("pathlib").Path(__file__).resolve().parents[3])
 FIG = Path(f"{ROOT}/docs/0615_intro_framework_after_problem_statement/figures_current")
 S = json.load(open(f"{ROOT}/analysis/results/phase0/state_eval_current.json"))
 ORDER = ["new_only", "both", "old_only", "neither"]

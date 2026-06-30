@@ -14,7 +14,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-ROOT = "/home/yhchiang/MemoryAgentBench"
+ROOT = __import__("os").environ.get("REPO_ROOT") or str(__import__("pathlib").Path(__file__).resolve().parents[3])
 FIG = Path(f"{ROOT}/docs/0615_intro_framework_after_problem_statement/figures_current")
 L0 = json.load(open(f"{ROOT}/analysis/results/phase0/l0_bank_state.json"))
 L1 = json.load(open(f"{ROOT}/analysis/results/phase0/state_eval_current.json"))

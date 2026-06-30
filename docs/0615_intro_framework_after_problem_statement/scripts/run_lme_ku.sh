@@ -11,10 +11,14 @@
 #     qdrant store + caches + hyp file, so concurrent processes never collide.
 # Mirrors run_fc_sh.sh's env recipe; LongMemEval-specific isolation.
 set -u
-source /home/yhchiang/miniconda3/etc/profile.d/conda.sh
+REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../../.." && pwd)}"
+CONDA_SH="${CONDA_SH:-$HOME/miniconda3/etc/profile.d/conda.sh}"
+LME_DATA_DIR="${LME_DATA_DIR:-$REPO_ROOT/data/longmemeval}"
+export LME_DATA="${LME_DATA:-$LME_DATA_DIR/longmemeval_s_cleaned.json}"
+source "$CONDA_SH"
 conda activate MABench
 export PYTHONUNBUFFERED=1 OMP_NUM_THREADS=1
-cd /home/yhchiang/MemoryAgentBench
+cd $REPO_ROOT
 set -a; [[ -f .env ]] && . .env; set +a
 
 if [[ -n "${RUN_OAI_KEY_NAME:-}" ]]; then
@@ -31,13 +35,13 @@ NSHARD="${NSHARD:-1}"
 SHARDSFX=""
 [[ "$NSHARD" -gt 1 ]] && SHARDSFX="_s${SHARD}n${NSHARD}"
 
-DATA=/home/yhchiang/LongMemEval/data/longmemeval_s_cleaned.json
-JUDGE_PY=/home/yhchiang/origin_longmemeval/LongMemEval/src/evaluation/evaluate_qa.py
+DATA=$LME_DATA_DIR/longmemeval_s_cleaned.json
+JUDGE_PY=$REPO_ROOT/llm_based_eval/longmem_qa_evaluate.py
 SUBDS="longmemeval_s_ku${SHARDSFX}"
 AGDIR=configs/agent_conf/RAG_Agents/gpt-4o-mini
 LOGROOT=docs/0615_intro_framework_after_problem_statement/logs
 HYPDIR=docs/0615_intro_framework_after_problem_statement/lme_hyps
-STOREBASE=/home/yhchiang/MemoryAgentBench/analysis/results/expanded/stores
+STOREBASE=$REPO_ROOT/analysis/results/expanded/stores
 PC=$PWD/analysis/results/p1_caches/lme
 mkdir -p "$LOGROOT" "$PC" "$HYPDIR" "$PWD/analysis/results/phase0"
 

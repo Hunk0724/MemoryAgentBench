@@ -31,5 +31,5 @@ mem0_config:
     config:
       collection_name: mem0_gpt4o_512_openai_native
       embedding_model_dims: 1536
-      path: /home/yhchiang/MemoryAgentBench/analysis/results/expanded/stores/qdrant_gpt4o_512_openai_native
+      path: analysis/results/expanded/stores/qdrant_gpt4o_512_openai_native
       on_disk: true

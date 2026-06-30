@@ -28,6 +28,6 @@ mem0_config:
     config:
       collection_name: mem0_vertex_factaware_l2_262k_768
       embedding_model_dims: 768
-      path: /home/yhchiang/MemoryAgentBench/analysis/results/expanded/stores/qdrant_l2_262k
+      path: analysis/results/expanded/stores/qdrant_l2_262k
       on_disk: true
   use_l2_fc_prompt: true

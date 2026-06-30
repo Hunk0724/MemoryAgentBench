@@ -13,7 +13,7 @@ neither at L1); native (a) extracts ~nothing -> neither.
 import json, glob, re, os
 from collections import defaultdict
 
-ROOT = "/home/yhchiang/MemoryAgentBench"
+ROOT = __import__("os").environ.get("REPO_ROOT") or str(__import__("pathlib").Path(__file__).resolve().parents[3])
 METH = {  # name -> (rag_retrieved agent dir, result-json output dir)
     "ours":       ("Structure_rag_gpt-4o-mini-mem0_512_openai_unified",       "gpt-4o-mini-mem0-chunk512-temp0-openai-unified"),
     "(a)vanilla": ("Structure_rag_gpt-4o-mini-mem0_512_openai_native",        "gpt-4o-mini-mem0-chunk512-temp0-openai-native"),

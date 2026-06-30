@@ -4,10 +4,14 @@
 # 32k/64k fit gpt-4o-mini's 128k window (no truncation); 262k truncates.
 #   Usage: RUN_OAI_KEY_NAME=OPENAI_API_KEY_B bash run_lca_fc.sh <L> [model_cfg]
 set -u
-source /home/yhchiang/miniconda3/etc/profile.d/conda.sh
+REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../../.." && pwd)}"
+CONDA_SH="${CONDA_SH:-$HOME/miniconda3/etc/profile.d/conda.sh}"
+LME_DATA_DIR="${LME_DATA_DIR:-$REPO_ROOT/data/longmemeval}"
+export LME_DATA="${LME_DATA:-$LME_DATA_DIR/longmemeval_s_cleaned.json}"
+source "$CONDA_SH"
 conda activate MABench
 export PYTHONUNBUFFERED=1 OMP_NUM_THREADS=1
-cd /home/yhchiang/MemoryAgentBench
+cd $REPO_ROOT
 set -a; [[ -f .env ]] && . .env; set +a
 
 if [[ -n "${RUN_OAI_KEY_NAME:-}" ]]; then

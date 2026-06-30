@@ -5,8 +5,12 @@
 #   shard i -> ZEP account i (idx%2==i questions). Each shard does ingest->poll->query.
 #   Wall-clock dominated by Zep cloud processing of ~39 graphs/account (poll reveals).
 set -u
-source /home/yhchiang/miniconda3/etc/profile.d/conda.sh; conda activate MABench
-cd /home/yhchiang/MemoryAgentBench
+REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../../.." && pwd)}"
+CONDA_SH="${CONDA_SH:-$HOME/miniconda3/etc/profile.d/conda.sh}"
+LME_DATA_DIR="${LME_DATA_DIR:-$REPO_ROOT/data/longmemeval}"
+export LME_DATA="${LME_DATA:-$LME_DATA_DIR/longmemeval_s_cleaned.json}"
+source "$CONDA_SH"; conda activate MABench
+cd $REPO_ROOT
 set -a; [[ -f .env ]] && . .env; set +a
 read -r -a ZK <<< "${1:?need 2 ZEP key names, space-separated}"
 OAIK="${2:?need OAI key name}"
@@ -14,8 +18,8 @@ N=${#ZK[@]}
 SC=docs/0615_intro_framework_after_problem_statement/scripts
 LOGROOT=docs/0615_intro_framework_after_problem_statement/logs
 HYPDIR=docs/0615_intro_framework_after_problem_statement/lme_hyps
-JUDGE_PY=/home/yhchiang/origin_longmemeval/LongMemEval/src/evaluation/evaluate_qa.py
-DATA=/home/yhchiang/LongMemEval/data/longmemeval_s_cleaned.json
+JUDGE_PY=$REPO_ROOT/llm_based_eval/longmem_qa_evaluate.py
+DATA=$LME_DATA_DIR/longmemeval_s_cleaned.json
 export OPENAI_API_KEY="${!OAIK}"
 
 # cleanup: delete the 2 smoke graphs on account 0 so the full ingest is fresh
@@ -26,7 +30,7 @@ ZK0="${ZK[0]}" python - <<'PY' || true
 import os, json
 from zep_cloud import Zep
 c = Zep(api_key=os.environ[os.environ['ZK0']])
-for q in [d['question_id'] for d in json.load(open('/home/yhchiang/LongMemEval/data/longmemeval_s_cleaned.json'))
+for q in [d['question_id'] for d in json.load(open(os.environ['LME_DATA']))
           if d['question_type']=='knowledge-update'][:2]:
     g = f"lme_ku_{q.replace('-','_')}"
     try: c.graph.delete(graph_id=g); print("  deleted", g)
@@ -50,5 +54,5 @@ echo "[zep-full] concat -> $FINAL ($(wc -l < "$FINAL" 2>/dev/null) lines)"
 
 JUDGE_MODEL="${JUDGE_MODEL:-gpt-4o-mini}"
 echo "[zep-full] judge ($JUDGE_MODEL)"
-( cd "$(dirname "$JUDGE_PY")" && python "$(basename "$JUDGE_PY")" "$JUDGE_MODEL" "/home/yhchiang/MemoryAgentBench/$FINAL" "$DATA" ) || echo "[judge] failed"
+( cd "$(dirname "$JUDGE_PY")" && python "$(basename "$JUDGE_PY")" "$JUDGE_MODEL" "$REPO_ROOT/$FINAL" "$DATA" ) || echo "[judge] failed"
 echo "[zep-full] DONE ($(date))"

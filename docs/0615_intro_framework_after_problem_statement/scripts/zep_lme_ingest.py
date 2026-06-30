@@ -18,7 +18,7 @@ Usage (one shard):
 import argparse, json, os, re, sys, time
 from datetime import datetime, timezone
 
-sys.path.insert(0, "/home/yhchiang/MemoryAgentBench")
+sys.path.insert(0, __import__("os").environ.get("REPO_ROOT") or str(__import__("pathlib").Path(__file__).resolve().parents[3]))
 from zep_cloud import Zep
 
 GRAPH = lambda cid: f"lme_ku_{cid}"          # per-question graph id

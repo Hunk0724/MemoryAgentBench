@@ -9,10 +9,14 @@
 # Per-run isolated store/caches/cost-log keyed by <method>_<L> -> safe to run many
 # in parallel, each with its own OpenAI key (RUN_OAI_KEY) so rate limits don't collide.
 set -u
-source /home/yhchiang/miniconda3/etc/profile.d/conda.sh
+REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../../.." && pwd)}"
+CONDA_SH="${CONDA_SH:-$HOME/miniconda3/etc/profile.d/conda.sh}"
+LME_DATA_DIR="${LME_DATA_DIR:-$REPO_ROOT/data/longmemeval}"
+export LME_DATA="${LME_DATA:-$LME_DATA_DIR/longmemeval_s_cleaned.json}"
+source "$CONDA_SH"
 conda activate MABench
 export PYTHONUNBUFFERED=1 OMP_NUM_THREADS=1
-cd /home/yhchiang/MemoryAgentBench
+cd $REPO_ROOT
 set -a; [[ -f .env ]] && . .env; set +a
 
 # per-run API key (override so parallel runs don't share quota). Two ways:
@@ -32,7 +36,7 @@ METHOD="${2:?need method (ours|vanilla)}"
 LOGROOT=docs/0615_intro_framework_after_problem_statement/logs
 DCONF=configs/data_conf/Conflict_Resolution
 AGDIR=configs/agent_conf/RAG_Agents/gpt-4o-mini
-STOREBASE=/home/yhchiang/MemoryAgentBench/analysis/results/expanded/stores
+STOREBASE=$REPO_ROOT/analysis/results/expanded/stores
 PC=$PWD/analysis/results/p1_caches
 mkdir -p "$LOGROOT" "$PC" "$PWD/analysis/results/phase0"
 
@@ -59,6 +63,29 @@ if [[ "$METHOD" == "ours" ]]; then
          "$MEM0_CONFLICT_CACHE" "$STOREBASE/$STORE" \
          "$OUTDIR/Conflict_Resolution/"*sh_${L}*results*.json
   ANSDIR="outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified/k_100/factconsolidation_sh_${L}/chunksize_512"
+elif [[ "$METHOD" == "ours_struct" ]]; then
+  # ABLATION (next-step #1): SAME conservative write as ours, but query-time =
+  # STRUCTURAL only ((S,P) group + deterministic temporal; NO LLM grouping, NO
+  # conflict-type). Reuses ours' P1 extraction caches so the WRITE is identical ->
+  # isolates how much of ours' has_pair EM comes purely from structural+temporal.
+  # Compare against `ours` (phase2) at the same length.
+  TAG=unified_struct
+  AG=Structure_rag_gpt-4o-mini-mem0_512_openai_unified_struct.yaml
+  STORE="qdrant_gpt4o_512_openai_unified_struct__factconsolidation_sh_${L}"
+  export MEM0_TRIPLE_MODEL=gpt-4o-mini
+  export MEM0_EXTRACTION_CACHE="$PC/extraction_cache_p1_${L}.json"   # reuse ours' (held-fixed write)
+  export MEM0_TRIPLE_CACHE="$PC/triple_cache_p1_${L}.json"
+  export MEM0_SUBJECT_CACHE="$PC/subject_cache_p1_${L}.json"
+  export MEM0_GROUPING_CACHE="$PC/grouping_cache_struct_${L}.json"
+  export MEM0_CONFLICT_CACHE="$PC/conflict_cache_struct_${L}.json"
+  export MEM0_SP_INDEX_PATH="$PWD/analysis/results/phase0/sp_index_struct_sh_${L}.json"
+  export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/sh_${L}_struct"
+  export MEM0_ADD_MODE=phase0_structural
+  export MEM0_QUERY_MODE=structural
+  OUTDIR="outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct"
+  rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_SP_INDEX_PATH" "$STOREBASE/$STORE" \
+         "$OUTDIR/Conflict_Resolution/"*sh_${L}*results*.json
+  ANSDIR="outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_struct/k_100/factconsolidation_sh_${L}/chunksize_512"
 elif [[ "$METHOD" == "b" ]]; then
   # mem0(b): P1 extraction HELD FIXED (reuse ours' p1 extraction cache, read-only)
   # + mem0 DESTRUCTIVE update (no phase env). Isolates write-time-update loss.

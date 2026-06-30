@@ -3,14 +3,18 @@
 # Zep cloud processing (poll edges), then query + official judge (gpt-4o-mini).
 # Uses ZEP_API_KEY_A (the account that ingested) + OPENAI_API_KEY_A for answers.
 set -u
-source /home/yhchiang/miniconda3/etc/profile.d/conda.sh; conda activate MABench
-cd /home/yhchiang/MemoryAgentBench
+REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../../.." && pwd)}"
+CONDA_SH="${CONDA_SH:-$HOME/miniconda3/etc/profile.d/conda.sh}"
+LME_DATA_DIR="${LME_DATA_DIR:-$REPO_ROOT/data/longmemeval}"
+export LME_DATA="${LME_DATA:-$LME_DATA_DIR/longmemeval_s_cleaned.json}"
+source "$CONDA_SH"; conda activate MABench
+cd $REPO_ROOT
 set -a; [[ -f .env ]] && . .env; set +a
 export ZEP_API_KEY="${ZEP_API_KEY_A:?need ZEP_API_KEY_A}"
 export OPENAI_API_KEY="${OPENAI_API_KEY_A:?need OPENAI_API_KEY_A}"
-DATA=/home/yhchiang/LongMemEval/data/longmemeval_s_cleaned.json
+DATA=$LME_DATA_DIR/longmemeval_s_cleaned.json
 HYP=docs/0615_intro_framework_after_problem_statement/lme_hyps/lme_ku_zep_smoke2.jsonl
-JUDGE_PY=/home/yhchiang/origin_longmemeval/LongMemEval/src/evaluation/evaluate_qa.py
+JUDGE_PY=$REPO_ROOT/llm_based_eval/longmem_qa_evaluate.py
 rm -f "$HYP"
 
 echo "[zep-smoke] polling 2 graphs until EPISODE count stabilizes (ingestion done) ($(date))"
@@ -18,7 +22,7 @@ python - <<'PY'
 import os, time, json
 from zep_cloud import Zep
 c = Zep(api_key=os.environ['ZEP_API_KEY'])
-ku = [d for d in json.load(open('/home/yhchiang/LongMemEval/data/longmemeval_s_cleaned.json'))
+ku = [d for d in json.load(open(os.environ['LME_DATA']))
       if d['question_type'] == 'knowledge-update'][:2]
 gids = [f"lme_ku_{d['question_id'].replace('-','_')}" for d in ku]
 
@@ -50,6 +54,6 @@ python docs/0615_intro_framework_after_problem_statement/scripts/zep_lme_query.p
   --data "$DATA" --out "$HYP" --nshard 1 --shard 0 --limit 2
 
 echo "[zep-smoke] official judge (gpt-4o-mini)"
-HYP_ABS="/home/yhchiang/MemoryAgentBench/$HYP"
+HYP_ABS="$REPO_ROOT/$HYP"
 ( cd "$(dirname "$JUDGE_PY")" && python "$(basename "$JUDGE_PY")" gpt-4o-mini "$HYP_ABS" "$DATA" )
 echo "[zep-smoke] DONE ($(date))"

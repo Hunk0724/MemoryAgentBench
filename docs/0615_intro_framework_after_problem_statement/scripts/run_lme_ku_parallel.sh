@@ -6,7 +6,11 @@
 #   NSHARD = number of keys given. Each shard runs as its own process with its own
 #   key + isolated store/caches/hyp (see run_lme_ku.sh). Wall-clock ~= 9.5hr / N.
 set -u
-cd /home/yhchiang/MemoryAgentBench
+REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../../.." && pwd)}"
+CONDA_SH="${CONDA_SH:-$HOME/miniconda3/etc/profile.d/conda.sh}"
+LME_DATA_DIR="${LME_DATA_DIR:-$REPO_ROOT/data/longmemeval}"
+export LME_DATA="${LME_DATA:-$LME_DATA_DIR/longmemeval_s_cleaned.json}"
+cd $REPO_ROOT
 METHOD="${1:?need method (ours|b|vanilla)}"
 read -r -a KEYS <<< "${2:?need space-separated key names}"
 N=${#KEYS[@]}
@@ -35,10 +39,10 @@ echo "[orch] concatenated -> $FINAL ($(wc -l < "$FINAL" 2>/dev/null) lines)"
 
 # judge once (gpt-4o-mini for validation; set JUDGE_MODEL=gpt-4o for paper-final)
 JUDGE_MODEL="${JUDGE_MODEL:-gpt-4o-mini}"
-JUDGE_PY=/home/yhchiang/origin_longmemeval/LongMemEval/src/evaluation/evaluate_qa.py
-DATA=/home/yhchiang/LongMemEval/data/longmemeval_s_cleaned.json
+JUDGE_PY=$REPO_ROOT/llm_based_eval/longmem_qa_evaluate.py
+DATA=$LME_DATA_DIR/longmemeval_s_cleaned.json
 FINAL_ABS="$PWD/$FINAL"
-source /home/yhchiang/miniconda3/etc/profile.d/conda.sh; conda activate MABench
+source "$CONDA_SH"; conda activate MABench
 set -a; [[ -f .env ]] && . .env; set +a
 kn="${KEYS[0]}"; export OPENAI_API_KEY="${!kn}"
 echo "---- judge ($JUDGE_MODEL; paper-final=gpt-4o) on $FINAL ----"

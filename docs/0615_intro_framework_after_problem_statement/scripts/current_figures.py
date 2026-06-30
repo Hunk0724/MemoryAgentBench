@@ -10,7 +10,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-FIG = Path("/home/yhchiang/MemoryAgentBench/docs/0615_intro_framework_after_problem_statement/figures_current")
+FIG = Path(f"{__import__('os').environ.get('REPO_ROOT') or str(__import__('pathlib').Path(__file__).resolve().parents[3])}/docs/0615_intro_framework_after_problem_statement/figures_current")
 FIG.mkdir(parents=True, exist_ok=True)
 LENS = ["6k", "32k", "64k", "262k"]
 X = list(range(4))

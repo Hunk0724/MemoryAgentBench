@@ -8,7 +8,7 @@ import json, glob, re, sys, os
 from collections import Counter
 
 L = sys.argv[1] if len(sys.argv) > 1 else "32k"
-ROOT = "/home/yhchiang/MemoryAgentBench"
+ROOT = __import__("os").environ.get("REPO_ROOT") or str(__import__("pathlib").Path(__file__).resolve().parents[3])
 QDIR = f"{ROOT}/outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified/k_100/factconsolidation_sh_{L}/chunksize_512"
 gtmap = {r["query_id"]: r for r in json.load(open(f"{ROOT}/analysis/results/sh_{L}_mquake_analysis.json")) if "query_id" in r}
 res = {}
