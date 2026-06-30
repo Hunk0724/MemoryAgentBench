@@ -43,5 +43,34 @@
 - **rigor**:不腦補、先查證據。
 - **安全**:不要讀 / grep `.env`。
 
-## 5. 收尾待辦(背景知道即可)
-- 確認 `exp` 一切正常後,可 `git merge cleanup/archive-stale`(把 462 檔 stale 封存效果併入,工作樹更乾淨;該分支是 fallback,封存全用 `git mv` 可還原)。
+## 5. 整理分支 `cleanup/archive-stale`(之後有空再測試 → 改用它)
+
+**這是什麼**:把 **462 個 stale 檔**(`analysis/` 舊腳本+輸出、`docs/` 根層舊 spec、repo 根舊 `run_*.sh`、`PROVENANCE.md` 等)用 **`git mv` 移到 `_archive/`** 的分支,讓工作樹更乾淨、clone 少 ~35MB+ 委身的死檔。**全部是路徑搬移(0 內容增刪)→ 完全可逆**。
+
+**為什麼跟 `exp` 分開**:刻意不併進 `exp`,讓 migration proof 跑在「已知良好、未動過」的乾淨樹上。proof 兩台都過了 → 現在這分支可以放心測試與採用。
+
+**已驗證**:① 對 `exp` 做 `git merge-tree` dry-run **無衝突**(merge-base `da21fe3`);② 封存前做過三道斷鏈掃描,**功能性斷鏈 = 0**(現役需要的 `analysis/results/phase0/**`、`{extraction,triple,subject}_cache_*`、`{sh,mh}_*_mquake/RUN_gt/FULLPAIRS`、`analysis/contexts/*.txt`、`analyze_lca_mquake.py`/`check_mquake_coverage.py` 都**保留未動**)。
+
+**測試 → 採用流程(有空再做,非阻塞)**:
+```bash
+# 1) 先在分支上自我驗證(不影響 exp)
+git fetch origin
+git checkout cleanup/archive-stale
+#    跑一個現役檢查:圖能重生 + 一條 ablation 能跑
+python docs/0615_intro_framework_after_problem_statement/scripts/make_bank_recall.py    # 圖(需 matplotlib)
+bash docs/0615_intro_framework_after_problem_statement/scripts/run_fc_sh.sh 6k ours_struct  # 管線
+#    都 OK = 封存沒動到現役依賴
+
+# 2) 確認沒問題後,把封存效果併回 exp(已測為乾淨 merge)
+git checkout exp/v2-llm-judge
+git merge cleanup/archive-stale        # 純 rename,無衝突
+
+# 3) 之後就在乾淨的 exp 上繼續(或直接以 cleanup 為主幹)
+```
+
+**萬一要還原某個被封存的檔**(封存是 `git mv`,隨時救回):
+```bash
+git mv _archive/<原路徑> <原路徑>       # 單檔還原
+# 或整批退回:  git revert <該封存 commit>
+```
+> 注意:`git mv`/merge 只是**移動工作樹路徑**,檔案仍在 git 歷史 → clone 的 `.git` 大小不會因此變小(要真正瘦身才需 `git rm` + 歷史 rewrite,風險高、目前不做)。此分支的價值是**整理視覺 + 標記 stale**。
