@@ -3,6 +3,7 @@
 > 換機器後新的 Claude Code session 會自動讀這份。完整個人記憶備份在 `docs/claude_memory/`。
 
 ## ★ 換機後優先讀(handoff,接續本研究脈絡)
+- [`docs/handoff/START_HERE.md`](docs/handoff/START_HERE.md) — **新 session 第一份讀這個**:同步步驟 + 現況 + 已 approved 的下一步(structural-only ablation)+ 工作規則。
 - [`docs/handoff/RESEARCH_CONTEXT.md`](docs/handoff/RESEARCH_CONTEXT.md) — 研究脈絡 + 目前成果 + **最關鍵的「研究定位」難題** + 下一步 1–5。**續談實作/寫作前先讀。**
 - [`docs/handoff/EXPERIMENT_RUNLIST.md`](docs/handoff/EXPERIMENT_RUNLIST.md) — 換機後實驗執行優先序(方法路徑優先於長度廣度;6k 先跑通即代表該方法可擴各長度)。
 - [`docs/handoff/competitive_landscape_agentic_memory.md`](docs/handoff/competitive_landscape_agentic_memory.md) — agentic memory 生態盤點 + 正交性判讀(定位用)。
