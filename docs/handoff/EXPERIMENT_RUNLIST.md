@@ -18,11 +18,12 @@
 
 ## Phase 0 — 管線/環境驗證(= migration proof,第一個關鍵檢查)
 
-- [ ] **FC-SH `ours` 6k**:
+- [x] **FC-SH `ours` 6k ✅ 已通過(2026-06-30,Windows + Mac Studio 兩台從零 clone)**:
   `RUN_OAI_KEY_NAME=OPENAI_API_KEY_A bash docs/0615_intro_framework_after_problem_statement/scripts/run_fc_sh.sh 6k ours`
   - 從**全新 clone**(無任何 store/cache)會自動下載 FC 資料 + 重 ingest + query。
   - **對照目標(temp 0,容許 ±2–3)**:has_pair **68/74**、overall **92/100**。
-  - 跑通且數字吻合 = code+env+data+keys+qdrant 完整轉移成功 → 才往下。
+  - 實測:Windows has_pair 67/74、overall 92/100;Mac has_pair 69/74、overall 94/100 → 全鏈遷移成功。
+  - **實測 runtime(6k)**:ingest ~6–8min(~31s/chunk × 12)+ query ~44–45min(~27s/q × 100,**query 為瓶頸**,每題多次 LLM 解析)≈ 全程 ~50–54min。→ **32k/64k 會更久,規劃 ablation 時間時參考**(下方 Phase 3 #7 估 32k 各 ~1.5hr)。
 
 ## Phase 1 — FC-SH 主結果(逐方法;每方法先 6k 再擴長度)
 

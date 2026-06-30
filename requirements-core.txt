@@ -4,7 +4,8 @@
 #   pip install -r requirements-core.txt
 # NOTE: the patched mem0 lives in the repo (./mem0) and shadows pip mem0ai at runtime.
 # Device-specific (NOT here; install per machine ONLY for local Gemma / weak-model):
-#   torch (matching CUDA build), transformers, bitsandbytes / Ollama; vLLM needs WSL2 on Windows.
+#   bitsandbytes / Ollama; vLLM needs WSL2 on Windows. For local-model GPU/Metal,
+#   REINSTALL the platform-appropriate torch build over the (CPU) one pulled below.
 
 openai==2.26.0
 qdrant-client==1.17.0
@@ -25,3 +26,14 @@ pydantic==2.12.5
 httpx==0.28.1
 huggingface-hub==1.5.0
 nltk==3.9.3
+
+# Main-path imports — REQUIRED even for API-only runs (NOT weak-model-only):
+#   agent.py:3  import torch ; agent.py:13 from langchain_core.documents import Document
+#   agent.py:14-15 from transformers import ... ; utils/eval_other_utils.py:15 from editdistance
+# torch/transformers are imported unconditionally though only EXERCISED by local models -> a
+# CPU torch wheel is enough for API-only runs. Left unpinned because torch/transformers wheels
+# are platform-specific; once installed, pin the exact versions from `pip freeze` for repro.
+torch
+transformers
+langchain-core
+editdistance

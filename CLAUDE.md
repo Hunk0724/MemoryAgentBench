@@ -50,7 +50,8 @@
 2. `conda create -n MABench python=3.10 -y && conda activate MABench && pip install -r requirements-core.txt`
    - **用 `requirements-core.txt`(精簡+釘版,純 Python 跨平台)**,不要用 `requirements.txt`(含 flash_attn/deepspeed/faiss-gpu,Windows/無 GPU 會編譯失敗,且只給已停用的 HippoRAG/NV-Embed 用)。
    - repo 內含 patched `mem0/`(本地目錄,從 repo 根目錄執行時會覆蓋 pip 的 mem0ai)→ 寫入/抽取改動隨 git 走,不需另裝。
-   - **local Gemma(weak-model)才另裝**:torch(對應 CUDA build)+ transformers + bitsandbytes / Ollama(各裝置自己裝對的版本;vLLM 在 Windows 需 WSL2)。
+   - **torch / transformers / langchain-core / editdistance 是主路徑頂層 import**(`agent.py:3,13,14-15`、`utils/eval_other_utils.py:15`)→ **API-only 也必裝**,已列入 `requirements-core.txt`(torch CPU build 即足夠;**不是** weak-model 才裝)。
+   - **local Gemma(weak-model)才另裝**:bitsandbytes / Ollama(各裝置自己裝對版本;vLLM 在 Windows 需 WSL2),並把 torch 換成對應 CUDA/Metal build。
 3. 建 `.env`(不在 git):`OPENAI_API_KEY_A`..`E`、`ZEP_API_KEY_A`/`B`。
 4. 資料:FC 由 `datasets` 自動抓 HF `ai-hyz/MemoryAgentBench`;LongMemEval 需手動下載 `xiaowu0162/longmemeval-cleaned` 的 `longmemeval_s_cleaned.json`/`oracle` 到 `data/longmemeval/`。**官方 judge 已 vendor 進 repo**(`llm_based_eval/evaluate_qa_official.py`,= 我們實際用的那支)→ judge 也不依賴外部。
 5. **路徑可攜性(已處理)**:`docs/0615_.../scripts/` 的核心 `*.sh`/`*.py` 與 mem0/zep yaml 已改成 **env 變數帶預設**——`REPO_ROOT` 由 `$(dirname $0)/../../..` 或 `__file__` 自動推、conda 用 `$HOME/miniconda3`、store path 改 relative。換機**通常零改**;若 conda 不在 `$HOME/miniconda3` 或 LME data 放別處,設 `CONDA_SH=` / `LME_DATA_DIR=` 覆蓋即可。(舊 `analyze_*`/`make_figures.py` 等次要腳本仍有寫死路徑,要用再改。)
@@ -59,6 +60,9 @@
 
 ### ★ Migration 驗證 proof(換機後第一個關鍵檢查)
 從**全新 clone**(無任何 store/cache)跑 `RUN_OAI_KEY_NAME=OPENAI_API_KEY_A bash docs/0615_.../scripts/run_fc_sh.sh 6k ours`(會自動下載 FC 資料 + 重 ingest + query)→ 算 **has_pair EM**,對照已 commit 的目標 **6k ours = has_pair 68/74、overall 92/100**(temp 0 高度確定,容許 ±2-3)。**跑通且數字吻合 = pipeline(code+env+data+keys+qdrant)完整轉移成功。**
+
+- **✅ 已通過(2026-06-30,兩台從零 clone)**:Windows(i7-13700H/RTX4050)has_pair **67/74**、overall **92/100**(~54min,query 為瓶頸);Mac Studio(M2 Ultra)has_pair **69/74**、no_conflict **25/26**、overall **94/100**(~50min,比 Linux 快 ~14%)。Δ1–2 全在 ±2-3 容許內(OpenAI server bf16 + batch embedding 微小非決定性,§3.3 已記錄)→ **全鏈遷移確認成功**。
+- **換機兩個雷(已知,先排查)**:① `.env` 殘留**舊機 HF_* 變數**(指向不存在路徑)會卡 FC 資料載入 → `.env` 只留 API key,清掉 HF_*/SSL_CERT_FILE/*_CA_BUNDLE/路徑類。② **Windows conda 的 SSL_CERT_FILE**:`conda activate` 把它設成 Unix 佈局 `.../envs/MABench/ssl/cacert.pem`(不存在),真實檔在 `.../Library/ssl/cacert.pem` → httpx/openai 建 TLS 會炸;把憑證複製到期望路徑或修正 SSL_CERT_FILE 即可(與 `.env` 無關)。
 
 ### 執行順序 caveat（復現必知）
 held-fixed baseline(`b`、`ours_struct`)會**重用 `ours` 的 extraction cache**(`extraction_cache_p1_<L>.json`)→ **同一長度必須先跑 `ours`、再跑 `b`/`ours_struct`**,否則 cache 不存在會重抽(雖仍可跑,但失去 held-fixed 一致性)。
