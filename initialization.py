@@ -345,9 +345,20 @@ def _generate_default_agent_path(agent_config, dataset_config, current_context_i
 def _memorize_context_chunks(agent, context_chunks, current_context_index, total_contexts_count):
     """Handle the memorization process for context chunks."""
     print("\n\n Agent Memorizing...\n\n")
-    
+
+    # Smoke-test hook: MEM0_MAX_MEMORIZE_CHUNKS=N ingests only the first N chunks
+    # of each context so write-time extraction/triple quality and timing can be
+    # eyeballed before committing to a full (expensive) ingest. Unset / <=0 =
+    # ingest everything (normal behavior, byte-identical to upstream).
+    import os as _os
+    _max_chunks = int(_os.environ.get("MEM0_MAX_MEMORIZE_CHUNKS", "0") or "0")
+    if _max_chunks > 0 and len(context_chunks) > _max_chunks:
+        print(f"[smoke] MEM0_MAX_MEMORIZE_CHUNKS={_max_chunks}: "
+              f"ingesting first {_max_chunks}/{len(context_chunks)} chunks only")
+        context_chunks = context_chunks[:_max_chunks]
+
     progress_description = f"Processing experiments {current_context_index + 1}/{total_contexts_count}"
-    
+
     for chunk in tqdm(context_chunks, total=len(context_chunks), desc=progress_description):
         agent.send_message(chunk, memorizing=True, context_id=current_context_index)
 

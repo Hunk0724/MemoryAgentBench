@@ -1,0 +1,2 @@
+timestamp,method,task,ctx,em,latency_sec,status,result_path
+2026-05-30T15:22:33+08:00,LCA,sh,6k,,124,FAIL_exit0,outputs/gemini-3.1-flash-lite-temp0/Conflict_Resolution/factconsolidation_sh_6k_unknown_in6000_size10_shots0_max_samplesunknown_chunk4096_results.json

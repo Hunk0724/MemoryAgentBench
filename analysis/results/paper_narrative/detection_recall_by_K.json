@@ -1,0 +1,305 @@
+{
+  "prior B (adhoc, bidir=OFF)": {
+    "total_has_pair_hops": 170,
+    "matched_queries": 98,
+    "unmatched_queries": 2,
+    "K_list": [
+      1,
+      3,
+      5
+    ],
+    "chain_old_at_K": {
+      "1": 90,
+      "3": 109,
+      "5": 114
+    },
+    "chain_new_at_K": {
+      "1": 73,
+      "3": 101,
+      "5": 105
+    },
+    "either_at_K": {
+      "1": 91,
+      "3": 111,
+      "5": 115
+    },
+    "both_at_K": {
+      "1": 72,
+      "3": 99,
+      "5": 104
+    },
+    "by_hop": {
+      "1": {
+        "3": {
+          "old": 22,
+          "new": 15,
+          "either": 23,
+          "both": 14,
+          "total": 48
+        },
+        "2": {
+          "old": 57,
+          "new": 55,
+          "either": 57,
+          "both": 55,
+          "total": 87
+        },
+        "4": {
+          "old": 11,
+          "new": 3,
+          "either": 11,
+          "both": 3,
+          "total": 35
+        }
+      },
+      "3": {
+        "3": {
+          "old": 26,
+          "new": 23,
+          "either": 27,
+          "both": 22,
+          "total": 48
+        },
+        "2": {
+          "old": 71,
+          "new": 68,
+          "either": 72,
+          "both": 67,
+          "total": 87
+        },
+        "4": {
+          "old": 12,
+          "new": 10,
+          "either": 12,
+          "both": 10,
+          "total": 35
+        }
+      },
+      "5": {
+        "3": {
+          "old": 28,
+          "new": 25,
+          "either": 29,
+          "both": 24,
+          "total": 48
+        },
+        "2": {
+          "old": 73,
+          "new": 70,
+          "either": 73,
+          "both": 70,
+          "total": 87
+        },
+        "4": {
+          "old": 13,
+          "new": 10,
+          "either": 13,
+          "both": 10,
+          "total": 35
+        }
+      }
+    }
+  },
+  "T1-proprag-strict (bidir=OFF)": {
+    "total_has_pair_hops": 170,
+    "matched_queries": 98,
+    "unmatched_queries": 2,
+    "K_list": [
+      1,
+      3,
+      5
+    ],
+    "chain_old_at_K": {
+      "1": 84,
+      "3": 108,
+      "5": 116
+    },
+    "chain_new_at_K": {
+      "1": 4,
+      "3": 68,
+      "5": 89
+    },
+    "either_at_K": {
+      "1": 86,
+      "3": 111,
+      "5": 120
+    },
+    "both_at_K": {
+      "1": 2,
+      "3": 65,
+      "5": 85
+    },
+    "by_hop": {
+      "1": {
+        "3": {
+          "old": 23,
+          "new": 0,
+          "either": 23,
+          "both": 0,
+          "total": 48
+        },
+        "2": {
+          "old": 51,
+          "new": 2,
+          "either": 52,
+          "both": 1,
+          "total": 87
+        },
+        "4": {
+          "old": 10,
+          "new": 2,
+          "either": 11,
+          "both": 1,
+          "total": 35
+        }
+      },
+      "3": {
+        "3": {
+          "old": 30,
+          "new": 17,
+          "either": 32,
+          "both": 15,
+          "total": 48
+        },
+        "2": {
+          "old": 61,
+          "new": 39,
+          "either": 62,
+          "both": 38,
+          "total": 87
+        },
+        "4": {
+          "old": 17,
+          "new": 12,
+          "either": 17,
+          "both": 12,
+          "total": 35
+        }
+      },
+      "5": {
+        "3": {
+          "old": 31,
+          "new": 24,
+          "either": 33,
+          "both": 22,
+          "total": 48
+        },
+        "2": {
+          "old": 68,
+          "new": 51,
+          "either": 70,
+          "both": 49,
+          "total": 87
+        },
+        "4": {
+          "old": 17,
+          "new": 14,
+          "either": 17,
+          "both": 14,
+          "total": 35
+        }
+      }
+    }
+  },
+  "T1-pure-relevance (bidir=OFF)": {
+    "total_has_pair_hops": 170,
+    "matched_queries": 98,
+    "unmatched_queries": 2,
+    "K_list": [
+      1,
+      3,
+      5
+    ],
+    "chain_old_at_K": {
+      "1": 87,
+      "3": 109,
+      "5": 115
+    },
+    "chain_new_at_K": {
+      "1": 73,
+      "3": 98,
+      "5": 105
+    },
+    "either_at_K": {
+      "1": 89,
+      "3": 110,
+      "5": 116
+    },
+    "both_at_K": {
+      "1": 71,
+      "3": 97,
+      "5": 104
+    },
+    "by_hop": {
+      "1": {
+        "3": {
+          "old": 22,
+          "new": 15,
+          "either": 23,
+          "both": 14,
+          "total": 48
+        },
+        "2": {
+          "old": 56,
+          "new": 55,
+          "either": 57,
+          "both": 54,
+          "total": 87
+        },
+        "4": {
+          "old": 9,
+          "new": 3,
+          "either": 9,
+          "both": 3,
+          "total": 35
+        }
+      },
+      "3": {
+        "3": {
+          "old": 26,
+          "new": 22,
+          "either": 27,
+          "both": 21,
+          "total": 48
+        },
+        "2": {
+          "old": 72,
+          "new": 69,
+          "either": 72,
+          "both": 69,
+          "total": 87
+        },
+        "4": {
+          "old": 11,
+          "new": 7,
+          "either": 11,
+          "both": 7,
+          "total": 35
+        }
+      },
+      "5": {
+        "3": {
+          "old": 30,
+          "new": 26,
+          "either": 31,
+          "both": 25,
+          "total": 48
+        },
+        "2": {
+          "old": 73,
+          "new": 71,
+          "either": 73,
+          "both": 71,
+          "total": 87
+        },
+        "4": {
+          "old": 12,
+          "new": 8,
+          "either": 12,
+          "both": 8,
+          "total": 35
+        }
+      }
+    }
+  }
+}

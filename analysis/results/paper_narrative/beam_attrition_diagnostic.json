@@ -1,0 +1,160 @@
+{
+  "prior B (adhoc, bidir=OFF)": {
+    "total_has_pair_hops": 170,
+    "unmatched_queries": 2,
+    "cats_old": {
+      "IN_CHAIN": 114,
+      "LOST_BEAM_OR_SCORE": 35,
+      "LOST_ACTIVE": 10,
+      "LOST_CONNECTIVITY": 11
+    },
+    "cats_new": {
+      "IN_CHAIN": 105,
+      "LOST_BEAM_OR_SCORE": 41,
+      "LOST_ACTIVE": 10,
+      "LOST_CONNECTIVITY": 14
+    },
+    "by_hop_old": {
+      "3": {
+        "IN_CHAIN": 28,
+        "LOST_BEAM_OR_SCORE": 13,
+        "LOST_ACTIVE": 5,
+        "LOST_CONNECTIVITY": 2
+      },
+      "2": {
+        "IN_CHAIN": 73,
+        "LOST_BEAM_OR_SCORE": 14
+      },
+      "4": {
+        "IN_CHAIN": 13,
+        "LOST_BEAM_OR_SCORE": 8,
+        "LOST_CONNECTIVITY": 9,
+        "LOST_ACTIVE": 5
+      }
+    },
+    "by_hop_new": {
+      "3": {
+        "IN_CHAIN": 25,
+        "LOST_BEAM_OR_SCORE": 15,
+        "LOST_ACTIVE": 5,
+        "LOST_CONNECTIVITY": 3
+      },
+      "2": {
+        "IN_CHAIN": 70,
+        "LOST_BEAM_OR_SCORE": 17
+      },
+      "4": {
+        "IN_CHAIN": 10,
+        "LOST_BEAM_OR_SCORE": 9,
+        "LOST_CONNECTIVITY": 11,
+        "LOST_ACTIVE": 5
+      }
+    }
+  },
+  "T1-pure-relevance (bidir=OFF)": {
+    "total_has_pair_hops": 170,
+    "unmatched_queries": 2,
+    "cats_old": {
+      "IN_CHAIN": 115,
+      "LOST_BEAM_OR_SCORE": 32,
+      "LOST_ACTIVE": 10,
+      "LOST_CONNECTIVITY": 13
+    },
+    "cats_new": {
+      "IN_CHAIN": 105,
+      "LOST_BEAM_OR_SCORE": 39,
+      "LOST_ACTIVE": 10,
+      "LOST_CONNECTIVITY": 16
+    },
+    "by_hop_old": {
+      "3": {
+        "IN_CHAIN": 30,
+        "LOST_BEAM_OR_SCORE": 11,
+        "LOST_ACTIVE": 5,
+        "LOST_CONNECTIVITY": 2
+      },
+      "2": {
+        "IN_CHAIN": 73,
+        "LOST_BEAM_OR_SCORE": 14
+      },
+      "4": {
+        "IN_CHAIN": 12,
+        "LOST_BEAM_OR_SCORE": 7,
+        "LOST_CONNECTIVITY": 11,
+        "LOST_ACTIVE": 5
+      }
+    },
+    "by_hop_new": {
+      "3": {
+        "IN_CHAIN": 26,
+        "LOST_BEAM_OR_SCORE": 15,
+        "LOST_ACTIVE": 5,
+        "LOST_CONNECTIVITY": 2
+      },
+      "2": {
+        "IN_CHAIN": 71,
+        "LOST_BEAM_OR_SCORE": 16
+      },
+      "4": {
+        "IN_CHAIN": 8,
+        "LOST_BEAM_OR_SCORE": 8,
+        "LOST_CONNECTIVITY": 14,
+        "LOST_ACTIVE": 5
+      }
+    }
+  },
+  "T1-proprag-strict (bidir=OFF)": {
+    "total_has_pair_hops": 170,
+    "unmatched_queries": 2,
+    "cats_old": {
+      "IN_CHAIN": 116,
+      "LOST_BEAM_OR_SCORE": 19,
+      "LOST_CONNECTIVITY": 25,
+      "LOST_ACTIVE": 10
+    },
+    "cats_new": {
+      "IN_CHAIN": 89,
+      "LOST_BEAM_OR_SCORE": 43,
+      "LOST_CONNECTIVITY": 28,
+      "LOST_ACTIVE": 10
+    },
+    "by_hop_old": {
+      "3": {
+        "IN_CHAIN": 31,
+        "LOST_BEAM_OR_SCORE": 4,
+        "LOST_CONNECTIVITY": 8,
+        "LOST_ACTIVE": 5
+      },
+      "2": {
+        "IN_CHAIN": 68,
+        "LOST_BEAM_OR_SCORE": 9,
+        "LOST_CONNECTIVITY": 10
+      },
+      "4": {
+        "IN_CHAIN": 17,
+        "LOST_BEAM_OR_SCORE": 6,
+        "LOST_CONNECTIVITY": 7,
+        "LOST_ACTIVE": 5
+      }
+    },
+    "by_hop_new": {
+      "3": {
+        "IN_CHAIN": 24,
+        "LOST_BEAM_OR_SCORE": 10,
+        "LOST_CONNECTIVITY": 9,
+        "LOST_ACTIVE": 5
+      },
+      "2": {
+        "IN_CHAIN": 51,
+        "LOST_BEAM_OR_SCORE": 26,
+        "LOST_CONNECTIVITY": 10
+      },
+      "4": {
+        "IN_CHAIN": 14,
+        "LOST_BEAM_OR_SCORE": 7,
+        "LOST_CONNECTIVITY": 9,
+        "LOST_ACTIVE": 5
+      }
+    }
+  }
+}

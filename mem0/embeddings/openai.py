@@ -42,8 +42,45 @@ class OpenAIEmbedding(EmbeddingBase):
             list: The embedding vector.
         """
         text = text.replace("\n", " ")
-        return (
-            self.client.embeddings.create(input=[text], model=self.config.model, dimensions=self.config.embedding_dims)
-            .data[0]
-            .embedding
-        )
+        import time as _time
+        _t0 = _time.time()
+        resp = self.client.embeddings.create(input=[text], model=self.config.model, dimensions=self.config.embedding_dims)
+        try:
+            from methods.cost_logger import log as _costlog
+            _costlog(f"embed_{memory_action or 'na'}", self.config.model,
+                     getattr(getattr(resp, "usage", None), "prompt_tokens", 0), 0, _time.time() - _t0)
+        except Exception:
+            pass
+        return resp.data[0].embedding
+
+    def embed_batch(self, texts, memory_action: Optional[Literal["add", "search", "update"]] = None):
+        """Embed many texts in as few API calls as possible.
+
+        The OpenAI embeddings endpoint accepts a LIST input (up to 2048 items)
+        and returns one vector per item, so this collapses N sequential HTTP
+        round-trips into ceil(N/2048) calls. The vectors are byte-identical to
+        calling embed() once per text (same model, same per-text input after the
+        identical newline normalization) -- this is purely a latency
+        optimization and does not change any downstream result. Embeddings are
+        returned in the SAME order as `texts`.
+        """
+        texts = [t.replace("\n", " ") for t in texts]
+        if not texts:
+            return []
+        import time as _time
+        out = []
+        for i in range(0, len(texts), 2048):
+            batch = texts[i:i + 2048]
+            _t0 = _time.time()
+            resp = self.client.embeddings.create(
+                input=batch, model=self.config.model, dimensions=self.config.embedding_dims
+            )
+            try:
+                from methods.cost_logger import log as _costlog
+                _costlog(f"embed_{memory_action or 'na'}", self.config.model,
+                         getattr(getattr(resp, "usage", None), "prompt_tokens", 0), 0, _time.time() - _t0)
+            except Exception:
+                pass
+            # API returns items carrying their input index; sort to guarantee order.
+            out.extend(d.embedding for d in sorted(resp.data, key=lambda d: d.index))
+        return out

@@ -64,3 +64,21 @@ logs/proposition_extraction_sentinels.jsonl
 !analysis/
 !analysis/results/
 !analysis/experiments/
+
+# =====================================================
+# Migration (2026-06-28): large regenerable artifacts — re-run / re-analyze on
+# the new machine. Keep small computed results (analysis/results/phase0 + EM
+# result JSONs + figures) so figures reproduce without these.
+# =====================================================
+# qdrant vector stores (~2 GB) — regenerate by re-ingesting
+analysis/results/expanded/
+# extraction/triple/grouping caches (regenerable)
+analysis/results/p1_caches/
+# per-query retrieved JSONs + LLM caches (~571 MB)
+outputs/rag_retrieved/
+# run logs + update_decision.jsonl (~215 MB)
+docs/**/logs/
+model_cache/
+.session_backups/
+*.sqlite
+*.sqlite.lock

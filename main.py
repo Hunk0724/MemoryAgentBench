@@ -155,7 +155,14 @@ def process_context(context_index, context_chunks, query_answer_pairs, agent_con
     agent_save_folder = generate_agent_save_folder(agent_config, dataset_config, context_index)
     agent = initialize_and_memorize_agent(agent_config, dataset_config, agent_save_folder,
                                         context_chunks, context_index, total_contexts)
-    
+
+    # Write-time-only smoke hook: MEM0_MEMORIZE_ONLY=1 stops after memorization,
+    # skipping all query-time processing. Lets us inspect write-time extraction /
+    # store build in isolation (no query-time). Unset = normal full eval.
+    if os.environ.get("MEM0_MEMORIZE_ONLY", "0") not in ("0", "", "false", "False"):
+        logger.info(f"[memorize-only] context {context_index} memorized; skipping queries.")
+        return metrics, results, query_index, False
+
     # Process all queries for this context
     metrics, results, query_index = process_queries_for_context(
         agent, query_answer_pairs, dataset_config, metrics, results,

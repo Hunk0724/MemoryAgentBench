@@ -1,0 +1,4486 @@
+{
+  "summary": {
+    "alignment_file": "analysis/results/gemini-3.1-flash-lite-mem0-chunk512_mh_6k_align.json",
+    "retrieval_dir": "outputs/rag_retrieved/Structure_rag_mem0_gemini-3.1-flash-lite_chunk512/k_100/factconsolidation_mh_6k/chunksize_512",
+    "n_queries": 100,
+    "total_hops": 254,
+    "has_pair_hops": 188,
+    "no_conflict_hops": 66,
+    "state_counts": {
+      "LEAK": 102,
+      "CLEAN": 73,
+      "RETRIEVED": 59,
+      "MISS": 20
+    },
+    "matched_via_counts": {
+      "tier3_proximity": 213,
+      "tier2_no_proximity": 19,
+      "none": 22
+    },
+    "rates": {
+      "CLEAN_rate_has_pair": 0.3882978723404255,
+      "LEAK_rate_has_pair": 0.5425531914893617,
+      "MISS_rate_has_pair": 0.10638297872340426,
+      "RETRIEVED_rate_no_conflict": 0.8939393939393939,
+      "MISS_rate_no_conflict": 0.10606060606060606
+    }
+  },
+  "entries": [
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no0",
+      "query_id": 0,
+      "case_id": 6913,
+      "n_hops": 3,
+      "context_token_len_approx": 954,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 146,
+          "old_seq": 107,
+          "gt_answer": "Charles Darwin",
+          "old_answer": "Charles Dickens",
+          "update_gap": 39,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 335,
+          "old_seq": 164,
+          "gt_answer": "Amala Paul",
+          "old_answer": "Emma Darwin",
+          "update_gap": 171,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 322,
+          "old_seq": 294,
+          "gt_answer": "Belgium",
+          "old_answer": "India",
+          "update_gap": 28,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no1",
+      "query_id": 1,
+      "case_id": 4558,
+      "n_hops": 2,
+      "context_token_len_approx": 952,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 175,
+          "old_seq": null,
+          "gt_answer": "Olga of Kiev",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 450,
+          "old_seq": 125,
+          "gt_answer": "Rodez",
+          "old_answer": "Kyiv",
+          "update_gap": 325,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no2",
+      "query_id": 2,
+      "case_id": 2046,
+      "n_hops": 2,
+      "context_token_len_approx": 987,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 417,
+          "old_seq": 35,
+          "gt_answer": "association football",
+          "old_answer": "baseball",
+          "update_gap": 382,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 389,
+          "old_seq": 272,
+          "gt_answer": "Italy",
+          "old_answer": "England",
+          "update_gap": 117,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no3",
+      "query_id": 3,
+      "case_id": 5926,
+      "n_hops": 3,
+      "context_token_len_approx": 983,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 418,
+          "old_seq": 235,
+          "gt_answer": "basketball",
+          "old_answer": "association football",
+          "update_gap": 183,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 348,
+          "old_seq": 216,
+          "gt_answer": "Soviet Union",
+          "old_answer": "United States of America",
+          "update_gap": 132,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 179,
+          "old_seq": 156,
+          "gt_answer": "Russellville",
+          "old_answer": "Moscow",
+          "update_gap": 23,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no4",
+      "query_id": 4,
+      "case_id": 489,
+      "n_hops": 2,
+      "context_token_len_approx": 988,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 419,
+          "old_seq": null,
+          "gt_answer": "placekicker",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 321,
+          "old_seq": 78,
+          "gt_answer": "rugby",
+          "old_answer": "American football",
+          "update_gap": 243,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no5",
+      "query_id": 5,
+      "case_id": 751,
+      "n_hops": 2,
+      "context_token_len_approx": 982,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 369,
+          "old_seq": 58,
+          "gt_answer": "Wilhelm II",
+          "old_answer": "Elena Ceaușescu",
+          "update_gap": 311,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 453,
+          "old_seq": 349,
+          "gt_answer": "Baldwin Wallace University",
+          "old_answer": "University of Bonn",
+          "update_gap": 104,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no6",
+      "query_id": 6,
+      "case_id": 4555,
+      "n_hops": 2,
+      "context_token_len_approx": 970,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 275,
+          "old_seq": 109,
+          "gt_answer": "Bernard Arnault",
+          "old_answer": "Jack Dorsey",
+          "update_gap": 166,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 319,
+          "old_seq": null,
+          "gt_answer": "France",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no7",
+      "query_id": 7,
+      "case_id": 4507,
+      "n_hops": 2,
+      "context_token_len_approx": 967,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 366,
+          "old_seq": 342,
+          "gt_answer": "Bengaluru",
+          "old_answer": "London",
+          "update_gap": 24,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 234,
+          "old_seq": 4,
+          "gt_answer": "Oceania",
+          "old_answer": "Asia",
+          "update_gap": 230,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no8",
+      "query_id": 8,
+      "case_id": 3753,
+      "n_hops": 2,
+      "context_token_len_approx": 971,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 441,
+          "old_seq": 55,
+          "gt_answer": "Israel",
+          "old_answer": "United Kingdom",
+          "update_gap": 386,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 127,
+          "old_seq": 98,
+          "gt_answer": "North America",
+          "old_answer": "Asia",
+          "update_gap": 29,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no9",
+      "query_id": 9,
+      "case_id": 5515,
+      "n_hops": 3,
+      "context_token_len_approx": 967,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 361,
+          "old_seq": 282,
+          "gt_answer": "Methodism",
+          "old_answer": "Catholic Church",
+          "update_gap": 79,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 287,
+          "old_seq": 218,
+          "gt_answer": "Joseph Goebbels",
+          "old_answer": "John Wesley",
+          "update_gap": 69,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 395,
+          "old_seq": null,
+          "gt_answer": "Berlin",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no10",
+      "query_id": 10,
+      "case_id": 4804,
+      "n_hops": 2,
+      "context_token_len_approx": 970,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 360,
+          "old_seq": 154,
+          "gt_answer": "Adalbert of Prague",
+          "old_answer": "Maharishi Mahesh Yogi",
+          "update_gap": 206,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 339,
+          "old_seq": 153,
+          "gt_answer": "atheism",
+          "old_answer": "Catholic Church",
+          "update_gap": 186,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no11",
+      "query_id": 11,
+      "case_id": 107,
+      "n_hops": 2,
+      "context_token_len_approx": 945,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 182,
+          "old_seq": null,
+          "gt_answer": "Kingdom of Ireland",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 260,
+          "old_seq": 70,
+          "gt_answer": "Zoroastrianism",
+          "old_answer": "Catholic Church",
+          "update_gap": 190,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no12",
+      "query_id": 12,
+      "case_id": 6874,
+      "n_hops": 3,
+      "context_token_len_approx": 998,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 308,
+          "old_seq": null,
+          "gt_answer": "association football",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 389,
+          "old_seq": 272,
+          "gt_answer": "Italy",
+          "old_answer": "England",
+          "update_gap": 117,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 209,
+          "old_seq": 167,
+          "gt_answer": "Duluth",
+          "old_answer": "Rome",
+          "update_gap": 42,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no13",
+      "query_id": 13,
+      "case_id": 2341,
+      "n_hops": 2,
+      "context_token_len_approx": 963,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 135,
+          "old_seq": 84,
+          "gt_answer": "Princess Alice, Duchess of Gloucester",
+          "old_answer": "George W. Bush",
+          "update_gap": 51,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 94,
+          "old_seq": null,
+          "gt_answer": "Anglicanism",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no14",
+      "query_id": 14,
+      "case_id": 4013,
+      "n_hops": 2,
+      "context_token_len_approx": 974,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 367,
+          "old_seq": 338,
+          "gt_answer": "United Kingdom",
+          "old_answer": "United States of America",
+          "update_gap": 29,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 249,
+          "old_seq": 79,
+          "gt_answer": "Emmerson Mnangagwa",
+          "old_answer": "Elizabeth II",
+          "update_gap": 170,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no15",
+      "query_id": 15,
+      "case_id": 6544,
+      "n_hops": 3,
+      "context_token_len_approx": 981,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 315,
+          "old_seq": 291,
+          "gt_answer": "basketball",
+          "old_answer": "association football",
+          "update_gap": 24,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 348,
+          "old_seq": 216,
+          "gt_answer": "Soviet Union",
+          "old_answer": "United States of America",
+          "update_gap": 132,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 179,
+          "old_seq": 156,
+          "gt_answer": "Russellville",
+          "old_answer": "Moscow",
+          "update_gap": 23,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no16",
+      "query_id": 16,
+      "case_id": 521,
+      "n_hops": 2,
+      "context_token_len_approx": 992,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 405,
+          "old_seq": 81,
+          "gt_answer": "basketball",
+          "old_answer": "baseball",
+          "update_gap": 324,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 348,
+          "old_seq": 216,
+          "gt_answer": "Soviet Union",
+          "old_answer": "United States of America",
+          "update_gap": 132,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no17",
+      "query_id": 17,
+      "case_id": 1675,
+      "n_hops": 2,
+      "context_token_len_approx": 970,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 123,
+          "old_seq": 29,
+          "gt_answer": "Great Britain",
+          "old_answer": "France",
+          "update_gap": 94,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 33,
+          "old_seq": null,
+          "gt_answer": "London",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no18",
+      "query_id": 18,
+      "case_id": 1170,
+      "n_hops": 2,
+      "context_token_len_approx": 971,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 232,
+          "old_seq": 1,
+          "gt_answer": "Moshe Kahlon",
+          "old_answer": "Mahmoud Abbas",
+          "update_gap": 231,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 368,
+          "old_seq": 134,
+          "gt_answer": "soldier",
+          "old_answer": "politician",
+          "update_gap": 234,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no19",
+      "query_id": 19,
+      "case_id": 8280,
+      "n_hops": 4,
+      "context_token_len_approx": 994,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 350,
+          "old_seq": null,
+          "gt_answer": "The Beatles",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 443,
+          "old_seq": 236,
+          "gt_answer": "Joe Hockey",
+          "old_answer": "Brian Epstein",
+          "update_gap": 207,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 427,
+          "old_seq": 129,
+          "gt_answer": "Italy",
+          "old_answer": "Australia",
+          "update_gap": 298,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 209,
+          "old_seq": 167,
+          "gt_answer": "Duluth",
+          "old_answer": "Rome",
+          "update_gap": 42,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no20",
+      "query_id": 20,
+      "case_id": 5314,
+      "n_hops": 3,
+      "context_token_len_approx": 953,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 326,
+          "old_seq": 66,
+          "gt_answer": "Ferdowsi",
+          "old_answer": "Robert Jordan",
+          "update_gap": 260,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 86,
+          "old_seq": null,
+          "gt_answer": "Shahnameh",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 391,
+          "old_seq": null,
+          "gt_answer": "Persian",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no21",
+      "query_id": 21,
+      "case_id": 6066,
+      "n_hops": 3,
+      "context_token_len_approx": 982,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 412,
+          "old_seq": 266,
+          "gt_answer": "Church of Scotland",
+          "old_answer": "Catholic Church",
+          "update_gap": 146,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 17,
+          "old_seq": null,
+          "gt_answer": "John Knox",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 312,
+          "old_seq": null,
+          "gt_answer": "Edinburgh",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no22",
+      "query_id": 22,
+      "case_id": 2665,
+      "n_hops": 2,
+      "context_token_len_approx": 963,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 200,
+          "old_seq": null,
+          "gt_answer": "Aristotle",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 332,
+          "old_seq": 191,
+          "gt_answer": "George Alexander Kohut",
+          "old_answer": "Nicomachus",
+          "update_gap": 141,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no23",
+      "query_id": 23,
+      "case_id": 4423,
+      "n_hops": 2,
+      "context_token_len_approx": 977,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 133,
+          "old_seq": 104,
+          "gt_answer": "basketball",
+          "old_answer": "association football",
+          "update_gap": 29,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 348,
+          "old_seq": 216,
+          "gt_answer": "Soviet Union",
+          "old_answer": "United States of America",
+          "update_gap": 132,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no24",
+      "query_id": 24,
+      "case_id": 7528,
+      "n_hops": 4,
+      "context_token_len_approx": 983,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 277,
+          "old_seq": 238,
+          "gt_answer": "ABB Group",
+          "old_answer": "Valve Corporation",
+          "update_gap": 39,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 408,
+          "old_seq": 347,
+          "gt_answer": "Bernard Arnault",
+          "old_answer": "Ulrich Spiesshofer",
+          "update_gap": 61,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 319,
+          "old_seq": null,
+          "gt_answer": "France",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 171,
+          "old_seq": 163,
+          "gt_answer": "Harare",
+          "old_answer": "Paris",
+          "update_gap": 8,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no25",
+      "query_id": 25,
+      "case_id": 917,
+      "n_hops": 2,
+      "context_token_len_approx": 975,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 384,
+          "old_seq": 274,
+          "gt_answer": "Boeing",
+          "old_answer": "Lockheed Martin",
+          "update_gap": 110,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 393,
+          "old_seq": 136,
+          "gt_answer": "Adel al-Jubeir",
+          "old_answer": "Dennis Muilenburg",
+          "update_gap": 257,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no26",
+      "query_id": 26,
+      "case_id": 1140,
+      "n_hops": 2,
+      "context_token_len_approx": 997,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 431,
+          "old_seq": null,
+          "gt_answer": "Harvard University",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 222,
+          "old_seq": 80,
+          "gt_answer": "Peter Diamandis",
+          "old_answer": "Lawrence S. Bacow",
+          "update_gap": 142,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no27",
+      "query_id": 27,
+      "case_id": 8936,
+      "n_hops": 4,
+      "context_token_len_approx": 968,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 414,
+          "old_seq": null,
+          "gt_answer": "Meredith Grey",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 96,
+          "old_seq": null,
+          "gt_answer": "Ellen Pompeo",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 268,
+          "old_seq": null,
+          "gt_answer": "United States of America",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 396,
+          "old_seq": 247,
+          "gt_answer": "Harrisville",
+          "old_answer": "Washington, D.C",
+          "update_gap": 149,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no28",
+      "query_id": 28,
+      "case_id": 4305,
+      "n_hops": 2,
+      "context_token_len_approx": 969,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 299,
+          "old_seq": 244,
+          "gt_answer": "Czech Republic",
+          "old_answer": "United States of America",
+          "update_gap": 55,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 190,
+          "old_seq": null,
+          "gt_answer": "Prague",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no29",
+      "query_id": 29,
+      "case_id": 1585,
+      "n_hops": 2,
+      "context_token_len_approx": 986,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 250,
+          "old_seq": 165,
+          "gt_answer": "Romania",
+          "old_answer": "United States of America",
+          "update_gap": 85,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 449,
+          "old_seq": 185,
+          "gt_answer": "Rajanpur",
+          "old_answer": "Bucharest",
+          "update_gap": 264,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no30",
+      "query_id": 30,
+      "case_id": 5636,
+      "n_hops": 3,
+      "context_token_len_approx": 1048,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 181,
+          "old_seq": 52,
+          "gt_answer": "Lou Reed",
+          "old_answer": "Bob Dylan",
+          "update_gap": 129,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 399,
+          "old_seq": 286,
+          "gt_answer": "Fordham University",
+          "old_answer": "Syracuse University",
+          "update_gap": 113,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 101,
+          "old_seq": null,
+          "gt_answer": "New York City",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no31",
+      "query_id": 31,
+      "case_id": 6228,
+      "n_hops": 3,
+      "context_token_len_approx": 992,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 346,
+          "old_seq": 194,
+          "gt_answer": "association football",
+          "old_answer": "basketball",
+          "update_gap": 152,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 389,
+          "old_seq": 272,
+          "gt_answer": "Italy",
+          "old_answer": "England",
+          "update_gap": 117,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 375,
+          "old_seq": null,
+          "gt_answer": "Giuseppe Conte",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no32",
+      "query_id": 32,
+      "case_id": 8752,
+      "n_hops": 4,
+      "context_token_len_approx": 971,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 221,
+          "old_seq": null,
+          "gt_answer": "Microsoft",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 188,
+          "old_seq": 85,
+          "gt_answer": "Steve Jobs",
+          "old_answer": "Satya Nadella",
+          "update_gap": 103,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 178,
+          "old_seq": null,
+          "gt_answer": "San Francisco",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 397,
+          "old_seq": null,
+          "gt_answer": "North America",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no33",
+      "query_id": 33,
+      "case_id": 5575,
+      "n_hops": 3,
+      "context_token_len_approx": 976,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 279,
+          "old_seq": 18,
+          "gt_answer": "cricket",
+          "old_answer": "association football",
+          "update_gap": 261,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 150,
+          "old_seq": 57,
+          "gt_answer": "Australia",
+          "old_answer": "England",
+          "update_gap": 93,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 220,
+          "old_seq": 75,
+          "gt_answer": "South America",
+          "old_answer": "Oceania",
+          "update_gap": 145,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no34",
+      "query_id": 34,
+      "case_id": 1825,
+      "n_hops": 2,
+      "context_token_len_approx": 925,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 11,
+          "old_seq": null,
+          "gt_answer": "Imelda Marcos",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 374,
+          "old_seq": 248,
+          "gt_answer": "atheism",
+          "old_answer": "Catholicism",
+          "update_gap": 126,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no35",
+      "query_id": 35,
+      "case_id": 1292,
+      "n_hops": 2,
+      "context_token_len_approx": 956,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 390,
+          "old_seq": 256,
+          "gt_answer": "Nobuhiro Watsuki",
+          "old_answer": "Mario Puzo",
+          "update_gap": 134,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 259,
+          "old_seq": 91,
+          "gt_answer": "The Fairly OddParents",
+          "old_answer": "Rurouni Kenshin",
+          "update_gap": 168,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "none",
+          "old_matched_via": "none",
+          "state": "MISS"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no36",
+      "query_id": 36,
+      "case_id": 3812,
+      "n_hops": 2,
+      "context_token_len_approx": 962,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 229,
+          "old_seq": 71,
+          "gt_answer": "Ayumi Hamasaki",
+          "old_answer": "Elton John",
+          "update_gap": 158,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 293,
+          "old_seq": null,
+          "gt_answer": "Japan",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "no_old",
+          "state": "MISS"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no37",
+      "query_id": 37,
+      "case_id": 1655,
+      "n_hops": 2,
+      "context_token_len_approx": 962,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 425,
+          "old_seq": 413,
+          "gt_answer": "Kylie Minogue",
+          "old_answer": "Emma Watson",
+          "update_gap": 12,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 157,
+          "old_seq": 122,
+          "gt_answer": "German",
+          "old_answer": "English",
+          "update_gap": 35,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no38",
+      "query_id": 38,
+      "case_id": 4387,
+      "n_hops": 2,
+      "context_token_len_approx": 966,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 298,
+          "old_seq": 289,
+          "gt_answer": "post-punk",
+          "old_answer": "jazz",
+          "update_gap": 9,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "none",
+          "old_matched_via": "none",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 267,
+          "old_seq": 161,
+          "gt_answer": "Canada",
+          "old_answer": "United Kingdom",
+          "update_gap": 106,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no39",
+      "query_id": 39,
+      "case_id": 3612,
+      "n_hops": 2,
+      "context_token_len_approx": 986,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 334,
+          "old_seq": 330,
+          "gt_answer": "quarterback",
+          "old_answer": "center",
+          "update_gap": 4,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 50,
+          "old_seq": 31,
+          "gt_answer": "Muay Thai",
+          "old_answer": "American football",
+          "update_gap": 19,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no40",
+      "query_id": 40,
+      "case_id": 3583,
+      "n_hops": 2,
+      "context_token_len_approx": 959,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 313,
+          "old_seq": null,
+          "gt_answer": "Israel",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 49,
+          "old_seq": 48,
+          "gt_answer": "Philippe, Duke of Orléans",
+          "old_answer": "David Ben-Gurion",
+          "update_gap": 1,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no41",
+      "query_id": 41,
+      "case_id": 3484,
+      "n_hops": 2,
+      "context_token_len_approx": 966,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 451,
+          "old_seq": 292,
+          "gt_answer": "United States of America",
+          "old_answer": "Moscow",
+          "update_gap": 159,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 295,
+          "old_seq": 242,
+          "gt_answer": "German",
+          "old_answer": "American English",
+          "update_gap": 53,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no42",
+      "query_id": 42,
+      "case_id": 1536,
+      "n_hops": 2,
+      "context_token_len_approx": 955,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 398,
+          "old_seq": 271,
+          "gt_answer": "Thomas Kyd",
+          "old_answer": "Pierre Beaumarchais",
+          "update_gap": 127,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 306,
+          "old_seq": 0,
+          "gt_answer": "Leeds",
+          "old_answer": "London",
+          "update_gap": 306,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no43",
+      "query_id": 43,
+      "case_id": 6573,
+      "n_hops": 3,
+      "context_token_len_approx": 983,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 213,
+          "old_seq": null,
+          "gt_answer": "baseball",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 382,
+          "old_seq": 160,
+          "gt_answer": "Japan",
+          "old_answer": "United States of America",
+          "update_gap": 222,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 202,
+          "old_seq": null,
+          "gt_answer": "Shinzō Abe",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no44",
+      "query_id": 44,
+      "case_id": 8180,
+      "n_hops": 4,
+      "context_token_len_approx": 998,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 110,
+          "old_seq": null,
+          "gt_answer": "point guard",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 219,
+          "old_seq": 69,
+          "gt_answer": "cricket",
+          "old_answer": "basketball",
+          "update_gap": 150,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 57,
+          "old_seq": 150,
+          "gt_answer": "England",
+          "old_answer": "Australia",
+          "update_gap": -93,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 378,
+          "old_seq": null,
+          "gt_answer": "London",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no45",
+      "query_id": 45,
+      "case_id": 1425,
+      "n_hops": 2,
+      "context_token_len_approx": 967,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 430,
+          "old_seq": 327,
+          "gt_answer": "Sigmund Freud",
+          "old_answer": "Charles Dickens",
+          "update_gap": 103,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 300,
+          "old_seq": null,
+          "gt_answer": "London",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "no_old",
+          "state": "MISS"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no46",
+      "query_id": 46,
+      "case_id": 9198,
+      "n_hops": 4,
+      "context_token_len_approx": 980,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 269,
+          "old_seq": null,
+          "gt_answer": "midfielder",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "none",
+          "old_matched_via": "no_old",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 416,
+          "old_seq": 325,
+          "gt_answer": "sumo",
+          "old_answer": "association football",
+          "update_gap": 91,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 95,
+          "old_seq": null,
+          "gt_answer": "Japan",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 103,
+          "old_seq": null,
+          "gt_answer": "Tokyo",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no47",
+      "query_id": 47,
+      "case_id": 435,
+      "n_hops": 2,
+      "context_token_len_approx": 964,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 386,
+          "old_seq": 24,
+          "gt_answer": "Canada",
+          "old_answer": "Germany",
+          "update_gap": 362,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 440,
+          "old_seq": 56,
+          "gt_answer": "Asia",
+          "old_answer": "North America",
+          "update_gap": 384,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no48",
+      "query_id": 48,
+      "case_id": 6202,
+      "n_hops": 3,
+      "context_token_len_approx": 988,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 23,
+          "old_seq": null,
+          "gt_answer": "rugby union",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 186,
+          "old_seq": 100,
+          "gt_answer": "India",
+          "old_answer": "England",
+          "update_gap": 86,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 341,
+          "old_seq": 158,
+          "gt_answer": "Grosseto",
+          "old_answer": "New Delhi",
+          "update_gap": 183,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no49",
+      "query_id": 49,
+      "case_id": 4375,
+      "n_hops": 2,
+      "context_token_len_approx": 937,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 304,
+          "old_seq": 20,
+          "gt_answer": "William Waynflete",
+          "old_answer": "Kūkai",
+          "update_gap": 284,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 336,
+          "old_seq": 214,
+          "gt_answer": "Latin",
+          "old_answer": "English",
+          "update_gap": 122,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no50",
+      "query_id": 50,
+      "case_id": 5169,
+      "n_hops": 3,
+      "context_token_len_approx": 964,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 351,
+          "old_seq": 324,
+          "gt_answer": "Tony Blair",
+          "old_answer": "Vladimir Lenin",
+          "update_gap": 27,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 424,
+          "old_seq": 141,
+          "gt_answer": "Alan Jay Lerner",
+          "old_answer": "Cherie Blair",
+          "update_gap": 283,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 394,
+          "old_seq": 170,
+          "gt_answer": "Mansourah, Algeria",
+          "old_answer": "New York City",
+          "update_gap": 224,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no51",
+      "query_id": 51,
+      "case_id": 1308,
+      "n_hops": 2,
+      "context_token_len_approx": 965,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 445,
+          "old_seq": 54,
+          "gt_answer": "Stephen McNeil",
+          "old_answer": "Denis Sassou-Nguesso",
+          "update_gap": 391,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 320,
+          "old_seq": 152,
+          "gt_answer": "journalist",
+          "old_answer": "politician",
+          "update_gap": 168,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no52",
+      "query_id": 52,
+      "case_id": 1680,
+      "n_hops": 2,
+      "context_token_len_approx": 950,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 172,
+          "old_seq": null,
+          "gt_answer": "Christianity",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 43,
+          "old_seq": 40,
+          "gt_answer": "Taipei",
+          "old_answer": "Jerusalem",
+          "update_gap": 3,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no53",
+      "query_id": 53,
+      "case_id": 5821,
+      "n_hops": 3,
+      "context_token_len_approx": 973,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 452,
+          "old_seq": 447,
+          "gt_answer": "John McVie",
+          "old_answer": "Dale Evans",
+          "update_gap": 5,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 415,
+          "old_seq": 90,
+          "gt_answer": "rap rock",
+          "old_answer": "rock music",
+          "update_gap": 325,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 403,
+          "old_seq": 359,
+          "gt_answer": "Russian Empire",
+          "old_answer": "United States of America",
+          "update_gap": 44,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no54",
+      "query_id": 54,
+      "case_id": 8831,
+      "n_hops": 4,
+      "context_token_len_approx": 1006,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 363,
+          "old_seq": null,
+          "gt_answer": "American Broadcasting Company",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 392,
+          "old_seq": 64,
+          "gt_answer": "Ernst Heinkel",
+          "old_answer": "Bob Iger",
+          "update_gap": 328,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 203,
+          "old_seq": 192,
+          "gt_answer": "Tang Empire",
+          "old_answer": "Germany",
+          "update_gap": 11,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "none",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 177,
+          "old_seq": 21,
+          "gt_answer": "Beaumont",
+          "old_answer": "Chang'an",
+          "update_gap": 156,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "none",
+          "old_matched_via": "none",
+          "state": "MISS"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no55",
+      "query_id": 55,
+      "case_id": 4011,
+      "n_hops": 2,
+      "context_token_len_approx": 995,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 385,
+          "old_seq": 47,
+          "gt_answer": "Pakistan International Airlines",
+          "old_answer": "McLaren Automotive",
+          "update_gap": 338,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 205,
+          "old_seq": 30,
+          "gt_answer": "Sweden",
+          "old_answer": "Karachi",
+          "update_gap": 175,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "none",
+          "state": "MISS"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no56",
+      "query_id": 56,
+      "case_id": 4340,
+      "n_hops": 2,
+      "context_token_len_approx": 948,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 436,
+          "old_seq": 257,
+          "gt_answer": "Germany",
+          "old_answer": "France",
+          "update_gap": 179,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 435,
+          "old_seq": 41,
+          "gt_answer": "Africa",
+          "old_answer": "Europe",
+          "update_gap": 394,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no57",
+      "query_id": 57,
+      "case_id": 9045,
+      "n_hops": 4,
+      "context_token_len_approx": 972,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 8,
+          "old_seq": null,
+          "gt_answer": "David Beckham",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 303,
+          "old_seq": 137,
+          "gt_answer": "cricket",
+          "old_answer": "association football",
+          "update_gap": 166,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 150,
+          "old_seq": 57,
+          "gt_answer": "Australia",
+          "old_answer": "England",
+          "update_gap": 93,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 388,
+          "old_seq": 284,
+          "gt_answer": "Oderzo",
+          "old_answer": "Canberra",
+          "update_gap": 104,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no58",
+      "query_id": 58,
+      "case_id": 2678,
+      "n_hops": 2,
+      "context_token_len_approx": 939,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 264,
+          "old_seq": 224,
+          "gt_answer": "Walter Chrysler",
+          "old_answer": "Ardashir I",
+          "update_gap": 40,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 231,
+          "old_seq": 61,
+          "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+          "old_answer": "Walter Percy Chrysler Jr.",
+          "update_gap": 170,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "none",
+          "old_matched_via": "none",
+          "state": "MISS"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no59",
+      "query_id": 59,
+      "case_id": 6217,
+      "n_hops": 3,
+      "context_token_len_approx": 984,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 149,
+          "old_seq": null,
+          "gt_answer": "association football",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 389,
+          "old_seq": 272,
+          "gt_answer": "Italy",
+          "old_answer": "England",
+          "update_gap": 117,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 209,
+          "old_seq": 167,
+          "gt_answer": "Duluth",
+          "old_answer": "Rome",
+          "update_gap": 42,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no60",
+      "query_id": 60,
+      "case_id": 4553,
+      "n_hops": 2,
+      "context_token_len_approx": 975,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 318,
+          "old_seq": 288,
+          "gt_answer": "Frank Zappa",
+          "old_answer": "Amy Winehouse",
+          "update_gap": 30,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 51,
+          "old_seq": 37,
+          "gt_answer": "Berlin",
+          "old_answer": "Los Angeles",
+          "update_gap": 14,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no61",
+      "query_id": 61,
+      "case_id": 3258,
+      "n_hops": 2,
+      "context_token_len_approx": 981,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 36,
+          "old_seq": 3,
+          "gt_answer": "cornerback",
+          "old_answer": "wide receiver",
+          "update_gap": 33,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 362,
+          "old_seq": 323,
+          "gt_answer": "field hockey",
+          "old_answer": "American football",
+          "update_gap": 39,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no62",
+      "query_id": 62,
+      "case_id": 2287,
+      "n_hops": 2,
+      "context_token_len_approx": 987,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 404,
+          "old_seq": null,
+          "gt_answer": "American Broadcasting Company",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 392,
+          "old_seq": 64,
+          "gt_answer": "Ernst Heinkel",
+          "old_answer": "Bob Iger",
+          "update_gap": 328,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no63",
+      "query_id": 63,
+      "case_id": 3433,
+      "n_hops": 2,
+      "context_token_len_approx": 958,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 34,
+          "old_seq": 16,
+          "gt_answer": "Andy Warhol",
+          "old_answer": "Coco Chanel",
+          "update_gap": 18,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 142,
+          "old_seq": 121,
+          "gt_answer": "Montmélian",
+          "old_answer": "New York City",
+          "update_gap": 21,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no64",
+      "query_id": 64,
+      "case_id": 3599,
+      "n_hops": 2,
+      "context_token_len_approx": 978,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 344,
+          "old_seq": 27,
+          "gt_answer": "Daphne du Maurier",
+          "old_answer": "Robert A. Heinlein",
+          "update_gap": 317,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 183,
+          "old_seq": null,
+          "gt_answer": "United Kingdom",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no65",
+      "query_id": 65,
+      "case_id": 3815,
+      "n_hops": 2,
+      "context_token_len_approx": 995,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 226,
+          "old_seq": 38,
+          "gt_answer": "British Broadcasting Corporation",
+          "old_answer": "Lucasfilm",
+          "update_gap": 188,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 428,
+          "old_seq": 7,
+          "gt_answer": "Narendra Modi",
+          "old_answer": "Tony Hall, Baron Hall of Birkenhead",
+          "update_gap": 421,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no66",
+      "query_id": 66,
+      "case_id": 4742,
+      "n_hops": 2,
+      "context_token_len_approx": 957,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 189,
+          "old_seq": 145,
+          "gt_answer": "The Vampyre",
+          "old_answer": "Playboy",
+          "update_gap": 44,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 426,
+          "old_seq": 278,
+          "gt_answer": "German",
+          "old_answer": "English",
+          "update_gap": 148,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no67",
+      "query_id": 67,
+      "case_id": 8929,
+      "n_hops": 4,
+      "context_token_len_approx": 991,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 434,
+          "old_seq": 6,
+          "gt_answer": "flanker",
+          "old_answer": "goalkeeper",
+          "update_gap": 428,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 258,
+          "old_seq": null,
+          "gt_answer": "rugby union",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 186,
+          "old_seq": 100,
+          "gt_answer": "India",
+          "old_answer": "England",
+          "update_gap": 86,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 158,
+          "old_seq": 341,
+          "gt_answer": "New Delhi",
+          "old_answer": "Grosseto",
+          "update_gap": -183,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no68",
+      "query_id": 68,
+      "case_id": 3528,
+      "n_hops": 2,
+      "context_token_len_approx": 1009,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 401,
+          "old_seq": 124,
+          "gt_answer": "Samuel Beckett",
+          "old_answer": "Galileo Galilei",
+          "update_gap": 277,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 208,
+          "old_seq": 97,
+          "gt_answer": "University of Southern California",
+          "old_answer": "Trinity College Dublin",
+          "update_gap": 111,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no69",
+      "query_id": 69,
+      "case_id": 3658,
+      "n_hops": 2,
+      "context_token_len_approx": 959,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 180,
+          "old_seq": null,
+          "gt_answer": "John Keats",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 372,
+          "old_seq": 206,
+          "gt_answer": "Leipzig",
+          "old_answer": "Rome",
+          "update_gap": 166,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no70",
+      "query_id": 70,
+      "case_id": 5931,
+      "n_hops": 3,
+      "context_token_len_approx": 1021,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 420,
+          "old_seq": 407,
+          "gt_answer": "Joan Didion",
+          "old_answer": "Nathaniel Hawthorne",
+          "update_gap": 13,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 63,
+          "old_seq": null,
+          "gt_answer": "University of California, Berkeley",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 114,
+          "old_seq": 12,
+          "gt_answer": "Botevgrad",
+          "old_answer": "Berkeley",
+          "update_gap": 102,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no71",
+      "query_id": 71,
+      "case_id": 2804,
+      "n_hops": 2,
+      "context_token_len_approx": 967,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 60,
+          "old_seq": null,
+          "gt_answer": "United States of America",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 126,
+          "old_seq": 115,
+          "gt_answer": "Connachta",
+          "old_answer": "Donald Trump",
+          "update_gap": 11,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no72",
+      "query_id": 72,
+      "case_id": 4334,
+      "n_hops": 2,
+      "context_token_len_approx": 983,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 73,
+          "old_seq": null,
+          "gt_answer": "United States of America",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 126,
+          "old_seq": 115,
+          "gt_answer": "Connachta",
+          "old_answer": "Donald Trump",
+          "update_gap": 11,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no73",
+      "query_id": 73,
+      "case_id": 6925,
+      "n_hops": 3,
+      "context_token_len_approx": 974,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 356,
+          "old_seq": 196,
+          "gt_answer": "Canadair",
+          "old_answer": "Westinghouse Electric",
+          "update_gap": 160,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 265,
+          "old_seq": 237,
+          "gt_answer": "Tucson",
+          "old_answer": "Montreal",
+          "update_gap": 28,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 454,
+          "old_seq": null,
+          "gt_answer": "Jonathan Rothschild",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no74",
+      "query_id": 74,
+      "case_id": 3151,
+      "n_hops": 2,
+      "context_token_len_approx": 955,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 301,
+          "old_seq": 10,
+          "gt_answer": "Pius XII",
+          "old_answer": "Ursula K. Le Guin",
+          "update_gap": 291,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 283,
+          "old_seq": 117,
+          "gt_answer": "Wolverhampton",
+          "old_answer": "Castel Gandolfo",
+          "update_gap": 166,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "none",
+          "old_matched_via": "none",
+          "state": "MISS"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no75",
+      "query_id": 75,
+      "case_id": 7020,
+      "n_hops": 3,
+      "context_token_len_approx": 960,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 285,
+          "old_seq": 25,
+          "gt_answer": "Yves Montand",
+          "old_answer": "David Bowie",
+          "update_gap": 260,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 233,
+          "old_seq": 62,
+          "gt_answer": "Natalie Portman",
+          "old_answer": "Simone Signoret",
+          "update_gap": 171,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 410,
+          "old_seq": 68,
+          "gt_answer": "interdenominational organization",
+          "old_answer": "Judaism",
+          "update_gap": 342,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no76",
+      "query_id": 76,
+      "case_id": 1520,
+      "n_hops": 2,
+      "context_token_len_approx": 974,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 276,
+          "old_seq": 82,
+          "gt_answer": "Pedro Pierluisi",
+          "old_answer": "Stefan Löfven",
+          "update_gap": 194,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 5,
+          "old_seq": null,
+          "gt_answer": "Washington, D.C.",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "none",
+          "old_matched_via": "no_old",
+          "state": "MISS"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no77",
+      "query_id": 77,
+      "case_id": 7574,
+      "n_hops": 4,
+      "context_token_len_approx": 990,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 241,
+          "old_seq": null,
+          "gt_answer": "Apple Inc.",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 201,
+          "old_seq": 13,
+          "gt_answer": "Vijay Mallya",
+          "old_answer": "Tim Cook",
+          "update_gap": 188,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 329,
+          "old_seq": 42,
+          "gt_answer": "Papal States",
+          "old_answer": "India",
+          "update_gap": 287,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 198,
+          "old_seq": null,
+          "gt_answer": "Rome",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "none",
+          "old_matched_via": "no_old",
+          "state": "MISS"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no78",
+      "query_id": 78,
+      "case_id": 7360,
+      "n_hops": 3,
+      "context_token_len_approx": 978,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 93,
+          "old_seq": null,
+          "gt_answer": "rugby union",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 186,
+          "old_seq": 100,
+          "gt_answer": "India",
+          "old_answer": "England",
+          "update_gap": 86,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 280,
+          "old_seq": 228,
+          "gt_answer": "Africa",
+          "old_answer": "Asia",
+          "update_gap": 52,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no79",
+      "query_id": 79,
+      "case_id": 410,
+      "n_hops": 2,
+      "context_token_len_approx": 992,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 227,
+          "old_seq": null,
+          "gt_answer": "wide receiver",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 252,
+          "old_seq": 46,
+          "gt_answer": "rugby",
+          "old_answer": "American football",
+          "update_gap": 206,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no80",
+      "query_id": 80,
+      "case_id": 3594,
+      "n_hops": 2,
+      "context_token_len_approx": 970,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 239,
+          "old_seq": 210,
+          "gt_answer": "Malaysia",
+          "old_answer": "France",
+          "update_gap": 29,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 442,
+          "old_seq": 373,
+          "gt_answer": "Antarctica",
+          "old_answer": "Asia",
+          "update_gap": 69,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no81",
+      "query_id": 81,
+      "case_id": 3734,
+      "n_hops": 2,
+      "context_token_len_approx": 985,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 106,
+          "old_seq": null,
+          "gt_answer": "University of Bucharest",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "no_old",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 409,
+          "old_seq": 173,
+          "gt_answer": "Ankara",
+          "old_answer": "Bucharest",
+          "update_gap": 236,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no82",
+      "query_id": 82,
+      "case_id": 2548,
+      "n_hops": 2,
+      "context_token_len_approx": 983,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 353,
+          "old_seq": 102,
+          "gt_answer": "Soviet Union",
+          "old_answer": "United States of America",
+          "update_gap": 251,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 365,
+          "old_seq": 159,
+          "gt_answer": "Elizabeth II",
+          "old_answer": "Mikhail Gorbachev",
+          "update_gap": 206,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no83",
+      "query_id": 83,
+      "case_id": 5156,
+      "n_hops": 3,
+      "context_token_len_approx": 1012,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 309,
+          "old_seq": 144,
+          "gt_answer": "The University of the Arts",
+          "old_answer": "Berklee College of Music",
+          "update_gap": 165,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 387,
+          "old_seq": null,
+          "gt_answer": "Philadelphia",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 421,
+          "old_seq": null,
+          "gt_answer": "William Penn",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no84",
+      "query_id": 84,
+      "case_id": 2616,
+      "n_hops": 2,
+      "context_token_len_approx": 989,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 343,
+          "old_seq": 204,
+          "gt_answer": "Iran",
+          "old_answer": "France",
+          "update_gap": 139,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 255,
+          "old_seq": null,
+          "gt_answer": "Tehran",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no85",
+      "query_id": 85,
+      "case_id": 5978,
+      "n_hops": 3,
+      "context_token_len_approx": 973,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 169,
+          "old_seq": 14,
+          "gt_answer": "goaltender",
+          "old_answer": "center",
+          "update_gap": 155,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 310,
+          "old_seq": 223,
+          "gt_answer": "pesäpallo",
+          "old_answer": "ice hockey",
+          "update_gap": 87,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 261,
+          "old_seq": 59,
+          "gt_answer": "Philippines",
+          "old_answer": "Finland",
+          "update_gap": 202,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no86",
+      "query_id": 86,
+      "case_id": 7429,
+      "n_hops": 4,
+      "context_token_len_approx": 986,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 400,
+          "old_seq": null,
+          "gt_answer": "Ford Motor Company",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 230,
+          "old_seq": 132,
+          "gt_answer": "Henri Grégoire",
+          "old_answer": "Henry Ford",
+          "update_gap": 98,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 225,
+          "old_seq": 39,
+          "gt_answer": "India",
+          "old_answer": "France",
+          "update_gap": 186,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 158,
+          "old_seq": 341,
+          "gt_answer": "New Delhi",
+          "old_answer": "Grosseto",
+          "update_gap": -183,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no87",
+      "query_id": 87,
+      "case_id": 6225,
+      "n_hops": 3,
+      "context_token_len_approx": 990,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 340,
+          "old_seq": 215,
+          "gt_answer": "association football",
+          "old_answer": "baseball",
+          "update_gap": 125,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 389,
+          "old_seq": 272,
+          "gt_answer": "Italy",
+          "old_answer": "England",
+          "update_gap": 117,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 209,
+          "old_seq": 167,
+          "gt_answer": "Duluth",
+          "old_answer": "Rome",
+          "update_gap": 42,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no88",
+      "query_id": 88,
+      "case_id": 9126,
+      "n_hops": 4,
+      "context_token_len_approx": 970,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 364,
+          "old_seq": 251,
+          "gt_answer": "Madonna",
+          "old_answer": "The Beatles",
+          "update_gap": 113,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 354,
+          "old_seq": 207,
+          "gt_answer": "Narendra Modi",
+          "old_answer": "Guy Oseary",
+          "update_gap": 147,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 217,
+          "old_seq": 176,
+          "gt_answer": "Australia",
+          "old_answer": "India",
+          "update_gap": 41,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 151,
+          "old_seq": 116,
+          "gt_answer": "Arabic",
+          "old_answer": "English",
+          "update_gap": 35,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no89",
+      "query_id": 89,
+      "case_id": 1085,
+      "n_hops": 2,
+      "context_token_len_approx": 976,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 328,
+          "old_seq": 174,
+          "gt_answer": "cricket",
+          "old_answer": "baseball",
+          "update_gap": 154,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 150,
+          "old_seq": 57,
+          "gt_answer": "Australia",
+          "old_answer": "England",
+          "update_gap": 93,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no90",
+      "query_id": 90,
+      "case_id": 526,
+      "n_hops": 2,
+      "context_token_len_approx": 956,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 305,
+          "old_seq": 32,
+          "gt_answer": "T. S. Eliot",
+          "old_answer": "Andrzej Sapkowski",
+          "update_gap": 273,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 197,
+          "old_seq": 195,
+          "gt_answer": "French",
+          "old_answer": "English",
+          "update_gap": 2,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no91",
+      "query_id": 91,
+      "case_id": 9196,
+      "n_hops": 4,
+      "context_token_len_approx": 969,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 77,
+          "old_seq": 76,
+          "gt_answer": "Stephen Crane",
+          "old_answer": "Friedrich Nietzsche",
+          "update_gap": 1,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 423,
+          "old_seq": 72,
+          "gt_answer": "Charlie Hebdo",
+          "old_answer": "The Red Badge of Courage",
+          "update_gap": 351,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 358,
+          "old_seq": 155,
+          "gt_answer": "Italy",
+          "old_answer": "France",
+          "update_gap": 203,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 209,
+          "old_seq": 167,
+          "gt_answer": "Duluth",
+          "old_answer": "Rome",
+          "update_gap": 42,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no92",
+      "query_id": 92,
+      "case_id": 6483,
+      "n_hops": 3,
+      "context_token_len_approx": 990,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 92,
+          "old_seq": null,
+          "gt_answer": "Ilyushin",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 314,
+          "old_seq": null,
+          "gt_answer": "Moscow",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 383,
+          "old_seq": 89,
+          "gt_answer": "German",
+          "old_answer": "Russian",
+          "update_gap": 294,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no93",
+      "query_id": 93,
+      "case_id": 7518,
+      "n_hops": 4,
+      "context_token_len_approx": 959,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 273,
+          "old_seq": null,
+          "gt_answer": "Elvis Presley",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "none",
+          "old_matched_via": "no_old",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 139,
+          "old_seq": 120,
+          "gt_answer": "Charles the Bold",
+          "old_answer": "Priscilla Presley",
+          "update_gap": 19,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 371,
+          "old_seq": null,
+          "gt_answer": "France",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 171,
+          "old_seq": 163,
+          "gt_answer": "Harare",
+          "old_answer": "Paris",
+          "update_gap": 8,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no94",
+      "query_id": 94,
+      "case_id": 4041,
+      "n_hops": 2,
+      "context_token_len_approx": 988,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 376,
+          "old_seq": 296,
+          "gt_answer": "baseball",
+          "old_answer": "association football",
+          "update_gap": 80,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 382,
+          "old_seq": 160,
+          "gt_answer": "Japan",
+          "old_answer": "United States of America",
+          "update_gap": 222,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no95",
+      "query_id": 95,
+      "case_id": 3457,
+      "n_hops": 2,
+      "context_token_len_approx": 932,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 119,
+          "old_seq": null,
+          "gt_answer": "Buddhism",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 370,
+          "old_seq": 67,
+          "gt_answer": "Mekere Morauta",
+          "old_answer": "Gautama Buddha",
+          "update_gap": 303,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "none",
+          "state": "CLEAN"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no96",
+      "query_id": 96,
+      "case_id": 712,
+      "n_hops": 2,
+      "context_token_len_approx": 958,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 147,
+          "old_seq": null,
+          "gt_answer": "Oscar Wilde",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 270,
+          "old_seq": 128,
+          "gt_answer": "Guangzhou",
+          "old_answer": "Paris",
+          "update_gap": 142,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no97",
+      "query_id": 97,
+      "case_id": 2288,
+      "n_hops": 2,
+      "context_token_len_approx": 1005,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 337,
+          "old_seq": 65,
+          "gt_answer": "Dana International",
+          "old_answer": "Bruce Springsteen",
+          "update_gap": 272,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 281,
+          "old_seq": 243,
+          "gt_answer": "Australian hip hop",
+          "old_answer": "pop music",
+          "update_gap": 38,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no98",
+      "query_id": 98,
+      "case_id": 8786,
+      "n_hops": 4,
+      "context_token_len_approx": 978,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "no_conflict_pair",
+          "gt_seq": 253,
+          "old_seq": null,
+          "gt_answer": "Ford Motor Company",
+          "old_answer": null,
+          "update_gap": null,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "no_old",
+          "state": "RETRIEVED"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 230,
+          "old_seq": 132,
+          "gt_answer": "Henri Grégoire",
+          "old_answer": "Henry Ford",
+          "update_gap": 98,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 39,
+          "old_seq": 225,
+          "gt_answer": "France",
+          "old_answer": "India",
+          "update_gap": -186,
+          "new_present": false,
+          "old_present": false,
+          "new_matched_via": "tier2_no_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "MISS"
+        },
+        {
+          "hop_idx": 3,
+          "conflict_type": "has_pair",
+          "gt_seq": 163,
+          "old_seq": 171,
+          "gt_answer": "Paris",
+          "old_answer": "Harare",
+          "update_gap": -8,
+          "new_present": false,
+          "old_present": true,
+          "new_matched_via": "none",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        }
+      ]
+    },
+    {
+      "qa_pair_id": "factconsolidation_mh_6k_no99",
+      "query_id": 99,
+      "case_id": 5882,
+      "n_hops": 3,
+      "context_token_len_approx": 971,
+      "hops": [
+        {
+          "hop_idx": 0,
+          "conflict_type": "has_pair",
+          "gt_seq": 446,
+          "old_seq": 19,
+          "gt_answer": "baseball",
+          "old_answer": "association football",
+          "update_gap": 427,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        },
+        {
+          "hop_idx": 1,
+          "conflict_type": "has_pair",
+          "gt_seq": 382,
+          "old_seq": 160,
+          "gt_answer": "Japan",
+          "old_answer": "United States of America",
+          "update_gap": 222,
+          "new_present": true,
+          "old_present": true,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier3_proximity",
+          "state": "LEAK"
+        },
+        {
+          "hop_idx": 2,
+          "conflict_type": "has_pair",
+          "gt_seq": 439,
+          "old_seq": 240,
+          "gt_answer": "Swedish",
+          "old_answer": "Japanese",
+          "update_gap": 199,
+          "new_present": true,
+          "old_present": false,
+          "new_matched_via": "tier3_proximity",
+          "old_matched_via": "tier2_no_proximity",
+          "state": "CLEAN"
+        }
+      ]
+    }
+  ]
+}

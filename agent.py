@@ -222,15 +222,365 @@ class AgentWrapper:
             
             
     def _initialize_mem0_agent(self, agent_config, dataset_config):
-        """Initialize Mem0 agent with retrieval configuration."""
+        """Initialize Mem0/Mem0g agent.
+
+        Two layers of LLM/embedding here:
+          1. mem0 internal LLM (fact extraction + update decision) — set via
+             yaml `mem0_config.llm` / `mem0_config.embedder` and passed into
+             `Memory(MemoryConfig(**mem0_config))`. If `mem0_config.graph_store`
+             is present, mem0g (graph-augmented) mode is enabled automatically.
+          2. Answer-time LLM (generates final response given retrieved
+             memories) — chosen by `self.model`, may be OpenAI/Gemini.
+
+        Without `mem0_config`, falls back to `Memory()` benchmark default
+        (OpenAI gpt-4o-mini + text-embedding-3-small + Qdrant), requiring
+        OPENAI_API_KEY.
+
+        Example yaml (mem0g + Vertex Gemini):
+            mem0_config:
+              llm:
+                provider: vertexai
+                config: {model: gemini-2.5-flash-lite, temperature: 0.7}
+              embedder:
+                provider: vertexai
+                config: {model: text-embedding-004, embedding_dims: 768}
+              graph_store:
+                provider: neo4j
+                config: {url: neo4j://localhost:7687, username: neo4j, password: mem0gpassword}
+        """
         from mem0.memory.main import Memory
+        from mem0.configs.base import MemoryConfig
+        from mem0.utils.factory import LlmFactory, EmbedderFactory
 
         self.retrieve_num = agent_config['retrieve_num']
         self.chunk_size = agent_config['agent_chunk_size']
         self.context = ''
-        self.client = self._create_oai_client()
-        self.memory = Memory()
+
+        # Answer-time client (separate from mem0 internal LLM)
+        self.client = self._create_answer_client()
+
+        # mem0 init
+        mem0_config_dict = agent_config.get('mem0_config') or {}
+
+        # Make qdrant path + collection sub_dataset-specific so parallel runs
+        # of mem0/mem0g across different (task, ctx) combos don't collide.
+        if mem0_config_dict.get('vector_store', {}).get('provider') == 'qdrant':
+            vs_cfg = mem0_config_dict['vector_store'].setdefault('config', {})
+            base_coll = vs_cfg.get('collection_name', 'mem0_default')
+            base_path = vs_cfg.get('path', '/tmp/qdrant_mem0')
+            suffix = self.sub_dataset.replace('-', '_')  # filesystem-safe
+            vs_cfg['collection_name'] = f"{base_coll}__{suffix}"
+            vs_cfg['path'] = f"{base_path}__{suffix}"
+
+        # Same isolation for mem0's history.db (SQLite) — without this, parallel
+        # mem0/mem0g processes hit "attempt to write a readonly database" because
+        # the default ~/.mem0/history.db is shared, and SQLite locks one writer
+        # at a time. Symptom: all update-phase ADD/UPDATE silently fail.
+        # Suffix includes agent_name short fingerprint so different mem0/mem0g
+        # variants (e.g. as-is vs prompt-aware) can run on the same sub_dataset
+        # in parallel without state collision.
+        import os as _os, re as _re
+        sub_ds_suffix = self.sub_dataset.replace('-', '_')
+        agent_fp = _re.sub(r'[^A-Za-z0-9]+', '_', self.agent_name)[:48].strip('_')
+        sqlite_suffix = f"{sub_ds_suffix}__{agent_fp}"
+        history_dir = _os.path.expanduser("~/.mem0")
+        _os.makedirs(history_dir, exist_ok=True)
+        mem0_config_dict['history_db_path'] = _os.path.join(
+            history_dir, f"history__{sqlite_suffix}.db"
+        )
+
+        # Surface prompt-aware-graph flag from yaml mem0_config to instance
+        # attribute. Consumed at inference time in _handle_mem0_agent to
+        # verbalize graph relations into the system prompt (restoring the
+        # upstream mem0 cookbook pattern; see docs/baseline_methods/
+        # mem0g_reproducibility.md). When false (default), behaves as MABench
+        # original (vector-only inference).
+        self.mem0_prompt_aware_graph = bool(
+            mem0_config_dict.pop('prompt_aware_graph', False)
+        )
+
+        # Redirect mem0's Vertex providers through methods/ wrappers when yaml asks for
+        # vertexai (ADC-based). Upstream mem0 vertexai requires a service account JSON;
+        # our wrappers use google.genai SDK with ADC, matching how we call Gemini LLM
+        # in long-context agent. See methods/mem0_vertex_{gemini_llm,adc_embedder}.py.
+        llm_cfg = mem0_config_dict.get('llm', {})
+        emb_cfg = mem0_config_dict.get('embedder', {})
+        if llm_cfg.get('provider') == 'vertexai' or emb_cfg.get('provider') == 'vertexai':
+            import sys as _sys
+            from pathlib import Path as _Path
+            _METHODS = str(_Path(__file__).parent / "methods")
+            if _METHODS not in _sys.path:
+                _sys.path.insert(0, _METHODS)
+            mem0_config_dict = json.loads(json.dumps(mem0_config_dict))  # deep copy
+
+        if llm_cfg.get('provider') == 'vertexai':
+            LlmFactory.provider_to_class["gemini"] = "mem0_vertex_gemini_llm.VertexGeminiLLM"
+            mem0_config_dict['llm']['provider'] = 'gemini'   # whitelist requires this
+            print("[mem0] LlmFactory monkey-patched: gemini → VertexGeminiLLM (ADC)")
+
+        if emb_cfg.get('provider') == 'vertexai':
+            EmbedderFactory.provider_to_class["vertexai"] = \
+                "mem0_vertex_adc_embedder.VertexADCEmbedding"
+            print("[mem0] EmbedderFactory monkey-patched: vertexai → VertexADCEmbedding (ADC)")
+
+        # Vendored mem0 internal inconsistency: mem0/memory/main.py calls
+        # EmbedderFactory.create(provider, config, vector_config) (3 args) but
+        # mem0/memory/graph_memory.py calls EmbedderFactory.create(provider, config)
+        # (2 args). Wrap .create so vector_config is genuinely optional, otherwise
+        # mem0g raises TypeError on init.
+        if mem0_config_dict.get('graph_store'):
+            _orig_create = EmbedderFactory.create.__func__
+            def _patched_create(cls, provider_name, config, vector_config=None):
+                return _orig_create(cls, provider_name, config, vector_config)
+            EmbedderFactory.create = classmethod(_patched_create)
+            print("[mem0g] EmbedderFactory.create wrapped: vector_config defaulted to None")
+
+            # Vendored mem0/memory/graph_memory.py inlines entity_type and
+            # relationship names directly into Cypher (e.g. MERGE (n:{source_type})).
+            # When the LLM extracts a label like "country/empire" Neo4j rejects it
+            # with a SyntaxError.
+            #
+            # We wrap LLM-extracted labels in backticks (Neo4j-standard escape) so
+            # the original semantic is preserved (e.g. `country/empire` stays a
+            # distinct label from `country_empire`). All non-trivial wraps are
+            # logged to outputs/.../mem0g_label_audit.jsonl for post-hoc audit.
+            from mem0.memory import graph_memory as _gm_module
+            from pathlib import Path as _Path2
+
+            def _wrap_neo4j_label(s):
+                if not s:
+                    s = "Unknown"
+                s = str(s)
+                # Escape internal backticks per Neo4j rules: ` → ``
+                escaped = s.replace("`", "``")
+                return f"`{escaped}`"
+
+            # Audit log path (under same retrieval dir as ingestion log)
+            _AUDIT_DIR = (_Path2(__file__).parent / "outputs" / "rag_retrieved" /
+                          self.agent_name / f"k_{self.retrieve_num}" /
+                          self.sub_dataset / f"chunksize_{self.chunk_size}")
+            _AUDIT_DIR.mkdir(parents=True, exist_ok=True)
+            _AUDIT_FILE = _AUDIT_DIR / "mem0g_label_audit.jsonl"
+
+            def _audit(context, name, original, wrapped):
+                """Log any non-trivial label wrap (i.e. original needed escaping)."""
+                # original needed backticks if it contains chars outside [A-Za-z0-9_]
+                # or starts with a digit
+                if not original:
+                    return
+                import re as __re
+                needs_wrap = bool(__re.search(r'[^A-Za-z0-9_]', str(original))) or \
+                             (str(original) and str(original)[0].isdigit())
+                if not needs_wrap:
+                    return
+                with open(_AUDIT_FILE, "a", encoding="utf-8") as fh:
+                    fh.write(json.dumps({
+                        "context": context, "name": name,
+                        "original": original, "wrapped": wrapped,
+                    }, ensure_ascii=False) + "\n")
+
+            _orig_add_entities = _gm_module.MemoryGraph._add_entities
+
+            def _patched_add_entities(self, to_be_added, user_id, entity_type_map):
+                wrapped_map = {}
+                for k, v in entity_type_map.items():
+                    w = _wrap_neo4j_label(v)
+                    wrapped_map[k] = w
+                    _audit("node_label", k, v, w)
+                wrapped_added = []
+                for item in to_be_added:
+                    orig_rel = item.get("relationship", "RELATED")
+                    w_rel = _wrap_neo4j_label(orig_rel)
+                    _audit("relationship", item.get("source", "?"), orig_rel, w_rel)
+                    wrapped_added.append({**item, "relationship": w_rel})
+                return _orig_add_entities(self, wrapped_added, user_id, wrapped_map)
+
+            _gm_module.MemoryGraph._add_entities = _patched_add_entities
+            print(f"[mem0g] MemoryGraph._add_entities patched: backtick wrap + audit → {_AUDIT_FILE.name}")
+
+            # Same for _delete_entities (uses {relationship} in Cypher)
+            _orig_delete_entities = _gm_module.MemoryGraph._delete_entities
+
+            def _patched_delete_entities(self, to_be_deleted, user_id):
+                wrapped = []
+                for item in to_be_deleted:
+                    orig_rel = item.get("relationship", "RELATED")
+                    w_rel = _wrap_neo4j_label(orig_rel)
+                    _audit("relationship_delete", item.get("source", "?"), orig_rel, w_rel)
+                    wrapped.append({**item, "relationship": w_rel})
+                return _orig_delete_entities(self, wrapped, user_id)
+
+            _gm_module.MemoryGraph._delete_entities = _patched_delete_entities
+
+            # Third vendored mem0g bug: _remove_spaces_from_entities does
+            # `item["relationship"]` directly. When the LLM occasionally returns
+            # an entity dict missing the relationship key, mem0g KeyError-crashes
+            # mid-ingest. We patch to use .get() with sensible defaults.
+            _orig_remove_spaces = _gm_module.MemoryGraph._remove_spaces_from_entities
+
+            def _patched_remove_spaces(self, entity_list):
+                clean = []
+                for item in entity_list:
+                    # Skip malformed entries entirely (none of source/destination/relationship)
+                    if not isinstance(item, dict):
+                        continue
+                    safe = {
+                        "source": str(item.get("source", "unknown")).lower().replace(" ", "_"),
+                        "relationship": str(item.get("relationship", "RELATED")).lower().replace(" ", "_"),
+                        "destination": str(item.get("destination", "unknown")).lower().replace(" ", "_"),
+                    }
+                    # carry forward any other keys mem0g may attach
+                    for k, v in item.items():
+                        if k not in safe:
+                            safe[k] = v
+                    clean.append(safe)
+                return clean
+
+            _gm_module.MemoryGraph._remove_spaces_from_entities = _patched_remove_spaces
+            print("[mem0g] _remove_spaces_from_entities patched: tolerate missing 'relationship' key")
+
+        # L1 prompt fix: remove two rejection few-shots that cause mem0 to drop
+        # all FC inputs under strict-prompt-following LLMs (e.g. gemini-3.1-flash-lite).
+        # See methods/mem0_fc_prompt_fix.py and Phase 0 README.
+        if mem0_config_dict.get('use_l1_fc_prompt'):
+            import sys as _sys2
+            from pathlib import Path as _Path2
+            _METHODS = str(_Path2(__file__).parent / "methods")
+            if _METHODS not in _sys2.path:
+                _sys2.path.insert(0, _METHODS)
+            from mem0_fc_prompt_fix import make_l1_modified_prompt
+            mem0_config_dict['custom_fact_extraction_prompt'] = make_l1_modified_prompt()
+            mem0_config_dict.pop('use_l1_fc_prompt', None)
+            print("[mem0] L1 FC prompt fix applied: removed 2 rejection few-shots (95 chars)")
+
+        # L2 knowledge-extraction prompt: L1 is insufficient (its core
+        # personal-assistant framing still drops whole chunks of general-knowledge
+        # facts at 32k). L2 reframes extraction as knowledge extraction and is the
+        # reliable fallback when the frozen extraction cache (MEM0_EXTRACTION_CACHE)
+        # misses. See methods/mem0_fc_prompt_fix.py make_l2_knowledge_prompt.
+        if mem0_config_dict.get('use_l2_fc_prompt'):
+            import sys as _sys3
+            from pathlib import Path as _Path3
+            _METHODS = str(_Path3(__file__).parent / "methods")
+            if _METHODS not in _sys3.path:
+                _sys3.path.insert(0, _METHODS)
+            from mem0_fc_prompt_fix import make_l2_knowledge_prompt
+            mem0_config_dict['custom_fact_extraction_prompt'] = make_l2_knowledge_prompt()
+            mem0_config_dict.pop('use_l2_fc_prompt', None)
+            print("[mem0] L2 knowledge-extraction prompt applied (reliable FC extraction)")
+
+        # Broadened-native: ONE unified front-end (native selectivity + widened
+        # domain to any asserted fact incl. world knowledge + faithfulness rule),
+        # for FC AND LongMemEval AND any KU task. Replaces the FC-overfit L2 as
+        # the SHARED extraction in the internal ablation. NOTE: for the honest
+        # cross-system baseline, set NO prompt flag -> mem0 runs true native
+        # FACT_RETRIEVAL (which fails on FC's general facts). See
+        # methods/mem0_fc_prompt_fix.make_broadened_native_prompt.
+        if mem0_config_dict.get('use_broadened_native_prompt'):
+            import sys as _sys4
+            from pathlib import Path as _Path4
+            _METHODS = str(_Path4(__file__).parent / "methods")
+            if _METHODS not in _sys4.path:
+                _sys4.path.insert(0, _METHODS)
+            from mem0_fc_prompt_fix import make_broadened_native_prompt
+            mem0_config_dict['custom_fact_extraction_prompt'] = make_broadened_native_prompt()
+            mem0_config_dict.pop('use_broadened_native_prompt', None)
+            print("[mem0] broadened-native extraction prompt applied (unified FC/LongMemEval front-end)")
+
+        # Unified extractor (converged 2026-06-24): the single front-end for FC +
+        # dialogue KU. native + de-restrict domain + faithfulness + native
+        # selectivity + SOURCE-based specificity (record user-asserted facts;
+        # assistant turns are context only). One config across all datasets.
+        # See methods/mem0_fc_prompt_fix.make_unified_extractor_prompt.
+        if mem0_config_dict.get('use_unified_extractor'):
+            import sys as _sys5
+            from pathlib import Path as _Path5
+            _METHODS = str(_Path5(__file__).parent / "methods")
+            if _METHODS not in _sys5.path:
+                _sys5.path.insert(0, _METHODS)
+            from mem0_fc_prompt_fix import make_unified_extractor_prompt
+            mem0_config_dict['custom_fact_extraction_prompt'] = make_unified_extractor_prompt()
+            mem0_config_dict.pop('use_unified_extractor', None)
+            print("[mem0] unified extractor prompt applied (source-based; one front-end for FC + dialogue KU)")
+
+        if mem0_config_dict:
+            self.memory = Memory(MemoryConfig(**mem0_config_dict))
+        else:
+            self.memory = Memory()  # legacy benchmark default (needs OPENAI_API_KEY)
+        self.mem0_graph_enabled = bool(mem0_config_dict.get('graph_store'))
+        if self.mem0_graph_enabled:
+            print(f"[mem0g] Graph store enabled: {mem0_config_dict['graph_store'].get('provider', '?')}")
+
         self.agent_start_time = time.time()
+
+    def _create_answer_client(self):
+        """Build the LLM client used to answer questions given retrieved memories.
+
+        Distinct from mem0's internal LLM (configured via mem0_config.llm).
+        Routes by self.model:
+          - 'gemini-*' → Vertex AI (if GOOGLE_GENAI_USE_VERTEXAI=true) or AI Studio
+          - else        → OpenAI / Azure (existing _create_oai_client path)
+        Sets self.client_type ∈ {'gemini','openai'} for downstream dispatch in
+        _answer_with_client.
+        """
+        if 'gemini' in self.model.lower():
+            from google import genai
+            self.client_type = 'gemini'
+            if os.environ.get('GOOGLE_GENAI_USE_VERTEXAI', '').lower() == 'true':
+                return genai.Client(
+                    vertexai=True,
+                    project=os.environ.get('GOOGLE_CLOUD_PROJECT'),
+                    location=os.environ.get('GOOGLE_CLOUD_LOCATION', 'us-central1'),
+                )
+            return genai.Client(
+                api_key=os.environ.get('Google_API_KEY') or os.environ.get('GEMINI_API_KEY')
+            )
+        self.client_type = 'openai'
+        return self._create_oai_client()
+
+    def _answer_with_client(self, messages, max_tokens=None, temperature=None):
+        """Unified answer call. Returns (text, prompt_tokens, completion_tokens).
+
+        OpenAI: standard chat.completions.create.
+        Gemini: concatenates system + user into one prompt, uses generate_content.
+        Caller is responsible for OpenAI-style messages list with role+content.
+        """
+        if getattr(self, 'client_type', 'openai') == 'gemini':
+            system = next((m['content'] for m in messages if m['role'] == 'system'), '')
+            user = next((m['content'] for m in messages if m['role'] == 'user'), '')
+            prompt = (system + "\n\n" + user) if system else user
+
+            from google.genai import types as genai_types
+            cfg = genai_types.GenerateContentConfig(
+                max_output_tokens=max_tokens or self.max_tokens,
+                temperature=temperature if temperature is not None else self.temperature,
+                thinking_config=genai_types.ThinkingConfig(thinking_level="minimal"),
+            )
+            # Retry handled by _generate_with_gemini_retry if available, else inline.
+            resp = self.client.models.generate_content(
+                model=self.model, contents=prompt, config=cfg,
+            )
+            text = resp.text or ''
+            try:
+                usage = resp.usage_metadata
+                pt = getattr(usage, 'prompt_token_count', 0) or 0
+                ct = getattr(usage, 'candidates_token_count', 0) or 0
+            except Exception:
+                pt = ct = 0
+            return text, pt, ct
+
+        # OpenAI / Azure
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            temperature=temperature if temperature is not None else self.temperature,
+            max_tokens=max_tokens or self.max_tokens,
+        )
+        return (
+            response.choices[0].message.content,
+            response.usage.prompt_tokens,
+            response.usage.completion_tokens,
+        )
 
     def _initialize_cognee_agent(self, agent_config, dataset_config):
         """Initialize Cognee agent with knowledge graph configuration."""
@@ -400,7 +750,7 @@ class AgentWrapper:
             system_instruction=formatted_message[0]["content"],
             temperature=self.temperature,
             max_output_tokens=self.max_tokens,
-            thinking_config=types.ThinkingConfig(thinking_budget=0),
+            thinking_config=types.ThinkingConfig(thinking_level="minimal"),
         )
 
         max_retries = 10
@@ -578,6 +928,39 @@ class AgentWrapper:
             self.agent_start_time = time.time()  # Reset time
             return output
 
+    def _retrieval_query(self, message):
+        """Recover the bare user question from MABench's qa-wrapped query for
+        RETRIEVAL embedding only.
+
+        MABench wraps every question in dataset-specific instruction boilerplate
+        via the 'query' template (e.g. FactConsolidation prepends a long
+        "Pretend you are a knowledge management system ... find the newest fact
+        ... Now Answer the Question: Based on the provided Knowledge Pool, " and
+        appends " Answer:"; see utils/templates.py). Embedding that WHOLE wrapped
+        string for similarity search lets the shared boilerplate dominate the
+        vector, diluting the actual question and pushing the genuinely relevant
+        memory out of top-k (diagnosed in experiment_results.md §5.6: FC-SH 64k
+        has_pair GT_new recall@100 = 79% wrapped vs 100% raw). The correct mem0
+        retrieval contract is to embed the REAL question against each memory
+        unit, so here we strip the known template prefix/suffix to recover it.
+        The full wrapped `message` is still used downstream for inference, so the
+        "find the newest fact" instruction is preserved.
+        """
+        try:
+            tmpl = get_template(self.sub_dataset, 'query', self.agent_name)
+        except Exception:
+            return message
+        if not isinstance(tmpl, str) or '{question}' not in tmpl:
+            return message
+        prefix, suffix = tmpl.split('{question}', 1)
+        q = message
+        if prefix and q.startswith(prefix):
+            q = q[len(prefix):]
+        if suffix and q.endswith(suffix):
+            q = q[:len(q) - len(suffix)]
+        q = q.strip()
+        return q or message
+
     def _handle_mem0_agent(self, message, memorizing, query_id, context_id):
         """Handle message processing for Mem0 agents."""
         user_id = f'context_{context_id}_{self.sub_dataset}'
@@ -592,6 +975,9 @@ class AgentWrapper:
                 {"role": "assistant", "content": "I'll make sure to add the content into the memory."}
             ]
 
+            print(f"[mem0 debug] memorize ctx={context_id} qid={query_id} user_id={user_id}")
+            print(f"[mem0 debug] memory_messages[1].content len={len(memory_messages[1]['content'])} chars")
+            print(f"[mem0 debug] memory_messages[1].content head: {memory_messages[1]['content'][:300]!r}")
             vector_results = self.memory.add(memory_messages, user_id=user_id)
             print(f"\n\n\nvector_results: {vector_results}\n\n\n")
 
@@ -606,47 +992,97 @@ class AgentWrapper:
         else:
             # Retrieve relevant memories and generate response
             memory_construction_time = time.time() - self.agent_start_time
-            relevant_memories = self.memory.search(query=message, user_id=user_id, limit=self.retrieve_num)
+            retrieval_query = self._retrieval_query(message)
+            if retrieval_query != message:
+                print(f"[mem0 retrieval] embedding bare question (len {len(retrieval_query)}) "
+                      f"instead of wrapped query (len {len(message)}); head: {retrieval_query[:120]!r}")
+            relevant_memories = self.memory.search(query=retrieval_query, user_id=user_id, limit=self.retrieve_num)
             print(f"\n\n\nrelevant_memories: {relevant_memories}\n\n\n")
 
-            memories_str = "\n".join(f"- {entry['memory']}" for entry in relevant_memories["results"])
+            _results = relevant_memories["results"]
+            # Query-time memory resolution, gated by MEM0_QUERY_MODE (0615):
+            #   unset / "none"  -> raw top-k (vanilla / "conservative store, no
+            #                      resolve" ablation); byte-identical to upstream.
+            #   "structural"    -> Phase 0: (S,P) group + temporal argmax.
+            #   "phase2"        -> Phase 2: conditional routing + structural resolve
+            #                      + LLM dynamic grouping.
+            # Both operate on the SAME top-k retrieval and feed the SAME inference
+            # prompt; only memory selection differs.
+            _qmode = os.environ.get("MEM0_QUERY_MODE")
+            if _qmode is None and os.environ.get("MEM0_ADD_MODE") == "phase0_structural":
+                _qmode = "structural"  # backward-compat for early phase0 runs
+            try:
+                if _qmode == "structural":
+                    from methods.phase0_query import assemble_context, group_and_resolve
+                    _id2item = {str(e["id"]): e for e in _results}
+                    _resolved, _ungrouped = group_and_resolve(list(_id2item.keys()), _id2item)
+                    memories_str = assemble_context(_resolved, _ungrouped)
+                elif _qmode == "phase2":
+                    from methods.phase2_query import phase2_resolve
+                    _final = phase2_resolve(_results, message)
+                    memories_str = "\n".join(f"- {e['memory']}" for e in _final)
+                else:
+                    memories_str = "\n".join(f"- {entry['memory']}" for entry in _results)
+            except Exception as _e:
+                print(f"[query-resolve {_qmode}] failed, raw fallback: {_e}")
+                memories_str = "\n".join(f"- {entry['memory']}" for entry in _results)
 
-            # Generate assistant response
-            system_prompt = f"You are a helpful AI. Answer the question based on query and memories.\n{memories_str}\n"
+            # Mem0g-prompt-aware variant: verbalize graph relations into the
+            # system prompt, following the upstream mem0 cookbook pattern
+            # ("Choose Vector vs Graph Memory" — Expected behavior: graph
+            # memory returns the direct answer plus the relationship chain).
+            # MABench-as-is path (mem0_prompt_aware_graph=False) keeps the
+            # original vector-only prompt.
+            if getattr(self, "mem0_prompt_aware_graph", False):
+                rels = relevant_memories.get("relations") or []
+                rels_str = "\n".join(
+                    f"- {r.get('source','?')} --[{r.get('relationship','?')}]--> "
+                    f"{r.get('destination','?')}"
+                    for r in rels
+                )
+                system_prompt = (
+                    "You are a helpful AI. Answer the question based on the facts "
+                    "and the relationship graph below.\n"
+                    f"Facts:\n{memories_str}\n\n"
+                    f"Relationships:\n{rels_str}\n"
+                )
+            else:
+                # Generate assistant response (routed via _answer_with_client to support
+                # both OpenAI and Vertex/AI-Studio Gemini)
+                system_prompt = f"You are a helpful AI. Answer the question based on query and memories.\n{memories_str}\n"
             llm_messages = [
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": message + "\n\nCurrent Time: " + time.strftime("%Y-%m-%d %H:%M:%S")}
             ]
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=llm_messages,
-                temperature=self.temperature,
-                max_tokens=self.max_tokens
-            )
+            response_text, prompt_tokens, completion_tokens = self._answer_with_client(llm_messages)
 
             memory_retrieval_length = len(self.tokenizer.encode(memories_str, disallowed_special=()))
             query_time_len = time.time() - self.agent_start_time - memory_construction_time
             print(f"\nmemory_length: {memory_retrieval_length}\n")
 
             output = self._create_standard_response(
-                response.choices[0].message.content,
-                response.usage.prompt_tokens + memory_retrieval_length,
-                response.usage.completion_tokens,
+                response_text,
+                prompt_tokens + memory_retrieval_length,
+                completion_tokens,
                 memory_construction_time,
                 query_time_len
             )
             self.agent_start_time = time.time()  # Reset time
 
-            # Save retrieved memories and full response
+            # Save retrieved memories and full response.
+            # For mem0g (graph enabled), relevant_memories also contains 'relations'.
             save_dir = f"./outputs/rag_retrieved/{self.agent_name}/k_{self.retrieve_num}/{self.sub_dataset}/chunksize_{self.chunk_size}/query_{query_id}_context_{context_id}.json"
             os.makedirs(os.path.dirname(save_dir), exist_ok=True)
             with open(save_dir, "w", encoding="utf-8") as f:
                 json.dump({
                     "retrieved_memories": relevant_memories.get("results", []),
+                    "retrieved_relations": relevant_memories.get("relations", []),  # mem0g only
                     "memories_str": memories_str,
                     "system_prompt": system_prompt,
                     "user_message": llm_messages[1]["content"],
-                    "response": response.choices[0].message.content,
+                    "response": response_text,
+                    "prompt_tokens": prompt_tokens,
+                    "completion_tokens": completion_tokens,
                 }, f, ensure_ascii=False, indent=2)
 
             return output

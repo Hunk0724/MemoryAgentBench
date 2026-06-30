@@ -119,5 +119,16 @@ class OpenAILLM(LLMBase):
             params["tools"] = tools
             params["tool_choice"] = tool_choice
 
+        import time as _time
+        _t0 = _time.time()
         response = self.client.chat.completions.create(**params)
+        try:  # env-gated cost log; no-op when MEM0_COST_LOG unset
+            from methods.cost_logger import log as _costlog
+            _u = getattr(response, "usage", None)
+            _costlog(os.environ.get("MEM0_COST_STAGE", "mem0_llm"),
+                     params.get("model", self.config.model),
+                     getattr(_u, "prompt_tokens", 0), getattr(_u, "completion_tokens", 0),
+                     _time.time() - _t0)
+        except Exception:
+            pass
         return self._parse_response(response, tools)

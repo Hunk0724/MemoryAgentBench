@@ -222,7 +222,54 @@ def chunk_text_into_sentences(text, model_name="gpt-4o-mini", chunk_size=4096):
     # Add final chunk if it contains any sentences
     if current_chunk_sentences:
         text_chunks.append(" ".join(current_chunk_sentences))
-    
+
+    return text_chunks
+
+
+def chunk_facts_by_line(text, model_name="gpt-4o-mini", chunk_size=4096):
+    """
+    Fact-aware chunker for line-numbered fact lists (e.g. FactConsolidation).
+
+    Each line is one atomic unit (a numbered fact like "37. Frank Zappa ...").
+    Units are packed up to chunk_size tokens, but a unit is NEVER split across
+    chunks — so a fact's sequence number always stays with its text. This fixes
+    the boundary-stranding seen with chunk_text_into_sentences, where
+    nltk.sent_tokenize peels "37." off and ships it to the previous chunk while
+    the fact text starts the next one.
+
+    Drop-in compatible with chunk_text_into_sentences (same signature/returns).
+    Use this ONLY for newline-delimited fact lists; for prose use the sentence
+    chunker.
+    """
+    try:
+        encoding = tiktoken.encoding_for_model(model_name)
+    except KeyError:
+        encoding = tiktoken.encoding_for_model("gpt-4o-mini")
+
+    # One unit per non-empty line (preserves "<seq>. <fact>." intact)
+    units = [ln for ln in text.split("\n") if ln.strip()]
+
+    text_chunks = []
+    current_units = []
+    current_token_count = 0
+
+    for unit in units:
+        unit_token_count = len(encoding.encode(unit, allowed_special={'<|endoftext|>'}))
+        # A single oversized unit becomes its own chunk (no within-fact split)
+        if unit_token_count > chunk_size and not current_units:
+            text_chunks.append(unit)
+            continue
+        if current_token_count + unit_token_count > chunk_size:
+            text_chunks.append("\n".join(current_units))
+            current_units = [unit]
+            current_token_count = unit_token_count
+        else:
+            current_units.append(unit)
+            current_token_count += unit_token_count
+
+    if current_units:
+        text_chunks.append("\n".join(current_units))
+
     return text_chunks
 
 

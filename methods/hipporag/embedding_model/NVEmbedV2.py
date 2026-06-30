@@ -13,6 +13,16 @@ from .base import BaseEmbeddingModel, EmbeddingConfig, make_cache_embed
 
 logger = get_logger(__name__)
 
+# Compat shim for transformers ≥ 4.50 (accelerate.infer_auto_device_map):
+# newer transformers expects ``PreTrainedModel.all_tied_weights_keys`` (a dict
+# mapping group → keys). NV-Embed-v2's custom modeling_nvembed.py predates this
+# convention, so AutoModel.from_pretrained crashes inside
+# ``_get_device_map → infer_auto_device_map``. We add an empty default at the
+# base class level, which means "no tied-weight groups" — safe for inference.
+from transformers.modeling_utils import PreTrainedModel as _PTM
+if not hasattr(_PTM, "all_tied_weights_keys"):
+    _PTM.all_tied_weights_keys = {}  # noqa
+
 
 class NVEmbedV2EmbeddingModel(BaseEmbeddingModel):
 

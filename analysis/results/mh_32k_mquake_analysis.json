@@ -1,0 +1,4986 @@
+[
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no0",
+  "query_id": 0,
+  "question": "What is the country of citizenship of the spouse of the author of Our Mutual Friend?",
+  "gt_answer": "Belgium",
+  "model_output": "United Kingdom.",
+  "exact_match": false,
+  "case_id": 6913,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of Our Mutual Friend?",
+    "gt_answer": "Charles Darwin",
+    "old_answer": "Charles Dickens",
+    "conflict_type": "has_pair",
+    "gt_seq": 2261,
+    "gt_fact_text": "The author of Our Mutual Friend is Charles Darwin.",
+    "old_seq": 1335,
+    "old_fact_text": "The author of Our Mutual Friend is Charles Dickens.",
+    "update_gap": 39
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is Charles Darwin married to?",
+    "gt_answer": "Amala Paul",
+    "old_answer": "Emma Darwin",
+    "conflict_type": "has_pair",
+    "gt_seq": 1896,
+    "gt_fact_text": "Charles Darwin is married to Amala Paul.",
+    "old_seq": 591,
+    "old_fact_text": "Charles Darwin is married to Emma Darwin.",
+    "update_gap": 171
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the country of citizenship of Amala Paul?",
+    "gt_answer": "Belgium",
+    "old_answer": "India",
+    "conflict_type": "has_pair",
+    "gt_seq": 2282,
+    "gt_fact_text": "Amala Paul is a citizen of Belgium.",
+    "old_seq": 2170,
+    "old_fact_text": "Amala Paul is a citizen of India.",
+    "update_gap": 28
+   }
+  ],
+  "old_final_answer": "United Kingdom",
+  "old_passages_to_remove": [
+   1,
+   6,
+   7
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no1",
+  "query_id": 1,
+  "question": "In which location did the spouse of Igor of Kiev pass away?",
+  "gt_answer": "Rodez",
+  "model_output": "Rodez.",
+  "exact_match": true,
+  "case_id": 4558,
+  "num_hops": 2,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is Igor of Kiev married to?",
+    "gt_answer": "Olga of Kiev",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1670,
+    "gt_fact_text": "Igor of Kiev is married to Olga of Kiev.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city did Olga of Kiev die in?",
+    "gt_answer": "Rodez",
+    "old_answer": "Kyiv",
+    "conflict_type": "has_pair",
+    "gt_seq": 484,
+    "gt_fact_text": "Olga of Kiev died in the city of Rodez.",
+    "old_seq": 254,
+    "old_fact_text": "Olga of Kiev died in the city of Kyiv.",
+    "update_gap": 325
+   }
+  ],
+  "old_final_answer": "Kyiv",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no2",
+  "query_id": 2,
+  "question": "Which country is the birthplace of the sport associated with Steve Sax?",
+  "gt_answer": "Italy",
+  "model_output": "England.",
+  "exact_match": false,
+  "case_id": 2046,
+  "num_hops": 2,
+  "error_type": "entity_confused",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Steve Sax associated with?",
+    "gt_answer": "association football",
+    "old_answer": "baseball",
+    "conflict_type": "has_pair",
+    "gt_seq": 1876,
+    "gt_fact_text": "Steve Sax is associated with the sport of association football.",
+    "old_seq": 127,
+    "old_fact_text": "Steve Sax is associated with the sport of baseball.",
+    "update_gap": 382
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was association football created in?",
+    "gt_answer": "Italy",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 1628,
+    "gt_fact_text": "association football was created in the country of Italy.",
+    "old_seq": 328,
+    "old_fact_text": "association football was created in the country of England.",
+    "update_gap": 117
+   }
+  ],
+  "old_final_answer": "United States of America",
+  "old_passages_to_remove": [
+   1,
+   5
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no3",
+  "query_id": 3,
+  "question": "Which city serves as the capital of the country of origin for the sport of the Tunisia national football team?",
+  "gt_answer": "Russellville",
+  "model_output": "London.",
+  "exact_match": false,
+  "case_id": 5926,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Tunisia national football team associated with?",
+    "gt_answer": "basketball",
+    "old_answer": "association football",
+    "conflict_type": "has_pair",
+    "gt_seq": 419,
+    "gt_fact_text": "Tunisia national football team is associated with the sport of basketball.",
+    "old_seq": 365,
+    "old_fact_text": "Tunisia national football team is associated with the sport of association football.",
+    "update_gap": 183
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was basketball created in?",
+    "gt_answer": "Soviet Union",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 621,
+    "gt_fact_text": "basketball was created in the country of Soviet Union.",
+    "old_seq": 219,
+    "old_fact_text": "basketball was created in the country of United States of America.",
+    "update_gap": 132
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the capital of Soviet Union?",
+    "gt_answer": "Russellville",
+    "old_answer": "Moscow",
+    "conflict_type": "has_pair",
+    "gt_seq": 1620,
+    "gt_fact_text": "The capital of Soviet Union is Russellville.",
+    "old_seq": 119,
+    "old_fact_text": "The capital of Soviet Union is Moscow.",
+    "update_gap": 23
+   }
+  ],
+  "old_final_answer": "London",
+  "old_passages_to_remove": [
+   2,
+   9
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no4",
+  "query_id": 4,
+  "question": "What is the sport that Blair Walsh plays in which he is known for his position on the team?",
+  "gt_answer": "rugby",
+  "model_output": "American football.",
+  "exact_match": false,
+  "case_id": 489,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What position does Blair Walsh play?",
+    "gt_answer": "placekicker",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1054,
+    "gt_fact_text": "Blair Walsh plays the position of placekicker.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which sport is placekicker associated with?",
+    "gt_answer": "rugby",
+    "old_answer": "American football",
+    "conflict_type": "has_pair",
+    "gt_seq": 1648,
+    "gt_fact_text": "placekicker is associated with the sport of rugby.",
+    "old_seq": 1115,
+    "old_fact_text": "placekicker is associated with the sport of American football.",
+    "update_gap": 243
+   }
+  ],
+  "old_final_answer": "American football",
+  "old_passages_to_remove": [
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no5",
+  "query_id": 5,
+  "question": "What is the name of the educational institution where the partner of Nicolae Ceaușescu was educated?",
+  "gt_answer": "Baldwin Wallace University",
+  "model_output": "University of Bucharest.",
+  "exact_match": false,
+  "case_id": 751,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is Nicolae Ceaușescu married to?",
+    "gt_answer": "Wilhelm II",
+    "old_answer": "Elena Ceaușescu",
+    "conflict_type": "has_pair",
+    "gt_seq": 2222,
+    "gt_fact_text": "Nicolae Ceaușescu is married to Wilhelm II.",
+    "old_seq": 4,
+    "old_fact_text": "Nicolae Ceaușescu is married to Elena Ceaușescu.",
+    "update_gap": 311
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which university was Wilhelm II educated at?",
+    "gt_answer": "Baldwin Wallace University",
+    "old_answer": "University of Bonn",
+    "conflict_type": "has_pair",
+    "gt_seq": 1892,
+    "gt_fact_text": "The univeristy where Wilhelm II was educated is Baldwin Wallace University.",
+    "old_seq": 1692,
+    "old_fact_text": "The univeristy where Wilhelm II was educated is University of Bonn.",
+    "update_gap": 104
+   }
+  ],
+  "old_final_answer": "University of Bucharest",
+  "old_passages_to_remove": [
+   3,
+   5
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no6",
+  "query_id": 6,
+  "question": "Which country does the current CEO of Twitter hold citizenship of?",
+  "gt_answer": "France",
+  "model_output": "United States of America",
+  "exact_match": false,
+  "case_id": 4555,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the chief executive officer of Twitter?",
+    "gt_answer": "Bernard Arnault",
+    "old_answer": "Jack Dorsey",
+    "conflict_type": "has_pair",
+    "gt_seq": 1071,
+    "gt_fact_text": "The chief executive officer of Twitter is Bernard Arnault.",
+    "old_seq": 46,
+    "old_fact_text": "The chief executive officer of Twitter is Jack Dorsey.",
+    "update_gap": 166
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the country of citizenship of Bernard Arnault?",
+    "gt_answer": "France",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 870,
+    "gt_fact_text": "Bernard Arnault is a citizen of France.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "United States of America",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no7",
+  "query_id": 7,
+  "question": "On which continent was the place of birth of Thomas Arne located?",
+  "gt_answer": "Oceania",
+  "model_output": "Asia",
+  "exact_match": false,
+  "case_id": 4507,
+  "num_hops": 2,
+  "error_type": "entity_confused",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which city was Thomas Arne born in?",
+    "gt_answer": "Bengaluru",
+    "old_answer": "London",
+    "conflict_type": "has_pair",
+    "gt_seq": 1879,
+    "gt_fact_text": "Thomas Arne was born in the city of Bengaluru.",
+    "old_seq": 1053,
+    "old_fact_text": "Thomas Arne was born in the city of London.",
+    "update_gap": 24
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which continent is Bengaluru located in?",
+    "gt_answer": "Oceania",
+    "old_answer": "Asia",
+    "conflict_type": "has_pair",
+    "gt_seq": 791,
+    "gt_fact_text": "Bengaluru is located in the continent of Oceania.",
+    "old_seq": 718,
+    "old_fact_text": "Bengaluru is located in the continent of Asia.",
+    "update_gap": 230
+   }
+  ],
+  "old_final_answer": "Europe",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no8",
+  "query_id": 8,
+  "question": "To which continent does the country of citizenship of Colin Irwin pertain?",
+  "gt_answer": "North America",
+  "model_output": "Asia.",
+  "exact_match": false,
+  "case_id": 3753,
+  "num_hops": 2,
+  "error_type": "entity_confused",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Colin Irwin?",
+    "gt_answer": "Israel",
+    "old_answer": "United Kingdom",
+    "conflict_type": "has_pair",
+    "gt_seq": 2101,
+    "gt_fact_text": "Colin Irwin is a citizen of Israel.",
+    "old_seq": 655,
+    "old_fact_text": "Colin Irwin is a citizen of United Kingdom.",
+    "update_gap": 386
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which continent is Israel located in?",
+    "gt_answer": "North America",
+    "old_answer": "Asia",
+    "conflict_type": "has_pair",
+    "gt_seq": 1500,
+    "gt_fact_text": "Israel is located in the continent of North America.",
+    "old_seq": 966,
+    "old_fact_text": "Israel is located in the continent of Asia.",
+    "update_gap": 29
+   }
+  ],
+  "old_final_answer": "Europe",
+  "old_passages_to_remove": [
+   2,
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no9",
+  "query_id": 9,
+  "question": "What is the location of work of the founder of the religion to which John Walsh belongs?",
+  "gt_answer": "Berlin",
+  "model_output": "Jerusalem.",
+  "exact_match": false,
+  "case_id": 5515,
+  "num_hops": 3,
+  "error_type": "entity_confused",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which religion is John Walsh affiliated with?",
+    "gt_answer": "Methodism",
+    "old_answer": "Catholic Church",
+    "conflict_type": "has_pair",
+    "gt_seq": 1030,
+    "gt_fact_text": "John Walsh is affiliated with the religion of Methodism.",
+    "old_seq": 1010,
+    "old_fact_text": "John Walsh is affiliated with the religion of Catholic Church.",
+    "update_gap": 79
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who founded Methodism?",
+    "gt_answer": "Joseph Goebbels",
+    "old_answer": "John Wesley",
+    "conflict_type": "has_pair",
+    "gt_seq": 1875,
+    "gt_fact_text": "Methodism was founded by Joseph Goebbels.",
+    "old_seq": 438,
+    "old_fact_text": "Methodism was founded by John Wesley.",
+    "update_gap": 69
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which city did Joseph Goebbels work in?",
+    "gt_answer": "Berlin",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 305,
+    "gt_fact_text": "Joseph Goebbels worked in the city of Berlin.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Galilee",
+  "old_passages_to_remove": [
+   1,
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no10",
+  "query_id": 10,
+  "question": "What is the religious affiliation of the person who founded the Transcendental Meditation movement?",
+  "gt_answer": "atheism",
+  "model_output": "Hinduism.",
+  "exact_match": false,
+  "case_id": 4804,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who founded Transcendental Meditation movement?",
+    "gt_answer": "Adalbert of Prague",
+    "old_answer": "Maharishi Mahesh Yogi",
+    "conflict_type": "has_pair",
+    "gt_seq": 1042,
+    "gt_fact_text": "Transcendental Meditation movement was founded by Adalbert of Prague.",
+    "old_seq": 12,
+    "old_fact_text": "Transcendental Meditation movement was founded by Maharishi Mahesh Yogi.",
+    "update_gap": 206
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which religion is Adalbert of Prague affiliated with?",
+    "gt_answer": "atheism",
+    "old_answer": "Catholic Church",
+    "conflict_type": "has_pair",
+    "gt_seq": 892,
+    "gt_fact_text": "Adalbert of Prague is affiliated with the religion of atheism.",
+    "old_seq": 299,
+    "old_fact_text": "Adalbert of Prague is affiliated with the religion of Catholic Church.",
+    "update_gap": 186
+   }
+  ],
+  "old_final_answer": "Hinduism",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no11",
+  "query_id": 11,
+  "question": "What was the religion of the person with the citizenship of the country to which Edmund Burke belonged?",
+  "gt_answer": "Zoroastrianism",
+  "model_output": "Catholic Church.",
+  "exact_match": false,
+  "case_id": 107,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Edmund Burke?",
+    "gt_answer": "Kingdom of Ireland",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 709,
+    "gt_fact_text": "Edmund Burke is a citizen of Kingdom of Ireland.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which religion is Kingdom of Ireland affiliated with?",
+    "gt_answer": "Zoroastrianism",
+    "old_answer": "Catholic Church",
+    "conflict_type": "has_pair",
+    "gt_seq": 1960,
+    "gt_fact_text": "Kingdom of Ireland is affiliated with the religion of Zoroastrianism.",
+    "old_seq": 1804,
+    "old_fact_text": "Kingdom of Ireland is affiliated with the religion of Catholic Church.",
+    "update_gap": 190
+   }
+  ],
+  "old_final_answer": "Catholic Church",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no12",
+  "query_id": 12,
+  "question": "What is the capital city of the country where the sport associated with John Harkes has its origin?",
+  "gt_answer": "Duluth",
+  "model_output": "London.",
+  "exact_match": false,
+  "case_id": 6874,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is John Harkes associated with?",
+    "gt_answer": "association football",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1772,
+    "gt_fact_text": "John Harkes is associated with the sport of association football.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was association football created in?",
+    "gt_answer": "Italy",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 1628,
+    "gt_fact_text": "association football was created in the country of Italy.",
+    "old_seq": 328,
+    "old_fact_text": "association football was created in the country of England.",
+    "update_gap": 117
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the capital of Italy?",
+    "gt_answer": "Duluth",
+    "old_answer": "Rome",
+    "conflict_type": "has_pair",
+    "gt_seq": 1828,
+    "gt_fact_text": "The capital of Italy is Duluth.",
+    "old_seq": 199,
+    "old_fact_text": "The capital of Italy is Rome.",
+    "update_gap": 42
+   }
+  ],
+  "old_final_answer": "London",
+  "old_passages_to_remove": [
+   2,
+   5
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no13",
+  "query_id": 13,
+  "question": "Which faith is the partner of Laura Bush associated with?",
+  "gt_answer": "Anglicanism",
+  "model_output": "United Methodist Church.",
+  "exact_match": false,
+  "case_id": 2341,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is Laura Bush married to?",
+    "gt_answer": "Princess Alice, Duchess of Gloucester",
+    "old_answer": "George W. Bush",
+    "conflict_type": "has_pair",
+    "gt_seq": 2078,
+    "gt_fact_text": "Laura Bush is married to Princess Alice, Duchess of Gloucester.",
+    "old_seq": 424,
+    "old_fact_text": "Laura Bush is married to George W. Bush.",
+    "update_gap": 51
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which religion is Princess Alice, Duchess of Gloucester affiliated with?",
+    "gt_answer": "Anglicanism",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 296,
+    "gt_fact_text": "Princess Alice, Duchess of Gloucester is affiliated with the religion of Anglicanism.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "United Methodist Church",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no14",
+  "query_id": 14,
+  "question": "What was the name of the head of state in the country where Andrew Carnegie was a citizen?",
+  "gt_answer": "Emmerson Mnangagwa",
+  "model_output": "Donald Trump",
+  "exact_match": false,
+  "case_id": 4013,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Andrew Carnegie?",
+    "gt_answer": "United Kingdom",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 368,
+    "gt_fact_text": "Andrew Carnegie is a citizen of United Kingdom.",
+    "old_seq": 94,
+    "old_fact_text": "Andrew Carnegie is a citizen of United States of America.",
+    "update_gap": 29
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the name of the current head of state in United Kingdom?",
+    "gt_answer": "Emmerson Mnangagwa",
+    "old_answer": "Elizabeth II",
+    "conflict_type": "has_pair",
+    "gt_seq": 1413,
+    "gt_fact_text": "The name of the current head of state in United Kingdom is Emmerson Mnangagwa.",
+    "old_seq": 1361,
+    "old_fact_text": "The name of the current head of state in United Kingdom is Elizabeth II.",
+    "update_gap": 170
+   }
+  ],
+  "old_final_answer": "Donald Trump",
+  "old_passages_to_remove": [
+   1,
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no15",
+  "query_id": 15,
+  "question": "From which capital city did the Surrey Senior Cup, a sports competition, originate?",
+  "gt_answer": "Russellville",
+  "model_output": "London.",
+  "exact_match": false,
+  "case_id": 6544,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Surrey Senior Cup associated with?",
+    "gt_answer": "basketball",
+    "old_answer": "association football",
+    "conflict_type": "has_pair",
+    "gt_seq": 1150,
+    "gt_fact_text": "Surrey Senior Cup is associated with the sport of basketball.",
+    "old_seq": 239,
+    "old_fact_text": "Surrey Senior Cup is associated with the sport of association football.",
+    "update_gap": 24
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was basketball created in?",
+    "gt_answer": "Soviet Union",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 621,
+    "gt_fact_text": "basketball was created in the country of Soviet Union.",
+    "old_seq": 219,
+    "old_fact_text": "basketball was created in the country of United States of America.",
+    "update_gap": 132
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the capital of Soviet Union?",
+    "gt_answer": "Russellville",
+    "old_answer": "Moscow",
+    "conflict_type": "has_pair",
+    "gt_seq": 1620,
+    "gt_fact_text": "The capital of Soviet Union is Russellville.",
+    "old_seq": 119,
+    "old_fact_text": "The capital of Soviet Union is Moscow.",
+    "update_gap": 23
+   }
+  ],
+  "old_final_answer": "London",
+  "old_passages_to_remove": [
+   4,
+   10
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no16",
+  "query_id": 16,
+  "question": "From which country does the sport, with which Carlos Gómez is associated, come from?",
+  "gt_answer": "Soviet Union",
+  "model_output": "United States of America.",
+  "exact_match": false,
+  "case_id": 521,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Carlos Gómez associated with?",
+    "gt_answer": "basketball",
+    "old_answer": "baseball",
+    "conflict_type": "has_pair",
+    "gt_seq": 1769,
+    "gt_fact_text": "Carlos Gómez is associated with the sport of basketball.",
+    "old_seq": 1320,
+    "old_fact_text": "Carlos Gómez is associated with the sport of baseball.",
+    "update_gap": 324
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was basketball created in?",
+    "gt_answer": "Soviet Union",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 621,
+    "gt_fact_text": "basketball was created in the country of Soviet Union.",
+    "old_seq": 219,
+    "old_fact_text": "basketball was created in the country of United States of America.",
+    "update_gap": 132
+   }
+  ],
+  "old_final_answer": "United States of America",
+  "old_passages_to_remove": [
+   7
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no17",
+  "query_id": 17,
+  "question": "In which city is the capital of the country where Madame du Barry held a citizenship?",
+  "gt_answer": "London",
+  "model_output": "Paris.",
+  "exact_match": false,
+  "case_id": 1675,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Madame du Barry?",
+    "gt_answer": "Great Britain",
+    "old_answer": "France",
+    "conflict_type": "has_pair",
+    "gt_seq": 2017,
+    "gt_fact_text": "Madame du Barry is a citizen of Great Britain.",
+    "old_seq": 1246,
+    "old_fact_text": "Madame du Barry is a citizen of France.",
+    "update_gap": 94
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the capital of Great Britain?",
+    "gt_answer": "London",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1971,
+    "gt_fact_text": "The capital of Great Britain is London.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Paris",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no18",
+  "query_id": 18,
+  "question": "What is the job title of the chairperson of the political organization Fatah?",
+  "gt_answer": "soldier",
+  "model_output": "Mahmoud Abbas.",
+  "exact_match": false,
+  "case_id": 1170,
+  "num_hops": 2,
+  "error_type": "intermediate_stop",
+  "int_stop_hop": 0,
+  "int_stop_ver": "old",
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the chairperson of Fatah?",
+    "gt_answer": "Moshe Kahlon",
+    "old_answer": "Mahmoud Abbas",
+    "conflict_type": "has_pair",
+    "gt_seq": 1764,
+    "gt_fact_text": "The chairperson of Fatah is Moshe Kahlon.",
+    "old_seq": 1535,
+    "old_fact_text": "The chairperson of Fatah is Mahmoud Abbas.",
+    "update_gap": 231
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What kind of work does Moshe Kahlon do?",
+    "gt_answer": "soldier",
+    "old_answer": "politician",
+    "conflict_type": "has_pair",
+    "gt_seq": 1000,
+    "gt_fact_text": "Moshe Kahlon works in the field of soldier.",
+    "old_seq": 596,
+    "old_fact_text": "Moshe Kahlon works in the field of politician.",
+    "update_gap": 234
+   }
+  ],
+  "old_final_answer": "politician",
+  "old_passages_to_remove": []
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no19",
+  "query_id": 19,
+  "question": "Which city is the capital of the country where the performer of \"Free as a Bird\"'s director/manager comes from?",
+  "gt_answer": "Duluth",
+  "model_output": "London",
+  "exact_match": false,
+  "case_id": 8280,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who performed Free as a Bird?",
+    "gt_answer": "The Beatles",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1685,
+    "gt_fact_text": "Free as a Bird was performed by The Beatles.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is the director of The Beatles?",
+    "gt_answer": "Joe Hockey",
+    "old_answer": "Brian Epstein",
+    "conflict_type": "has_pair",
+    "gt_seq": 818,
+    "gt_fact_text": "The director of The Beatles is Joe Hockey.",
+    "old_seq": 231,
+    "old_fact_text": "The director of The Beatles is Brian Epstein.",
+    "update_gap": 207
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the country of citizenship of Joe Hockey?",
+    "gt_answer": "Italy",
+    "old_answer": "Australia",
+    "conflict_type": "has_pair",
+    "gt_seq": 2196,
+    "gt_fact_text": "Joe Hockey is a citizen of Italy.",
+    "old_seq": 439,
+    "old_fact_text": "Joe Hockey is a citizen of Australia.",
+    "update_gap": 298
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of Italy?",
+    "gt_answer": "Duluth",
+    "old_answer": "Rome",
+    "conflict_type": "has_pair",
+    "gt_seq": 1828,
+    "gt_fact_text": "The capital of Italy is Duluth.",
+    "old_seq": 199,
+    "old_fact_text": "The capital of Italy is Rome.",
+    "update_gap": 42
+   }
+  ],
+  "old_final_answer": "London",
+  "old_passages_to_remove": [
+   2,
+   4
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no20",
+  "query_id": 20,
+  "question": "What is the language of the work that was created by the individual who created Rand al'Thor?",
+  "gt_answer": "Persian",
+  "model_output": "English.",
+  "exact_match": false,
+  "case_id": 5314,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who was Rand al'Thor created by?",
+    "gt_answer": "Ferdowsi",
+    "old_answer": "Robert Jordan",
+    "conflict_type": "has_pair",
+    "gt_seq": 1689,
+    "gt_fact_text": "Rand al'Thor was created by Ferdowsi.",
+    "old_seq": 26,
+    "old_fact_text": "Rand al'Thor was created by Robert Jordan.",
+    "update_gap": 260
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is Ferdowsi famous for?",
+    "gt_answer": "Shahnameh",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 429,
+    "gt_fact_text": "Ferdowsi is famous for Shahnameh.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which language was Shahnameh written in?",
+    "gt_answer": "Persian",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 393,
+    "gt_fact_text": "Shahnameh was written in the language of Persian.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "English",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no21",
+  "query_id": 21,
+  "question": "What is the work location of the person who founded the religion Karen Armstrong belongs to?",
+  "gt_answer": "Edinburgh",
+  "model_output": "Edinburgh.",
+  "exact_match": true,
+  "case_id": 6066,
+  "num_hops": 3,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which religion is Karen Armstrong affiliated with?",
+    "gt_answer": "Church of Scotland",
+    "old_answer": "Catholic Church",
+    "conflict_type": "has_pair",
+    "gt_seq": 2142,
+    "gt_fact_text": "Karen Armstrong is affiliated with the religion of Church of Scotland.",
+    "old_seq": 1420,
+    "old_fact_text": "Karen Armstrong is affiliated with the religion of Catholic Church.",
+    "update_gap": 146
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who founded Church of Scotland?",
+    "gt_answer": "John Knox",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 402,
+    "gt_fact_text": "Church of Scotland was founded by John Knox.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which city did John Knox work in?",
+    "gt_answer": "Edinburgh",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 183,
+    "gt_fact_text": "John Knox worked in the city of Edinburgh.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Galilee",
+  "old_passages_to_remove": [
+   4
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no22",
+  "query_id": 22,
+  "question": "What is the name of the child category of \"Categories\" created by the author?",
+  "gt_answer": "George Alexander Kohut",
+  "model_output": "None.",
+  "exact_match": false,
+  "case_id": 2665,
+  "num_hops": 2,
+  "error_type": "hallucination",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of Categories?",
+    "gt_answer": "Aristotle",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 175,
+    "gt_fact_text": "The author of Categories is Aristotle.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is Aristotle's child?",
+    "gt_answer": "George Alexander Kohut",
+    "old_answer": "Nicomachus",
+    "conflict_type": "has_pair",
+    "gt_seq": 1883,
+    "gt_fact_text": "Aristotle's child is George Alexander Kohut.",
+    "old_seq": 318,
+    "old_fact_text": "Aristotle's child is Nicomachus.",
+    "update_gap": 141
+   }
+  ],
+  "old_final_answer": "Nicomachus",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no23",
+  "query_id": 23,
+  "question": "Where is the country of origin of FC Vorskla Poltava?",
+  "gt_answer": "Soviet Union",
+  "model_output": "England.",
+  "exact_match": false,
+  "case_id": 4423,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is FC Vorskla Poltava associated with?",
+    "gt_answer": "basketball",
+    "old_answer": "association football",
+    "conflict_type": "has_pair",
+    "gt_seq": 2254,
+    "gt_fact_text": "FC Vorskla Poltava is associated with the sport of basketball.",
+    "old_seq": 646,
+    "old_fact_text": "FC Vorskla Poltava is associated with the sport of association football.",
+    "update_gap": 29
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was basketball created in?",
+    "gt_answer": "Soviet Union",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 621,
+    "gt_fact_text": "basketball was created in the country of Soviet Union.",
+    "old_seq": 219,
+    "old_fact_text": "basketball was created in the country of United States of America.",
+    "update_gap": 132
+   }
+  ],
+  "old_final_answer": "England",
+  "old_passages_to_remove": [
+   1,
+   10
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no24",
+  "query_id": 24,
+  "question": "Which city is the capital of the country where the CEO of the developer of SteamOS holds a citizenship?",
+  "gt_answer": "Harare",
+  "model_output": "Washington, D.C.",
+  "exact_match": false,
+  "case_id": 7528,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the developer of SteamOS?",
+    "gt_answer": "ABB Group",
+    "old_answer": "Valve Corporation",
+    "conflict_type": "has_pair",
+    "gt_seq": 804,
+    "gt_fact_text": "SteamOS was developed by ABB Group.",
+    "old_seq": 792,
+    "old_fact_text": "SteamOS was developed by Valve Corporation.",
+    "update_gap": 39
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is the chief executive officer of ABB Group?",
+    "gt_answer": "Bernard Arnault",
+    "old_answer": "Ulrich Spiesshofer",
+    "conflict_type": "has_pair",
+    "gt_seq": 2104,
+    "gt_fact_text": "The chief executive officer of ABB Group is Bernard Arnault.",
+    "old_seq": 488,
+    "old_fact_text": "The chief executive officer of ABB Group is Ulrich Spiesshofer.",
+    "update_gap": 61
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the country of citizenship of Bernard Arnault?",
+    "gt_answer": "France",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 870,
+    "gt_fact_text": "Bernard Arnault is a citizen of France.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of France?",
+    "gt_answer": "Harare",
+    "old_answer": "Paris",
+    "conflict_type": "has_pair",
+    "gt_seq": 1034,
+    "gt_fact_text": "The capital of France is Harare.",
+    "old_seq": 210,
+    "old_fact_text": "The capital of France is Paris.",
+    "update_gap": 8
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": [
+   1,
+   6
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no25",
+  "query_id": 25,
+  "question": "What is the name of the person who is the chief executive officer of the developer of F-22 Raptor?",
+  "gt_answer": "Adel al-Jubeir",
+  "model_output": "Marillyn Hewson.",
+  "exact_match": false,
+  "case_id": 917,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the developer of F-22 Raptor?",
+    "gt_answer": "Boeing",
+    "old_answer": "Lockheed Martin",
+    "conflict_type": "has_pair",
+    "gt_seq": 1701,
+    "gt_fact_text": "F-22 Raptor was developed by Boeing.",
+    "old_seq": 1119,
+    "old_fact_text": "F-22 Raptor was developed by Lockheed Martin.",
+    "update_gap": 110
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is the chief executive officer of Boeing?",
+    "gt_answer": "Adel al-Jubeir",
+    "old_answer": "Dennis Muilenburg",
+    "conflict_type": "has_pair",
+    "gt_seq": 1976,
+    "gt_fact_text": "The chief executive officer of Boeing is Adel al-Jubeir.",
+    "old_seq": 1934,
+    "old_fact_text": "The chief executive officer of Boeing is Dennis Muilenburg.",
+    "update_gap": 257
+   }
+  ],
+  "old_final_answer": "Marillyn Hewson",
+  "old_passages_to_remove": [
+   2,
+   6
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no26",
+  "query_id": 26,
+  "question": "Who holds the position of chairperson in the organization where Joseph Story was employed?",
+  "gt_answer": "Peter Diamandis",
+  "model_output": "Peter Diamandis.",
+  "exact_match": true,
+  "case_id": 1140,
+  "num_hops": 2,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the employer of Joseph Story?",
+    "gt_answer": "Harvard University",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1452,
+    "gt_fact_text": "Joseph Story is employed by Harvard University.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is the chairperson of Harvard University?",
+    "gt_answer": "Peter Diamandis",
+    "old_answer": "Lawrence S. Bacow",
+    "conflict_type": "has_pair",
+    "gt_seq": 280,
+    "gt_fact_text": "The chairperson of Harvard University is Peter Diamandis.",
+    "old_seq": 147,
+    "old_fact_text": "The chairperson of Harvard University is Lawrence S. Bacow.",
+    "update_gap": 142
+   }
+  ],
+  "old_final_answer": "Lawrence S. Bacow",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no27",
+  "query_id": 27,
+  "question": "What city serves as the capital of the country where the performer who is the spouse of Derek Shepherd holds citizenship?",
+  "gt_answer": "Harrisville",
+  "model_output": "Washington, D.C.",
+  "exact_match": false,
+  "case_id": 8936,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is Derek Shepherd married to?",
+    "gt_answer": "Meredith Grey",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 747,
+    "gt_fact_text": "Derek Shepherd is married to Meredith Grey.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who performed Meredith Grey?",
+    "gt_answer": "Ellen Pompeo",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 182,
+    "gt_fact_text": "Meredith Grey was performed by Ellen Pompeo.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the country of citizenship of Ellen Pompeo?",
+    "gt_answer": "United States of America",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 2304,
+    "gt_fact_text": "Ellen Pompeo is a citizen of United States of America.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of United States of America?",
+    "gt_answer": "Harrisville",
+    "old_answer": "Washington, D.C",
+    "conflict_type": "has_pair",
+    "gt_seq": 871,
+    "gt_fact_text": "The capital of United States of America is Harrisville.",
+    "old_seq": 633,
+    "old_fact_text": "The capital of United States of America is Washington, D.C..",
+    "update_gap": 149
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": [
+   5
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no28",
+  "query_id": 28,
+  "question": "What is the name of the city that serves as the capital of the country to which Sable belongs?",
+  "gt_answer": "Prague",
+  "model_output": "Washington, D.C.",
+  "exact_match": false,
+  "case_id": 4305,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Sable?",
+    "gt_answer": "Czech Republic",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 1691,
+    "gt_fact_text": "Sable is a citizen of Czech Republic.",
+    "old_seq": 620,
+    "old_fact_text": "Sable is a citizen of United States of America.",
+    "update_gap": 55
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the capital of Czech Republic?",
+    "gt_answer": "Prague",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1551,
+    "gt_fact_text": "The capital of Czech Republic is Prague.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no29",
+  "query_id": 29,
+  "question": "In which city serves as the capital of the country of citizenship of Country Joe McDonald?",
+  "gt_answer": "Rajanpur",
+  "model_output": "Washington, D.C.",
+  "exact_match": false,
+  "case_id": 1585,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Country Joe McDonald?",
+    "gt_answer": "Romania",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 1918,
+    "gt_fact_text": "Country Joe McDonald is a citizen of Romania.",
+    "old_seq": 471,
+    "old_fact_text": "Country Joe McDonald is a citizen of United States of America.",
+    "update_gap": 85
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the capital of Romania?",
+    "gt_answer": "Rajanpur",
+    "old_answer": "Bucharest",
+    "conflict_type": "has_pair",
+    "gt_seq": 576,
+    "gt_fact_text": "The capital of Romania is Rajanpur.",
+    "old_seq": 308,
+    "old_fact_text": "The capital of Romania is Bucharest.",
+    "update_gap": 264
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no30",
+  "query_id": 30,
+  "question": "What city or town is the headquarters of the educational institution, where the performer of the album \"Blood on the Tracks\" received education, located in?",
+  "gt_answer": "New York City",
+  "model_output": "Minneapolis.",
+  "exact_match": false,
+  "case_id": 5636,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who performed Blood on the Tracks?",
+    "gt_answer": "Lou Reed",
+    "old_answer": "Bob Dylan",
+    "conflict_type": "has_pair",
+    "gt_seq": 1759,
+    "gt_fact_text": "Blood on the Tracks was performed by Lou Reed.",
+    "old_seq": 1592,
+    "old_fact_text": "Blood on the Tracks was performed by Bob Dylan.",
+    "update_gap": 129
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which university was Lou Reed educated at?",
+    "gt_answer": "Fordham University",
+    "old_answer": "Syracuse University",
+    "conflict_type": "has_pair",
+    "gt_seq": 879,
+    "gt_fact_text": "The univeristy where Lou Reed was educated is Fordham University.",
+    "old_seq": 18,
+    "old_fact_text": "The univeristy where Lou Reed was educated is Syracuse University.",
+    "update_gap": 113
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which city is the headquarter of Fordham University located in?",
+    "gt_answer": "New York City",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 241,
+    "gt_fact_text": "The headquarters of Fordham University is located in the city of New York City.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Minneapolis",
+  "old_passages_to_remove": [
+   4,
+   9
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no31",
+  "query_id": 31,
+  "question": "What is the name of the chief executive of the country where the sport associated with Bo Ryan was first developed?",
+  "gt_answer": "Giuseppe Conte",
+  "model_output": "Donald Trump",
+  "exact_match": false,
+  "case_id": 6228,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Bo Ryan associated with?",
+    "gt_answer": "association football",
+    "old_answer": "basketball",
+    "conflict_type": "has_pair",
+    "gt_seq": 2218,
+    "gt_fact_text": "Bo Ryan is associated with the sport of association football.",
+    "old_seq": 1418,
+    "old_fact_text": "Bo Ryan is associated with the sport of basketball.",
+    "update_gap": 152
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was association football created in?",
+    "gt_answer": "Italy",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 1628,
+    "gt_fact_text": "association football was created in the country of Italy.",
+    "old_seq": 328,
+    "old_fact_text": "association football was created in the country of England.",
+    "update_gap": 117
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the name of the current head of the Italy government?",
+    "gt_answer": "Giuseppe Conte",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1093,
+    "gt_fact_text": "The name of the current head of the Italy government is Giuseppe Conte.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Donald Trump",
+  "old_passages_to_remove": [
+   4,
+   9
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no32",
+  "query_id": 32,
+  "question": "What is the continent of origin of the chief executive officer for the developer of Windows Phone?",
+  "gt_answer": "North America",
+  "model_output": "North America.",
+  "exact_match": true,
+  "case_id": 8752,
+  "num_hops": 4,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the developer of Windows Phone?",
+    "gt_answer": "Microsoft",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 341,
+    "gt_fact_text": "Windows Phone was developed by Microsoft.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is the chief executive officer of Microsoft?",
+    "gt_answer": "Steve Jobs",
+    "old_answer": "Satya Nadella",
+    "conflict_type": "has_pair",
+    "gt_seq": 976,
+    "gt_fact_text": "The chief executive officer of Microsoft is Steve Jobs.",
+    "old_seq": 195,
+    "old_fact_text": "The chief executive officer of Microsoft is Satya Nadella.",
+    "update_gap": 103
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which city was Steve Jobs born in?",
+    "gt_answer": "San Francisco",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 0,
+    "gt_fact_text": "Steve Jobs was born in the city of San Francisco.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "Which continent is San Francisco located in?",
+    "gt_answer": "North America",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 85,
+    "gt_fact_text": "San Francisco is located in the continent of North America.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Asia",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no33",
+  "query_id": 33,
+  "question": "Which continent does the country where the sport played by the Slovakia national football team originated come from?",
+  "gt_answer": "South America",
+  "model_output": "Europe.",
+  "exact_match": false,
+  "case_id": 5575,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Slovakia national football team associated with?",
+    "gt_answer": "cricket",
+    "old_answer": "association football",
+    "conflict_type": "has_pair",
+    "gt_seq": 1825,
+    "gt_fact_text": "Slovakia national football team is associated with the sport of cricket.",
+    "old_seq": 1532,
+    "old_fact_text": "Slovakia national football team is associated with the sport of association football.",
+    "update_gap": 261
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was cricket created in?",
+    "gt_answer": "Australia",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 2028,
+    "gt_fact_text": "cricket was created in the country of Australia.",
+    "old_seq": 151,
+    "old_fact_text": "cricket was created in the country of England.",
+    "update_gap": 93
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which continent is Australia located in?",
+    "gt_answer": "South America",
+    "old_answer": "Oceania",
+    "conflict_type": "has_pair",
+    "gt_seq": 2220,
+    "gt_fact_text": "Australia is located in the continent of South America.",
+    "old_seq": 1189,
+    "old_fact_text": "Australia is located in the continent of Oceania.",
+    "update_gap": 145
+   }
+  ],
+  "old_final_answer": "Europe",
+  "old_passages_to_remove": [
+   1,
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no34",
+  "query_id": 34,
+  "question": "Which religion was the partner of Ferdinand Marcos associated with?",
+  "gt_answer": "atheism",
+  "model_output": "atheism.",
+  "exact_match": true,
+  "case_id": 1825,
+  "num_hops": 2,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is Ferdinand Marcos married to?",
+    "gt_answer": "Imelda Marcos",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1632,
+    "gt_fact_text": "Ferdinand Marcos is married to Imelda Marcos.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which religion is Imelda Marcos affiliated with?",
+    "gt_answer": "atheism",
+    "old_answer": "Catholicism",
+    "conflict_type": "has_pair",
+    "gt_seq": 840,
+    "gt_fact_text": "Imelda Marcos is affiliated with the religion of atheism.",
+    "old_seq": 281,
+    "old_fact_text": "Imelda Marcos is affiliated with the religion of Catholicism.",
+    "update_gap": 126
+   }
+  ],
+  "old_final_answer": "Catholicism",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no35",
+  "query_id": 35,
+  "question": "What is the name of the significant creation associated with the creator of Vito Corleone?",
+  "gt_answer": "The Fairly OddParents",
+  "model_output": "The Godfather.",
+  "exact_match": false,
+  "case_id": 1292,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who was Vito Corleone created by?",
+    "gt_answer": "Nobuhiro Watsuki",
+    "old_answer": "Mario Puzo",
+    "conflict_type": "has_pair",
+    "gt_seq": 2238,
+    "gt_fact_text": "Vito Corleone was created by Nobuhiro Watsuki.",
+    "old_seq": 647,
+    "old_fact_text": "Vito Corleone was created by Mario Puzo.",
+    "update_gap": 134
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is Nobuhiro Watsuki famous for?",
+    "gt_answer": "The Fairly OddParents",
+    "old_answer": "Rurouni Kenshin",
+    "conflict_type": "has_pair",
+    "gt_seq": 1809,
+    "gt_fact_text": "Nobuhiro Watsuki is famous for The Fairly OddParents.",
+    "old_seq": 302,
+    "old_fact_text": "Nobuhiro Watsuki is famous for Rurouni Kenshin.",
+    "update_gap": 168
+   }
+  ],
+  "old_final_answer": "The Godfather",
+  "old_passages_to_remove": [
+   2,
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no36",
+  "query_id": 36,
+  "question": "To which country does the performer who goes by the name Rocket Man hold citizenship?",
+  "gt_answer": "Japan",
+  "model_output": "Japan",
+  "exact_match": true,
+  "case_id": 3812,
+  "num_hops": 2,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who performed Rocket Man?",
+    "gt_answer": "Ayumi Hamasaki",
+    "old_answer": "Elton John",
+    "conflict_type": "has_pair",
+    "gt_seq": 1141,
+    "gt_fact_text": "Rocket Man was performed by Ayumi Hamasaki.",
+    "old_seq": 1022,
+    "old_fact_text": "Rocket Man was performed by Elton John.",
+    "update_gap": 158
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the country of citizenship of Ayumi Hamasaki?",
+    "gt_answer": "Japan",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 54,
+    "gt_fact_text": "Ayumi Hamasaki is a citizen of Japan.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "United Kingdom",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no37",
+  "query_id": 37,
+  "question": "Which language does the performer of Hermione Granger know how to speak, write or sign?",
+  "gt_answer": "German",
+  "model_output": "English",
+  "exact_match": false,
+  "case_id": 1655,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who performed Hermione Granger?",
+    "gt_answer": "Kylie Minogue",
+    "old_answer": "Emma Watson",
+    "conflict_type": "has_pair",
+    "gt_seq": 572,
+    "gt_fact_text": "Hermione Granger was performed by Kylie Minogue.",
+    "old_seq": 477,
+    "old_fact_text": "Hermione Granger was performed by Emma Watson.",
+    "update_gap": 12
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What language does Kylie Minogue speak?",
+    "gt_answer": "German",
+    "old_answer": "English",
+    "conflict_type": "has_pair",
+    "gt_seq": 185,
+    "gt_fact_text": "Kylie Minogue speaks the language of German.",
+    "old_seq": 152,
+    "old_fact_text": "Kylie Minogue speaks the language of English.",
+    "update_gap": 35
+   }
+  ],
+  "old_final_answer": "English",
+  "old_passages_to_remove": [
+   1,
+   5
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no38",
+  "query_id": 38,
+  "question": "From which country does the musical genre Michael Mantler is associated with come from?",
+  "gt_answer": "Canada",
+  "model_output": "United States of America.",
+  "exact_match": false,
+  "case_id": 4387,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What type of music does Michael Mantler play?",
+    "gt_answer": "post-punk",
+    "old_answer": "jazz",
+    "conflict_type": "has_pair",
+    "gt_seq": 1962,
+    "gt_fact_text": "The type of music that Michael Mantler plays is post-punk.",
+    "old_seq": 1050,
+    "old_fact_text": "The type of music that Michael Mantler plays is jazz.",
+    "update_gap": 9
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was post-punk created in?",
+    "gt_answer": "Canada",
+    "old_answer": "United Kingdom",
+    "conflict_type": "has_pair",
+    "gt_seq": 876,
+    "gt_fact_text": "post-punk was created in the country of Canada.",
+    "old_seq": 827,
+    "old_fact_text": "post-punk was created in the country of United Kingdom.",
+    "update_gap": 106
+   }
+  ],
+  "old_final_answer": "United States of America",
+  "old_passages_to_remove": [
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no39",
+  "query_id": 39,
+  "question": "Which sport is associated with the position played by Robert Parish on a team or his specialty?",
+  "gt_answer": "Muay Thai",
+  "model_output": "basketball.",
+  "exact_match": false,
+  "case_id": 3612,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What position does Robert Parish play?",
+    "gt_answer": "quarterback",
+    "old_answer": "center",
+    "conflict_type": "has_pair",
+    "gt_seq": 1171,
+    "gt_fact_text": "Robert Parish plays the position of quarterback.",
+    "old_seq": 782,
+    "old_fact_text": "Robert Parish plays the position of center.",
+    "update_gap": 4
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which sport is quarterback associated with?",
+    "gt_answer": "Muay Thai",
+    "old_answer": "American football",
+    "conflict_type": "has_pair",
+    "gt_seq": 1083,
+    "gt_fact_text": "quarterback is associated with the sport of Muay Thai.",
+    "old_seq": 332,
+    "old_fact_text": "quarterback is associated with the sport of American football.",
+    "update_gap": 19
+   }
+  ],
+  "old_final_answer": "basketball",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no40",
+  "query_id": 40,
+  "question": "What is the name of the person who founded the organization that Benjamin Mazar was part of?",
+  "gt_answer": "Philippe, Duke of Orléans",
+  "model_output": "Unknown",
+  "exact_match": false,
+  "case_id": 3583,
+  "num_hops": 2,
+  "error_type": "hallucination",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Benjamin Mazar?",
+    "gt_answer": "Israel",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 2236,
+    "gt_fact_text": "Benjamin Mazar is a citizen of Israel.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who founded Israel?",
+    "gt_answer": "Philippe, Duke of Orléans",
+    "old_answer": "David Ben-Gurion",
+    "conflict_type": "has_pair",
+    "gt_seq": 1462,
+    "gt_fact_text": "Israel was founded by Philippe, Duke of Orléans.",
+    "old_seq": 276,
+    "old_fact_text": "Israel was founded by David Ben-Gurion.",
+    "update_gap": 1
+   }
+  ],
+  "old_final_answer": "David Ben-Gurion",
+  "old_passages_to_remove": []
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no41",
+  "query_id": 41,
+  "question": "Which language is recognized as the official language of the place where Gennady Rozhdestvensky took his last breath?",
+  "gt_answer": "German",
+  "model_output": "Russian",
+  "exact_match": false,
+  "case_id": 3484,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which city did Gennady Rozhdestvensky die in?",
+    "gt_answer": "United States of America",
+    "old_answer": "Moscow",
+    "conflict_type": "has_pair",
+    "gt_seq": 1233,
+    "gt_fact_text": "Gennady Rozhdestvensky died in the city of United States of America.",
+    "old_seq": 499,
+    "old_fact_text": "Gennady Rozhdestvensky died in the city of Moscow.",
+    "update_gap": 159
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the official language of United States of America?",
+    "gt_answer": "German",
+    "old_answer": "American English",
+    "conflict_type": "has_pair",
+    "gt_seq": 2253,
+    "gt_fact_text": "The official language of United States of America is German.",
+    "old_seq": 150,
+    "old_fact_text": "The official language of United States of America is American English.",
+    "update_gap": 53
+   }
+  ],
+  "old_final_answer": "Russian",
+  "old_passages_to_remove": [
+   2,
+   7
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no42",
+  "query_id": 42,
+  "question": "What is the birthplace of the author of \"The Marriage of Figaro\"?",
+  "gt_answer": "Leeds",
+  "model_output": "Not available.",
+  "exact_match": false,
+  "case_id": 1536,
+  "num_hops": 2,
+  "error_type": "hallucination",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of The Marriage of Figaro?",
+    "gt_answer": "Thomas Kyd",
+    "old_answer": "Pierre Beaumarchais",
+    "conflict_type": "has_pair",
+    "gt_seq": 2174,
+    "gt_fact_text": "The author of The Marriage of Figaro is Thomas Kyd.",
+    "old_seq": 2055,
+    "old_fact_text": "The author of The Marriage of Figaro is Pierre Beaumarchais.",
+    "update_gap": 127
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city was Thomas Kyd born in?",
+    "gt_answer": "Leeds",
+    "old_answer": "London",
+    "conflict_type": "has_pair",
+    "gt_seq": 1116,
+    "gt_fact_text": "Thomas Kyd was born in the city of Leeds.",
+    "old_seq": 673,
+    "old_fact_text": "Thomas Kyd was born in the city of London.",
+    "update_gap": 306
+   }
+  ],
+  "old_final_answer": "Paris",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no43",
+  "query_id": 43,
+  "question": "In which country was Darryl Strawberry's sport developed, and who is the head of government in that nation?",
+  "gt_answer": "Shinzō Abe",
+  "model_output": "United States of America, Donald Trump.",
+  "exact_match": false,
+  "case_id": 6573,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Darryl Strawberry associated with?",
+    "gt_answer": "baseball",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1728,
+    "gt_fact_text": "Darryl Strawberry is associated with the sport of baseball.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was baseball created in?",
+    "gt_answer": "Japan",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 1494,
+    "gt_fact_text": "baseball was created in the country of Japan.",
+    "old_seq": 136,
+    "old_fact_text": "baseball was created in the country of United States of America.",
+    "update_gap": 222
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the name of the current head of the Japan government?",
+    "gt_answer": "Shinzō Abe",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 415,
+    "gt_fact_text": "The name of the current head of the Japan government is Shinzō Abe.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Donald Trump",
+  "old_passages_to_remove": [
+   4
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no44",
+  "query_id": 44,
+  "question": "Which city serves as the capital of the country where the sport that Mike D'Antoni specialized in hails from?",
+  "gt_answer": "London",
+  "model_output": "Washington, D.C.",
+  "exact_match": false,
+  "case_id": 8180,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What position does Mike D'Antoni play?",
+    "gt_answer": "point guard",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 309,
+    "gt_fact_text": "Mike D'Antoni plays the position of point guard.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which sport is point guard associated with?",
+    "gt_answer": "cricket",
+    "old_answer": "basketball",
+    "conflict_type": "has_pair",
+    "gt_seq": 1768,
+    "gt_fact_text": "point guard is associated with the sport of cricket.",
+    "old_seq": 395,
+    "old_fact_text": "point guard is associated with the sport of basketball.",
+    "update_gap": 150
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which country was cricket created in?",
+    "gt_answer": "England",
+    "old_answer": "Australia",
+    "conflict_type": "has_pair",
+    "gt_seq": 151,
+    "gt_fact_text": "cricket was created in the country of England.",
+    "old_seq": 2028,
+    "old_fact_text": "cricket was created in the country of Australia.",
+    "update_gap": -93
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of England?",
+    "gt_answer": "London",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 400,
+    "gt_fact_text": "The capital of England is London.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": [
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no45",
+  "query_id": 45,
+  "question": "At what location did the author of \"Sketches by Boz\" breathe his last?",
+  "gt_answer": "London",
+  "model_output": "London.",
+  "exact_match": true,
+  "case_id": 1425,
+  "num_hops": 2,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of Sketches by Boz?",
+    "gt_answer": "Sigmund Freud",
+    "old_answer": "Charles Dickens",
+    "conflict_type": "has_pair",
+    "gt_seq": 1026,
+    "gt_fact_text": "The author of Sketches by Boz is Sigmund Freud.",
+    "old_seq": 560,
+    "old_fact_text": "The author of Sketches by Boz is Charles Dickens.",
+    "update_gap": 103
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city did Sigmund Freud die in?",
+    "gt_answer": "London",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 384,
+    "gt_fact_text": "Sigmund Freud died in the city of London.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Gads Hill Place",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no46",
+  "query_id": 46,
+  "question": "What is the capital city of the country from which the sport of Daniele De Rossi originated?",
+  "gt_answer": "Tokyo",
+  "model_output": "London.",
+  "exact_match": false,
+  "case_id": 9198,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What position does Daniele De Rossi play?",
+    "gt_answer": "midfielder",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 944,
+    "gt_fact_text": "Daniele De Rossi plays the position of midfielder.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which sport is midfielder associated with?",
+    "gt_answer": "sumo",
+    "old_answer": "association football",
+    "conflict_type": "has_pair",
+    "gt_seq": 1999,
+    "gt_fact_text": "midfielder is associated with the sport of sumo.",
+    "old_seq": 1340,
+    "old_fact_text": "midfielder is associated with the sport of association football.",
+    "update_gap": 91
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which country was sumo created in?",
+    "gt_answer": "Japan",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1161,
+    "gt_fact_text": "sumo was created in the country of Japan.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of Japan?",
+    "gt_answer": "Tokyo",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 356,
+    "gt_fact_text": "The capital of Japan is Tokyo.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "London",
+  "old_passages_to_remove": [
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no47",
+  "query_id": 47,
+  "question": "To which continent is the country of citizenship of Ferdinand von Richthofen located?",
+  "gt_answer": "Asia",
+  "model_output": "Europe.",
+  "exact_match": false,
+  "case_id": 435,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Ferdinand von Richthofen?",
+    "gt_answer": "Canada",
+    "old_answer": "Germany",
+    "conflict_type": "has_pair",
+    "gt_seq": 956,
+    "gt_fact_text": "Ferdinand von Richthofen is a citizen of Canada.",
+    "old_seq": 291,
+    "old_fact_text": "Ferdinand von Richthofen is a citizen of Germany.",
+    "update_gap": 362
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which continent is Canada located in?",
+    "gt_answer": "Asia",
+    "old_answer": "North America",
+    "conflict_type": "has_pair",
+    "gt_seq": 1741,
+    "gt_fact_text": "Canada is located in the continent of Asia.",
+    "old_seq": 470,
+    "old_fact_text": "Canada is located in the continent of North America.",
+    "update_gap": 384
+   }
+  ],
+  "old_final_answer": "Europe",
+  "old_passages_to_remove": [
+   1,
+   6
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no48",
+  "query_id": 48,
+  "question": "In which city is the capital of the country where the sport played by Galwegians RFC was originated?",
+  "gt_answer": "Grosseto",
+  "model_output": "London.",
+  "exact_match": false,
+  "case_id": 6202,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Galwegians RFC associated with?",
+    "gt_answer": "rugby union",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1157,
+    "gt_fact_text": "Galwegians RFC is associated with the sport of rugby union.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was rugby union created in?",
+    "gt_answer": "India",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 1468,
+    "gt_fact_text": "rugby union was created in the country of India.",
+    "old_seq": 1201,
+    "old_fact_text": "rugby union was created in the country of England.",
+    "update_gap": 86
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the capital of India?",
+    "gt_answer": "Grosseto",
+    "old_answer": "New Delhi",
+    "conflict_type": "has_pair",
+    "gt_seq": 1756,
+    "gt_fact_text": "The capital of India is Grosseto.",
+    "old_seq": 1250,
+    "old_fact_text": "The capital of India is New Delhi.",
+    "update_gap": 183
+   }
+  ],
+  "old_final_answer": "London",
+  "old_passages_to_remove": [
+   2,
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no49",
+  "query_id": 49,
+  "question": "What languages are spoken, written or signed by the founder of Shingon Buddhism?",
+  "gt_answer": "Latin",
+  "model_output": "Japanese.",
+  "exact_match": false,
+  "case_id": 4375,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who founded Shingon Buddhism?",
+    "gt_answer": "William Waynflete",
+    "old_answer": "Kūkai",
+    "conflict_type": "has_pair",
+    "gt_seq": 2295,
+    "gt_fact_text": "Shingon Buddhism was founded by William Waynflete.",
+    "old_seq": 1428,
+    "old_fact_text": "Shingon Buddhism was founded by Kūkai.",
+    "update_gap": 284
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What language does William Waynflete speak?",
+    "gt_answer": "Latin",
+    "old_answer": "English",
+    "conflict_type": "has_pair",
+    "gt_seq": 1616,
+    "gt_fact_text": "William Waynflete speaks the language of Latin.",
+    "old_seq": 1555,
+    "old_fact_text": "William Waynflete speaks the language of English.",
+    "update_gap": 122
+   }
+  ],
+  "old_final_answer": "Japanese",
+  "old_passages_to_remove": [
+   1,
+   5
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no50",
+  "query_id": 50,
+  "question": "What is the place of death of the partner of the head of government of the Council of People's Commissars?",
+  "gt_answer": "Mansourah, Algeria",
+  "model_output": "Not available.",
+  "exact_match": false,
+  "case_id": 5169,
+  "num_hops": 3,
+  "error_type": "hallucination",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the name of the current head of the Council of People's Commissars government?",
+    "gt_answer": "Tony Blair",
+    "old_answer": "Vladimir Lenin",
+    "conflict_type": "has_pair",
+    "gt_seq": 2100,
+    "gt_fact_text": "The name of the current head of the Council of People's Commissars government is Tony Blair.",
+    "old_seq": 1473,
+    "old_fact_text": "The name of the current head of the Council of People's Commissars government is Vladimir Lenin.",
+    "update_gap": 27
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is Tony Blair married to?",
+    "gt_answer": "Alan Jay Lerner",
+    "old_answer": "Cherie Blair",
+    "conflict_type": "has_pair",
+    "gt_seq": 1518,
+    "gt_fact_text": "Tony Blair is married to Alan Jay Lerner.",
+    "old_seq": 1281,
+    "old_fact_text": "Tony Blair is married to Cherie Blair.",
+    "update_gap": 283
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which city did Alan Jay Lerner die in?",
+    "gt_answer": "Mansourah, Algeria",
+    "old_answer": "New York City",
+    "conflict_type": "has_pair",
+    "gt_seq": 1695,
+    "gt_fact_text": "Alan Jay Lerner died in the city of Mansourah, Algeria.",
+    "old_seq": 187,
+    "old_fact_text": "Alan Jay Lerner died in the city of New York City.",
+    "update_gap": 224
+   }
+  ],
+  "old_final_answer": "Moscow",
+  "old_passages_to_remove": [
+   2,
+   5,
+   7
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no51",
+  "query_id": 51,
+  "question": "What is the professional role of the chairperson of the Congolese Party of Labour?",
+  "gt_answer": "journalist",
+  "model_output": "politician",
+  "exact_match": false,
+  "case_id": 1308,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the chairperson of Congolese Party of Labour?",
+    "gt_answer": "Stephen McNeil",
+    "old_answer": "Denis Sassou-Nguesso",
+    "conflict_type": "has_pair",
+    "gt_seq": 1415,
+    "gt_fact_text": "The chairperson of Congolese Party of Labour is Stephen McNeil.",
+    "old_seq": 1225,
+    "old_fact_text": "The chairperson of Congolese Party of Labour is Denis Sassou-Nguesso.",
+    "update_gap": 391
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What kind of work does Stephen McNeil do?",
+    "gt_answer": "journalist",
+    "old_answer": "politician",
+    "conflict_type": "has_pair",
+    "gt_seq": 1737,
+    "gt_fact_text": "Stephen McNeil works in the field of journalist.",
+    "old_seq": 1024,
+    "old_fact_text": "Stephen McNeil works in the field of politician.",
+    "update_gap": 168
+   }
+  ],
+  "old_final_answer": "politician",
+  "old_passages_to_remove": [
+   4
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no52",
+  "query_id": 52,
+  "question": "Where did the religion associated with the Bagratuni Dynasty come into existence?",
+  "gt_answer": "Taipei",
+  "model_output": "Jerusalem.",
+  "exact_match": false,
+  "case_id": 1680,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which religion is Bagratuni Dynasty affiliated with?",
+    "gt_answer": "Christianity",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1924,
+    "gt_fact_text": "Bagratuni Dynasty is affiliated with the religion of Christianity.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Where was Christianity founded?",
+    "gt_answer": "Taipei",
+    "old_answer": "Jerusalem",
+    "conflict_type": "has_pair",
+    "gt_seq": 475,
+    "gt_fact_text": "Christianity was founded in the city of Taipei.",
+    "old_seq": 398,
+    "old_fact_text": "Christianity was founded in the city of Jerusalem.",
+    "update_gap": 3
+   }
+  ],
+  "old_final_answer": "Jerusalem",
+  "old_passages_to_remove": []
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no53",
+  "query_id": 53,
+  "question": "What country does the genre of music associated with the spouse of Roy Rogers originate from?",
+  "gt_answer": "Russian Empire",
+  "model_output": "United States of America.",
+  "exact_match": false,
+  "case_id": 5821,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is Roy Rogers married to?",
+    "gt_answer": "John McVie",
+    "old_answer": "Dale Evans",
+    "conflict_type": "has_pair",
+    "gt_seq": 1869,
+    "gt_fact_text": "Roy Rogers is married to John McVie.",
+    "old_seq": 1807,
+    "old_fact_text": "Roy Rogers is married to Dale Evans.",
+    "update_gap": 5
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What type of music does John McVie play?",
+    "gt_answer": "rap rock",
+    "old_answer": "rock music",
+    "conflict_type": "has_pair",
+    "gt_seq": 1752,
+    "gt_fact_text": "The type of music that John McVie plays is rap rock.",
+    "old_seq": 2,
+    "old_fact_text": "The type of music that John McVie plays is rock music.",
+    "update_gap": 325
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which country was rap rock created in?",
+    "gt_answer": "Russian Empire",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 1523,
+    "gt_fact_text": "rap rock was created in the country of Russian Empire.",
+    "old_seq": 337,
+    "old_fact_text": "rap rock was created in the country of United States of America.",
+    "update_gap": 44
+   }
+  ],
+  "old_final_answer": "United States of America",
+  "old_passages_to_remove": [
+   2,
+   5
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no54",
+  "query_id": 54,
+  "question": "In which city is the capital located of the country where the director/producer of \"666 Park Avenue\" is a citizen?",
+  "gt_answer": "Beaumont",
+  "model_output": "Moscow.",
+  "exact_match": false,
+  "case_id": 8831,
+  "num_hops": 4,
+  "error_type": "entity_confused",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the original broadcaster of 666 Park Avenue?",
+    "gt_answer": "American Broadcasting Company",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 981,
+    "gt_fact_text": "The origianl broadcaster of 666 Park Avenue is American Broadcasting Company.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is the director of American Broadcasting Company?",
+    "gt_answer": "Ernst Heinkel",
+    "old_answer": "Bob Iger",
+    "conflict_type": "has_pair",
+    "gt_seq": 1813,
+    "gt_fact_text": "The director of American Broadcasting Company is Ernst Heinkel.",
+    "old_seq": 1217,
+    "old_fact_text": "The director of American Broadcasting Company is Bob Iger.",
+    "update_gap": 328
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the country of citizenship of Ernst Heinkel?",
+    "gt_answer": "Tang Empire",
+    "old_answer": "Germany",
+    "conflict_type": "has_pair",
+    "gt_seq": 2122,
+    "gt_fact_text": "Ernst Heinkel is a citizen of Tang Empire.",
+    "old_seq": 1884,
+    "old_fact_text": "Ernst Heinkel is a citizen of Germany.",
+    "update_gap": 11
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of Tang Empire?",
+    "gt_answer": "Beaumont",
+    "old_answer": "Chang'an",
+    "conflict_type": "has_pair",
+    "gt_seq": 1602,
+    "gt_fact_text": "The capital of Tang Empire is Beaumont.",
+    "old_seq": 15,
+    "old_fact_text": "The capital of Tang Empire is Chang'an.",
+    "update_gap": 156
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": [
+   1,
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no55",
+  "query_id": 55,
+  "question": "In what place was the organization that Ron Dennis works for, first established?",
+  "gt_answer": "Sweden",
+  "model_output": "Woking.",
+  "exact_match": false,
+  "case_id": 4011,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the employer of Ron Dennis?",
+    "gt_answer": "Pakistan International Airlines",
+    "old_answer": "McLaren Automotive",
+    "conflict_type": "has_pair",
+    "gt_seq": 577,
+    "gt_fact_text": "Ron Dennis is employed by Pakistan International Airlines.",
+    "old_seq": 396,
+    "old_fact_text": "Ron Dennis is employed by McLaren Automotive.",
+    "update_gap": 338
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Where was Pakistan International Airlines founded?",
+    "gt_answer": "Sweden",
+    "old_answer": "Karachi",
+    "conflict_type": "has_pair",
+    "gt_seq": 1712,
+    "gt_fact_text": "Pakistan International Airlines was founded in the city of Sweden.",
+    "old_seq": 1573,
+    "old_fact_text": "Pakistan International Airlines was founded in the city of Karachi.",
+    "update_gap": 175
+   }
+  ],
+  "old_final_answer": "Woking",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no56",
+  "query_id": 56,
+  "question": "On which continent was Le Petit Parisien originally made?",
+  "gt_answer": "Africa",
+  "model_output": "Europe.",
+  "exact_match": false,
+  "case_id": 4340,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which country was Le Petit Parisien created in?",
+    "gt_answer": "Germany",
+    "old_answer": "France",
+    "conflict_type": "has_pair",
+    "gt_seq": 2124,
+    "gt_fact_text": "Le Petit Parisien was created in the country of Germany.",
+    "old_seq": 849,
+    "old_fact_text": "Le Petit Parisien was created in the country of France.",
+    "update_gap": 179
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which continent is Germany located in?",
+    "gt_answer": "Africa",
+    "old_answer": "Europe",
+    "conflict_type": "has_pair",
+    "gt_seq": 1673,
+    "gt_fact_text": "Germany is located in the continent of Africa.",
+    "old_seq": 10,
+    "old_fact_text": "Germany is located in the continent of Europe.",
+    "update_gap": 394
+   }
+  ],
+  "old_final_answer": "Europe",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no57",
+  "query_id": 57,
+  "question": "Which city serves as the capital city of the country where the sport played by the partner of Victoria Beckham originated?",
+  "gt_answer": "Oderzo",
+  "model_output": "London",
+  "exact_match": false,
+  "case_id": 9045,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is Victoria Beckham married to?",
+    "gt_answer": "David Beckham",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 969,
+    "gt_fact_text": "Victoria Beckham is married to David Beckham.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which sport is David Beckham associated with?",
+    "gt_answer": "cricket",
+    "old_answer": "association football",
+    "conflict_type": "has_pair",
+    "gt_seq": 799,
+    "gt_fact_text": "David Beckham is associated with the sport of cricket.",
+    "old_seq": 225,
+    "old_fact_text": "David Beckham is associated with the sport of association football.",
+    "update_gap": 166
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which country was cricket created in?",
+    "gt_answer": "Australia",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 2028,
+    "gt_fact_text": "cricket was created in the country of Australia.",
+    "old_seq": 151,
+    "old_fact_text": "cricket was created in the country of England.",
+    "update_gap": 93
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of Australia?",
+    "gt_answer": "Oderzo",
+    "old_answer": "Canberra",
+    "conflict_type": "has_pair",
+    "gt_seq": 1629,
+    "gt_fact_text": "The capital of Australia is Oderzo.",
+    "old_seq": 1120,
+    "old_fact_text": "The capital of Australia is Canberra.",
+    "update_gap": 104
+   }
+  ],
+  "old_final_answer": "London",
+  "old_passages_to_remove": [
+   2,
+   9
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no58",
+  "query_id": 58,
+  "question": "What is the name of the political entity that was established from the successor of the Sasanian Empire?",
+  "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+  "model_output": "None.",
+  "exact_match": false,
+  "case_id": 2678,
+  "num_hops": 2,
+  "error_type": "hallucination",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who founded Sasanian Empire?",
+    "gt_answer": "Walter Chrysler",
+    "old_answer": "Ardashir I",
+    "conflict_type": "has_pair",
+    "gt_seq": 1758,
+    "gt_fact_text": "Sasanian Empire was founded by Walter Chrysler.",
+    "old_seq": 1282,
+    "old_fact_text": "Sasanian Empire was founded by Ardashir I.",
+    "update_gap": 40
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is Walter Chrysler's child?",
+    "gt_answer": "Charles Frederick, Duke of Holstein-Gottorp",
+    "old_answer": "Walter Percy Chrysler Jr.",
+    "conflict_type": "has_pair",
+    "gt_seq": 1710,
+    "gt_fact_text": "Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp.",
+    "old_seq": 1656,
+    "old_fact_text": "Walter Chrysler's child is Walter Percy Chrysler Jr..",
+    "update_gap": 170
+   }
+  ],
+  "old_final_answer": "Shapur I",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no59",
+  "query_id": 59,
+  "question": "In which city is the capital of the country that FC Irtysh Omsk originates from located?",
+  "gt_answer": "Duluth",
+  "model_output": "Moscow.",
+  "exact_match": false,
+  "case_id": 6217,
+  "num_hops": 3,
+  "error_type": "entity_confused",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is FC Irtysh Omsk associated with?",
+    "gt_answer": "association football",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1731,
+    "gt_fact_text": "FC Irtysh Omsk is associated with the sport of association football.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was association football created in?",
+    "gt_answer": "Italy",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 1628,
+    "gt_fact_text": "association football was created in the country of Italy.",
+    "old_seq": 328,
+    "old_fact_text": "association football was created in the country of England.",
+    "update_gap": 117
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the capital of Italy?",
+    "gt_answer": "Duluth",
+    "old_answer": "Rome",
+    "conflict_type": "has_pair",
+    "gt_seq": 1828,
+    "gt_fact_text": "The capital of Italy is Duluth.",
+    "old_seq": 199,
+    "old_fact_text": "The capital of Italy is Rome.",
+    "update_gap": 42
+   }
+  ],
+  "old_final_answer": "London",
+  "old_passages_to_remove": [
+   1,
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no60",
+  "query_id": 60,
+  "question": "What is the place of death of the performer of the song collection \"Back to Black\"?",
+  "gt_answer": "Berlin",
+  "model_output": "Camden Town.",
+  "exact_match": false,
+  "case_id": 4553,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who performed Back to Black?",
+    "gt_answer": "Frank Zappa",
+    "old_answer": "Amy Winehouse",
+    "conflict_type": "has_pair",
+    "gt_seq": 756,
+    "gt_fact_text": "Back to Black was performed by Frank Zappa.",
+    "old_seq": 390,
+    "old_fact_text": "Back to Black was performed by Amy Winehouse.",
+    "update_gap": 30
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city did Frank Zappa die in?",
+    "gt_answer": "Berlin",
+    "old_answer": "Los Angeles",
+    "conflict_type": "has_pair",
+    "gt_seq": 1068,
+    "gt_fact_text": "Frank Zappa died in the city of Berlin.",
+    "old_seq": 27,
+    "old_fact_text": "Frank Zappa died in the city of Los Angeles.",
+    "update_gap": 14
+   }
+  ],
+  "old_final_answer": "Camden Town",
+  "old_passages_to_remove": [
+   2,
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no61",
+  "query_id": 61,
+  "question": "What was the sport that Hines Ward competed in professionally?",
+  "gt_answer": "field hockey",
+  "model_output": "American football.",
+  "exact_match": false,
+  "case_id": 3258,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What position does Hines Ward play?",
+    "gt_answer": "cornerback",
+    "old_answer": "wide receiver",
+    "conflict_type": "has_pair",
+    "gt_seq": 927,
+    "gt_fact_text": "Hines Ward plays the position of cornerback.",
+    "old_seq": 786,
+    "old_fact_text": "Hines Ward plays the position of wide receiver.",
+    "update_gap": 33
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which sport is cornerback associated with?",
+    "gt_answer": "field hockey",
+    "old_answer": "American football",
+    "conflict_type": "has_pair",
+    "gt_seq": 634,
+    "gt_fact_text": "cornerback is associated with the sport of field hockey.",
+    "old_seq": 563,
+    "old_fact_text": "cornerback is associated with the sport of American football.",
+    "update_gap": 39
+   }
+  ],
+  "old_final_answer": "American football",
+  "old_passages_to_remove": [
+   4
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no62",
+  "query_id": 62,
+  "question": "In which position did the person related to the original broadcaster of \"The Brady Bunch\" serve?",
+  "gt_answer": "Ernst Heinkel",
+  "model_output": "director.",
+  "exact_match": false,
+  "case_id": 2287,
+  "num_hops": 2,
+  "error_type": "entity_confused",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the original broadcaster of The Brady Bunch?",
+    "gt_answer": "American Broadcasting Company",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1342,
+    "gt_fact_text": "The origianl broadcaster of The Brady Bunch is American Broadcasting Company.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is the director of American Broadcasting Company?",
+    "gt_answer": "Ernst Heinkel",
+    "old_answer": "Bob Iger",
+    "conflict_type": "has_pair",
+    "gt_seq": 1813,
+    "gt_fact_text": "The director of American Broadcasting Company is Ernst Heinkel.",
+    "old_seq": 1217,
+    "old_fact_text": "The director of American Broadcasting Company is Bob Iger.",
+    "update_gap": 328
+   }
+  ],
+  "old_final_answer": "Bob Iger",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no63",
+  "query_id": 63,
+  "question": "In what location did the person who founded Chanel pass away?",
+  "gt_answer": "Montmélian",
+  "model_output": "Paris.",
+  "exact_match": false,
+  "case_id": 3433,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who founded Chanel?",
+    "gt_answer": "Andy Warhol",
+    "old_answer": "Coco Chanel",
+    "conflict_type": "has_pair",
+    "gt_seq": 1840,
+    "gt_fact_text": "Chanel was founded by Andy Warhol.",
+    "old_seq": 1117,
+    "old_fact_text": "Chanel was founded by Coco Chanel.",
+    "update_gap": 18
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city did Andy Warhol die in?",
+    "gt_answer": "Montmélian",
+    "old_answer": "New York City",
+    "conflict_type": "has_pair",
+    "gt_seq": 1847,
+    "gt_fact_text": "Andy Warhol died in the city of Montmélian.",
+    "old_seq": 909,
+    "old_fact_text": "Andy Warhol died in the city of New York City.",
+    "update_gap": 21
+   }
+  ],
+  "old_final_answer": "Paris",
+  "old_passages_to_remove": []
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no64",
+  "query_id": 64,
+  "question": "What is the country of citizenship of the author of \"Starship Troopers\"?",
+  "gt_answer": "United Kingdom",
+  "model_output": "United States of America.",
+  "exact_match": false,
+  "case_id": 3599,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of Starship Troopers?",
+    "gt_answer": "Daphne du Maurier",
+    "old_answer": "Robert A. Heinlein",
+    "conflict_type": "has_pair",
+    "gt_seq": 2224,
+    "gt_fact_text": "The author of Starship Troopers is Daphne du Maurier.",
+    "old_seq": 1939,
+    "old_fact_text": "The author of Starship Troopers is Robert A. Heinlein.",
+    "update_gap": 317
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the country of citizenship of Daphne du Maurier?",
+    "gt_answer": "United Kingdom",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 158,
+    "gt_fact_text": "Daphne du Maurier is a citizen of United Kingdom.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "United States of America",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no65",
+  "query_id": 65,
+  "question": "Which individual holds the position of director/manager at the company that employs Dave Filoni?",
+  "gt_answer": "Narendra Modi",
+  "model_output": "Tony Hall, Baron Hall of Birkenhead.",
+  "exact_match": false,
+  "case_id": 3815,
+  "num_hops": 2,
+  "error_type": "entity_confused",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the employer of Dave Filoni?",
+    "gt_answer": "British Broadcasting Corporation",
+    "old_answer": "Lucasfilm",
+    "conflict_type": "has_pair",
+    "gt_seq": 464,
+    "gt_fact_text": "Dave Filoni is employed by British Broadcasting Corporation.",
+    "old_seq": 106,
+    "old_fact_text": "Dave Filoni is employed by Lucasfilm.",
+    "update_gap": 188
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is the director of British Broadcasting Corporation?",
+    "gt_answer": "Narendra Modi",
+    "old_answer": "Tony Hall, Baron Hall of Birkenhead",
+    "conflict_type": "has_pair",
+    "gt_seq": 1950,
+    "gt_fact_text": "The director of British Broadcasting Corporation is Narendra Modi.",
+    "old_seq": 260,
+    "old_fact_text": "The director of British Broadcasting Corporation is Tony Hall, Baron Hall of Birkenhead.",
+    "update_gap": 421
+   }
+  ],
+  "old_final_answer": "Kathleen Kennedy",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no66",
+  "query_id": 66,
+  "question": "In what language is the notable work associated with Hugh Hefner written?",
+  "gt_answer": "German",
+  "model_output": "German",
+  "exact_match": true,
+  "case_id": 4742,
+  "num_hops": 2,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is Hugh Hefner famous for?",
+    "gt_answer": "The Vampyre",
+    "old_answer": "Playboy",
+    "conflict_type": "has_pair",
+    "gt_seq": 2288,
+    "gt_fact_text": "Hugh Hefner is famous for The Vampyre.",
+    "old_seq": 236,
+    "old_fact_text": "Hugh Hefner is famous for Playboy.",
+    "update_gap": 44
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which language was The Vampyre written in?",
+    "gt_answer": "German",
+    "old_answer": "English",
+    "conflict_type": "has_pair",
+    "gt_seq": 1893,
+    "gt_fact_text": "The Vampyre was written in the language of German.",
+    "old_seq": 1262,
+    "old_fact_text": "The Vampyre was written in the language of English.",
+    "update_gap": 148
+   }
+  ],
+  "old_final_answer": "English",
+  "old_passages_to_remove": [
+   2,
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no67",
+  "query_id": 67,
+  "question": "Which city serves as the capital of the country that gave rise to the sport played by Rogério Ceni?",
+  "gt_answer": "New Delhi",
+  "model_output": "London",
+  "exact_match": false,
+  "case_id": 8929,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What position does Rogério Ceni play?",
+    "gt_answer": "flanker",
+    "old_answer": "goalkeeper",
+    "conflict_type": "has_pair",
+    "gt_seq": 2264,
+    "gt_fact_text": "Rogério Ceni plays the position of flanker.",
+    "old_seq": 940,
+    "old_fact_text": "Rogério Ceni plays the position of goalkeeper.",
+    "update_gap": 428
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which sport is flanker associated with?",
+    "gt_answer": "rugby union",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 689,
+    "gt_fact_text": "flanker is associated with the sport of rugby union.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which country was rugby union created in?",
+    "gt_answer": "India",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 1468,
+    "gt_fact_text": "rugby union was created in the country of India.",
+    "old_seq": 1201,
+    "old_fact_text": "rugby union was created in the country of England.",
+    "update_gap": 86
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of India?",
+    "gt_answer": "New Delhi",
+    "old_answer": "Grosseto",
+    "conflict_type": "has_pair",
+    "gt_seq": 1250,
+    "gt_fact_text": "The capital of India is New Delhi.",
+    "old_seq": 1756,
+    "old_fact_text": "The capital of India is Grosseto.",
+    "update_gap": -183
+   }
+  ],
+  "old_final_answer": "London",
+  "old_passages_to_remove": [
+   6,
+   9
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no68",
+  "query_id": 68,
+  "question": "From which educational institution did the author of 'Sidereus Nuncius' receive their education?",
+  "gt_answer": "University of Southern California",
+  "model_output": "University of Pisa.",
+  "exact_match": false,
+  "case_id": 3528,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of Sidereus Nuncius?",
+    "gt_answer": "Samuel Beckett",
+    "old_answer": "Galileo Galilei",
+    "conflict_type": "has_pair",
+    "gt_seq": 2144,
+    "gt_fact_text": "The author of Sidereus Nuncius is Samuel Beckett.",
+    "old_seq": 1477,
+    "old_fact_text": "The author of Sidereus Nuncius is Galileo Galilei.",
+    "update_gap": 277
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which university was Samuel Beckett educated at?",
+    "gt_answer": "University of Southern California",
+    "old_answer": "Trinity College Dublin",
+    "conflict_type": "has_pair",
+    "gt_seq": 1599,
+    "gt_fact_text": "The univeristy where Samuel Beckett was educated is University of Southern California.",
+    "old_seq": 83,
+    "old_fact_text": "The univeristy where Samuel Beckett was educated is Trinity College Dublin.",
+    "update_gap": 111
+   }
+  ],
+  "old_final_answer": "University of Pisa",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no69",
+  "query_id": 69,
+  "question": "What is the place of death of the author of Endymion?",
+  "gt_answer": "Leipzig",
+  "model_output": "Leipzig.",
+  "exact_match": true,
+  "case_id": 3658,
+  "num_hops": 2,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of Endymion?",
+    "gt_answer": "John Keats",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1055,
+    "gt_fact_text": "The author of Endymion is John Keats.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city did John Keats die in?",
+    "gt_answer": "Leipzig",
+    "old_answer": "Rome",
+    "conflict_type": "has_pair",
+    "gt_seq": 1255,
+    "gt_fact_text": "John Keats died in the city of Leipzig.",
+    "old_seq": 1210,
+    "old_fact_text": "John Keats died in the city of Rome.",
+    "update_gap": 166
+   }
+  ],
+  "old_final_answer": "Rome",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no70",
+  "query_id": 70,
+  "question": "In which city can the headquarters of the educational institution attended by the spouse of Sophia Hawthorne be found?",
+  "gt_answer": "Botevgrad",
+  "model_output": "Brunswick.",
+  "exact_match": false,
+  "case_id": 5931,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is Sophia Hawthorne married to?",
+    "gt_answer": "Joan Didion",
+    "old_answer": "Nathaniel Hawthorne",
+    "conflict_type": "has_pair",
+    "gt_seq": 1283,
+    "gt_fact_text": "Sophia Hawthorne is married to Joan Didion.",
+    "old_seq": 422,
+    "old_fact_text": "Sophia Hawthorne is married to Nathaniel Hawthorne.",
+    "update_gap": 13
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which university was Joan Didion educated at?",
+    "gt_answer": "University of California, Berkeley",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 167,
+    "gt_fact_text": "The univeristy where Joan Didion was educated is University of California, Berkeley.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which city is the headquarter of University of California, Berkeley located in?",
+    "gt_answer": "Botevgrad",
+    "old_answer": "Berkeley",
+    "conflict_type": "has_pair",
+    "gt_seq": 585,
+    "gt_fact_text": "The headquarters of University of California, Berkeley is located in the city of Botevgrad.",
+    "old_seq": 545,
+    "old_fact_text": "The headquarters of University of California, Berkeley is located in the city of Berkeley.",
+    "update_gap": 102
+   }
+  ],
+  "old_final_answer": "Brunswick",
+  "old_passages_to_remove": [
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no71",
+  "query_id": 71,
+  "question": "What is the name of the chief of state of the country where Leo Stein holds citizenship?",
+  "gt_answer": "Connachta",
+  "model_output": "Donald Trump",
+  "exact_match": false,
+  "case_id": 2804,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Leo Stein?",
+    "gt_answer": "United States of America",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 901,
+    "gt_fact_text": "Leo Stein is a citizen of United States of America.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the name of the current head of state in United States of America?",
+    "gt_answer": "Connachta",
+    "old_answer": "Donald Trump",
+    "conflict_type": "has_pair",
+    "gt_seq": 1630,
+    "gt_fact_text": "The name of the current head of state in United States of America is Connachta.",
+    "old_seq": 1130,
+    "old_fact_text": "The name of the current head of state in United States of America is Donald Trump.",
+    "update_gap": 11
+   }
+  ],
+  "old_final_answer": "Donald Trump",
+  "old_passages_to_remove": []
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no72",
+  "query_id": 72,
+  "question": "What is the name of the chief of state of the country that Hal Needham belongs to?",
+  "gt_answer": "Connachta",
+  "model_output": "Donald Trump",
+  "exact_match": false,
+  "case_id": 4334,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Hal Needham?",
+    "gt_answer": "United States of America",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1355,
+    "gt_fact_text": "Hal Needham is a citizen of United States of America.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the name of the current head of state in United States of America?",
+    "gt_answer": "Connachta",
+    "old_answer": "Donald Trump",
+    "conflict_type": "has_pair",
+    "gt_seq": 1630,
+    "gt_fact_text": "The name of the current head of state in United States of America is Connachta.",
+    "old_seq": 1130,
+    "old_fact_text": "The name of the current head of state in United States of America is Donald Trump.",
+    "update_gap": 11
+   }
+  ],
+  "old_final_answer": "Donald Trump",
+  "old_passages_to_remove": []
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no73",
+  "query_id": 73,
+  "question": "Who serves as the head of government in the location where the AP1000 was made by its manufacturer?",
+  "gt_answer": "Jonathan Rothschild",
+  "model_output": "Justin Trudeau.",
+  "exact_match": false,
+  "case_id": 6925,
+  "num_hops": 3,
+  "error_type": "hallucination",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which company is AP1000 produced by?",
+    "gt_answer": "Canadair",
+    "old_answer": "Westinghouse Electric",
+    "conflict_type": "has_pair",
+    "gt_seq": 1650,
+    "gt_fact_text": "The company that produced AP1000 is Canadair.",
+    "old_seq": 1128,
+    "old_fact_text": "The company that produced AP1000 is Westinghouse Electric.",
+    "update_gap": 160
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Where was Canadair founded?",
+    "gt_answer": "Tucson",
+    "old_answer": "Montreal",
+    "conflict_type": "has_pair",
+    "gt_seq": 1357,
+    "gt_fact_text": "Canadair was founded in the city of Tucson.",
+    "old_seq": 973,
+    "old_fact_text": "Canadair was founded in the city of Montreal.",
+    "update_gap": 28
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the name of the current head of the Tucson government?",
+    "gt_answer": "Jonathan Rothschild",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1260,
+    "gt_fact_text": "The name of the current head of the Tucson government is Jonathan Rothschild.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Bill Peduto",
+  "old_passages_to_remove": [
+   6
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no74",
+  "query_id": 74,
+  "question": "In what place did the author of \"A Wizard of Earthsea\" breathe his last?",
+  "gt_answer": "Wolverhampton",
+  "model_output": "Portland.",
+  "exact_match": false,
+  "case_id": 3151,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of A Wizard of Earthsea?",
+    "gt_answer": "Pius XII",
+    "old_answer": "Ursula K. Le Guin",
+    "conflict_type": "has_pair",
+    "gt_seq": 579,
+    "gt_fact_text": "The author of A Wizard of Earthsea is Pius XII.",
+    "old_seq": 333,
+    "old_fact_text": "The author of A Wizard of Earthsea is Ursula K. Le Guin.",
+    "update_gap": 291
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city did Pius XII die in?",
+    "gt_answer": "Wolverhampton",
+    "old_answer": "Castel Gandolfo",
+    "conflict_type": "has_pair",
+    "gt_seq": 1432,
+    "gt_fact_text": "Pius XII died in the city of Wolverhampton.",
+    "old_seq": 1270,
+    "old_fact_text": "Pius XII died in the city of Castel Gandolfo.",
+    "update_gap": 166
+   }
+  ],
+  "old_final_answer": "Portland",
+  "old_passages_to_remove": [
+   1,
+   5
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no75",
+  "query_id": 75,
+  "question": "Which religion does the partner of the performer of \"Aladdin Sane\" follow?",
+  "gt_answer": "interdenominational organization",
+  "model_output": "Islam",
+  "exact_match": false,
+  "case_id": 7020,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who performed Aladdin Sane?",
+    "gt_answer": "Yves Montand",
+    "old_answer": "David Bowie",
+    "conflict_type": "has_pair",
+    "gt_seq": 1625,
+    "gt_fact_text": "Aladdin Sane was performed by Yves Montand.",
+    "old_seq": 507,
+    "old_fact_text": "Aladdin Sane was performed by David Bowie.",
+    "update_gap": 260
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is Yves Montand married to?",
+    "gt_answer": "Natalie Portman",
+    "old_answer": "Simone Signoret",
+    "conflict_type": "has_pair",
+    "gt_seq": 1059,
+    "gt_fact_text": "Yves Montand is married to Natalie Portman.",
+    "old_seq": 669,
+    "old_fact_text": "Yves Montand is married to Simone Signoret.",
+    "update_gap": 171
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which religion is Natalie Portman affiliated with?",
+    "gt_answer": "interdenominational organization",
+    "old_answer": "Judaism",
+    "conflict_type": "has_pair",
+    "gt_seq": 1583,
+    "gt_fact_text": "Natalie Portman is affiliated with the religion of interdenominational organization.",
+    "old_seq": 112,
+    "old_fact_text": "Natalie Portman is affiliated with the religion of Judaism.",
+    "update_gap": 342
+   }
+  ],
+  "old_final_answer": "Islam",
+  "old_passages_to_remove": [
+   1,
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no76",
+  "query_id": 76,
+  "question": "At which location does the Prime Minister of Sweden spend most of their work hours?",
+  "gt_answer": "Washington, D.C.",
+  "model_output": "Stockholm.",
+  "exact_match": false,
+  "case_id": 1520,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the Prime Minister of Sweden?",
+    "gt_answer": "Pedro Pierluisi",
+    "old_answer": "Stefan Löfven",
+    "conflict_type": "has_pair",
+    "gt_seq": 538,
+    "gt_fact_text": "The Prime Minister of Sweden is Pedro Pierluisi.",
+    "old_seq": 369,
+    "old_fact_text": "The Prime Minister of Sweden is Stefan Löfven.",
+    "update_gap": 194
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city did Pedro Pierluisi work in?",
+    "gt_answer": "Washington, D.C.",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 169,
+    "gt_fact_text": "Pedro Pierluisi worked in the city of Washington, D.C..",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Stockholm",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no77",
+  "query_id": 77,
+  "question": "What is the capital city of the country whose citizenship is held by the CEO of the developer of AppleScript?",
+  "gt_answer": "Rome",
+  "model_output": "Washington, D.C.",
+  "exact_match": false,
+  "case_id": 7574,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the developer of AppleScript?",
+    "gt_answer": "Apple Inc.",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1434,
+    "gt_fact_text": "AppleScript was developed by Apple Inc..",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is the chief executive officer of Apple Inc.?",
+    "gt_answer": "Vijay Mallya",
+    "old_answer": "Tim Cook",
+    "conflict_type": "has_pair",
+    "gt_seq": 1088,
+    "gt_fact_text": "The chief executive officer of Apple Inc. is Vijay Mallya.",
+    "old_seq": 610,
+    "old_fact_text": "The chief executive officer of Apple Inc. is Tim Cook.",
+    "update_gap": 188
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the country of citizenship of Vijay Mallya?",
+    "gt_answer": "Papal States",
+    "old_answer": "India",
+    "conflict_type": "has_pair",
+    "gt_seq": 1880,
+    "gt_fact_text": "Vijay Mallya is a citizen of Papal States.",
+    "old_seq": 97,
+    "old_fact_text": "Vijay Mallya is a citizen of India.",
+    "update_gap": 287
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of Papal States?",
+    "gt_answer": "Rome",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1291,
+    "gt_fact_text": "The capital of Papal States is Rome.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": [
+   1,
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no78",
+  "query_id": 78,
+  "question": "Which continent is the country of origin for Gala RFC located in?",
+  "gt_answer": "Africa",
+  "model_output": "Unknown.",
+  "exact_match": false,
+  "case_id": 7360,
+  "num_hops": 3,
+  "error_type": "hallucination",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Gala RFC associated with?",
+    "gt_answer": "rugby union",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 649,
+    "gt_fact_text": "Gala RFC is associated with the sport of rugby union.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was rugby union created in?",
+    "gt_answer": "India",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 1468,
+    "gt_fact_text": "rugby union was created in the country of India.",
+    "old_seq": 1201,
+    "old_fact_text": "rugby union was created in the country of England.",
+    "update_gap": 86
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which continent is India located in?",
+    "gt_answer": "Africa",
+    "old_answer": "Asia",
+    "conflict_type": "has_pair",
+    "gt_seq": 1935,
+    "gt_fact_text": "India is located in the continent of Africa.",
+    "old_seq": 568,
+    "old_fact_text": "India is located in the continent of Asia.",
+    "update_gap": 52
+   }
+  ],
+  "old_final_answer": "Europe",
+  "old_passages_to_remove": [
+   1,
+   8
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no79",
+  "query_id": 79,
+  "question": "What sport is associated with the position played by Irving Fryar on a team/specialty?",
+  "gt_answer": "rugby",
+  "model_output": "American football.",
+  "exact_match": false,
+  "case_id": 410,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What position does Irving Fryar play?",
+    "gt_answer": "wide receiver",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1711,
+    "gt_fact_text": "Irving Fryar plays the position of wide receiver.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which sport is wide receiver associated with?",
+    "gt_answer": "rugby",
+    "old_answer": "American football",
+    "conflict_type": "has_pair",
+    "gt_seq": 1192,
+    "gt_fact_text": "wide receiver is associated with the sport of rugby.",
+    "old_seq": 133,
+    "old_fact_text": "wide receiver is associated with the sport of American football.",
+    "update_gap": 206
+   }
+  ],
+  "old_final_answer": "American football",
+  "old_passages_to_remove": []
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no80",
+  "query_id": 80,
+  "question": "In which continent is the country to which Cédric Klapisch holds citizenship located?",
+  "gt_answer": "Antarctica",
+  "model_output": "Asia.",
+  "exact_match": false,
+  "case_id": 3594,
+  "num_hops": 2,
+  "error_type": "entity_confused",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Cédric Klapisch?",
+    "gt_answer": "Malaysia",
+    "old_answer": "France",
+    "conflict_type": "has_pair",
+    "gt_seq": 746,
+    "gt_fact_text": "Cédric Klapisch is a citizen of Malaysia.",
+    "old_seq": 552,
+    "old_fact_text": "Cédric Klapisch is a citizen of France.",
+    "update_gap": 29
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which continent is Malaysia located in?",
+    "gt_answer": "Antarctica",
+    "old_answer": "Asia",
+    "conflict_type": "has_pair",
+    "gt_seq": 825,
+    "gt_fact_text": "Malaysia is located in the continent of Antarctica.",
+    "old_seq": 179,
+    "old_fact_text": "Malaysia is located in the continent of Asia.",
+    "update_gap": 69
+   }
+  ],
+  "old_final_answer": "Europe",
+  "old_passages_to_remove": [
+   1,
+   8
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no81",
+  "query_id": 81,
+  "question": "What is the location of the headquarters of the company where Leonte Răutu worked?",
+  "gt_answer": "Ankara",
+  "model_output": "Bucharest.",
+  "exact_match": false,
+  "case_id": 3734,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the employer of Leonte Răutu?",
+    "gt_answer": "University of Bucharest",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 2159,
+    "gt_fact_text": "Leonte Răutu is employed by University of Bucharest.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city is the headquarter of University of Bucharest located in?",
+    "gt_answer": "Ankara",
+    "old_answer": "Bucharest",
+    "conflict_type": "has_pair",
+    "gt_seq": 1956,
+    "gt_fact_text": "The headquarters of University of Bucharest is located in the city of Ankara.",
+    "old_seq": 467,
+    "old_fact_text": "The headquarters of University of Bucharest is located in the city of Bucharest.",
+    "update_gap": 236
+   }
+  ],
+  "old_final_answer": "Bucharest",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no82",
+  "query_id": 82,
+  "question": "To whom does the head of government of the country of origin of Club Nouveau report to?",
+  "gt_answer": "Elizabeth II",
+  "model_output": "Donald Trump",
+  "exact_match": false,
+  "case_id": 2548,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which country was Club Nouveau created in?",
+    "gt_answer": "Soviet Union",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 1989,
+    "gt_fact_text": "Club Nouveau was created in the country of Soviet Union.",
+    "old_seq": 1736,
+    "old_fact_text": "Club Nouveau was created in the country of United States of America.",
+    "update_gap": 251
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the name of the current head of state in Soviet Union?",
+    "gt_answer": "Elizabeth II",
+    "old_answer": "Mikhail Gorbachev",
+    "conflict_type": "has_pair",
+    "gt_seq": 1118,
+    "gt_fact_text": "The name of the current head of state in Soviet Union is Elizabeth II.",
+    "old_seq": 882,
+    "old_fact_text": "The name of the current head of state in Soviet Union is Mikhail Gorbachev.",
+    "update_gap": 206
+   }
+  ],
+  "old_final_answer": "Donald Trump",
+  "old_passages_to_remove": [
+   3,
+   5
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no83",
+  "query_id": 83,
+  "question": "Which individual is responsible for founding the organization that has its headquarters in the same location where Bill Frisell received his education?",
+  "gt_answer": "William Penn",
+  "model_output": "Unknown",
+  "exact_match": false,
+  "case_id": 5156,
+  "num_hops": 3,
+  "error_type": "hallucination",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which university was Bill Frisell educated at?",
+    "gt_answer": "The University of the Arts",
+    "old_answer": "Berklee College of Music",
+    "conflict_type": "has_pair",
+    "gt_seq": 1909,
+    "gt_fact_text": "The univeristy where Bill Frisell was educated is The University of the Arts.",
+    "old_seq": 1559,
+    "old_fact_text": "The univeristy where Bill Frisell was educated is Berklee College of Music.",
+    "update_gap": 165
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city is the headquarter of The University of the Arts located in?",
+    "gt_answer": "Philadelphia",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 458,
+    "gt_fact_text": "The headquarters of The University of the Arts is located in the city of Philadelphia.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Who founded Philadelphia?",
+    "gt_answer": "William Penn",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 704,
+    "gt_fact_text": "Philadelphia was founded by William Penn.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "John Winthrop",
+  "old_passages_to_remove": [
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no84",
+  "query_id": 84,
+  "question": "In which city of the country where Charles Messier held citizenship is the capital located?",
+  "gt_answer": "Tehran",
+  "model_output": "Paris.",
+  "exact_match": false,
+  "case_id": 2616,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What is the country of citizenship of Charles Messier?",
+    "gt_answer": "Iran",
+    "old_answer": "France",
+    "conflict_type": "has_pair",
+    "gt_seq": 865,
+    "gt_fact_text": "Charles Messier is a citizen of Iran.",
+    "old_seq": 562,
+    "old_fact_text": "Charles Messier is a citizen of France.",
+    "update_gap": 139
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is the capital of Iran?",
+    "gt_answer": "Tehran",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 900,
+    "gt_fact_text": "The capital of Iran is Tehran.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   }
+  ],
+  "old_final_answer": "Paris",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no85",
+  "query_id": 85,
+  "question": "Which country does the sportsperson who specializes in Lisa Leslie's position originally come from?",
+  "gt_answer": "Philippines",
+  "model_output": "Unknown",
+  "exact_match": false,
+  "case_id": 5978,
+  "num_hops": 3,
+  "error_type": "hallucination",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "What position does Lisa Leslie play?",
+    "gt_answer": "goaltender",
+    "old_answer": "center",
+    "conflict_type": "has_pair",
+    "gt_seq": 1269,
+    "gt_fact_text": "Lisa Leslie plays the position of goaltender.",
+    "old_seq": 342,
+    "old_fact_text": "Lisa Leslie plays the position of center.",
+    "update_gap": 155
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which sport is goaltender associated with?",
+    "gt_answer": "pesäpallo",
+    "old_answer": "ice hockey",
+    "conflict_type": "has_pair",
+    "gt_seq": 1382,
+    "gt_fact_text": "goaltender is associated with the sport of pesäpallo.",
+    "old_seq": 701,
+    "old_fact_text": "goaltender is associated with the sport of ice hockey.",
+    "update_gap": 87
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which country was pesäpallo created in?",
+    "gt_answer": "Philippines",
+    "old_answer": "Finland",
+    "conflict_type": "has_pair",
+    "gt_seq": 1600,
+    "gt_fact_text": "pesäpallo was created in the country of Philippines.",
+    "old_seq": 270,
+    "old_fact_text": "pesäpallo was created in the country of Finland.",
+    "update_gap": 202
+   }
+  ],
+  "old_final_answer": "United States of America",
+  "old_passages_to_remove": [
+   1,
+   2,
+   9
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no86",
+  "query_id": 86,
+  "question": "What is the name of the capital city of the country where the founder of the manufacturer of Ford F-Series hailed from?",
+  "gt_answer": "New Delhi",
+  "model_output": "Washington, D.C.",
+  "exact_match": false,
+  "case_id": 7429,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which company is Ford F-Series produced by?",
+    "gt_answer": "Ford Motor Company",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 278,
+    "gt_fact_text": "The company that produced Ford F-Series is Ford Motor Company.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who founded Ford Motor Company?",
+    "gt_answer": "Henri Grégoire",
+    "old_answer": "Henry Ford",
+    "conflict_type": "has_pair",
+    "gt_seq": 908,
+    "gt_fact_text": "Ford Motor Company was founded by Henri Grégoire.",
+    "old_seq": 8,
+    "old_fact_text": "Ford Motor Company was founded by Henry Ford.",
+    "update_gap": 98
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the country of citizenship of Henri Grégoire?",
+    "gt_answer": "India",
+    "old_answer": "France",
+    "conflict_type": "has_pair",
+    "gt_seq": 1454,
+    "gt_fact_text": "Henri Grégoire is a citizen of India.",
+    "old_seq": 1398,
+    "old_fact_text": "Henri Grégoire is a citizen of France.",
+    "update_gap": 186
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of India?",
+    "gt_answer": "New Delhi",
+    "old_answer": "Grosseto",
+    "conflict_type": "has_pair",
+    "gt_seq": 1250,
+    "gt_fact_text": "The capital of India is New Delhi.",
+    "old_seq": 1756,
+    "old_fact_text": "The capital of India is Grosseto.",
+    "update_gap": -183
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": [
+   1,
+   2,
+   10
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no87",
+  "query_id": 87,
+  "question": "Which city serves as the capital of the country where the sport that Sandy Alderson is associated with originated?",
+  "gt_answer": "Duluth",
+  "model_output": "Washington, D.C.",
+  "exact_match": false,
+  "case_id": 6225,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Sandy Alderson associated with?",
+    "gt_answer": "association football",
+    "old_answer": "baseball",
+    "conflict_type": "has_pair",
+    "gt_seq": 1004,
+    "gt_fact_text": "Sandy Alderson is associated with the sport of association football.",
+    "old_seq": 616,
+    "old_fact_text": "Sandy Alderson is associated with the sport of baseball.",
+    "update_gap": 125
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was association football created in?",
+    "gt_answer": "Italy",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 1628,
+    "gt_fact_text": "association football was created in the country of Italy.",
+    "old_seq": 328,
+    "old_fact_text": "association football was created in the country of England.",
+    "update_gap": 117
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the capital of Italy?",
+    "gt_answer": "Duluth",
+    "old_answer": "Rome",
+    "conflict_type": "has_pair",
+    "gt_seq": 1828,
+    "gt_fact_text": "The capital of Italy is Duluth.",
+    "old_seq": 199,
+    "old_fact_text": "The capital of Italy is Rome.",
+    "update_gap": 42
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": [
+   2,
+   3,
+   7
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no88",
+  "query_id": 88,
+  "question": "Which language is the official language of the country whose citizenship is held by the director/manager of \"Past Masters\"?",
+  "gt_answer": "Arabic",
+  "model_output": "English",
+  "exact_match": false,
+  "case_id": 9126,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who performed Past Masters?",
+    "gt_answer": "Madonna",
+    "old_answer": "The Beatles",
+    "conflict_type": "has_pair",
+    "gt_seq": 1547,
+    "gt_fact_text": "Past Masters was performed by Madonna.",
+    "old_seq": 1444,
+    "old_fact_text": "Past Masters was performed by The Beatles.",
+    "update_gap": 113
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is the director of Madonna?",
+    "gt_answer": "Narendra Modi",
+    "old_answer": "Guy Oseary",
+    "conflict_type": "has_pair",
+    "gt_seq": 868,
+    "gt_fact_text": "The director of Madonna is Narendra Modi.",
+    "old_seq": 87,
+    "old_fact_text": "The director of Madonna is Guy Oseary.",
+    "update_gap": 147
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the country of citizenship of Narendra Modi?",
+    "gt_answer": "Australia",
+    "old_answer": "India",
+    "conflict_type": "has_pair",
+    "gt_seq": 1023,
+    "gt_fact_text": "Narendra Modi is a citizen of Australia.",
+    "old_seq": 668,
+    "old_fact_text": "Narendra Modi is a citizen of India.",
+    "update_gap": 41
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the official language of Australia?",
+    "gt_answer": "Arabic",
+    "old_answer": "English",
+    "conflict_type": "has_pair",
+    "gt_seq": 1410,
+    "gt_fact_text": "The official language of Australia is Arabic.",
+    "old_seq": 192,
+    "old_fact_text": "The official language of Australia is English.",
+    "update_gap": 35
+   }
+  ],
+  "old_final_answer": "English",
+  "old_passages_to_remove": [
+   1,
+   2,
+   6,
+   10
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no89",
+  "query_id": 89,
+  "question": "Which nation is the birthplace of the sport that features the split-finger fastball?",
+  "gt_answer": "Australia",
+  "model_output": "United States of America.",
+  "exact_match": false,
+  "case_id": 1085,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is split-finger fastball associated with?",
+    "gt_answer": "cricket",
+    "old_answer": "baseball",
+    "conflict_type": "has_pair",
+    "gt_seq": 1581,
+    "gt_fact_text": "split-finger fastball is associated with the sport of cricket.",
+    "old_seq": 623,
+    "old_fact_text": "split-finger fastball is associated with the sport of baseball.",
+    "update_gap": 154
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was cricket created in?",
+    "gt_answer": "Australia",
+    "old_answer": "England",
+    "conflict_type": "has_pair",
+    "gt_seq": 2028,
+    "gt_fact_text": "cricket was created in the country of Australia.",
+    "old_seq": 151,
+    "old_fact_text": "cricket was created in the country of England.",
+    "update_gap": 93
+   }
+  ],
+  "old_final_answer": "United States of America",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no90",
+  "query_id": 90,
+  "question": "In which languages can the author of \"The Witcher\" write, speak, or sign?",
+  "gt_answer": "French",
+  "model_output": "Polish.",
+  "exact_match": false,
+  "case_id": 526,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of The Witcher?",
+    "gt_answer": "T. S. Eliot",
+    "old_answer": "Andrzej Sapkowski",
+    "conflict_type": "has_pair",
+    "gt_seq": 1025,
+    "gt_fact_text": "The author of The Witcher is T. S. Eliot.",
+    "old_seq": 105,
+    "old_fact_text": "The author of The Witcher is Andrzej Sapkowski.",
+    "update_gap": 273
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What language does T. S. Eliot speak?",
+    "gt_answer": "French",
+    "old_answer": "English",
+    "conflict_type": "has_pair",
+    "gt_seq": 937,
+    "gt_fact_text": "T. S. Eliot speaks the language of French.",
+    "old_seq": 374,
+    "old_fact_text": "T. S. Eliot speaks the language of English.",
+    "update_gap": 2
+   }
+  ],
+  "old_final_answer": "Polish",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no91",
+  "query_id": 91,
+  "question": "In which city is the capital of the country, where the book \"The Birth of Tragedy\" first came from, located?",
+  "gt_answer": "Duluth",
+  "model_output": "Berlin.",
+  "exact_match": false,
+  "case_id": 9196,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of The Birth of Tragedy?",
+    "gt_answer": "Stephen Crane",
+    "old_answer": "Friedrich Nietzsche",
+    "conflict_type": "has_pair",
+    "gt_seq": 2242,
+    "gt_fact_text": "The author of The Birth of Tragedy is Stephen Crane.",
+    "old_seq": 739,
+    "old_fact_text": "The author of The Birth of Tragedy is Friedrich Nietzsche.",
+    "update_gap": 1
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What is Stephen Crane famous for?",
+    "gt_answer": "Charlie Hebdo",
+    "old_answer": "The Red Badge of Courage",
+    "conflict_type": "has_pair",
+    "gt_seq": 1005,
+    "gt_fact_text": "Stephen Crane is famous for Charlie Hebdo.",
+    "old_seq": 113,
+    "old_fact_text": "Stephen Crane is famous for The Red Badge of Courage.",
+    "update_gap": 351
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "Which country was Charlie Hebdo created in?",
+    "gt_answer": "Italy",
+    "old_answer": "France",
+    "conflict_type": "has_pair",
+    "gt_seq": 1137,
+    "gt_fact_text": "Charlie Hebdo was created in the country of Italy.",
+    "old_seq": 1058,
+    "old_fact_text": "Charlie Hebdo was created in the country of France.",
+    "update_gap": 203
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of Italy?",
+    "gt_answer": "Duluth",
+    "old_answer": "Rome",
+    "conflict_type": "has_pair",
+    "gt_seq": 1828,
+    "gt_fact_text": "The capital of Italy is Duluth.",
+    "old_seq": 199,
+    "old_fact_text": "The capital of Italy is Rome.",
+    "update_gap": 42
+   }
+  ],
+  "old_final_answer": "Berlin",
+  "old_passages_to_remove": [
+   2,
+   6
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no92",
+  "query_id": 92,
+  "question": "In what language are communications in the headquarters location of the manufacturer of Il-2 Shturmovik conducted officially?",
+  "gt_answer": "German",
+  "model_output": "German.",
+  "exact_match": true,
+  "case_id": 6483,
+  "num_hops": 3,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which company is Il-2 Shturmovik produced by?",
+    "gt_answer": "Ilyushin",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1334,
+    "gt_fact_text": "The company that produced Il-2 Shturmovik is Ilyushin.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city is the headquarter of Ilyushin located in?",
+    "gt_answer": "Moscow",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1043,
+    "gt_fact_text": "The headquarters of Ilyushin is located in the city of Moscow.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the official language of Moscow?",
+    "gt_answer": "German",
+    "old_answer": "Russian",
+    "conflict_type": "has_pair",
+    "gt_seq": 1060,
+    "gt_fact_text": "The official language of Moscow is German.",
+    "old_seq": 344,
+    "old_fact_text": "The official language of Moscow is Russian.",
+    "update_gap": 294
+   }
+  ],
+  "old_final_answer": "Russian",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no93",
+  "query_id": 93,
+  "question": "Which city serves as the capital of the country where the spouse of the performer of \"Viva Las Vegas\" is a citizen?",
+  "gt_answer": "Harare",
+  "model_output": "Washington, D.C.",
+  "exact_match": false,
+  "case_id": 7518,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who performed Viva Las Vegas?",
+    "gt_answer": "Elvis Presley",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 2243,
+    "gt_fact_text": "Viva Las Vegas was performed by Elvis Presley.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who is Elvis Presley married to?",
+    "gt_answer": "Charles the Bold",
+    "old_answer": "Priscilla Presley",
+    "conflict_type": "has_pair",
+    "gt_seq": 1029,
+    "gt_fact_text": "Elvis Presley is married to Charles the Bold.",
+    "old_seq": 831,
+    "old_fact_text": "Elvis Presley is married to Priscilla Presley.",
+    "update_gap": 19
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the country of citizenship of Charles the Bold?",
+    "gt_answer": "France",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1864,
+    "gt_fact_text": "Charles the Bold is a citizen of France.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of France?",
+    "gt_answer": "Harare",
+    "old_answer": "Paris",
+    "conflict_type": "has_pair",
+    "gt_seq": 1034,
+    "gt_fact_text": "The capital of France is Harare.",
+    "old_seq": 210,
+    "old_fact_text": "The capital of France is Paris.",
+    "update_gap": 8
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": []
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no94",
+  "query_id": 94,
+  "question": "What is the country of origin of the sport that the New Firm is related to?",
+  "gt_answer": "Japan",
+  "model_output": "United States of America.",
+  "exact_match": false,
+  "case_id": 4041,
+  "num_hops": 2,
+  "error_type": "entity_confused",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is New Firm associated with?",
+    "gt_answer": "baseball",
+    "old_answer": "association football",
+    "conflict_type": "has_pair",
+    "gt_seq": 2301,
+    "gt_fact_text": "New Firm is associated with the sport of baseball.",
+    "old_seq": 797,
+    "old_fact_text": "New Firm is associated with the sport of association football.",
+    "update_gap": 80
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was baseball created in?",
+    "gt_answer": "Japan",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 1494,
+    "gt_fact_text": "baseball was created in the country of Japan.",
+    "old_seq": 136,
+    "old_fact_text": "baseball was created in the country of United States of America.",
+    "update_gap": 222
+   }
+  ],
+  "old_final_answer": "England",
+  "old_passages_to_remove": [
+   1,
+   3
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no95",
+  "query_id": 95,
+  "question": "Which religious leader is responsible for founding the religion to which Sarit Thanarat belongs?",
+  "gt_answer": "Mekere Morauta",
+  "model_output": "Gautama Buddha",
+  "exact_match": false,
+  "case_id": 3457,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which religion is Sarit Thanarat affiliated with?",
+    "gt_answer": "Buddhism",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1916,
+    "gt_fact_text": "Sarit Thanarat is affiliated with the religion of Buddhism.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who founded Buddhism?",
+    "gt_answer": "Mekere Morauta",
+    "old_answer": "Gautama Buddha",
+    "conflict_type": "has_pair",
+    "gt_seq": 737,
+    "gt_fact_text": "Buddhism was founded by Mekere Morauta.",
+    "old_seq": 696,
+    "old_fact_text": "Buddhism was founded by Gautama Buddha.",
+    "update_gap": 303
+   }
+  ],
+  "old_final_answer": "Gautama Buddha",
+  "old_passages_to_remove": [
+   2
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no96",
+  "query_id": 96,
+  "question": "At which place did the creator of \"Lady Windermere's Fan\" breathe their last?",
+  "gt_answer": "Guangzhou",
+  "model_output": "Guangzhou.",
+  "exact_match": true,
+  "case_id": 712,
+  "num_hops": 2,
+  "error_type": "correct",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who is the author of Lady Windermere's Fan?",
+    "gt_answer": "Oscar Wilde",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 1220,
+    "gt_fact_text": "The author of Lady Windermere's Fan is Oscar Wilde.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which city did Oscar Wilde die in?",
+    "gt_answer": "Guangzhou",
+    "old_answer": "Paris",
+    "conflict_type": "has_pair",
+    "gt_seq": 1862,
+    "gt_fact_text": "Oscar Wilde died in the city of Guangzhou.",
+    "old_seq": 360,
+    "old_fact_text": "Oscar Wilde died in the city of Paris.",
+    "update_gap": 142
+   }
+  ],
+  "old_final_answer": "Paris",
+  "old_passages_to_remove": [
+   1
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no97",
+  "query_id": 97,
+  "question": "what kind of music does \"Born in the U.S.A.\" fall under according to its performer?",
+  "gt_answer": "Australian hip hop",
+  "model_output": "rock music.",
+  "exact_match": false,
+  "case_id": 2288,
+  "num_hops": 2,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Who performed Born in the U.S.A.?",
+    "gt_answer": "Dana International",
+    "old_answer": "Bruce Springsteen",
+    "conflict_type": "has_pair",
+    "gt_seq": 1526,
+    "gt_fact_text": "Born in the U.S.A. was performed by Dana International.",
+    "old_seq": 532,
+    "old_fact_text": "Born in the U.S.A. was performed by Bruce Springsteen.",
+    "update_gap": 272
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "What type of music does Dana International play?",
+    "gt_answer": "Australian hip hop",
+    "old_answer": "pop music",
+    "conflict_type": "has_pair",
+    "gt_seq": 2278,
+    "gt_fact_text": "The type of music that Dana International plays is Australian hip hop.",
+    "old_seq": 245,
+    "old_fact_text": "The type of music that Dana International plays is pop music.",
+    "update_gap": 38
+   }
+  ],
+  "old_final_answer": "rock music",
+  "old_passages_to_remove": [
+   1,
+   4
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no98",
+  "query_id": 98,
+  "question": "What is the capital city of the country where the founder of the manufacturer of Ford Transit Connect holds citizenship?",
+  "gt_answer": "Paris",
+  "model_output": "Washington, D.C.",
+  "exact_match": false,
+  "case_id": 8786,
+  "num_hops": 4,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which company is Ford Transit Connect produced by?",
+    "gt_answer": "Ford Motor Company",
+    "old_answer": "",
+    "conflict_type": "no_conflict_pair",
+    "gt_seq": 751,
+    "gt_fact_text": "The company that produced Ford Transit Connect is Ford Motor Company.",
+    "old_seq": null,
+    "old_fact_text": null,
+    "update_gap": null
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Who founded Ford Motor Company?",
+    "gt_answer": "Henri Grégoire",
+    "old_answer": "Henry Ford",
+    "conflict_type": "has_pair",
+    "gt_seq": 908,
+    "gt_fact_text": "Ford Motor Company was founded by Henri Grégoire.",
+    "old_seq": 8,
+    "old_fact_text": "Ford Motor Company was founded by Henry Ford.",
+    "update_gap": 98
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the country of citizenship of Henri Grégoire?",
+    "gt_answer": "France",
+    "old_answer": "India",
+    "conflict_type": "has_pair",
+    "gt_seq": 1398,
+    "gt_fact_text": "Henri Grégoire is a citizen of France.",
+    "old_seq": 1454,
+    "old_fact_text": "Henri Grégoire is a citizen of India.",
+    "update_gap": -186
+   },
+   {
+    "hop_idx": 3,
+    "hop_question": "What is the capital of France?",
+    "gt_answer": "Paris",
+    "old_answer": "Harare",
+    "conflict_type": "has_pair",
+    "gt_seq": 210,
+    "gt_fact_text": "The capital of France is Paris.",
+    "old_seq": 1034,
+    "old_fact_text": "The capital of France is Harare.",
+    "update_gap": -8
+   }
+  ],
+  "old_final_answer": "Washington, D.C.",
+  "old_passages_to_remove": [
+   2,
+   6
+  ]
+ },
+ {
+  "qa_pair_id": "factconsolidation_mh_6k_no99",
+  "query_id": 99,
+  "question": "In what language are the official documents of the country where Alta IF originates written?",
+  "gt_answer": "Swedish",
+  "model_output": "English.",
+  "exact_match": false,
+  "case_id": 5882,
+  "num_hops": 3,
+  "error_type": "older_fact",
+  "int_stop_hop": null,
+  "int_stop_ver": null,
+  "hops": [
+   {
+    "hop_idx": 0,
+    "hop_question": "Which sport is Alta IF associated with?",
+    "gt_answer": "baseball",
+    "old_answer": "association football",
+    "conflict_type": "has_pair",
+    "gt_seq": 1407,
+    "gt_fact_text": "Alta IF is associated with the sport of baseball.",
+    "old_seq": 493,
+    "old_fact_text": "Alta IF is associated with the sport of association football.",
+    "update_gap": 427
+   },
+   {
+    "hop_idx": 1,
+    "hop_question": "Which country was baseball created in?",
+    "gt_answer": "Japan",
+    "old_answer": "United States of America",
+    "conflict_type": "has_pair",
+    "gt_seq": 1494,
+    "gt_fact_text": "baseball was created in the country of Japan.",
+    "old_seq": 136,
+    "old_fact_text": "baseball was created in the country of United States of America.",
+    "update_gap": 222
+   },
+   {
+    "hop_idx": 2,
+    "hop_question": "What is the official language of Japan?",
+    "gt_answer": "Swedish",
+    "old_answer": "Japanese",
+    "conflict_type": "has_pair",
+    "gt_seq": 1313,
+    "gt_fact_text": "The official language of Japan is Swedish.",
+    "old_seq": 1306,
+    "old_fact_text": "The official language of Japan is Japanese.",
+    "update_gap": 199
+   }
+  ],
+  "old_final_answer": "English",
+  "old_passages_to_remove": [
+   3,
+   6
+  ]
+ }
+]

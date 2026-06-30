@@ -165,6 +165,13 @@ def get_retrieval_query(query: str) -> str:
     match = re.search(r"Now Answer the Question:\s*(.*)", query, re.DOTALL)
     if match:
         retrieval_query =  ''.join(match.groups())
+        # FC fairness: strip residual qa-template boilerplate so the embedding
+        # sees the BARE question (same raw-question retrieval as the mem0/ours
+        # path; only retrieval is affected — the answer LLM still gets the full
+        # wrapped query). Without this Zep embeds "Based on the provided
+        # Knowledge Pool, <q>", diluting the query vs ours' bare "<q>".
+        retrieval_query = re.sub(r"^\s*Based on the provided Knowledge Pool,\s*", "", retrieval_query)
+        retrieval_query = re.sub(r"\s*Answer:\s*$", "", retrieval_query).strip()
     else:
         match = re.search(r"Here is the conversation:\s*(.*)", query, re.DOTALL)
         if match:

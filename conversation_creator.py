@@ -1,4 +1,4 @@
-from utils.eval_other_utils import chunk_text_into_sentences
+from utils.eval_other_utils import chunk_text_into_sentences, chunk_facts_by_line
 from utils.eval_data_utils import load_eval_data
 from utils.templates import get_template
 
@@ -268,11 +268,22 @@ class ConversationCreator:
         Returns:
             list: List of lists, where each inner list contains text chunks for one context
         """
+        # FactConsolidation contexts are newline-numbered fact lists; the prose
+        # sentence chunker strands a fact's "<seq>." on the previous chunk at
+        # boundaries (~1 fact per boundary). Route FC to a fact-aware chunker so
+        # the sequence number never separates from its fact text. Other datasets
+        # (prose) keep the sentence chunker. See
+        # docs/0603_current_research_main_evidence/00_research_axis_and_setup.md.
+        if 'factconsolidation' in self.sub_dataset.lower():
+            chunker = chunk_facts_by_line
+            print(f"[chunks] fact-aware chunker for {self.sub_dataset} (numbers stay with facts)")
+        else:
+            chunker = chunk_text_into_sentences
         all_context_chunks = [
-            chunk_text_into_sentences(context, chunk_size=self.chunk_size)
+            chunker(context, chunk_size=self.chunk_size)
             for context in self.contexts
         ]
-        
+
         # Validate the output structure
         self._validate_chunks_structure(all_context_chunks)
         return all_context_chunks

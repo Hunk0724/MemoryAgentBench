@@ -1,0 +1,2 @@
+{"question_id": "6a1eabeb", "hypothesis": "Your personal best time in the charity 5K run is 25:50.", "autoeval_label": {"model": "gpt-4o-mini-2024-07-18", "label": true}}
+{"question_id": "6aeb4375", "hypothesis": "You have tried three different Korean restaurants in your city recently.", "autoeval_label": {"model": "gpt-4o-mini-2024-07-18", "label": false}}

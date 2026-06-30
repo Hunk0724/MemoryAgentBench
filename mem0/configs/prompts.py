@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 
 MEMORY_ANSWER_PROMPT = """
@@ -331,3 +332,110 @@ def get_update_memory_messages(retrieved_old_memory_dict, response_content, cust
 
     Do not return anything except the JSON format.
     """
+
+
+# ============================================================================
+# U5 Conflict-Resolution: classification-only prompt (Phase 1)
+# ----------------------------------------------------------------------------
+# Decouples "judgement" from "execution": the LLM ONLY classifies the relation
+# between each (new_fact, existing_entry) pair into one of six categories. A
+# deterministic Python mapping (in main._update_u5) turns relations into store
+# operations. Ordinal (ingestion order; larger = newer) is provided as an
+# explicit temporal signal — the vanilla DEFAULT_UPDATE_MEMORY_PROMPT never has
+# access to this. Phase 1 is destructive (maps SUPERSEDE -> physical DELETE+ADD);
+# soft supersession / status fields are intentionally out of scope.
+# ============================================================================
+
+CONFLICT_CLASSIFICATION_PROMPT = """\
+You are a memory conflict classifier for a long-term memory system.
+
+You will be given:
+- A list of NEW facts, each with a new_id, text, and an ordinal
+  (a monotonically increasing integer; larger ordinal = more recent).
+- A list of EXISTING memory entries, each with an existing_id, text, and ordinal.
+  These were retrieved as the top-k semantically related candidates for the
+  new facts collectively.
+
+For EACH (new_fact, existing_entry) pair that is semantically related, classify
+the relationship into exactly ONE of the categories below.
+You do NOT output any operation (ADD/UPDATE/DELETE). You ONLY classify.
+The system maps classifications to operations downstream.
+
+==========================
+CLASSIFICATION CATEGORIES
+==========================
+
+NO_RELATION
+  The two facts are about unrelated things. The retrieval was a false positive.
+
+DUPLICATE
+  The new fact conveys the same information as the existing one with no
+  additional detail.
+
+ENRICHMENT
+  The new fact extends or refines the existing fact WITHOUT contradicting it.
+  Output a "merged_text" field combining them into a single richer fact.
+
+COEXIST
+  Both facts can simultaneously be true. Use this when the attribute can hold
+  multiple values (preferences, hobbies, friends, places visited, etc.).
+  *** DEFAULT TO COEXIST when you are not certain the attribute is single-valued. ***
+
+SUPERSEDE
+  The new fact contradicts the existing fact in a way that implies the existing
+  one is no longer current. Use SUPERSEDE only if at least ONE of:
+    (a) Explicit correction signal in the new fact ("actually", "I meant",
+        "no longer", "used to but now", "the new X is Y", etc.).
+    (b) The attribute is single-valued by nature (current capital, current
+        employer, current location, current age, current spouse, etc.).
+    (c) The new fact has a STRICTLY LARGER ordinal AND the two values are
+        mutually exclusive on the same attribute.
+
+UNCERTAIN
+  You cannot confidently classify. This is a VALID and ENCOURAGED output.
+  Prefer UNCERTAIN over guessing SUPERSEDE.
+
+==========================
+CRITICAL RULES
+==========================
+
+1. Be CONSERVATIVE with SUPERSEDE. Wrong SUPERSEDE causes information loss;
+   wrong COEXIST only causes redundancy. Prefer the latter.
+2. Ordinal is EVIDENCE for SUPERSEDE case (c), NOT sufficient by itself.
+   Mutual exclusivity of the attribute must also hold.
+3. Each (new_fact, existing_entry) pair is judged INDEPENDENTLY.
+4. Use only the ids provided in the input. Do not invent new ids.
+5. Only output pairs that are semantically related. You may omit clearly
+   unrelated pairs (equivalent to NO_RELATION).
+
+==========================
+OUTPUT FORMAT (JSON only)
+==========================
+
+{
+  "classifications": [
+    {
+      "new_id": "<new_fact_id>",
+      "existing_id": "<existing_entry_id>",
+      "relation": "NO_RELATION" | "DUPLICATE" | "ENRICHMENT" | "COEXIST" | "SUPERSEDE" | "UNCERTAIN",
+      "reason": "<one short sentence>",
+      "merged_text": "<required only when relation is ENRICHMENT>"
+    }
+  ]
+}
+"""
+
+
+def get_conflict_classification_messages(new_facts, existing_entries):
+    """Build the user-message payload for U5 classification.
+
+    Args:
+        new_facts: list of {"new_id": str, "text": str, "ordinal": int}
+        existing_entries: list of {"existing_id": str, "text": str, "ordinal": int}
+
+    Returns:
+        (system_prompt, user_prompt) tuple.
+    """
+    payload = {"new_facts": new_facts, "existing_entries": existing_entries}
+    user_prompt = "INPUT:\n" + json.dumps(payload, ensure_ascii=False, indent=2)
+    return CONFLICT_CLASSIFICATION_PROMPT, user_prompt

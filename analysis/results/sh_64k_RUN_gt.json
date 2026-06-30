@@ -1,0 +1,1000 @@
+[
+ {
+  "query_id": 0,
+  "question": "Which language was The New York Times written in?",
+  "gt_answer": "Ancient Greek",
+  "conflict_type": "has_pair",
+  "gt_seq": 4102,
+  "gt_fact_text": "The New York Times was written in the language of Ancient Greek.",
+  "old_seq": 2833,
+  "old_fact_text": "The New York Times was written in the language of English.",
+  "old_answer": "English"
+ },
+ {
+  "query_id": 1,
+  "question": "Who is the author of Hard Times?",
+  "gt_answer": "Martin Luther King Jr.",
+  "conflict_type": "has_pair",
+  "gt_seq": 2335,
+  "gt_fact_text": "The author of Hard Times is Martin Luther King Jr..",
+  "old_seq": 687,
+  "old_fact_text": "The author of Hard Times is Charles Dickens.",
+  "old_answer": "Charles Dickens"
+ },
+ {
+  "query_id": 2,
+  "question": "What is the country of citizenship of David Farragut?",
+  "gt_answer": "Denmark",
+  "conflict_type": "has_pair",
+  "gt_seq": 2211,
+  "gt_fact_text": "David Farragut is a citizen of Denmark.",
+  "old_seq": 818,
+  "old_fact_text": "David Farragut is a citizen of United States of America.",
+  "old_answer": "United States of America"
+ },
+ {
+  "query_id": 3,
+  "question": "Who founded Death Eater?",
+  "gt_answer": "Lord Voldemort",
+  "conflict_type": "no_pair",
+  "gt_seq": 192,
+  "gt_fact_text": "Death Eater was founded by Lord Voldemort."
+ },
+ {
+  "query_id": 4,
+  "question": "What is the country of citizenship of Joseph Mitchell?",
+  "gt_answer": "United Kingdom",
+  "conflict_type": "has_pair",
+  "gt_seq": 2969,
+  "gt_fact_text": "Joseph Mitchell is a citizen of United Kingdom.",
+  "old_seq": 1594,
+  "old_fact_text": "Joseph Mitchell is a citizen of United States of America.",
+  "old_answer": "United States of America"
+ },
+ {
+  "query_id": 5,
+  "question": "What type of music does Aki Takase play?",
+  "gt_answer": "Carnatic music",
+  "conflict_type": "has_pair",
+  "gt_seq": 2486,
+  "gt_fact_text": "The type of music that Aki Takase plays is Carnatic music.",
+  "old_seq": 1275,
+  "old_fact_text": "The type of music that Aki Takase plays is jazz.",
+  "old_answer": "jazz"
+ },
+ {
+  "query_id": 6,
+  "question": "Which country was Shaman King created in?",
+  "gt_answer": "Greece",
+  "conflict_type": "has_pair",
+  "gt_seq": 3279,
+  "gt_fact_text": "Shaman King was created in the country of Greece.",
+  "old_seq": 1681,
+  "old_fact_text": "Shaman King was created in the country of Japan.",
+  "old_answer": "Japan"
+ },
+ {
+  "query_id": 7,
+  "question": "Which religion is Henry of Blois affiliated with?",
+  "gt_answer": "Church of Scotland",
+  "conflict_type": "has_pair",
+  "gt_seq": 2028,
+  "gt_fact_text": "Henry of Blois is affiliated with the religion of Church of Scotland.",
+  "old_seq": 2000,
+  "old_fact_text": "Henry of Blois is affiliated with the religion of Catholic Church.",
+  "old_answer": "Catholic Church"
+ },
+ {
+  "query_id": 8,
+  "question": "What is the original language of The Sky at Night?",
+  "gt_answer": "Filipino",
+  "conflict_type": "has_pair",
+  "gt_seq": 4499,
+  "gt_fact_text": "The original language of The Sky at Night is Filipino.",
+  "old_seq": 3857,
+  "old_fact_text": "The original language of The Sky at Night is English.",
+  "old_answer": "English"
+ },
+ {
+  "query_id": 9,
+  "question": "Who was Kermit the Frog created by?",
+  "gt_answer": "Hiroshige",
+  "conflict_type": "has_pair",
+  "gt_seq": 2786,
+  "gt_fact_text": "Kermit the Frog was created by Hiroshige.",
+  "old_seq": 1671,
+  "old_fact_text": "Kermit the Frog was created by Jim Henson.",
+  "old_answer": "Jim Henson"
+ },
+ {
+  "query_id": 10,
+  "question": "Which city was Monty Norman born in?",
+  "gt_answer": "London",
+  "conflict_type": "no_pair",
+  "gt_seq": 3322,
+  "gt_fact_text": "Monty Norman was born in the city of London."
+ },
+ {
+  "query_id": 11,
+  "question": "Who is Prince Andrew, Duke of York married to?",
+  "gt_answer": "Mahidol Adulyadej",
+  "conflict_type": "has_pair",
+  "gt_seq": 3548,
+  "gt_fact_text": "Prince Andrew, Duke of York is married to Mahidol Adulyadej.",
+  "old_seq": 3235,
+  "old_fact_text": "Prince Andrew, Duke of York is married to Sarah, Duchess of York.",
+  "old_answer": "Sarah, Duchess of York"
+ },
+ {
+  "query_id": 12,
+  "question": "Who performed Day Tripper?",
+  "gt_answer": "Madonna",
+  "conflict_type": "has_pair",
+  "gt_seq": 463,
+  "gt_fact_text": "Day Tripper was performed by Madonna.",
+  "old_seq": 434,
+  "old_fact_text": "Day Tripper was performed by The Beatles.",
+  "old_answer": "The Beatles"
+ },
+ {
+  "query_id": 13,
+  "question": "Which city did Pablo Picasso work in?",
+  "gt_answer": "Paris",
+  "conflict_type": "no_pair",
+  "gt_seq": 1647,
+  "gt_fact_text": "Pablo Picasso worked in the city of Paris."
+ },
+ {
+  "query_id": 14,
+  "question": "Who is the director of CERN?",
+  "gt_answer": "Giorgio Armani",
+  "conflict_type": "has_pair",
+  "gt_seq": 4511,
+  "gt_fact_text": "The director of CERN is Giorgio Armani.",
+  "old_seq": 3375,
+  "old_fact_text": "The director of CERN is Fabiola Gianotti.",
+  "old_answer": "Fabiola Gianotti"
+ },
+ {
+  "query_id": 15,
+  "question": "Who performed Jane Foster?",
+  "gt_answer": "Natalie Portman",
+  "conflict_type": "no_pair",
+  "gt_seq": 749,
+  "gt_fact_text": "Jane Foster was performed by Natalie Portman."
+ },
+ {
+  "query_id": 16,
+  "question": "Who is the head coach of Burnley F.C.?",
+  "gt_answer": "Jeff Hornacek",
+  "conflict_type": "has_pair",
+  "gt_seq": 1038,
+  "gt_fact_text": "The head coach of Burnley F.C. is Jeff Hornacek.",
+  "old_seq": 464,
+  "old_fact_text": "The head coach of Burnley F.C. is Sean Dyche.",
+  "old_answer": "Sean Dyche"
+ },
+ {
+  "query_id": 17,
+  "question": "Who is the original broadcaster of One Life to Live?",
+  "gt_answer": "American Broadcasting Company",
+  "conflict_type": "no_pair",
+  "gt_seq": 1332,
+  "gt_fact_text": "The origianl broadcaster of One Life to Live is American Broadcasting Company."
+ },
+ {
+  "query_id": 18,
+  "question": "Who is the author of Red Storm Rising?",
+  "gt_answer": "Tom Clancy",
+  "conflict_type": "has_pair",
+  "gt_seq": 7,
+  "gt_fact_text": "The author of Red Storm Rising is Tom Clancy.",
+  "old_seq": 1219,
+  "old_fact_text": "The author of Red Storm Rising is Torquato Tasso.",
+  "old_answer": "Torquato Tasso"
+ },
+ {
+  "query_id": 19,
+  "question": "What is the official language of Soviet Union?",
+  "gt_answer": "French",
+  "conflict_type": "has_pair",
+  "gt_seq": 3797,
+  "gt_fact_text": "The official language of Soviet Union is French.",
+  "old_seq": 3700,
+  "old_fact_text": "The official language of Soviet Union is Russian.",
+  "old_answer": "Russian"
+ },
+ {
+  "query_id": 20,
+  "question": "Which continent is Great Britain located in?",
+  "gt_answer": "Europe",
+  "conflict_type": "has_pair",
+  "gt_seq": 2374,
+  "gt_fact_text": "Great Britain is located in the continent of Europe.",
+  "old_seq": 2468,
+  "old_fact_text": "Great Britain is located in the continent of Asia.",
+  "old_answer": "Asia"
+ },
+ {
+  "query_id": 21,
+  "question": "Who founded Sōtō?",
+  "gt_answer": "Dōgen",
+  "conflict_type": "no_pair",
+  "gt_seq": 1590,
+  "gt_fact_text": "Sōtō was founded by Dōgen."
+ },
+ {
+  "query_id": 22,
+  "question": "Which country was The Orange County Register created in?",
+  "gt_answer": "United Kingdom",
+  "conflict_type": "has_pair",
+  "gt_seq": 4267,
+  "gt_fact_text": "The Orange County Register was created in the country of United Kingdom.",
+  "old_seq": 2975,
+  "old_fact_text": "The Orange County Register was created in the country of United States of America.",
+  "old_answer": "United States of America"
+ },
+ {
+  "query_id": 23,
+  "question": "Which sport is racing video game associated with?",
+  "gt_answer": "Australian rules football",
+  "conflict_type": "has_pair",
+  "gt_seq": 1639,
+  "gt_fact_text": "racing video game is associated with the sport of Australian rules football.",
+  "old_seq": 1004,
+  "old_fact_text": "racing video game is associated with the sport of racing.",
+  "old_answer": "racing"
+ },
+ {
+  "query_id": 24,
+  "question": "What is the country of citizenship of Philip II of Spain?",
+  "gt_answer": "United Kingdom",
+  "conflict_type": "has_pair",
+  "gt_seq": 2448,
+  "gt_fact_text": "Philip II of Spain is a citizen of United Kingdom.",
+  "old_seq": 2131,
+  "old_fact_text": "Philip II of Spain is a citizen of Spain.",
+  "old_answer": "Spain"
+ },
+ {
+  "query_id": 25,
+  "question": "What is Luís de Camões famous for?",
+  "gt_answer": "Os Lusíadas",
+  "conflict_type": "no_pair",
+  "gt_seq": 4308,
+  "gt_fact_text": "Luís de Camões is famous for Os Lusíadas."
+ },
+ {
+  "query_id": 26,
+  "question": "Who is Wilma Flintstone's child?",
+  "gt_answer": "Eric Garcetti",
+  "conflict_type": "has_pair",
+  "gt_seq": 3748,
+  "gt_fact_text": "Wilma Flintstone's child is Eric Garcetti.",
+  "old_seq": 1614,
+  "old_fact_text": "Wilma Flintstone's child is Pebbles Flintstone.",
+  "old_answer": "Pebbles Flintstone"
+ },
+ {
+  "query_id": 27,
+  "question": "Who is the original broadcaster of General Hospital?",
+  "gt_answer": "American Broadcasting Company",
+  "conflict_type": "no_pair",
+  "gt_seq": 3360,
+  "gt_fact_text": "The origianl broadcaster of General Hospital is American Broadcasting Company."
+ },
+ {
+  "query_id": 28,
+  "question": "Which sport is Erik Spoelstra associated with?",
+  "gt_answer": "basketball",
+  "conflict_type": "no_pair",
+  "gt_seq": 4201,
+  "gt_fact_text": "Erik Spoelstra is associated with the sport of basketball."
+ },
+ {
+  "query_id": 29,
+  "question": "Who is the developer of PowerBook G4?",
+  "gt_answer": "Microsoft",
+  "conflict_type": "has_pair",
+  "gt_seq": 4470,
+  "gt_fact_text": "PowerBook G4 was developed by Microsoft.",
+  "old_seq": 2108,
+  "old_fact_text": "PowerBook G4 was developed by Apple Inc..",
+  "old_answer": "Apple Inc."
+ },
+ {
+  "query_id": 30,
+  "question": "Which language was Os Lusíadas written in?",
+  "gt_answer": "English",
+  "conflict_type": "has_pair",
+  "gt_seq": 2829,
+  "gt_fact_text": "Os Lusíadas was written in the language of English.",
+  "old_seq": 2615,
+  "old_fact_text": "Os Lusíadas was written in the language of Portuguese.",
+  "old_answer": "Portuguese"
+ },
+ {
+  "query_id": 31,
+  "question": "Which country was Die Gartenlaube created in?",
+  "gt_answer": "Austrian Empire",
+  "conflict_type": "has_pair",
+  "gt_seq": 2278,
+  "gt_fact_text": "Die Gartenlaube was created in the country of Austrian Empire.",
+  "old_seq": 412,
+  "old_fact_text": "Die Gartenlaube was created in the country of German Empire.",
+  "old_answer": "German Empire"
+ },
+ {
+  "query_id": 32,
+  "question": "Which city did Martin Luther King Jr. die in?",
+  "gt_answer": "St Leonards-on-Sea",
+  "conflict_type": "has_pair",
+  "gt_seq": 2234,
+  "gt_fact_text": "Martin Luther King Jr. died in the city of St Leonards-on-Sea.",
+  "old_seq": 1313,
+  "old_fact_text": "Martin Luther King Jr. died in the city of Memphis.",
+  "old_answer": "Memphis"
+ },
+ {
+  "query_id": 33,
+  "question": "What is the country of citizenship of Sher Bahadur Deuba?",
+  "gt_answer": "Nepal",
+  "conflict_type": "no_pair",
+  "gt_seq": 4103,
+  "gt_fact_text": "Sher Bahadur Deuba is a citizen of Nepal."
+ },
+ {
+  "query_id": 34,
+  "question": "Who is the chief executive officer of Toshiba?",
+  "gt_answer": "Nobuaki Kurumatani",
+  "conflict_type": "no_pair",
+  "gt_seq": 3153,
+  "gt_fact_text": "The chief executive officer of Toshiba is Nobuaki Kurumatani."
+ },
+ {
+  "query_id": 35,
+  "question": "Which university was Ilir Meta educated at?",
+  "gt_answer": "Montana State University - Bozeman",
+  "conflict_type": "has_pair",
+  "gt_seq": 2063,
+  "gt_fact_text": "The univeristy where Ilir Meta was educated is Montana State University - Bozeman.",
+  "old_seq": 1581,
+  "old_fact_text": "The univeristy where Ilir Meta was educated is University of Tirana.",
+  "old_answer": "University of Tirana"
+ },
+ {
+  "query_id": 36,
+  "question": "What is Richard Adams famous for?",
+  "gt_answer": "Watership Down",
+  "conflict_type": "no_pair",
+  "gt_seq": 3024,
+  "gt_fact_text": "Richard Adams is famous for Watership Down."
+ },
+ {
+  "query_id": 37,
+  "question": "Who is the chairperson of General Motors?",
+  "gt_answer": "Yoweri Kaguta Museveni",
+  "conflict_type": "has_pair",
+  "gt_seq": 4167,
+  "gt_fact_text": "The chairperson of General Motors is Yoweri Kaguta Museveni.",
+  "old_seq": 1836,
+  "old_fact_text": "The chairperson of General Motors is Mary Barra.",
+  "old_answer": "Mary Barra"
+ },
+ {
+  "query_id": 38,
+  "question": "Which continent is Zürich located in?",
+  "gt_answer": "Antarctica",
+  "conflict_type": "has_pair",
+  "gt_seq": 2472,
+  "gt_fact_text": "Zürich is located in the continent of Antarctica.",
+  "old_seq": 1940,
+  "old_fact_text": "Zürich is located in the continent of Europe.",
+  "old_answer": "Europe"
+ },
+ {
+  "query_id": 39,
+  "question": "What language does Daphne du Maurier speak?",
+  "gt_answer": "Arabic",
+  "conflict_type": "has_pair",
+  "gt_seq": 4396,
+  "gt_fact_text": "Daphne du Maurier speaks the language of Arabic.",
+  "old_seq": 66,
+  "old_fact_text": "Daphne du Maurier speaks the language of English.",
+  "old_answer": "English"
+ },
+ {
+  "query_id": 40,
+  "question": "Who is the author of The Andromeda Strain?",
+  "gt_answer": "Multatuli",
+  "conflict_type": "has_pair",
+  "gt_seq": 2911,
+  "gt_fact_text": "The author of The Andromeda Strain is Multatuli.",
+  "old_seq": 2476,
+  "old_fact_text": "The author of The Andromeda Strain is Michael Crichton.",
+  "old_answer": "Michael Crichton"
+ },
+ {
+  "query_id": 41,
+  "question": "What is the name of the current head of the India government?",
+  "gt_answer": "Narendra Modi",
+  "conflict_type": "no_pair",
+  "gt_seq": 3885,
+  "gt_fact_text": "The name of the current head of the India government is Narendra Modi."
+ },
+ {
+  "query_id": 42,
+  "question": "What is the country of citizenship of Bibi Andersson?",
+  "gt_answer": "United Kingdom",
+  "conflict_type": "has_pair",
+  "gt_seq": 3048,
+  "gt_fact_text": "Bibi Andersson is a citizen of United Kingdom.",
+  "old_seq": 1578,
+  "old_fact_text": "Bibi Andersson is a citizen of Sweden.",
+  "old_answer": "Sweden"
+ },
+ {
+  "query_id": 43,
+  "question": "What is the country of citizenship of Felix Aylmer?",
+  "gt_answer": "Denmark",
+  "conflict_type": "has_pair",
+  "gt_seq": 1960,
+  "gt_fact_text": "Felix Aylmer is a citizen of Denmark.",
+  "old_seq": 894,
+  "old_fact_text": "Felix Aylmer is a citizen of United Kingdom.",
+  "old_answer": "United Kingdom"
+ },
+ {
+  "query_id": 44,
+  "question": "Where was Finnair founded?",
+  "gt_answer": "Helsinki",
+  "conflict_type": "no_pair",
+  "gt_seq": 886,
+  "gt_fact_text": "Finnair was founded in the city of Helsinki."
+ },
+ {
+  "query_id": 45,
+  "question": "Who is the developer of Mortal Kombat X?",
+  "gt_answer": "Blizzard Entertainment",
+  "conflict_type": "has_pair",
+  "gt_seq": 3250,
+  "gt_fact_text": "Mortal Kombat X was developed by Blizzard Entertainment.",
+  "old_seq": 2980,
+  "old_fact_text": "Mortal Kombat X was developed by NetherRealm Studios.",
+  "old_answer": "NetherRealm Studios"
+ },
+ {
+  "query_id": 46,
+  "question": "What is the country of citizenship of Kim Tae-hee?",
+  "gt_answer": "United States of America",
+  "conflict_type": "has_pair",
+  "gt_seq": 3620,
+  "gt_fact_text": "Kim Tae-hee is a citizen of United States of America.",
+  "old_seq": 448,
+  "old_fact_text": "Kim Tae-hee is a citizen of South Korea.",
+  "old_answer": "South Korea"
+ },
+ {
+  "query_id": 47,
+  "question": "Who is the developer of Windows Server 2008?",
+  "gt_answer": "BlackBerry",
+  "conflict_type": "has_pair",
+  "gt_seq": 3644,
+  "gt_fact_text": "Windows Server 2008 was developed by BlackBerry.",
+  "old_seq": 1201,
+  "old_fact_text": "Windows Server 2008 was developed by Microsoft.",
+  "old_answer": "Microsoft"
+ },
+ {
+  "query_id": 48,
+  "question": "What is the official language of Kingdom of the Netherlands?",
+  "gt_answer": "Old Turkic",
+  "conflict_type": "has_pair",
+  "gt_seq": 3145,
+  "gt_fact_text": "The official language of Kingdom of the Netherlands is Old Turkic.",
+  "old_seq": 1598,
+  "old_fact_text": "The official language of Kingdom of the Netherlands is Dutch.",
+  "old_answer": "Dutch"
+ },
+ {
+  "query_id": 49,
+  "question": "What is Colleen McCullough famous for?",
+  "gt_answer": "The Thorn Birds",
+  "conflict_type": "no_pair",
+  "gt_seq": 3815,
+  "gt_fact_text": "Colleen McCullough is famous for The Thorn Birds."
+ },
+ {
+  "query_id": 50,
+  "question": "Which religion is John Paul I affiliated with?",
+  "gt_answer": "Church of Scotland",
+  "conflict_type": "has_pair",
+  "gt_seq": 916,
+  "gt_fact_text": "John Paul I is affiliated with the religion of Church of Scotland.",
+  "old_seq": 130,
+  "old_fact_text": "John Paul I is affiliated with the religion of Catholic Church.",
+  "old_answer": "Catholic Church"
+ },
+ {
+  "query_id": 51,
+  "question": "Who performed Taxman?",
+  "gt_answer": "Madonna",
+  "conflict_type": "has_pair",
+  "gt_seq": 3447,
+  "gt_fact_text": "Taxman was performed by Madonna.",
+  "old_seq": 3168,
+  "old_fact_text": "Taxman was performed by The Beatles.",
+  "old_answer": "The Beatles"
+ },
+ {
+  "query_id": 52,
+  "question": "Which city is the headquarter of University of Manchester located in?",
+  "gt_answer": "Manchester",
+  "conflict_type": "no_pair",
+  "gt_seq": 2511,
+  "gt_fact_text": "The headquarters of University of Manchester is located in the city of Manchester."
+ },
+ {
+  "query_id": 53,
+  "question": "Which sport is Texas Legends associated with?",
+  "gt_answer": "cricket",
+  "conflict_type": "has_pair",
+  "gt_seq": 4065,
+  "gt_fact_text": "Texas Legends is associated with the sport of cricket.",
+  "old_seq": 1232,
+  "old_fact_text": "Texas Legends is associated with the sport of basketball.",
+  "old_answer": "basketball"
+ },
+ {
+  "query_id": 54,
+  "question": "What is the country of citizenship of Jaime Alguersuari?",
+  "gt_answer": "Brazil",
+  "conflict_type": "has_pair",
+  "gt_seq": 4223,
+  "gt_fact_text": "Jaime Alguersuari is a citizen of Brazil.",
+  "old_seq": 1145,
+  "old_fact_text": "Jaime Alguersuari is a citizen of Spain.",
+  "old_answer": "Spain"
+ },
+ {
+  "query_id": 55,
+  "question": "Which religion is Alassane Dramane Ouattara affiliated with?",
+  "gt_answer": "Catholic Church",
+  "conflict_type": "has_pair",
+  "gt_seq": 4187,
+  "gt_fact_text": "Alassane Dramane Ouattara is affiliated with the religion of Catholic Church.",
+  "old_seq": 1498,
+  "old_fact_text": "Alassane Dramane Ouattara is affiliated with the religion of Islam.",
+  "old_answer": "Islam"
+ },
+ {
+  "query_id": 56,
+  "question": "What position does Andrea Pirlo play?",
+  "gt_answer": "midfielder",
+  "conflict_type": "no_pair",
+  "gt_seq": 2433,
+  "gt_fact_text": "Andrea Pirlo plays the position of midfielder."
+ },
+ {
+  "query_id": 57,
+  "question": "Which country was association football created in?",
+  "gt_answer": "Italy",
+  "conflict_type": "has_pair",
+  "gt_seq": 3516,
+  "gt_fact_text": "association football was created in the country of Italy.",
+  "old_seq": 12,
+  "old_fact_text": "association football was created in the country of England.",
+  "old_answer": "England"
+ },
+ {
+  "query_id": 58,
+  "question": "What type of music does Big Sean play?",
+  "gt_answer": "country rock",
+  "conflict_type": "has_pair",
+  "gt_seq": 4552,
+  "gt_fact_text": "The type of music that Big Sean plays is country rock.",
+  "old_seq": 3604,
+  "old_fact_text": "The type of music that Big Sean plays is hip hop music.",
+  "old_answer": "hip hop music"
+ },
+ {
+  "query_id": 59,
+  "question": "Which country was bluegrass music created in?",
+  "gt_answer": "Indonesia",
+  "conflict_type": "has_pair",
+  "gt_seq": 4115,
+  "gt_fact_text": "bluegrass music was created in the country of Indonesia.",
+  "old_seq": 2677,
+  "old_fact_text": "bluegrass music was created in the country of United States of America.",
+  "old_answer": "United States of America"
+ },
+ {
+  "query_id": 60,
+  "question": "Which sport is North East Stars associated with?",
+  "gt_answer": "cricket",
+  "conflict_type": "has_pair",
+  "gt_seq": 3740,
+  "gt_fact_text": "North East Stars is associated with the sport of cricket.",
+  "old_seq": 1450,
+  "old_fact_text": "North East Stars is associated with the sport of association football.",
+  "old_answer": "association football"
+ },
+ {
+  "query_id": 61,
+  "question": "Who is the chief executive officer of Tesla?",
+  "gt_answer": "Adam Sandler",
+  "conflict_type": "has_pair",
+  "gt_seq": 2749,
+  "gt_fact_text": "The chief executive officer of Tesla is Adam Sandler.",
+  "old_seq": 1499,
+  "old_fact_text": "The chief executive officer of Tesla is Elon Musk.",
+  "old_answer": "Elon Musk"
+ },
+ {
+  "query_id": 62,
+  "question": "Who founded Omidyar Network?",
+  "gt_answer": "Pierre Omidyar",
+  "conflict_type": "no_pair",
+  "gt_seq": 2953,
+  "gt_fact_text": "Omidyar Network was founded by Pierre Omidyar."
+ },
+ {
+  "query_id": 63,
+  "question": "Which city is the headquarter of Berklee College of Music located in?",
+  "gt_answer": "Boston",
+  "conflict_type": "no_pair",
+  "gt_seq": 3511,
+  "gt_fact_text": "The headquarters of Berklee College of Music is located in the city of Boston."
+ },
+ {
+  "query_id": 64,
+  "question": "What is the capital of Czechoslovakia?",
+  "gt_answer": "Przeworsk",
+  "conflict_type": "has_pair",
+  "gt_seq": 2935,
+  "gt_fact_text": "The capital of Czechoslovakia is Przeworsk.",
+  "old_seq": 1700,
+  "old_fact_text": "The capital of Czechoslovakia is Prague.",
+  "old_answer": "Prague"
+ },
+ {
+  "query_id": 65,
+  "question": "What is the country of citizenship of Ellen Pompeo?",
+  "gt_answer": "United States of America",
+  "conflict_type": "no_pair",
+  "gt_seq": 2654,
+  "gt_fact_text": "Ellen Pompeo is a citizen of United States of America."
+ },
+ {
+  "query_id": 66,
+  "question": "What is the country of citizenship of Alan Blyth?",
+  "gt_answer": "United Kingdom",
+  "conflict_type": "no_pair",
+  "gt_seq": 2562,
+  "gt_fact_text": "Alan Blyth is a citizen of United Kingdom."
+ },
+ {
+  "query_id": 67,
+  "question": "Who is the author of Satyricon?",
+  "gt_answer": "William Blake",
+  "conflict_type": "has_pair",
+  "gt_seq": 4337,
+  "gt_fact_text": "The author of Satyricon is William Blake.",
+  "old_seq": 2928,
+  "old_fact_text": "The author of Satyricon is Petronius.",
+  "old_answer": "Petronius"
+ },
+ {
+  "query_id": 68,
+  "question": "Who is the original broadcaster of Revenge?",
+  "gt_answer": "British Broadcasting Corporation",
+  "conflict_type": "has_pair",
+  "gt_seq": 4379,
+  "gt_fact_text": "The origianl broadcaster of Revenge is British Broadcasting Corporation.",
+  "old_seq": 3897,
+  "old_fact_text": "The origianl broadcaster of Revenge is American Broadcasting Company.",
+  "old_answer": "American Broadcasting Company"
+ },
+ {
+  "query_id": 69,
+  "question": "Which university was Stewart Udall educated at?",
+  "gt_answer": "California State University, Long Beach",
+  "conflict_type": "has_pair",
+  "gt_seq": 4505,
+  "gt_fact_text": "The univeristy where Stewart Udall was educated is California State University, Long Beach.",
+  "old_seq": 531,
+  "old_fact_text": "The univeristy where Stewart Udall was educated is University of Arizona.",
+  "old_answer": "University of Arizona"
+ },
+ {
+  "query_id": 70,
+  "question": "Who is the chairperson of Aam Aadmi Party?",
+  "gt_answer": "Lamar Alexander",
+  "conflict_type": "has_pair",
+  "gt_seq": 3471,
+  "gt_fact_text": "The chairperson of Aam Aadmi Party is Lamar Alexander.",
+  "old_seq": 3084,
+  "old_fact_text": "The chairperson of Aam Aadmi Party is Arvind Kejriwal.",
+  "old_answer": "Arvind Kejriwal"
+ },
+ {
+  "query_id": 71,
+  "question": "Who performed Beatles for Sale?",
+  "gt_answer": "Madonna",
+  "conflict_type": "has_pair",
+  "gt_seq": 3555,
+  "gt_fact_text": "Beatles for Sale was performed by Madonna.",
+  "old_seq": 2897,
+  "old_fact_text": "Beatles for Sale was performed by The Beatles.",
+  "old_answer": "The Beatles"
+ },
+ {
+  "query_id": 72,
+  "question": "Which sport is Philippine Basketball Association Draft associated with?",
+  "gt_answer": "basketball",
+  "conflict_type": "no_pair",
+  "gt_seq": 1567,
+  "gt_fact_text": "Philippine Basketball Association Draft is associated with the sport of basketball."
+ },
+ {
+  "query_id": 73,
+  "question": "What type of music does Archie Shepp play?",
+  "gt_answer": "J-pop",
+  "conflict_type": "has_pair",
+  "gt_seq": 4098,
+  "gt_fact_text": "The type of music that Archie Shepp plays is J-pop.",
+  "old_seq": 988,
+  "old_fact_text": "The type of music that Archie Shepp plays is jazz.",
+  "old_answer": "jazz"
+ },
+ {
+  "query_id": 74,
+  "question": "What is the capital of El Salvador?",
+  "gt_answer": "San Salvador",
+  "conflict_type": "no_pair",
+  "gt_seq": 3274,
+  "gt_fact_text": "The capital of El Salvador is San Salvador."
+ },
+ {
+  "query_id": 75,
+  "question": "Who is the employer of Larry Page?",
+  "gt_answer": "University of Edinburgh",
+  "conflict_type": "has_pair",
+  "gt_seq": 3493,
+  "gt_fact_text": "Larry Page is employed by University of Edinburgh.",
+  "old_seq": 1251,
+  "old_fact_text": "Larry Page is employed by Google.",
+  "old_answer": "Google"
+ },
+ {
+  "query_id": 76,
+  "question": "Which university was James Dashner educated at?",
+  "gt_answer": "Brigham Young University",
+  "conflict_type": "no_pair",
+  "gt_seq": 4414,
+  "gt_fact_text": "The univeristy where James Dashner was educated is Brigham Young University."
+ },
+ {
+  "query_id": 77,
+  "question": "Who is the author of Areopagitica?",
+  "gt_answer": "John Milton",
+  "conflict_type": "no_pair",
+  "gt_seq": 2558,
+  "gt_fact_text": "The author of Areopagitica is John Milton."
+ },
+ {
+  "query_id": 78,
+  "question": "Who performed Dear Prudence?",
+  "gt_answer": "Madonna",
+  "conflict_type": "has_pair",
+  "gt_seq": 3158,
+  "gt_fact_text": "Dear Prudence was performed by Madonna.",
+  "old_seq": 2978,
+  "old_fact_text": "Dear Prudence was performed by The Beatles.",
+  "old_answer": "The Beatles"
+ },
+ {
+  "query_id": 79,
+  "question": "What language does George Boole speak?",
+  "gt_answer": "Spanish",
+  "conflict_type": "has_pair",
+  "gt_seq": 4254,
+  "gt_fact_text": "George Boole speaks the language of Spanish.",
+  "old_seq": 3880,
+  "old_fact_text": "George Boole speaks the language of English.",
+  "old_answer": "English"
+ },
+ {
+  "query_id": 80,
+  "question": "Which language was Shahnameh written in?",
+  "gt_answer": "Persian",
+  "conflict_type": "no_pair",
+  "gt_seq": 3594,
+  "gt_fact_text": "Shahnameh was written in the language of Persian."
+ },
+ {
+  "query_id": 81,
+  "question": "Which sport is Altrincham F.C. associated with?",
+  "gt_answer": "association football",
+  "conflict_type": "no_pair",
+  "gt_seq": 3981,
+  "gt_fact_text": "Altrincham F.C. is associated with the sport of association football."
+ },
+ {
+  "query_id": 82,
+  "question": "Which continent is São Paulo located in?",
+  "gt_answer": "South America",
+  "conflict_type": "no_pair",
+  "gt_seq": 4049,
+  "gt_fact_text": "São Paulo is located in the continent of South America."
+ },
+ {
+  "query_id": 83,
+  "question": "Which sport is three-point field goal associated with?",
+  "gt_answer": "basketball",
+  "conflict_type": "no_pair",
+  "gt_seq": 962,
+  "gt_fact_text": "three-point field goal is associated with the sport of basketball."
+ },
+ {
+  "query_id": 84,
+  "question": "What is the country of citizenship of Paul Morley?",
+  "gt_answer": "Ireland",
+  "conflict_type": "has_pair",
+  "gt_seq": 2686,
+  "gt_fact_text": "Paul Morley is a citizen of Ireland.",
+  "old_seq": 2421,
+  "old_fact_text": "Paul Morley is a citizen of United Kingdom.",
+  "old_answer": "United Kingdom"
+ },
+ {
+  "query_id": 85,
+  "question": "Who is Reese Witherspoon's child?",
+  "gt_answer": "James Badge Dale",
+  "conflict_type": "has_pair",
+  "gt_seq": 2358,
+  "gt_fact_text": "Reese Witherspoon's child is James Badge Dale.",
+  "old_seq": 746,
+  "old_fact_text": "Reese Witherspoon's child is Ava Phillippe.",
+  "old_answer": "Ava Phillippe"
+ },
+ {
+  "query_id": 86,
+  "question": "Which sport is Lisbon Lions associated with?",
+  "gt_answer": "baseball",
+  "conflict_type": "has_pair",
+  "gt_seq": 4536,
+  "gt_fact_text": "Lisbon Lions is associated with the sport of baseball.",
+  "old_seq": 4418,
+  "old_fact_text": "Lisbon Lions is associated with the sport of association football.",
+  "old_answer": "association football"
+ },
+ {
+  "query_id": 87,
+  "question": "Who performed Born This Way Ball?",
+  "gt_answer": "Lady Gaga",
+  "conflict_type": "no_pair",
+  "gt_seq": 350,
+  "gt_fact_text": "Born This Way Ball was performed by Lady Gaga."
+ },
+ {
+  "query_id": 88,
+  "question": "Which religion is Denis Thatcher affiliated with?",
+  "gt_answer": "Lutheranism",
+  "conflict_type": "has_pair",
+  "gt_seq": 2496,
+  "gt_fact_text": "Denis Thatcher is affiliated with the religion of Lutheranism.",
+  "old_seq": 1720,
+  "old_fact_text": "Denis Thatcher is affiliated with the religion of Anglicanism.",
+  "old_answer": "Anglicanism"
+ },
+ {
+  "query_id": 89,
+  "question": "Who is the author of Rerum Novarum?",
+  "gt_answer": "Leo XIII",
+  "conflict_type": "no_pair",
+  "gt_seq": 567,
+  "gt_fact_text": "The author of Rerum Novarum is Leo XIII."
+ },
+ {
+  "query_id": 90,
+  "question": "What position does Manuel Neuer play?",
+  "gt_answer": "linebacker",
+  "conflict_type": "has_pair",
+  "gt_seq": 1621,
+  "gt_fact_text": "Manuel Neuer plays the position of linebacker.",
+  "old_seq": 1416,
+  "old_fact_text": "Manuel Neuer plays the position of goalkeeper.",
+  "old_answer": "goalkeeper"
+ },
+ {
+  "query_id": 91,
+  "question": "Who is the author of Lonesome Dove?",
+  "gt_answer": "Robert A. Heinlein",
+  "conflict_type": "has_pair",
+  "gt_seq": 3678,
+  "gt_fact_text": "The author of Lonesome Dove is Robert A. Heinlein.",
+  "old_seq": 605,
+  "old_fact_text": "The author of Lonesome Dove is Larry McMurtry.",
+  "old_answer": "Larry McMurtry"
+ },
+ {
+  "query_id": 92,
+  "question": "Which city did Allan Pinkerton die in?",
+  "gt_answer": "Pune",
+  "conflict_type": "has_pair",
+  "gt_seq": 3833,
+  "gt_fact_text": "Allan Pinkerton died in the city of Pune.",
+  "old_seq": 1141,
+  "old_fact_text": "Allan Pinkerton died in the city of Chicago.",
+  "old_answer": "Chicago"
+ },
+ {
+  "query_id": 93,
+  "question": "What is the official language of Helsinki?",
+  "gt_answer": "Esperanto",
+  "conflict_type": "has_pair",
+  "gt_seq": 2026,
+  "gt_fact_text": "The official language of Helsinki is Esperanto.",
+  "old_seq": 1878,
+  "old_fact_text": "The official language of Helsinki is Finnish.",
+  "old_answer": "Finnish"
+ },
+ {
+  "query_id": 94,
+  "question": "What is the country of citizenship of Mads Mikkelsen?",
+  "gt_answer": "Denmark",
+  "conflict_type": "no_pair",
+  "gt_seq": 4455,
+  "gt_fact_text": "Mads Mikkelsen is a citizen of Denmark."
+ },
+ {
+  "query_id": 95,
+  "question": "Who is the developer of iPad Pro?",
+  "gt_answer": "Google",
+  "conflict_type": "has_pair",
+  "gt_seq": 870,
+  "gt_fact_text": "iPad Pro was developed by Google.",
+  "old_seq": 209,
+  "old_fact_text": "iPad Pro was developed by Apple Inc..",
+  "old_answer": "Apple Inc."
+ },
+ {
+  "query_id": 96,
+  "question": "Who is the author of The Vagina Monologues?",
+  "gt_answer": "Eve Ensler",
+  "conflict_type": "no_pair",
+  "gt_seq": 853,
+  "gt_fact_text": "The author of The Vagina Monologues is Eve Ensler."
+ },
+ {
+  "query_id": 97,
+  "question": "Which sport is Montreal Royals associated with?",
+  "gt_answer": "field hockey",
+  "conflict_type": "has_pair",
+  "gt_seq": 3379,
+  "gt_fact_text": "Montreal Royals is associated with the sport of field hockey.",
+  "old_seq": 1638,
+  "old_fact_text": "Montreal Royals is associated with the sport of baseball.",
+  "old_answer": "baseball"
+ },
+ {
+  "query_id": 98,
+  "question": "Where was The Kinks founded?",
+  "gt_answer": "England",
+  "conflict_type": "has_pair",
+  "gt_seq": 2712,
+  "gt_fact_text": "The Kinks was founded in the city of England.",
+  "old_seq": 1152,
+  "old_fact_text": "The Kinks was founded in the city of London.",
+  "old_answer": "London"
+ },
+ {
+  "query_id": 99,
+  "question": "What is the country of citizenship of Estelle Getty?",
+  "gt_answer": "United States of America",
+  "conflict_type": "no_pair",
+  "gt_seq": 4330,
+  "gt_fact_text": "Estelle Getty is a citizen of United States of America."
+ }
+]

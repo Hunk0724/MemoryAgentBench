@@ -10,8 +10,9 @@
 - **Research goal**: 給 HippoRAG-v2 加 conflict-aware extension,用 FactConsolidation (FC) MH-6k 100Q 當 benchmark
 - **Current best**: FC-MH EM = 31%(vanilla A=17, +Phase 2 = 31)
 - **Filter ceiling 撞牆 ~31**(嘗試多種 filter variants 都沒突破)
-- **Pivot 到 detection 改進**(認為 candidate chain 對 chain_old/chain_new 的 recall 不夠)
-- **欲求 chat 協助**:(a) path scoring 公式有無 cited 先例 / 更好方法,(b) detection / filter / context-return 的 alternative ideas,(c) bidir verdict 設計是否 principled
+- **Detection 改進實測**(2026-05-27):path scoring 三變體 + verdict bidir 在 detection 端有小幅提升(proprag 4-hop +11.5pp recall)**但 EM 仍卡 29-31** — filter / inference 才是 ceiling
+- **★★ Strategic re-examination(§11)**:**今天最重要的反思**。我們的 paper 核心主張(query-time > write-time on multi-hop)**被現有資料部分反駁**(Mem0 = 43 > 我們 = 31),要先建 baseline matrix(競品 × context 長度 × 任務)再決定優化方向 — 詳見 §11
+- **欲求 chat 協助**:(a) path scoring 公式有無 cited 先例,(b) **§11 的策略性問題:基底選擇 / 5 個 paper angles / 應否暫停 HippoRAG 內部優化**
 
 ---
 
@@ -242,19 +243,119 @@ score = relevance + 0.3 × coherence + 0.2 × ppr_coverage − 0.1 × len(chain)
 **權重(0.3 / 0.2 / -0.1)從未 tune、從未 ablate、無 paper trace**。各 component 都是 hand-designed intuition,沒有理論依據。
 → Component-wise sensitivity analysis 缺。
 
-### 7.4 T1 實驗(等 GPU run)
+### 7.4 T1 實驗(已跑,2026-05-27)
 
 **三變體 ablation**:
 
-| Variant | 公式 | 設計理由 |
-|---|---|---|
-| **adhoc**(reference) | `Σ cos + 0.3·coh + 0.2·ppr − 0.1·len` | 現行,prior B=31 |
-| **pure_relevance**(strawman) | `Σ cos` only | 結構項是無效 ad-hoc 還是真有用?|
-| **proprag_strict**(principled) | `cosine(encode(" ".join(prop.text)), q)` | PropRAG (Liu et al. EMNLP 2025) 的 `concatenate` mode,whole-chain re-encode |
+| Variant | 公式 | EM |
+|---|---|:-:|
+| **adhoc**(reference) | `Σ cos + 0.3·coh + 0.2·ppr − 0.1·len` | 31 |
+| **pure_relevance**(strawman) | `Σ cos` only | 30 |
+| **proprag_strict**(principled) | `cosine(encode(" ".join(prop.text)), q)` | 29 |
 
-**所有其他設定不動**(M=5, L=3, beam=8, n_seed=20, bidir=OFF, rescue=ON, hyperedge=OFF)→ 單一變因。
+EM 全在 LLM 噪訊內(29–31)→ 看不出差異。
 
-**之後再跑**:bidir=ON × {pure_relevance, proprag_strict} → 2 個 follow-up runs。
+**但 detection metric(either-side hop recall @ K=5)很有 differential signal**:
+
+| Hop | n | adhoc | pure_relevance | proprag_strict |
+|---|:-:|:-:|:-:|:-:|
+| 2-hop | 87 | 83.9% | 83.9% | 80.5%(−3.4) |
+| **3-hop** | 48 | 60.4% | 64.6%(+4.2)| **68.8%(+8.4)** |
+| **4-hop** | 35 | 37.1% | 34.3%(−2.8)| **48.6%(+11.5)** ⭐ |
+| Overall | 170 | 67.6% | 68.2% | **70.6%**(+3.0) |
+
+**Finding 1**: pure_relevance ≈ adhoc(67.6% vs 68.2%)→ **我們手調的結構項(0.3·coh + 0.2·ppr − 0.1·len)幾乎零貢獻**。
+**Finding 2**: proprag_strict 在 3-h(+8.4pp)、4-h(+11.5pp)有真實改進,但 EM 沒升 → 被下游 filter ceiling(~31)蓋住。
+
+**Minor observation**(暫不深挖):proprag_strict 的 K=1 chain_new recall 只 2.4%(adhoc/pure ~43%);top-1 chain 偏好 chain_old prop。等 paper writing 時再回頭看。
+
+### 7.5 但 scoring 改進只填了 3pp / 26.4pp 大坑
+
+| Stage | chain_old recall(adhoc → proprag)|
+|---|---|
+| Active region(top-50)| 94% |
+| Candidate chain @ K=5 | 67.6% → **70.6%** |
+| 缺口 | 26.4pp → 23.4pp(只填 3pp) |
+
+→ **path scoring 不是主要瓶頸**;**剩下 23pp 的 attrition 在 scoring 上游**:
+- ① Active region selection(region_topK=50,by prop_ppr_mass)
+- ② Seed selection(n_seed=20,取前 8 當 initial beam)
+- ③ Expansion connectivity(entity overlap rule)
+- ④ Beam width(8 太窄?)
+
+**T1 結論**:Scoring 確定不是主因。下一步 diagnostic:逐 has_pair hop 分析 GT chain_old 失蹤的具體 stage(①/②/③/④)。
+
+### 7.6 待跑的 follow-ups
+
+- bidir=ON × {pure_relevance, proprag_strict}:測 detection 對稱性是否能 stack 上 scoring 改進
+- Upstream component 改動(較大工程):e.g., 加 query-cosine 進 active region selection、加 synonymy / embedding edge 進 expansion connectivity、加大 beam_width / M / n_seed
+
+### 7.7 bidir=ON 結果(2026-05-27 補跑)— **意外結論**
+
+| Run | EM | 2-h@5 | 3-h@5 | 4-h@5 | Overall@5 |
+|---|:-:|:-:|:-:|:-:|:-:|
+| B-adhoc(bidir=0) | 31 | 83.9% | 60.4% | 37.1% | 67.6% |
+| pure_rel(bidir=0) | 30 | 83.9% | 64.6% | 34.3% | 68.2% |
+| proprag(bidir=0) | 29 | 80.5% | 68.8% | 48.6% | **70.6%** |
+| **pure_rel(bidir=1)** | 29 | 83.9% | 64.6% | 34.3% | **68.2%(同 bidir=0)** |
+| **proprag(bidir=1)** | 29 | 80.5% | 68.8% | 48.6% | **70.6%(同 bidir=0)** |
+
+**關鍵**:bidir 對 Phase 2.a candidate chain recall **零影響**(數字一字不差)。
+
+**原因**:bidir 只動 Phase 2.b verdict 的 `chain_old_pids` 聚合(加 `older_contradicting_pool_pids`),**它不影響哪些 chain 進 candidate**。Phase 2.a beam search 完全不知道 bidir 存在。
+
+→ Bidir 的價值只在「給 filter 更多 chain_old_pids」一層,但被 rescue filter ceiling 蓋住,所以 EM 也沒漲。
+
+### 7.8 Beam attrition 階段診斷(關鍵)
+
+**26pp 大坑(active 94% → candidate chain 67%)的真實成分**:
+
+| Stage | chain_old loss(adhoc) | 解讀 |
+|---|:-:|---|
+| ① LOST_ACTIVE(不在 top-50) | **5.9%(10 hops)** | 改 active region 才能救 |
+| ② LOST_CONNECTIVITY(entity overlap 連不到 chain) | **6.5%(11 hops)** | 改 connectivity rule(synonymy / embedding edge)才能救 |
+| ③ LOST_BEAM_OR_SCORE(連得到但 beam/score 剪掉)| **20.6%(35 hops)** ← **最大坑** | beam_width / M / scoring |
+| ✅ IN_CHAIN | 67.1% | — |
+
+**Cross-variant 站別損失(chain_old)**:
+
+| Stage | adhoc | pure_rel | proprag_strict |
+|---|:-:|:-:|:-:|
+| LOST_ACTIVE | 10 (5.9%) | 10 (5.9%) | 10 (5.9%) **完全不變** ← scoring 上游無關 |
+| LOST_CONNECTIVITY | 11 (6.5%) | 13 (7.6%) | **25 (14.7%) ↑** ← proprag 變更差 ⚠️ |
+| LOST_BEAM_OR_SCORE | 35 (20.6%) | 32 (18.8%) | **19 (11.2%) ↓** ← proprag 減 9pp ⭐ |
+| IN_CHAIN | 114 (67.1%) | 115 (67.6%) | 116 (68.2%) |
+
+**解讀**:proprag 在 stage ③ 救回 9% 的 LOST_BEAM_OR_SCORE,但把另外 8% chain_old **推到 stage ② LOST_CONNECTIVITY**(chains 內容不一樣 → GT 跟新 chains 沒 entity overlap)→ 淨值只 +1pp。
+
+**4-hop 是三段都漏的 case**:
+- 4-h LOST_ACTIVE: 14.3%(5/35)
+- 4-h LOST_CONNECTIVITY: 25.7%(9/35) ← rare entity 跟其他 prop 不 overlap
+- 4-h LOST_BEAM_OR_SCORE: 22.9%(8/35)
+- 4-h IN_CHAIN: 37.1%(13/35)
+
+### 7.9 T1 三個收歸結論
+
+1. **我們的 ad-hoc scoring 結構項是噪聲**(pure_relevance ≈ adhoc;detection 67.6 vs 68.2)
+2. **proprag 在 stage ③ 救 9pp,但在 stage ② 多漏 8pp** → 淨改進 +1pp(detection 67.1 → 68.2)
+3. **bidir 對 Phase 2.a 完全零影響**(設計上就只動 verdict 聚合;5-way 比對證實)
+
+**真正的瓶頸**:
+- ① Active region 漏 6%(scoring 沒救處)
+- ② Connectivity rule 漏 6-15%(scoring 反而傷)
+- ③ Beam/score 漏 11-21%(scoring 改進的天花板)
+- 三段不一個個攻就走不出 67% 區間
+
+### 7.10 待你跟 chat 討論的具體 follow-up
+
+(已加進原 §8 的 questions 列表,但這裡單列):
+
+| Q | 細節 |
+|---|---|
+| **Q-A**(Stage ②)| Entity-overlap 用「substring + 最少 3 字元」當 connectivity rule 是不是太弱?改成 synonymy edges(KG 已有)/ 加 embedding similarity edge 有沒有先例? |
+| **Q-B**(Stage ③)| beam_width=8 / M=5 是否「結構性」太小?對 size 50 的 active region,理想 beam_width / M 有沒有 heuristic? |
+| **Q-C**(Stage ①)| Active region 純用 PPR mass 選 top-50 是否太重 graph-centric?加 query-cosine 進聯集是不是先例? |
+| **Q-D**(4-hop 整體)| L=3 死卡 4-prop chain → 直接調 L=4 vs LLM 預測 hop count → 哪個更穩? |
 
 ---
 
@@ -309,35 +410,86 @@ score = relevance + 0.3 × coherence + 0.2 × ppr_coverage − 0.1 × len(chain)
 | Re-verify B(hyperedge removed) | OFF | rescue | OFF | adhoc | 30 (≈ prior B) |
 | C-v2 B 組(bidir + rescue) | **ON** | rescue | OFF | adhoc | **29**(−2 vs B) |
 | C-v2 C 組(bidir + chunk_rebuild) | ON | **OFF** | **ON** | adhoc | **15** ❌ |
-| **T1-pure-relevance**(pending GPU) | OFF | rescue | OFF | **pure_relevance** | ? |
-| **T1-proprag-strict**(pending GPU) | OFF | rescue | OFF | **proprag_strict** | ? |
+| **T1-pure-relevance**(bidir=OFF)| OFF | rescue | OFF | **pure_relevance** | **30** |
+| **T1-proprag-strict**(bidir=OFF) | OFF | rescue | OFF | **proprag_strict** | **29** |
+| **T1-pure-relevance**(bidir=ON)| ON | rescue | OFF | pure_relevance | 29 |
+| **T1-proprag-strict**(bidir=ON) | ON | rescue | OFF | proprag_strict | 29 |
 | (oracle ceilings, orig prompt) | | | | | OracleClean-All 60 / PureChain 97 |
+
+→ **所有 T1 變體 EM 都在 29-31**,LLM 噪訊內,**filter ceiling 完全沒被打破**。
 
 ### 9.2 Cross-method 比較(FC-MH, Gemini-3.1-flash-lite)
 
-| Method | EM | Detection F1 (audit, full data) |
-|---|:-:|:-:|
-| HippoRAG-v2 vanilla(ours)| 17 | n/a |
-| HippoRAG-v2 vanilla(2026-05-02 modified prompt) | 23 | n/a |
-| HippoRAG-v2 + our Phase 2 | 31 | LLM identify 97%, mechanical 97% |
-| Mem0 customized(Gemini)| **43** | P=53.0, R=35.6, **F1=42.6** |
-| Zep × Gemini | 8 | P=83.3, R=34.6, **F1=48.9** |
-| Zep × GPT-4o-mini(legacy)| 28 | 46.3 |
-| Mem0-graph(Mem0g) | **NOT RUN** | — |
-| PropRAG | NOT RUN | — |
-| OA2 fact-level oracle | 83(modified)/ 55(orig)| 100% |
+⚠️ **數字 caveat — 看下表前先讀**:
+- Detection 數字目前**兩套來源並存**,denominator 與 event 蒐集方式都不同 → **不可直接互比**。
+  - **舊 audit(2026-05-02 跑的 invalidation_audit.json)**:denominator = `has_pair_in_dataset = 188`(labels.json 原始所有 has_pair hops,**含 13 個沒 prop-match 上的**);events 只蒐到 mem0=251 / zep=78,**並非系統實際完整輸出**。
+  - **A1a/A1b v2(2026-05-17 跑的統一框架,見 `analysis/results/paper_narrative/A1a_A1b_detection_v2.md`)**:denominator = `175`(我們 internal pipeline 一致的 prop-matched has_pair);raw source 直接從 mem0 `history.db` 撈出 **1124 events**(完整),Zep 只剩 **33 / 78 raw events**(原 audit 只 dump 部分樣本到 JSON,full re-audit 要重打 API)。
+- 結論:**Mem0/Zep 兩列的 detection F1 是不同框架的數字,且 Zep 的數字是 partial sample 的 publish-only F1,不是可重算的完整 audit**。我們自己的 Phase 2 是用 v2 框架算出來,denominator=175 → 跟舊 audit 的數字 framing 也不同。
+
+| Method | EM | Detection(舊 audit,denom=188)| Detection(v2 框架,denom=175)| 備註 |
+|---|:-:|---|---|---|
+| HippoRAG-v2 vanilla(ours)| 17 | n/a | n/a | — |
+| HippoRAG-v2 vanilla(2026-05-02 modified prompt) | 23 | n/a | n/a | — |
+| HippoRAG-v2 + our Phase 2(B,bidir=0)| 31 | LLM identify 97%, mechanical 97% | **A1a F1=78.0** / A1b F1=82.2(253 events,完整)| ✅ raw 完整 |
+| Mem0 customized(Gemini)| **43** | P=53.0, R=35.6, F1=42.6 | A1a F1=33.8 / A1b F1=73.0(1124 events,完整)| ⚠ 舊 audit 只 251 events(partial);v2 才完整 |
+| Zep × Gemini | 8 | P=83.3, R=34.6, F1=48.9(published)| A1a F1=13.4 / A1b F1=29.0(只 33/78 events,partial)| ⚠ v2 raw events 不完整,F1=48.9 才是 published 真實值 |
+| Zep × GPT-4o-mini(legacy)| 28 | 46.3 | n/a | 舊 audit |
+| Mem0-graph(Mem0g) | **NOT RUN** | — | — | — |
+| PropRAG | NOT RUN | — | — | — |
+| OA2 fact-level oracle | 83(modified)/ 55(orig)| 100% | n/a | — |
+
+→ **比較時的正確 framing**:
+1. 只比 EM 是 safe 的(43 / 8 / 31 完整、可重算)。
+2. 比 detection 要明確指定框架。最公平的是用 v2 框架(denom=175,raw source 統一)— 但 Zep 在 v2 下只有 33 events partial,**Zep 的 detection 嚴格 reportable 數字只剩 published F1=48.9**(舊 audit 算的)。
+3. 用 v2 框架的話,我們 Phase 2 F1=78.0 顯著贏 Mem0 F1=33.8,但這需要在 paper 裡明白標 v2 denom 與框架對齊。Zep 受限於資料無法在 v2 框架做完整對比,只能引用 published 值並備註 caveat。
 
 ### 9.3 Detection recall by stage(內部診斷)
 
+#### (a) Overall pipeline attrition(adhoc baseline)
+
 | Stage | chain_old 比例 |
 |---|---|
-| has_pair hops total | 175 |
-| chain_old in active region | 94% |
-| chain_old in candidate chain | **67%**(beam 漏 27pp) |
-| chain_old + chain_new both reachable for verdict | TBD |
-| chain_old correctly flagged by verdict | ~97%(W1.3 mini-eval) |
-| chain_old chunk in top-20 retrieval(pre-filter) | ~? |
-| chain_old chunk truly dropped by filter | 49%(rescue 卡掉 18pp) |
+| has_pair hops total | **170** (labels.json, prop-matched)|
+| chain_old in active region(top-50)| **94%** |
+| chain_old in candidate chain(K=5, adhoc)| **67.1%**(beam 漏 26.4pp) |
+| chain_old + chain_new both reachable for verdict | TBD(pool dynamic_lookup 補上的另一邊)|
+| chain_old correctly flagged by verdict(LLM identify)| ~97%(W1.3 mini-eval) |
+| chain_old chunk in top-20 retrieval(pre-filter)| ~? |
+| chain_old chunk truly dropped by filter | 49%(rescue 卡掉 18pp)|
+
+#### (b) Either-side hop recall @ K=5, by hop count(三 scoring variant × 雙向)
+
+n_hops per category: 2-h=87, 3-h=48, 4-h=35
+
+| Run | EM | 2-h@5 | 3-h@5 | 4-h@5 | Overall@5 |
+|---|:-:|:-:|:-:|:-:|:-:|
+| B-adhoc(bidir=0) | 31 | 83.9% | 60.4% | 37.1% | 67.6% |
+| pure_relevance(bidir=0) | 30 | 83.9% | 64.6% | 34.3% | 68.2% |
+| **proprag_strict**(bidir=0)| 29 | 80.5%(−3.4)| **68.8%(+8.4)** | **48.6%(+11.5)** ⭐ | **70.6%(+3.0)** |
+| pure_relevance(bidir=1) | 29 | 83.9% | 64.6% | 34.3% | 68.2% **(同 bidir=0)** |
+| proprag_strict(bidir=1) | 29 | 80.5% | 68.8% | 48.6% | 70.6% **(同 bidir=0)** |
+
+→ **bidir 對 Phase 2.a candidate chain 完全零影響**(bidir 只動 Phase 2.b verdict 聚合,beam search 看不到 bidir)。
+→ **proprag_strict 在 3-h(+8.4pp)、4-h(+11.5pp)有真實 detection 改進**,但 EM 全在 29-31 → 改進被下游 filter ceiling 蓋住。
+
+#### (c) chain_OLD 在 beam search 失蹤的「攔截站」分布(stage 診斷)
+
+26.4pp 大坑(94% active → 67.1% candidate chain)的攔截站來源:
+
+| Stage | adhoc | pure_relevance | proprag_strict |
+|---|:-:|:-:|:-:|
+| ✅ IN_CHAIN | **114 (67.1%)** | 115 (67.6%) | 116 (68.2%) |
+| ① LOST_ACTIVE(不在 top-50) | 10 (5.9%) | 10 (5.9%) | 10 (5.9%) **完全不變** |
+| ② LOST_CONNECTIVITY(entity overlap 連不到 chain) | 11 (6.5%) | 13 (7.6%) | **25 (14.7%) ↑**(proprag 變更差)|
+| ③ LOST_BEAM_OR_SCORE(連得到但 beam/score 剪掉)| **35 (20.6%)**(最大坑)| 32 (18.8%) | **19 (11.2%) ↓**(proprag 減 9pp ⭐)|
+
+→ **proprag 在 stage ③ 救回 9pp(scoring 真正攻的點)**,但把另外 8pp 推到 stage ②(chains 內容不一樣 → GT 跟新 chains 沒 entity overlap)→ **淨改進只 +1pp(67.1 → 68.2)**。
+
+→ **4-hop 是三段都漏的 case**:
+- 4-h LOST_ACTIVE: 14.3%(5/35)
+- 4-h LOST_CONNECTIVITY: 25.7%(9/35)— rare entity 跟其他 prop 不 overlap
+- 4-h LOST_BEAM_OR_SCORE: 22.9%(8/35)
+- 4-h IN_CHAIN: 37.1%(13/35)只是過半的一半
 
 ---
 
@@ -368,4 +520,100 @@ score = relevance + 0.3 × coherence + 0.2 × ppr_coverage − 0.1 × len(chain)
 
 ---
 
-**討論時請對應到具體 §,我們可以針對任何 section 深挖**。最迫切的問題在 §8。
+**討論時請對應到具體 §,我們可以針對任何 section 深挖**。最迫切的問題在 §11(策略反思)+ §8(文獻 / 設計參考)。
+
+---
+
+## §11. Strategic Reflection(2026-05-27)— **本文最重要的一節**
+
+今日跑完 T1 三變體 + bidir × 二變 + diagnostic 後,user 自我反思 + 我幫忙批判性釐清,得出**策略-戰術錯位**的結論。
+
+### §11.1 Paper 核心主張拆解 + 現有資料測試
+
+User 的原始主張:
+> **C1**:把衝突偵測**從 write-time 移到 query-time**(at retrieval),回傳的記憶**能幫助 LLM inference 多跳推理更好**;
+> **C2**:**同時不傷害其他記憶任務**(FC 之外的 benchmark)
+
+逐項對照現有資料:
+
+| Claim | 證據 | 結果 |
+|---|---|---|
+| **C1.1** 我們是 query-time | ✅ Phase 2 在 retrieval 時跑 | 對 |
+| **C1.2** Mem0 / Mem0g / Zep 是 write-time(LLM 看不到 outdated)| Zep 兩端;Mem0/Mem0g 是 write-time | 大致對 |
+| **C1.3** Query-time → 多跳 EM 更好 | Mem0(write-time)= **43%**,我們(query-time)= **31%** | ❌ **資料反駁** |
+| **C1.4** Query-time → detection F1 更準 | Mem0=42.6,Zep=48.9,我們=78 | ⚠️ 可能對,但 detection F1 ≠「對 LLM 多跳推理更好」 |
+| **C2** 不傷其他任務(FC-SH / 非衝突 QA / 不同 context 長度)| **完全沒測** | ❌ **無資料** |
+
+→ **C1.3 跟 C2 是 paper 主要 selling point,但現在資料根本不支持**。
+
+### §11.2 策略-戰術錯位
+
+| Strategy(claim level) | Tactic(this week) | 對齊嗎? |
+|---|---|---|
+| Query-time 對 write-time | 改 HippoRAG-v2 的 beam scoring | ❌ Path scoring 改進跟「query-time 為何優於 write-time」是兩件事 |
+| 證明多跳更好 | 在 31% ceiling 內找 +1pp +3pp | ❌ Mem0 = 43%,我們再優化也可能還是輸 |
+| 不傷其他任務 | 從未跑 FC-SH / 不同長度 / 非衝突 | ❌ 完全沒證據 |
+
+→ **「我們可能在錯的山頭爬坡」**。
+
+### §11.3 基底選擇(HippoRAG-v2 + PropRAG borrow)缺乏 principled justification
+
+| 選擇 | 表面理由 | 實際的弱論證 |
+|---|---|---|
+| 基底用 HippoRAG-v2 | 有 KG、有 PPR、有 retrieval | Mem0g 也有 graph;Zep 也有 graph。**沒講為何選 HippoRAG** |
+| 借 PropRAG path scoring | 多跳更好 | PropRAG 不是 conflict-aware → 跟我們 conflict 主張正交 |
+| 加自己的 conflict detection | 是 contribution | OK,但**這個 contribution 為何要跑在 HippoRAG 而非 Mem0g 上?** |
+
+→ Reviewer 必問:**「為何不直接在 Mem0g 上加 query-time 偵測,而要繞道 HippoRAG-v2?」** — **我們現在答不出來**。
+
+### §11.4 可能的 paper angle(5 種,各自的 evidence 缺口)
+
+| Angle | 核心 claim | 現有證據 | 缺什麼 |
+|---|---|---|---|
+| **A. 多跳 EM 贏** | query-time + multi-hop retrieval 在 FC-MH EM 上贏 write-time | ❌ Mem0=43 > 我們=31 | 要嘛 EM 衝到 ≥ 45,要嘛改 angle |
+| **B. Detection 精度贏** | query-time detection F1 顯著高(78 vs 42) | ⚠️ 我們贏,但 detection F1 不是 reader 最在意的 metric | 要證明 detection F1 → downstream value |
+| **C. 長 context 韌性** ⭐ | 對話歷史變長(32k/64k/262k),write-time 跟 long-ctx-LLM 都崩,query-time 不崩 | **完全沒測** | 跑長度 sweep |
+| **D. 非衝突任務不退步** | FC 之外 benchmark 表現不差於 vanilla | **完全沒測** | 跑 non-FC 任務 |
+| **E. Compute / latency** | query-time 省 indexing cost | 沒測 | profiling |
+
+→ **angle C 是研究上最香的**(差異化乾淨,符合 long-term memory 真實場景)。但要靠資料。
+
+### §11.5 Re-prioritization 提議(P0–P5)
+
+| 優先 | 任務 | 為何 |
+|---|---|---|
+| **P0** | 跑 Mem0 vector / Mem0g / Zep / long-ctx-LLM 在 FC-MH 6k 相同 setup 對齊 | **建立可信對手 baseline**;沒這個無法談論「贏」 |
+| **P1** | 上述 × context 長度(6k / 32k / 64k / 262k)| 測 angle C |
+| **P2** | 跑 FC-SH(單跳)用相同 setup | 確認 single-hop 不退步 |
+| **P3** | 跑非衝突 benchmark(MABench 內任一其他 task)| 測 angle D — paper 必要 |
+| **P4** | 看完 P0–P3 結果,**重新決定基底 + 攻擊方向** | 可能換 base(改 Mem0g 上加 query-time),可能改攻 angle C |
+| **P5**(目前在做)| HippoRAG-v2 內改 detection / scoring / filter | **暫停**,等 P0-P3 確認方向 |
+
+### §11.6 開放問題 — 給 user(也歡迎 chat input)
+
+| Q | 內容 |
+|---|---|
+| **Q1** | 跑完 P0-P3 若發現 Mem0g 在所有長度都勝過我們,**會放棄 HippoRAG-v2 base 嗎?**還是堅持「我們設計上 cleaner」? |
+| **Q2** | 你期待 angle C(長 context 韌性)出來的結果是什麼?(若沒 prediction = 探索性)|
+| **Q3** | Paper 願景:**「全新方法、打 SOTA」vs「query-time 是優於 write-time 的設計原則,提供概念貢獻」**?後者只要設計能證明 + 略勝即可 |
+| **Q4** | **能接受「我們不是最強但展示未被探索的設計空間」嗎?** — 學術上合法但要不同 framing |
+
+### §11.7 對 chat 的 specific 詢問
+
+| Q | 內容 |
+|---|---|
+| **Q-S1** | 我們現有的 31% vs Mem0 43% 的劣勢,有沒有可能是 Mem0 拿 V1 modified prompt 跑出來的虛胖?**Mem0 在 raw prompt 下還是 43% 嗎?**(我們需要重跑驗證) |
+| **Q-S2** | 從文獻看,write-time 偵測通常在 long-context(32k+)會 degrade 嗎?有 paper 證據嗎?(這支撐 angle C) |
+| **Q-S3** | 把「query-time vs write-time」當設計原則寫 paper(angle C+D 並進)合理嗎?還是 reviewer 一定會要求 EM SOTA? |
+| **Q-S4** | 我們的 contribution 應該 reframe 成「query-time 衝突偵測 + 多跳檢索 combined」?還是「在現有 multi-hop retrieval(HippoRAG-v2)上注入 query-time conflict awareness」?哪個 framing 對 reviewer 比較有說服力? |
+| **Q-S5** | 若基底改成 Mem0g(在它上面加 query-time 偵測),工程上可行嗎?**chat 對 Mem0g 比較熟,請評估這條路** |
+
+### §11.8 Honest take(2026-05-27)
+
+- 今天的優化(scoring / filter / verdict bidir)在學術上算 **minor contributions**
+- 它們對「query-time vs write-time」這個大 claim 都**不是直接證據**
+- **真正能讓 paper 站起來的是 P0 + P1 + P3** — 沒有跨方法、跨長度、跨任務的對照,連自己贏在哪都說不清
+- **戰術建議**:這週剩下時間**暫停 HippoRAG 內部優化**,啟動 Mem0g / Zep / long-ctx-LLM × 長度 sweep
+- 跑完 baselines 後再回頭看:**HippoRAG-v2 內部優化還值不值得做**?或者應該**換 base**?或者**換 angle**?
+
+
