@@ -33,7 +33,7 @@ nltk==3.9.3
 # torch/transformers are imported unconditionally though only EXERCISED by local models -> a
 # CPU torch wheel is enough for API-only runs. Left unpinned because torch/transformers wheels
 # are platform-specific; once installed, pin the exact versions from `pip freeze` for repro.
-torch
-transformers
-langchain-core
-editdistance
+torch==2.12.1
+transformers==5.12.1
+langchain-core==1.4.8
+editdistance==0.8.1
