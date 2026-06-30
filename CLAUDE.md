@@ -55,7 +55,12 @@
 - **不需要**:`outputs/rag_retrieved/NV-Embed-v2/*`、HippoRAG-v2(已不跑)→ 已從 git 移除、勿重建。
 - **未來 local model(Gemma-3-4B,weak-model 主張用)**:目前全 API(gpt-4o-mini);跑 Gemma-3-4B 需另接 vllm/ollama/transformers + 模型權重(本地 RTX 4050 / MacStudio),屬 next-step、非現有環境。
 
-## 下一步(優先序)
-- **P0**:LongMemEval full baselines(resume)+ all-in-one-call ablation(證 decomposition 的貢獻)。
-- **P1**:qid29 case study、weak-model × method dose-response、gpt-4o judge 重跑。
-- **P2/future**:query-aware resolver(Mode B)、retrieval-at-scale、Zep@4096、多 seed。
+## 下一步(優先序,2026-06-28 更新)
+1. **驗證論文核心主張:表現是否主要來自 structural 貢獻** — 先做 **ablation(structural-only:`(S,P)` group + 確定性 temporal,關掉 LLM grouping + conflict-type)vs full phase2**,比 has_pair EM。**結果出來才決定怎麼 claim**(對照證據:FC-SH conflict-type 97% freshness → structural 可能就是 workhorse)。
+2. **驗證 weak-model regime 場景前提** — ours 與 baseline 在小模型下是否如預期(**ours 保持平緩、prior work drop**)。跑不同 model size:**Gemma-3-4B(small;先確認 RTX 4050 / MacStudio 能否跑此 local model)→ mid model(Gemma 中型,之後用 Google AI Studio API)**。
+3. **找 prior work 的結構性失敗模式** — 手動分析 **mem0 / Zep 的失敗 case**(qid29 是起點:mem0 write-time 把新版刪掉留舊版)。
+4. **強化 narrative:完整 ablation** — 量化**每個 component**(identity grouping / conflict-type / temporal)的貢獻。
+5. **決定寫作方向** — 依上述結果定 framing;同步補 narrative 所需文獻。
+6. **FC-MH 多跳** — 跑 FactConsolidation **multi-hop** 看多跳情況。
+
+> 仍待補(來自 conclusion,視上面結果穿插):LongMemEval baselines(mem0/vanilla/Zep)full、gpt-4o judge paper-final、Zep@4096 公平對照、多 seed variance。
