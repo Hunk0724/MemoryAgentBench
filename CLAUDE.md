@@ -51,6 +51,12 @@
 6. **最快驗證(不需重 ingest)**:`python docs/0615_.../scripts/make_bank_recall.py` 等 `make_*.py`(讀已 commit 的 `analysis/results/phase0/*.json`)→ 圖重生 = python/matplotlib/資料檔 OK。
 7. **全鏈驗證(需 API key)**:`RUN_OAI_KEY_NAME=OPENAI_API_KEY_A bash docs/0615_.../scripts/run_fc_sh.sh 6k ours` 跑小量 → 確認 mem0+openai+qdrant 接線。stores/caches 不在 git → 首跑會重新 ingest。
 
+### ★ Migration 驗證 proof(換機後第一個關鍵檢查)
+從**全新 clone**(無任何 store/cache)跑 `RUN_OAI_KEY_NAME=OPENAI_API_KEY_A bash docs/0615_.../scripts/run_fc_sh.sh 6k ours`(會自動下載 FC 資料 + 重 ingest + query)→ 算 **has_pair EM**,對照已 commit 的目標 **6k ours = has_pair 68/74、overall 92/100**(temp 0 高度確定,容許 ±2-3)。**跑通且數字吻合 = pipeline(code+env+data+keys+qdrant)完整轉移成功。**
+
+### 執行順序 caveat（復現必知）
+held-fixed baseline(`b`、`ours_struct`)會**重用 `ours` 的 extraction cache**(`extraction_cache_p1_<L>.json`)→ **同一長度必須先跑 `ours`、再跑 `b`/`ours_struct`**,否則 cache 不存在會重抽(雖仍可跑,但失去 held-fixed 一致性)。
+
 ### 近期實際在跑的方法(換機後要能重跑這些)
 - **FC-SH**:`run_fc_sh.sh <L> <ours|vanilla|b>`(ours / mem0=vanilla / mem0+ours storage=b);**LCA(=gpt-4o-mini full-context)**、**Zep** 走各自路徑(`run_zep_fc.sh`/`run_zep_query_only.py`)。
 - **LongMemEval**:`run_lme_ku.sh` / `run_lme_ku_parallel.sh`(ours 已完;baselines 待 resume);Zep-LME=`run_zep_lme_*.sh`。
