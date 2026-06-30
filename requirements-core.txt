@@ -1,0 +1,27 @@
+# Core deps for the API experiments (FC-SH / LongMemEval / Zep / LCA / figures).
+# Pure-Python + pinned -> same on Linux/Mac/Windows. Install:
+#   conda create -n MABench python=3.10 -y && conda activate MABench
+#   pip install -r requirements-core.txt
+# NOTE: the patched mem0 lives in the repo (./mem0) and shadows pip mem0ai at runtime.
+# Device-specific (NOT here; install per machine ONLY for local Gemma / weak-model):
+#   torch (matching CUDA build), transformers, bitsandbytes / Ollama; vLLM needs WSL2 on Windows.
+
+openai==2.26.0
+qdrant-client==1.17.0
+zep-cloud==3.20.0
+datasets==4.6.1
+tiktoken==0.12.0
+rouge-score==0.1.2
+matplotlib==3.10.8
+numpy==2.2.6
+pandas==2.3.3
+PyYAML==6.0.3
+python-dotenv==1.2.2
+backoff==2.2.1
+tqdm==4.67.3
+google-genai==1.66.0
+mem0ai==1.0.5
+pydantic==2.12.5
+httpx==0.28.1
+huggingface-hub==1.5.0
+nltk==3.9.3

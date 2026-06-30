@@ -41,8 +41,10 @@
 
 ## 換機器後的重建步驟(reproduce)
 1. `git clone -b exp/v2-llm-judge https://github.com/Hunk0724/MemoryAgentBench.git && cd MemoryAgentBench`
-2. `conda create -n MABench python=3.10 -y && conda activate MABench && pip install -r requirements.txt`
-   - repo 內含 patched `mem0/`(本地目錄,從 repo 根目錄執行時會覆蓋 pip 的 mem0ai)→ 我們的寫入/抽取改動隨 git 走,不需另裝。
+2. `conda create -n MABench python=3.10 -y && conda activate MABench && pip install -r requirements-core.txt`
+   - **用 `requirements-core.txt`(精簡+釘版,純 Python 跨平台)**,不要用 `requirements.txt`(含 flash_attn/deepspeed/faiss-gpu,Windows/無 GPU 會編譯失敗,且只給已停用的 HippoRAG/NV-Embed 用)。
+   - repo 內含 patched `mem0/`(本地目錄,從 repo 根目錄執行時會覆蓋 pip 的 mem0ai)→ 寫入/抽取改動隨 git 走,不需另裝。
+   - **local Gemma(weak-model)才另裝**:torch(對應 CUDA build)+ transformers + bitsandbytes / Ollama(各裝置自己裝對的版本;vLLM 在 Windows 需 WSL2)。
 3. 建 `.env`(不在 git):`OPENAI_API_KEY_A`..`E`、`ZEP_API_KEY_A`/`B`。
 4. 資料:FC 由 `datasets` 自動抓 HF `ai-hyz/MemoryAgentBench`;LongMemEval 需手動下載 `xiaowu0162/longmemeval-cleaned` 的 `longmemeval_s_cleaned.json`/`oracle` 到本機 data 夾。
 5. **路徑可攜性(已處理)**:`docs/0615_.../scripts/` 的核心 `*.sh`/`*.py` 與 mem0/zep yaml 已改成 **env 變數帶預設**——`REPO_ROOT` 由 `$(dirname $0)/../../..` 或 `__file__` 自動推、conda 用 `$HOME/miniconda3`、store path 改 relative。換機**通常零改**;若 conda 不在 `$HOME/miniconda3` 或 LME data 放別處,設 `CONDA_SH=` / `LME_DATA_DIR=` 覆蓋即可。(舊 `analyze_*`/`make_figures.py` 等次要腳本仍有寫死路徑,要用再改。)
