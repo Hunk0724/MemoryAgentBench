@@ -38,7 +38,7 @@
 - **5.1 Setup** [完整可寫] — benchmarks / metrics / models / baselines / reproducibility。caveat:judge 現 gpt-4o-mini,是否回 gpt-4o 未定。
 - **5.2 FC-SH Main Results** [完整可寫] — Table 1 + F_robust_haspair + F_overall。narrative:ours flat vs LCA collapse(262k gap +57pp)。缺角:mem0+P1/Zep 的 262k 格。
 - **5.3 LongMemEval Generalization** [部分] — ours 83.3% 可寫 + conflict-type 對比(已 freeze)可寫;**baseline 全缺 → 誠實標待補**。
-- **5.4 Mechanism Analysis** [完整可寫] — 最強一章,全 deterministic。E-L0 → E-L1/L2 → E4 → recall-ceiling → error-mode。補強(可選):qid29 case study [只需寫]。
+- **5.4 Mechanism Analysis** [完整可寫] **✅ 已草擬全文 → `experiment_ch_5_4_mechanism_draft.md`**(E-L0 → E-L1/L2 → E-ceiling → E4 → error-mode,全 committed-data backed)。補強(可選):qid29 case study [只需寫,store 為 gitignored → 趁本機]。
 - **5.5 Ablation** [部分] — additive(a→b→c)[完整可寫];structural-only / component-level [阻塞:需跑]。
 - **5.6 Weak-Model Regime** [阻塞:需跑] — 視機器算力決定獨立小節或併 limitations。
 - **5.7 Cost / Latency** [完整可寫] — Table 3:write-time cost ↔ query accuracy 換算。
