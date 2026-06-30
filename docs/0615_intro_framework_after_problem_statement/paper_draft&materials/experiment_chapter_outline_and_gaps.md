@@ -1,6 +1,8 @@
 # Experiment 章節:Outline + Gap Analysis(2026-06-30 蒸餾)
 
-> 本 session 用多 agent 盤點全 repo 後產出。**method 章已有材料,experiment 章尚未組裝**;此檔是組裝 roadmap。標記:**[完整可寫]**=既有 committed 材料足夠;**[阻塞:需跑]**=卡在未跑的實驗;**[部分]**=主體有、補強待跑。
+> ⚠️ **數字嚴謹性原則**:此 roadmap 引用與 `experiment_chapter_draft.md` / `experiment_ch_5_4_mechanism_draft.md` 的數字皆為 **PROVISIONAL**(本機演進過程既有結果)。**論文最終所有數字必須由穩定機器在定版統一 pipeline + 同一設定下重跑全矩陣取代**(見 `EXPERIMENT_RUNLIST.md` 的 unified re-run)。「[完整可寫]」指**結構/敘事**可寫,**非數字 paper-final**。
+>
+> 本 session 用多 agent 盤點全 repo 後產出。**method 章已有材料,experiment 章尚未組裝**;此檔是組裝 roadmap。標記:**[完整可寫]**=既有 committed 材料足夠寫結構;**[阻塞:需跑]**=卡在未跑的實驗;**[部分]**=主體有、補強待跑。
 > 路徑基準 `docs/0615_intro_framework_after_problem_statement/`;`P&M/` = `paper_draft&materials/`。
 
 ## 1. 已有(現成可用,多數靠 committed data)

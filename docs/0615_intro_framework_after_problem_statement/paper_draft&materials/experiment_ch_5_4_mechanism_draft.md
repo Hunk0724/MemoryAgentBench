@@ -1,6 +1,8 @@
 # §5.4 Mechanism Analysis — 機制章草稿(2026-06-30)
 
-> **狀態**:draft,可直接進論文 experiment 章。**全文證據皆來自已 committed 資料**(`analysis/results/phase0/*.json`、`figures_current/F_*.{png,pdf}`、`paper_tables_and_figures.md`、`experiment_results.md`),不依賴任何未來重跑。
+> ⚠️ **數字為 PROVISIONAL(暫定)**:來自本機演進過程的既有結果,**論文最終須由穩定機器在定版統一 pipeline + 同一設定下重跑全矩陣取代**(見 `experiment_chapter_draft.md` 頂部與 `docs/handoff/EXPERIMENT_RUNLIST.md`)。本章敘事與因果鏈結構為主、數字為佔位。
+>
+> **狀態**:draft,可直接進論文 experiment 章。證據來自已 committed 資料(`analysis/results/phase0/*.json`、`figures_current/F_*.{png,pdf}`、`paper_tables_and_figures.md`、`experiment_results.md`);**因果鏈結構穩固,但數字待 unified re-run 取代**。
 > **設定**:FC-SH;backbone gpt-4o-mini、temperature 0、**single deterministic run**(故圖無 error bar);metric = exact_match(DRQA normalize + ==,**非 LLM judge**)。LongMemEval / 262k 的對應分析待補(見 outline §5.3 / 缺口)。
 > **數據出處**:E-L0/E-rec/E-L1/E-L1L2 → `paper_tables_and_figures.md:37-71`、`F_bank_recall`/`F_recoverable`/`F_L1_state_pie`/`F_ours_L1L2_pie`;E-ceiling → `F_em_vs_ceiling`、`figure_captions.md:17-18`;E4 → `e4_state_to_em.py` / `state_eval_current.json` / `F_state_to_em`;error-mode → `experiment_results.md:64-93`。
 

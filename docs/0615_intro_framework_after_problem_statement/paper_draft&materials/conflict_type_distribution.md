@@ -1,5 +1,7 @@
 # Conflict-type 分佈(freeze 自本機 cache,2026-06-30)
 
+> ⚠️ **PROVISIONAL**:此分佈亦來自本機當前 run 的 cache。freeze 目的是**防止 gitignored cache 隨機器消失而遺失**(供敘事/結構參考);**論文最終數字應從 unified re-run(穩定機器、定版統一設定)的 cache 重算取代**(見 `EXPERIMENT_RUNLIST.md`)。
+
 > **為何單獨存這份**:此分佈的來源 cache(`analysis/results/p1_caches/conflict_cache_p1_*.json`、`p1_caches/lme/conflict_ours_*.json`)是 **gitignored、只在本機**;機器消失需重跑 ingest 才能重生。故在此把已算好的數字 freeze 進 committed 檔,供論文 §5.3/§5.4 與未來 session 直接引用,不必重跑。
 >
 > **數字驗證**:本表 FC-SH 32k freshness = 1778/1861 = **95.5%**,與既有 committed `experiment_results.md:140`(「FC-SH 32k 95.5% 判 freshness」)完全一致 → cache 與已寫數字吻合。

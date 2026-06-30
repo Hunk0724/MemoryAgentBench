@@ -4,6 +4,10 @@
 > 全程:conda env `MABench`、**系統 backbone** gpt-4o-mini temp 0、embedding text-embedding-3-small、chunk 512、top-100。
 > **LongMemEval 的 LLM judge**(官方預設 gpt-4o)驗證期暫用 **gpt-4o-mini** 省成本,**最終是否回 gpt-4o 未定**;**FC-SH 用 exact_match、無 LLM judge**。backbone 的 model sweep 方向往「更小」(weak-model,優先測比 gpt-4o-mini 小者),非往 gpt-4o。
 
+## ★ Paper-final 數字 = unified re-run(嚴謹性鐵則)
+
+**論文最終的每個數字,都必須出自「同一台穩定機器、同一份定版 pipeline、完全相同設定(同 backbone / chunk / top-k / judge 決策 / seed 規則)」下的一次性全矩陣重跑——所有方法 × 所有長度 × 兩 benchmark。** 不可混用本機研究演進過程累積的既有數字(那些跨時間、跨中途設定,如 64k overall 曾 65→94)。`paper_draft&materials/experiment_chapter_draft.md` 等草稿的數字皆為 **PROVISIONAL 佔位**,只供敘事/結構;跑完 unified re-run 後才逐格替換為 paper-final。→ 換言之,下面 Phase 1–3 跑出的這一輪結果,才是論文要用的那一份。
+
 ## 執行原則(為什麼是這個順序)
 
 **「方法路徑」優先於「長度廣度」。** 一個方法只要在**某一個長度**(取最小的 6k)從零 clone 跑通,就證明該方法的整條管線(extraction→write→retrieve→resolve→EM)在這台機器上 OK;那麼 **32k / 64k / 262k 理論上只是換資料長度、必然也行**。所以:
