@@ -32,7 +32,7 @@ fi
 if [[ -z "${OPENAI_API_KEY:-}" ]]; then echo "[key] ERROR: no OPENAI_API_KEY resolved"; exit 1; fi
 
 L="${1:?need L (6k|32k|64k|262k)}"
-METHOD="${2:?need method (ours|ours_struct|b|vanilla)}"
+METHOD="${2:?need method (ours|ours_struct|ours_no_p5|b|vanilla)}"
 LOGROOT=docs/0615_intro_framework_after_problem_statement/logs
 DCONF=configs/data_conf/Conflict_Resolution
 
@@ -97,6 +97,32 @@ elif [[ "$METHOD" == "ours_struct" ]]; then
   rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_SP_INDEX_PATH" "$STOREBASE/$STORE" \
          "$OUTDIR/Conflict_Resolution/"*sh_${L}*results*.json
   ANSDIR="outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_struct${TAG_SFX}/k_100/factconsolidation_sh_${L}/chunksize_512"
+elif [[ "$METHOD" == "ours_no_p5" ]]; then
+  # ABLATION: SAME as ours (phase2: structural + P3 LLM identity grouping),
+  # BUT env MEM0_P5_SKIP=1 forces argmax on every group regardless of P5
+  # conflict-type. Isolates P3 upside from P5 net effect in FC world-fact
+  # + counter-factual scenarios (where ~all real conflicts are FRESHNESS).
+  # Reuses ours' P1 extraction caches so the WRITE is identical -> isolates
+  # query-time P5 impact only.
+  TAG=unified_no_p5
+  AG="Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_unified_no_p5.yaml"
+  STORE="qdrant_gpt4o_512_openai_unified_no_p5__factconsolidation_sh_${L}${TAG_SFX}"
+  export MEM0_TRIPLE_MODEL="${MEM0_TRIPLE_MODEL:-gpt-4o-mini}"
+  export MEM0_EXTRACTION_CACHE="$PC/extraction_cache_p1_${L}.json"   # reuse ours' (held-fixed write)
+  export MEM0_TRIPLE_CACHE="$PC/triple_cache_p1_${L}.json"
+  export MEM0_SUBJECT_CACHE="$PC/subject_cache_p1_${L}.json"
+  export MEM0_GROUPING_CACHE="$PC/grouping_cache_no_p5_${L}.json"
+  export MEM0_CONFLICT_CACHE="$PC/conflict_cache_no_p5_${L}.json"    # unused with SKIP but kept for consistency
+  export MEM0_SP_INDEX_PATH="$PWD/analysis/results/phase0/sp_index_no_p5_sh_${L}${TAG_SFX}.json"
+  export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/sh_${L}_no_p5${TAG_SFX}"
+  export MEM0_ADD_MODE=phase0_structural
+  export MEM0_QUERY_MODE=phase2
+  export MEM0_P5_SKIP=1
+  OUTDIR="outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5${TAG_SFX}"
+  rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_SP_INDEX_PATH" "$MEM0_GROUPING_CACHE" \
+         "$MEM0_CONFLICT_CACHE" "$STOREBASE/$STORE" \
+         "$OUTDIR/Conflict_Resolution/"*sh_${L}*results*.json
+  ANSDIR="outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_no_p5${TAG_SFX}/k_100/factconsolidation_sh_${L}/chunksize_512"
 elif [[ "$METHOD" == "b" ]]; then
   # mem0(b): P1 extraction HELD FIXED (reuse ours' p1 extraction cache, read-only)
   # + mem0 DESTRUCTIVE update (no phase env). Isolates write-time-update loss.
