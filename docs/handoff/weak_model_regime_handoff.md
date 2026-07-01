@@ -1,4 +1,45 @@
-# Weak-Model Regime — GX10 Handoff(2026-07-01)
+# Weak-Model Regime — GX10 Handoff(2026-07-01,revised 2026-07-01 深夜)
+
+## ★ 精簡 minimum-viable scope(最少時間拿到核心 evidence)
+
+**只跑 8 cell 就能拿到 paper 定位的核心 evidence**:
+
+```
+SIZES:   27b → 12b        (先強端)
+LENGTHS: 6k, 32k          (32k 有 sweet-spot signal)
+METHODS: ours_struct, ours_p3_only_no_struct   (apple-to-apple)
+= 2 × 2 × 2 = 8 cell
+```
+
+**期待觀察 & 決策樹**:
+
+| GX10 27b × 32k | GX10 12b × 32k | 對 claim 的意義 |
+| :---: | :---: | :--- |
+| p3_only ≈ struct | p3_only ≈ struct | Gemma 12b 還太強,補跑 4b/1b 才會崩 |
+| p3_only ≥ struct | **p3_only ≪ struct** ★ | ★ **核心 evidence 拿到**:「強 backbone 對等 → 弱 backbone p3_only 崩」 → **structural anchoring 是 weak-model 的必要設計** |
+| p3_only ≪ struct | p3_only ≪ struct | 甚至 27b 就崩 → structural 全域必要,故事更強 |
+| p3_only ≥ struct | p3_only ≥ struct | 12b 仍太強,需要 1b/4b 才崩 → 補跑 |
+
+若 12b 已看到明確 p3_only 崩 → **8 cell 就夠**,論文寫作可展開。
+若還沒崩 → 追加 4b 或 1b。
+
+**上游 Mac Studio 已有的參照(gpt-4o-mini)**:
+
+| L | struct | p3_only | ours(full) |
+| :---: | :---: | :---: | :---: |
+| 6k | 93.2 | 91.9 | 91.9 |
+| 32k | 78.5 | **87.7** ★ | 86.2 |
+| 64k | 86.4 | 89.4 | 90.9 |
+
+→ 強 backbone 上 p3_only 32k **+6 vs struct**。GX10 要驗弱 backbone 上這條會不會翻轉。
+
+---
+
+## (下面是原完整 handoff,對 24-cell 全 matrix 的計畫,若 8-cell 精簡跑完仍想擴展再看)
+
+---
+
+
 
 > **目的**:在 ASUS Ascent GX10(NVIDIA GB10 Superchip)上跑 Gemma3 weak-model matrix,驗證**「LLM 元件貢獻隨 backbone 變弱而下降,structural-only 平穩」**。
 > **搭配**:[START_HERE.md](START_HERE.md)(總開工)、[RESEARCH_CONTEXT.md](RESEARCH_CONTEXT.md)(主張+定位)、[reproduction_log_mac_studio.md](reproduction_log_mac_studio.md)(Mac Studio 18 cell 已重現,paper baseline 對齊度 ~81%)、`docs/.../paper_draft&materials/32k_case_study.md`(Mac Studio 32k LLM helps/hurts 對位拆解)。
