@@ -163,7 +163,16 @@ def _drop_older(members):
 # ── Stage 2: conditional structural routing ─────────────────────────────────
 def conditional_structural_routing(candidates):
     """Split into structural_pool ((S,P) with >=2 competitors) and dynamic_pool
-    (no-triple items + triple items whose (S,P) is a singleton in candidates)."""
+    (no-triple items + triple items whose (S,P) is a singleton in candidates).
+
+    Ablation: env MEM0_STRUCTURAL_SKIP=1 forces ALL candidates into dynamic_pool
+    (structural_pool empty). Isolates P3 LLM identity grouping's contribution
+    from (S,P) structural grouping: pure-LLM identity resolution over top-k.
+    Compare with pure-structural (ours_struct) for apple-to-apple structural
+    vs LLM identity comparison.
+    """
+    if os.environ.get("MEM0_STRUCTURAL_SKIP") == "1":
+        return {}, list(candidates)
     sp_map = defaultdict(list)
     no_triple = []
     for it in candidates:

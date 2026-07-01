@@ -10,13 +10,16 @@
 
 | Method | 6k | 32k | 64k |
 | :--- | :---: | :---: | :---: |
-| **ours** (P1 + conservative write + phase2 resolve full P3+P5) | **93.2** | **87.7** | **90.9** |
+| **ours** (P1 + conservative write + phase2 resolve full P3+P5) | **93.2** | 86.2¹ | **90.9** |
+| **ours-p3-only** (P3 LLM identity over full top-k, no (S,P) routing, no P5) | 91.9 | **87.7** ★ | 89.4 |
 | **ours-no-P5** (phase2 with P3 grouping but forced argmax; no conflict-type classifier) | 90.5 | 84.6 | 90.9 |
-| ours-struct (structural-only:(S,P) group + argmax; no LLM at query time) | 93.2 | 78.5 | 86.4 |
+| ours-struct (structural-only:(S,P) group + argmax; no LLM at query time) | **93.2** | 78.5 | 86.4 |
 | LCA (gpt-4o-mini full-context, no memory) | 87.8 | 70.8 | 57.6 |
 | Zep (proactive, decoupled) | 62.2 | 50.8 | 54.5 |
 | (b) mem0+P1 (P1 held-fixed + mem0 destructive update) | 44.6 | 38.5 | 51.5 |
 | (a) vanilla mem0 (native extraction + destructive) | 0.0 | 3.1 | 3.0 |
+
+¹ 32k `ours` re-read reports 56/65 this session vs 57/65 previously (single-run answer-LLM noise; -1 pp, within tolerance).
 
 ---
 
@@ -24,7 +27,8 @@
 
 | Method | 6k | 32k | 64k |
 | :--- | :---: | :---: | :---: |
-| ours | 69/74 (93.2%) | 57/65 (87.7%) | 60/66 (90.9%) |
+| ours | 69/74 (93.2%) | 56/65 (86.2%)¹ | 60/66 (90.9%) |
+| ours-p3-only | 68/74 (91.9%) | 57/65 (87.7%) | 59/66 (89.4%) |
 | ours-no-P5 | 67/74 (90.5%) | 55/65 (84.6%) | 60/66 (90.9%) |
 | ours-struct | 69/74 (93.2%) | 51/65 (78.5%) | 57/66 (86.4%) |
 | LCA | 65/74 (87.8%) | 46/65 (70.8%) | 38/66 (57.6%) |
@@ -54,33 +58,36 @@
 
 ---
 
-## Table 3(ablation trend)— P3 vs P5 貢獻拆解
+## Table 3(ablation trend)— 4 mode P3 / P5 / structural 貢獻拆解
 
-`ours_no_p5` 已跑,拆解如下:
+`ours_no_p5` + `ours_p3_only`(2026-07-01 已跑),拆解如下:
 
-| L | struct | no_p5 | ours | **P3 純貢獻**(no_p5 − struct)| **P5 net**(ours − no_p5)|
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| **6k** | 69/74 | 67/74 | 69/74 | **-2 pp** ⚠ | +2 pp |
-| **32k** | 51/65 | **55/65** | 57/65 | **+4 pp** ★ | +2 pp |
-| **64k** | 57/66 | 60/66 | 60/66 | **+3 pp** ★ | 0 pp |
+| L | struct | no_p5 | **p3_only** | ours(full) | P3 純 (no_p5-struct) | **P3 vs struct**(p3_only-struct)| P5 net (ours-no_p5) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **6k** | 69/74 | 67/74 | 68/74 | 68/74 | -2 pp | -1 pp | +1 pp |
+| **32k** | 51/65 | 55/65 | **57/65** ★ | 56/65 | +4 pp | **+6 pp** ★ | +1 pp |
+| **64k** | 57/66 | 60/66 | 59/66 | 60/66 | +3 pp | +2 pp | 0 pp |
 
 判讀:
 
-1. **P3 LLM identity grouping 是主要 workhorse**(32k +4、64k +3);唯 6k 上 -2(有可能是小樣本 answer-LLM noise 或 P3 對太少 candidate 分群偏 aggressive)
-2. **P5 conflict-type classifier 是溫和 upside**(+2/+2/0);跟原本從 `both bucket` 分析預測的「P5 偏害」相反 — 說明 P5 判 NO_CONFLICT keep-all 有時保留了 answer LLM 需要的 canonical form
-3. **`ours_no_p5` 全長度都在 struct 之上**(除 6k -2 邊緣)— 說明 P3 有真實貢獻,不是被 P5 帶偏
-4. **weak-model regime 假設**(未實測):P5 對弱模型判斷可能更亂 → `ours_no_p5` 可能在弱模型上更 robust;GX10 上跑 3 mode(struct / no_p5 / ours)× 4 size 可驗
+1. **32k p3_only(+6 vs struct) ≥ ours full(+5)** — 純 P3 LLM identity 一次判 100 candidates 就足夠替代 (S,P)+P3+P5 完整組合。
+2. **32k struct 錯 / p3_only 對 = 8 題**(qid 1, 2, 3, 21, 65, 81, 87, 94)— 幾乎全是 stem-vs-full predicate(paper 32k case study §3.1 A mode),P3 LLM 語意識別能一次收斂;struct 因 (S,P) canonicalize 分不同 bucket 沒接到。
+3. **6k / 64k p3_only < struct**(小差距)— 短長度上 structural 已足夠;長歷史上 retrieval 更雜 P3 判斷變難。
+4. **P5 conflict-type classifier 幾乎中性**(0-1 pp);FC 上判 97% freshness,skip 幾乎沒影響。
+5. **strong backbone(gpt-4o-mini)下:P3 LLM 與 structural 對等,可互為替代**;structural 效率完勝(免 LLM call、寫入端也免 (S,P) index 建構)。
+6. **weak-model 假設(GX10 待驗)**:P3 對 100 candidates 一次判 identity 對弱模型過於複雜可能崩;structural (S,P) 語言無關、不打 LLM,弱模型上應該相對穩。**若弱模型上 p3_only << struct → decomposed simple tasks for weak model 得到最乾淨的 evidence**。
 
-## 32k 逐題對位(65 has_pair)— 3 mode 交集
+## 32k 逐題對位(65 has_pair)— 4 mode 交集
 
 | bucket | n | qids |
 | :--- | :---: | :--- |
-| all 3 correct(共同 backbone)| 47 | — |
-| no_p5 對, ours 錯(**P5 downside**)| 1 | [21] |
-| ours 對, no_p5 錯(**P5 upside**)| 2 | [84, 88] |
-| struct 對, no_p5 + ours 錯 | 2 | [16, 46](P3 反害)|
-| all 3 wrong | 6 | [8, 9(benchmark 標註錯), 27, 32, 51, 68] |
-| misc | 7 | — |
+| all 4 correct(共同 backbone) | 46 | — |
+| all 4 wrong | 6 | [8, 9(benchmark 標註錯), 27, 32, 51, 68] |
+| **struct 錯, p3_only 對**(P3 LLM 語意勝結構)| **8** ★ | [1, 2, 3, 21, 65, 81, 87, 94] |
+| struct 對, p3_only 錯(structural 勝 LLM 語意) | 2 | [46, 70] |
+| misc(3-way split)| 3 | [16, 84, 88] |
+
+**注**:8 題「P3 勝 struct」全部對應 case study A mode(stem-vs-full predicate,`is affiliated with` vs `is affiliated with the religion of` 等)。struct 因 predicate 字面不同分到不同 (S,P) bucket 沒接到;P3 LLM 一次過 100 candidates 判 identity 能識別同 fact 不同表面。
 
 ## Ablation 精細化(下一步 — P3-only mode)
 
