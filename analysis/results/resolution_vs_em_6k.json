@@ -1,29 +1,29 @@
 {
  "1b": {
   "N": 74,
-  "em": 28,
-  "res": 42,
-  "drag": 15,
-  "rescue": 1,
-  "pool_not_isolated": 28,
-  "new_absent": 4
+  "em": 29,
+  "res": 43,
+  "drag": 16,
+  "rescue": 2,
+  "pool_not_isolated": 31,
+  "new_absent": 18
  },
  "4b": {
   "N": 74,
-  "em": 50,
-  "res": 44,
+  "em": 54,
+  "res": 48,
   "drag": 1,
   "rescue": 7,
-  "pool_not_isolated": 27,
-  "new_absent": 3
+  "pool_not_isolated": 26,
+  "new_absent": 10
  },
  "12b": {
   "N": 74,
-  "em": 69,
-  "res": 60,
+  "em": 73,
+  "res": 68,
   "drag": 0,
-  "rescue": 9,
-  "pool_not_isolated": 14,
+  "rescue": 5,
+  "pool_not_isolated": 6,
   "new_absent": 0
  },
  "27b": {
