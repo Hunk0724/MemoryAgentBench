@@ -177,8 +177,11 @@ fi
 mkdir -p "$MEM0_CAND_LOG_DIR"
 
 echo "================ $METHOD FC-SH ${L} ================"; date
+# N_ABLATION: optional smoke limit (e.g. N_ABLATION=2 = only 2 qids per context).
+# Full run: leave N_ABLATION unset.
 python main.py --agent_config "$AGDIR/$AG" \
   --dataset_config "$DCONF/Factconsolidation_sh_${L}.yaml" --force \
+  ${N_ABLATION:+--max_test_queries_ablation "$N_ABLATION"} \
   > "$LOGROOT/run_${METHOD}_${L}.log" 2>&1
 echo "[$METHOD ${L}] exit=$?"; date
 
