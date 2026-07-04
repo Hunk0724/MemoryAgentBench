@@ -1,0 +1,39 @@
+{
+ "1b": {
+  "N": 74,
+  "em": 25,
+  "res": 43,
+  "drag": 18,
+  "rescue": 0,
+  "new_absent": 18
+ },
+ "4b": {
+  "N": 74,
+  "em": 54,
+  "res": 50,
+  "drag": 1,
+  "rescue": 5,
+  "new_absent": 10
+ },
+ "12b": {
+  "N": 74,
+  "em": 73,
+  "res": 68,
+  "drag": 0,
+  "rescue": 5,
+  "new_absent": 0
+ },
+ "27b": {
+  "N": 74,
+  "em": 70,
+  "res": 71,
+  "drag": 4,
+  "rescue": 3,
+  "new_absent": 0
+ },
+ "gpt-4o-mini": {
+  "N": 74,
+  "em": null,
+  "res": null
+ }
+}
