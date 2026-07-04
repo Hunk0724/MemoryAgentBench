@@ -95,7 +95,7 @@
 
 | Tier | Model | 現況 | 敘事定位 |
 | :--- | :--- | :--- | :--- |
-| **Strong** | ☐ GPT-4o / GPT-5.x / Claude Opus 4.x(擇一至二) | 未跑 | 錨點:**預期 baseline 平手或略勝**;誠實揭露(與主張一致)|
+| **Strong** | **gpt-4.1-mini**(primary)/ gpt-4.1(secondary,cost-permitting) | 未跑 | 錨點:**預期 baseline 平手或略勝**;誠實揭露(與主張一致)|
 | **Mid** | gpt-4o-mini | ✅ 3 lengths × 4 methods 已跑 | gap 出現(cost-constrained 主場) |
 | **Weak** | gemma3 1B / 4B / 12B / 27B | GX10 6k 已跑;32k/64k 待跑 | **gap 最大**(privacy-sensitive on-device 主場) |
 
@@ -177,11 +177,12 @@
 
 ### 6.2 Backbone / embedding
 
-- **☐ Q4**:**大模型檔位選哪顆** — **我的建議 GPT-4o**:
-  - 熟悉、穩定、成本可控
-  - 若 GPT-5.x 已發布可考慮換(2026-07 未定)
-  - Claude Opus 4.x 也可,但 API 呼叫更貴
-  - 最少跑 1 顆 × 3 lengths × 主 baselines 定錨
+- **✅ Q4**:**大模型檔位** — **決策(2026-07-04):優先 `gpt-4.1-mini`,其次 `gpt-4.1`**:
+  - 主錨點 = **gpt-4.1-mini**(從 gpt-4o-mini 上跨一階,對比同 4-series 的判斷品質差)
+  - 若成本允許,再加跑 **gpt-4.1**(完整 4.1 系列 mini vs full 的兩點對比)
+  - 執行順序:先 gpt-4.1-mini × 3 lengths × 主 baselines(定錨),有時間再擴 gpt-4.1
+  - **敘事對接**:paper strong-model regime 用 gpt-4.1(mini/full),weak-model 用 gemma3 1B-27B;mid 保持 gpt-4o-mini
+  - 三檔位敘事表更新見 §3.1
 
 - **☐ Q5**:**Embedding model 全檔位固定同一顆?** — **我的建議 YES(text-embedding-3-small)**:
   - 減少變因,好對比
