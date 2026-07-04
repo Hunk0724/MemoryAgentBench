@@ -518,9 +518,10 @@ class AgentWrapper:
 
         Distinct from mem0's internal LLM (configured via mem0_config.llm).
         Routes by self.model:
-          - 'gemini-*' → Vertex AI (if GOOGLE_GENAI_USE_VERTEXAI=true) or AI Studio
-          - else        → OpenAI / Azure (existing _create_oai_client path)
-        Sets self.client_type ∈ {'gemini','openai'} for downstream dispatch in
+          - 'gemini-*'                 → Vertex AI (if GOOGLE_GENAI_USE_VERTEXAI=true) or AI Studio
+          - 'gemma*' / 'ollama:*' / 'llama3*' / 'qwen*' / 'mistral*'  → Ollama (local)
+          - else                       → OpenAI / Azure (existing _create_oai_client path)
+        Sets self.client_type ∈ {'gemini','ollama','openai'} for downstream dispatch in
         _answer_with_client.
         """
         if 'gemini' in self.model.lower():
@@ -535,6 +536,12 @@ class AgentWrapper:
             return genai.Client(
                 api_key=os.environ.get('Google_API_KEY') or os.environ.get('GEMINI_API_KEY')
             )
+        # Local Ollama (weak-model regime). Triggered by model name prefix.
+        _m = self.model.lower()
+        if any(_m.startswith(p) for p in ('gemma', 'ollama:', 'llama3', 'qwen', 'mistral')):
+            from ollama import Client as _OllamaClient
+            self.client_type = 'ollama'
+            return _OllamaClient(host=os.environ.get('MEM0_TRIPLE_OLLAMA_URL', 'http://localhost:11434'))
         self.client_type = 'openai'
         return self._create_oai_client()
 
@@ -543,8 +550,25 @@ class AgentWrapper:
 
         OpenAI: standard chat.completions.create.
         Gemini: concatenates system + user into one prompt, uses generate_content.
+        Ollama: native /api/chat with num_ctx + num_predict options.
         Caller is responsible for OpenAI-style messages list with role+content.
         """
+        if getattr(self, 'client_type', 'openai') == 'ollama':
+            # Ollama native chat. Token counts come from prompt_eval_count / eval_count.
+            resp = self.client.chat(
+                model=self.model,
+                messages=messages,
+                options={
+                    'temperature': temperature if temperature is not None else self.temperature,
+                    'num_predict': max_tokens or self.max_tokens,
+                    'num_ctx': int(os.environ.get('OLLAMA_NUM_CTX', '8192')),
+                },
+            )
+            text = resp['message']['content'] if isinstance(resp, dict) else resp.message.content
+            pt = (resp.get('prompt_eval_count') if isinstance(resp, dict) else getattr(resp, 'prompt_eval_count', 0)) or 0
+            ct = (resp.get('eval_count') if isinstance(resp, dict) else getattr(resp, 'eval_count', 0)) or 0
+            return text, pt, ct
+
         if getattr(self, 'client_type', 'openai') == 'gemini':
             system = next((m['content'] for m in messages if m['role'] == 'system'), '')
             user = next((m['content'] for m in messages if m['role'] == 'user'), '')

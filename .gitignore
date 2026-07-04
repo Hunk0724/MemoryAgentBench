@@ -74,6 +74,14 @@ logs/proposition_extraction_sentinels.jsonl
 analysis/results/expanded/
 # extraction/triple/grouping caches (regenerable)
 analysis/results/p1_caches/
+# weak-model regime (gemma3-{1b,4b,12b,27b}) caches — per-model isolated
+analysis/results/p1_caches__*/
+# weak-model OUTDIRs (results.json from each gemma3 size; reproduction logs are the canonical record)
+outputs/**__gemma3-*/
+# weak-model resource sampling logs
+docs/**/gemma_resource/
+# weak-model sp_index per size
+analysis/results/phase0/sp_index_*__gemma3-*.json
 # per-query retrieved JSONs + LLM caches (~571 MB)
 outputs/rag_retrieved/
 # run logs + update_decision.jsonl (~215 MB)
@@ -82,6 +90,9 @@ model_cache/
 .session_backups/
 *.sqlite
 *.sqlite.lock
+
+# Local Claude Code settings (deny rules etc.; per-machine, not portable)
+.claude/
 
 # scattered regenerable caches at analysis/results root
 analysis/results/*_cache_*.json

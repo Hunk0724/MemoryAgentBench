@@ -1,21 +1,34 @@
 # 方法 Pipeline 與所有 LLM-call Prompt(誠實清單)
 
-> 初擬 2026-06-24,**全面更新 2026-06-26**(對應 ours 在 FC-SH 32k 正式跑期間整理)。
-> 對應 `ku_taxonomy_and_scope_zh.md`(戰場定位)、`methodology_materials.md` §10
-> (公平性/工程註記)、`project_ku_taxonomy_battlefield`(memory)。
->
-> **狀態**:
-> - **P1 統一抽取器** — 已接 code(`use_unified_extractor`),**FC-SH 32k smoke 驗證通過**
->   (191 facts vs 完美抽取 GT,micro-recall 97.4%,唯一差異是 P1 修正了 GT 的拼字 typo
->   `univeristy`→`university`,顆粒度一致)。
-> - **查詢期解析** — 由舊的 per-predicate「multi-valued arity guard」改為
->   **3-way conflict-type classifier(query-aware)**(現役;arity guard 已停用、保留於 code 供對照)。
-> - **檢索** — 新增 **raw-question 檢索修正**(剝掉 qa 模板 boilerplate);原 §4.2「FC retrieval recall」
->   查明為 wrapped-query artifact,已解。
-> - **工程** — 寫入端 embedding 改 **batch**(結果不變、只快)。
-> - **誠實化(2026-06-27)** — 本檔只描述**現行實際執行**的 ours 實作(`MEM0_ADD_MODE=phase0_structural`
->   + `MEM0_QUERY_MODE=phase2`)。**未使用 / 停用的設計**(含 (S,P) 倒排索引查詢期未讀、
->   `structural_resolve`、arity guard 等)統一移至 **§6** 揭露,不再混入主流程;呼叫點已 grep 驗證。
+> 初擬 2026-06-24;**全面更新 2026-07-04**(GX10 weak-model 期,同步實際程式碼 + scope 收斂)。
+> 對應 `ku_taxonomy_and_scope_zh.md`、`methodology_materials.md` §10、`weak_model_case_study.md`(方法 vs reader 分離、錯誤模式)。
+> 呼叫點與死碼皆以平行 grep-audit 驗證(2026-07-04)。
+
+## ★ 現行 scope(2026-07-04)—— KU = 取最新版本事實(freshness-only)
+
+> **本輪 KU 定義只對齊「取最新版本事實(single-value freshness)」。多值 coexistence(COMPLEMENTARY)暫不在 scope。**
+> 因此:
+> - **P5 conflict-type classifier 先關閉**(`MEM0_P5_SKIP=1`)→ 每個 (S,P) group 一律 `_drop_older`(argmax ordinal 取最新)。
+> - **arity guard(`_predicate_is_multivalued`)已是 dead code**(其唯一 caller `structural_resolve` 零呼叫點)→ 多值判斷本來就不在 active path,與「關 P5」一致。
+> - **單值 freshness 下的殘餘錯誤只可能是**:subject 方向抽錯 / relation surface 不一致(→ P1/P2 抽取問題)或 identity 判斷錯(→ P3 LLM grouping 問題)。都與 conflict-type 無關 → **P5 確實可先關**,等錯誤模式真的遇到多值再開。
+> - **`ours-full`(含 P5)最後才測**(當 scope 擴到多值/LME complementary)。
+
+### 近期已 landed 的改動(commit 9ced3c2 起,已 push exp/v2-llm-judge)
+| 改動 | 檔案 | 效果 |
+| :-- | :-- | :-- |
+| **fact-level ordinal**(per-uid 全域 per-fact 計數器,取代 per-chunk) | `mem0/memory/main.py:_add_phase0_structural` | 同 chunk 內同 (S,P) 不再 tie → 取最新正確(27b FC-SH 6k Resolution 60→69);query 端 `max()` 不動 |
+| **normalize L1 + 輕量 L2** | `methods/phase0_triple_extractor.py:normalize_predicate/subject` | predicate 去冠詞/of + 時態→be(救 `is/was produced by` 類);subject 只 L1(保 `University of Pisa` 的 of)。false-merge=0 |
+| **num_ctx=8192** | `methods/phase0_triple_extractor.py:_ollama_chat` | 修正 ollama 預設截斷 → P3 grouping 不再空群(local model) |
+
+### 方法變體 → env-flag 對映(現行只跑前三個,ours-full 最後)
+| 命名(scope 內) | run_fc_sh method | QUERY_MODE | STRUCTURAL_SKIP | P5_SKIP | 分群方式 | 取版本 |
+| :-- | :-- | :-- | :-: | :-: | :-- | :-- |
+| ours(**struct**+取最新) | `ours_struct` | structural | — | — | (S,P) 結構(無 LLM) | argmax ordinal |
+| ours(**LLM+struct**+取最新) | `ours_no_p5` | phase2 | — | ✅ | (S,P) 路由 → P3 補小 pool | argmax(freshness-always) |
+| ours(**LLM**+取最新) | `ours_p3_only_no_struct` | phase2 | ✅ | ✅ | P3 over top-100(無結構) | argmax(freshness-always) |
+| ~~ours-full(+P5)~~ | `ours`(現有) | phase2 | — | — | (S,P)+P3 → **P5 分型** | 依 P5(僅 FRESHNESS 丟舊) |
+
+> 寫入期(P1/P2/P2b + phase0_structural 保守寫入)**四個變體完全相同**,只差 query-time 解析。FC 與 LongMemEval 走同一寫入 + 同抽取器。
 
 ---
 
@@ -40,15 +53,15 @@
 **寫入期(每個 chunk):**
 1. **[LLM · P1]** 統一抽取器:role-labeled chunk → 一組 atomic facts(只取 **user 主張**;assistant turn 僅作理解 context)。 *(Storage, ours)*
 2. **[LLM · P2]** Triple 抽取:每條 fact → (s,p,o) 或 null;null → **[LLM · P2b]** subject-only fallback(讓查詢期 subject-match guard 普遍適用)。 *(Update, ours)*
-3. **[deterministic]** **batch-embed** 整 chunk 的 facts、**保留所有版本寫入**(保守、無破壞性判斷,每筆 payload 帶 `triple` + `ordinal`= ingestion 序,供查詢期分群)。〔註:程式仍會另建 (S,P) 倒排索引,但**查詢期從未讀取** → 見 §6〕 *(Update, ours)*
+3. **[deterministic]** **batch-embed** 整 chunk 的 facts、**保留所有版本寫入**(保守、無破壞性判斷)。每筆 payload 帶 `triple`(`subject_id`/`predicate_norm` 經 **normalize L1+輕量 L2**)+ **`ordinal`= fact-level 序**(per-uid 全域 per-fact 計數,**取代舊 per-chunk** → 同 chunk 內同 (S,P) 不再 tie)。供查詢期分群 + 取最新。〔註:程式仍另建 (S,P) 倒排索引,但**查詢期從未讀取** → 見 §6〕 *(Update, ours)*
    - ⚠️ Baseline (a)/(b) 在此改用 mem0 的 **[LLM] `DEFAULT_UPDATE_MEMORY_PROMPT`** 做 ADD/UPDATE/DELETE(**破壞性、不可逆**);**ours 不用**。
 
 **查詢期(每題):**
 4. **[deterministic]** **取 raw question**(剝掉 qa 模板 boilerplate)→ embed → 向量檢索 top-K(預設 100)候選。 *(Retrieval, ours;見 §2 檢索註記)*
 5. **[deterministic]** conditional structural routing:`structural_pool`(有 triple 且該 `(S,P)` 在候選中 ≥2 競爭者)vs `dynamic_pool`(無 triple、或 `(S,P)` 單例)。 *(Retrieval, ours)*
 6. **[LLM · P3,只對 `dynamic_pool`]** identity grouping:找出「同一事實的不同版本」cluster(只判 identity,RARE,不確定就不分群)。 *(Retrieval, ours)*
-7. **[LLM · P5,每 group 一次、query-aware、cached]** **conflict-type 分類**:對每個 group(structural 群 + LLM cluster)判 `{NO_CONFLICT, FRESHNESS, COMPLEMENTARY}`。 *(Retrieval, ours)*
-8. **[deterministic]** **temporal resolution**:**僅 FRESHNESS** group 以 **ordinal argmax 取最新、丟舊**(平手 keep-all);**NO_CONFLICT / COMPLEMENTARY 全留**。 *(Retrieval, ours)*
+7. **[LLM · P5 — ⏸ 現行 scope 關閉]** conflict-type 分類:**僅 `ours-full` 執行**;`ours_no_p5`/`ours_p3_only`(`MEM0_P5_SKIP=1`)**跳過此步**。 *(Retrieval, ours-full only)*
+8. **[deterministic]** **temporal resolution**:現行 scope(P5 off)= **每個 (S,P) group 一律 `_drop_older`(ordinal argmax 取最新)**;fact-level ordinal 後平手幾乎不會發生。〔`ours-full`:僅 FRESHNESS 丟舊,NO_CONFLICT/COMPLEMENTARY 全留〕 *(Retrieval, ours)*
 9. **[LLM · P4]** 答題:解析後記憶 + 問題 → 答案(各方法×任務標準 qa 模板)。 *(Inference)*
 
 **關鍵誠實點:**
@@ -170,7 +183,9 @@ Facts:
 
 > **無 confidence gate**(2026-06-20 起):gpt-4o-mini confidence 近常數 ~0.95,gate 形同 no-op,已移除;confidence 仍記於 payload 供分析。所有 non-null triple 進 (S,P) index。
 
-### P2b — Subject-only fallback(Update,triple=null 時)【現役:`phase0_triple_extractor.py`】
+### P2b — Subject-only fallback(Update,triple=null 時)【現役但 FC 零觸發:`phase0_triple_extractor.py`】
+
+> ⚠ **FC 測不到、需 LME 才驗**:P2b 只在 `if _null_idx:`(有 fact 抽不出 triple)時觸發。FC-SH triple-null = **0%** → P2b **在 FC 從不執行**;它產出的 `subject_fallback` 供查詢期 P3 的 **subject-match guard**(`_subject_consistent`,純字串、非 LLM)使用,而 P3 clusters 在 FC 也罕見 → **P2b + query-time subject-match 的真實作用只有到 LongMemEval(personal fact,triple-null 較多)才測得到**。→ **儘快跑完 FC 往 LME**。
 
 ```text
 Identify the single entity each fact is primarily ABOUT -- the subject it would
@@ -239,8 +254,10 @@ Memory entries:
 {entries}
 ```
 
-### P5 — Conflict-type classifier(Retrieval,每 group 一次、query-aware、cached)【現役:`methods/phase2_query.py: CONFLICT_TYPE_PROMPT` → `_classify_conflict_type`】
+### P5 — Conflict-type classifier(Retrieval,每 group 一次、query-aware、cached)【**現行 scope 關閉**(`MEM0_P5_SKIP=1`);僅 `ours-full` 用:`methods/phase2_query.py: CONFLICT_TYPE_PROMPT` → `_classify_conflict_type`,phase2_resolve:488 呼叫】
 
+> ⏸ **現行 scope 不跑 P5**:本輪 KU=freshness-only,`ours_no_p5`/`ours_p3_only` 皆 `MEM0_P5_SKIP=1` → `_classify_conflict_type` **從不呼叫**,每 group 一律 `_drop_older`(取最新)。**P5 prompt 保留供 `ours-full`(scope 擴多值時)最後測。** 下方 prompt/機制描述適用 `ours-full`。
+>
 > **取代**舊的 per-predicate「multi-valued arity guard」。改用 **3-way、query-aware、per-group** 分類(改編自 **Cattan et al. 2025** [Cattan'25], *DRAGged into Conflicts* 的衝突分型,限縮到「user 主張累積」情境)。理由見 §4.1:arity 不是述詞的絕對屬性、是 **context-dependent**,所以必須**看這一組的 values±query**、而非只看述詞。
 > **cache**:key = `sha256(query + 排序後成員文字)`,env `MEM0_CONFLICT_CACHE`;失敗安全預設 `complementary`(keep-all)。
 
@@ -379,9 +396,9 @@ query-time 解析的核心難題:**檢索回、同一 `(subject, predicate)` 的
 
 ## 6. 目前未使用 / 停用的設計(誠實揭露)
 
-> 以下設計**存在於 code 或舊版描述,但現行 ours(`MEM0_ADD_MODE=phase0_structural` +
-> `MEM0_QUERY_MODE=phase2`)實際未執行**。集中列出避免方法描述名實不符;清 code 時可一併處理。
-> 呼叫點已 grep 驗證(2026-06-27)。
+> 以下設計**存在於 code 或舊版描述,但現行 ours 實際未執行**。集中列出避免名實不符;清 code 時可一併處理。
+> **呼叫點已平行 grep-audit 重新驗證(2026-07-04)**:`structural_resolve`(零 caller)→ 連帶 **arity guard `_predicate_is_multivalued` 完全不可達**;`llm_dynamic_grouping` 零 caller;`self._sp_index` 寫入期建立但**查詢期無任何 reader**(唯一 reader `hybrid_retrieve` 只被離線診斷 `query_smoke.py` 呼叫)。
+> **待清理(驗證後單獨 commit,已與使用者確認)**:移除 `sp_index` 寫入期建立(零結果影響,同時消除 stale-index desync 風險);`predicate→relation` 命名對齊文獻(cosmetic,延後)。
 
 | 設計 / 符號 | 位置 | 現狀 | 備註 |
 |---|---|---|---|

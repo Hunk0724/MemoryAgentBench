@@ -1,0 +1,43 @@
+{
+ "1b": {
+  "N": 74,
+  "em": 28,
+  "res": 42,
+  "drag": 15,
+  "rescue": 1,
+  "pool_not_isolated": 28,
+  "new_absent": 4
+ },
+ "4b": {
+  "N": 74,
+  "em": 50,
+  "res": 44,
+  "drag": 1,
+  "rescue": 7,
+  "pool_not_isolated": 27,
+  "new_absent": 3
+ },
+ "12b": {
+  "N": 74,
+  "em": 69,
+  "res": 60,
+  "drag": 0,
+  "rescue": 9,
+  "pool_not_isolated": 14,
+  "new_absent": 0
+ },
+ "27b": {
+  "N": 74,
+  "em": 65,
+  "res": 69,
+  "drag": 7,
+  "rescue": 3,
+  "pool_not_isolated": 5,
+  "new_absent": 0
+ },
+ "gpt-4o-mini": {
+  "N": 74,
+  "em": 69,
+  "res": null
+ }
+}

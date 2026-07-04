@@ -163,7 +163,16 @@ def _drop_older(members):
 # ── Stage 2: conditional structural routing ─────────────────────────────────
 def conditional_structural_routing(candidates):
     """Split into structural_pool ((S,P) with >=2 competitors) and dynamic_pool
-    (no-triple items + triple items whose (S,P) is a singleton in candidates)."""
+    (no-triple items + triple items whose (S,P) is a singleton in candidates).
+
+    Ablation: env MEM0_STRUCTURAL_SKIP=1 forces ALL candidates into dynamic_pool
+    (structural_pool empty). Isolates P3 LLM identity grouping's contribution
+    from (S,P) structural grouping: pure-LLM identity resolution over top-k.
+    Compare with pure-structural (ours_struct) for apple-to-apple structural
+    vs LLM identity comparison.
+    """
+    if os.environ.get("MEM0_STRUCTURAL_SKIP") == "1":
+        return {}, list(candidates)
     sp_map = defaultdict(list)
     no_triple = []
     for it in candidates:
@@ -459,16 +468,25 @@ def phase2_resolve(candidates, query):
     Only FRESHNESS (a genuine same-fact recency conflict) drops the older
     version. NO_CONFLICT means the grouped facts are not actually contradictory
     (e.g. different attributes) -> nothing to resolve, keep all. COMPLEMENTARY
-    means coexisting values of a multi-valued attribute -> also keep all."""
+    means coexisting values of a multi-valued attribute -> also keep all.
+
+    Ablation: env MEM0_P5_SKIP=1 forces argmax on every group regardless of
+    conflict-type (i.e. treats every same-identity group as FRESHNESS). This
+    isolates the LLM identity grouping (P3) contribution from the LLM
+    conflict-type classifier (P5). In FC world-fact + counter-factual scenarios
+    where ~all conflicts are FRESHNESS by construction, this ablation should
+    reveal whether P5 is neutral or actively harmful vs the P3-only baseline.
+    """
     structural_pool, dynamic_pool = conditional_structural_routing(candidates)
     clusters = llm_identity_clusters(dynamic_pool, query)
     groups = list(structural_pool.values()) + clusters
+    p5_skip = os.environ.get("MEM0_P5_SKIP") == "1"
     drop = set()
     for g in groups:
         if len(g) < 2:
             continue
-        if _classify_conflict_type(g, query) != "freshness":
+        if not p5_skip and _classify_conflict_type(g, query) != "freshness":
             continue  # no_conflict / complementary -> keep all
-        d, _ = _drop_older(g)  # freshness -> newest wins
+        d, _ = _drop_older(g)  # freshness (or forced) -> newest wins
         drop |= d
     return [it for it in candidates if _id(it) not in drop]

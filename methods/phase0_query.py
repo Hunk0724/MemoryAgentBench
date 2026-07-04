@@ -8,8 +8,10 @@ align with stored (S,P) keys. Misses fall back to the semantic path.
   M4 analyze_query(question)      -> QueryPlan{structural_keys, semantic_query}
   M5 hybrid_retrieve(plan, ...)   -> set(memory_id)  (semantic ∪ structural)
   M6 group_and_resolve(ids, ...)  -> (resolved, ungrouped)
-     per (S,P) group: argmax ordinal; KEEP-ALL-ON-TIE (same per-chunk ordinal
-     -> intra-chunk conflict kept rather than wrongly dropped).
+     per (S,P) group: argmax ordinal; KEEP-ALL-ON-TIE. Ordinal is FACT-level
+     (per-uid global per-fact counter), so same-(S,P) facts get distinct
+     ordinals even within one chunk -> the later-extracted version wins
+     (FC freshness). Ties now only arise from genuinely equal ordinals.
   assemble_context(...)           -> str for generation
 """
 from __future__ import annotations
