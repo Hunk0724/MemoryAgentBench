@@ -33,11 +33,14 @@
 
 | machine | backbone | dataset | len | method | has_pair EM | Resolution | overall | write min | query min | VRAM peak | date | status / notes |
 | :-- | :-- | :-- | :-: | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-- | :-- |
-| GX10 | gemma3:27b | FC-SH | 6k | ours_struct | **65/74** | **69/74** | 90/100 | ~2(cache reuse) | ~2 | 19.7 GB | 07-04 | ✅ 新 normalize+fact-ordinal 後 baseline |
-| GX10 | gemma3:1b | FC-SH | 6k | ours_struct | _TBD_ | | | | | | | 待重跑(新 code) |
-| GX10 | gemma3:4b | FC-SH | 6k | ours_struct | _TBD_ | | | | | | | 待重跑 |
-| GX10 | gemma3:12b | FC-SH | 6k | ours_struct | _TBD_ | | | | | | | 待重跑 |
-| GX10 | gemma3:{1b,4b,12b,27b} | FC-SH | 6k | ours_no_p5 (LLM+struct) | _TBD_ | | | | | | | num_ctx=8192 後跑 |
+| GX10 | gemma3:1b | FC-SH | 6k | ours_struct | 28/74 | 43/74 | 47/100 | ~1(cache reuse) | ~1 | ~2 GB | 07-04 | ✅ 新 code。reader 太弱(drag 16>rescue 1)→ EM<Res |
+| GX10 | gemma3:4b | FC-SH | 6k | ours_struct | 54/74 | 48/74 | 79/100 | ~1 | ~1 | 5.5 GB | 07-04 | ✅ 新 code。reader rescue +7 → EM>Res |
+| GX10 | gemma3:12b | FC-SH | 6k | ours_struct | **73/74** | 68/74 | **99/100** | ~1 | ~1.5 | 11 GB | 07-04 | ✅ 新 code。sweet spot(reader 忠實+rescue)|
+| GX10 | gemma3:27b | FC-SH | 6k | ours_struct | 65/74 | **69/74** | 90/100 | ~1 | ~2 | 19.7 GB | 07-04 | ✅ 新 code。Res 最高但 reader override(drag 7)→ EM 掉 |
+| GX10 | gemma3:1b | FC-SH | 6k | ours_no_p5 (LLM+struct) | **25/74** | _need key_ | 42/100 | ~1 | ~5 | ~2 GB | 07-04 | ⬇ **vs struct −4**:P3 弱模型亂合併=傷害 |
+| GX10 | gemma3:4b | FC-SH | 6k | ours_no_p5 (LLM+struct) | 54/74 | _need key_ | 79/100 | ~1 | ~8 | 5.5 GB | 07-04 | ＝ struct(4 題互抵,淨 0)中性 |
+| GX10 | gemma3:12b | FC-SH | 6k | ours_no_p5 (LLM+struct) | **73/74** | _need key_ | **99/100** | ~1 | ~12 | 11 GB | 07-04 | ＝ struct **逐題全同**(grouping 99/100 空)no-op |
+| GX10 | gemma3:27b | FC-SH | 6k | ours_no_p5 (LLM+struct) | **70/74** | _need key_ | **94/100** | ~1 | ~30 | 19.7 GB | 07-04 | ⬆ **vs struct +5**:P3 強模型正確合併,壓抑 reader-override |
 | GX10 | gemma3:{1b,4b,12b,27b} | FC-SH | 6k | ours_p3_only (LLM only) | _TBD_ | | | | | | | 預期 top-100 過載仍弱 |
 | Mac | gpt-4o-mini | FC-SH | 6k | ours_struct / no_p5 / p3_only | _TBD_ | | | | | (API) | | pull 後重驗(target struct ~69/74) |
 | Mac | gpt-4o-mini | FC-SH | 6k | Zep / Mem0 | _TBD_ | | | | | (cloud) | | baseline |
