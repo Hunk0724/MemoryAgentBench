@@ -41,6 +41,10 @@
 | GX10 | gemma3:4b | FC-SH | 6k | ours_no_p5 (LLM+struct) | 54/74 | _need key_ | 79/100 | ~1 | ~8 | 5.5 GB | 07-04 | ＝ struct(4 題互抵,淨 0)中性 |
 | GX10 | gemma3:12b | FC-SH | 6k | ours_no_p5 (LLM+struct) | **73/74** | _need key_ | **99/100** | ~1 | ~12 | 11 GB | 07-04 | ＝ struct **逐題全同**(grouping 99/100 空)no-op |
 | GX10 | gemma3:27b | FC-SH | 6k | ours_no_p5 (LLM+struct) | **70/74** | _need key_ | **94/100** | ~1 | ~30 | 19.7 GB | 07-04 | ⬆ **vs struct +5**:P3 強模型正確合併,壓抑 reader-override |
+| GX10 | gemma3:1b | FC-SH | 6k | b = mem0 destructive (ours extract) | **0/74** | — | 5/100 | ~1 | ~0 | ~2 GB | 07-04 | 💥 collapse:update-LLM 吐 "Name is John"×5,store 空 |
+| GX10 | gemma3:4b | FC-SH | 6k | b = mem0 destructive (ours extract) | **0/74** | — | 10/100 | ~1 | ~0 | 5.5 GB | 07-04 | 💥 collapse(同上,弱模型 update 崩壊)|
+| GX10 | gemma3:12b | FC-SH | 6k | b = mem0 destructive (ours extract) | 44/74 | — | 64/100 | ~19(write) | ~1 | 11 GB | 07-04 | update 開始能用,但仍 ≪ struct 73/99 |
+| GX10 | gemma3:27b | FC-SH | 6k | b = mem0 destructive (ours extract) | 36/74 | — | 53/100 | ~45(write) | ~2 | 19.7 GB | 07-04 | 非單調回落(<12b);仍 ≪ struct 65/90 |
 | GX10 | gemma3:{1b,4b,12b,27b} | FC-SH | 6k | ours_p3_only (LLM only) | _TBD_ | | | | | | | 預期 top-100 過載仍弱 |
 | Mac | gpt-4o-mini | FC-SH | 6k | ours_struct / no_p5 / p3_only | _TBD_ | | | | | (API) | | pull 後重驗(target struct ~69/74) |
 | Mac | gpt-4o-mini | FC-SH | 6k | Zep / Mem0 | _TBD_ | | | | | (cloud) | | baseline |

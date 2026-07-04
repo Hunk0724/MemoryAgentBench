@@ -1,0 +1,520 @@
+{
+ "0": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "1": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "2": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "5": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "6": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "7": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "8": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "12": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "13": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "14": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "15": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "16": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "17": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "19": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "20": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "23": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "24": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "25": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "26": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "28": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "29": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "30": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "31": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "33": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "34": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "35": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "36": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "38": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "39": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "40": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "41": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "42": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "43": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "44": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "45": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "47": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "48": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "50": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "51": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "52": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "53": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "54": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "55": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "56": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "57": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "58": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "59": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "60": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "61": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "62": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "63": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "65": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "66": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "67": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "69": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "70": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "73": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "77": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "80": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "81": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "82": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "83": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "84": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "85": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "86": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "87": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "88": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "90": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "91": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "93": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": true
+ },
+ "94": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "cache_hit": false
+ },
+ "96": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ },
+ "97": {
+  "cls": "new_absent_wrong",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "cache_hit": true
+ },
+ "98": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "cache_hit": true
+ }
+}
