@@ -286,12 +286,18 @@ def _ensure_env() -> None:
 
 
 def _ollama_chat(prompt: str, model: str, url: str, timeout: int = 600) -> str:
+    # num_ctx MUST be set explicitly: ollama's default (~4096) silently truncates
+    # the P3 identity-grouping prompt (top-100 candidates ~3.4k tok + JSON output),
+    # which made p3_only return {"groups": []} for 100% of queries. Default 8192,
+    # override via OLLAMA_NUM_CTX. Applies to all local LLM calls (extraction,
+    # triple, grouping, arity) — cheap KV-cache bump, big correctness win.
+    _num_ctx = int(os.environ.get("OLLAMA_NUM_CTX", "8192"))
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "stream": False,
         "format": "json",
-        "options": {"temperature": 0},
+        "options": {"temperature": 0, "num_ctx": _num_ctx},
     }
     req = urllib.request.Request(
         url.rstrip("/") + "/api/chat",
