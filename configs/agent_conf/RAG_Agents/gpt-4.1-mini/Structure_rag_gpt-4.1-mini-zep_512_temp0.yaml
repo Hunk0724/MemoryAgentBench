@@ -3,7 +3,7 @@
 # (retrieve_num=10, service_name azure_openai -> falls back to OpenAI when no
 # AZURE_OPENAI_ENDPOINT). Zep does its own extraction (graph, server-side) +
 # decoupled write-time update; retrieval via graph edges/nodes/episodes.
-agent_name: Structure_rag_zep
+agent_name: Structure_rag_gpt-4.1-mini-zep
 model: gpt-4.1-mini
 text_embedding: text-embedding-3-small
 temperature: 0

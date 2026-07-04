@@ -92,20 +92,24 @@ GT_PATHS = {
 
 # (method_display_name, per-query JSON root, "pool key",
 #  results.json glob under Conflict_Resolution)
+#
+# Naming (2026-07-05 update):
+#   - MAIN method label = "ours" = struct + P3 + argmax (formerly "no_p5")
+#   - Ablations: "ours (no P3)" = struct only; "ours (no struct)" = P3 only
+#   - Appendix: "ours (+P5)" = P5 conflict-type classifier ON (formerly "full")
+#     kept because it must run first to build P1 extraction cache, though its
+#     result is appendix material only.
 METHODS = [
-    ("ours (full P3+P5)",
-     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified/k_100",
-     "memories_str",
-     "gpt-4o-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution"),
-    ("ours (no_p5)",
+    # ==================== gpt-4o-mini (canonical) ====================
+    ("ours",
      REPO / "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_no_p5/k_100",
      "memories_str",
      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5/Conflict_Resolution"),
-    ("ours (struct)",
+    ("ours (no P3)",
      REPO / "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_struct/k_100",
      "memories_str",
      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct/Conflict_Resolution"),
-    ("ours (p3_only)",
+    ("ours (no struct)",
      REPO / "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_p3_only_no_struct/k_100",
      "memories_str",
      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct/Conflict_Resolution"),
@@ -117,6 +121,35 @@ METHODS = [
      REPO / "outputs/rag_retrieved/Structure_rag_zep/k_10",
      "edges",
      "gpt-4o-mini-zep/Conflict_Resolution"),
+    ("ours (+P5) [appendix]",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified/k_100",
+     "memories_str",
+     "gpt-4o-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution"),
+    # ==================== gpt-4.1-mini (Plan A backbone extension) ====================
+    ("[4.1-mini] ours",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_no_p5/k_100",
+     "memories_str",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_no_p5/Conflict_Resolution"),
+    ("[4.1-mini] ours (no P3)",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_struct/k_100",
+     "memories_str",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_struct/Conflict_Resolution"),
+    ("[4.1-mini] ours (no struct)",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_p3_only_no_struct/k_100",
+     "memories_str",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct/Conflict_Resolution"),
+    ("[4.1-mini] (b) mem0+P1",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_dest/k_100",
+     "retrieved_memories",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_dest/Conflict_Resolution"),
+    ("[4.1-mini] Zep (k=10)",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-zep/k_10",
+     "edges",
+     "gpt-4.1-mini-zep/Conflict_Resolution"),
+    ("[4.1-mini] ours (+P5) [appendix]",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified/k_100",
+     "memories_str",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution"),
 ]
 
 OUT_MD = REPO / "docs/0615_intro_framework_after_problem_statement/paper_current/results/pool_acc_crosstab.md"

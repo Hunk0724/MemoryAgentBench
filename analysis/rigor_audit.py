@@ -44,17 +44,22 @@ GT_PATHS = {
 
 # Canonical (method, length) cells used by paper_current/results/pool_acc_crosstab.md.
 # Each row: (label, per_qid_dir_root, results_dir_glob)
+#
+# Naming (2026-07-05 update per user directive):
+#   - MAIN method = `ours` = struct + P3 + argmax (formerly labeled "no_p5")
+#   - Ablations: `ours (no P3)` = struct only; `ours (no struct)` = P3 only
+#   - Appendix: `ours (+P5)` = with P5 conflict-type classifier (formerly "full")
+#     kept because run_fc_sh.sh requires ours variant to run first to build
+#     P1 extraction cache; the +P5 result itself is appendix-only material.
 METHODS = [
-    ("ours (full P3+P5)",
-     "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified/k_100",
-     "gpt-4o-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution"),
-    ("ours (no_p5)",
+    # ==================== gpt-4o-mini (canonical main analyses) ====================
+    ("ours",
      "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_no_p5/k_100",
      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5/Conflict_Resolution"),
-    ("ours (struct)",
+    ("ours (no P3)",
      "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_struct/k_100",
      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct/Conflict_Resolution"),
-    ("ours (p3_only)",
+    ("ours (no struct)",
      "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_p3_only_no_struct/k_100",
      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct/Conflict_Resolution"),
     ("(b) mem0+P1",
@@ -63,6 +68,28 @@ METHODS = [
     ("Zep (k=10)",
      "outputs/rag_retrieved/Structure_rag_zep/k_10",
      "gpt-4o-mini-zep/Conflict_Resolution"),
+    ("ours (+P5) [appendix]",
+     "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified/k_100",
+     "gpt-4o-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution"),
+    # ==================== gpt-4.1-mini (Plan A backbone extension @ 64k) ====================
+    ("[4.1-mini] ours",
+     "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_no_p5/k_100",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_no_p5/Conflict_Resolution"),
+    ("[4.1-mini] ours (no P3)",
+     "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_struct/k_100",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_struct/Conflict_Resolution"),
+    ("[4.1-mini] ours (no struct)",
+     "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_p3_only_no_struct/k_100",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct/Conflict_Resolution"),
+    ("[4.1-mini] (b) mem0+P1",
+     "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_dest/k_100",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_dest/Conflict_Resolution"),
+    ("[4.1-mini] Zep (k=10)",
+     "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-zep/k_10",
+     "gpt-4.1-mini-zep/Conflict_Resolution"),
+    ("[4.1-mini] ours (+P5) [appendix]",
+     "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified/k_100",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution"),
 ]
 
 STANDARD_PATTERN = "size256_shots0_max_samplesunknown"
