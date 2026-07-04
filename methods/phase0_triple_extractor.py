@@ -230,7 +230,13 @@ DECOMPOSITION_RULES = """\
 
 # ── Lightweight identity tagging (guide §4.3; pure string, no LLM) ──────────
 def normalize_subject(subject_text: str, user_id: str | None = None) -> str:
+    # Level-1 ONLY for subjects (entity names): unify hyphens/dashes + collapse
+    # whitespace. Deliberately NO article/of stripping — "University of Pisa" /
+    # "Bank of America" would be mangled, and stripping "the" would let
+    # "the user"-style phrases collapse into the user:: identity.
     s = (subject_text or "").lower().strip()
+    s = re.sub(r"[-‐-―]", " ", s)     # L1: hyphens/dashes -> space
+    s = re.sub(r"\s+", " ", s).strip()          # L1: collapse whitespace
     if s in {"user", "i", "me", "my", "myself"}:
         return f"user::{user_id}" if user_id else "user"
     if s in {"assistant", "you", "claude", "agent"}:
@@ -238,8 +244,19 @@ def normalize_subject(subject_text: str, user_id: str | None = None) -> str:
     return re.sub(r"\s+", "_", s)
 
 
+# Predicate normalization tables (Level-2 = general morphological/function-word
+# rules, NOT lexical-semantic mappings -> not overfit to any test set).
+_PRED_ARTICLES = {"the", "a", "an", "of"}
+_PRED_COPULA = {"is", "was", "are", "were", "be", "been", "being"}
+
+
 def normalize_predicate(predicate_text: str) -> str:
-    return (predicate_text or "").lower().strip()
+    s = (predicate_text or "").lower().strip()
+    s = re.sub(r"[-_‐-―]", " ", s)        # L1: hyphen/underscore/dash -> space
+    toks = re.sub(r"\s+", " ", s).strip().split()   # L1: collapse whitespace
+    # L2: drop articles/of; normalize copula/tense (is/was/are/... -> be).
+    out = [("be" if t in _PRED_COPULA else t) for t in toks if t not in _PRED_ARTICLES]
+    return " ".join(out) or " ".join(toks) or (predicate_text or "").lower().strip()
 
 
 # ── LLM backends ────────────────────────────────────────────────────────────

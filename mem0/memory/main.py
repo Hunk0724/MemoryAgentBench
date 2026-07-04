@@ -310,14 +310,20 @@ class Memory(MemoryBase):
         # candidate retrieval + update-decision LLM call entirely. ===
         if self._phase0_mode:
             _uid = (filters or {}).get("user_id", "default")
-            ordinal = self._phase0_ordinal.get(_uid, 0)
-            self._phase0_ordinal[_uid] = ordinal + 1
-            return self._add_phase0_structural(
+            # Fact-level ordinal: per-uid GLOBAL per-fact counter (not per-chunk).
+            # base = counter before this chunk; each fact gets base + its
+            # extraction index; advance by #facts written. Strictly monotonic
+            # across chunks (no K sizing / overflow), so query-side max()=newest
+            # needs ZERO change while intra-chunk same-(S,P) ties disappear.
+            base_ordinal = self._phase0_ordinal.get(_uid, 0)
+            _ret = self._add_phase0_structural(
                 new_retrieved_facts=new_retrieved_facts,
                 metadata=metadata,
                 filters=filters,
-                chunk_ordinal=ordinal,
+                chunk_ordinal=base_ordinal,
             )
+            self._phase0_ordinal[_uid] = base_ordinal + len(new_retrieved_facts)
+            return _ret
 
         retrieved_old_memory = []
         new_message_embeddings = {}
@@ -1019,7 +1025,8 @@ class Memory(MemoryBase):
         n_ok = n_low = n_null = 0
         for _fi, (fact, triple) in enumerate(zip(new_retrieved_facts, triples)):
             embeddings = _fact_embs[_fi]
-            md = {**(metadata or {}), "ordinal": chunk_ordinal}
+            fact_ordinal = chunk_ordinal + _fi  # fact-level: base + extraction order
+            md = {**(metadata or {}), "ordinal": fact_ordinal}
 
             sp_key = None
             if triple is None:
@@ -1052,11 +1059,11 @@ class Memory(MemoryBase):
                 bucket = self._sp_index.setdefault(sp_key, [])
                 bucket.append(memory_id)
                 bucket.sort(
-                    key=lambda mid, _o=chunk_ordinal: _o, reverse=True
-                )  # newest ordinal first; same-call facts share chunk_ordinal
+                    key=lambda mid, _o=fact_ordinal: _o, reverse=True
+                )  # no-op sort (constant key); resolution uses payload 'ordinal' max()
 
             returned_memories.append(
-                {"id": memory_id, "memory": fact, "event": "ADD", "ordinal": chunk_ordinal}
+                {"id": memory_id, "memory": fact, "event": "ADD", "ordinal": fact_ordinal}
             )
 
         # Persist (S,P) index (JSON; tuple keys flattened to "subj\x1fpred").
