@@ -2,33 +2,33 @@
  "1b": {
   "N": 74,
   "em": 25,
-  "res": 43,
-  "drag": 18,
-  "rescue": 0,
-  "new_absent": 18
+  "res": 32,
+  "drag": 12,
+  "rescue": 5,
+  "new_absent": 17
  },
  "4b": {
   "N": 74,
   "em": 54,
-  "res": 50,
+  "res": 42,
   "drag": 1,
-  "rescue": 5,
+  "rescue": 13,
   "new_absent": 10
  },
  "12b": {
   "N": 74,
   "em": 73,
-  "res": 68,
+  "res": 60,
   "drag": 0,
-  "rescue": 5,
+  "rescue": 13,
   "new_absent": 0
  },
  "27b": {
   "N": 74,
   "em": 70,
-  "res": 71,
+  "res": 62,
   "drag": 4,
-  "rescue": 3,
+  "rescue": 12,
   "new_absent": 0
  },
  "gpt-4o-mini": {

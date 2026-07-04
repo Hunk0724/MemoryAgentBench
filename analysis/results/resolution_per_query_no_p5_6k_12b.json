@@ -70,9 +70,9 @@
   "cache_hit": true
  },
  "15": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -147,9 +147,9 @@
   "cache_hit": true
  },
  "30": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -193,7 +193,7 @@
   "new_in": true,
   "old_in": false,
   "em": true,
-  "cache_hit": true
+  "cache_hit": false
  },
  "39": {
   "cls": "isolated",
@@ -231,9 +231,9 @@
   "cache_hit": true
  },
  "44": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -252,16 +252,16 @@
   "cache_hit": true
  },
  "48": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
  "50": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -322,9 +322,9 @@
   "cache_hit": true
  },
  "59": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -448,9 +448,9 @@
   "cache_hit": true
  },
  "86": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -483,9 +483,9 @@
   "cache_hit": true
  },
  "93": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -494,7 +494,7 @@
   "new_in": true,
   "old_in": false,
   "em": true,
-  "cache_hit": false
+  "cache_hit": true
  },
  "96": {
   "cls": "isolated",

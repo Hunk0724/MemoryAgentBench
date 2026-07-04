@@ -6,12 +6,14 @@
 
 | method | 1B | 4B | 12B | 27B | 一句話 |
 | :-- | :-: | :-: | :-: | :-: | :-- |
-| **ours_struct**(EM/Res/ov) | 29/43/49 | 54/48/79 | 73/68/99 | 65/69/90 | 方法端 Res 單調升,27B EM 掉=reader override |
-| **ours_no_p5**(struct+P3) | 25/43/42 | 54/50/79 | 73/68/99 | **70/71/94** | +P3 能力梯度:1B −4 害、4B/12B 中性、27B +5(Res↑ 且壓 override)|
+| **ours_struct**(EM/Res/ov) | 29/32/49 | 54/40/79 | 73/60/99 | 65/60/90 | 方法端 Res 單調升,27B EM 掉=reader override |
+| **ours_no_p5**(struct+P3) | 25/32/42 | 54/42/79 | 73/60/99 | **70/62/94** | +P3:1B −4 害、4B/12B 中性、27B +5(Res 60→62 且壓 override)|
 | **b = mem0 破壞性更新**(EM/ov) | 0/5 | 0/10 | 44/64 | 36/53 | 見 §3;弱模型崩、且非單調 |
-| **ours_p3_only**(LLM only) | 2✅ | ⛔ | ⛔ | ⛔ | 舊 4b/12b/27b 是 num_ctx 假象、需重跑;1B 真崩 |
+| **ours_p3_only**(LLM only,no struct) | 7/26 | 26/50 | 46/72 | 27/52 | 全 backbone ≪ struct;純 LLM 分組崩(grouping 非空 0/4/10/53)|
 
-**兩軸分解(struct 權威 per-query)**:抽取軸 `new_absent` 1B 18→4B 10→12B 0→27B 0;reader 軸 `drag/override`(pool 乾淨仍錯)1B 16→4B 1→12B 0→27B 7(**U 形**:弱=無能、中=忠實、強=參數 override)。
+> **Res 為 matcher v4**(2026-07-05 對齊 Mac canonical `match_pair`);舊 word-boundary 版偏高(struct 43/48/68/69→v4 32/40/60/60)。EM 不變(來自 aggregated `exact_match`)。
+
+**兩軸分解(struct 權威 per-query,matcher v4)**:抽取軸 `new_absent` 1B 17→4B 10→12B 0→27B 0;reader 軸 `drag/override`(pool 乾淨仍錯)1B 11→4B 1→12B 0→27B 7(**U 形**:弱=無能、中=忠實、強=參數 override)。
 
 ## 2. 待討論的兩張圖(依 evaluation_protocol §4.2,暫不進 body)
 

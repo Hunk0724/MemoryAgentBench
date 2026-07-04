@@ -27,6 +27,12 @@ def state(v):
 
 print("# return_context × Acc cross-tab — GX10 weak-model (gemma3), FC-SH 6k has_pair")
 print()
+print("> **matcher v4** (`analysis.compute_m1_m2_m3.match_pair`, aligned to Mac canonical, "
+      "2026-07-05). **Caveat**: gemma runs have no per-qid dir, so pool state is from an "
+      "OFFLINE re-run (qdrant + re-embed + re-retrieval) and EM is read from the aggregated "
+      "`exact_match` (not MAB `default_post_process` max(raw,parsed)) — see "
+      "`../matcher_specification.md §3.2`. Fixed once per-qid save lands (handoff Task B).")
+print()
 print("> Pool state = version-state of the resolved context sent to the answer LLM. "
       "Acc = has_pair exact-match. N=74. Reading: `new_only→✓` = method isolated NEW "
       "and reader used it; `both→✓` = reader picked NEW from a mixed pool (method did "

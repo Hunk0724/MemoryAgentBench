@@ -21,8 +21,8 @@
   "cache_hit": true
  },
  "5": {
-  "cls": "new_absent_wrong",
-  "new_in": false,
+  "cls": "wrong_notiso",
+  "new_in": true,
   "old_in": true,
   "em": false,
   "cache_hit": true
@@ -37,7 +37,7 @@
  "7": {
   "cls": "new_absent_wrong",
   "new_in": false,
-  "old_in": false,
+  "old_in": true,
   "em": false,
   "cache_hit": true
  },
@@ -70,16 +70,16 @@
   "cache_hit": true
  },
  "15": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
   "cache_hit": true
  },
  "16": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -193,7 +193,7 @@
   "new_in": true,
   "old_in": false,
   "em": false,
-  "cache_hit": true
+  "cache_hit": false
  },
  "39": {
   "cls": "wrong_notiso",
@@ -203,16 +203,16 @@
   "cache_hit": true
  },
  "40": {
-  "cls": "wrong_notiso",
-  "new_in": true,
+  "cls": "new_absent_wrong",
+  "new_in": false,
   "old_in": true,
   "em": false,
   "cache_hit": true
  },
  "41": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -231,9 +231,9 @@
   "cache_hit": true
  },
  "44": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
   "cache_hit": true
  },
@@ -252,16 +252,16 @@
   "cache_hit": true
  },
  "48": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
   "cache_hit": true
  },
  "50": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
   "cache_hit": true
  },
@@ -322,9 +322,9 @@
   "cache_hit": true
  },
  "59": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
   "cache_hit": true
  },
@@ -357,8 +357,8 @@
   "cache_hit": true
  },
  "65": {
-  "cls": "new_absent_wrong",
-  "new_in": false,
+  "cls": "wrong_notiso",
+  "new_in": true,
   "old_in": true,
   "em": false,
   "cache_hit": true
@@ -413,9 +413,9 @@
   "cache_hit": true
  },
  "81": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -427,9 +427,9 @@
   "cache_hit": true
  },
  "83": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -448,9 +448,9 @@
   "cache_hit": true
  },
  "86": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
   "cache_hit": true
  },
@@ -483,9 +483,9 @@
   "cache_hit": true
  },
  "93": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
   "cache_hit": true
  },
@@ -494,7 +494,7 @@
   "new_in": true,
   "old_in": false,
   "em": true,
-  "cache_hit": false
+  "cache_hit": true
  },
  "96": {
   "cls": "drag",
