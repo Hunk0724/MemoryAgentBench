@@ -65,11 +65,90 @@
 
 ### 3.2 兩條實作路徑
 
-**路徑 A(post-hoc,較省事)**:
-1. 用 **現行 gpt-4o-mini Zep run**(已跑過)保留 per-qid 的 `edges / nodes / episodes / context_block`
-2. 寫類似 `analysis/rerun_zep_edges_only.py` 的 script,但 answer LLM 改為 gemma via Ollama
-3. **不重跑 Zep cloud graph**(節省 API cost + 360s wait)
-4. 產出:`outputs/gemma3-Xb-zep/Conflict_Resolution/factconsolidation_sh_{L}_..._results.json`
+**路徑 A(post-hoc,推薦!已有 canonical script)**:
+
+★ **已寫好 script 給你**:[`analysis/rerun_zep_with_ollama_backbone.py`](../../../../analysis/rerun_zep_with_ollama_backbone.py)
+
+### Step-by-step
+
+**Step 1:準備 Ollama 端**
+```bash
+# 確認 Ollama server 開著 (預設 port 11434)
+ollama list
+
+# 若沒 pull 過模型:
+ollama pull gemma3:1b
+ollama pull gemma3:4b
+ollama pull gemma3:12b
+ollama pull gemma3:27b
+```
+
+**Step 2:確認 Mac 的 Zep 資料在 GX10 端**(git pull 後就有)
+```bash
+# Mac 已 push 的 Zep per-qid 檔:
+ls outputs/rag_retrieved/Structure_rag_zep/k_10/factconsolidation_sh_6k/chunksize_512/query_*.json | wc -l
+# 應 = 100
+```
+
+**Step 3:smoke 一個 backbone × length**(1-2 min per qid × 5 qids ≈ 5-10 min)
+```bash
+# 例:gemma3-12b × 6k × 5 qids
+python analysis/rerun_zep_with_ollama_backbone.py \
+    --length 6k --backbone gemma3:12b --limit 5 --num-ctx 8192
+```
+
+驗證:
+- log 顯示 `EM = X/5 (Y%)` 且 EM 數字 sensible(非全 0、非 100%)
+- 檔案有生成:`ls outputs/gemma3-12b-zep/Conflict_Resolution/`
+- 樣本:`ls outputs/rag_retrieved/Structure_rag_gemma3-12b-zep/k_10/.../query_0_context_0.json`
+
+**Step 4:full run 全 4 backbones × 3 lengths(sequential)**
+```bash
+for BB in gemma3:1b gemma3:4b gemma3:12b gemma3:27b; do
+    for L in 6k 32k 64k; do
+        # 32k / 64k 需大 num_ctx(gemma 4B/12B 需 confirm 有支援):
+        NCTX=8192
+        [ "$L" = "32k" ] && NCTX=16384
+        [ "$L" = "64k" ] && NCTX=32768
+        echo "==== $BB × $L (num_ctx=$NCTX) ===="
+        python analysis/rerun_zep_with_ollama_backbone.py \
+            --length "$L" --backbone "$BB" --num-ctx "$NCTX"
+    done
+done
+```
+
+**Step 5:rigor audit(記入 gx10_run_log.csv)**
+```bash
+python analysis/rigor_audit.py --length 6k
+# 新的 gemma3-*-zep cells 需加到 rigor_audit.py METHODS(post-hoc 產出的 aggregated 已 canonical format)
+```
+
+### 產出結構
+
+每個 backbone × length 一份:
+- Per-qid:`outputs/rag_retrieved/Structure_rag_gemma3-{size}-zep/k_10/factconsolidation_sh_{L}/chunksize_512/query_*.json`(fields:edges / nodes / episodes / context_block / response)
+- Aggregated:`outputs/gemma3-{size}-zep/Conflict_Resolution/factconsolidation_sh_{L}_unknown_backbone_swap_size256_shots0_max_samplesunknown_k10_chunk512_results.json`(MAB-compat format)
+
+### 為何**不需要 ZEP_API_KEY**
+
+- Zep cloud graph 已由 Mac gpt-4o-mini 建好,per-qid cached edges/nodes/episodes 已 sync
+- script 不呼叫 Zep API,只呼叫 Ollama(local)+ 讀 cached JSON
+- **完全 offline(除了 Ollama 本地推理)**
+
+### num_ctx 提醒(踩過的雷)
+
+- gemma3-1B / 4B 上限 8192 tokens(Ollama 預設)
+- gemma3-12B 可調 16384(視 VRAM)
+- gemma3-27B 可調 32768(需大 VRAM)
+- **若 32k / 64k Zep context 過大** → 需切 context 或 fallback to edges-only(見 §3.2b)
+
+### §3.2b — 32k / 64k 若 gemma window 不夠
+
+若 Zep context 太長(gemma3-4B 32k 可能爆),兩個 fallback:
+1. **truncate**:script 加 `--max-context-tokens 7000` 手動 truncate context 前 7k tokens(丟後面 episodes)
+2. **edges-only fallback**:用 `analysis/rerun_zep_edges_only.py` 的方式,只留 edges 不放 nodes+episodes(context 短很多)
+
+我建議先跑 6k(所有 backbone 都 fit),再看 32k 是否需 fallback。
 
 **路徑 B(from scratch,重跑 Zep 全流程)**:
 1. 修改 `methods/zep.py::OpenAIAgent` 加 Ollama support(current: openai / azure / deepseek only)
