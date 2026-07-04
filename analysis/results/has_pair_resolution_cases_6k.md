@@ -29,7 +29,7 @@
 | q40 | (University of Bucharest, **"is located in"**, Ankara) | (…, **"has headquarters in"**, Bucharest) | ✅ | RESCUE |
 | **q45** | (A Wizard of Earthsea, **"is author of"**, Pius XII) | (…, **"is written by"**, Ursula K. Le Guin) | ❌ | **WRONG**(reader 挑錯) |
 
-> ⚠ pool-based `compute_resolution` 對 12b 記 **6 題未隔離(5 rescue + q45)**;離線只抓到 **4 題(3 rescue + q45)**。差 2 題 = 「cache 的 (S,P) 對上、但 query-time pool 仍留舊版」(其他 retrieved fact 帶舊值)→ 需實際 pool 才能列出那 2 題。
+> ✅ 已用 pool-based per-query(`compute_resolution_per_query_6k.py`)補全,見 §5。12b 完整 rescue = **q8/q35/q40/q52/q60**(離線漏了 q52/q60,因舊值經其他 retrieved 句進 pool,非該 (S,P) pair)。
 
 ## 3. 27b 的唯一 L2 命中(具體證據 normalize 有作用的一筆)
 
@@ -56,7 +56,27 @@
 - 對「P3 能否 rescue 4b/12b」的答案:**不能**(中性);P3 的價值是 **capability-gated**。
 - per-query diff:1b `[4,24,26,49,59,62,63,74,98]`、4b `[1,35,51,70]`、27b `[7,12,19,53,54,63,72,80]`(12b diff=0)。
 
-## 4. 待補(需 embedding,已備 `compute_resolution_per_query_6k.py`,讀 OPENAI_API_KEY_FOR_GX10)
+## 5. ★★ 權威 pool-based 2 軸分解(per-query,`compute_resolution_per_query_6k.py`)
+
+每題實際 top-100 retrieve → `group_and_resolve` → assemble pool,subject-scoped word-boundary 檢查新/舊值是否在 pool。分類:isolated(新在、舊不在)/ drag(pool 隔離乾淨但 reader 答錯=**override**)/ rescue(未隔離但 reader 挑到新)/ wrong_notiso / new_absent(新根本不在 pool)。
+
+| size | Resolution=iso+drag | new_absent(抽取軸) | rescue | **drag=override(reader 軸)** | wrong_notiso | EM |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-: |
+| 1b | 43 | **18** | 2 | **16** | 29 | 29/74 |
+| 4b | 48 | 10 | 7 | 1 | 19 | 54/74 |
+| 12b | 68 | **0** | 5 | **0** | 1 | 73/74 |
+| 27b | 69 | **0** | 3 | **7** | 2 | 65/74 |
+
+**兩條獨立軸(這是 6k has_pair 的完整機制):**
+1. **抽取軸 `new_absent`**:新值能否進 pool → 1b 18 → 4b 10 → 12b 0 → 27b 0。**隨 backbone 單調改善、12B 飽和** = Resolution(方法端)上升的根本來源。→ 修正 §1 離線 proxy:1b/4b 低 Resolution 主因是**新值抽取/檢索失敗(new_absent)**,非 (S,P) pair 抽壞。
+2. **reader 軸 `drag`(pool 乾淨但答錯)**:1b **16** → 4b 1 → 12b **0** → 27b **7**。**U 形**:弱模型因無能 drag、mid(4b/12b)忠實 sweet spot、強模型(27b)因參數先驗 **override**。
+
+**逐題 qid(供論文引用 / case study):**
+- **12b rescue(pool 含新舊、reader 挑新)= q8, q35, q40, q52, q60**;唯一錯 = q45(reader 挑舊)。
+- **27b override(pool 乾淨、reader 用參數先驗答錯)= q19, q51, q53, q54, q57, q66, q80**(共 7,即 27B EM 65<Res 69 的元兇)。
+- **1b override/drag(pool 乾淨仍錯)= q0,1,15,25,35,38,43,44,48,50,63,67,73,85,86,96**(共 16);rescue 僅 q26,q62。
+
+per-query 明細:`analysis/results/resolution_per_query_6k_{1b,4b,12b,27b}.json`。
 - 1b/4b Resolution 43/48 的真正機制(pool 為何未隔離)。
 - 12b 那 2 題額外未隔離 + 完整 5 題 rescue 清單。
 - 方法:`compute_resolution_acc_6k.py` 加 per-query dump(需 `OPENAI_API_KEY_A` embedding)。
