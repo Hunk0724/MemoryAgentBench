@@ -1,0 +1,17 @@
+date,machine,backbone,length,method,wall_time_sec,peak_vram_gb,num_ctx,ollama_model_hash,cuda_version,gpu_model,n_retry,error_msg,n_bank_tokens_approx,n_query_tokens_approx,per_qid_saved,aggregated_path,has_pair_em,notes
+2026-07-04,GX10,gemma3-1b,6k,ours_struct,120,2.0,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct__gemma3-1b,29/74,cache-reuse write; new code
+2026-07-04,GX10,gemma3-4b,6k,ours_struct,120,5.5,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct__gemma3-4b,54/74,cache-reuse
+2026-07-04,GX10,gemma3-12b,6k,ours_struct,150,11.0,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct__gemma3-12b,73/74,cache-reuse
+2026-07-04,GX10,gemma3-27b,6k,ours_struct,240,19.7,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct__gemma3-27b,65/74,cache-reuse
+2026-07-04,GX10,gemma3-1b,6k,ours_no_p5,300,2.0,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5__gemma3-1b,25/74,P3 grouping small pool
+2026-07-04,GX10,gemma3-4b,6k,ours_no_p5,480,5.5,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5__gemma3-4b,54/74,
+2026-07-04,GX10,gemma3-12b,6k,ours_no_p5,720,11.0,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5__gemma3-12b,73/74,grouping 99/100 empty (no-op)
+2026-07-04,GX10,gemma3-27b,6k,ours_no_p5,1800,19.7,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5__gemma3-27b,70/74,+5 vs struct
+2026-07-05,GX10,gemma3-1b,6k,ours_p3_only,5400,2.0,8192,-,13.0,NVIDIA GB10,0,grouping JSON parse fail/timeout,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct__gemma3-1b,7/74,grouping 0/100 (1B cannot group 100 items)
+2026-07-05,GX10,gemma3-4b,6k,ours_p3_only,240,5.5,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct__gemma3-4b,26/74,grouping 4/100
+2026-07-05,GX10,gemma3-12b,6k,ours_p3_only,1320,11.0,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct__gemma3-12b,46/74,grouping 10/100
+2026-07-05,GX10,gemma3-27b,6k,ours_p3_only,2760,19.7,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct__gemma3-27b,27/74,grouping 53/100 but wrong-merges+override
+2026-07-04,GX10,gemma3-1b,6k,b_mem0_dest,60,2.0,default,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_dest__gemma3-1b,0/74,update-LLM echoes "Name is John" x5; store~empty
+2026-07-04,GX10,gemma3-4b,6k,b_mem0_dest,60,5.5,default,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_dest__gemma3-4b,0/74,store empty (0 pts)
+2026-07-04,GX10,gemma3-12b,6k,b_mem0_dest,1140,11.0,default,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_dest__gemma3-12b,44/74,mem0 keeps BOTH for most
+2026-07-04,GX10,gemma3-27b,6k,b_mem0_dest,2700,19.7,default,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_dest__gemma3-27b,36/74,non-monotonic <12b (more destructive + override)
