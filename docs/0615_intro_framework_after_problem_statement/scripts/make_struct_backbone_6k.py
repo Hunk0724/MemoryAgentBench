@@ -52,9 +52,12 @@ ax.set_xticks(x)
 ax.set_xticklabels([lab[b] for b in order])
 ax.set_xlabel("Backbone  (weak → strong)")
 ax.set_ylabel("has_pair Accuracy (%)  ↑")
-ax.set_ylim(0, 108)
-ax.legend(fontsize=9, loc="lower left", frameon=False,
-          bbox_to_anchor=(0.0, 1.005), borderaxespad=0.0)
+ax.set_ylim(0, 116)
+# make the METHOD explicit: this is ours_struct (deterministic, no LLM grouping)
+ax.set_title("Method = ours_struct : structural (S,P) + deterministic temporal "
+             "(no LLM grouping)\nFC-SH 6k has_pair, by backbone",
+             fontsize=10.5, fontweight="bold", pad=8)
+ax.legend(fontsize=9, loc="upper left", frameon=False, borderaxespad=0.6)
 ax.grid(axis="y", ls=":", alpha=0.5)
 for ext in ["png", "pdf"]:
     fig.savefig(FIG / f"F_struct_backbone_6k.{ext}", dpi=200, bbox_inches="tight")
