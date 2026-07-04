@@ -26,7 +26,9 @@
 
 ## 目前收到什麼
 
-*(初始空)*
+- [`gx10_6k_preliminary_observations.md`](gx10_6k_preliminary_observations.md) — GX10 weak-model 6k 初步觀察:struct/no_p5/b 結果總覽、兩軸分解、**b=mem0 破壞性更新為何 0/5·0/10·44/64·36/53 的機制深挖**(store 版本狀態 + 27B<12B 非單調成因)、兩張待討論圖的定位。
+- **待討論的圖**(檔在 `../figures_current/`,未進 body):`F_p3_backbone_6k`(+P3 Res-vs-EM;§4.2 Resolution 單獨不足)· `F_struct_vs_b_overall_6k`(ours vs mem0,overall EM;主指標是 has_pair,會被 `F_backbone_gap` 取代)。
+- **已升 body 的相關產出**(對照):`../paper_current/results/pool_acc_crosstab_gemma_6k.md`(Tier-1 return_context × Acc 4×2,§4.2 指定)。
 
 **未來會放進來的例子**:
 - `m1_m2_m3_results.md`(全 bank state / pool state 完整 metric 結果,未來 appendix 用)
