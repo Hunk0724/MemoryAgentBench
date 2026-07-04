@@ -1,64 +1,80 @@
-"""Tier-1 (evaluation_protocol_main §4.2): return_context x Acc 4x2 cross-tab.
+"""Tier-1 (§4.2) return_context × Acc 4×2 cross-tab — GX10 weak-model (gemma3).
 
-For each method x backbone, classify every has_pair query by (a) the POOL STATE of
-the resolved context actually sent to the answer LLM — Both / new_only / old_only /
-Neither (from per-query new_in/old_in) — and (b) Acc (exact-match ✓/✗). This is the
-RIGOROUS attribution the protocol adopts INSTEAD of Resolution-alone: it separates
-"pool isolates NEW" from "reader answered right", showing e.g. Both→✓ (reader picked
-new from a mixed pool) vs new_only→✗ (reader override on a clean pool).
+Mirrors Mac's canonical analysis/compute_pool_acc_crosstab.py METHOD, adapted to
+gemma agent_name paths: reads the ACTUAL per-qid pipeline output
+(`memories_str` = pool the answer LLM saw, saved by agent.py:1100), classifies
+pool state with matcher v4 (`analysis.compute_m1_m2_m3.match_pair`), and crosses
+with EM (aggregated `exact_match`). NO offline reconstruction (superseded 2026-07-05
+after discovering gemma DOES save per-qid, just under Structure_rag_gemma3-*).
 
-GX10 weak-model (gemma3) FC-SH 6k, methods ours_struct / ours_no_p5, from
-analysis/results/resolution_per_query{,_no_p5}_6k_<size>.json (pool = post
-group_and_resolve / phase2_resolve context). No GPU / embedding.
-  python3 analysis/compute_pool_acc_crosstab.py > <out>.md
+  python3 analysis/compute_pool_acc_crosstab_gemma.py > <out>.md
 """
-import json, os
+import sys, os, json, glob
+sys.path.insert(0, os.path.expanduser("~/MemoryAgentBench"))
+from collections import Counter
+from analysis.compute_m1_m2_m3 import match_pair   # matcher v4
 
 os.chdir(os.path.expanduser("~/MemoryAgentBench"))
+L = "6k"
+gt = {r["query_id"]: r for r in json.load(open("analysis/results/sh_6k_RUN_gt.json"))}
+HP = [q for q, r in gt.items() if r["conflict_type"] == "has_pair"]
 SIZES = ["1b", "4b", "12b", "27b"]
-METHODS = [("ours_struct", "resolution_per_query_6k_{}.json"),
-           ("ours_no_p5", "resolution_per_query_no_p5_6k_{}.json")]
+# (display, agent_name suffix, aggregated output-dir suffix, pool field)
+METHODS = [
+    ("ours_struct", "unified_struct", "unified_struct", "memories_str"),
+    ("ours_no_p5", "unified_no_p5", "unified_no_p5", "memories_str"),
+    ("ours_p3_only", "unified_p3_only_no_struct", "unified_p3_only_no_struct", "memories_str"),
+]
+ORDER = ["new_only", "both", "old_only", "neither"]
 
 
-def state(v):
-    n, o = v["new_in"], v["old_in"]
+def em_map(outsuf, s):
+    fs = glob.glob(f"outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-{outsuf}__gemma3-{s}/Conflict_Resolution/*sh_6k*results*.json")
+    return {r["query_id"]: bool(r["exact_match"]) for r in json.load(open(fs[0]))["data"]} if fs else None
+
+
+def pool_of(agentsuf, s, qid):
+    p = (f"outputs/rag_retrieved/Structure_rag_gemma3-{s}-mem0_512_openai_{agentsuf}"
+         f"/k_100/factconsolidation_sh_{L}/chunksize_512/query_{qid}_context_0.json")
+    if not os.path.exists(p):
+        return None
+    ms = json.load(open(p)).get("memories_str", "")
+    return [ln.lstrip("- ").strip() for ln in ms.split("\n") if ln.strip()]
+
+
+def state(pool, gtn, gto):
+    n = any(match_pair(t, gtn, gto, "new") for t in pool)
+    o = any(match_pair(t, gtn, gto, "old") for t in pool)
     return "both" if (n and o) else "new_only" if n else "old_only" if o else "neither"
 
 
 print("# return_context × Acc cross-tab — GX10 weak-model (gemma3), FC-SH 6k has_pair")
 print()
-print("> **matcher v4** (`analysis.compute_m1_m2_m3.match_pair`, aligned to Mac canonical, "
-      "2026-07-05). **Caveat**: gemma runs have no per-qid dir, so pool state is from an "
-      "OFFLINE re-run (qdrant + re-embed + re-retrieval) and EM is read from the aggregated "
-      "`exact_match` (not MAB `default_post_process` max(raw,parsed)) — see "
-      "`../matcher_specification.md §3.2`. Fixed once per-qid save lands (handoff Task B).")
+print("> **matcher v4** + **REAL per-qid `memories_str`** (the pool the answer LLM actually "
+      "saw; agent.py:1100), aligned to Mac's canonical method. N=74. EM = aggregated "
+      "`exact_match`. Reading: `new_only→✓` method isolated NEW & reader used it; `both→✓` "
+      "reader RESCUE (mixed pool, picked NEW); `new_only→✗` reader OVERRIDE (clean pool, "
+      "answered OLD); `old_only/neither→✗` NEW absent from pool (extraction/write loss).")
 print()
-print("> Pool state = version-state of the resolved context sent to the answer LLM. "
-      "Acc = has_pair exact-match. N=74. Reading: `new_only→✓` = method isolated NEW "
-      "and reader used it; `both→✓` = reader picked NEW from a mixed pool (method did "
-      "not isolate, reader rescued); `new_only→✗` = reader override on a clean pool; "
-      "`old_only/neither→✗` = new version absent from pool (extraction/write loss).")
-print()
-ORDER = ["new_only", "both", "old_only", "neither"]
-for mname, patt in METHODS:
-    print(f"## {mname}")
+for disp, agentsuf, outsuf, _ in METHODS:
+    print(f"## {disp}")
     print()
-    print("| backbone | new_only ✓/✗ | both ✓/✗ | old_only ✓/✗ | neither ✓/✗ | EM |")
-    print("| :-- | :-: | :-: | :-: | :-: | :-: |")
+    print("| backbone | new_only ✓/✗ | both ✓/✗ | old_only ✓/✗ | neither ✓/✗ | EM | pool-missing |")
+    print("| :-- | :-: | :-: | :-: | :-: | :-: | :-: |")
     for s in SIZES:
-        p = f"analysis/results/{patt.format(s)}"
-        if not os.path.exists(p):
-            print(f"| {s} | _missing_ | | | | |"); continue
-        d = json.load(open(p))
-        cell = {st: [0, 0] for st in ORDER}   # [✓, ✗]
-        for v in d.values():
-            cell[state(v)][0 if v["em"] else 1] += 1
-        em = sum(1 for v in d.values() if v["em"])
+        em = em_map(outsuf, s)
+        if em is None:
+            print(f"| {s} | _no aggregated_ | | | | | |"); continue
+        cell = {st: [0, 0] for st in ORDER}; miss = 0
+        for q in HP:
+            pool = pool_of(agentsuf, s, q)
+            if pool is None:
+                miss += 1; continue
+            st = state(pool, gt[q]["gt_fact_text"], gt[q]["old_fact_text"])
+            cell[st][0 if em.get(q) else 1] += 1
+        emn = sum(1 for q in HP if em.get(q))
         row = " | ".join(f"{cell[st][0]}/{cell[st][1]}" for st in ORDER)
-        print(f"| {s} | {row} | {em}/74 |")
+        print(f"| {s} | {row} | {emn}/74 | {miss} |")
     print()
-print("**How to read the attribution:**")
-print("- **new_only ✓** = method (pool isolates NEW) + reader both worked — the clean win.")
-print("- **both ✓** = reader RESCUE (mixed pool, reader still picked NEW).")
-print("- **new_only ✗** = reader OVERRIDE (clean pool, reader answered OLD from prior) — the 27B drag.")
-print("- **old_only / neither ✗** = NEW absent from the pool (weak extraction/retrieval) — the 1B/4B floor.")
+print("**Attribution key**: new_only ✓ = clean method+reader win · both ✓ = reader rescue · "
+      "new_only ✗ = reader override (27B drag) · old_only/neither ✗ = NEW absent (1B/4B floor).")
