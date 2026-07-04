@@ -1,0 +1,574 @@
+{
+ "0": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "1": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "2": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "5": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- The author of The Marriage of Figaro is Pierre Beaumarchais."
+  ]
+ },
+ "6": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "7": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "8": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- The official language of Japan is Japanese."
+  ]
+ },
+ "12": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Robert Parish plays the position of center."
+  ]
+ },
+ "13": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "14": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- The author of Sidereus Nuncius is Galileo Galilei."
+  ]
+ },
+ "15": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "16": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "17": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "19": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Satya Nadella is the Chief Executive Officer of Microsoft."
+  ]
+ },
+ "20": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- The chairperson of Harvard University is Lawrence S. Bacow."
+  ]
+ },
+ "23": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Bob Iger is the director of American Broadcasting Company."
+  ]
+ },
+ "24": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "25": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "26": {
+  "cls": "rescue",
+  "new_in": true,
+  "old_in": true,
+  "em": true,
+  "old_lines": [
+   "- The director of British Broadcasting Corporation is Tony Hall, Baron Hall of Birkenhead"
+  ]
+ },
+ "28": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "29": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "30": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Baseball was created in the country of United States of America."
+  ]
+ },
+ "31": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "33": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Rap rock was created in the United States of America."
+  ]
+ },
+ "34": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Christianity was founded in the city of Jerusalem."
+  ]
+ },
+ "35": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "36": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "38": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "39": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- SteamOS was developed by Valve Corporation."
+  ]
+ },
+ "40": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- The headquarters of University of Bucharest is located in the city of Bucharest.",
+   "- The headquarters of University of Bucharest is in Ankara."
+  ]
+ },
+ "41": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "42": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Hines Ward plays the position of wide receiver"
+  ]
+ },
+ "43": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "44": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "45": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- The author of A Wizard of Earthsea is Ursula K. Le Guin"
+  ]
+ },
+ "47": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- The author of Our Mutual Friend is Charles Dickens."
+  ]
+ },
+ "48": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "50": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "51": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "52": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- The name of the current head of state in United States of America is Donald Trump.",
+   "- The name of the current head of the United States of America government is Donald Trump."
+  ]
+ },
+ "53": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Imelda Marcos is affiliated with Catholicism."
+  ]
+ },
+ "54": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "55": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "56": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Charlie Hebdo was created in the country of France."
+  ]
+ },
+ "57": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Elvis Presley is married to Priscilla Presley."
+  ]
+ },
+ "58": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "59": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "60": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- The type of music that John McVie plays is rock music."
+  ]
+ },
+ "61": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "62": {
+  "cls": "rescue",
+  "new_in": false,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "63": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "65": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Placekicker is associated with the sport of American football."
+  ]
+ },
+ "66": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "67": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "69": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "70": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- The company that produced AP1000 is Westinghouse Electric."
+  ]
+ },
+ "73": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "77": {
+  "cls": "wrong_notiso",
+  "new_in": true,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Denis Sassou-Nguesso is the chairperson of the Congolese Party of Labour."
+  ]
+ },
+ "80": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "81": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "82": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "83": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "84": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "85": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "86": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "87": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "88": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Sasanian Empire was founded by Ardashir I."
+  ]
+ },
+ "90": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "91": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "93": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "94": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ },
+ "96": {
+  "cls": "drag",
+  "new_in": true,
+  "old_in": false,
+  "em": false,
+  "old_lines": []
+ },
+ "97": {
+  "cls": "wrong_notiso",
+  "new_in": false,
+  "old_in": true,
+  "em": false,
+  "old_lines": [
+   "- Walter Chrysler's child is Walter Percy Chrysler Jr."
+  ]
+ },
+ "98": {
+  "cls": "isolated",
+  "new_in": true,
+  "old_in": false,
+  "em": true,
+  "old_lines": []
+ }
+}
