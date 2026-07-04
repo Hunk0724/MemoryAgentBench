@@ -61,3 +61,190 @@
 
 <!-- items 1-6, 8（實驗/baseline/backbone/embedding 相關）→ evaluation_protocol_main.md §6 -->
 
+---
+
+# Appendix A. Actual prompts used in pipeline(從 source code 直接抽取)
+
+> **來源**：`methods/mem0_fc_prompt_fix.py`（P1）、`methods/phase0_triple_extractor.py`（P2）、`methods/phase2_query.py`（P3 / P5）。任何 prompt 改動請同步更新本 appendix。
+> **論文對接**：P1 / P2 / P3 為主 method 使用；P5 僅供 ablation（`ours(full)`）用。P4 使用 MemoryAgentBench 官方 qa 模板（不客製，論文正文於 setup 揭露）。
+
+## A.1 P1 — Unified extraction prompt（`make_unified_extractor_prompt()`）
+
+抽取 USER 主張的原子事實；source-based / faithfulness / selectivity 三個錨點。
+
+```text
+You are a Memory Organizer. From a conversation between a user and an assistant, extract the distinct facts that the USER asserts as true -- about themselves or about the world -- and record them as separate, atomic facts for later retrieval. The memory you build holds what the user has told the system; it is authoritative over the assistant's own knowledge.
+
+Use the whole conversation -- both speakers -- to UNDERSTAND what the user means: resolve references ("it", "there", "that") and read the assistant's replies as context that clarifies the user's statements. But RECORD facts ONLY from what the USER asserts. The assistant's turns are context for understanding, NEVER a source of facts to store.
+
+What to record (from the user's statements):
+- Any fact the user states as true: personal information, preferences, plans, relationships, situations, AND general / world facts the user asserts (including values that differ from common knowledge).
+- Record one fact per statement; split a sentence asserting several facts into separate atomic facts.
+
+Faithfulness:
+- Transcribe each asserted fact exactly as the user states it, even if it contradicts common knowledge or an earlier statement. Do NOT fact-check, correct, or judge truth. Conflicting or updated values are expected -- record them as given.
+
+What NOT to record (selectivity):
+- Greetings, questions, requests, and small talk that assert no fact.
+- Anything the ASSISTANT contributes on its own -- advice, recommendations, instructions, explanations, or general knowledge. (As stated above, the assistant is context only, never a fact source. If the user later restates something as their own, record the user's statement.)
+- If the user asserts no fact, return an empty list.
+
+Return JSON with a single key "facts" whose value is a list of strings. Detect the input language and record the facts in that language.
+
+Examples:
+Input:
+user: Hi there!
+assistant: Hello! How can I help?
+Output: {"facts": []}
+
+Input:
+user: My name is John and I just moved to Boston.
+Output: {"facts": ["Name is John", "Moved to Boston"]}
+
+Input:
+user: Can you suggest a good 5K training plan?
+assistant: Sure -- try interval sprints of 20-30 seconds with 1-2 min recovery.
+Output: {"facts": []}
+
+Input:
+user: By the way, the CEO of Acme is now Dana Lee, and the capital of Australia is Sydney.
+Output: {"facts": ["The CEO of Acme is now Dana Lee", "The capital of Australia is Sydney"]}
+
+Remember today's date is {YYYY-MM-DD}.  # 動態插入
+```
+
+## A.2 P2 — Triple extraction: DECOMPOSITION_RULES
+
+引導 P2 LLM 抽 (subject, predicate, object)：subject 是「更新後仍固定的實體」、object 是「會變動的值」。
+
+```text
+- Subject = the entity the fact/question is about, and that stays fixed if the
+  fact is later updated; object = the specific value that could change (the
+  answer); predicate = the relation linking them.
+- Decompose nominal relations into standard (subject, relation, object) form.
+  When the phrasing is "the <relation> of <entity>" (e.g. "the author of X",
+  "the capital of Y"), do NOT use that whole noun phrase as the subject and do
+  NOT use "is" as the predicate. Instead: subject = <entity>, predicate = the
+  relation as a verb phrase (e.g. "has <relation>"). The relation must become
+  the predicate, never be swallowed into the subject.
+- predicate is a SHORT natural-language verb phrase; do NOT map it to a fixed
+  vocabulary, snake_case, or canonical form — keep the natural wording.
+- subject is a named entity or attribute value, taken verbatim (do not
+  paraphrase). For user/assistant referents output "user"/"assistant".
+```
+
+## A.3 P2 — subject / predicate normalize（deterministic post-LLM）
+
+```python
+# normalize_subject: Level-1 ONLY（entity name 不做 article/of stripping）
+def normalize_subject(subject_text: str, user_id: str | None = None) -> str:
+    s = (subject_text or "").lower().strip()
+    s = re.sub(r"[-‐-―]", " ", s)                 # L1: hyphens/dashes -> space
+    s = re.sub(r"\s+", " ", s).strip()            # L1: collapse whitespace
+    if s in {"user", "i", "me", "my", "myself"}:
+        return f"user::{user_id}" if user_id else "user"
+    if s in {"assistant", "you", "claude", "agent"}:
+        return "assistant"
+    return re.sub(r"\s+", "_", s)
+
+# normalize_predicate: L1 + L2（drop articles/of + normalize copula tense）
+_PRED_ARTICLES = {"the", "a", "an", "of"}
+_PRED_COPULA   = {"is", "was", "are", "were", "be", "been", "being"}
+
+def normalize_predicate(predicate_text: str) -> str:
+    s = (predicate_text or "").lower().strip()
+    s = re.sub(r"[-_‐-―]", " ", s)                # L1: hyphen/underscore/dash -> space
+    toks = re.sub(r"\s+", " ", s).strip().split() # L1: collapse whitespace
+    # L2: drop articles/of; normalize copula/tense (is/was/are/... -> be).
+    out = [("be" if t in _PRED_COPULA else t) for t in toks if t not in _PRED_ARTICLES]
+    return " ".join(out) or " ".join(toks) or (predicate_text or "").lower().strip()
+```
+
+## A.4 P3 — Identity grouping（LLM,僅對 dynamic_pool）
+
+```text
+You are analyzing a list of memory entries retrieved for a user query. Your ONLY
+task is to find CLUSTERS of entries that are the SAME fact recorded in different
+versions. You do NOT answer the query, summarize, or decide which entry is newer.
+
+# THE TEST (apply strictly)
+Cluster two entries ONLY IF they are competing answers to the EXACT SAME question
+about the EXACT SAME specific entity — same specific subject AND same property —
+where only the value (answer) differs across versions.
+
+# HARD RULES — when NOT to cluster (these dominate)
+1. DIFFERENT SPECIFIC ENTITY = DIFFERENT FACT. If two entries are about different
+   named entities (two different people, places, things, or organizations), they
+   are DIFFERENT facts. Do NOT cluster them — even if they share the same wording,
+   the same attribute type, or the SAME value. (A shared answer like many
+   different people each being "a citizen of the USA" is NOT one fact.)
+2. DIFFERENT PROPERTY = DIFFERENT FACT. Same entity but different property
+   (its capital vs its head of state; the user's city vs the user's job) are
+   DIFFERENT facts. Do NOT cluster them.
+3. MULTI-VALUED PROPERTY = COEXIST. If the property naturally holds several
+   values at once (hobbies, friends, languages spoken, places visited, skills,
+   things liked), the values COEXIST — they are NOT versions. Do NOT cluster.
+
+# Clustering is RARE
+In a typical list, most or ALL entries are unrelated and form NO clusters. Expect
+zero or very few clusters. Cluster only when you are CONFIDENT the entries are the
+same single-valued fact about the same specific entity. When unsure, do not
+cluster — unclustered entries are simply kept (a false merge hides a real value;
+a false split is harmless).
+
+# Identity only — never recency
+Cluster purely by fact identity. Do NOT judge which entry is newer or correct —
+a separate deterministic step handles that.
+
+# Output — clusters only
+Output ONLY the clusters you are confident about, each with 2+ members. Entries
+not placed in a cluster MUST NOT be listed (they are kept automatically). If you
+find no clusters, output {"groups": []}.
+
+Return JSON exactly:
+{
+  "groups": [
+    {"fact": "<the specific entity + property>", "memory_ids": ["<id>","<id>"], "reasoning": "<one sentence>"}
+  ]
+}
+
+# Examples（含正/負範例,略 — 全文見 methods/phase2_query.py:32-116）
+
+# Now analyze:
+Query: {query}
+Memory entries:
+{entries}
+```
+
+## A.5 P5 — Conflict-type classifier（**ablation only,`ours(full)` 用**;paper 主 method 已 skip）
+
+```text
+You analyze a group of candidate memory entries that share the same subject and relation but have different recorded values. Determine which conflict type applies, so the downstream resolution step knows whether to select the most recent value or keep all of them.
+
+Apply ONE of the following categories (adapted from Cattan et al., 2025, CONFLICTS taxonomy, restricted to memory accumulation scenarios where the source is user assertions):
+
+(1) NO_CONFLICT — The candidates record the SAME value expressed in different surface forms (e.g., "Tokyo" vs "Tokyo"; "350,000" vs "$350k"; "PhD" vs "doctorate"). Minor variations in granularity or phrasing without semantic difference.
+
+(2) FRESHNESS — The candidates are mutually exclusive at any single point in time. A single subject cannot simultaneously hold all listed values; the newer value supersedes the older. Examples: current city, current employer, current count/total, personal best, mortgage amount, marital status.
+
+(3) COMPLEMENTARY — The candidates are mutually compatible. The same subject can reasonably hold all listed values simultaneously, without contradiction. The values are accumulating instances, not competing answers. Examples: brands tried, languages spoken, places visited, hobbies, restaurants visited.
+
+DECISION TEST (apply strictly, in order):
+  Step 1: Are these surface variants of one value? YES -> NO_CONFLICT.
+  Step 2: Could the subject reasonably hold ALL listed values AT THE SAME TIME, right now? YES -> COMPLEMENTARY.  NO -> FRESHNESS.
+
+When uncertain between FRESHNESS and COMPLEMENTARY, default to COMPLEMENTARY (false-merge into Freshness destroys information; false-split into Complementary is recoverable downstream).
+
+Query: {query}
+Subject: {subject}
+Relation: {predicate}
+Candidate values (with timestamps):
+{candidates_with_timestamps}
+
+Return JSON exactly: {"type": "no_conflict" | "freshness" | "complementary", "reasoning": "<one sentence>"}
+```
+
+## A.6 P4 — Answer LLM prompt
+
+**不客製,使用 MemoryAgentBench 官方 qa template**(依 `sub_dataset` × `agent_name` 決定,見 `get_template()`)。避免「贏在記憶還是贏在答題 prompt」的混淆。實際 template 於論文正文 setup 揭露、各任務所用 template 列於 paper appendix。
+

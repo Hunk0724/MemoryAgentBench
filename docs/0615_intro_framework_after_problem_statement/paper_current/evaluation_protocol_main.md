@@ -30,7 +30,9 @@ Paper §Experiments 章節將以以下順序敘述,每一節的內容 tie 到 in
 ### 1.1 主評測:**FC-SH**(MemoryAgentBench FactConsolidation single-hop)🔴
 
 - **來源**:HF `ai-hyz/MemoryAgentBench` 的 `Conflict_Resolution` split;下載自動化(見 CLAUDE.md)
-- **長度**:6k / 32k / 64k / 262k(4 檔對話歷史長度)
+- **長度**:6k / 32k / 64k / **262k(deferred)**(4 檔對話歷史長度)
+  - **6k / 32k / 64k 已足證明論文主 claim**(gap 隨 backbone / length 變化的 shape 已可穩固呈現)
+  - **262k 因單 cell wall-clock 極長(ingest × 100 query)先延後,等 6k / 32k / 64k 全 method × backbone 完成後,視時間補**
 - **每長度 100 題** query;分成:
   - `has_pair`(有 GT_old / GT_new 對照):**6k=74 / 32k=65 / 64k=66**(當前主分母)
   - `no_conflict_pair`(單版 GT):約 26 / 35 / 34
