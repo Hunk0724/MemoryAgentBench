@@ -58,7 +58,7 @@ export MEM0_COST_LOG="$LOGROOT/cost_${METHOD}_${L}${TAG_SFX}.jsonl"
 if [[ "$METHOD" == "ours" ]]; then
   TAG=unified
   AG="Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_unified.yaml"
-  STORE="qdrant_gpt4o_512_openai_unified__factconsolidation_sh_${L}${TAG_SFX}"
+  STORE="qdrant_gpt4o_512_openai_unified${TAG_SFX}__factconsolidation_sh_${L}"
   export MEM0_TRIPLE_MODEL="${MEM0_TRIPLE_MODEL:-gpt-4o-mini}"
   export MEM0_EXTRACTION_CACHE="$PC/extraction_cache_p1_${L}.json"
   export MEM0_TRIPLE_CACHE="$PC/triple_cache_p1_${L}.json"
@@ -82,7 +82,7 @@ elif [[ "$METHOD" == "ours_struct" ]]; then
   # Compare against `ours` (phase2) at the same length.
   TAG=unified_struct
   AG="Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_unified_struct.yaml"
-  STORE="qdrant_gpt4o_512_openai_unified_struct__factconsolidation_sh_${L}${TAG_SFX}"
+  STORE="qdrant_gpt4o_512_openai_unified_struct${TAG_SFX}__factconsolidation_sh_${L}"
   export MEM0_TRIPLE_MODEL="${MEM0_TRIPLE_MODEL:-gpt-4o-mini}"
   export MEM0_EXTRACTION_CACHE="$PC/extraction_cache_p1_${L}.json"   # reuse ours' (held-fixed write)
   export MEM0_TRIPLE_CACHE="$PC/triple_cache_p1_${L}.json"
@@ -105,7 +105,7 @@ elif [[ "$METHOD" == "ours_p3_only_no_struct" ]]; then
   # Reuses ours' P1 extraction caches so the WRITE is identical.
   TAG=unified_p3_only
   AG="Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_unified_p3_only_no_struct.yaml"
-  STORE="qdrant_gpt4o_512_openai_unified_p3_only_no_struct__factconsolidation_sh_${L}${TAG_SFX}"
+  STORE="qdrant_gpt4o_512_openai_unified_p3_only_no_struct${TAG_SFX}__factconsolidation_sh_${L}"
   export MEM0_TRIPLE_MODEL="${MEM0_TRIPLE_MODEL:-gpt-4o-mini}"
   export MEM0_EXTRACTION_CACHE="$PC/extraction_cache_p1_${L}.json"   # reuse ours' (held-fixed write)
   export MEM0_TRIPLE_CACHE="$PC/triple_cache_p1_${L}.json"
@@ -132,7 +132,7 @@ elif [[ "$METHOD" == "ours_no_p5" ]]; then
   # query-time P5 impact only.
   TAG=unified_no_p5
   AG="Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_unified_no_p5.yaml"
-  STORE="qdrant_gpt4o_512_openai_unified_no_p5__factconsolidation_sh_${L}${TAG_SFX}"
+  STORE="qdrant_gpt4o_512_openai_unified_no_p5${TAG_SFX}__factconsolidation_sh_${L}"
   export MEM0_TRIPLE_MODEL="${MEM0_TRIPLE_MODEL:-gpt-4o-mini}"
   export MEM0_EXTRACTION_CACHE="$PC/extraction_cache_p1_${L}.json"   # reuse ours' (held-fixed write)
   export MEM0_TRIPLE_CACHE="$PC/triple_cache_p1_${L}.json"
@@ -154,7 +154,7 @@ elif [[ "$METHOD" == "b" ]]; then
   # + mem0 DESTRUCTIVE update (no phase env). Isolates write-time-update loss.
   TAG=unified_dest
   AG="Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_unified_dest.yaml"
-  STORE="qdrant_gpt4o_512_openai_unified_dest__factconsolidation_sh_${L}${TAG_SFX}"
+  STORE="qdrant_gpt4o_512_openai_unified_dest${TAG_SFX}__factconsolidation_sh_${L}"
   export MEM0_EXTRACTION_CACHE="$PC/extraction_cache_p1_${L}.json"   # held-fixed P1
   unset MEM0_ADD_MODE MEM0_QUERY_MODE MEM0_TRIPLE_CACHE             # destructive update
   export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/sh_${L}_b${TAG_SFX}"
@@ -165,7 +165,7 @@ elif [[ "$METHOD" == "b" ]]; then
 else
   TAG=native
   AG="Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_native.yaml"
-  STORE="qdrant_gpt4o_512_openai_native__factconsolidation_sh_${L}${TAG_SFX}"
+  STORE="qdrant_gpt4o_512_openai_native${TAG_SFX}__factconsolidation_sh_${L}"
   # vanilla: native extraction + destructive update; NO phase env, NO p1 caches.
   unset MEM0_ADD_MODE MEM0_QUERY_MODE MEM0_EXTRACTION_CACHE MEM0_TRIPLE_CACHE
   export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/sh_${L}_native${TAG_SFX}"

@@ -65,6 +65,14 @@ class OpenAIEmbedding(EmbeddingBase):
         returned in the SAME order as `texts`.
         """
         texts = [t.replace("\n", " ") for t in texts]
+        # Robustness for weak backbones (GX10 weak-model regime): a weak extractor
+        # (e.g. gemma) occasionally emits an empty/whitespace fact, which the OpenAI
+        # embeddings endpoint rejects ("input cannot be an empty string"), aborting the
+        # whole chunk's batch and the run. Substitute a single space so the list length
+        # and index alignment with the caller (new_retrieved_facts / triples / _fact_embs)
+        # are preserved; the vector is for a blank fact (semantically inert, never matches
+        # a real query). Non-empty facts are untouched -> strong-backbone results unchanged.
+        texts = [t if t.strip() else " " for t in texts]
         if not texts:
             return []
         import time as _time

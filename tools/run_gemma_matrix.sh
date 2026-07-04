@@ -84,6 +84,8 @@ run_one_cell() {
   # EM 從 OUTDIR results.json 算出
   local OUTDIR="outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified"
   [ "$METHOD" = "ours_struct" ] && OUTDIR="${OUTDIR}_struct"
+  [ "$METHOD" = "ours_p3_only_no_struct" ] && OUTDIR="${OUTDIR}_p3_only_no_struct"
+  [ "$METHOD" = "ours_no_p5" ] && OUTDIR="${OUTDIR}_no_p5"
   [ "$METHOD" = "b" ] && OUTDIR="${OUTDIR}_dest"
   [ "$METHOD" = "vanilla" ] && OUTDIR="outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-native"
   OUTDIR="${OUTDIR}__${MODEL_TAG}"
@@ -124,9 +126,11 @@ for SIZE in $SIZES; do
   echo "[$(date +%H:%M:%S)] warm up $MODEL (load into RAM)" | tee -a "$MATRIX_LOG"
   echo "hi" | ollama run "$MODEL" --keepalive 30m > /dev/null 2>&1 || true
 
-  # 3. start sampler in background
-  echo "[$(date +%H:%M:%S)] start resource sampler -> $RESLOG" | tee -a "$MATRIX_LOG"
-  bash "$REPO_ROOT/tools/sample_resource.sh" "$RESLOG" 5 &
+  # 3. start sampler in background (OS-aware: Linux/GX10 uses the /proc sampler,
+  #    macOS uses the vm_stat sampler; both emit an identical JSONL schema)
+  if [ "$(uname -s)" = "Linux" ]; then SAMPLER=sample_resource_linux.sh; else SAMPLER=sample_resource.sh; fi
+  echo "[$(date +%H:%M:%S)] start resource sampler ($SAMPLER) -> $RESLOG" | tee -a "$MATRIX_LOG"
+  bash "$REPO_ROOT/tools/$SAMPLER" "$RESLOG" 5 &
   SAMPLER_PID=$!
 
   # 4. run 6 cells (L x METHOD), serial; ours MUST precede ours_struct per length
