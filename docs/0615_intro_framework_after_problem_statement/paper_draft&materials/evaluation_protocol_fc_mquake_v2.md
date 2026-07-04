@@ -1,5 +1,15 @@
 # Evaluation Protocol + Experiments Plan(v2,2026-07-04,rigor-first)
 
+> ⚠️ **重新定位:APPENDIX / IMPLEMENTATION SPEC**
+> 當前主 protocol 已改為 [`evaluation_protocol_main.md`](evaluation_protocol_main.md)(Tier 1/2/3 priority)。
+> 本文的 M1 / M2 / M3 完整體系 **rigor 準備仍成立**;M2 被 main 選為 Tier 1 主 metric(return_context × Acc cross-tab)、M1 / M3 挪至 Tier 3 appendix backing。
+> 本文是 **implementation spec + full metric family backing**,供:
+> (a) `analysis/compute_m1_m2_m3.py` 對應的完整 metric 定義文件
+> (b) Appendix 若要展開 M1 bank state / M3 root-cause 完整分佈時的參考
+> **不再是主 protocol**。
+
+---
+
 > **v2 對 v1 的差異**:
 > 1. **從 metric 提案拓展為完整 experiments plan**(併入 method_experiments_draft_v1 §4 的 backbone / baselines / ablations,method_v1 從此僅描述方法本身)
 > 2. Metric 體系從 v1 EFR/IRR/BJV → **M1/M2/M3 三層**,補上 pool-state(v1 缺)

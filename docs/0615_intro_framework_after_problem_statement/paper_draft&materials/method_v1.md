@@ -43,14 +43,21 @@
 
 ---
 
-# 4. ☐ 待決問題彙整(僅 Method 部分)
+# 4. ☐ 待決問題（僅 Method 部分）
 
-1. **mem0 baseline (a)/(b)**：兩變體差異的確切定義？（影響所有表格的列名）
-2. **Zep**：自跑 Graphiti（終態診斷需要 graph dump）還是只引 MAB 數字？
-3. **LightMem [3]**：同上，是否自跑？
-4. **大模型檔位**選哪顆（成本考量下最少一顆即可定錨）？
-5. **Embedding model**：全檔位固定同一顆？小模型本地部署情境要不要連 embedding 一起換本地？
-6. **LongMemEval-KU 題數**：78 vs 45 的口徑差異來源？
-7. **(S,P) 倒排索引死碼**：從程式移除，或保留但在 repo README 註明 disabled？
-8. **Deterministic write-time pointer baseline**：確認納入？（我強烈建議納入，理由見 4.3-4）
-9. **P5 程式開關**：核心版 group→argmax 直連的 flag 名稱與預設值（跑 ablation 時切換）。
+> Experiment / Evaluation / Baseline 相關的待決問題已移至 [`evaluation_protocol_main.md`](evaluation_protocol_main.md) §6。此處只留與 method spec 本身相關的兩個。
+
+1. **(S,P) 倒排索引死碼**（現行 pipeline 在寫入時另建 (S,P) 倒排索引但查詢期從未讀取，見 §3.2 註記）：
+   - 選項 (a) 從 method 描述完全隱藏 + 在程式碼移除
+   - 選項 (b) 保留程式但在 repo README 註明 disabled（避免 reviewer 對照 code 時混淆）
+   - **建議** (b)：最小改動、誠實揭露 dead-code
+
+2. **P5 程式開關 flag 名稱**（核心版 group→argmax 直連 vs ablation 加 P5）：
+   - **現行實作**：env var `MEM0_P5_SKIP`
+     - `unset`（default）→ P5 on = `ours(full)`（現降級 ablation）
+     - `=1` → P5 skip = `ours(no_p5)`（paper 主 method）
+   - 見 `methods/phase2_query.py:483`
+   - **建議**：保留現行、不改；paper method spec 就以「無 P5」為主敘述，ablation 表格再列 `ours(full)`
+
+<!-- items 1-6, 8（實驗/baseline/backbone/embedding 相關）→ evaluation_protocol_main.md §6 -->
+
