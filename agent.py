@@ -1046,9 +1046,11 @@ class AgentWrapper:
                     _final = phase2_resolve(_results, message)
                     memories_str = "\n".join(f"- {e['memory']}" for e in _final)
                 else:
+                    _final = None
                     memories_str = "\n".join(f"- {entry['memory']}" for entry in _results)
             except Exception as _e:
                 print(f"[query-resolve {_qmode}] failed, raw fallback: {_e}")
+                _final = None
                 memories_str = "\n".join(f"- {entry['memory']}" for entry in _results)
 
             # Mem0g-prompt-aware variant: verbalize graph relations into the
@@ -1101,6 +1103,7 @@ class AgentWrapper:
                 json.dump({
                     "retrieved_memories": relevant_memories.get("results", []),
                     "retrieved_relations": relevant_memories.get("relations", []),  # mem0g only
+                    "resolved_pool": _final if _final is not None else None,  # post KU-resolution pool (M2 metric)
                     "memories_str": memories_str,
                     "system_prompt": system_prompt,
                     "user_message": llm_messages[1]["content"],
@@ -1215,12 +1218,19 @@ class AgentWrapper:
             os.makedirs(os.path.dirname(save_dir), exist_ok=True)
 
             def _serialize_edges(edges):
+                # Include expired_at so we can attribute (invalid_at, expired_at)
+                # -> Graphiti LLM label: (X, None)=temporal-extraction (source-parsed
+                # event-end, NOT a KU judgment); (X, X)=contradicted (LLM labeled
+                # `contradicted_facts`, deterministic system invalidated); (None,
+                # None)=no conflict judged. duplicate_facts label produces NO edge
+                # at all (invisible via cloud API).
                 if not edges:
                     return []
                 return [{"fact": e.fact, "name": e.name,
                          "source_node": e.source_node_uuid, "target_node": e.target_node_uuid,
                          "valid_at": str(e.valid_at) if e.valid_at else None,
                          "invalid_at": str(e.invalid_at) if e.invalid_at else None,
+                         "expired_at": str(e.expired_at) if getattr(e, 'expired_at', None) else None,
                          "uuid": str(e.uuid_) if hasattr(e, 'uuid_') else None}
                         for e in edges]
 
