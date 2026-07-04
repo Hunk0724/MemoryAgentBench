@@ -56,6 +56,16 @@ CONDA_SH="${CONDA_SH:-$HOME/miniconda3/etc/profile.d/conda.sh}"
 source "$CONDA_SH"; conda activate MABench
 set -a; [ -f .env ] && . .env; set +a
 export OPENAI_API_KEY="${!KEY_NAME}"
+# Zep cloud key — reuse the same account as prior gpt-4o-mini Zep runs so the
+# existing graph_context_0_factconsolidation_sh_64k is reused (skip 360s wait,
+# no add_memory API cost, only search calls).
+ZEP_KEY_NAME="${RUN_ZEP_KEY_NAME:-ZEP_API_KEY_A}"
+export ZEP_API_KEY="${!ZEP_KEY_NAME}"
+if [ -z "${ZEP_API_KEY:-}" ]; then
+    echo "!!!!  ZEP_API_KEY unset (env var $ZEP_KEY_NAME missing) — Zep step will fail"
+    exit 2
+fi
+echo "[key] zep: \$$ZEP_KEY_NAME ...${ZEP_API_KEY: -6}"
 export PYTHONUNBUFFERED=1
 LOGROOT=docs/0615_intro_framework_after_problem_statement/logs
 OUTDIR="outputs/gpt-4.1-mini-zep"
