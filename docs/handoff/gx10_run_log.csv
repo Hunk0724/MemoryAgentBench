@@ -19,3 +19,7 @@ date,machine,backbone,length,method,wall_time_sec,peak_vram_gb,num_ctx,ollama_mo
 2026-07-05,GX10,gemma3-4b,6k,a_vanilla_mem0,120,5.5,default,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-native__gemma3-4b,0/74,collapse (=b 0)
 2026-07-05,GX10,gemma3-12b,6k,a_vanilla_mem0,900,11.0,default,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-native__gemma3-12b,32/74,< b 44 (native extraction adds damage)
 2026-07-05,GX10,gemma3-27b,6k,a_vanilla_mem0,3300,19.7,default,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-native__gemma3-27b,28/74,< b 36
+2026-07-05,GX10,gemma3-1b,6k,zep_ollama_answer,30,2.0,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gemma3-1b-zep/Conflict_Resolution,12/74,path A cached Mac graph + gemma answer
+2026-07-05,GX10,gemma3-4b,6k,zep_ollama_answer,60,5.5,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gemma3-4b-zep/Conflict_Resolution,17/74,
+2026-07-05,GX10,gemma3-12b,6k,zep_ollama_answer,240,11.0,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gemma3-12b-zep/Conflict_Resolution,43/74,~=b 44; Zep graph=Mac 4o-mini (fairness)
+2026-07-05,GX10,gemma3-27b,6k,zep_ollama_answer,540,19.7,8192,-,13.0,NVIDIA GB10,0,,-,-,YES,outputs/gemma3-27b-zep/Conflict_Resolution,35/74,~=b 36

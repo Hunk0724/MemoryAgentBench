@@ -53,7 +53,10 @@
 | GX10 | gemma3:4b | FC-SH | 6k | (a) vanilla mem0 (native) | 0/74 | — | 10/100 | ~2(write) | ~0 | 5.5 GB | 07-05 | collapse(=b 0)|
 | GX10 | gemma3:12b | FC-SH | 6k | (a) vanilla mem0 (native) | 32/74 | — | 53/100 | ~15(write) | ~0 | 11 GB | 07-05 | **< b 44**(native 抽取疊加傷害)|
 | GX10 | gemma3:27b | FC-SH | 6k | (a) vanilla mem0 (native) | 28/74 | — | 44/100 | ~55(write) | ~0 | 19.7 GB | 07-05 | **< b 36**(a<b = extraction 貢獻)|
-| GX10 | gemma3:{1b,4b,12b,27b} | FC-SH | 6k | Zep (k=10, ollama answer) | _running_ | — | | (Mac cached graph) | ~ | | 07-05 | path A:reuse Mac edges + gemma answer(smoke 12b 2/5)|
+| GX10 | gemma3:1b | FC-SH | 6k | Zep (k=10, ollama answer) | 12/74 | — | 19/100 | (Mac cached graph) | ~0 | ~2 GB | 07-05 | path A:reuse Mac edges + gemma answer;弱 answer-LLM 崩 |
+| GX10 | gemma3:4b | FC-SH | 6k | Zep (k=10, ollama answer) | 17/74 | — | 31/100 | (cached) | ~1 | 5.5 GB | 07-05 | |
+| GX10 | gemma3:12b | FC-SH | 6k | Zep (k=10, ollama answer) | 43/74 | — | 57/100 | (cached) | ~4 | 11 GB | 07-05 | ≈ (b) 44;Zep graph=Mac 4o-mini(fairness caveat)|
+| GX10 | gemma3:27b | FC-SH | 6k | Zep (k=10, ollama answer) | 35/74 | — | 54/100 | (cached) | ~9 | 19.7 GB | 07-05 | ≈ (b) 36;≪ ours 65/70 |
 | — | | | | | | | | | | | | |
 | Mac | gpt-4o-mini | FC-SH | 6k | ours (full P3+P5) | 68/74 | — | 93/100 | ~35 | ~40 | (API) | 07-04 | ✅ post-9ced3c2 |
 | Mac | gpt-4o-mini | FC-SH | 6k | ours_struct | 67/74 | — | 91/100 | reuse | ~2 | (API) | 07-04 | ✅ post-9ced3c2(Δ -2)|
