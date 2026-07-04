@@ -83,8 +83,43 @@ def _token_present(mem_words_set: set, target_words: list, threshold=1.0) -> boo
     return hit / len(salient) >= threshold
 
 
-def match_pair(memory_text: str, gt_new: str, gt_old: str, target: str) -> bool:
-    """Rigor-tight fact-identity match:
+def match_pair_v4(memory_text: str, gt_new: str, gt_old: str, target: str) -> bool:
+    """v4 = v3 with Layer-0 full-fact-substring pre-check.
+
+    Rationale for v4 (audit 2026-07-04):
+    v3 rule (iii) uses bag-of-words check for "other-object NOT confusingly
+    present" — fails when non-target object token also appears elsewhere in the
+    memory (e.g. qid 23 64k: gt_old object = "racing", memory text
+    "racing video game is associated with the sport of Australian rules football"
+    → "racing" appears as SUBJECT prefix, not object → v3 treats as ambiguous,
+    returns False. Actual pool WAS clean PP-New.
+
+    v4 adds Layer-0 substring check on the FULL normalized fact string:
+      if norm(gt_target) IS substring of norm(memory) AND norm(gt_other) is NOT
+      → return True (unambiguous verbatim match).
+    Otherwise falls back to v3 token-based check.
+
+    Audit: v4 fixes 100% of ours PP-OldOnly false-negatives at 64k (5/5), plus
+    reduces mem0+P1 false-negatives (65% → smaller).
+    """
+    mem_n = norm(memory_text)
+    if not mem_n:
+        return False
+    gt_target = gt_new if target == "new" else gt_old
+    gt_other = gt_old if target == "new" else gt_new
+    gt_target_n = norm(gt_target or "")
+    gt_other_n = norm(gt_other or "")
+    # Layer 0: full-fact substring (verbatim match, disambiguated)
+    if gt_target_n and gt_target_n in mem_n:
+        # Only unambiguous if the other version's full text is NOT also in mem
+        if not (gt_other_n and gt_other_n in mem_n):
+            return True
+    # Layer 1: v3 token-based rigor check (fallback)
+    return _match_pair_v3(memory_text, gt_new, gt_old, target)
+
+
+def _match_pair_v3(memory_text: str, gt_new: str, gt_old: str, target: str) -> bool:
+    """Rigor-tight fact-identity match (v3, kept for audit / fallback):
        (i) shared stem majority present in memory
        (ii) ALL target-object salient tokens present
        (iii) non-target-object salient tokens NOT all present (else ambiguous → False)
@@ -118,6 +153,11 @@ def match_pair(memory_text: str, gt_new: str, gt_old: str, target: str) -> bool:
     if other_words and _token_present(mem_words, other_words, threshold=1.0):
         return False  # ambiguous — both objects present, don't attribute
     return True
+
+
+# Default matcher for downstream analysis = v4 (v3 available as _match_pair_v3).
+# To force v3-only rigor mode, callers may import _match_pair_v3 directly.
+match_pair = match_pair_v4
 
 
 # ==================== data loaders ==================== #
