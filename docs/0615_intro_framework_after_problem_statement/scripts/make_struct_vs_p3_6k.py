@@ -57,7 +57,9 @@ for xi, s, p in zip(x, st, p3):
 ax.set_xticks(x); ax.set_xticklabels([lab[b] for b in order])
 ax.set_xlabel("Backbone  (weak → strong)")
 ax.set_ylabel("Overall Exact-Match Accuracy (x / 100)  ↑")
-ax.set_ylim(0, 120)
+ax.set_ylim(0, 128)
+ax.set_title("Ablation: add P3 LLM identity grouping on top of ours_struct\n"
+             "FC-SH 6k overall EM, by backbone", fontsize=10.5, fontweight="bold", y=1.22)
 ax.legend(fontsize=8.8, loc="lower left", frameon=False,
           bbox_to_anchor=(0.0, 1.005), borderaxespad=0.0)
 ax.grid(axis="y", ls=":", alpha=0.5)
