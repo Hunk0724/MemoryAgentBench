@@ -33,7 +33,8 @@ order = ["1b", "4b", "12b", "27b"]
 lab = {"1b": "1B", "4b": "4B", "12b": "12B", "27b": "27B"}
 res = [100.0 * D[b]["res"] / D[b]["N"] for b in order]
 em = [100.0 * D[b]["em"] / D[b]["N"] for b in order]
-mini_em = 100.0 * D["gpt-4o-mini"]["em"] / D["gpt-4o-mini"]["N"] if "gpt-4o-mini" in D else None
+mini_em = (100.0 * D["gpt-4o-mini"]["em"] / D["gpt-4o-mini"]["N"]
+           if D.get("gpt-4o-mini", {}).get("N") else None)  # guard: N may be None (mini ref incomplete)
 
 x = np.arange(len(order))
 w = 0.38

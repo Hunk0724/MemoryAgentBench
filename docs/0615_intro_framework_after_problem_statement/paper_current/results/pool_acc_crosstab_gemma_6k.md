@@ -2,6 +2,8 @@
 
 > **matcher v4** + **REAL per-qid `memories_str`** (the pool the answer LLM actually saw; agent.py:1100), aligned to Mac's canonical method. N=74. EM = aggregated `exact_match`. Reading: `new_only→✓` method isolated NEW & reader used it; `both→✓` reader RESCUE (mixed pool, picked NEW); `new_only→✗` reader OVERRIDE (clean pool, answered OLD); `old_only/neither→✗` NEW absent from pool (extraction/write loss).
 
+> ⚠️ **EXTRACTION IS PER-BACKBONE GEMMA, NOT held-fixed gpt-4o-mini** (GX10 matrix sets `MEM0_TRIPLE_MODEL=gemma3:$SIZE`; each backbone has its own P1 cache `analysis/results/p1_caches__gemma3-{s}/`). Consequence: **the cross-tab is only RELIABLE for 12b/27b.** On **1b/4b the pool-state axis is NOT trustworthy** — gemma-1b/4b extract fewer facts (store ≈370 vs 12b/27b ≈450; chunk `af9a27ef`: 1b=31 vs 27b=38 facts) whose SURFACE diverges from GT, so matcher v4 false-negatives inflate the `old_only/neither` (NEW-absent) bucket — it conflates "extraction genuinely lost NEW" with "matcher couldn't align gemma's wording." **For 1b/4b use E2E EM + case-study, not this table** (per `weak_model_6k_analysis.md`). Store overlap-with-27b confirms the split: 1b=5/100, 4b=82/100, 12b=99/100 (would be ~100 everywhere if extraction were held-fixed).
+
 ## ours_struct
 
 | backbone | new_only ✓/✗ | both ✓/✗ | old_only ✓/✗ | neither ✓/✗ | EM | pool-missing |
