@@ -87,25 +87,52 @@ def compose_context(edges, nodes, episodes, context_block=None):
     return ctx
 
 
-def ollama_answer(model, num_ctx, system_prompt, user_content):
-    """Call Ollama via OpenAI-compatible endpoint. num_ctx must be set via
-    `extra_body.options` since the OpenAI-compat surface doesn't expose it."""
+def backbone_answer(provider, model, num_ctx, system_prompt, user_content):
+    """Call answer LLM via one of the supported providers.
+
+    - provider='ollama':  OpenAI-compatible endpoint at OLLAMA_BASE_URL
+                          (default http://localhost:11434/v1); num_ctx via
+                          extra_body.options (Ollama-specific).
+    - provider='openai':  Standard OpenAI API (uses OPENAI_API_KEY env).
+                          num_ctx ignored (OpenAI models fix ctx by model).
+    """
     from openai import OpenAI
-    client = OpenAI(
-        base_url=os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1"),
-        api_key="ollama",  # dummy — Ollama ignores
-    )
-    resp = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_content},
-        ],
-        temperature=0.0,
-        max_tokens=256,
-        extra_body={"options": {"num_ctx": num_ctx}} if num_ctx else None,
-    )
+    if provider == "ollama":
+        client = OpenAI(
+            base_url=os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1"),
+            api_key="ollama",  # dummy
+        )
+        kwargs = dict(
+            model=model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_content},
+            ],
+            temperature=0.0,
+            max_tokens=256,
+        )
+        if num_ctx:
+            kwargs["extra_body"] = {"options": {"num_ctx": num_ctx}}
+        resp = client.chat.completions.create(**kwargs)
+    elif provider == "openai":
+        client = OpenAI()  # reads OPENAI_API_KEY
+        resp = client.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_content},
+            ],
+            temperature=0.0,
+            max_tokens=256,
+        )
+    else:
+        raise ValueError(f"unknown provider: {provider!r}")
     return resp.choices[0].message.content or ""
+
+
+# Backward-compat alias — old callers used ollama_answer(model, num_ctx, ...)
+def ollama_answer(model, num_ctx, system_prompt, user_content):
+    return backbone_answer("ollama", model, num_ctx, system_prompt, user_content)
 
 
 def em_check(response, gt_answer):
@@ -167,13 +194,14 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--length", choices=["6k", "32k", "64k"], required=True)
     p.add_argument("--backbone", required=True,
-                   help="Ollama model, e.g. 'gemma3:12b'")
+                   help="Model name: 'gemma3:12b' (Ollama) or 'gpt-4.1-mini' (OpenAI)")
+    p.add_argument("--provider", choices=["ollama", "openai"], default="ollama",
+                   help="LLM provider (default ollama)")
     p.add_argument("--num-ctx", type=int, default=8192,
-                   help="Ollama num_ctx (default 8192; increase for long context)")
+                   help="Ollama num_ctx (ignored for OpenAI)")
     p.add_argument("--limit", type=int, default=None, help="Smoke: only run first N qids")
     p.add_argument("--out-agent-name",
-                   help="Output agent_name. Default: gemma3-<size>-zep or "
-                        "based on --backbone (e.g. gemma3:12b -> gemma3-12b-zep)")
+                   help="Output agent_name. Default derived from --backbone.")
     args = p.parse_args()
 
     L = args.length
@@ -211,7 +239,8 @@ def main():
         user_prompt = ANSWER_USER_TEMPLATE.format(context=context, question=message)
 
         try:
-            resp = ollama_answer(args.backbone, args.num_ctx, ANSWER_SYSTEM, user_prompt)
+            resp = backbone_answer(args.provider, args.backbone, args.num_ctx,
+                                    ANSWER_SYSTEM, user_prompt)
         except Exception as e:
             print(f"  qid={qid} ERROR: {e.__class__.__name__}: {e}")
             continue

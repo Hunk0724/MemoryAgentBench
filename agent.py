@@ -1035,6 +1035,7 @@ class AgentWrapper:
             _qmode = os.environ.get("MEM0_QUERY_MODE")
             if _qmode is None and os.environ.get("MEM0_ADD_MODE") == "phase0_structural":
                 _qmode = "structural"  # backward-compat for early phase0 runs
+            _final = None  # default; structural / else / exception all keep None
             try:
                 if _qmode == "structural":
                     from methods.phase0_query import assemble_context, group_and_resolve
@@ -1046,11 +1047,9 @@ class AgentWrapper:
                     _final = phase2_resolve(_results, message)
                     memories_str = "\n".join(f"- {e['memory']}" for e in _final)
                 else:
-                    _final = None
                     memories_str = "\n".join(f"- {entry['memory']}" for entry in _results)
             except Exception as _e:
                 print(f"[query-resolve {_qmode}] failed, raw fallback: {_e}")
-                _final = None
                 memories_str = "\n".join(f"- {entry['memory']}" for entry in _results)
 
             # Mem0g-prompt-aware variant: verbalize graph relations into the
