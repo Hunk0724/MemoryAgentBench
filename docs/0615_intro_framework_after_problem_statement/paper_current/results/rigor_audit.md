@@ -16,12 +16,12 @@
 | (b) mem0+P1 | 64k | 66 | 34/66 | 34/66 | 0 | 2 | 2 | ✅ OK |
 | Zep (k=10) | 64k | 66 | 36/66 | 36/66 | 0 | 0 | 0 | ✅ OK |
 | ours (+P5) [appendix] | 64k | 66 | 60/66 | 60/66 | 0 | 0 | 0 | ✅ OK |
-| [4.1-mini] ours | 64k | 66 | 0/66 | 0/66 | 0 | 0 | 0 | ❌ no-agg |
-| [4.1-mini] ours (no P3) | 64k | 66 | 0/66 | 0/66 | 0 | 0 | 0 | ❌ no-agg |
-| [4.1-mini] ours (no struct) | 64k | 66 | 0/66 | 0/66 | 0 | 0 | 0 | ❌ no-agg |
-| [4.1-mini] (b) mem0+P1 | 64k | 66 | 0/66 | 0/66 | 0 | 0 | 0 | ❌ no-agg |
-| [4.1-mini] Zep (k=10) | 64k | 66 | 0/66 | 0/66 | 0 | 0 | 0 | ❌ no-agg |
-| [4.1-mini] ours (+P5) [appendix] | 64k | 66 | 0/66 | 0/66 | 0 | 0 | 0 | ❌ no-agg |
+| [4.1-mini] ours | 64k | 66 | 53/66 | 53/66 | 0 | 0 | 0 | ✅ OK |
+| [4.1-mini] ours (no P3) | 64k | 66 | 52/66 | 52/66 | 0 | 0 | 0 | ✅ OK |
+| [4.1-mini] ours (no struct) | 64k | 66 | 27/66 | 27/66 | 0 | 0 | 0 | ✅ OK |
+| [4.1-mini] (b) mem0+P1 | 64k | 66 | 55/66 | 55/66 | 0 | 0 | 0 | ✅ OK |
+| [4.1-mini] Zep (k=10) | 64k | 66 | 23/66 | 23/66 | 0 | 0 | 0 | ✅ OK |
+| [4.1-mini] ours (+P5) [appendix] | 64k | 66 | 51/66 | 51/66 | 0 | 0 | 0 | ✅ OK |
 
 ## 2. 詳細:mismatch 樣本
 
@@ -35,12 +35,12 @@
 | (b) mem0+P1 × 64k | `outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_dest/Conflict_Resolution/factconsolidation_sh_64k_unknown_in65536_size256_shots0_max_samples1_k100_chunk512_results.json` | `outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_dest/k_100/factconsolidation_sh_64k/chunksize_512` |
 | Zep (k=10) × 64k | `outputs/gpt-4o-mini-zep/Conflict_Resolution/factconsolidation_sh_64k_unknown_in65536_size256_shots0_max_samples1_k10_chunk512_results.json` | `outputs/rag_retrieved/Structure_rag_zep/k_10/factconsolidation_sh_64k/chunksize_512` |
 | ours (+P5) [appendix] × 64k | `outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution/factconsolidation_sh_64k_unknown_in65536_size256_shots0_max_samples1_k100_chunk512_results.json` | `outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified/k_100/factconsolidation_sh_64k/chunksize_512` |
-| [4.1-mini] ours × 64k | `None` | `None` |
-| [4.1-mini] ours (no P3) × 64k | `None` | `None` |
-| [4.1-mini] ours (no struct) × 64k | `None` | `None` |
-| [4.1-mini] (b) mem0+P1 × 64k | `None` | `None` |
-| [4.1-mini] Zep (k=10) × 64k | `None` | `None` |
-| [4.1-mini] ours (+P5) [appendix] × 64k | `None` | `outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified/k_100/factconsolidation_sh_64k/chunksize_512` |
+| [4.1-mini] ours × 64k | `outputs/gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_no_p5/Conflict_Resolution/factconsolidation_sh_64k_unknown_in65536_size256_shots0_max_samples1_k100_chunk512_results.json` | `outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_no_p5/k_100/factconsolidation_sh_64k/chunksize_512` |
+| [4.1-mini] ours (no P3) × 64k | `outputs/gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_struct/Conflict_Resolution/factconsolidation_sh_64k_unknown_in65536_size256_shots0_max_samples1_k100_chunk512_results.json` | `outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_struct/k_100/factconsolidation_sh_64k/chunksize_512` |
+| [4.1-mini] ours (no struct) × 64k | `outputs/gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct/Conflict_Resolution/factconsolidation_sh_64k_unknown_in65536_size256_shots0_max_samples1_k100_chunk512_results.json` | `outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_p3_only_no_struct/k_100/factconsolidation_sh_64k/chunksize_512` |
+| [4.1-mini] (b) mem0+P1 × 64k | `outputs/gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_dest/Conflict_Resolution/factconsolidation_sh_64k_unknown_in65536_size256_shots0_max_samples1_k100_chunk512_results.json` | `outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_dest/k_100/factconsolidation_sh_64k/chunksize_512` |
+| [4.1-mini] Zep (k=10) × 64k | `outputs/gpt-4.1-mini-zep/Conflict_Resolution/factconsolidation_sh_64k_unknown_backbone_swap_size256_shots0_max_samplesunknown_k10_chunk512_results.json` | `outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-zep/k_10/factconsolidation_sh_64k/chunksize_512` |
+| [4.1-mini] ours (+P5) [appendix] × 64k | `outputs/gpt-4.1-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution/factconsolidation_sh_64k_unknown_in65536_size256_shots0_max_samples1_k100_chunk512_results.json` | `outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified/k_100/factconsolidation_sh_64k/chunksize_512` |
 
 ## 4. Interpretation & action recommended per status
 

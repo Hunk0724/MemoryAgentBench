@@ -199,6 +199,55 @@ python analysis/rebuild_aggregated_from_perqid.py --cell "<method>:<L>"
 
 ---
 
-## §8 更新 log(此檔的 change log)
+## §8 Plan A(Mac gpt-4.1-mini × 64k)完成 finding(2026-07-05)
 
-- **2026-07-05** — 初版,依 case study finding + GX10 preliminary observation + Mac cost estimate 建立
+**Plan A 執行結果** —— 詳細 case study trace 於 [`results/case_studies_gpt41mini_64k.md`](results/case_studies_gpt41mini_64k.md);EM 表於 [`style_rules_tables_figures_writing.md §10.3b`](style_rules_tables_figures_writing.md)。
+
+### 8.1 4 個 backbone-shift finding 對敘事的影響
+
+| Finding | Δ EM @ 64k | Mechanism | Paper 意涵 |
+| :--- | :---: | :--- | :--- |
+| **F1** (b) mem0+P1 recovered | +21pp | 21/26 pool state 修復(4.1-mini UPDATE 判定精準)| **mem0 damage 主要是弱 backbone 產物**;強 backbone catches up |
+| **F2** ours main dropped | −7pp(實質 −6pp,扣 1 D-flag)| 6 Mode C shift + 3 phase2 P3 不 remove old + qid 18 D-flag bug | gpt-4.1-mini **more faithful to pool + 特定領域更強 world prior** |
+| **F3** p3_only collapse | **−31pp** ⚡ | 24 PP-New→Both;GROUPING_PROMPT 極保守 → strong LLM 讀 prompt 更 careful 不 cluster | **P3 LLM alone backbone-brittle 於光譜兩端**;(S,P) structural 才 universal |
+| **F4** Zep verbose | −13 EM / +8 sEM | Type 1(qid 5 format)+ Type 2(qid 2/4 legitimate KU failure,列兩版本)| **報 EM + sEM 雙數字**;flow 對 MAB 是公平的 |
+
+### 8.2 Paper 主敘事 shift
+
+**舊 story**(gpt-4o-mini only):
+> ours 全面碾壓 baselines,KU 是 query-time 問題
+
+**新 story**(post gpt-4.1-mini):
+> 弱-mid backbone:baselines 於 write-time UPDATE 崩壞;強 backbone 恢復到接近 ours。**ours 於全 backbone spectrum stable 80-91%,不依賴強 backbone**。實務意涵:大多數部署場景(邊緣、成本、隱私)無法用 strong LLM → **ours 的 stability 是 real-world 更關鍵的貢獻**。
+
+### 8.3 Benchmark D-flag bug(必於 paper 明講)
+
+64k 有 **2/66 D-flag qids**(qid 18 Tom Clancy,qid 20 Great Britain / Europe):`gt_seq < old_seq` → argmax(seq) 邏輯上不可能對,且 gt_answer 是**real world knowledge**(reverse counterfactual)。gpt-4o-mini 靠 Mode C 蒙對兩題,gpt-4.1-mini 忠於 pool 反而"錯"1 題(qid 18)。**這佔 ours main −7pp 中的 −1pp**。
+
+### 8.4 尚未跑(Plan B / C 待決)
+
+- **gpt-4.1-mini × 6k, 32k**:目前只有 64k。若跑其他長度 → 額外 ~$0.4 API,~1.5 hr wall time。
+- **gpt-4.1(secondary strong model)**:預估 ~$10-16(20x 貴)。
+- **case_study qid 91, 86 手動 verify**(4o-mini 主 method 剩 2 個 unverified wrong)。
+
+### 8.5 Zep verbose diagnostic(defer 到 appendix)
+
+**Zep + MAB default template rerun**(削 Zep TEMPLATE,把 edges 當 flat bullet list):
+- 若 EM 提升 → verbose 是 Zep TEMPLATE + strong LLM 產物
+- 若不變 → legitimate KU failure
+- **Cost**:0 API,~5 min;**defer 到 paper appendix**
+
+### 8.6 P3 reasoning debug follow-up
+
+現行 `phase2_query.py::llm_dynamic_grouping` **不存 P3 LLM raw output**(只存 final groupings)。要 debug F3 collapse 細節需:
+- 修 `llm_dynamic_grouping` 存 `{groups: [{fact, memory_ids, reasoning}]}` raw JSON
+- Rerun p3_only 24 個 PP-New → PP-Both regressed qids
+- 分析 reasoning 是否觸發 rule 3(multi-valued)過度 conservative
+- **defer to future work,現有 finding 已足以支撐 paper narrative**
+
+---
+
+## §9 更新 log(此檔的 change log)
+
+- **2026-07-05(下午)** — Plan A 執行完成;§8 加 4 findings + narrative shift + D-flag caveat + future work
+- **2026-07-05(早上)** — 初版,依 case study finding + GX10 preliminary observation + Mac cost estimate 建立
