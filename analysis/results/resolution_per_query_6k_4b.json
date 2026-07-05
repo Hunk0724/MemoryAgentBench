@@ -32,11 +32,13 @@
   ]
  },
  "6": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Slovakia national football team is associated with the sport of association football"
+  ]
  },
  "7": {
   "cls": "isolated",
@@ -78,11 +80,16 @@
   "old_lines": []
  },
  "15": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- France is located in the continent of Europe",
+   "- England is located in the continent of Europe",
+   "- United Kingdom is located in the continent of Europe",
+   "- London is located in the continent of Europe"
+  ]
  },
  "16": {
   "cls": "isolated",
@@ -165,11 +172,13 @@
   "old_lines": []
  },
  "30": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- jazz was created in the country of United States of America"
+  ]
  },
  "31": {
   "cls": "isolated",
@@ -223,13 +232,11 @@
   "old_lines": []
  },
  "40": {
-  "cls": "rescue",
+  "cls": "isolated",
   "new_in": true,
-  "old_in": true,
+  "old_in": false,
   "em": true,
-  "old_lines": [
-   "- The headquarters of University of Bucharest is located in the city of Ankara"
-  ]
+  "old_lines": []
  },
  "41": {
   "cls": "isolated",
@@ -257,11 +264,14 @@
   ]
  },
  "44": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Canada is located in the continent of Asia",
+   "- Israel is located in the continent of Asia"
+  ]
  },
  "45": {
   "cls": "wrong_notiso",
@@ -278,23 +288,27 @@
   "old_in": true,
   "em": false,
   "old_lines": [
-   "- The author of Our Mutual Friend is Charles Dickens",
-   "- The author of Sketches by Boz is Charles Dickens"
+   "- The author of Our Mutual Friend is Charles Dickens"
   ]
  },
  "48": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- jazz was created in the country of United States of America"
+  ]
  },
  "50": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Canada is located in the continent of Asia",
+   "- Israel is located in the continent of Asia"
+  ]
  },
  "51": {
   "cls": "rescue",
@@ -357,11 +371,15 @@
   "old_lines": []
  },
  "59": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Carlos Gómez is associated with the sport of basketball",
+   "- Tunisia national football team is associated with the sport of basketball",
+   "- Surrey Senior Cup is associated with the sport of basketball"
+  ]
  },
  "60": {
   "cls": "rescue",
@@ -493,11 +511,14 @@
   "old_lines": []
  },
  "86": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Israel is located in the continent of Asia",
+   "- Canada is located in the continent of Asia"
+  ]
  },
  "87": {
   "cls": "isolated",
@@ -530,11 +551,13 @@
   "old_lines": []
  },
  "93": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Charles the Bold is a citizen of France"
+  ]
  },
  "94": {
   "cls": "isolated",

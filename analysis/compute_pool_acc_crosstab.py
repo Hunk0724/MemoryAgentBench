@@ -8,9 +8,13 @@ For each has_pair query, classify by:
 Yields, per (method × length), a 4×2 cross-tab plus a wrong-qid list per bucket.
 
 Rigor:
-  - Matcher v3 (triple-based, imported from compute_m1_m2_m3.py) — rejects
-    Layer-1 SequenceMatcher false positives (goaltender→pesäpallo vs
-    goaltender→ice_hockey ratio=0.857 was crossing 0.85 threshold).
+  - Matcher v4 (2026-07-04) — Layer-0 full-fact-substring pre-check + Layer-1
+    matcher v3 (triple-based) fallback. v3 alone had systematic false negatives
+    on unambiguous verbatim GT text (qid 23 64k: pool had exact gt_new string,
+    v3 rule (iii) fired on bag-of-words check because gt_old's object token
+    appeared as subject prefix). v4 audit reduced ours 64k PP-OldOnly
+    false-neg from 5/5 → 2/2, Zep 64k from 3/3 → 0/0, mem0 64k from 11/17 → 9/15.
+    See analysis/compute_m1_m2_m3.py::match_pair_v4 docstring.
   - ours* variants use `memories_str` (ground truth what answer LLM saw during
     the actual run). mem0(b) uses `retrieved_memories`. Zep uses `edges`.
   - Data is what the pipeline actually did — no offline reconstruction (which
@@ -39,6 +43,45 @@ sys.path.insert(0, str(REPO))
 # Reuse the rigor-tight matcher v3
 from analysis.compute_m1_m2_m3 import match_pair, norm  # noqa: E402
 
+# MAB official EM (matches utils/eval_other_utils.py::default_post_process semantics):
+#   EM = max(EM(raw prediction), EM(parse_output(prediction)))
+# per drqa_exact_match_score (case-insensitive, punctuation-stripped, article-stripped)
+from utils.eval_other_utils import (  # noqa: E402
+    parse_output, drqa_exact_match_score, drqa_metric_max_over_ground_truths,
+)
+
+
+def _em_from_perqid(response: str, gt_answer) -> bool:
+    """Recompute EM byte-for-byte reproducibly per MAB `default_post_process`.
+
+    MAB official semantics: return TRUE if EM matches either the RAW response OR
+    the parse_output-stripped response. This is why aggregated `exact_match` in
+    Conflict_Resolution/*.json may show TRUE for some qid whose per-qid response
+    only matches after Answer: prefix stripping.
+
+    Rationale for reading per-qid `response` instead of aggregated `exact_match`:
+    - per-qid file is the write path from _handle_*_agent (agent.py)
+    - aggregated is a batch summary computed at run finalization; can go stale
+      when partial re-runs overwrite per-qid but not aggregated
+    - concrete cases: Zep 32k aggregated had 48/65 has_pair `output` replaced by
+      "Answer:" placeholders while per-qid `response` kept the real LLM output;
+      mem0+P1 all 3 lengths had 33-42/N mismatches between aggregated `output`
+      and per-qid `response`. See rigor_audit.py / rigor_audit.md.
+    """
+    if response is None or gt_answer is None:
+        return False
+    resp_str = str(response)
+    # Raw EM
+    if bool(drqa_metric_max_over_ground_truths(
+            drqa_exact_match_score, resp_str, gt_answer)):
+        return True
+    # Parsed EM ("Answer: X" prefix strip → compare)
+    parsed = parse_output(resp_str)
+    if parsed is None:
+        return False
+    return bool(drqa_metric_max_over_ground_truths(
+        drqa_exact_match_score, parsed, gt_answer))
+
 
 # ==================== Configuration ==================== #
 GT_PATHS = {
@@ -49,20 +92,24 @@ GT_PATHS = {
 
 # (method_display_name, per-query JSON root, "pool key",
 #  results.json glob under Conflict_Resolution)
+#
+# Naming (2026-07-05 update):
+#   - MAIN method label = "ours" = struct + P3 + argmax (formerly "no_p5")
+#   - Ablations: "ours (no P3)" = struct only; "ours (no struct)" = P3 only
+#   - Appendix: "ours (+P5)" = P5 conflict-type classifier ON (formerly "full")
+#     kept because it must run first to build P1 extraction cache, though its
+#     result is appendix material only.
 METHODS = [
-    ("ours (full P3+P5)",
-     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified/k_100",
-     "memories_str",
-     "gpt-4o-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution"),
-    ("ours (no_p5)",
+    # ==================== gpt-4o-mini (canonical) ====================
+    ("ours",
      REPO / "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_no_p5/k_100",
      "memories_str",
      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5/Conflict_Resolution"),
-    ("ours (struct)",
+    ("ours (no P3)",
      REPO / "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_struct/k_100",
      "memories_str",
      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct/Conflict_Resolution"),
-    ("ours (p3_only)",
+    ("ours (no struct)",
      REPO / "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_p3_only_no_struct/k_100",
      "memories_str",
      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct/Conflict_Resolution"),
@@ -74,6 +121,35 @@ METHODS = [
      REPO / "outputs/rag_retrieved/Structure_rag_zep/k_10",
      "edges",
      "gpt-4o-mini-zep/Conflict_Resolution"),
+    ("ours (+P5) [appendix]",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified/k_100",
+     "memories_str",
+     "gpt-4o-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution"),
+    # ==================== gpt-4.1-mini (Plan A backbone extension) ====================
+    ("[4.1-mini] ours",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_no_p5/k_100",
+     "memories_str",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_no_p5/Conflict_Resolution"),
+    ("[4.1-mini] ours (no P3)",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_struct/k_100",
+     "memories_str",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_struct/Conflict_Resolution"),
+    ("[4.1-mini] ours (no struct)",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_p3_only_no_struct/k_100",
+     "memories_str",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct/Conflict_Resolution"),
+    ("[4.1-mini] (b) mem0+P1",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified_dest/k_100",
+     "retrieved_memories",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_dest/Conflict_Resolution"),
+    ("[4.1-mini] Zep (k=10)",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-zep/k_10",
+     "edges",
+     "gpt-4.1-mini-zep/Conflict_Resolution"),
+    ("[4.1-mini] ours (+P5) [appendix]",
+     REPO / "outputs/rag_retrieved/Structure_rag_gpt-4.1-mini-mem0_512_openai_unified/k_100",
+     "memories_str",
+     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified/Conflict_Resolution"),
 ]
 
 OUT_MD = REPO / "docs/0615_intro_framework_after_problem_statement/paper_current/results/pool_acc_crosstab.md"
@@ -156,10 +232,17 @@ def classify_pool_state(pool_texts: list, gt_new: str, gt_old: str) -> str:
 
 
 def analyze(method_name: str, root: Path, pool_key: str, results_dir: str, L: str) -> dict:
-    """Return {qid: (pool_state, acc_bool, response)} + summary counters."""
-    em = load_em(results_dir, L)
-    if em is None:
-        return {"error": f"no results.json for {method_name} × {L}"}
+    """Return {qid: (pool_state, acc_bool, response)} + summary counters.
+
+    EM policy: prefer per-qid `response` + MAB's normalize_answer, because
+    per-qid file is the write source of truth from `_handle_*_agent` and does
+    not suffer from Zep 32k aggregation corruption (Zep 32k
+    outputs/gpt-4o-mini-zep/Conflict_Resolution/*_results.json had 48/65 has_pair
+    outputs replaced by "Answer:" placeholders while the per-qid `response` field
+    kept the real LLM answer). Aggregated `exact_match` is loaded as fallback
+    only when per-qid data is unusable.
+    """
+    em_agg = load_em(results_dir, L) or {}
     gt = load_gt(L)
     hp_qids = {q for q, e in gt.items() if e.get("conflict_type") == "has_pair"}
     per_query = {}
@@ -171,21 +254,23 @@ def analyze(method_name: str, root: Path, pool_key: str, results_dir: str, L: st
         files = glob.glob(str(query_dir / f"query_{qid}_context_*.json"))
         if not files:
             n_missing_json += 1
-            per_query[qid] = ("__no_query_json__", em.get(qid, False), None)
+            per_query[qid] = ("__no_query_json__", em_agg.get(qid, False), None)
             continue
         try:
             j = json.load(open(files[0]))
         except Exception:
             n_missing_json += 1
-            per_query[qid] = ("__json_error__", em.get(qid, False), None)
+            per_query[qid] = ("__json_error__", em_agg.get(qid, False), None)
             continue
         pool = extract_pool_texts(j, pool_key)
         gt_new = gt[qid].get("gt_fact_text") or ""
         gt_old = gt[qid].get("old_fact_text") or ""
         state = classify_pool_state(pool, gt_new, gt_old)
-        acc = em.get(qid, False)
-        response = (j.get("response") or "")[:80]
-        per_query[qid] = (state, acc, response)
+        response_full = j.get("response") or ""
+        # Compute EM from per-qid response using MAB's normalize_answer
+        gt_answer = gt[qid].get("gt_answer")
+        acc = _em_from_perqid(response_full, gt_answer)
+        per_query[qid] = (state, acc, response_full[:80])
         counters[(state, acc)] += 1
     return {
         "method": method_name,

@@ -1,0 +1,76 @@
+{
+  "agent_config": {
+    "name": "gpt-4o-mini-zep-edges-only",
+    "source_agent": "Structure_rag_zep",
+    "diagnostic": "edges_only",
+    "answer_llm": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "source_zep_result": "factconsolidation_sh_6k_unknown_in6000_size256_shots0_max_samplesunknown_k10_chunk512_results.json",
+  "data": [
+    {
+      "query_id": 0,
+      "qa_pair_id": "factconsolidation_sh_6k_no0",
+      "output": "Answer: pesäpallo",
+      "parsed_output": "Answer: pesäpallo",
+      "answer": [
+        "pesäpallo"
+      ],
+      "exact_match": false,
+      "substring_exact_match": true,
+      "n_edges": 10
+    },
+    {
+      "query_id": 1,
+      "qa_pair_id": "factconsolidation_sh_6k_no1",
+      "output": "Answer: The Fairly OddParents.",
+      "parsed_output": "Answer: The Fairly OddParents.",
+      "answer": [
+        "The Fairly OddParents"
+      ],
+      "exact_match": false,
+      "substring_exact_match": true,
+      "n_edges": 10
+    },
+    {
+      "query_id": 2,
+      "qa_pair_id": "factconsolidation_sh_6k_no2",
+      "output": "Answer: England",
+      "parsed_output": "Answer: England",
+      "answer": [
+        "India"
+      ],
+      "exact_match": false,
+      "substring_exact_match": false,
+      "n_edges": 10
+    },
+    {
+      "query_id": 3,
+      "qa_pair_id": "factconsolidation_sh_6k_no3",
+      "output": "Shahnameh",
+      "parsed_output": "Shahnameh",
+      "answer": [
+        "Shahnameh"
+      ],
+      "exact_match": true,
+      "substring_exact_match": true,
+      "n_edges": 10
+    },
+    {
+      "query_id": 4,
+      "qa_pair_id": "factconsolidation_sh_6k_no4",
+      "output": "University of California, Berkeley.",
+      "parsed_output": "University of California, Berkeley.",
+      "answer": [
+        "University of California, Berkeley"
+      ],
+      "exact_match": false,
+      "substring_exact_match": true,
+      "n_edges": 10
+    }
+  ],
+  "averaged_metrics": {
+    "exact_match": 20.0,
+    "substring_exact_match": 80.0
+  }
+}

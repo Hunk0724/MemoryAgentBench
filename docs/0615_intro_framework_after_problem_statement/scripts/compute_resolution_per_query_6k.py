@@ -17,6 +17,7 @@ from openai import OpenAI
 from qdrant_client import QdrantClient
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 from methods.phase0_query import group_and_resolve, assemble_context
+from analysis.compute_m1_m2_m3 import match_pair  # matcher v4 (Mac canonical; Task A alignment)
 
 os.chdir(os.path.expanduser("~/MemoryAgentBench"))
 KEY = os.environ.get("OPENAI_API_KEY_FOR_GX10") or os.environ.get("OPENAI_API_KEY_A")
@@ -65,8 +66,9 @@ for size in SIZES:
                            "metadata": {"triple": h.payload.get("triple"), "ordinal": h.payload.get("ordinal")}} for h in hits}
         resolved, ung = group_and_resolve(list(id2.keys()), id2)
         pool = [ln for ln in assemble_context(resolved, ung).split("\n") if ln.strip()]
-        new_in = any(subj in ln.lower() and wb(nv, ln.lower()) for ln in pool)
-        old_lines = [ln for ln in pool if subj in ln.lower() and wb(ov, ln.lower())]
+        gt_new_fact, gt_old_fact = r["gt_fact_text"], r["old_fact_text"]  # matcher v4 uses full facts
+        new_in = any(match_pair(ln, gt_new_fact, gt_old_fact, "new") for ln in pool)
+        old_lines = [ln for ln in pool if match_pair(ln, gt_new_fact, gt_old_fact, "old")]
         old_in = len(old_lines) > 0
         e = EM.get(q, False)
         iso = new_in and not old_in

@@ -1,0 +1,58 @@
+{
+  "agent_config": {
+    "name": "gpt-4.1-mini-zep",
+    "source_zep_run": "outputs/gpt-4o-mini-zep/Conflict_Resolution/factconsolidation_sh_64k_unknown_in65536_size256_shots0_max_samples1_k10_chunk512_results.json",
+    "diagnostic": "backbone_answer_swap",
+    "answer_llm_backbone": "gpt-4.1-mini",
+    "num_ctx": 8192,
+    "temperature": 0.0
+  },
+  "data": [
+    {
+      "query_id": 0,
+      "qa_pair_id": "factconsolidation_sh_64k_no0",
+      "output": "English and Ancient Greek",
+      "parsed_output": "English and Ancient Greek",
+      "answer": [
+        "Ancient Greek"
+      ],
+      "exact_match": false,
+      "substring_exact_match": true,
+      "n_edges": 10,
+      "n_nodes": 10,
+      "n_episodes": 10
+    },
+    {
+      "query_id": 1,
+      "qa_pair_id": "factconsolidation_sh_64k_no1",
+      "output": "Martin Luther King Jr.",
+      "parsed_output": "Martin Luther King Jr.",
+      "answer": [
+        "Martin Luther King Jr."
+      ],
+      "exact_match": true,
+      "substring_exact_match": true,
+      "n_edges": 10,
+      "n_nodes": 10,
+      "n_episodes": 10
+    },
+    {
+      "query_id": 2,
+      "qa_pair_id": "factconsolidation_sh_64k_no2",
+      "output": "David Farragut is a citizen of the United States of America and Denmark.",
+      "parsed_output": "David Farragut is a citizen of the United States of America and Denmark.",
+      "answer": [
+        "Denmark"
+      ],
+      "exact_match": false,
+      "substring_exact_match": true,
+      "n_edges": 10,
+      "n_nodes": 10,
+      "n_episodes": 10
+    }
+  ],
+  "averaged_metrics": {
+    "exact_match": 33.333333333333336,
+    "substring_exact_match": 100.0
+  }
+}

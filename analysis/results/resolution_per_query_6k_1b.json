@@ -22,7 +22,7 @@
  },
  "5": {
   "cls": "wrong_notiso",
-  "new_in": false,
+  "new_in": true,
   "old_in": true,
   "em": false,
   "old_lines": [
@@ -39,9 +39,11 @@
  "7": {
   "cls": "wrong_notiso",
   "new_in": false,
-  "old_in": false,
+  "old_in": true,
   "em": false,
-  "old_lines": []
+  "old_lines": [
+   "- Placekicker is associated with the sport of American football."
+  ]
  },
  "8": {
   "cls": "wrong_notiso",
@@ -78,18 +80,23 @@
   ]
  },
  "15": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
-  "old_lines": []
+  "old_lines": [
+   "- France is located in the continent of Europe.",
+   "- England is located in the continent of Europe."
+  ]
  },
  "16": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Adalbert of Prague is affiliated with the religion of Catholic Church."
+  ]
  },
  "17": {
   "cls": "isolated",
@@ -168,7 +175,9 @@
   "old_in": true,
   "em": false,
   "old_lines": [
-   "- Baseball was created in the country of United States of America."
+   "- Baseball was created in the country of United States of America.",
+   "- Country music was created in the country of United States of America.",
+   "- jazz was created in the country of United States of America."
   ]
  },
  "31": {
@@ -228,20 +237,21 @@
  },
  "40": {
   "cls": "wrong_notiso",
-  "new_in": true,
+  "new_in": false,
   "old_in": true,
   "em": false,
   "old_lines": [
-   "- The headquarters of University of Bucharest is located in the city of Bucharest.",
-   "- The headquarters of University of Bucharest is in Ankara."
+   "- The headquarters of University of Bucharest is located in the city of Bucharest."
   ]
  },
  "41": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Placekicker is associated with the sport of American football."
+  ]
  },
  "42": {
   "cls": "wrong_notiso",
@@ -260,11 +270,14 @@
   "old_lines": []
  },
  "44": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
-  "old_lines": []
+  "old_lines": [
+   "- Canada is located in the continent of Asia.",
+   "- Hyderabad is located in the continent of Asia."
+  ]
  },
  "45": {
   "cls": "wrong_notiso",
@@ -285,18 +298,25 @@
   ]
  },
  "48": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
-  "old_lines": []
+  "old_lines": [
+   "- Baseball was created in the country of United States of America.",
+   "- jazz was created in the country of United States of America.",
+   "- Country music was created in the country of United States of America."
+  ]
  },
  "50": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
-  "old_lines": []
+  "old_lines": [
+   "- Hyderabad is located in the continent of Asia.",
+   "- Canada is located in the continent of Asia."
+  ]
  },
  "51": {
   "cls": "isolated",
@@ -364,11 +384,15 @@
   "old_lines": []
  },
  "59": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Center is associated with the sport of basketball.",
+   "- FC Vorskla Poltava is associated with the sport of basketball.",
+   "- Surrey Senior Cup is associated with the sport of basketball."
+  ]
  },
  "60": {
   "cls": "wrong_notiso",
@@ -402,7 +426,7 @@
  },
  "65": {
   "cls": "wrong_notiso",
-  "new_in": false,
+  "new_in": true,
   "old_in": true,
   "em": false,
   "old_lines": [
@@ -463,11 +487,13 @@
   "old_lines": []
  },
  "81": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Mikhail Gorbachev was the head of state in Soviet Union."
+  ]
  },
  "82": {
   "cls": "isolated",
@@ -477,11 +503,13 @@
   "old_lines": []
  },
  "83": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Adalbert of Prague is affiliated with the religion of Catholic Church."
+  ]
  },
  "84": {
   "cls": "isolated",
@@ -498,11 +526,14 @@
   "old_lines": []
  },
  "86": {
-  "cls": "drag",
+  "cls": "wrong_notiso",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": false,
-  "old_lines": []
+  "old_lines": [
+   "- Hyderabad is located in the continent of Asia.",
+   "- Canada is located in the continent of Asia."
+  ]
  },
  "87": {
   "cls": "isolated",
@@ -535,11 +566,13 @@
   "old_lines": []
  },
  "93": {
-  "cls": "isolated",
+  "cls": "rescue",
   "new_in": true,
-  "old_in": false,
+  "old_in": true,
   "em": true,
-  "old_lines": []
+  "old_lines": [
+   "- Charles the Bold is a citizen of France."
+  ]
  },
  "94": {
   "cls": "isolated",

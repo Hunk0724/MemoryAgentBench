@@ -155,25 +155,57 @@
 - ⏳ 32k / 64k weak-model
 - ☐ 32k / 64k 全 4 methods(`ours_no_p5` 需 num_ctx 已修 8192)
 
-### 10.3 E2E has_pair EM 主表(post-9ced3c2,Mac Studio gpt-4o-mini)
+### 10.3a E2E has_pair EM 主表 —— **gpt-4o-mini backbone**(3 lengths)
 
 **Row = method / Col = length**(依 §6 convention);**bold 每列最佳**;**指標方向 ↑**:
 
 | Method | 6k has_pair ↑ | 32k has_pair ↑ | 64k has_pair ↑ |
 | :--- | ---: | ---: | ---: |
-| ours (full P3+P5) | 68/74 (91.9%) | 55/65 (84.6%) | **60/66 (90.9%)** |
-| ours (no_p5) | 69/74 (93.2%) | 57/65 (87.7%) | **60/66 (90.9%)** |
-| ours (struct) | 67/74 (90.5%) | 52/65 (80.0%) | 58/66 (87.9%) |
-| **ours (p3_only)** | **71/74 (95.9%)** | **58/65 (89.2%)** | 58/66 (87.9%) |
-| (b) mem0+P1 | 34/74 (45.9%) | 29/65 (44.6%) | 27/66 (40.9%) |
-| Zep (k=10 ⚠️) | 46/74 (62.2%) | 4/65 (6.2%) | 36/66 (54.5%) |
+| **ours(main = struct+P3+argmax)** | **69/74 (93.2%)** | **57/65 (87.7%)** | **60/66 (90.9%)** |
+| ours (no P3, struct+argmax only) | 67/74 (90.5%) | 52/65 (80.0%) | 58/66 (87.9%) |
+| ours (no struct, P3+argmax only) | 71/74 (95.9%) | 58/65 (89.2%) | 58/66 (87.9%) |
+| ours (+P5, appendix ablation) | 68/74 (91.9%) | 55/65 (84.6%) | 60/66 (90.9%) |
+| (b) mem0+P1 | 34/74 (45.9%) | 25/65 (38.5%) | 34/66 (51.5%) |
+| Zep (k=10 ⚠️) | 46/74 (62.2%) | 33/65 (50.8%) | 36/66 (54.5%) |
 | LCA (long-ctx, gpt-4o-mini) | 65/74 (87.8%) | 46/65 (70.8%) | 36/66 (54.5%) |
 
-**Zep 的 k=10 caveat**:與其他方法 k=100 不對稱,32k 全崩(4/65)是 k 上限直接後果(不是設計缺陷);Zep 建議未來加 chunk=4096 / k=100 補測。
+### 10.3b E2E has_pair EM 主表 —— **gpt-4.1-mini backbone**(64k only,2026-07-05)
 
-**當前 open question**(尚未驗證):
-- 上面的 E2E gap,**多少來自 pool state 差異**(pipeline 是否給對 gt_new)、**多少來自 answer LLM 猜對率**(pool 混雜時 LLM 挑對能力)?
-- 這正是 **Tier 1 return_context × Acc cross-tab** 要回答的 → 見 `evaluation_protocol_main.md` §4.2
+| Method | 64k EM ↑ | 64k sEM | 4o-mini vs 4.1-mini Δ EM |
+| :--- | ---: | ---: | ---: |
+| **ours(main = struct+P3+argmax)** | 53/66 (80.3%) | 54/66 (81.8%) | −7(−11pp)|
+| ours (no P3, struct+argmax only) | 52/66 (78.8%) | 52/66 (78.8%) | −6(−9pp)|
+| ours (no struct, P3+argmax only) | **27/66 (40.9%)** | 28/66 (42.4%) | **−31(−47pp)★ collapse** |
+| ours (+P5, appendix) | 51/66 (77.3%) | 51/66 (77.3%) | −9(−14pp)|
+| **(b) mem0+P1** | **55/66 (83.3%)** | **55/66 (83.3%)** | **+21(+32pp)★ recovered** |
+| Zep (k=10, path A) | 23/66 (34.8%) | 50/66 (75.8%) | −13 EM / +8 sEM(**verbose format** — 見 §D-flag & Q4)|
+
+**⚠ D-flag benchmark bugs @ 64k = 2/66 qids**(qid 18 Red Storm Rising,qid 20 Great Britain):`gt_seq < old_seq`(gt_new 在 conversation 更早出現),導致 argmax(seq) 邏輯上不可能挑對 gt_new。**兩題都是 real world knowledge 標為 gt_new**(Tom Clancy / Europe)。gpt-4o-mini 靠 Mode C world-KO 剛好蒙對(2 題全對)→ gpt-4.1-mini 忠於 pool 反而"錯"1 題(qid 18)。**這佔了 ours main −7pp 的 −1**。
+
+### 10.3c 4 個 backbone-shift finding(核心 narrative)
+
+| Finding | 機制 | Paper 意涵 |
+| :--- | :--- | :--- |
+| **F1**:(b) recovered +21pp | 21/26 recovered qids 是 **pool state 修復**(OldOnly/Missing → New/Both);gpt-4.1-mini UPDATE 判定精準 | mem0 destructive damage 大部分是 gpt-4o-mini UPDATE LLM 崩壞產物,不是 architectural |
+| **F2**:ours main −7pp | 6/11 dropped 是 PP-Both → PP-Both(Mode C shift to different domains);3/11 是 PP-New → PP-Both(phase2 P3 於 gpt-4.1-mini 不 remove old);qid 18 是 D-flag bug | gpt-4.1-mini **more faithful to pool + 特定領域更強 world prior** → Mode C 沒消失,只是 shift |
+| **F3**:p3_only collapse −31pp | 24/34 是 PP-New → PP-Both;GROUPING_PROMPT 極保守(「Clustering is RARE」)→ gpt-4.1-mini 讀 prompt 更 careful → 於 ambiguous 情況(multi-value 可能性)不 cluster | **P3 LLM alone is backbone-brittle 於光譜兩端**;(S,P) structural key 是 backbone-universal scaffold |
+| **F4**:Zep strict EM −13 但 sEM 只 −8 | Verbose format(qid 5:"Carnatic music" 對但 strict fail)+ 真實 KU failure(qid 2/4:LLM 從 PP-Both 列出兩版本)混合 | Zep flow **對 MAB benchmark 是公平的**(用 MAB 為 Zep 明定的 template);paper 需**同時報 EM + sEM** |
+
+**Zep 的 k=10 caveat**:與其他方法 k=100 不對稱(Zep 官方推薦 k=10);chunk_size=512 已對稱於 mem0/ours。
+
+**Zep 的 k=10 caveat**:與其他方法 k=100 不對稱(Zep 官方推薦 k=10);chunk_size=512 已對稱於 mem0/ours。
+
+**⚠ 2026-07-04 EM 資料 hygiene 修正**:
+- **Zep 32k aggregated file** 有 48/65 has_pair 的 `output` 被壞資料覆蓋(改為 "Answer:" placeholder)但 per-qid `response` 完整正確 → 真實 has_pair EM 33/65(不是 4/65)
+- **mem0+P1 三個 length aggregated files** 也有大量與 per-qid mismatch(6k=42, 32k=33, 64k=33 個),原因是**舊 run 的 aggregated 殘留未更新**;per-qid pool 與 response 內部 consistent,是 source of truth。真實 has_pair EM:6k=34/74(同 agg),32k=25/65(agg 29,per-qid 更嚴),64k=34/66(agg 27,per-qid 更寬)
+- **修正**:`compute_pool_acc_crosstab.py` 改用 per-qid `response` + `parse_output` + `drqa_exact_match_score` 重算 EM 供全 pipeline 一致引用
+- **F_overall.png(舊 line chart)不再引用**,以 v4 crosstab 為準
+
+**⚠ 2026-07-04 matcher 修正**:matcher v3 有 systematic false-negative(bag-of-words rule (iii) 誤 fire) → matcher v4 加 Layer-0 full-fact-substring pre-check;pool state 分桶更精確,詳見 `analysis/compute_m1_m2_m3.py::match_pair_v4`。所有 crosstab 用 v4 重算,ours 64k PP-OldOnly 從 5 → 2,Zep 64k 從 3 → 0,mem0 64k 17 → 15。
+
+**已回答的 open question**(2026-07-04 修正版):
+- E2E gap 主要來自 **pool state 差異(pipeline 是否給對 gt_new)** —— ours PP-New 佔 60-72%(且該 bucket Acc 92-100%);mem0(b) PP-New 只 34-38%(且該 bucket Acc 只 52-56%,rewrite 過的舊 fact 干擾 LLM);Zep 幾乎全 PP-Both(93-97%,Acc 45-61%,依賴 LLM 從 top-10 挑對版本)。
+- 詳見 `results/pool_acc_crosstab.md`(commit 0fa2edc + 2026-07-04 EM patch)。
 
 ### 10.4 現有 figures 一覽(paper_current/figures/)
 

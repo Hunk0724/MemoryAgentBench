@@ -83,7 +83,11 @@ docs/**/gemma_resource/
 # weak-model sp_index per size
 analysis/results/phase0/sp_index_*__gemma3-*.json
 # per-query retrieved JSONs + LLM caches (~571 MB)
-outputs/rag_retrieved/
+outputs/rag_retrieved/*
+# EXCEPT Structure_rag_zep: GX10 path-A (rerun_zep_with_ollama_backbone.py)
+# reads Mac's cached edges/nodes/episodes to swap answer LLM without needing
+# ZEP_API_KEY. Total ~18 MB (300 files × 3 lengths). See gx10_backbone_gotchas §3.2.
+!outputs/rag_retrieved/Structure_rag_zep
 # run logs + update_decision.jsonl (~215 MB)
 docs/**/logs/
 model_cache/

@@ -27,6 +27,7 @@ if not KEY:
 oc = OpenAI(api_key=KEY)
 from methods.phase2_query import (conditional_structural_routing, _grouping_cache_key,
                                   _text, _id, _ordinal, _drop_older, _subject_consistent)
+from analysis.compute_m1_m2_m3 import match_pair  # matcher v4 (Mac canonical; Task A alignment)
 
 UID = "context_0_factconsolidation_sh_6k"
 gt = {r["query_id"]: r for r in json.load(open("analysis/results/sh_6k_RUN_gt.json"))}
@@ -97,9 +98,10 @@ for size in SIZES:
         cands = [{"id": h.id, "memory": h.payload.get("data"),
                   "metadata": {"triple": h.payload.get("triple"), "ordinal": h.payload.get("ordinal")}} for h in hitpts]
         retained, hit = resolve(cands, wq, cache); hits += hit
-        pool = [(_text(it) or "").lower() for it in retained]
-        new_in = any(subj in ln and wb(nv, ln) for ln in pool)
-        old_in = any(subj in ln and wb(ov, ln) for ln in pool)
+        pool = [(_text(it) or "") for it in retained]   # match_pair v4 norms internally
+        gt_new_fact, gt_old_fact = r["gt_fact_text"], r["old_fact_text"]
+        new_in = any(match_pair(ln, gt_new_fact, gt_old_fact, "new") for ln in pool)
+        old_in = any(match_pair(ln, gt_new_fact, gt_old_fact, "old") for ln in pool)
         e = bool(R.get(q, {}).get("exact_match"))
         iso = new_in and not old_in
         cls = ("isolated" if e else "drag") if iso else \

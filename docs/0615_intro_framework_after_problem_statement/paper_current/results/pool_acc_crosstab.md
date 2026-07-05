@@ -16,12 +16,18 @@
 
 | Method | PP-New Acc/N ↑ | PP-Both Acc/N | PP-OldOnly Acc/N ↓ | PP-Missing Acc/N ↓ | E2E Acc/N ↑ |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| ours (full P3+P5) | 52/53 (98%) | 14/19 (74%) | 1/1 (100%) | 1/1 (100%) | 68/74 (92%) |
-| ours (no_p5) | 51/52 (98%) | 16/20 (80%) | 1/1 (100%) | 1/1 (100%) | 69/74 (93%) |
-| ours (struct) | 47/47 (100%) | 18/25 (72%) | 2/2 (100%) | 0/0 | 67/74 (91%) |
-| ours (p3_only) | 48/48 (100%) | 21/24 (88%) | 1/1 (100%) | 1/1 (100%) | **71/74 (96%)** |
-| (b) mem0+P1 | 15/27 (56%) | 5/12 (42%) | 4/15 (27%) | 10/20 (50%) | 34/74 (46%) |
-| Zep (k=10) | 0/0 | 44/72 (61%) | 2/2 (100%) | 0/0 | 46/74 (62%) |
+| ours | 52/53 (98%) | 17/21 (81%) | 0/0 | 0/0 | 69/74 (93%) |
+| ours (no P3) | 47/47 (100%) | 20/27 (74%) | 0/0 | 0/0 | 67/74 (91%) |
+| ours (no struct) | 49/49 (100%) | 22/25 (88%) | 0/0 | 0/0 | **71/74 (96%)** |
+| (b) mem0+P1 | 25/27 (93%) | 9/12 (75%) | 0/15 (0%) | 0/20 (0%) | 34/74 (46%) |
+| Zep (k=10) | 0/0 | 46/74 (62%) | 0/0 | 0/0 | 46/74 (62%) |
+| ours (+P5) [appendix] | 53/54 (98%) | 15/20 (75%) | 0/0 | 0/0 | 68/74 (92%) |
+| [4.1-mini] ours | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| [4.1-mini] ours (no P3) | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| [4.1-mini] ours (no struct) | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| [4.1-mini] (b) mem0+P1 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| [4.1-mini] Zep (k=10) | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| [4.1-mini] ours (+P5) [appendix] | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 
 ### Wrong-qid list per bucket (for Tier 2 case study,length = 6k)
 
@@ -29,12 +35,18 @@
 
 | Method | PP-New wrong | PP-Both wrong | PP-OldOnly wrong | PP-Missing wrong |
 | :--- | :--- | :--- | :--- | :--- |
-| ours (full P3+P5) |  5 | 7, 30, 33, 48, 70 | — | — |
-| ours (no_p5) |  5 | 30, 33, 48, 70 | — | — |
-| ours (struct) |  — | 30, 33, 48, 58, 66, 70, 81 | — | — |
-| ours (p3_only) |  — | 30, 33, 70 | — | — |
-| (b) mem0+P1 |  19, 23, 35, 39, 55, 56, ... (+6) | 12, 15, 28, 30, 45, 50, 86 | 14, 33, 34, 52, 57, 60, ... (+5) | 5, 7, 17, 26, 38, 40, ... (+4) |
+| ours |  5 | 30, 33, 48, 70 | — | — |
+| ours (no P3) |  — | 30, 33, 48, 58, 66, 70, 81 | — | — |
+| ours (no struct) |  — | 30, 33, 70 | — | — |
+| (b) mem0+P1 |  41, 53 | 12, 50, 86 | 1, 14, 16, 33, 34, 42, ... (+9) | 5, 6, 7, 13, 17, 20, ... (+14) |
 | Zep (k=10) |  — | 0, 1, 7, 12, 16, 19, ... (+22) | — | — |
+| ours (+P5) [appendix] |  5 | 7, 30, 33, 48, 70 | — | — |
+| [4.1-mini] ours |  — | — | — | — |
+| [4.1-mini] ours (no P3) |  — | — | — | — |
+| [4.1-mini] ours (no struct) |  — | — | — | — |
+| [4.1-mini] (b) mem0+P1 |  — | — | — | — |
+| [4.1-mini] Zep (k=10) |  — | — | — | — |
+| [4.1-mini] ours (+P5) [appendix] |  — | — | — | — |
 
 
 ## 32k
@@ -45,12 +57,18 @@
 
 | Method | PP-New Acc/N ↑ | PP-Both Acc/N | PP-OldOnly Acc/N ↓ | PP-Missing Acc/N ↓ | E2E Acc/N ↑ |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| ours (full P3+P5) | 40/40 (100%) | 14/21 (67%) | 0/3 (0%) | 1/1 (100%) | 55/65 (85%) |
-| ours (no_p5) | 39/40 (98%) | 16/21 (76%) | 1/3 (33%) | 1/1 (100%) | 57/65 (88%) |
-| ours (struct) | 32/32 (100%) | 19/29 (66%) | 0/3 (0%) | 1/1 (100%) | 52/65 (80%) |
-| ours (p3_only) | 39/39 (100%) | 17/22 (77%) | 1/3 (33%) | 1/1 (100%) | **58/65 (89%)** |
-| (b) mem0+P1 | 12/22 (55%) | 7/14 (50%) | 4/11 (36%) | 6/18 (33%) | 29/65 (45%) |
-| Zep (k=10) | 0/1 (0%) | 4/62 (6%) | 0/1 (0%) | 0/1 (0%) | 4/65 (6%) |
+| ours | 39/40 (98%) | 17/22 (77%) | 0/2 (0%) | 1/1 (100%) | 57/65 (88%) |
+| ours (no P3) | 32/32 (100%) | 19/30 (63%) | 0/2 (0%) | 1/1 (100%) | 52/65 (80%) |
+| ours (no struct) | 39/39 (100%) | 18/23 (78%) | 0/2 (0%) | 1/1 (100%) | **58/65 (89%)** |
+| (b) mem0+P1 | 21/22 (95%) | 4/14 (29%) | 0/11 (0%) | 0/18 (0%) | 25/65 (38%) |
+| Zep (k=10) | 1/2 (50%) | 32/62 (52%) | 0/1 (0%) | 0/0 | 33/65 (51%) |
+| ours (+P5) [appendix] | 40/40 (100%) | 14/22 (64%) | 0/2 (0%) | 1/1 (100%) | 55/65 (85%) |
+| [4.1-mini] ours | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| [4.1-mini] ours (no P3) | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| [4.1-mini] ours (no struct) | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| [4.1-mini] (b) mem0+P1 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| [4.1-mini] Zep (k=10) | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| [4.1-mini] ours (+P5) [appendix] | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 
 ### Wrong-qid list per bucket (for Tier 2 case study,length = 32k)
 
@@ -58,12 +76,18 @@
 
 | Method | PP-New wrong | PP-Both wrong | PP-OldOnly wrong | PP-Missing wrong |
 | :--- | :--- | :--- | :--- | :--- |
-| ours (full P3+P5) |  — | 16, 27, 32, 46, 51, 68, 88 | 8, 9, 21 | — |
-| ours (no_p5) |  70 | 16, 27, 32, 46, 51 | 8, 9 | — |
-| ours (struct) |  — | 2, 3, 27, 32, 51, 65, ... (+4) | 8, 9, 21 | — |
-| ours (p3_only) |  — | 27, 32, 46, 51, 88 | 8, 9 | — |
-| (b) mem0+P1 |  15, 26, 52, 66, 70, 74, ... (+4) | 2, 3, 23, 53, 60, 62, 79 | 20, 21, 27, 41, 46, 56, 67 | 5, 17, 42, 47, 49, 54, ... (+6) |
-| Zep (k=10) |  46 | 0, 1, 2, 3, 5, 8, ... (+52) | 61 | 21 |
+| ours |  70 | 16, 27, 32, 46, 51 | 8, 9 | — |
+| ours (no P3) |  — | 2, 3, 21, 27, 32, 51, ... (+5) | 8, 9 | — |
+| ours (no struct) |  — | 27, 32, 46, 51, 88 | 8, 9 | — |
+| (b) mem0+P1 |  70 | 2, 3, 16, 23, 32, 53, ... (+4) | 1, 9, 20, 21, 27, 41, ... (+5) | 5, 17, 31, 33, 38, 42, ... (+12) |
+| Zep (k=10) |  21 | 0, 1, 2, 8, 9, 16, ... (+24) | 61 | — |
+| ours (+P5) [appendix] |  — | 16, 21, 27, 32, 46, 51, 68, 88 | 8, 9 | — |
+| [4.1-mini] ours |  — | — | — | — |
+| [4.1-mini] ours (no P3) |  — | — | — | — |
+| [4.1-mini] ours (no struct) |  — | — | — | — |
+| [4.1-mini] (b) mem0+P1 |  — | — | — | — |
+| [4.1-mini] Zep (k=10) |  — | — | — | — |
+| [4.1-mini] ours (+P5) [appendix] |  — | — | — | — |
 
 
 ## 64k
@@ -74,12 +98,18 @@
 
 | Method | PP-New Acc/N ↑ | PP-Both Acc/N | PP-OldOnly Acc/N ↓ | PP-Missing Acc/N ↓ | E2E Acc/N ↑ |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| ours (full P3+P5) | 35/38 (92%) | 21/23 (91%) | 4/5 (80%) | 0/0 | **60/66 (91%)** |
-| ours (no_p5) | 35/38 (92%) | 21/23 (91%) | 4/5 (80%) | 0/0 | **60/66 (91%)** |
-| ours (struct) | 30/30 (100%) | 25/33 (76%) | 3/3 (100%) | 0/0 | 58/66 (88%) |
-| ours (p3_only) | 34/36 (94%) | 20/25 (80%) | 4/5 (80%) | 0/0 | 58/66 (88%) |
-| (b) mem0+P1 | 13/25 (52%) | 6/15 (40%) | 6/17 (35%) | 2/9 (22%) | 27/66 (41%) |
-| Zep (k=10) | 1/1 (100%) | 34/62 (55%) | 1/3 (33%) | 0/0 | 36/66 (55%) |
+| ours | 35/38 (92%) | 24/26 (92%) | 1/2 (50%) | 0/0 | **60/66 (91%)** |
+| ours (no P3) | 30/30 (100%) | 28/36 (78%) | 0/0 | 0/0 | 58/66 (88%) |
+| ours (no struct) | 34/36 (94%) | 23/28 (82%) | 1/2 (50%) | 0/0 | 58/66 (88%) |
+| (b) mem0+P1 | 25/25 (100%) | 9/17 (53%) | 0/15 (0%) | 0/9 (0%) | 34/66 (52%) |
+| Zep (k=10) | 1/1 (100%) | 35/65 (54%) | 0/0 | 0/0 | 36/66 (55%) |
+| ours (+P5) [appendix] | 35/38 (92%) | 24/26 (92%) | 1/2 (50%) | 0/0 | **60/66 (91%)** |
+| [4.1-mini] ours | 30/31 (97%) | 23/34 (68%) | 0/1 (0%) | 0/0 | 53/66 (80%) |
+| [4.1-mini] ours (no P3) | 31/32 (97%) | 21/33 (64%) | 0/1 (0%) | 0/0 | 52/66 (79%) |
+| [4.1-mini] ours (no struct) | 2/2 (100%) | 25/64 (39%) | 0/0 | 0/0 | 27/66 (41%) |
+| [4.1-mini] (b) mem0+P1 | 28/28 (100%) | 27/34 (79%) | 0/3 (0%) | 0/1 (0%) | 55/66 (83%) |
+| [4.1-mini] Zep (k=10) | 1/1 (100%) | 22/65 (34%) | 0/0 | 0/0 | 23/66 (35%) |
+| [4.1-mini] ours (+P5) [appendix] | 23/23 (100%) | 28/43 (65%) | 0/0 | 0/0 | 51/66 (77%) |
 
 ### Wrong-qid list per bucket (for Tier 2 case study,length = 64k)
 
@@ -87,12 +117,18 @@
 
 | Method | PP-New wrong | PP-Both wrong | PP-OldOnly wrong | PP-Missing wrong |
 | :--- | :--- | :--- | :--- | :--- |
-| ours (full P3+P5) |  0, 40, 91 | 85, 86 | 20 | — |
-| ours (no_p5) |  0, 40, 91 | 85, 86 | 20 | — |
-| ours (struct) |  — | 0, 8, 18, 20, 85, 86, 91, 97 | — | — |
-| ours (p3_only) |  0, 91 | 5, 37, 47, 85, 86 | 20 | — |
-| (b) mem0+P1 |  0, 16, 19, 22, 32, 40, ... (+6) | 5, 47, 50, 57, 58, 73, ... (+3) | 1, 9, 24, 29, 60, 61, ... (+5) | 11, 20, 31, 35, 59, 79, 95 |
-| Zep (k=10) |  — | 0, 1, 4, 7, 8, 9, ... (+22) | 23, 24 | — |
+| ours |  0, 40, 91 | 85, 86 | 20 | — |
+| ours (no P3) |  — | 0, 8, 18, 20, 85, 86, 91, 97 | — | — |
+| ours (no struct) |  0, 91 | 5, 37, 47, 85, 86 | 20 | — |
+| (b) mem0+P1 |  — | 50, 53, 57, 58, 88, 93, 97, 98 | 1, 2, 4, 9, 29, 38, ... (+9) | 11, 18, 20, 26, 31, 35, ... (+3) |
+| Zep (k=10) |  — | 0, 1, 4, 7, 8, 9, ... (+24) | — | — |
+| ours (+P5) [appendix] |  0, 40, 91 | 85, 86 | 20 | — |
+| [4.1-mini] ours |  45 | 1, 5, 23, 37, 38, 40, ... (+5) | 18 | — |
+| [4.1-mini] ours (no P3) |  30 | 1, 8, 20, 23, 32, 37, ... (+6) | 18 | — |
+| [4.1-mini] ours (no struct) |  — | 0, 1, 6, 9, 11, 12, ... (+33) | — | — |
+| [4.1-mini] (b) mem0+P1 |  — | 47, 53, 55, 61, 79, 93, 98 | 14, 20, 40 | 30 |
+| [4.1-mini] Zep (k=10) |  — | 0, 2, 4, 6, 7, 9, ... (+37) | — | — |
+| [4.1-mini] ours (+P5) [appendix] |  — | 1, 8, 20, 22, 23, 26, ... (+9) | — | — |
 
 
 ---
@@ -103,34 +139,52 @@
 
 **What** — pool state 分佈 + in-bucket accuracy(per row):
 
-- **ours (full P3+P5)**: PP-New 佔 72% (Acc-in-bucket = 98%), PP-Both 佔 26% (Acc-in-bucket = 74%), PP-OldOnly 1%, PP-Missing 1%; **E2E = 91.9%**
-- **ours (no_p5)**: PP-New 佔 70% (Acc-in-bucket = 98%), PP-Both 佔 27% (Acc-in-bucket = 80%), PP-OldOnly 1%, PP-Missing 1%; **E2E = 93.2%**
-- **ours (struct)**: PP-New 佔 64% (Acc-in-bucket = 100%), PP-Both 佔 34% (Acc-in-bucket = 72%), PP-OldOnly 3%, PP-Missing 0%; **E2E = 90.5%**
-- **ours (p3_only)**: PP-New 佔 65% (Acc-in-bucket = 100%), PP-Both 佔 32% (Acc-in-bucket = 88%), PP-OldOnly 1%, PP-Missing 1%; **E2E = 95.9%**
-- **(b) mem0+P1**: PP-New 佔 36% (Acc-in-bucket = 56%), PP-Both 佔 16% (Acc-in-bucket = 42%), PP-OldOnly 20%, PP-Missing 27%; **E2E = 45.9%**
-- **Zep (k=10)**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 97% (Acc-in-bucket = 61%), PP-OldOnly 3%, PP-Missing 0%; **E2E = 62.2%**
+- **ours**: PP-New 佔 72% (Acc-in-bucket = 98%), PP-Both 佔 28% (Acc-in-bucket = 81%), PP-OldOnly 0%, PP-Missing 0%; **E2E = 93.2%**
+- **ours (no P3)**: PP-New 佔 64% (Acc-in-bucket = 100%), PP-Both 佔 36% (Acc-in-bucket = 74%), PP-OldOnly 0%, PP-Missing 0%; **E2E = 90.5%**
+- **ours (no struct)**: PP-New 佔 66% (Acc-in-bucket = 100%), PP-Both 佔 34% (Acc-in-bucket = 88%), PP-OldOnly 0%, PP-Missing 0%; **E2E = 95.9%**
+- **(b) mem0+P1**: PP-New 佔 36% (Acc-in-bucket = 93%), PP-Both 佔 16% (Acc-in-bucket = 75%), PP-OldOnly 20%, PP-Missing 27%; **E2E = 45.9%**
+- **Zep (k=10)**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = 62%), PP-OldOnly 0%, PP-Missing 0%; **E2E = 62.2%**
+- **ours (+P5) [appendix]**: PP-New 佔 73% (Acc-in-bucket = 98%), PP-Both 佔 27% (Acc-in-bucket = 75%), PP-OldOnly 0%, PP-Missing 0%; **E2E = 91.9%**
+- **[4.1-mini] ours**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
+- **[4.1-mini] ours (no P3)**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
+- **[4.1-mini] ours (no struct)**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
+- **[4.1-mini] (b) mem0+P1**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
+- **[4.1-mini] Zep (k=10)**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
+- **[4.1-mini] ours (+P5) [appendix]**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
 
 ### Length = 32k
 
 **What** — pool state 分佈 + in-bucket accuracy(per row):
 
-- **ours (full P3+P5)**: PP-New 佔 62% (Acc-in-bucket = 100%), PP-Both 佔 32% (Acc-in-bucket = 67%), PP-OldOnly 5%, PP-Missing 2%; **E2E = 84.6%**
-- **ours (no_p5)**: PP-New 佔 62% (Acc-in-bucket = 98%), PP-Both 佔 32% (Acc-in-bucket = 76%), PP-OldOnly 5%, PP-Missing 2%; **E2E = 87.7%**
-- **ours (struct)**: PP-New 佔 49% (Acc-in-bucket = 100%), PP-Both 佔 45% (Acc-in-bucket = 66%), PP-OldOnly 5%, PP-Missing 2%; **E2E = 80.0%**
-- **ours (p3_only)**: PP-New 佔 60% (Acc-in-bucket = 100%), PP-Both 佔 34% (Acc-in-bucket = 77%), PP-OldOnly 5%, PP-Missing 2%; **E2E = 89.2%**
-- **(b) mem0+P1**: PP-New 佔 34% (Acc-in-bucket = 55%), PP-Both 佔 22% (Acc-in-bucket = 50%), PP-OldOnly 17%, PP-Missing 28%; **E2E = 44.6%**
-- **Zep (k=10)**: PP-New 佔 2% (Acc-in-bucket = 0%), PP-Both 佔 95% (Acc-in-bucket = 6%), PP-OldOnly 2%, PP-Missing 2%; **E2E = 6.2%**
+- **ours**: PP-New 佔 62% (Acc-in-bucket = 98%), PP-Both 佔 34% (Acc-in-bucket = 77%), PP-OldOnly 3%, PP-Missing 2%; **E2E = 87.7%**
+- **ours (no P3)**: PP-New 佔 49% (Acc-in-bucket = 100%), PP-Both 佔 46% (Acc-in-bucket = 63%), PP-OldOnly 3%, PP-Missing 2%; **E2E = 80.0%**
+- **ours (no struct)**: PP-New 佔 60% (Acc-in-bucket = 100%), PP-Both 佔 35% (Acc-in-bucket = 78%), PP-OldOnly 3%, PP-Missing 2%; **E2E = 89.2%**
+- **(b) mem0+P1**: PP-New 佔 34% (Acc-in-bucket = 95%), PP-Both 佔 22% (Acc-in-bucket = 29%), PP-OldOnly 17%, PP-Missing 28%; **E2E = 38.5%**
+- **Zep (k=10)**: PP-New 佔 3% (Acc-in-bucket = 50%), PP-Both 佔 95% (Acc-in-bucket = 52%), PP-OldOnly 2%, PP-Missing 0%; **E2E = 50.8%**
+- **ours (+P5) [appendix]**: PP-New 佔 62% (Acc-in-bucket = 100%), PP-Both 佔 34% (Acc-in-bucket = 64%), PP-OldOnly 3%, PP-Missing 2%; **E2E = 84.6%**
+- **[4.1-mini] ours**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
+- **[4.1-mini] ours (no P3)**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
+- **[4.1-mini] ours (no struct)**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
+- **[4.1-mini] (b) mem0+P1**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
+- **[4.1-mini] Zep (k=10)**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
+- **[4.1-mini] ours (+P5) [appendix]**: PP-New 佔 0% (Acc-in-bucket = —), PP-Both 佔 100% (Acc-in-bucket = —), PP-OldOnly 0%, PP-Missing 0%; **E2E = 0.0%**
 
 ### Length = 64k
 
 **What** — pool state 分佈 + in-bucket accuracy(per row):
 
-- **ours (full P3+P5)**: PP-New 佔 58% (Acc-in-bucket = 92%), PP-Both 佔 35% (Acc-in-bucket = 91%), PP-OldOnly 8%, PP-Missing 0%; **E2E = 90.9%**
-- **ours (no_p5)**: PP-New 佔 58% (Acc-in-bucket = 92%), PP-Both 佔 35% (Acc-in-bucket = 91%), PP-OldOnly 8%, PP-Missing 0%; **E2E = 90.9%**
-- **ours (struct)**: PP-New 佔 45% (Acc-in-bucket = 100%), PP-Both 佔 50% (Acc-in-bucket = 76%), PP-OldOnly 5%, PP-Missing 0%; **E2E = 87.9%**
-- **ours (p3_only)**: PP-New 佔 55% (Acc-in-bucket = 94%), PP-Both 佔 38% (Acc-in-bucket = 80%), PP-OldOnly 8%, PP-Missing 0%; **E2E = 87.9%**
-- **(b) mem0+P1**: PP-New 佔 38% (Acc-in-bucket = 52%), PP-Both 佔 23% (Acc-in-bucket = 40%), PP-OldOnly 26%, PP-Missing 14%; **E2E = 40.9%**
-- **Zep (k=10)**: PP-New 佔 2% (Acc-in-bucket = 100%), PP-Both 佔 94% (Acc-in-bucket = 55%), PP-OldOnly 5%, PP-Missing 0%; **E2E = 54.5%**
+- **ours**: PP-New 佔 58% (Acc-in-bucket = 92%), PP-Both 佔 39% (Acc-in-bucket = 92%), PP-OldOnly 3%, PP-Missing 0%; **E2E = 90.9%**
+- **ours (no P3)**: PP-New 佔 45% (Acc-in-bucket = 100%), PP-Both 佔 55% (Acc-in-bucket = 78%), PP-OldOnly 0%, PP-Missing 0%; **E2E = 87.9%**
+- **ours (no struct)**: PP-New 佔 55% (Acc-in-bucket = 94%), PP-Both 佔 42% (Acc-in-bucket = 82%), PP-OldOnly 3%, PP-Missing 0%; **E2E = 87.9%**
+- **(b) mem0+P1**: PP-New 佔 38% (Acc-in-bucket = 100%), PP-Both 佔 26% (Acc-in-bucket = 53%), PP-OldOnly 23%, PP-Missing 14%; **E2E = 51.5%**
+- **Zep (k=10)**: PP-New 佔 2% (Acc-in-bucket = 100%), PP-Both 佔 98% (Acc-in-bucket = 54%), PP-OldOnly 0%, PP-Missing 0%; **E2E = 54.5%**
+- **ours (+P5) [appendix]**: PP-New 佔 58% (Acc-in-bucket = 92%), PP-Both 佔 39% (Acc-in-bucket = 92%), PP-OldOnly 3%, PP-Missing 0%; **E2E = 90.9%**
+- **[4.1-mini] ours**: PP-New 佔 47% (Acc-in-bucket = 97%), PP-Both 佔 52% (Acc-in-bucket = 68%), PP-OldOnly 2%, PP-Missing 0%; **E2E = 80.3%**
+- **[4.1-mini] ours (no P3)**: PP-New 佔 48% (Acc-in-bucket = 97%), PP-Both 佔 50% (Acc-in-bucket = 64%), PP-OldOnly 2%, PP-Missing 0%; **E2E = 78.8%**
+- **[4.1-mini] ours (no struct)**: PP-New 佔 3% (Acc-in-bucket = 100%), PP-Both 佔 97% (Acc-in-bucket = 39%), PP-OldOnly 0%, PP-Missing 0%; **E2E = 40.9%**
+- **[4.1-mini] (b) mem0+P1**: PP-New 佔 42% (Acc-in-bucket = 100%), PP-Both 佔 52% (Acc-in-bucket = 79%), PP-OldOnly 5%, PP-Missing 2%; **E2E = 83.3%**
+- **[4.1-mini] Zep (k=10)**: PP-New 佔 2% (Acc-in-bucket = 100%), PP-Both 佔 98% (Acc-in-bucket = 34%), PP-OldOnly 0%, PP-Missing 0%; **E2E = 34.8%**
+- **[4.1-mini] ours (+P5) [appendix]**: PP-New 佔 35% (Acc-in-bucket = 100%), PP-Both 佔 65% (Acc-in-bucket = 65%), PP-OldOnly 0%, PP-Missing 0%; **E2E = 77.3%**
 
 ---
 

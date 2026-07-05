@@ -45,7 +45,18 @@
 | GX10 | gemma3:4b | FC-SH | 6k | b = mem0 destructive (ours extract) | **0/74** | — | 10/100 | ~1 | ~0 | 5.5 GB | 07-04 | 💥 collapse(同上,弱模型 update 崩壊)|
 | GX10 | gemma3:12b | FC-SH | 6k | b = mem0 destructive (ours extract) | 44/74 | — | 64/100 | ~19(write) | ~1 | 11 GB | 07-04 | update 開始能用,但仍 ≪ struct 73/99 |
 | GX10 | gemma3:27b | FC-SH | 6k | b = mem0 destructive (ours extract) | 36/74 | — | 53/100 | ~45(write) | ~2 | 19.7 GB | 07-04 | 非單調回落(<12b);仍 ≪ struct 65/90 |
-| GX10 | gemma3:{1b,4b,12b,27b} | FC-SH | 6k | ours_p3_only (LLM only) | _TBD_ | | | | | | | 預期 top-100 過載仍弱 |
+| GX10 | gemma3:1b | FC-SH | 6k | ours_p3_only (LLM only) | **7/74** | — | 26/100 | ~1 | ~90 | ~2 GB | 07-05 | 💥 grouping 0/100 空(1B 產不出合法 JSON);≪ struct 29 |
+| GX10 | gemma3:4b | FC-SH | 6k | ours_p3_only (LLM only) | 26/74 | — | 50/100 | ~1 | ~4 | 5.5 GB | 07-05 | grouping 4/100;≪ struct 54(num_ctx=8192 clean)|
+| GX10 | gemma3:12b | FC-SH | 6k | ours_p3_only (LLM only) | 46/74 | — | 72/100 | ~1 | ~22 | 11 GB | 07-05 | grouping 10/100;≪ struct 73(對照 Mac 4o-mini p3_only 71)|
+| GX10 | gemma3:27b | FC-SH | 6k | ours_p3_only (LLM only) | 27/74 | — | 52/100 | ~1 | ~46 | 19.7 GB | 07-05 | 反常 <12b:grouping 53/100 但亂合併+override → 27<46 |
+| GX10 | gemma3:1b | FC-SH | 6k | (a) vanilla mem0 (native) | _—/74_ | — | _—_ | ~0 | ~0 | ~2 GB | 07-05 | 💥 total collapse:無 results.json(native 抽取+更新皆崩)|
+| GX10 | gemma3:4b | FC-SH | 6k | (a) vanilla mem0 (native) | 0/74 | — | 10/100 | ~2(write) | ~0 | 5.5 GB | 07-05 | collapse(=b 0)|
+| GX10 | gemma3:12b | FC-SH | 6k | (a) vanilla mem0 (native) | 32/74 | — | 53/100 | ~15(write) | ~0 | 11 GB | 07-05 | **< b 44**(native 抽取疊加傷害)|
+| GX10 | gemma3:27b | FC-SH | 6k | (a) vanilla mem0 (native) | 28/74 | — | 44/100 | ~55(write) | ~0 | 19.7 GB | 07-05 | **< b 36**(a<b = extraction 貢獻)|
+| GX10 | gemma3:1b | FC-SH | 6k | Zep (k=10, ollama answer) | 12/74 | — | 19/100 | (Mac cached graph) | ~0 | ~2 GB | 07-05 | path A:reuse Mac edges + gemma answer;弱 answer-LLM 崩 |
+| GX10 | gemma3:4b | FC-SH | 6k | Zep (k=10, ollama answer) | 17/74 | — | 31/100 | (cached) | ~1 | 5.5 GB | 07-05 | |
+| GX10 | gemma3:12b | FC-SH | 6k | Zep (k=10, ollama answer) | 43/74 | — | 57/100 | (cached) | ~4 | 11 GB | 07-05 | ≈ (b) 44;Zep graph=Mac 4o-mini(fairness caveat)|
+| GX10 | gemma3:27b | FC-SH | 6k | Zep (k=10, ollama answer) | 35/74 | — | 54/100 | (cached) | ~9 | 19.7 GB | 07-05 | ≈ (b) 36;≪ ours 65/70 |
 | — | | | | | | | | | | | | |
 | Mac | gpt-4o-mini | FC-SH | 6k | ours (full P3+P5) | 68/74 | — | 93/100 | ~35 | ~40 | (API) | 07-04 | ✅ post-9ced3c2 |
 | Mac | gpt-4o-mini | FC-SH | 6k | ours_struct | 67/74 | — | 91/100 | reuse | ~2 | (API) | 07-04 | ✅ post-9ced3c2(Δ -2)|
