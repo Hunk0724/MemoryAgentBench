@@ -94,6 +94,17 @@ Aggregate = mean over `has_pair` 分母。**Single deterministic run**(temp=0),�
 
 僅用於 **Zep 於強 backbone** 的 format artifact 揭露:strict EM 若因 Zep template 回傳 verbose(如 "Answer: X. The user later stated Y with timestamp Z.")而 fail,sEM 用 substring 檢查 gt_new 是否含在 response 內。**同時報告 EM + sEM**,避免對 Zep 過度懲罰(§4.4 F4)。
 
+#### §M-1. Pool state 分析的 dataset 前置條件
+
+Pool state 分析建立於 **FC-SH 的 MQUAKE-derived counterfactual pair 特性**:每題 has_pair 附**事實層級的 ground truth**(`gt_fact_text`、`old_fact_text` 完整字串,以及 `gt_seq`、`old_seq` 於對話中的 chunk 序位)。我們對 memory pool 文字 — 即實際送進 answer LLM 的內容(ours 為 `memories_str`;(b) mem0+P1 為 `retrieved_memories`;Zep 為 `edges` string)— 用 **matcher v4**([`../matcher_specification.md`](../matcher_specification.md))與 `gt_fact_text` / `old_fact_text` 字面比對,分為 PP-New / PP-Both / PP-OldOnly / PP-Missing 四桶。此分析的合法性建立於 MQUAKE 於對話特定 chunk 位置**嵌入兩版本 verbatim**、且 mid-tier backbone(gpt-4o-mini)的 P1 extraction 傾向保留 fact surface form。
+
+#### §M-2. Matcher precision 與限制
+
+- **Matcher v4 於 gpt-4o-mini × 64k 上經 25 題人工 audit,0 confirmed false-negative**([`../results/matcher_audit_gpt4omini_64k.md`](../results/matcher_audit_gpt4omini_64k.md))。原 [`../matcher_specification.md §3.1`](../matcher_specification.md) 記錄的「9/15 mem0+P1 FN」為過度保守之歷史估計,已 verified 為過時。
+- Matcher 只判 fact **是否在 pool 中**(presence),不判 answer LLM **是否使用**(usage)。Pool 有 gt_new 而答案錯的情況(PP-New wrong / PP-Both wrong)以 case study 個別檢視。
+- **Weak-backbone(gemma3 1B/4B)**:extraction 字面偏離 GT(store 事實數 370 vs 12B/27B 450),matcher precision 必然下降,**不呈現 pool state 分析**,僅報 E2E EM。**gemma3 12B/27B 可信**(pool-missing=0、store 與 27B 重疊 99%)。
+- **6k / 32k 於 gpt-4o-mini 的同等 audit**、**gpt-4.1-mini 於 64k 的 audit** 為 future work,pattern 預期一致。
+
 ### 4.1.5 Implementation details
 
 | Item | Value | 備註 |
@@ -252,31 +263,63 @@ Intro §第 6 段承諾的可證偽預測:**ours 相對現有流派的優勢,應
 | **W2. Extraction inconsistency** | 抽取(weak)| Weak backbone(1B)| new/old 抽成不同措辭 → 分不同 (S,P) → 未併群 → pool 留兩版 |
 | **W3. Reader garbage** | Reader(weak)| 1B 特有 | 生成能力不足,吐 non-answer(如 echo prompt timestamp)|
 
-### 4.4.1 Case A — Write-time destructive damage(mem0 於弱 backbone)
+### 4.4.1 Case A — Write-time destructive damage(mem0 於 mid backbone)
 
-**qid=1 @ 64k, 4o-mini**
+Ob2 mem0 write-time failure taxonomy(詳見 [`../results/mem0_event_taxonomy_gt4o.md`](../results/mem0_event_taxonomy_gt4o.md))將 gpt-4o-mini × 64k 上 24 個 PP-OldOnly + PP-Missing wrong qids 歸為兩大機制:
 
-- Question:*Who is the author of Hard Times?*
-- gt_new(counterfactual)= "Martin Luther King Jr."
-- gt_old(real world)= "Charles Dickens"
+- **M1. World-prior override(46%)**:LLM UPDATE 於世界先驗強的情境下靜默拒絕反事實新版
+- **M2. Coupled-update architectural fragility(54%)**:UPDATE prompt output completeness bug、cross-item cascading / name confusion 導致新版丟失
+
+#### M1 canonical — qid=1 Hard Times(gpt-4o-mini × 64k)
+
+- **Q**:*Who is the author of Hard Times?*
+- **gt_new**(counterfactual)= "Martin Luther King Jr."(seq=2335)/ **gt_old** = "Charles Dickens"(seq=687)
+
+**Pipeline trace(mem0+P1)**:
+
+| Stage | Evidence |
+|:--|:--|
+| P1 extraction | 兩版本 fact 都正確抽出(P1 cache hash `62d52389fb6f` 含 MLK Jr. 版本)|
+| mem0 event log 於 subject | `ADD (chunk 18, id 34dca530) "...is Charles Dickens."` → `UPDATE (chunk 43) "...is Charles Dickens."` → `UPDATE (chunk 64) "...is Charles Dickens."` — **內容始終為 Dickens** |
+| Chunk 64 event 分佈 | **0 ADD** / 4 UPDATE / 4 DELETE / 1 subject-UPDATE — 該 chunk mem0 對 36 candidate facts 全數靜默 rejection |
+| MLK Jr. 於全 event log | 只出現於其他 predicate(如 "MLK Jr. died in the city of Memphis"),**Hard Times 相關全無** |
+| 結論(by elimination) | gt_new 於 P1 cache 有 + mem0 event log 無 = **必然於 UPDATE prompt 被 LLM 判 keep-unchanged / NONE** |
+| Pool state / Response | PP-OldOnly / "Charles Dickens" ❌ |
+
+**同 qid @ ours main 4o-mini**:P1 抽同兩版本、conservative-ADD 寫入時**兩版都保留**;query-time 檢索含兩版 → (S,P) 結構分群同 subject `hard_times` + predicate `has_author` → argmax(seq) 選 MLK Jr.(較晚 seq) → PP-New → "Martin Luther King Jr." ✅
+
+**同 qid @ (b) mem0+P1 4.1-mini**:F1(§4.3.1)顯示 (b) 於強 backbone 大幅恢復,此 qid 於 gpt-4.1-mini 上 UPDATE LLM 準確判「應 ADD 新版」→ 兩版共存 → 答對(Case C §4.4.3 的 backbone-flip 對照)。
+
+#### M2 canonical — qid=2 David Farragut(**M2a: Missing ADD**)
+
+- **Q**:*What is the country of citizenship of David Farragut?*
+- **gt_new** = `Denmark` / **gt_old** = `USA`(real)
 
 **Pipeline trace**:
+- gt_old 於 chunk 21 `ADD (id 49996dcf) "...is USA."`
+- gt_new 於 chunk 61 遞交 mem0(P1 cache 有此 fact)- chunk 61 event 分佈:20 ADD / 5 UPDATE / **4 DELETE / 14 silently NONE**
+- Subject 相關 event 於 chunk 61:`DELETE (id 49996dcf) memory="David Farragut is a citizen of Denmark."`
+- **DELETE event 的 memory 欄位是 "Denmark" 不是 "USA"** — LLM 判「新版 Denmark 應該把舊 USA memory 刪掉」但 output list 中**沒有補上獨立 ADD Denmark 指示** → 兩版皆失
+- Pool state / Response:PP-OldOnly / "USA" ❌(world-prior 補救)
 
-| Stage | (b) mem0+P1 @ 4o-mini |
-|:--|:--|
-| P1 extraction | 兩版本 fact 都正確抽出(cache 內含 MLK Jr. 與 Dickens)|
-| mem0 UPDATE LLM 判定 | **誤判為「MLK Jr. 應 UPDATE 掉 Dickens」→ ADD MLK Jr., DELETE Dickens** |
-| Bank state | 只留 MLK Jr.?—— 反 case:實際觀察 bank 只留 Dickens(順序或後續 UPDATE 造成新 fact 又被刪) |
-| retrieved_memories(top-100)| Charles Dickens(gt_old)|
-| Pool state | **PP-OldOnly** |
-| Answer LLM response | "Answer: Charles Dickens" |
-| EM | ❌ |
+#### M2 canonical — qid=4 Joseph Mitchell(**M2c: Name confusion**)
 
-**同 qid @ 4.1-mini**:mem0 UPDATE LLM 準確判為「這是 ADD,不是 UPDATE」→ 兩版都保 → PP-Both/New → 答對(§4.4.3 Case D 的 backbone-flip)。
+- **Q**:*What is the country of citizenship of Joseph Mitchell?*
+- **gt_new** = `UK` / **gt_old** = `USA`
 
-**對比 ours @ 4o-mini 同 qid**:P1 抽同兩版本、寫入時**保留全部**;query-time 檢索 top-100 含兩版,(S,P) 結構分群 = 同 subject `hard_times` 同 predicate `has_author`,argmax(ord) 選 MLK Jr.(較晚) → PP-New → "Martin Luther King Jr." → ✅。
+**Pipeline trace**:
+- P1 cache 兩版都有(hashes `5d9745d46627`、`63179fd9feff`)
+- **mem0 全 130 chunks × 全 events 對 "Joseph Mitchell" verbatim 出現次數 = 0**
+- 但同 predicate 有 `ADD "Joseph Smith is a citizen of USA."`(人名近似)
+- **推論**:LLM UPDATE 收到「Joseph Mitchell」新 fact,retrieval 找到「Joseph Smith USA」為 candidate;LLM output 對 Joseph Smith 判 NONE,**沒有為 Joseph Mitchell 補上獨立 ADD 指示** → subject 於 mem0 write-time 被靜默合併理解為 Joseph Smith,新事實全然丟失
+- Pool state / Response:PP-OldOnly / "USA" ❌
 
-**Implication**:mem0 的 write-time destructive damage 於弱 backbone 是主要失敗來源;ours 的 non-destructive faithful writes + query-time deterministic argmax 直接 dodge 此 failure mode。
+**Implication for paper narrative**:
+- **M1** = intro §3 [17] ConflictBank + [3] LightMem §5.6 quote 的實證。強世界先驗於 mid-tier gpt-4o-mini 已足呈現此現象(不需 weak backbone)。
+- **M2** = intro §5-6 coupled-update paradigm 架構性脆弱的實證。單一 LLM UPDATE prompt output 一旦 completeness 有 bug,不可逆。
+- **ours 的 non-destructive faithful writes + query-time deterministic argmax 直接 dodge 兩機制**。
+
+**⚠ Rigor 限制**:mem0 event log 僅記錄成功 side-effect operations(ADD/UPDATE/DELETE),不記錄 LLM NONE decisions 或 raw prompt output。我們透過 P1 cache + event log 對照,**by elimination** 建立 gt_new 未被 store 的因果鏈。若欲直接讀出 LLM 每 candidate 的具體 decision,需 patch mem0 UPDATE 路徑加 logging,列 future work(paper 附錄誠實揭露)。
 
 ### 4.4.2 Case B — Zep retrieval-layer freeze(Zep 於弱 backbone)
 

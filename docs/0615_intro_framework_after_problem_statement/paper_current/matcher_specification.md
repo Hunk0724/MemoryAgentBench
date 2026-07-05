@@ -119,19 +119,27 @@ def normalize(s):
 
 ---
 
-## §3 已知 limitation(paper 需誠實說明)
+### 3.1 Residual false-negative(64k audit,**2026-07-05 update**)
 
-### 3.1 Residual false-negative(64k audit)
+**2026-07-05 update**:先前表列「ours 2/2、mem0+P1 9/15」為 v3 → v4 遷移期的**保守歷史估計**(基於 aggregated file 而非 canonical per-qid + `extract_pool_texts` 分項比對),已 stale。
 
-在 v4 之後,仍有 method-dependent 剩餘 false-negative:
+**2026-07-05 完整 v4 audit**(gpt-4o-mini × 64k has_pair N=66,方法 = ours main + (b) mem0+P1;掃全部 PP-OldOnly + PP-Missing wrong qids,共 25 題;deep check = 檢查 `subject + new_object` 是否同時出現於同一 pool 條目內):
 
-| Method | 64k v3 FN | 64k v4 FN | 剩餘原因 |
+| Method | PP-OldOnly + PP-Missing wrong qids | Confirmed FN | 備註 |
 | :--- | :---: | :---: | :--- |
-| ours (no_p5) | 5/5 (100%) | 2/2 | pool text 用 phase2 rephrase 過的縮寫版,gt_fact_text 完整字串不 substring 匹配 |
-| mem0+P1 | 11/17 (65%) | 9/15 | mem0 抽取的 fact 可能 truncated / paraphrased,gt_fact_text 不匹配 |
-| Zep (k=10) | 3/3 (100%) | 0/0 | Zep edges 保留完整原句,v4 substring 完全捕捉 |
+| ours main | 1(qid=20) | **0** | qid=20 為 D-flag(benchmark 缺陷),非 matcher FN |
+| (b) mem0+P1 | 24 | **0** | 22 個為 write-time destructive damage、2 個為 D-flag(qid=18, 20)|
+| Zep (k=10) | — | 0 | Zep edges 保留完整原句,v3 期已 0/0 FN |
 
-**方向**:v5 可加更寬鬆 Layer-0(如 `gt_answer` 附近 ≤10 token 內 stem 高命中判為 match),但可能引入 false positive。**v4 目前是 rigor / recall 的合理平衡**。
+**結論**:matcher v4 於 gpt-4o-mini × 64k 上**目前 0 個 confirmed false-negative**;歷史 9/15 估計已 verified 為過度悲觀。**Pool state 分析可安全作為 aggregate attribution 使用**。
+
+**⚠ 尚需人工 double-check 的殘餘不確定**:
+- 25 題的分類為 script 產出(見 `results/matcher_audit_gpt4omini_64k.md`),paper defence 前建議人工複查 5-10 題確認。
+- **未 audit 範圍**:PP-Both wrong 桶(8 題 mem0 + 若干 ours 於 PP-Both 錯)為 answer LLM 側機制(Mode C 或 ambiguity),非 matcher 問題,不影響 matcher precision。
+- **未 audit 長度**:6k / 32k 尚未同等 audit;pattern 預期一致(matcher v4 於同 backbone、同 pool_key 上表現一致),但 paper defence 前 recommended 補做。
+- **未 audit backbone**:gpt-4.1-mini × 64k、gemma3 12B/27B × 6k 未做同等 audit;weak-backbone(1B/4B)已於 `weak_model_6k_analysis.md §2` 明確標為 pool_state 不可用。
+
+**方向**:v5 目前**無迫切需要**;若 6k / 32k audit 找出 FN 案例再議。
 
 ### 3.2 對 weak-model regime 的 shape
 
