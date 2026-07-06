@@ -325,14 +325,14 @@ Intro §第 6 段承諾的可證偽預測:**ours 相對現有流派的優勢,應
 | Method | 6k 4o-mini | **6k 4.1-mini** | Δ | 32k 4o-mini | **32k 4.1-mini** | Δ |
 |:--|--:|--:|--:|--:|--:|--:|
 | **ours (main)** = struct+P3+argmax | 69/74 (93%) | **66/74 (89%)** | **−4pp** | 57/65 (88%) | **51/65 (79%)** | **−9pp** |
-| **(b) mem0+P1** | 34/74 (46%) | **56/74 (76%)** | **+30pp** ★ | 25/65 (38%) | ☐ *pending* | ☐ |
+| **(b) mem0+P1** | 34/74 (46%) | **56/74 (76%)** | **+30pp** ★ | 25/65 (38%) | **53/65 (82%)** ★ | **+43pp** ★★ |
 | Zep(k=10) | 46/74 (62%) | 46/74 (62%) | flat | 33/65 (51%) | 20/65 (31%) | **−20pp** |
-| **Gap(ours − (b))** | +47pp | **+13pp** | closed 72% | +49pp | ☐ | ☐ |
+| **Gap(ours − (b))** | +47pp | **+13pp** | closed 72% | +49pp | **−3pp** | **gap COLLAPSED**(b 微勝 3pp)|
 | **Gap(ours − Zep)** | +31pp | +27pp | closed 13% | +37pp | +48pp | *widened* |
 
 **Overall EM(N=100)**:
 - 6k gpt-4.1-mini:ours (main) **92/100**、b 81/100、Zep 72/100
-- 32k gpt-4.1-mini:ours (main) **86/100**、Zep v2 55/100(用 episode-stability probe 修正後,見 §M-3)
+- 32k gpt-4.1-mini:**b 87/100(best)**、ours (main) 86/100、Zep v2 55/100(用 episode-stability probe 修正後,見 §M-3)
 
 **Cost**(gpt-4.1-mini,實測 2026-07-06/07):
 - 6k × 3 methods total ≈ $1.20(ours main $1.0、b $0.13、Zep ~$0.08)
@@ -343,7 +343,7 @@ Intro §第 6 段承諾的可證偽預測:**ours 相對現有流派的優勢,應
   - **ours (main)** 於 gpt-4.1-mini **兩長度都僅微降**(6k -4pp、32k -9pp)—— **main 方法對 backbone 換代 robust**
   - **(b)** 6k 大跳 +30pp,呼應 §4.3.1 64k 的 +32pp;write-time LLM 判斷準確度提升是主因
   - **Zep** 6k flat,32k 反下滑 -20pp;呼應 §4.4.4 Case D 的 verbose format artifact 與 §4.3.1 gpt-4.1-mini x 64k 的 EM=35% strict-EM 崩;strong-tier answer LLM 回填 timestamps 產生 verbose 響應時 strict EM 崩壞
-- **Where**:gap ours-b 於 6k 收窄至 +13pp(從 +47pp 收 72%),與 §4.3.1 於 64k 的 gap 收斂 pattern 一致;於 32k 待補 b 完成
+- **Where**:gap ours-b 於 6k 收窄至 +13pp(從 +47pp 收 72%);**於 32k/64k 更反轉為 −3pp(mem0 微勝)**,與 §4.3.1 pattern 一致——強 backbone 上 write-time judge 不再是負債
 - **Implication**:
   - **Intro §第 6 段的 falsifiable prediction 於 6k / 32k / 64k 三長度全部成立** —— gap 隨 backbone 增強而收斂,兩個 (b) / Zep 對比對象都印證
   - **"KU 是 query-time 問題" 立場穩固**:main method 對 backbone 換代 robust(-4pp / -9pp),而 (b)、Zep 對 backbone 敏感度大(±20-30pp)。我方 struct + P3 + argmax 提供的 query-time resolution 是**跨 backbone 通用的 scaffold**,不因 backbone 換代而崩
@@ -358,19 +358,19 @@ Intro §第 6 段承諾的可證偽預測:**ours 相對現有流派的優勢,應
 | Length | ours@4o | mem0@4o | **gap@4o** | ours@4.1 | mem0@4.1 | **gap@4.1** |
 |:--|--:|--:|--:|--:|--:|--:|
 | 6k | 93% | 46% | **+47pp** | 89% | 76% | **+13pp** |
-| 32k | 88% | 38% | **+49pp** | 78% | ☐ *pending* | ☐ |
+| 32k | 88% | 38% | **+49pp** | 79% | 82% | **−3pp** ★ 反轉 |
 | 64k | 91% | 52% | **+39pp** | 80% | 83% | **−3pp** ★ 反轉 |
 
 Zep 對照(strict EM):gpt-4o-mini 62/51/55%,gpt-4.1-mini **62/31/35%** — Zep 於強 backbone 各長度反而**下滑**(verbose hedge,§4.4.4),不因強 backbone 受益。
 
 **Observation**:
-- **What**:於 **mid backbone(gpt-4o-mini)**,ours−mem0 gap 於 3 長度皆 **+39~+49pp**(穩定、巨大);於 **strong backbone(gpt-4.1-mini)**,gap 從 6k 的 +13pp 收斂、於 64k **反轉為 −3pp**(mem0 反超)。
+- **What**:於 **mid backbone(gpt-4o-mini)**,ours−mem0 gap 於 3 長度皆 **+39~+49pp**(穩定、巨大);於 **strong backbone(gpt-4.1-mini)**,gap 從 6k 的 +13pp,於 **32k/64k 皆反轉為 −3pp**(mem0 反超 ours;crossover 落在 6k–32k 間,mem0 於 32k 更以 82% 為當長度最佳)。
 - **Where/Why**:strong backbone 的 write-time UPDATE judge 準確度提升 → mem0 pool-state 修復(§4.3.2),destructive damage 大幅消失;ours 的 struct+argmax 本就 backbone-agnostic 無從再獲益,反受 P3 過保守小幅拖累(§4.4.3)。
 - **Implication**(誠實揭露 + thesis 強化):
   - **頭條(6k 單一長度)ours 全勝;此表補上 32k/64k + 強 backbone 下 gap 收斂甚至反轉**——不藏。
   - **反轉恰印證 thesis 而非推翻**:優勢是 **backbone 判斷力的函數**;強 backbone 上 write-time 派的單一失效點(LLM judge)不再是負債,damage 消失是預期內的,正是可證偽預測的核心。
   - **強化受限部署動機**:cost-constrained 部署用不起 gpt-4.1-mini(§4.3.3 cost ~$1.2 vs 4o ~$0.6-0.8),實務上 mid-tier 的 **+39~+49pp(ours 恆勝)** 才是 deployment reality。
-- ☐ **待補**:mem0+P1 @ gpt-4.1-mini × 32k(補完 gap@4.1 中段;預期落在 +13pp 與 −3pp 之間,即隨 length 增長而收斂)。
+- ✅ **已補(2026-07-07,本機)**:mem0+P1 @ gpt-4.1-mini × 32k = 53/65 (82%)。gap@4.1 三點完整:**+13pp(6k)→ −3pp(32k)→ −3pp(64k)**,crossover 落在 6k–32k 間(ours 僅於最短的 6k 勝)。
 
 ---
 

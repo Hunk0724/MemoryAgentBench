@@ -1,7 +1,7 @@
 # narrative_experiment_evidence/ — 寫 Experiments 章節的唯一入口
 
 > **為什麼有這個資料夾**:`figures_current/` 有 ~30 張圖、`results/` 有十幾份 md,新舊敘事混在一起 → 寫論述時找不到「現在這條論證鏈**用得到**的那幾張」。這裡把它們**收斂**成一包:論證鏈骨架 + 每個節點的 canonical 圖/表 + 明確的「別用」清單。
-> **怎麼用**:照 §A 的論證鏈,一節一節看 §B 的 evidence map,圖在 [`figures/`](figures/),數字一律回引 [`../results/objective_data_consolidated.md`](../results/objective_data_consolidated.md)(canonical)。
+> **怎麼用**:照 §A 的論證鏈,一節一節看 §B 的 evidence map,圖在 [`figures/`](figures/),數字一律回引 [`../results/objective_data_consolidated.md`](../results/objective_data_consolidated.md)(canonical)。**寫論述前先看 [`COVERAGE.md`](COVERAGE.md)** — 每個 backbone × 長度跑過哪些 method 的常駐清單。
 > **狀態**:2026-07-07 更新。thesis-first 定案(backbone spectrum 當 Figure 1)。**gpt-4.1-mini 6k/32k 已補跑並驗證**(6k:main 66/mem0 56/Zep 46;32k:main 51/Zep 20)。**E-A 頭條圖待重生**為單一 6k 6-tier(見 §C + §E-2 決策)。
 
 ---

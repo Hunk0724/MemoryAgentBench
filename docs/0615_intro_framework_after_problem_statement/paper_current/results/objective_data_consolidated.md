@@ -76,8 +76,8 @@
 
 > **4.1-mini 補跑現況(2026-07-07 全數已跑、aggregated EM 驗證)**:
 > - **6k**:ours-main(no_p5)**66/74 (89%)**、(b) mem0+P1 **56/74 (76%)**、Zep **46/74 (62%)**;ours-full(+P5)61/74 (82%) 供 ablation 對照。
-> - **32k**:ours-main **51/65 (78%)**、Zep **20/65 (31%)**;(b) mem0+P1 32k **pending**。
-> - **gap 收斂實測(pp)**:ours−mem0 於 6k 從 4o 的 +47pp → 4.1 的 **+13pp**(收 72%);對應 64k 的 +39pp → −3pp。**「gap 隨 backbone 增強而收斂」於 6k/64k 兩長度成立**。
+> - **32k**:ours-main **51/65 (79%)**、(b) mem0+P1 **53/65 (82%,當長度最佳)**、Zep **20/65 (31%)**。
+> - **gap@4.1 三點完整(ours−mem0,pp)**:**+13pp(6k)→ −3pp(32k)→ −3pp(64k)**;對照 @ 4o 恆 **+39~+49pp**。**gap 隨 backbone 增強而收斂,crossover 落在 6k–32k 間(ours 僅於 6k 勝)**——與可證偽預測方向一致。
 > - per-qid crosstab 重算(canonical)待補;Zep aggregated 檔於 64k 已知損壞,一律以 per-qid 為準。
 
 > 格式 `count (%)`,分母固定 74。`—` = 未跑;`☐ 待補` = 本輪規劃補跑。
