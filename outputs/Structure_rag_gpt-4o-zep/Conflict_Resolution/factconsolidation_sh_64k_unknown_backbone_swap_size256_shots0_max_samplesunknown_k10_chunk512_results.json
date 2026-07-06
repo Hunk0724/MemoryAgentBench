@@ -1,0 +1,15 @@
+{
+  "agent_config": {
+    "name": "Structure_rag_gpt-4o-zep",
+    "source_zep_run": "outputs/gpt-4o-mini-zep/Conflict_Resolution/factconsolidation_sh_64k_unknown_in65536_size256_shots0_max_samples1_k10_chunk512_results.json",
+    "diagnostic": "backbone_answer_swap",
+    "answer_llm_backbone": "gpt-4o",
+    "num_ctx": 8192,
+    "temperature": 0.0
+  },
+  "data": [],
+  "averaged_metrics": {
+    "exact_match": 0.0,
+    "substring_exact_match": 0.0
+  }
+}

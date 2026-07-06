@@ -16,20 +16,28 @@ cd $REPO_ROOT
 set -a; [[ -f .env ]] && . .env; set +a
 [[ -n "${RUN_OAI_KEY_NAME:-}" ]] && export OPENAI_API_KEY="${!RUN_OAI_KEY_NAME}" && echo "[key] \$$RUN_OAI_KEY_NAME ...${OPENAI_API_KEY: -6}"
 [[ -z "${OPENAI_API_KEY:-}" ]] && { echo "[key] ERROR none"; exit 1; }
+# Zep key: .env has ZEP_API_KEY_A/B/C; select via RUN_ZEP_KEY_NAME (default: ZEP_API_KEY_A)
+RUN_ZEP_KEY_NAME="${RUN_ZEP_KEY_NAME:-ZEP_API_KEY_A}"
+export ZEP_API_KEY="${!RUN_ZEP_KEY_NAME}"
+[[ -z "$ZEP_API_KEY" ]] && { echo "[zep-key] ERROR \$$RUN_ZEP_KEY_NAME empty"; exit 1; }
+echo "[zep-key] \$$RUN_ZEP_KEY_NAME ...${ZEP_API_KEY: -6}"
 
 L="${1:?need L}"
 LOGROOT=docs/0615_intro_framework_after_problem_statement/logs
 DCONF=configs/data_conf/Conflict_Resolution
-AG=Structure_rag_gpt-4o-mini-zep_512_temp0.yaml
-OUTDIR=outputs/gpt-4o-mini-zep
+MODEL_TAG="${MODEL_TAG:-gpt-4o-mini}"
+AGDIR="configs/agent_conf/RAG_Agents/${MODEL_TAG}"
+AG="Structure_rag_${MODEL_TAG}-zep_512_temp0.yaml"
+OUTDIR="outputs/${MODEL_TAG}-zep"
+LOG_SFX=""; [ "$MODEL_TAG" != "gpt-4o-mini" ] && LOG_SFX="_${MODEL_TAG}"
 rm -f "$OUTDIR/Conflict_Resolution/"*sh_${L}*results*.json
 mkdir -p "$LOGROOT"
 
-echo "================ Zep FC-SH ${L} (chunk512 temp0) ================"; date
-python main.py --agent_config "configs/agent_conf/RAG_Agents/gpt-4o-mini/$AG" \
+echo "================ Zep FC-SH ${L} (${MODEL_TAG}, chunk512 temp0) ================"; date
+python main.py --agent_config "$AGDIR/$AG" \
   --dataset_config "$DCONF/Factconsolidation_sh_${L}.yaml" --force \
-  > "$LOGROOT/run_zep_${L}.log" 2>&1
-echo "[zep ${L}] exit=$?"; date
+  > "$LOGROOT/run_zep_${L}${LOG_SFX}.log" 2>&1
+echo "[zep ${L} ${MODEL_TAG}] exit=$?"; date
 python3 -c "
 import json, glob
 from collections import defaultdict

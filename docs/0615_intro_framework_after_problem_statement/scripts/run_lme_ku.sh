@@ -27,7 +27,7 @@ if [[ -n "${RUN_OAI_KEY_NAME:-}" ]]; then
 fi
 [[ -z "${OPENAI_API_KEY:-}" ]] && { echo "[key] ERROR: no OPENAI_API_KEY"; exit 1; }
 
-METHOD="${1:?need method (ours|b|vanilla)}"
+METHOD="${1:?need method (ours|ours_no_p5|b|vanilla)}"
 LIMIT="${2:-0}"
 JUDGE="${3:-0}"
 SHARD="${SHARD:-0}"
@@ -37,7 +37,7 @@ SHARDSFX=""
 
 DATA=$LME_DATA_DIR/longmemeval_s_cleaned.json
 JUDGE_PY=$REPO_ROOT/llm_based_eval/evaluate_qa_official.py
-SUBDS="longmemeval_s_ku${SHARDSFX}"
+SUBDS="longmemeval_s_ku_${METHOD}${SHARDSFX}"  # method-specific: prevents concurrent-launch race on history__<subds>__*.db glob
 AGDIR=configs/agent_conf/RAG_Agents/gpt-4o-mini
 LOGROOT=docs/0615_intro_framework_after_problem_statement/logs
 HYPDIR=docs/0615_intro_framework_after_problem_statement/lme_hyps
@@ -63,6 +63,25 @@ if [[ "$METHOD" == "ours" ]]; then
   export MEM0_QUERY_MODE=phase2
   rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_GROUPING_CACHE" "$MEM0_CONFLICT_CACHE" \
          "$MEM0_SUBJECT_CACHE" "$MEM0_EXTRACTION_CACHE" "$MEM0_TRIPLE_CACHE"
+elif [[ "$METHOD" == "ours_no_p5" ]]; then
+  # ABLATION: SAME as ours (phase2: structural + P3 LLM identity grouping),
+  # BUT env MEM0_P5_SKIP=1 forces argmax on every group regardless of P5.
+  # Reuses ours' P1 extraction cache so the WRITE is identical -> isolates
+  # query-time P5 impact only. Aligned with FC-SH run_fc_sh.sh ours_no_p5 branch.
+  AG=Structure_rag_gpt-4o-mini-mem0_512_openai_unified_no_p5.yaml
+  export MEM0_TRIPLE_MODEL=gpt-4o-mini
+  export MEM0_EXTRACTION_CACHE="$PC/extraction_ours${SHARDSFX}.json"  # reuse ours' (held-fixed)
+  export MEM0_TRIPLE_CACHE="$PC/triple_ours_no_p5${SHARDSFX}.json"
+  export MEM0_SUBJECT_CACHE="$PC/subject_ours_no_p5${SHARDSFX}.json"
+  export MEM0_GROUPING_CACHE="$PC/grouping_ours_no_p5${SHARDSFX}.json"
+  export MEM0_CONFLICT_CACHE="$PC/conflict_ours_no_p5${SHARDSFX}.json"    # unused with SKIP but kept for consistency
+  export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/lme_ours_no_p5${SHARDSFX}_p1"
+  export MEM0_ADD_MODE=phase0_structural
+  export MEM0_QUERY_MODE=phase2
+  export MEM0_P5_SKIP=1
+  # Do NOT rm extraction cache — held-fixed reuse from ours; rm other caches for clean run
+  rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_GROUPING_CACHE" "$MEM0_CONFLICT_CACHE" \
+         "$MEM0_SUBJECT_CACHE" "$MEM0_TRIPLE_CACHE"
 elif [[ "$METHOD" == "b" ]]; then
   AG=Structure_rag_gpt-4o-mini-mem0_512_openai_unified_dest.yaml
   export MEM0_TRIPLE_MODEL=gpt-4o-mini
