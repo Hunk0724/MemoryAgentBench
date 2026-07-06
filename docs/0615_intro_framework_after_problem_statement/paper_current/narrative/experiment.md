@@ -610,6 +610,10 @@ Ob2 mem0 write-time failure taxonomy(詳見 [`../results/mem0_event_taxonomy_gt4
 
 ## 4.6 Generalization — LongMemEval-KU(**draft,待 baseline runs 完 fill 數字**)
 
+> **★ 決策(2026-07-07):LME-KU 目前只採用 `ours (main)` + `vanilla mem0`**(有 cost/log 記錄、可信)。
+> - **`ours (+P5)` 於 LME-KU 待觀察、暫不採用**:原 **83.3%(65/78)結果無 log 記錄**(cost log 未取、run 條件未存)→ **需重跑**後才可引用。在此之前本節所有 +P5 相關數字、+12.8pp 發現與 outcome-B decomposition **僅作 pending 參考,不進 paper claim**。
+> - **本節主基準 = ours (main) 70.5% vs vanilla 67.9%(gap +2.6pp → outcome C)**;`(b) mem0+P1` 進行中、`Zep` deferred(§4.6.7)。
+
 ### 4.6.1 動機:為何做 LME-KU?
 
 **FC-SH 是 world-fact counterfactual dataset**(以 MQuAKE 反事實編輯對建構),觸發 LLM 於 write-time judgment 時**世界先驗 override(M1)**;於 Ob2 mem0 event-log audit 上,gpt-4o-mini × 64k 的 24 wrong PP-OldOnly/PP-Missing qids 中 **46% 屬 M1**(見 [`results/mem0_event_taxonomy_gt4o.md`](../results/mem0_event_taxonomy_gt4o.md))。
@@ -636,9 +640,9 @@ Reviewer 必然質疑:**「你們於 FC-SH 上的優勢,是否僅來自這個 da
 - **Dataset**:LongMemEval-s cleaned (Wu et al., ICLR 2025);78 個 `knowledge-update` queries(篩自 500 sessions,verified 2026-07-04)
 - **Session length**:~115K tokens per instance
 - **Backbones**:gpt-4o-mini(mid tier,primary);pending gpt-4o(strong)
-- **Methods**(同 FC-SH 4-method set + ours (+P5) 對照):
-  - **ours (main)** = struct + P3 + argmax(NO P5)= script `ours_no_p5`
-  - **ours (+P5)** = main + P5 conflict-type(對照組;script `ours`)
+- **Methods**(**目前採用**:ours (main) + vanilla mem0;(b) 進行中;**+P5 待重跑、Zep deferred**):
+  - **ours (main)** = struct + P3 + argmax(NO P5)= script `ours_no_p5` ✅ 採用
+  - **ours (+P5)** = main + P5 conflict-type(script `ours`)— **⚠ 待觀察·暫不採用於 LME-KU;原 83.3% 無 log 記錄 → 需重跑**
   - **(b) mem0+P1** = coupled write-time destructive(共用 ours' P1 extraction cache)
   - **(a) vanilla mem0** = coupled write-time + native mem0 extractor
   - **Zep** = decoupled write-time labeling(k=10)
@@ -648,41 +652,70 @@ Reviewer 必然質疑:**「你們於 FC-SH 上的優勢,是否僅來自這個 da
 
 ### 4.6.4 Results — Table 7(gpt-4o-mini backbone,gpt-4o-mini judge)
 
-| Method | LME-KU KU accuracy(N=78)| FC-SH 64k has_pair EM(N=66,參照)| ΔGap(ours main − method)|
-|:--|:-:|:-:|:-:|
-| **ours (main)** = struct+P3+argmax | **55/78 = 70.5%** | 60/66 (90.9%) | — |
-| **ours (+P5)** = main+P5(對照)| **65/78 = 83.3%** ★ | 60/66 (90.9%) | (−12.8pp on LME-KU;on FC-SH ~0) |
-| (a) vanilla mem0 | **53/78 = 67.9%** | — | +2.6pp |
-| (b) mem0+P1 | ☐ 待完成 | 34/66 (52%) | ☐ |
-| Zep(k=10)| ☐ 待完成 | 36/66 (55%) | ☐ |
+| Method | LME-KU KU accuracy(N=78)| Cost(gpt-4o-mini)| FC-SH 64k has_pair EM(N=66,參照)| ΔGap(ours main − method)|
+|:--|:-:|:-:|:-:|:-:|
+| **ours (main)** = struct+P3+argmax | **55/78 = 70.5%** | $1.88 | 60/66 (90.9%) | — |
+| **ours (+P5)** = main+P5 — **⚠ 待重跑(無 log,暫不採用)** | 65/78 = 83.3%(pending 驗證)| (cost log 未取)| 60/66 (90.9%) | (pending) |
+| (a) vanilla mem0 | **53/78 = 67.9%** | $4.13 | — | +2.6pp |
+| (b) mem0+P1 | ☐ 進行中(74/78 hyps) | 進行中 | 34/66 (52%) | ☐ |
+| Zep(k=10)| ☐ deferred(Zep free plan 128k 上限,見 §4.6.7) | — | 36/66 (55%) | ☐ |
 
-> **⚠ 關鍵發現(2026-07-07)**:**P5 conflict-type classifier 於 LME-KU 大幅 +12.8pp,於 FC-SH 卻是 net-negative or zero**(見 §4.5.3 P5 ablation cross-length -1 to -3pp)。**P5 是 task-dependent**:
+**Cost 附註**(gpt-4o-mini pricing:$0.15/M in、$0.60/M out):
+- ours (main):9,561 calls,7.4M in + 1.3M out
+- vanilla:10,466 calls,**17.9M in** + 2.4M out(vanilla mem0 native extraction 於 output verbose → 較多 input tokens 需 quote 對話原文)
+- b(進行中):7,265 calls partial,8.3M in + 3.2M out
+
+> **⚠ 關鍵發現(2026-07-07,待重跑確認)**:「P5 於 LME-KU +12.8pp」此數字**依賴無 log 記錄的 ours(+P5)=83.3%**(見 §決策 banner)→ **需重跑確認後才成立**,在此之前僅作 pending hypothesis、不進 paper claim。若確認,則 **P5 是 task-dependent**:
 > - **FC-SH** = world-fact 反事實 = 97% freshness,P5 分 3-way 誤判 FRESHNESS 為 COMPLEMENTARY → keep-all 傷害
 > - **LME-KU** = 個人 fact,mixed conflict types(FRESHNESS + COMPLEMENTARY + name confusion),P5 幫助 disambiguate
 >
 > **對 §4.5.3 P5 降級決定的影響**:待決,見 §4.6.7。
 
-**Observation placeholder**(對接 §4.6.2 outcome A/B/C):
-- Outcome B 兌現則 LME-KU baseline 應 ~50-55/78(65-70%),gap 縮小至 +15-20pp
-- Outcome A 兌現則 LME-KU baseline ~35-40/78(45-50%),gap 保持 +30-40pp(接近 FC-SH gap)
-- Outcome C 兌現則 baseline ~60+/78(80%+),gap 接近 zero
+> **⚠ 第二個意外發現(2026-07-07)**:**vanilla mem0 於 LME-KU = 67.9%,僅比 ours (main) 70.5% 落後 2.6pp**(遠低於 FC-SH 64k 的 gap +38pp)。**這強烈支持 §4.6.2 outcome C 的解釋**:於 personal-fact 場景無 world-prior 干擾時,vanilla mem0 destructive judgment 大致正確,ours (main) 的 architectural advantage 十分有限。
+>
+> 對比:
+> - **FC-SH 64k**:ours (main) 91% vs vanilla ~3% → gap **+88pp**(vanilla 崩)
+> - **LME-KU**:ours (main) 70.5% vs vanilla 67.9% → gap **+2.6pp**(vanilla 追上)
+> - Δgap = 88 − 2.6 = **~85pp 是 FC-SH 特化貢獻**(M1 world-prior)
+> - Architectural universal 貢獻只 ~2.6pp
+>
+> **這與 §4.6.5 gap decomposition 的預測相反**:原預測 architectural ~15-25pp、world-prior 特化 ~15-24pp。**實際觀察是 architectural ≈ 3pp、world-prior 特化 ≈ 85pp**。等 b 完成再看是否 pattern 一致。
 
-**判讀基準**:如採 ours (main) 70.5% 為對照 → outcome B (mem0 ~55/78) 對應 gap +15pp。如採 ours (+P5) 83.3% 為對照 → outcome B (mem0 ~60/78) 對應 gap +23pp。**這裡的對照選擇影響 gap decomposition 數字**。
+**判讀基準(2026-07-07 定)**:**目前採 ours (main) 70.5% 為對照 → outcome C 兌現**(vanilla 追至 -2.6pp,gap 接近 zero)。ours (+P5) 83.3% 的 outcome-B framing **待重跑驗證後再定**(無 log,見 §決策 banner)。framing 選擇(main=P5 只是 task tool、architectural claim 縮水 vs +P5=method 一部分、架構 claim 保留)影響 narrative 定調,故 **+P5 重跑是決定此 framing 的前置**。
 
 ### 4.6.5 Gap Decomposition(**核心分析**)
 
-若採 outcome B(預測),我們可以做以下**乾淨拆解**:
-
+**原預測(outcome B):**
 ```
 Total advantage on FC-SH (gpt-4o-mini × 64k)  =  +39pp (60/66 vs 34/66)
     ├─ Universal architectural advantage (M2 avoidance)    ≈  LME-KU gap
     └─ FC-SH specific (M1 world-prior avoidance)           =  FC-SH gap − LME-KU gap
 ```
-
 - **若 LME-KU gap ≈ +15pp** → 架構性貢獻 +15pp、world-prior 特化 +24pp
 - **若 LME-KU gap ≈ +25pp** → 架構性貢獻 +25pp、world-prior 特化 +14pp
 
-**此 decomposition 直接反擊「FC-SH 特化 artifact」的 reviewer 質疑**,以量化方式劃分「架構性 universal 貢獻」vs 「dataset-specific 貢獻」。
+**實際觀察(2026-07-07 vanilla + ours main 已跑,b 進行中):**
+
+若採 **ours (main) 為主 method**(canonical per §4.5.3):
+```
+Total advantage on FC-SH 64k (ours main vs vanilla mem0)  =  +88pp (60/66=91% vs 2/66=3%)
+    ├─ Universal architectural advantage (M2 avoidance)    ≈  +2.6pp    (LME-KU gap)
+    └─ FC-SH specific (M1 world-prior avoidance)           ≈  +85pp    (FC−LME gap)
+```
+**Outcome C 兌現**(而非預測的 B):architectural universal 貢獻極小,**優勢主要來自 FC-SH 上避開 world-prior override**。
+
+若採 **ours (+P5) 為對照**:
+```
+Total advantage on FC-SH 64k (ours+P5 vs vanilla)  =  +88pp (91% vs 3%)
+    ├─ Universal architectural advantage                   ≈  +15pp    (LME-KU gap: 83.3-67.9)
+    └─ FC-SH specific + P5-off 兩因素                       ≈  +73pp
+```
+**+P5 讓 outcome 從 C 靠回 B**(architectural ~15pp);但於 FC-SH 上 P5 又是 net-negative(§4.5.3)→ **P5 於哪個 task 該開的問題無法一次解決**。
+
+**Reviewer 質疑處理**:
+- **原設想**:decomposition 直接反擊「FC-SH 特化 artifact」質疑,展示有 universal architectural advantage
+- **實際(等 b + Zep 完成後 finalise)**:outcome C 兌現代表 paper 需要**誠實揭露** architectural advantage 大部分來自 FC-SH 特化;narrative 需 reframe 為「**於 world-prior-heavy KU 場景**(FC-SH-like),ours 為主 method;於 personal-fact KU(LME-KU-like)ours (+P5) 為主 method」
+- 或更簡潔:**FC-SH 主打「架構性優勢於受限部署 backbone」**(6-tier spectrum,§4.2.3 F1),LME-KU 為「generalization 於 mixed-conflict-type domain」(承認 P5 開啟)。
 
 ### 4.6.6 對接 intro 的意涵(**核心 claim tie-in**)
 
@@ -706,6 +739,7 @@ Total advantage on FC-SH (gpt-4o-mini × 64k)  =  +39pp (60/66 vs 34/66)
   - **B** 改 main 定義包含 P5;paper 主敘述改為「P5 於 mixed conflict-type 有用,FC-SH 少量損傷可接受」
   - **C** 保留 main = no P5;paper 誠實揭露 P5 於 LME-KU 有 +12.8pp gain 為 discussion-level 發現,不改 method 定義
   - **證據 anchor**:FC-SH ΔP5 於 4 個 cell(6k/32k/64k × gpt-4o-mini + 64k × gpt-4.1-mini)= -1, -3, 0, -3pp;LME-KU ΔP5 於 gpt-4o-mini × 78 KU = +12.8pp。**方向清晰但決策 pending**。
+  - **★ 前置**:LME-KU 的 +12.8pp 依賴**無 log 記錄的 ours(+P5)=83.3%** → **需先重跑 ours(+P5) @ LME-KU**(帶完整 cost/run log)才能定此 A/B/C 決策(見 §4.6 決策 banner)。
 
 ---
 
