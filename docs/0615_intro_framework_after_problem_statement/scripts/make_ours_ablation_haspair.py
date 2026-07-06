@@ -36,11 +36,12 @@ DATA = {
     "ours (P3 LLM + time argmax)":  [95.9, 89.2, 87.9],
 }
 
-# B&W-safe: unique hatch per method; colour is a light accent (grey / accent).
+# B&W-safe via PURE GREYSCALE fills (no dense hatch — three grey levels print
+# distinctly and read cleaner with only 3 series + on-bar data labels).
 STYLE = {
-    "ours (full)":                  dict(color="#333333", hatch="",   edgecolor="black"),
-    "ours (struct + time argmax)":  dict(color="#BBBBBB", hatch="///", edgecolor="black"),
-    "ours (P3 LLM + time argmax)":  dict(color="#009E73", hatch="xxx", edgecolor="black"),
+    "ours (full)":                  dict(color="#222222", hatch="", edgecolor="black"),
+    "ours (struct + time argmax)":  dict(color="#888888", hatch="", edgecolor="black"),
+    "ours (P3 LLM + time argmax)":  dict(color="#CCCCCC", hatch="", edgecolor="black"),
 }
 
 plt.rcParams.update({"font.size": 11, "font.family": "DejaVu Sans"})
@@ -60,7 +61,7 @@ for i, (method, ys) in enumerate(DATA.items()):
                   edgecolor=STYLE[method]["edgecolor"],
                   linewidth=0.8)
     for xi, y in zip(x + offset, ys):
-        ax.text(xi, y + 0.5, f"{y:.1f}", ha="center", va="bottom",
+        ax.text(xi, y + 0.5, f"{y:.1f}%", ha="center", va="bottom",
                 fontsize=8.5)
 
 ax.set_xticks(x)
@@ -70,13 +71,17 @@ ax.set_ylabel("has_pair EM (%)  ↑")
 ax.set_ylim(74, 100)
 ax.set_yticks([75, 80, 85, 90, 95, 100])
 ax.set_title("FC-SH has_pair — ours ablation (gpt-4o-mini, chunk 512)")
-ax.grid(axis="y", linestyle=":", alpha=0.35)
+ax.grid(axis="y", color="#DDDDDD", linewidth=0.6)
+ax.set_axisbelow(True)
 ax.legend(fontsize=9, loc="lower center", ncol=3,
           bbox_to_anchor=(0.5, -0.26), frameon=False,
           handletextpad=0.5, columnspacing=1.8, handlelength=2.4)
 ax.spines[["top", "right"]].set_visible(False)
 
-for ext in ("png", "pdf"):
-    fig.savefig(FIG / f"F_ours_ablation_haspair.{ext}", dpi=200, bbox_inches="tight")
+PAPER_FIG = REPO / "docs/0615_intro_framework_after_problem_statement/paper_current/figures"
+PAPER_FIG.mkdir(parents=True, exist_ok=True)
+for d in (FIG, PAPER_FIG):
+    for ext in ("png", "pdf"):
+        fig.savefig(d / f"F_ours_ablation_haspair.{ext}", dpi=200, bbox_inches="tight")
+        print(f"-> {d / f'F_ours_ablation_haspair.{ext}'}")
 plt.close(fig)
-print(f"-> F_ours_ablation_haspair.png/pdf @ {FIG}")
