@@ -35,6 +35,7 @@
 | 離散類別但**必須比較幅度** | bar(hatch 區分)| 例如 backbone tier × method |
 | **絕對禁忌** | **無** pie(paper) | pie 留給簡報,不進論文 |
 
+- 做圖可以考慮用 Tahoma font
 ---
 
 ## §4 Figure 必備元素
