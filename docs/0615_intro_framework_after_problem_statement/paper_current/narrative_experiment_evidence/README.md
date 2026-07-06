@@ -37,6 +37,10 @@
 - **Figure(appendix,6-method)**: [`figures/F_pool_diagnostic_ablation.png`](figures/F_pool_diagnostic_ablation.png) — 含 ours 三變體的完整版。
 - **Table**: `objective_data_consolidated.md` §2 Table A(mid 主表)+ [`../results/pool_acc_crosstab.md`](../results/pool_acc_crosstab.md)(canonical cross-tab,mid 3-length + 強端 64k)。
 - **Rigor backing**: [`../results/matcher_audit_gpt4omini_64k.md`](../results/matcher_audit_gpt4omini_64k.md)(matcher v4 0 confirmed FN)。
+- **Zep 支線(pool-state 對 Zep 不適用,改用 bi-temporal)**: [`E-B_zep_ku_selfassessment.md`](E-B_zep_ku_selfassessment.md) — Zep ~98% PP-Both 零鑑別 → 改用自身 KU-resolution 4 桶解釋 E2E(Additive-NoKU 主導 39→77→74%、Resolved-Correct acc 88–100%、6k Backward=world-prior)。
+  - **Figure**: [`figures/F_zep_ku_resolution_6k_32k_64k.png`](figures/F_zep_ku_resolution_6k_32k_64k.png)(2-panel:(a) 分桶 share×length、(b) 各桶 EM×length;line 圖、B&W-safe)。
+  - **Table(canonical)**: [`../results/objective_data_consolidated.md`](../results/objective_data_consolidated.md) **§4B Table D**(4 桶 × 3 length,EM 加總 = canonical Zep E2E)。
+  - **機制/判讀**: [`../results/zep_ku_resolution_bitemporal.md`](../results/zep_ku_resolution_bitemporal.md)。
 
 ### E-C 方法內部:誰在做事 = ablation
 - **Figure(P3 gate,weak)**: [`figures/F_struct_vs_p3_overall_6k.png`](figures/F_struct_vs_p3_overall_6k.png) — struct 之上加 P3 的淨 Δ 隨 backbone 變號(1B −7 → 12B 0 → 27B +4)。★核心遞迴論證。

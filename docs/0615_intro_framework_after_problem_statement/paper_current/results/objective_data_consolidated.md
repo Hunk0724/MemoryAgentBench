@@ -99,6 +99,22 @@
 
 ---
 
+## §4B Table D — Zep bi-temporal KU-resolution decomposition（gpt-4o-mini,has_pair）
+
+> **為何獨立一表**:Zep 的文字 pool-state ~98% PP-Both、零鑑別(見 `matcher_specification.md` §3.4)。Zep 的 KU 行為只能讀 bi-temporal 欄位。本表把 canonical Zep E2E(§2/§4 的 62.2/50.8/54.5)**分解**為 4 桶(handoff-verified)。
+> **canonical 產生**:`python analysis/classify_zep_ku_resolution.py`。**機制與判讀**:[`zep_ku_resolution_bitemporal.md`](zep_ku_resolution_bitemporal.md)。**圖**:`figures/F_zep_ku_resolution_6k_32k_64k.png`。**narrative 掛點**:[`../narrative_experiment_evidence/E-B_zep_ku_selfassessment.md`](../narrative_experiment_evidence/E-B_zep_ku_selfassessment.md)。
+
+| length | Resolved-Correct | Resolved-Backward | **Additive-NoKU** | Other-Ambiguous | overall acc（= §2/§4 canonical）|
+|:--|:--|:--|:--|:--|:--|
+| 6k | 17 (23%), acc 88% | 22 (30%), acc 36% | **29 (39%)**, acc 69% | 6 (8%) | 46/74 = **62.2** |
+| 32k | 6 (9%), acc 100% | 2 (3%) | **50 (77%)**, acc 44% | 4 (6%) | 33/65 = **50.8** |
+| 64k | 11 (17%), acc 100% | 0 (0%) | **49 (74%)**, acc 41% | 5 (8%) | 36/66 = **54.5** |
+
+> NotBothExtracted(6k 0 / 32k 3 / 64k 1)未列(≤5%,檢索 miss 非 KU 決定)。**一致性**:4 桶 + NotBothExtracted 正好 partition canonical has_pair 集,各桶 EM 加總 = overall acc。
+> **引用信心**:Additive-NoKU(headline,保守下界)> Resolved-Correct(handoff+高 acc)> Resolved-Backward 單一數字(matcher over-match 敏感)。
+
+---
+
 ## §5 對不上清單（reconcile ledger,供下次 recompute 核對）
 
 | # | Cell | crosstab v4(canonical)| fc_sh 舊表 | 差 | 判定 |
