@@ -90,9 +90,24 @@ Aggregate = mean over `has_pair` 分母。**Single deterministic run**(temp=0),�
 
 **論述**:ours vs baseline 的 E2E 差距,**主要來自 pool state 分佈的差異**,非 PP-Both 時 answer LLM 的挑選能力(對應 intro §7「乾淨 pool」payoff)。
 
-#### Secondary — sEM(substring EM)
+#### Secondary — correct-sEM(diagnostic only)
 
-僅用於 **Zep 於強 backbone** 的 format artifact 揭露:strict EM 若因 Zep template 回傳 verbose(如 "Answer: X. The user later stated Y with timestamp Z.")而 fail,sEM 用 substring 檢查 gt_new 是否含在 response 內。**同時報告 EM + sEM**,避免對 Zep 過度懲罰(§4.4 F4)。
+**Definition**:
+$$
+\text{correct-sEM}(r) = \mathbb{1}\left[ \text{gt\_new} \subseteq r \right] \cdot \mathbb{1}\left[ \text{gt\_old} \not\subseteq r \right]
+$$
+即 response contains `gt_new_answer` **AND** does not contain `gt_old_answer`。
+
+**Rationale**:
+- **Loose substring sEM(僅檢查 contains gt_new,允許 gt_old 也在)** 於 Zep @ gpt-4.1-mini × 64k 上 audit 顯示,27 個 strict-fail-but-sEM-pass 中 **26 個是 hedge FP**(response 同時列 gt_new + gt_old 用「and」連接)。**loose sEM 因此不採用**。
+- **Correct-sEM 排除 hedge FP**,只保留 true verbose(response 含 gt_new 且明確不列 gt_old)為 pass。
+- Zep @ gpt-4.1-mini × 64k audit:strict EM = 23 → correct-sEM = 24(只差 1 題 qid=6 Shaman King)。**與 strict EM 差距只 +1pp,證明 Zep drop 是真 content fail 非 format artifact**。
+
+**用途**(**diagnostic only**,**不進主表**):
+- Primary metric 一律 strict EM
+- Correct-sEM 僅於**特定 method(如 Zep)於特定 backbone 顯著下降時**用作 diagnostic:
+  - 若 correct-sEM 幾乎不變 → 真 content fail(mechanism 分析)
+  - 若 correct-sEM 大幅高於 strict EM → format artifact(pipeline alignment 問題,誠實 disclose)
 
 #### §M-1. Pool state 分析的 dataset 前置條件
 
@@ -533,7 +548,93 @@ Ob2 mem0 write-time failure taxonomy(詳見 [`../results/mem0_event_taxonomy_gt4
 
 ---
 
-## 4.6 Discussion(paradigm-level synthesis)
+## 4.6 Generalization — LongMemEval-KU(**draft,待 baseline runs 完 fill 數字**)
+
+### 4.6.1 動機:為何做 LME-KU?
+
+**FC-SH 是 world-fact counterfactual dataset**(以 MQuAKE 反事實編輯對建構),觸發 LLM 於 write-time judgment 時**世界先驗 override(M1)**;於 Ob2 mem0 event-log audit 上,gpt-4o-mini × 64k 的 24 wrong PP-OldOnly/PP-Missing qids 中 **46% 屬 M1**(見 [`results/mem0_event_taxonomy_gt4o.md`](../results/mem0_event_taxonomy_gt4o.md))。
+
+Reviewer 必然質疑:**「你們於 FC-SH 上的優勢,是否僅來自這個 dataset 的 counterfactual 特性?」**
+
+**LongMemEval-KU** 提供 controlled experiment:
+- **相同 KU 定義**(current-value KU,對接 intro §Scope Statement)
+- **不同 fact domain**:personal-fact updates(使用者屬性隨對話演變),**LLM 對「Alice 於哪個城市」無明顯世界先驗**
+- **移除 M1 confound**,只保留 M2 系列 write-time judgment failure modes(missing ADD、cross-item confusion、name conflation)
+
+### 4.6.2 Predicted outcomes 對接 mechanism claim
+
+| Outcome | LME-KU gap prediction | 對 paper 敘事的意涵 |
+|:--|:--|:--|
+| **A. 架構性 dominant** | ours 90% / mem0 ~50%,gap 幾乎不縮 | Write-time judgment 於 non-counterfactual 也一樣壞 → **主因是 M2 系列 output completeness / cross-item bugs**,paper 架構性 claim 最強成立 |
+| **B. 混合貢獻**(**最可能**)| ours 90% / mem0 ~70-75%,gap 縮至 +15-20pp | Write-time failure 部分來自 M1(於 FC-SH 兌現),部分來自 M2(於 LME-KU 仍出現)→ paper 可**decompose 優勢**:結構性 15-20pp + world-prior 特化 25-30pp |
+| **C. World-prior dominant** | ours 90% / mem0 85%+,gap ≤ 5pp | World-prior 是 baseline 失敗主因 → paper 需 rethink,承認 FC-SH 特化貢獻大 |
+
+**基於 Ob2 event-log taxonomy(M1=46%,M2=54%)** 我們預測結果 **B**:mem0 於 LME-KU 上應恢復至 ~65-75%(vs FC-SH 46%),但仍低於 ours ~10-20pp。
+
+### 4.6.3 Setup(protocol 對稱於 FC-SH)
+
+- **Dataset**:LongMemEval-s cleaned (Wu et al., ICLR 2025);78 個 `knowledge-update` queries(篩自 500 sessions,verified 2026-07-04)
+- **Session length**:~115K tokens per instance
+- **Backbones**:gpt-4o-mini(mid tier,primary);pending gpt-4o(strong)
+- **Methods**(同 FC-SH 4-method set):
+  - **ours** = identity grouping + temporal argmax(main)
+  - **(b) mem0+P1** = coupled write-time destructive(共用 ours' P1 extraction cache)
+  - **(a) vanilla mem0** = coupled write-time + native mem0 extractor
+  - **Zep** = decoupled write-time labeling(k=10)
+- **Metric**:LongMemEval 官方 gpt-4o-mini judge(`llm_based_eval/evaluate_qa_official.py`)of binary label per query
+- **Pipeline alignment**:所有 methods 於相同 chunker + raw-question retrieval + gen_max=256(對稱 FC-SH audit)
+- **Runner**:`docs/0615_.../scripts/run_lme_ku.sh <method>`(2-shard 平行,per-shard cost log at `logs/cost_lme_<method>_sN.jsonl`)
+
+### 4.6.4 Results — Table 7(待完成)
+
+| Method | LME-KU EM(N=78)| FC-SH 64k has_pair EM(N=66,參照)| ΔGap(ours − method)|
+|:--|:-:|:-:|:-:|
+| **ours (main)** | **65/78 = 83.3%**(previously verified)| 60/66 (91%) | — |
+| (a) vanilla mem0 | ☐ 待完成 | — | ☐ |
+| (b) mem0+P1 | ☐ 待完成 | 34/66 (52%) | ☐ |
+| Zep(k=10)| ☐ 待完成 | 36/66 (55%) | ☐ |
+
+**Observation placeholder**(對接 §4.6.2 outcome A/B/C):
+- Outcome B 兌現則 LME-KU baseline 應 ~50-55/78(65-70%),gap 縮小至 +15-20pp
+- Outcome A 兌現則 LME-KU baseline ~35-40/78(45-50%),gap 保持 +30-40pp(接近 FC-SH gap)
+- Outcome C 兌現則 baseline ~60+/78(80%+),gap 接近 zero
+
+### 4.6.5 Gap Decomposition(**核心分析**)
+
+若採 outcome B(預測),我們可以做以下**乾淨拆解**:
+
+```
+Total advantage on FC-SH (gpt-4o-mini × 64k)  =  +39pp (60/66 vs 34/66)
+    ├─ Universal architectural advantage (M2 avoidance)    ≈  LME-KU gap
+    └─ FC-SH specific (M1 world-prior avoidance)           =  FC-SH gap − LME-KU gap
+```
+
+- **若 LME-KU gap ≈ +15pp** → 架構性貢獻 +15pp、world-prior 特化 +24pp
+- **若 LME-KU gap ≈ +25pp** → 架構性貢獻 +25pp、world-prior 特化 +14pp
+
+**此 decomposition 直接反擊「FC-SH 特化 artifact」的 reviewer 質疑**,以量化方式劃分「架構性 universal 貢獻」vs 「dataset-specific 貢獻」。
+
+### 4.6.6 對接 intro 的意涵(**核心 claim tie-in**)
+
+**若 outcome B 兌現**:
+- **確認 intro §5 的 mechanism claim**(query-time struct + argmax 避開 write-time LLM judgment 所有 failure modes,不僅是 world-prior override)
+- **強化 intro §受限部署段**:即使 personal-fact 場景(無 world-prior 干擾),ours 仍於 gpt-4o-mini 上優於 baselines,證明優勢**不因 dataset 而消失**
+- **對接 intro §Scope Statement**:兩 dataset(FC-SH world-fact + LME-KU personal-fact)覆蓋 KU 定義的兩大類
+
+**若 outcome C 兌現**(worst case):
+- 誠實揭露 architectural 貢獻較小
+- Rework intro emphasize world-prior avoidance 為主要 mechanism
+- 論文仍站得住,但敘事重心調整
+
+### 4.6.7 待決 / future work
+
+- ☐ **LME-KU × gpt-4o × 4 methods**(補齊 backbone spectrum;於 §4.3 gpt-4o × 64k FC-SH 完成後再說)
+- ☐ **LME-KU × gpt-4.1-mini**(檢驗 gap-collapse pattern 於 personal-fact 場景是否成立)
+- ☐ **Longer test set**:LongMemEval-M(medium context,~1M tokens);deferred。
+
+---
+
+## 4.7 Discussion(paradigm-level synthesis)
 
 ☐ **共筆重點**:此節整合 §4.2-4.5 結果,upgrade intro §7 payoff 的「乾淨 pool」為三 paradigm 的 pool representation framework。初擬結構:
 

@@ -1159,12 +1159,34 @@ class AgentWrapper:
             self.client.thread.add_messages(thread_id=thread_id, messages=messages)
             return "Memorized"
         else:
-            # Wait for Zep async processing on first query for this context
-            # (Zep can take >5 min for many chunks; use longer wait for smaller chunks)
+            # Wait for Zep async processing on first query for this context.
+            # Probe-based waiter: sleep 360s initial then poll graph.search;
+            # if empty, sleep 300s more (up to 5 rounds = 25 min extra = 31 min total max).
+            # Fixes silent-empty-retrieval bug: raw sleep(360) is not enough for gpt-4.1-mini
+            # and other slower Zep-server extraction paths; graph.search retry in _search_with_retry
+            # doesn't help because empty-return is not raised as exception.
             if not getattr(self, '_zep_waited_for_context', None) == context_id:
-                wait_seconds = 360  # 6 minutes for async Zep graph processing
-                print(f"\nWaiting {wait_seconds}s for Zep async processing of context {context_id}...")
-                time.sleep(wait_seconds)
+                initial_wait = 360
+                print(f"\nWaiting {initial_wait}s for Zep async processing of context {context_id}...")
+                time.sleep(initial_wait)
+                elapsed = initial_wait
+                for probe in range(6):  # 0..5: initial check + up to 5 extra rounds
+                    try:
+                        probe_res = self.client.graph.search(graph_id=graph_id, query="user", scope='edges', limit=3)
+                        n_edges = len(probe_res.edges) if probe_res and probe_res.edges else 0
+                        if n_edges > 0:
+                            print(f"  Zep graph ready after {elapsed}s (probe found {n_edges} edges)")
+                            break
+                        if probe == 5:
+                            print(f"  WARNING: Zep graph still empty after {elapsed}s; proceeding (results may be 0)")
+                            break
+                        print(f"  Probe {probe+1}/5 at {elapsed}s: graph empty, sleeping 300s more...")
+                        time.sleep(300)
+                        elapsed += 300
+                    except Exception as e:
+                        print(f"  Probe {probe+1}/5 exception ({e.__class__.__name__}): {e}; sleeping 300s more...")
+                        time.sleep(300)
+                        elapsed += 300
                 self._zep_waited_for_context = context_id
 
             memory_construction_time = time.time() - self.agent_start_time
