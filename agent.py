@@ -1160,31 +1160,34 @@ class AgentWrapper:
             return "Memorized"
         else:
             # Wait for Zep async processing on first query for this context.
-            # Probe-based waiter: sleep 360s initial then poll graph.search;
-            # if empty, sleep 300s more (up to 5 rounds = 25 min extra = 31 min total max).
-            # Fixes silent-empty-retrieval bug: raw sleep(360) is not enough for gpt-4.1-mini
-            # and other slower Zep-server extraction paths; graph.search retry in _search_with_retry
-            # doesn't help because empty-return is not raised as exception.
+            # Probe-based waiter with EPISODE STABILITY CHECK: sleep 360s initial
+            # then poll episode count; when count is stable across two consecutive
+            # probes -> graph fully ingested. Up to 8 probes = ~40 min extra.
+            # v2 fix: previous edge-count probe with limit=3 passed silently at 32k
+            # because Zep returned first 3 edges even when only ~10/60 chunks were
+            # processed. Episode count (== graph.add calls) is a direct progress signal.
             if not getattr(self, '_zep_waited_for_context', None) == context_id:
                 initial_wait = 360
                 print(f"\nWaiting {initial_wait}s for Zep async processing of context {context_id}...")
                 time.sleep(initial_wait)
                 elapsed = initial_wait
-                for probe in range(6):  # 0..5: initial check + up to 5 extra rounds
+                last_n_episodes = -1
+                for probe in range(8):  # up to 8 probes after initial wait
                     try:
-                        probe_res = self.client.graph.search(graph_id=graph_id, query="user", scope='edges', limit=3)
-                        n_edges = len(probe_res.edges) if probe_res and probe_res.edges else 0
-                        if n_edges > 0:
-                            print(f"  Zep graph ready after {elapsed}s (probe found {n_edges} edges)")
+                        probe_res = self.client.graph.search(graph_id=graph_id, query="a the of", scope='episodes', limit=200)
+                        n_epis = len(probe_res.episodes) if probe_res and probe_res.episodes else 0
+                        if n_epis > 0 and n_epis == last_n_episodes:
+                            print(f"  Zep graph ready after {elapsed}s (episodes stable at {n_epis})")
                             break
-                        if probe == 5:
-                            print(f"  WARNING: Zep graph still empty after {elapsed}s; proceeding (results may be 0)")
+                        if probe == 7:
+                            print(f"  WARNING: Zep episodes={n_epis} after {elapsed}s (not stabilized after 8 probes); proceeding")
                             break
-                        print(f"  Probe {probe+1}/5 at {elapsed}s: graph empty, sleeping 300s more...")
+                        print(f"  Probe {probe+1}/8 at {elapsed}s: {n_epis} episodes (was {last_n_episodes}); sleeping 300s more...")
+                        last_n_episodes = n_epis
                         time.sleep(300)
                         elapsed += 300
                     except Exception as e:
-                        print(f"  Probe {probe+1}/5 exception ({e.__class__.__name__}): {e}; sleeping 300s more...")
+                        print(f"  Probe {probe+1}/8 exception ({e.__class__.__name__}): {e}; sleeping 300s more...")
                         time.sleep(300)
                         elapsed += 300
                 self._zep_waited_for_context = context_id
