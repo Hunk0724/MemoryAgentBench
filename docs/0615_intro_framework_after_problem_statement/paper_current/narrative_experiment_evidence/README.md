@@ -49,6 +49,10 @@
 - **Table**: `objective_data_consolidated.md`(ours 變體列)+ [`../results/weak_model_6k_analysis.md`](../results/weak_model_6k_analysis.md) §1/§3(6-tier ablation + 12B/27B cross-tab)。
 
 ### E-D 責任邊界:error modes / case studies
+- **Baseline 機制檔(canonical,error-mode 歸因的 source)**:
+  - [`../results/mem0_ku_mechanism.md`](../results/mem0_ku_mechanism.md) — mem0 write-time coupled update(prompt I/O + per-chunk 組裝 + 四操作 apply + M1/M2 失效路徑 + hallucinated-id drop + 同 chunk 行為)。**pool_state 對 mem0 有效**,故 mem0 error modes **E-B 就能說**(結果層),E-D 引此檔談機制層(M1 world-prior / M2 coupled-update)。
+  - [`../results/zep_ku_resolution_bitemporal.md`](../results/zep_ku_resolution_bitemporal.md) — Zep 支線(pool_state 不適用,改 bi-temporal;見 E-B Zep 支線)。
+  - **⚠ 何時補 direct 證據**:`mem0_event_taxonomy` 靠 event-log elimination,**看不到** NONE decision / raw prompt / 幻覺 id。若 reviewer 追問可靠性,或某 case 要秀 raw LLM decision → 設 `MEM0_CAND_LOG_DIR` 重跑(dump update_prompt+raw_response+parsed_actions+hallucinated_ids,`mem0/memory/main.py:429-458`,~$0.3/30min)。**非 E-B/E-D 說明 error modes 的前置**,有空或講不清再補。
 - **Figure(reader override,pool 乾淨仍答錯)**: [`figures/F_crosstab_1227_6k.png`](figures/F_crosstab_1227_6k.png)(12B/27B pool-state,new_only✗ = override 桶)+ [`figures/F_struct_backbone_6k.png`](figures/F_struct_backbone_6k.png)(Resolution vs EM 分離,27B EM<Res)。
 - **Case study md(canonical)**:
   - [`../results/case_studies_64k.md`](../results/case_studies_64k.md)(gpt-4o-mini)
