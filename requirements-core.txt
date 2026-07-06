@@ -31,8 +31,10 @@ nltk==3.9.3
 #   agent.py:3  import torch ; agent.py:13 from langchain_core.documents import Document
 #   agent.py:14-15 from transformers import ... ; utils/eval_other_utils.py:15 from editdistance
 # torch/transformers are imported unconditionally though only EXERCISED by local models -> a
-# CPU torch wheel is enough for API-only runs. Left unpinned because torch/transformers wheels
-# are platform-specific; once installed, pin the exact versions from `pip freeze` for repro.
+# CPU torch wheel is enough for API-only runs. Versions below pinned to the migration-proof
+# machines (Win+Mac). torch's build suffix is per-platform (+cpu here / CUDA / Metal); the bare
+# `==2.12.1` matches any local build, so just reinstall the platform torch build for local-model
+# GPU/Metal. (Do NOT pin `2.12.1+cpu` — that local tag has no wheel on Mac and breaks install.)
 torch==2.12.1
 transformers==5.12.1
 langchain-core==1.4.8

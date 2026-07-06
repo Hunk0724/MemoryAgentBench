@@ -155,6 +155,37 @@ Matcher 只判「pool 有無 gt_new/gt_old」,不判「LLM 為何錯」。**Mode
 
 ---
 
+### 3.4 跨方法 pool_state 不可比性 + Zep 需 bi-temporal mediator（2026-07-07)
+
+**核心 rigor 警告**:文字 pool_state（PP-New/Both/OldOnly/Missing,§2 matcher）量的是「答題 LLM 文字上看到 gt_new/gt_old 沒有」。此變數對三種方法的 **EM 中介地位不同**,不可一律套用:
+
+| 方法 | KU resolution locus | pool 文字對 EM 的中介地位 | 正確 mediator |
+| :--- | :--- | :--- | :--- |
+| **mem0** | write-time（實刪/覆寫 old） | ✅ 文字 pool 就是機制結果（刪錯 → PP-OldOnly → 答錯） | 文字 pool_state |
+| **ours** | query-time（全版本保留,查詢時 group→取 new） | ✅ resolved 後文字 pool 就是輸出（解對 → PP-New） | 文字 pool_state（`memories_str`） |
+| **Zep** | **inference-deferred**（保留 + 標 `invalid_at`,呈現 date range 讓 LLM 自判） | ❌ pool 幾乎恆 PP-Both（實測 64k 65/66 ≈98%）,文字無 KU 信號 | **bi-temporal resolution state** |
+
+**為何 Zep 失效**:Zep search 不過濾 invalid edges,兩版恆同時出現 → 文字 classifier 把「Zep 正確解 KU / 沒解 / 解反」三種機制相反情況全壓成 PP-Both,零鑑別力。Zep 的 KU 決定寫在 `valid_at`/`invalid_at`,不在文字。
+
+**Zep 專用分類器**(`analysis/classify_zep_ku_resolution.py`,讀 bi-temporal;Resolved-* 桶**要求 handoff-verify** `loser.invalid_at==winner.valid_at`,避免把「被第三方 fact invalidate」或「matcher 在 generic (S,P) stem 上 over-match 到別 entity」誤記為 resolution)實測(gpt-4o-mini,has_pair):
+
+| length | Resolved-Correct | Resolved-Backward | Additive-NoKU | Other-Ambiguous | overall acc |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| 6k | 23%（acc 88%） | 30%（acc 36%） | 39%（acc 69%） | 8% | 62% |
+| 32k | 9%（acc 100%） | 3% | 77%（acc 44%） | 6% | 51% |
+| 64k | 17%（acc 100%） | 0% | 74%（acc 41%） | 8% | 55% |
+
+- **Additive-NoKU = 長 context 主導,且為保守下界**(over-match 只會把 query 踢出 additive → 真實值 ≥ 報告):32k/64k 77/74%。Zep 越長越測不到衝突。
+- **失敗在觸發率不在讀取**:Resolved-Correct 桶 acc 88–100% — Zep 設對時序,LLM 就答對。
+- **length interaction**:短 context(6k)Zep 嘗試解但常 **Resolved-Backward**(30%、acc 36%,world-prior 反向失效 counterfactual);長 context 轉為 additive。
+- **Other-Ambiguous 6–8%** 為殘差(第三方 invalidate + matcher over-match,multi-edge ~30%);引用信心:Additive > Resolved-Correct > Resolved-Backward 單一數字。完整判讀見 results 檔。
+
+完整表格與判讀:[`results/zep_ku_resolution_bitemporal.md`](results/zep_ku_resolution_bitemporal.md)。
+
+**對 crosstab 使用的結論**:跨方法**只在 E2E Acc 對齊比較**;機制歸因 mem0/ours 用文字 pool_state、Zep 用 bi-temporal resolution state。**勿**把 Zep 的 PP-Both 與 mem0 的 PP-OldOnly 並列(會低估 Zep 的 KU 失敗——PP-Both 看似「兩版都在沒問題」,實際 ~80% 未解)。§3.1 的「Zep 0/0 FN」僅指**文字比對精度**,不涵蓋 bi-temporal 語意。
+
+---
+
 ## §4 rigor audit workflow(供 GX10 及 future run reference)
 
 **在 canonical 化任何 crosstab 前,必先跑**:
@@ -180,12 +211,15 @@ python analysis/rigor_audit.py --length 64k --method "ours (no_p5)"
 | Crosstab output | `results/pool_acc_crosstab.md` |
 | Audit script | `analysis/rigor_audit.py` |
 | Audit report | `results/rigor_audit.md` |
+| **Zep bi-temporal KU classifier** | `analysis/classify_zep_ku_resolution.py`（§3.4） |
+| **Zep KU-resolution results** | `results/zep_ku_resolution_bitemporal.md` |
 | This spec | `matcher_specification.md`(本檔) |
 
 ---
 
 ## §6 Change log
 
+- **2026-07-07** — 新增 §3.4 跨方法 pool_state 不可比性 + Zep bi-temporal mediator;新增 `analysis/classify_zep_ku_resolution.py` + `results/zep_ku_resolution_bitemporal.md`。Zep has_pair KU 分類經 review 後改用 **handoff-verify + Other-Ambiguous 殘差桶**(修正初版只看「edge 有無 invalid_at」會把第三方 invalidate / matcher over-match 誤記為 backward):Additive-NoKU 長 context 主導 39→77→74%(保守下界)、Resolved-Correct acc 88–100%、Resolved-Backward 6k 30%(world-prior)。
 - **2026-07-04** — matcher_v4 canonical;audit finds ours PP-OldOnly false-neg 100% under v3, drops to 40% under v4;剩餘 FN 記入 §3.1
 - 2026-06-XX — matcher_v3(triple-based)取代 v2(SequenceMatcher);見 `analysis/compute_m1_m2_m3.py` docstring
 - < 2026-06 — v1/v2 探索期,已 deprecated

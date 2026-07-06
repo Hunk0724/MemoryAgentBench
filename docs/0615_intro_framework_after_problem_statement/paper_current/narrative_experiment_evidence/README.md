@@ -37,14 +37,23 @@
 - **Figure(appendix,6-method)**: [`figures/F_pool_diagnostic_ablation.png`](figures/F_pool_diagnostic_ablation.png) — 含 ours 三變體的完整版。
 - **Table**: `objective_data_consolidated.md` §2 Table A(mid 主表)+ [`../results/pool_acc_crosstab.md`](../results/pool_acc_crosstab.md)(canonical cross-tab,mid 3-length + 強端 64k)。
 - **Rigor backing**: [`../results/matcher_audit_gpt4omini_64k.md`](../results/matcher_audit_gpt4omini_64k.md)(matcher v4 0 confirmed FN)。
+- **Zep 支線(pool-state 對 Zep 不適用,改用 bi-temporal)**: [`E-B_zep_ku_selfassessment.md`](E-B_zep_ku_selfassessment.md) — Zep ~98% PP-Both 零鑑別 → 改用自身 KU-resolution 4 桶解釋 E2E(Additive-NoKU 主導 39→77→74%、Resolved-Correct acc 88–100%、6k Backward=world-prior)。
+  - **Figure**: [`figures/F_zep_ku_resolution_6k_32k_64k.png`](figures/F_zep_ku_resolution_6k_32k_64k.png)(2-panel:(a) 分桶 share×length、(b) 各桶 EM×length;line 圖、B&W-safe)。
+  - **Table(canonical)**: [`../results/objective_data_consolidated.md`](../results/objective_data_consolidated.md) **§4B Table D**(4 桶 × 3 length,EM 加總 = canonical Zep E2E)。
+  - **機制/判讀**: [`../results/zep_ku_resolution_bitemporal.md`](../results/zep_ku_resolution_bitemporal.md)。
 
 ### E-C 方法內部:誰在做事 = ablation
+- **ours 機制檔(canonical,ablation↔code 對映的 source)**: [`../results/ours_ku_mechanism.md`](../results/ours_ku_mechanism.md) — faithful write(全版本保留、write 零跨筆 LLM)→ query-time resolve(struct (S,P)+argmax / P3 identity / P5 conflict-type);§4 確定性 vs LLM 分界、§5 四變體↔開關對映、§6 三派對照、§7 誤差正交軸(接 E-D)。
 - **Figure(P3 gate,weak)**: [`figures/F_struct_vs_p3_overall_6k.png`](figures/F_struct_vs_p3_overall_6k.png) — struct 之上加 P3 的淨 Δ 隨 backbone 變號(1B −7 → 12B 0 → 27B +4)。★核心遞迴論證。
 - **Figure(mid ablation)**: [`figures/F_ours_ablation_gpt4omini_6k_32k_64k.png`](figures/F_ours_ablation_gpt4omini_6k_32k_64k.png)。
 - **Figure(weak ablation)**: [`figures/F_ours_ablation_gemma3_6k.png`](figures/F_ours_ablation_gemma3_6k.png)。
 - **Table**: `objective_data_consolidated.md`(ours 變體列)+ [`../results/weak_model_6k_analysis.md`](../results/weak_model_6k_analysis.md) §1/§3(6-tier ablation + 12B/27B cross-tab)。
 
 ### E-D 責任邊界:error modes / case studies
+- **Baseline 機制檔(canonical,error-mode 歸因的 source)**:
+  - [`../results/mem0_ku_mechanism.md`](../results/mem0_ku_mechanism.md) — mem0 write-time coupled update(prompt I/O + per-chunk 組裝 + 四操作 apply + M1/M2 失效路徑 + hallucinated-id drop + 同 chunk 行為)。**pool_state 對 mem0 有效**,故 mem0 error modes **E-B 就能說**(結果層),E-D 引此檔談機制層(M1 world-prior / M2 coupled-update)。
+  - [`../results/zep_ku_resolution_bitemporal.md`](../results/zep_ku_resolution_bitemporal.md) — Zep 支線(pool_state 不適用,改 bi-temporal;見 E-B Zep 支線)。
+  - **⚠ 何時補 direct 證據**:`mem0_event_taxonomy` 靠 event-log elimination,**看不到** NONE decision / raw prompt / 幻覺 id。若 reviewer 追問可靠性,或某 case 要秀 raw LLM decision → 設 `MEM0_CAND_LOG_DIR` 重跑(dump update_prompt+raw_response+parsed_actions+hallucinated_ids,`mem0/memory/main.py:429-458`,~$0.3/30min)。**非 E-B/E-D 說明 error modes 的前置**,有空或講不清再補。
 - **Figure(reader override,pool 乾淨仍答錯)**: [`figures/F_crosstab_1227_6k.png`](figures/F_crosstab_1227_6k.png)(12B/27B pool-state,new_only✗ = override 桶)+ [`figures/F_struct_backbone_6k.png`](figures/F_struct_backbone_6k.png)(Resolution vs EM 分離,27B EM<Res)。
 - **Case study md(canonical)**:
   - [`../results/case_studies_64k.md`](../results/case_studies_64k.md)(gpt-4o-mini)
