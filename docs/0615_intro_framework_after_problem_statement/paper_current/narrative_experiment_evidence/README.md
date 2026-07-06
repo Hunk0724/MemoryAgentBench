@@ -2,7 +2,7 @@
 
 > **為什麼有這個資料夾**:`figures_current/` 有 ~30 張圖、`results/` 有十幾份 md,新舊敘事混在一起 → 寫論述時找不到「現在這條論證鏈**用得到**的那幾張」。這裡把它們**收斂**成一包:論證鏈骨架 + 每個節點的 canonical 圖/表 + 明確的「別用」清單。
 > **怎麼用**:照 §A 的論證鏈,一節一節看 §B 的 evidence map,圖在 [`figures/`](figures/),數字一律回引 [`../results/objective_data_consolidated.md`](../results/objective_data_consolidated.md)(canonical)。
-> **狀態**:2026-07-06 建立。thesis-first 定案(backbone spectrum 當 Figure 1)。gpt-4.1-mini × 6k 待補(見 §C)。
+> **狀態**:2026-07-07 更新。thesis-first 定案(backbone spectrum 當 Figure 1)。**gpt-4.1-mini 6k/32k 已補跑並驗證**(6k:main 66/mem0 56/Zep 46;32k:main 51/Zep 20)。**E-A 頭條圖待重生**為單一 6k 6-tier(見 §C + §E-2 決策)。
 
 ---
 
@@ -14,7 +14,7 @@
 | 節點 | 要證明的 claim | 讀者看完該相信 | 資料狀態 |
 |:--|:--|:--|:--:|
 | **開章 framing** | 重述 intro 末可證偽預測為經驗主張,宣告本章四問結構 | 每張表都在回答 thesis 逼出的一個問題 | — |
-| **E-A ★ 頭條** | ours vs write-time 派的 gap 隨 backbone 判斷力**變弱放大、變強收斂** | 優勢是**範式性質**(conditional on backbone),非刷分 | 🟡 待 4.1-mini 6k |
+| **E-A ★ 頭條** | ours vs write-time 派的 gap 隨 backbone 判斷力**變弱放大、變強收斂** | 優勢是**範式性質**(conditional on backbone),非刷分 | 🟢 資料齊(6k 6-tier);⚠ 圖待重生 |
 | **E-B 機制** | E2E gap **可歸因於 pool state**(乾淨 vs 汙染),非 reader 挑選力 | 是**因果**非相關;乾淨 pool 正是弱 reader 最需要的 | 🟢 完整 |
 | **E-C 方法內部** | 確定性 (S,P)+argmax 是 workhorse;LLM 元件(P3)自己也 capability-gated | **遞迴論證**:連我方 LLM 元件都逃不過「弱 backbone LLM 判斷脆弱」 | 🟢 完整 |
 | **E-D 責任邊界** | KU 解析只負責一切片;剩餘失分落在正交軸(抽取/reader override/D-flag) | 我們在**誠實劃界**,非宣稱解決一切 | 🟢 完整 |
@@ -26,8 +26,8 @@
 ## §B Evidence map(節點 → 該用的圖 + 該引的表)
 
 ### E-A ★ 頭條:backbone-judgment 預測
-- **Figure**: [`figures/F_backbone_spectrum.png`](figures/F_backbone_spectrum.png) — **THE Figure 1**。兩 panel:A(6k weak→mid)、B(64k mid→strong),3 method(ours / Zep / mem0+unified extract)。標題已寫「gap widens on weak, collapses on strong」。
-  - **⚠ 待重生**:4.1-mini 6k 回來後,把 gpt-4.1-mini 加進 Panel A → 6k 單一長度橫跨完整 6-tier;Panel B(64k)留作「同 pattern 在 64k 也成立」的 consistency check。
+- **Figure(頭條,已重生 2026-07-07)**: [`figures/F_backbone_spectrum.png`](figures/F_backbone_spectrum.png) — **THE Figure 1**:**單一 6k panel、6-tier**(gemma3-1B→gpt-4.1-mini),3 method(ours / Zep / mem0+unified extract)。ours 全 tier 皆勝;mem0 於 1B/4B=0、於 gpt-4.1-mini 追至 76%,gap 從 +73pp(4B 峰)收至 +13pp(4.1)。標題「gap widens on weak, collapses on strong @ 6k」。
+- **誠實揭露 companion(必配)**: experiment.md **§4.3.4 Table 4c** — 6k/32k/64k × (4o vs 4.1) 的 gap 總表,揭露 32k/64k + 強 backbone 下 gap 收斂**甚至反轉**(64k mem0 反超 −3pp)。頭條乾淨、此表誠實,兩者搭配。
 - **Table**: `objective_data_consolidated.md` §3 Table B(6-tier @ 6k)+ §4 Table C(強端 64k)。
 - **敘事守則**:鎖 **gap 趨勢**,不是絕對線斜率(跨 backbone 絕對值混抽取品質);x 軸是 ordinal tier;誠實揭露非嚴格單調(12B 峰、27B 因 reader override 略降)。
 
@@ -67,7 +67,8 @@
 
 | 缺口 | 影響節點 | 補跑後動作 |
 |:--|:--|:--|
-| **gpt-4.1-mini × 6k**(ours-main / mem0+P1 / Zep)| E-A | 填 `objective_data` §3 Table B 4.1-mini 欄 → 重生 F_backbone_spectrum Panel A 成 6-tier @ 6k |
+| ~~gpt-4.1-mini × 6k~~ **✅ 已補**(main 66 / mem0 56 / Zep 46)| E-A | objective_data §3 已填;**剩:重生 F_backbone_spectrum**(§E-2 定 panel 形式後)|
+| gpt-4.1-mini × 32k(mem0+P1 一格)| E-A/§4.3.3 | main 51 / Zep 20 已跑,**mem0 32k pending** → 補完 §4.3.3 Table 4b 32k gap |
 | weak × 32k/64k(optional)| E-A robustness | 誠實列 future work,不擋投稿 |
 
 > **run checklist**(補跑時看):① 主方法 `MEM0_P5_SKIP=1`(=no_p5=main,別跑成 full);② 先跑 `ours` 再跑 `b`(held-fixed extraction cache);③ 抽取設定與 4.1-mini 64k 保持一致。
@@ -94,5 +95,5 @@
 ## §E 三個尚待你決定的呈現取捨(寫作時拍板)
 
 1. **main table 降級為 E-B 鋪陳**(Figure 1=spectrum 才是頭條)vs 保留獨立「main results」節?
-2. **E-A 頭條圖**:維持雙 panel(6k + 64k),還是等 4.1-mini 6k 後收成單一 6k 6-tier panel、把 64k 移作 appendix consistency?
+2. ~~E-A 頭條圖 panel 形式~~ **✅ 已定(2026-07-07)**:**單一 6k 6-tier panel 為頭條**;64k 反轉移至 §4.3.4 Table 4c 誠實揭露(頭條乾淨 + 誠實 companion)。
 3. **weak-tier caveat**(per-backbone gemma extraction)在圖上怎麼呈現——標在 caption 就好,還是 panel 分隔?

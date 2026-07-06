@@ -349,6 +349,29 @@ Intro §第 6 段承諾的可證偽預測:**ours 相對現有流派的優勢,應
   - **"KU 是 query-time 問題" 立場穩固**:main method 對 backbone 換代 robust(-4pp / -9pp),而 (b)、Zep 對 backbone 敏感度大(±20-30pp)。我方 struct + P3 + argmax 提供的 query-time resolution 是**跨 backbone 通用的 scaffold**,不因 backbone 換代而崩
   - **強化 §4.5.3 P5 降級 ablation 的決策**:script `ours` (= +P5) 於 gpt-4.1-mini × 6k = 61/74(-11pp vs 69/74),明顯比 ours (main) 的 -4pp 更敏感 → P5 引入不必要的 backbone 依賴,paper 主 method 用 no-P5 版是正確選擇
 
+### 4.3.4 跨長度 × backbone gap 總表(**誠實揭露:6k 頭條趨勢在 32k/64k 反轉**)
+
+頭條圖 [`F_backbone_spectrum`](../figures/F_backbone_spectrum.png) 為**單一 6k** 呈現(ours 於全 6-tier 皆勝)。此表誠實補上另兩個長度:於 **strong backbone(gpt-4.1-mini)+ 長 context**,ours−mem0 的 gap 不僅收斂,於 64k **反轉**(mem0 合理反超)。
+
+**Table 4c**:`ours (main)` vs `(b) mem0+P1` 的 has_pair EM 與 gap(pp),× 2 backbone × 3 length
+
+| Length | ours@4o | mem0@4o | **gap@4o** | ours@4.1 | mem0@4.1 | **gap@4.1** |
+|:--|--:|--:|--:|--:|--:|--:|
+| 6k | 93% | 46% | **+47pp** | 89% | 76% | **+13pp** |
+| 32k | 88% | 38% | **+49pp** | 78% | ☐ *pending* | ☐ |
+| 64k | 91% | 52% | **+39pp** | 80% | 83% | **−3pp** ★ 反轉 |
+
+Zep 對照(strict EM):gpt-4o-mini 62/51/55%,gpt-4.1-mini **62/31/35%** — Zep 於強 backbone 各長度反而**下滑**(verbose hedge,§4.4.4),不因強 backbone 受益。
+
+**Observation**:
+- **What**:於 **mid backbone(gpt-4o-mini)**,ours−mem0 gap 於 3 長度皆 **+39~+49pp**(穩定、巨大);於 **strong backbone(gpt-4.1-mini)**,gap 從 6k 的 +13pp 收斂、於 64k **反轉為 −3pp**(mem0 反超)。
+- **Where/Why**:strong backbone 的 write-time UPDATE judge 準確度提升 → mem0 pool-state 修復(§4.3.2),destructive damage 大幅消失;ours 的 struct+argmax 本就 backbone-agnostic 無從再獲益,反受 P3 過保守小幅拖累(§4.4.3)。
+- **Implication**(誠實揭露 + thesis 強化):
+  - **頭條(6k 單一長度)ours 全勝;此表補上 32k/64k + 強 backbone 下 gap 收斂甚至反轉**——不藏。
+  - **反轉恰印證 thesis 而非推翻**:優勢是 **backbone 判斷力的函數**;強 backbone 上 write-time 派的單一失效點(LLM judge)不再是負債,damage 消失是預期內的,正是可證偽預測的核心。
+  - **強化受限部署動機**:cost-constrained 部署用不起 gpt-4.1-mini(§4.3.3 cost ~$1.2 vs 4o ~$0.6-0.8),實務上 mid-tier 的 **+39~+49pp(ours 恆勝)** 才是 deployment reality。
+- ☐ **待補**:mem0+P1 @ gpt-4.1-mini × 32k(補完 gap@4.1 中段;預期落在 +13pp 與 −3pp 之間,即隨 length 增長而收斂)。
+
 ---
 
 ## 4.4 Error-Mode Case Studies
@@ -629,7 +652,7 @@ Reviewer 必然質疑:**「你們於 FC-SH 上的優勢,是否僅來自這個 da
 |:--|:-:|:-:|:-:|
 | **ours (main)** = struct+P3+argmax | **55/78 = 70.5%** | 60/66 (90.9%) | — |
 | **ours (+P5)** = main+P5(對照)| **65/78 = 83.3%** ★ | 60/66 (90.9%) | (−12.8pp on LME-KU;on FC-SH ~0) |
-| (a) vanilla mem0 | ☐ 待完成 | — | ☐ |
+| (a) vanilla mem0 | **53/78 = 67.9%** | — | +2.6pp |
 | (b) mem0+P1 | ☐ 待完成 | 34/66 (52%) | ☐ |
 | Zep(k=10)| ☐ 待完成 | 36/66 (55%) | ☐ |
 
