@@ -63,18 +63,22 @@
 
 > **★ 這是 thesis-first 的頭條圖來源**:同一長度(6k)橫跨完整 6-tier backbone(1B → gpt-4.1-mini),呈現「ours 相對現有派的 gap 隨 backbone 判斷力增強而收斂」的可證偽預測。gpt-4.1-mini × 6k 為**待補欄**(2026-07-06 規劃補跑 ours-main / mem0+P1 / Zep)。
 
-**Row = method,Col = backbone tier**（由弱到強)。**Bold = 每欄最佳**。來源:weak(1B–27B)= weak_model_6k_analysis §1;mid(4o-mini)= crosstab v4 6k 欄;**strong(4.1-mini)= 待補**。
+**Row = method,Col = backbone tier**（由弱到強)。**Bold = 每欄最佳**。來源:weak(1B–27B)= weak_model_6k_analysis §1;mid(4o-mini)= crosstab v4 6k 欄;strong(4.1-mini)= 2026-07-07 補跑實測(見下方 §3 註)。
 
 | Method | 1B | 4B | 12B | 27B | 4o-mini | **4.1-mini** |
 |:--|--:|--:|--:|--:|--:|--:|
-| **ours (main)** = struct+P3 | 25 (34) | **54 (73)** | **73 (99)** | **70 (95)** | 69 (93) | ⛔ *no_p5 待跑* |
+| **ours (main)** = struct+P3 | 25 (34) | **54 (73)** | **73 (99)** | **70 (95)** | 69 (93) | **66 (89)** |
 | ours (struct) = struct only | **29 (39)** | **54 (73)** | **73 (99)** | 65 (88) | 67 (91) | ☐ *(future)* |
 | ours (p3-only) = no (S,P) | 7 (9) | 26 (35) | 46 (62) | 27 (36) | **71 (96)** | ☐ *(future)* |
 | (b) mem0+P1 | 0 (0) | 0 (0) | 44 (59) | 36 (49) | 34 (46) | **56 (76)** |
 | (a) vanilla mem0 | — | 0 (0) | 32 (43) | 28 (38) | 0 (0) | — |
 | Zep (k=10) | 12 (16) | 17 (23) | 43 (58) | 35 (47) | 46 (62) | **46 (62)** |
 
-> **4.1-mini 6k 補跑現況(2026-07-07 驗證)**:mem0+P1 **56/74 (76%)**、Zep **46/74 (62%)** 已確認(aggregated EM,per-qid 重算待 crosstab 核對)。**ours-main(no_p5)尚未跑 6k**——目前只有 ours-FULL(+P5)= **61/74 (82%)**〔plain `unified` 目錄〕。頭條圖「ours」線全 backbone 用 no_p5,**故需補跑 `ours no_p5 @ 4.1-mini 6k`**(P1 抽取 cache 已由 full run 建好,補跑只走 query 端,便宜)。**gap 收斂已可見**:ours−mem0 於 6k 從 4o 的 +35pp → 4.1 的 +6pp(暫用 full 61)。
+> **4.1-mini 補跑現況(2026-07-07 全數已跑、aggregated EM 驗證)**:
+> - **6k**:ours-main(no_p5)**66/74 (89%)**、(b) mem0+P1 **56/74 (76%)**、Zep **46/74 (62%)**;ours-full(+P5)61/74 (82%) 供 ablation 對照。
+> - **32k**:ours-main **51/65 (78%)**、Zep **20/65 (31%)**;(b) mem0+P1 32k **pending**。
+> - **gap 收斂實測(pp)**:ours−mem0 於 6k 從 4o 的 +47pp → 4.1 的 **+13pp**(收 72%);對應 64k 的 +39pp → −3pp。**「gap 隨 backbone 增強而收斂」於 6k/64k 兩長度成立**。
+> - per-qid crosstab 重算(canonical)待補;Zep aggregated 檔於 64k 已知損壞,一律以 per-qid 為準。
 
 > 格式 `count (%)`,分母固定 74。`—` = 未跑;`☐ 待補` = 本輪規劃補跑。
 > **預期方向(依 64k 已觀察外推,見 Table C)**:4.1-mini 欄 ours-main 與 (b) mem0+P1 的 **gap 應收斂**(64k 上該 gap 從 4o 的 +39pp 崩至 −3pp)→ 完成「gap 隨 backbone 增強而收斂」的 6k 完整曲線。**這是預期,不是已知;補跑後以實測為準。**
