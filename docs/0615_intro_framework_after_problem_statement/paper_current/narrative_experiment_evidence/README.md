@@ -43,6 +43,7 @@
   - **機制/判讀**: [`../results/zep_ku_resolution_bitemporal.md`](../results/zep_ku_resolution_bitemporal.md)。
 
 ### E-C 方法內部:誰在做事 = ablation
+- **ours 機制檔(canonical,ablation↔code 對映的 source)**: [`../results/ours_ku_mechanism.md`](../results/ours_ku_mechanism.md) — faithful write(全版本保留、write 零跨筆 LLM)→ query-time resolve(struct (S,P)+argmax / P3 identity / P5 conflict-type);§4 確定性 vs LLM 分界、§5 四變體↔開關對映、§6 三派對照、§7 誤差正交軸(接 E-D)。
 - **Figure(P3 gate,weak)**: [`figures/F_struct_vs_p3_overall_6k.png`](figures/F_struct_vs_p3_overall_6k.png) — struct 之上加 P3 的淨 Δ 隨 backbone 變號(1B −7 → 12B 0 → 27B +4)。★核心遞迴論證。
 - **Figure(mid ablation)**: [`figures/F_ours_ablation_gpt4omini_6k_32k_64k.png`](figures/F_ours_ablation_gpt4omini_6k_32k_64k.png)。
 - **Figure(weak ablation)**: [`figures/F_ours_ablation_gemma3_6k.png`](figures/F_ours_ablation_gemma3_6k.png)。
