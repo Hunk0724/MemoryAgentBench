@@ -33,7 +33,7 @@
 **(6) 事實識別分群補救（P3，LLM，僅對 dynamic_pool）。** 只判**身分**（哪些候選是同一事實的不同版本），不判 recency、不答題；只輸出有信心的 cluster（≥2 成員），其餘自動保留。設計偏保守：false-merge 會藏掉合法值、false-split 無害，故 cluster 是 RARE、不確定就不分群。硬規則：不同實體＝不同事實、不同屬性＝不同事實、多值屬性＝並存不分群。
 
 **(7) 時序解析（deterministic）。** 對每個分群（structural 群 + P3 cluster）以 **ordinal argmax 取最新、丟舊**（平手 keep-all）；未入任何群的候選一律保留。在本文 scope 的 KU 定義下，同一事實的多版本即互斥、以最新為準——**衝突判斷退化為分群的直接推論，無須額外 LLM 呼叫**；「誰是權威版本」由 argmax 決定，與 LLM 無關。表面變體群（同值不同寫法）經 argmax 仍得同值，無損。
-⚠️ 與實作現況的差異：現行 pipeline 在 (6)(7) 之間有 P5 conflict-type 分類（3-way、query-aware、cached）。**本文核心方法不含 P5**；含 P5 的變體降級為 ablation 之一（§4.4），其結果用以實證核心版的選擇。☐ 對應程式開關：`ours(full)` 保留現行路徑、核心版走 group→argmax 直連。
+⚠️ 與實作現況的差異：現行 pipeline 在 (6)(7) 之間有 P5 conflict-type 分類（3-way、query-aware、cached）。**本文核心方法不含 P5**；含 P5 的變體降級為 ablation 之一（§4.4），其結果用以實證核心版的選擇。☐ 對應程式開關：`ours (+P5)` 保留現行路徑、核心版走 group→argmax 直連。
 
 **(8) 推論（P4，LLM）。** 解析後記憶 + 問題 → 答案。使用 MemoryAgentBench 對（方法類型 × 任務）的**標準 qa 模板**，絕不客製 inference prompt（客製會混淆「贏在記憶還是贏在答題 prompt」）；各任務所用模板逐一列於附錄。
 
@@ -54,10 +54,10 @@
 
 2. **P5 程式開關 flag 名稱**（核心版 group→argmax 直連 vs ablation 加 P5）：
    - **現行實作**：env var `MEM0_P5_SKIP`
-     - `unset`（default）→ P5 on = `ours(full)`（現降級 ablation）
-     - `=1` → P5 skip = `ours(no_p5)`（paper 主 method）
+     - `unset`（default）→ P5 on = `ours (+P5)`（現降級 ablation）
+     - `=1` → P5 skip = `ours (main)`（paper 主 method）
    - 見 `methods/phase2_query.py:483`
-   - **建議**：保留現行、不改；paper method spec 就以「無 P5」為主敘述，ablation 表格再列 `ours(full)`
+   - **建議**：保留現行、不改；paper method spec 就以「無 P5」為主敘述，ablation 表格再列 `ours (+P5)`
 
 <!-- items 1-6, 8（實驗/baseline/backbone/embedding 相關）→ evaluation_protocol_main.md §6 -->
 
@@ -66,7 +66,7 @@
 # Appendix A. Actual prompts used in pipeline(從 source code 直接抽取)
 
 > **來源**：`methods/mem0_fc_prompt_fix.py`（P1）、`methods/phase0_triple_extractor.py`（P2）、`methods/phase2_query.py`（P3 / P5）。任何 prompt 改動請同步更新本 appendix。
-> **論文對接**：P1 / P2 / P3 為主 method 使用；P5 僅供 ablation（`ours(full)`）用。P4 使用 MemoryAgentBench 官方 qa 模板（不客製，論文正文於 setup 揭露）。
+> **論文對接**：P1 / P2 / P3 為主 method 使用；P5 僅供 ablation（`ours (+P5)`）用。P4 使用 MemoryAgentBench 官方 qa 模板（不客製，論文正文於 setup 揭露）。
 
 ## A.1 P1 — Unified extraction prompt（`make_unified_extractor_prompt()`）
 
@@ -216,7 +216,7 @@ Memory entries:
 {entries}
 ```
 
-## A.5 P5 — Conflict-type classifier（**ablation only,`ours(full)` 用**;paper 主 method 已 skip）
+## A.5 P5 — Conflict-type classifier（**ablation only,`ours (+P5)` 用**;paper 主 method 已 skip）
 
 ```text
 You analyze a group of candidate memory entries that share the same subject and relation but have different recorded values. Determine which conflict type applies, so the downstream resolution step knows whether to select the most recent value or keep all of them.
