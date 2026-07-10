@@ -1,6 +1,6 @@
 # Write Faithfully, Resolve at Query Time: Deferring Knowledge Update in LLM Agent Memory
 
-## Introduction（v6，2026-07-04：下半段改以「有無 query」為架構支點、payoff 改為乾淨 pool；移除「不對稱性」框架）
+## Introduction
 
 LLM Agent (基於大型語言模型的智慧代理) 正越來越廣泛地部署於真實世界應用中，並跨越多個對話階段 (sessions) 與使用者互動 [1]。由於 LLM 本身是無狀態 (stateless) 的、僅能在固定長度的上下文視窗 (fixed-length context windows) 中運作 [2]–[4]，要在長期互動中維持連貫性，就必須仰賴一個能跨越對話輪次與階段、持續保存資訊的外部記憶模組 (external memory) [5]–[7]。然而，當記憶模組隨時間累積資料後，會出現一個無法迴避的特性：許多已儲存的事實，其時效性 (temporal validity) 會在對話過程中改變 [8, Sec. 3.2]。同一個事實因此可能在記憶中以多個不一致的版本同時存在；當查詢無差別地檢索這些版本時，系統會將過時資訊與當前資訊一併取出 [7]，導致推論被誤導。這個問題——也就是辨識同一事實的多個版本、並採用其最新版本——被稱為**知識更新 (Knowledge Update, KU)**，並已被近期的長期記憶基準 (benchmarks) 明確列為 memory agent 的核心能力：LongMemEval 將 knowledge-update 列為五大核心記憶能力之一 [9]；BEAM 的十項記憶能力中同時涵蓋 knowledge update 與 contradiction resolution [11]；MemoryAgentBench 則以 FactConsolidation 任務，在其 selective forgetting 能力下測試系統能否以較新加入的事實取代較舊者 [7]；MemBench 亦以其 FM-ku 子集涵蓋使用者屬性隨時間的變動 [10]。本文所解決的 KU，即以這些基準的共同定義為範圍。
 

@@ -44,6 +44,10 @@
 > *(What)* 把 Figure 1 的 mid/strong 兩點展開到三個長度。*(Observation)* 於 **gpt-4o-mini(mid)** ours 於**全長度**領先 **+39~+49pp**;升到 **gpt-4.1-mini(strong)** gap 崩塌,且於 **32k/64k 反轉**(mem0 反超 −3pp),ours 僅於 6k 仍領先 +13pp。*(Implication)* **可證偽預測得證**——backbone 夠強時 write-time KU 自己就做得好,架構安全網的邊際價值下降;優勢是**針對弱/中 backbone**,非普適。此表與 Figure 1 搭配:圖給乾淨的弱端故事,表誠實揭露強端收斂/反轉。
 > *(caveat)* Zep 4.1-mini strict EM 反降(hedge:同列兩版),另有 sEM 診斷(見 experiment.md §4.3.4 / style_rules §10.3b);此處一律 strict EM。64k 有 D-flag benchmark bug 2/66,影響 ours −1pp。
 
+**讀者會問的兩個問題(先擋)**:
+- **「為什麼 Zep 全程都低?」**→ 3.1 只給現象,**為何**在 §3.2/§3.3 答(Zep ~98% PP-Both、多半 additive 沒給時序 → reader 靠 world-prior 猜)。
+- **「為什麼 12B 到 99%、之後往強端反而降(95→93→89)?」**→ ① **跨 backbone 絕對值不可直接比**:weak-tier 是 per-backbone gemma 各自抽取,12B 的高分部分反映其抽取貼近 GT surface + matcher 精度 → **thesis 只讀同 backbone 內的 gap,不讀絕對線高低**。② **強端下降 = reader override**:backbone 越強、當 answer LLM 的 world-prior 越強,即使 ours 交出乾淨 new_only pool,強 reader 仍可能用參數知識覆蓋回世界真相舊版(Resolution 高、EM 降)——這是 **E-D 邊界**提早現身,非 bug。
+
 **對主軸的意義(接下一節)**:§3.1 只回答**「何時」**ours 贏(弱/中 backbone)。它逼出 §3.2 的**「為何」**——差距從哪來?答案是 pool state(乾淨 vs 汙染),而弱 reader 正是最需要乾淨 pool 的人。
 
 **Evidence 狀態**:🟢 全到位(COVERAGE.md:6-tier @6k 齊、4o/4.1 × 3 長度齊;唯 gemma 長 context 為 optional）。
@@ -94,7 +98,9 @@
 
 > † ours 的 OldOnly/Missing 為零星 extraction/D-flag edge case(非系統性毀損);mem0 的則是 write-time UPDATE 系統性刪掉正確版。
 >
-> **讀法**:**PP-New 桶 acc 兩派幾乎相同(~93–100%)**——reader 拿到乾淨 pool 一樣強;**且共用同一 embedder**(retrieval 被控成常數)。→ **E2E 差距(93 vs 46 …)不是 reader、也不是 retrieval,而是 pool 組成**(ours ~0% vs mem0 36–47% 毀損)。這把 §3.1 的 gap **因果歸因到 write-time 破壞**,兌現主軸「判錯就毀、正確版在被問到前就消失」。
+> **讀法(精準)**:**PP-New 桶 acc 兩派幾乎相同(~93–100%)**(reader 對乾淨 pool 一樣強)、**且共用同一 embedder**(retrieval 被控成常數)→ reader 與 retrieval **不是 ours vs mem0 差距的來源**(它們是共享/被控的;**不是說它們沒問題**——reader 在 PP-Both 要自判會掉、強端還會 override,retrieval recall 也是共享難題)。→ **差距來自 pool 組成**(ours ~0% vs mem0 36–47% 毀損)。這把 §3.1 的 gap **因果歸因到 write-time 破壞**,兌現主軸「判錯就毀、正確版在被問到前就消失」。
+>
+> **⚠ 不宜硬講的一點(誠實)**:**跨方法比較「PP-Both 桶內 acc」不嚴謹**——各方法 PP-Both 裝的是**不同 query 子集**(ours=沒解成 new_only 的殘餘、mem0=剛好留兩版、Zep=全部),難度不同,是 selection bias,**不能宣稱「同 PP-Both 我方 reader 較強」**。真正穩健的是**同一方法內**:PP-New(乾淨)acc **≳** PP-Both(需自判)acc(ours 98/98/92 vs 81/77/92;mem0 93/95/100 vs 75/29/53)→ **乾淨 pool 幫到 reader**,而 ours 產出的多是 PP-New。這才是「乾淨 pool 有價值」的乾淨證據。
 
 > **備註（F_pool_diagnostic 的處置)**:現有 `F_pool_diagnostic.png`(ours/mem0/**Zep** × 3 長度 + LCA 線)對本節**不適用**(Zep 不該用 pool_state、LCA 離題、雙 row stacked 難讀)。§3.2 改以上表為主。**若仍要一張視覺**,建議重製為精簡版:**只 ours + mem0、兩桶(乾淨=New/Both vs 毀損=OldOnly/Missing)、無 LCA、無 Zep**——但 table 已足,圖非必要(待你決定要不要做)。
 
