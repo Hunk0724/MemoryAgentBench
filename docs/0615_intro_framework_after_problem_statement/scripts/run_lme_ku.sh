@@ -82,6 +82,30 @@ elif [[ "$METHOD" == "ours_no_p5" ]]; then
   # Do NOT rm extraction cache — held-fixed reuse from ours; rm other caches for clean run
   rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_GROUPING_CACHE" "$MEM0_CONFLICT_CACHE" \
          "$MEM0_SUBJECT_CACHE" "$MEM0_TRIPLE_CACHE"
+elif [[ "$METHOD" == "ours_p5_reuse" ]]; then
+  # REUSE ours_no_p5's populated store + write-time caches, only re-run query phase
+  # with P5 enabled. Isolates P5 decision trace WITHOUT rebuilding memory pool.
+  # Uses ours_no_p5.yaml (same qdrant store path + collection_name as ours_no_p5 run)
+  # and UNSETS MEM0_P5_SKIP so P5 activates at query-time.
+  # Requires: ours_no_p5 s0/s1 must have completed with full 78 KU coverage.
+  AG=Structure_rag_gpt-4o-mini-mem0_512_openai_unified_no_p5.yaml  # matches ours_no_p5 store path
+  export MEM0_TRIPLE_MODEL=gpt-4o-mini
+  export MEM0_EXTRACTION_CACHE="$PC/extraction_ours${SHARDSFX}.json"       # reuse (unchanged)
+  export MEM0_TRIPLE_CACHE="$PC/triple_ours_no_p5${SHARDSFX}.json"          # reuse ours_no_p5's
+  export MEM0_SUBJECT_CACHE="$PC/subject_ours_no_p5${SHARDSFX}.json"        # reuse ours_no_p5's
+  export MEM0_GROUPING_CACHE="$PC/grouping_ours_no_p5${SHARDSFX}.json"      # reuse ours_no_p5's
+  export MEM0_CONFLICT_CACHE="$PC/conflict_ours_p5_reuse${SHARDSFX}.json"   # FRESH — P5 decisions to be logged
+  export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/lme_ours_p5_reuse${SHARDSFX}_p1"
+  export MEM0_ADD_MODE=phase0_structural
+  export MEM0_QUERY_MODE=phase2
+  unset MEM0_P5_SKIP   # P5 enabled at query time (critical — this is the only diff vs ours_no_p5)
+  # Override SUBDS to reuse ours_no_p5's store namespace (both store path + user_id namespace).
+  # ours_no_p5 uses SUBDS="longmemeval_s_ku_ours_no_p5${SHARDSFX}" via method-specific fix
+  SUBDS="longmemeval_s_ku_ours_no_p5${SHARDSFX}"
+  # Only rm the FRESH state (conflict cache + cand log); NEVER rm the reused caches/store
+  rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_CONFLICT_CACHE"
+  # QUERY_ONLY flag passed to python (skip memorize step)
+  QUERY_ONLY_FLAG="--query-only"
 elif [[ "$METHOD" == "b" ]]; then
   AG=Structure_rag_gpt-4o-mini-mem0_512_openai_unified_dest.yaml
   export MEM0_TRIPLE_MODEL=gpt-4o-mini
@@ -100,9 +124,12 @@ mkdir -p "$MEM0_CAND_LOG_DIR"
 # fresh store for this method+shard. agent.py:273 suffixes the yaml `path:` field
 # (NOT collection_name) with __<sub_dataset>, and isolates history.db per
 # <sub_dataset>__<agent_fp>. Clean both so a re-run starts empty.
+# EXCEPTION: ours_p5_reuse mode reuses ours_no_p5's populated store — do NOT rm.
 BASEPATH=$(grep -oP '^\s*path:\s*\K\S+' "$AGDIR/$AG" | head -1)
-rm -rf "${BASEPATH}__${SUBDS}" 2>/dev/null
-rm -f "$HOME/.mem0/history__${SUBDS}__"*.db 2>/dev/null
+if [[ "$METHOD" != "ours_p5_reuse" ]]; then
+  rm -rf "${BASEPATH}__${SUBDS}" 2>/dev/null
+  rm -f "$HOME/.mem0/history__${SUBDS}__"*.db 2>/dev/null
+fi
 
 HYP="$HYPDIR/lme_ku_${METHOD}${SHARDSFX}.jsonl"
 [[ "$LIMIT" != "0" ]] && HYP="$HYPDIR/lme_ku_${METHOD}_smoke${LIMIT}.jsonl"
@@ -113,7 +140,7 @@ echo "================ LME-KU $METHOD shard $SHARD/$NSHARD (limit=$LIMIT) ======
 python docs/0615_intro_framework_after_problem_statement/scripts/run_longmemeval_ku.py \
   --agent_config "$AGDIR/$AG" --data "$DATA" --out "$HYP" \
   --sub_dataset "$SUBDS" --qtype knowledge-update --limit "$LIMIT" \
-  --shard "$SHARD" --nshard "$NSHARD"
+  --shard "$SHARD" --nshard "$NSHARD" ${QUERY_ONLY_FLAG:-}
 RC=$?
 date; echo "[lme $METHOD shard $SHARD/$NSHARD] gen exit=$RC"
 [[ $RC -ne 0 ]] && exit $RC

@@ -55,6 +55,9 @@ def main():
     ap.add_argument("--gen_max", type=int, default=256)
     ap.add_argument("--shard", type=int, default=0, help="this shard index (0-based)")
     ap.add_argument("--nshard", type=int, default=1, help="total shards (parallel processes)")
+    ap.add_argument("--query-only", action="store_true",
+                    help="Skip memorize phase (assume store already populated by prior run with same sub_dataset). "
+                         "For ours (+P5) reuse of ours_no_p5's store to get P5 decision trace without re-ingest.")
     args = ap.parse_args()
 
     agent_config = yaml.safe_load(open(args.agent_config))
@@ -99,8 +102,9 @@ def main():
         sessions = d["haystack_sessions"]
         dates = d.get("haystack_dates", [""] * len(sessions))
         ts = time.time()
-        for sess, date in zip(sessions, dates):
-            agent.send_message(fmt_session(sess, date), memorizing=True, query_id=qid, context_id=cid)
+        if not args.query_only:
+            for sess, date in zip(sessions, dates):
+                agent.send_message(fmt_session(sess, date), memorizing=True, query_id=qid, context_id=cid)
         wrapped_q = q_tmpl.format(question=d["question"])
         if d.get("question_date"):
             wrapped_q = f"Today's date is {d['question_date']}.\n\n" + wrapped_q
