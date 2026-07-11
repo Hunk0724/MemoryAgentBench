@@ -149,6 +149,36 @@ elif [[ "$METHOD" == "ours_no_p5" ]]; then
          "$MEM0_CONFLICT_CACHE" "$STOREBASE/$STORE" \
          "$OUTDIR/Conflict_Resolution/"*sh_${L}*results*.json
   ANSDIR="outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_no_p5${TAG_SFX}/k_100/factconsolidation_sh_${L}/chunksize_512"
+elif [[ "$METHOD" == "ours_q_llm_recency" ]]; then
+  # Q-llm-recency baseline: naive fact-level RAG + LLM does recency judgment.
+  # Uses a dedicated yaml (unified_q_llm_recency.yaml) that shares the qdrant
+  # store path/collection with unified_no_p5 → same populated store byte-for-byte,
+  # but distinct agent_name + output_dir so ours_no_p5's results don't get
+  # overwritten. See yaml header for details.
+  # Requires ours_no_p5 to have been run first at this length (writes to the
+  # shared store there).
+  # See experiment.md §M-3 / §M-4 and experiment_prove_main_claim.md §4.8.2 #2.
+  TAG=unified_q_llm_recency
+  AG="Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_unified_q_llm_recency.yaml"
+  STORE="qdrant_gpt4o_512_openai_unified_no_p5${TAG_SFX}__factconsolidation_sh_${L}"   # shared with ours_no_p5
+  export MEM0_TRIPLE_MODEL="${MEM0_TRIPLE_MODEL:-gpt-4o-mini}"
+  export MEM0_EXTRACTION_CACHE="$PC/extraction_cache_p1_${L}.json"    # reuse ours_no_p5
+  export MEM0_TRIPLE_CACHE="$PC/triple_cache_p1_${L}.json"            # reuse ours_no_p5
+  export MEM0_SUBJECT_CACHE="$PC/subject_cache_p1_${L}.json"          # reuse ours_no_p5
+  export MEM0_GROUPING_CACHE="$PC/grouping_cache_no_p5_${L}.json"     # reuse ours_no_p5 (unused at query)
+  export MEM0_CONFLICT_CACHE="$PC/conflict_cache_no_p5_${L}.json"     # reuse
+  export MEM0_SP_INDEX_PATH="$PWD/analysis/results/phase0/sp_index_no_p5_sh_${L}${TAG_SFX}.json"
+  export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/sh_${L}_q_llm_recency${TAG_SFX}"
+  export MEM0_ADD_MODE=phase0_structural
+  export MEM0_QUERY_MODE=q_llm_recency
+  export MEM0_P5_SKIP=1                    # bypass phase2 resolve (q_llm_recency branch replaces it)
+  export MEM0_Q_LLM_RECENCY_TOPK="${MEM0_Q_LLM_RECENCY_TOPK:-10}"   # recall-saturated per §M-4
+  OUTDIR="outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_q_llm_recency${TAG_SFX}"
+  # DO NOT rm the shared store / caches (would destroy ours_no_p5). Only clean
+  # this run's fresh outputs (cand log dir + prior stale q_llm_recency results).
+  rm -rf "$MEM0_CAND_LOG_DIR" \
+         "$OUTDIR/Conflict_Resolution/"*sh_${L}*results*.json
+  ANSDIR="outputs/rag_retrieved/Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_unified_q_llm_recency${TAG_SFX}/k_100/factconsolidation_sh_${L}/chunksize_512"
 elif [[ "$METHOD" == "b" ]]; then
   # mem0(b): P1 extraction HELD FIXED (reuse ours' p1 extraction cache, read-only)
   # + mem0 DESTRUCTIVE update (no phase env). Isolates write-time-update loss.
