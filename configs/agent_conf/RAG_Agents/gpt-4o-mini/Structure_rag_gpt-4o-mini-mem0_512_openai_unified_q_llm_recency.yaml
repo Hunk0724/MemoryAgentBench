@@ -11,8 +11,14 @@
 #     memories + factconsolidation.rag_agent template (with question filled),
 #     SYSTEM turn = factconsolidation.system. Matches origin _handle_embedding_rag
 #     message pattern.
-#   - top-K = 10 (recall-saturated per §M-4 audit; avoids weak-backbone
-#     attention degradation from long prompt).
+#   - top-K = 100 canonical (matches ours main / (b) / vanilla top-K in the
+#     yaml `retrieve_num`; ensures cross-method fairness in the paper — the
+#     ONLY difference vs ours main is "argmax(ord) vs LLM does recency", not
+#     retrieval bandwidth). top-10 sensitivity available via env override
+#     MEM0_Q_LLM_RECENCY_TOPK=10; see §M-4 for the recall audit that justifies
+#     top-10 as a lossless optimization (retrieval recall already saturates
+#     on ours store) — kept as future work / appendix observation, NOT as
+#     paper canonical.
 #
 # This yaml differs from unified_no_p5.yaml ONLY in:
 #   - agent_name  (so rag_retrieved logs get their own subdir)

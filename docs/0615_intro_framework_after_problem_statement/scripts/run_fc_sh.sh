@@ -172,7 +172,7 @@ elif [[ "$METHOD" == "ours_q_llm_recency" ]]; then
   export MEM0_ADD_MODE=phase0_structural
   export MEM0_QUERY_MODE=q_llm_recency
   export MEM0_P5_SKIP=1                    # bypass phase2 resolve (q_llm_recency branch replaces it)
-  export MEM0_Q_LLM_RECENCY_TOPK="${MEM0_Q_LLM_RECENCY_TOPK:-10}"   # recall-saturated per §M-4
+  export MEM0_Q_LLM_RECENCY_TOPK="${MEM0_Q_LLM_RECENCY_TOPK:-100}"  # canonical: top-100 to match ours main / (b) / vanilla top-K (fair comparison; §M-4). Override to 10 for sensitivity.
   OUTDIR="outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_q_llm_recency${TAG_SFX}"
   # DO NOT rm the shared store / caches (would destroy ours_no_p5). Only clean
   # this run's fresh outputs (cand log dir + prior stale q_llm_recency results).

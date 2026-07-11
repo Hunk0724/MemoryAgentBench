@@ -156,6 +156,22 @@ Pool state 分析建立於 **FC-SH 的 MQUAKE-derived counterfactual pair 特性
 
 **擴至 32k / 64k / gpt-4.1-mini 為 future work**;pattern 預期一致(ours store recall saturate 早、(b) store 上限受 destructive damage 綁死)。
 
+**Q-llm-recency baseline 於 top-K 的實測(2026-07-11,gpt-4o-mini × 6k,shared ours_no_p5 store)**:
+
+| Configuration | Overall SubEM | Δ vs top-100 canonical |
+|:--|:--:|:--:|
+| Q-llm-recency @ **top-100(paper canonical)** | 93/100 = 93.0% | — |
+| Q-llm-recency @ top-10(sensitivity)| 96/100 = 96.0% | +3pp |
+| ours (main) @ top-100(對照 canonical)| 94/100 = 94% | +1pp |
+
+**判讀**:
+
+- **top-100 為 paper canonical**(與 ours main / (b) / vanilla 皆 top-100 對齊,cross-method fairness);Q-llm-recency vs ours main **同 K 對照 = 93% vs 94%,強 backbone 上 parity within 1pp**——LLM 於 top-100 讀 ordinals 判 recency 幾乎和 argmax 一樣好。
+- **top-10 為 sensitivity 觀察**:reduce K → 減 distractor + attention load → Q-llm-recency 反升 3pp。這是 write-time 派沒有的 optimization 空間(argmax 於任何 K 上都同結果,因為 pool 已 pre-resolved 為 single-version)。
+- **C1 主要 evidence 於弱 backbone(gemma tier)**:預期於弱端 Q-llm-recency 於 top-100 上崩得比 ours main 更兇,gap 隨 backbone 減弱 widen。若同時觀察 top-10 sensitivity 於弱端 pattern 一致,則 attention degradation 為次因,ordinal parsing 失敗為主因。
+
+**paper 對照的建議 canonical 統一為 top-100**(所有 method 皆此值);top-10 觀察保留於 appendix / discussion 段,說明「Q-llm-recency 於 top-K 有 optimization 空間但仍不敵 ours 於弱 backbone 的 backbone-invariance」。
+
 ### 4.1.5 Implementation details
 
 | Item | Value | 備註 |
