@@ -111,6 +111,30 @@ Pool state 分析建立於 **FC-SH 的 MQUAKE-derived counterfactual pair 特性
 - **Weak-backbone(gemma3 1B/4B)**:extraction 字面偏離 GT(store 事實數 370 vs 12B/27B 450),matcher precision 必然下降,**不呈現 pool state 分析**,僅報 E2E EM。**gemma3 12B/27B 可信**(pool-missing=0、store 與 27B 重疊 99%)。
 - **6k / 32k 於 gpt-4o-mini 的同等 audit**、**gpt-4.1-mini 於 64k 的 audit** 為 future work,pattern 預期一致。
 
+#### §M-3. Answer-template 逐-method audit(2026-07-11 補記)
+
+**Origin MemoryAgentBench 的 template 分配設計**([`MemoryAgentBench_origin/utils/templates.py:76-84`](https://github.com/HowieHwong/MemoryAgentBench)):
+
+| Baseline 家族 | Origin 指派的 answer template | 內含「find newer by serial number」規則? |
+|:--|:--|:--:|
+| **long_context_agent(LCA)** | `factconsolidation.long_context_agent`(`templates.py:80`)| ✅ 有 |
+| **rag_agent** | `factconsolidation.rag_agent`(`templates.py:81`)| ✅ 有 |
+| **agentic_memory_agent(letta / Agentic_memory)** | `factconsolidation.agentic_memory_agent`(`templates.py:82`)| ✅ 有 |
+| **mem0 / ours / (b) / vanilla** | **hardcoded stripped prompt** 於 `MemoryAgentBench_origin/agent.py:582` — `"You are a helpful AI. Answer the question based on query and memories.\n{memories_str}\n"` | ❌ 無 |
+| **Zep** | 於 `_handle_zep_agent` 自組 prompt(含 edges/nodes/episodes) | 依 Zep 內建 |
+
+**Fair 判定**:
+- 現行實驗**繼承 origin 對各 method 的 template 指派**,**我方無客製**
+- LCA / letta 用 template.py 官方 template(含 serial-number 規則)是原生設計
+- mem0 家族用 stripped template 也是**原生設計**(destructive-update 或 pre-resolved pool 已把「決策」發生在 write-time,LLM 讀 clean pool 抄即可)
+- 兩者對稱各自的 pool 呈現方式,**非我方為 ours 挑對自己有利的 template**
+
+**Gap 待補(motivates §4.5 P3/P5 之外的 Q-llm 對照 baseline)**:
+- `factconsolidation.rag_agent` template 存在 origin,但**目前沒有任何 baseline 使用它**
+- 該 template 定位為「naive fact-level RAG + LLM 讀 serial number 自判 recency」,正好對應 [`experiment_prove_main_claim.md §4.8.2 #2`](experiment_prove_main_claim.md) 標記的「Q-llm『LLM 做 recency』arm 缺」
+- 該 arm 的設計:top-K 檢索 + serial-number 前綴 + 走 `rag_agent` template
+- 待補;實作後 abstract 「LLM 全程不參與 recency 裁決」的 headline 才有直接對照
+
 ### 4.1.5 Implementation details
 
 | Item | Value | 備註 |
@@ -120,7 +144,7 @@ Pool state 分析建立於 **FC-SH 的 MQUAKE-derived counterfactual pair 特性
 | Embedding | `text-embedding-3-small`(全 methods、全 backbones) | Weak-backbone 換本地 embedding 為 appendix sensitivity |
 | Temperature | 0(all LLM calls) | Deterministic |
 | Query preprocessing | Raw question(qa 模板 boilerplate 剝除)| ours + (b) 對稱;Zep 內建 `get_retrieval_query` 做同類剝離 |
-| Answer template | MAB 官方 qa template(不客製) | 避免「贏在答題 prompt」的混淆 |
+| Answer template | 各 method 用 origin 原生指派 template(見 §M-3 逐-method audit) | 避免「贏在答題 prompt」的混淆 |
 | Random seed | 單次 deterministic run | 無 error bar;temperature 0 下確定性極高(cross-machine 差異 ±2-3 題,已於 CLAUDE.md 記錄) |
 
 ---
