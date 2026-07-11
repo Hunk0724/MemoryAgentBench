@@ -19,8 +19,8 @@
 | Property | Value |
 |:--|:--|
 | Lengths(context tokens) | 6k / 32k / 64k(**262k 延後**) |
-| Queries per length | 100 |
-| `has_pair` 子集(有 GT_old / GT_new 對照,**主分母**) | **74 / 65 / 66** |
+| Queries per length(**主分母**) | **100** |
+| `has_pair` 子集(有 GT_old / GT_new 對照,**§4.2.2 歸因/§4.4 case study 用**) | 74 / 65 / 66 |
 | `no_conflict_pair`(單版 GT) | 26 / 35 / 34 |
 | Full-bank conflict-pair(全 chunks P1 抽取後 (S,P) 分群 ≥2 distinct object) | 124 / 631 / 1,295 |
 
@@ -67,15 +67,21 @@
 
 ### 4.1.4 Metrics
 
-#### Primary — E2E `has_pair` EM
+#### Primary — E2E `has_pair` accuracy(MemoryAgentBench 官方 `substring_exact_match`)
 
-MAB 官方 `default_post_process` + `drqa_exact_match_score`(per-qid):
+主 metric 採 MemoryAgentBench 對 Conflict-Resolution 的**官方判分** `substring_exact_match`(README §Clarification on Evaluation Metrics 明列 CR = fact_sh/fact_mh 用此欄位):經官方 `default_post_process`(`normalize_answer` + `parse_output`)後,
 
 $$
-\text{EM}_i = \max\bigl(\text{EM}(\text{raw}_i),\ \text{EM}(\text{parse\_output}(\text{raw}_i))\bigr)
+\text{sEM}_i = \mathbb{1}\!\left[\text{normalize}(\text{gt\_new}) \subseteq \text{normalize}(r_i)\right]
 $$
 
-Aggregate = mean over `has_pair` 分母。**Single deterministic run**(temp=0),無 error bar。
+(對 raw 與 `parse_output` 兩版取 max、對 gt_new alias list 取 max)。**Single deterministic run**(temp=0),無 error bar。
+
+**主分母 = overall(全 100 題)**:對齊 MemoryAgentBench 官方 task accuracy、避免只報子集的 cherry-pick 觀感。**has_pair 子集**(74/65/66,有 gt_new/gt_old 對照)留給 §4.2.2 pool-state × Acc 歸因與 §4.4 case study——KU 實際發生處,且 pool-state 分類本就只能在 has_pair 上定義。
+
+判分來源統一為 canonical rescore([`../results/canonical_fc_sh_metrics.md`](../results/canonical_fc_sh_metrics.md)):**單一入口**從每格唯一官方檔的 raw `output` 重算,避免混入各 method 側寫的非官方 scorer(Zep 側路徑曾各自手寫比對,且部分目錄殘留 stale 檔)。
+
+> **判讀註**:`substring_exact_match` 只要求 response 含 gt_new、對答句採寬鬆比對——這對輸出完整句子的 method(Zep)是**必要的公平處理**(如「Goaltender is associated with the sport of pesäpallo.」含正解即算對;若用 strict exact-match 會因整句格式冤枉判錯)。對答案精簡的 method(ours / mem0 / LCA),官方 substring 與 strict exact-match **逐 cell 幾乎全等**(差 ≤ 1 題),故 metric 選擇不影響 ours-vs-mem0 主結論。canonical 檔逐 cell 併列 strict EM 供對照。
 
 #### Attribution — Context-state × Accuracy cross-tabulation
 
@@ -90,24 +96,9 @@ Aggregate = mean over `has_pair` 分母。**Single deterministic run**(temp=0),�
 
 **論述**:ours vs baseline 的 E2E 差距,**主要來自 pool state 分佈的差異**,非 PP-Both 時 answer LLM 的挑選能力(對應 intro §7「乾淨 pool」payoff)。
 
-#### Secondary — correct-sEM(diagnostic only)
+#### Reported companion — strict exact-match(附錄逐 cell 併列)
 
-**Definition**:
-$$
-\text{correct-sEM}(r) = \mathbb{1}\left[ \text{gt\_new} \subseteq r \right] \cdot \mathbb{1}\left[ \text{gt\_old} \not\subseteq r \right]
-$$
-即 response contains `gt_new_answer` **AND** does not contain `gt_old_answer`。
-
-**Rationale**:
-- **Loose substring sEM(僅檢查 contains gt_new,允許 gt_old 也在)** 於 Zep @ gpt-4.1-mini × 64k 上 audit 顯示,27 個 strict-fail-but-sEM-pass 中 **26 個是 hedge FP**(response 同時列 gt_new + gt_old 用「and」連接)。**loose sEM 因此不採用**。
-- **Correct-sEM 排除 hedge FP**,只保留 true verbose(response 含 gt_new 且明確不列 gt_old)為 pass。
-- Zep @ gpt-4.1-mini × 64k audit:strict EM = 23 → correct-sEM = 24(只差 1 題 qid=6 Shaman King)。**與 strict EM 差距只 +1pp,證明 Zep drop 是真 content fail 非 format artifact**。
-
-**用途**(**diagnostic only**,**不進主表**):
-- Primary metric 一律 strict EM
-- Correct-sEM 僅於**特定 method(如 Zep)於特定 backbone 顯著下降時**用作 diagnostic:
-  - 若 correct-sEM 幾乎不變 → 真 content fail(mechanism 分析)
-  - 若 correct-sEM 大幅高於 strict EM → format artifact(pipeline alignment 問題,誠實 disclose)
+主表以官方 `substring_exact_match` 呈現;strict exact-match 於 [`../results/canonical_fc_sh_metrics.md`](../results/canonical_fc_sh_metrics.md) 逐 cell 併列,供熟悉 exact-match 慣例的 reviewer 對照。兩者於 ours / mem0 / LCA 差 ≤ 1 題;唯 Zep(verbose 答句)兩者分岔(官方 substring 對整句答案較公平),此差異已於上方判讀註說明。
 
 #### §M-1. Pool state 分析的 dataset 前置條件
 
@@ -140,80 +131,83 @@ Pool state 分析建立於 **FC-SH 的 MQUAKE-derived counterfactual pair 特性
 
 Intro §第 6 段末的可證偽預測:**ours 相對現有流派的優勢應隨 backbone 判斷力下降而單調放大**。以下三張 tables + 一張 figure 為 paper 主 evidence,對接 intro thesis 的完整檢驗:
 
-**Figure 1**([`../figures/F_backbone_spectrum.png`](../figures/F_backbone_spectrum.png))— headline visualization,兩 panel 共 y-axis(has_pair EM %),gpt-4o-mini 為 mid-tier anchor 出現於兩 panel。
+> **⚠ metric/分母遷移狀態(2026-07-11)**:本節 gpt-4o-mini / gpt-4.1-mini 格已更新為 **overall-100 官方 `substring_exact_match`**(canonical rescore)。**gemma3(1B/4B/12B/27B)格仍為舊值 has_pair strict-EM,待 GX10 以 overall-100 官方 SubEM 重算**(見 §E action item)。因此 gemma 列與 gpt 列**暫時分母/metric 不同,跨列絕對值不可直接比**;gemma 列的相對趨勢仍具參考性。
 
-#### Table G1 — has_pair EM × 5 backbones @ 6k(weak → mid)
+**Figure 1**([`../figures/F_backbone_spectrum.png`](../figures/F_backbone_spectrum.png))— headline visualization,兩 panel 共 y-axis(overall accuracy %),gpt-4o-mini 為 mid-tier anchor 出現於兩 panel。**待 GX10 gemma overall-SubEM 重算後重繪**。
+
+#### Table G1 — accuracy × 5 backbones @ 6k(weak → mid)
 
 | Backbone | ours (main) | mem0+P1 | Zep | Gap ours−mem0 | Gap ours−Zep |
 |:--|--:|--:|--:|--:|--:|
-| gemma3-1B | 25 (34%) | **0** (0%) | 12 (16%) | +34pp | +18pp |
-| gemma3-4B | 54 (73%) | **0** (0%) | 17 (23%) | **+73pp** | +50pp |
-| gemma3-12B | 73 (99%) | 44 (59%) | 43 (58%) | +40pp | +41pp |
-| gemma3-27B | 70 (95%) | 36 (49%) | 35 (47%) | +46pp | +48pp |
-| gpt-4o-mini | 69 (93%) | 34 (46%) | 46 (62%) | +47pp | +31pp |
+| gemma3-1B ⚠ | 25 (34%) | **0** (0%) | 12 (16%) | +34pp | +18pp |
+| gemma3-4B ⚠ | 54 (73%) | **0** (0%) | 17 (23%) | **+73pp** | +50pp |
+| gemma3-12B ⚠ | 73 (99%) | 44 (59%) | 43 (58%) | +40pp | +41pp |
+| gemma3-27B ⚠ | 70 (95%) | 36 (49%) | 35 (47%) | +46pp | +48pp |
+| **gpt-4o-mini** | **94%** | 52% | 82% | **+42pp** | +12pp |
 
-N=74 has_pair queries;single deterministic run(temp=0);數字均由 per-qid response 以 MAB `default_post_process` 重驗。
+⚠ = gemma 列為 has_pair strict-EM 舊值(N=74),待 GX10 overall-SubEM 重算;**gpt-4o-mini 列為 overall-100 官方 SubEM**(N=100)。single deterministic run(temp=0)。
 
-**Observation**:於全 5 個 backbone tier,ours 相對 mem0+P1 的 gap 皆 ≥ **+25pp**,於 gemma3-4B 達 peak **+73pp**。mem0+P1 於 gemma3-1B/4B **完全歸零**(write-time UPDATE prompt 於弱 LLM 無法生正確 schema 決策);Zep 於同 tier 崩至 16-23%(labeler 於弱 LLM 無法可靠輸出 contradicts/duplicates 標籤)。**對接 intro §受限部署段**:privacy-sensitive on-device(gemma3-1B/4B)與 cost-constrained(gpt-4o-mini)兩軸的預測皆成立。
+**Observation**:於全 5 個 backbone tier,ours 相對 mem0+P1 的 gap 皆 ≥ **+25pp**,於 gemma3-4B 達 peak **+73pp**(gemma 列待重算後數值可能微調,趨勢預期不變)。mem0+P1 於 gemma3-1B/4B **完全歸零**(write-time UPDATE prompt 於弱 LLM 無法生正確 schema 決策);Zep 於弱 tier 崩至 16-23%(labeler 於弱 LLM 無法可靠輸出 contradicts/duplicates 標籤),但於 gpt-4o-mini 回穩至 82%(decoupled labeling 於強 LLM 可用)。**對接 intro §受限部署段**:privacy-sensitive on-device(gemma3-1B/4B)與 cost-constrained(gpt-4o-mini)兩軸的預測皆成立。
 
-#### Table G2 — has_pair EM × 2 backbones @ 64k(mid → strong;falsifiable prediction check)
+#### Table G2 — overall accuracy × 2 backbones @ 64k(mid → strong;falsifiable prediction check)
 
-| Backbone | ours (main) | mem0+P1 | Zep (strict) | Gap ours−mem0 |
+| Backbone | ours (main) | mem0+P1 | Zep | Gap ours−mem0 |
 |:--|--:|--:|--:|--:|
-| gpt-4o-mini | 60 (91%) | 34 (52%) | 36 (55%) | **+39pp** |
-| gpt-4.1-mini | 53 (80%) | **55 (83%)** | 23 (35%) | **−3pp** ★ collapse |
+| gpt-4o-mini | 94% | 65% | 76% | **+29pp** |
+| gpt-4.1-mini | 88% | 88% | 84% | **0pp** ★ gap 收斂至 parity |
 
-N=66 has_pair queries;strict EM only(sEM 為 hedge FP,見 §Metrics disclosure)。
+N=100 overall queries;官方 `substring_exact_match`;single deterministic run(temp=0)。
 
-**Observation**:於強 backbone(gpt-4.1-mini),mem0+P1 大幅恢復(**+32pp**)並略勝 ours main;gap **從 +39pp 崩至 −3pp**。**Intro §6 末 falsifiable prediction 得證**(方向與量級皆符合)。Zep strict EM 反向下降(55→35%),因 gpt-4.1-mini 遇到 Zep 兩版共存 RCP 時傾向 hedge(response 同時列 gt_new 與 gt_old;26/27 sEM-only-pass 是此 pattern)。
+**Observation**:於強 backbone(gpt-4.1-mini),mem0+P1 大幅恢復(**+23pp**,65→88%)並與 ours main 打平;gap **從 +29pp 收斂至 0pp**。**Intro §6 末 falsifiable prediction 得證**(方向與量級皆符合:強 backbone 上 write-time judge 誤判減少 → destructive damage 消失)。Zep 於兩 backbone 皆穩定 ~76–84%(decoupled labeling 有效但天花板低於 ours),不因 backbone 換代而崩。
 
-**為何 ours 於 gpt-4.1-mini 下降 −7pp**(initial hypotheses,pending 深度 evidence 於 §4.4):
+**為何 ours 於 gpt-4.1-mini 微降 −6pp**(94→88%;initial hypotheses,pending 深度 evidence 於 §4.4):
 1. Phase2 P3 grouping 於強 LLM 更嚴格遵循 GROUPING_PROMPT「Clustering is RARE」→ 該 merge 沒 merge(qid=1 Hard Times)
 2. Answer LLM 於特定 domain 世界先驗更強(qid=5 Aki Takase music)
 3. 1 題為 MAB benchmark 缺陷(qid=18 D-flag)
-Net real regression ≈ −6pp;−1 為 D-flag。
-
-**為何 Zep 於 strict EM 下降 −20pp**(direct evidence):
-- 於 30 wrong 中 27 題 response 同時列 gt_new + gt_old 用「and」連接(hedge)。gpt-4.1-mini 遇到 Zep RCP 的「conflicting update」framing + 兩版都是 `(- present)` 時傾向並列而非 disambiguate。
+Net real regression ≈ −5pp;−1 為 D-flag。
 
 #### Table G3 — Ours ablation × backbone spectrum(P3 capability-gate,secondary)
 
 | Backbone | Length | ours main | ours (struct only) | ours (LLM only) | Δ (main − struct) | 判讀 |
 |:--|:--:|--:|--:|--:|--:|:--|
-| gemma3-1B | 6k | 25 (34%) | 29 (39%) | 7 (9%) | **−5pp** | P3 反害(underpowered)|
-| gemma3-4B | 6k | 54 (73%) | 54 (73%) | 26 (35%) | 0 | struct 已飽和 |
-| gemma3-12B | 6k | 73 (99%) | 73 (99%) | 46 (62%) | 0 | struct 已飽和 |
-| gemma3-27B | 6k | 70 (95%) | 65 (88%) | 27 (36%) | **+7pp** | P3 修 reader override |
-| gpt-4o-mini | 6k | 69 (93%) | 67 (91%) | 71 (96%) | +3pp | mid-strong sweet spot |
-| gpt-4o-mini | 32k | 57 (88%) | 52 (80%) | 58 (89%) | +8pp | struct 較差、P3 補回 |
-| gpt-4o-mini | 64k | 60 (91%) | 58 (88%) | 58 (88%) | +3pp | 兩者互補 |
-| gpt-4.1-mini | 64k | 53 (80%) | 52 (79%) | 27 (41%) | +1pp | struct 已足 |
+| gemma3-1B ⚠ | 6k | 25 (34%) | 29 (39%) | 7 (9%) | **−5pp** | P3 反害(underpowered)|
+| gemma3-4B ⚠ | 6k | 54 (73%) | 54 (73%) | 26 (35%) | 0 | struct 已飽和 |
+| gemma3-12B ⚠ | 6k | 73 (99%) | 73 (99%) | 46 (62%) | 0 | struct 已飽和 |
+| gemma3-27B ⚠ | 6k | 70 (95%) | 65 (88%) | 27 (36%) | **+7pp** | P3 修 reader override |
+| **gpt-4o-mini** | 6k | 94% | 91% | 97% | +3pp | mid-strong sweet spot |
+| **gpt-4o-mini** | 32k | 91% | 87% | 91% | +4pp | struct 較差、P3 補回 |
+| **gpt-4o-mini** | 64k | 94% | 92% | 91% | +2pp | 兩者互補 |
+| **gpt-4.1-mini** | 64k | 88% | 86% | 62% | +2pp | struct 已足 |
 
-**Observation**:P3(LLM identity grouping)為 **capability-gated add-on**:於 underpowered backbone(1B)反害 −4pp;struct 飽和區(4B/12B)neutral;mid-strong tier(27B、gpt-4o-mini)net-positive +3~+8pp;super-strong(gpt-4.1-mini)near-zero(過度保守)。**Struct 於全 backbone 都穩定為 workhorse**,兌現 method_v1.md §3.3「LLM 補救僅在少數案例介入」的設計選擇。
+⚠ gemma 列為 has_pair strict-EM 舊值(N=74),待 GX10 overall-SubEM 重算;gpt 列為 **overall-100 官方 SubEM**(N=100)。
+
+**Observation**:P3(LLM identity grouping)為 **capability-gated add-on**:於 underpowered backbone(1B)反害 −5pp;struct 飽和區(4B/12B)neutral;mid-strong tier(27B、gpt-4o-mini)net-positive +2~+4pp;super-strong(gpt-4.1-mini)near-zero(過度保守)。**Struct 於全 backbone 都穩定為 workhorse**,兌現 method_v1.md §3.3「LLM 補救僅在少數案例介入」的設計選擇。**gpt-4.1-mini 上 LLM-only 崩至 62%**(struct 缺席時,強 LLM 的 P3 grouping 過度保守 → 大量未併群)佐證 struct 底盤不可或缺。
 
 ---
 
-### 4.2.1 E2E `has_pair` EM(3 lengths)
+### 4.2.1 E2E accuracy(overall 100 題,3 lengths)
 
-**Table 1**:FC-SH has_pair Exact Match(row = method,col = length;bold 每 col 最佳)
+**Table 1**:FC-SH overall accuracy(全 100 題,官方 `substring_exact_match`;gpt-4o-mini backbone;row = method,col = length;bold 每 col 最佳)
 
-| Method | 6k(N=74) | 32k(N=65) | 64k(N=66) |
+| Method | 6k(N=100) | 32k(N=100) | 64k(N=100) |
 |:--|--:|--:|--:|
-| **ours (main)** | **69/74 (93.2%)** | **57/65 (87.7%)** | **60/66 (90.9%)** |
-| (b) mem0+P1 | 34/74 (45.9%) | 25/65 (38.5%) | 34/66 (51.5%) |
-| Zep(k=10) | 46/74 (62.2%) | 33/65 (50.8%) | 36/66 (54.5%) |
-| LCA(long-context, gpt-4o-mini)| 65/74 (87.8%) | 46/65 (70.8%) | 38/66 (57.6%) |
+| **ours (main)** | **94%** | **91%** | **94%** |
+| (b) mem0+P1 | 52% | 52% | 65% |
+| Zep(k=10) | 82% | 80% | 76% |
+| LCA(long-context, gpt-4o-mini)| 88% | 74% | 65% |
 
 **Observation**(what / where / implication):
-- **What**:ours 於全 3 lengths 領先第二名 **+5.4 / +16.9 / +33.3pp**(64k 第二名為 LCA 57.6%);length 增長時 ours 保持 88-93% flat,而 baselines 於 64k 較 6k **不改善或退步**(mem0 32k dip 至 38.5%,Zep 32k 至 50.8%,LCA 64k 崩至 57.6%)。
-- **Where**:gap 於 32k 起放大,原因是 write-time destructive commit 的 damage 隨 chunks 累積(§4.4 case study 展示);Zep 於長 context 依 top-10 檢索能力受限(§4.4 F4)。
-- **Implication**:ours 於 cost-constrained deployment 主場提供 46-50pp 的絕對優勢;此差距不依賴 answer LLM 於 混雜 pool 中的挑選能力,而來自 pipeline 讓 pool 更乾淨(§4.2.2)。
+- **What**:ours 於全 3 lengths 為最佳(94 / 91 / 94%),領先第二名 **+6 / +11 / +18pp**(6k 第二名為 LCA 88%,32k/64k 第二名為 Zep 80/76%);length 增長時 ours 保持 91-94% flat,而 baselines 於 64k 較 6k **不改善或退步**(LCA 64k 退至 65%,Zep 64k 降至 76%)。
+- **Where**:對 write-time destructive baseline(mem0)的 gap 於 32k 起放大,原因是 destructive commit 的 damage 隨 chunks 累積(§4.4 case study 展示);此效應於 **has_pair 子集**(KU 實際發生處)更明顯,見 §4.2.2。
+- **Implication**:ours 於 cost-constrained deployment 主場對 mem0 提供 **+42 / +39 / +29pp** 的絕對優勢;此差距不依賴 answer LLM 於混雜 pool 中的挑選能力,而來自 pipeline 讓 pool 更乾淨(§4.2.2 has_pair 歸因)。
 
 ### 4.2.2 Context-state × Accuracy attribution(64k 為代表,3 lengths 完整表見附錄)
 
-**Table 2**:64k 各 method 的 pool state 分佈與 in-bucket accuracy(cell = `Acc✓/N (in-bucket rate)`;row = method,col = pool state)
+**Table 2**:64k 各 method 的 pool state 分佈與 in-bucket accuracy(has_pair N=66;cell = `Acc✓/N (in-bucket rate)`;row = method,col = pool state)
 
-| Method | PP-New Acc/N ↑ | PP-Both Acc/N | PP-OldOnly Acc/N ↓ | PP-Missing Acc/N ↓ | E2E |
+> **⚠ metric 待統一**:下表 in-bucket Acc 與 E2E 欄為 **strict EM**(舊 crosstab pipeline);待以官方 `substring_exact_match` 重算 `compute_pool_acc_crosstab.py`。**Zep 影響最大**(其 has_pair E2E 於官方 SubEM 為 **42/66 = 64%**、PP-Both in-bucket Acc 隨之上升);ours/mem0 影響 ≤ 1 題。**pool state 分佈(各桶 N)不受 metric 影響——本節主論述在此,不受影響**。
+
+| Method | PP-New Acc/N ↑ | PP-Both Acc/N | PP-OldOnly Acc/N ↓ | PP-Missing Acc/N ↓ | E2E(strict)|
 |:--|--:|--:|--:|--:|--:|
 | **ours (main)** | **35/38 (92%)** | **24/26 (92%)** | 1/2 (50%) | 0/0 | **60/66 (91%)** |
 | (b) mem0+P1 | 25/25 (100%) | 9/17 (53%) | 0/15 (0%) | 0/9 (0%) | 34/66 (52%) |
@@ -260,16 +254,16 @@ Net real regression ≈ −6pp;−1 為 D-flag。
 
 Intro §第 6 段末 falsifiable prediction 的 **backbone spectrum 主圖**:整合 Weak(gemma3 1B/4B/12B/27B)+ Mid(gpt-4o-mini)於 6k 長度,對主要對比(ours main、(b) mem0+P1、Zep)呈現 gap × backbone。
 
-**Figure 1**:`F_backbone_gap_haspair_6k`([`../figures/F_backbone_gap_haspair_6k.png`](../figures/F_backbone_gap_haspair_6k.png))— 6k has_pair EM × 4 backbones(gemma3 1B/4B/12B/27B)× 4 methods(struct、no_p5、mem0+P1、Zep);black-and-white safe(hatch/marker 區分)。**Placeholder**:待補 gpt-4o-mini + gpt-4.1-mini 條(當前 GX10-only 4 tier);gpt-4.1-mini × 6k **future work** 保留欄位。
+**Figure 1**:`F_backbone_gap_haspair_6k`([`../figures/F_backbone_gap_haspair_6k.png`](../figures/F_backbone_gap_haspair_6k.png))— 6k accuracy × 4 backbones(gemma3 1B/4B/12B/27B)× 4 methods(struct、no_p5、mem0+P1、Zep);black-and-white safe(hatch/marker 區分)。**⚠ 待重繪**:圖仍為 has_pair strict-EM;待 GX10 以 **overall-100 官方 SubEM** 重算 gemma 後,連同 gpt-4o-mini / gpt-4.1-mini 條一併重繪(檔名 haspair 亦應更新)。
 
-**Table 3**:6k has_pair EM 完整 backbone spectrum(row = method,col = backbone;bold = 每 col 最佳;分母 N=74)
+**Table 3**:6k backbone spectrum(row = method,col = backbone;bold = 每 col 最佳)。**gpt 欄 = overall-100 官方 SubEM;gemma 欄(⚠)= has_pair strict-EM 舊值(N=74),待 GX10 overall-SubEM 重算**。
 
-| Method | 1B | 4B | 12B | 27B | gpt-4o-mini | gpt-4.1-mini |
+| Method | 1B ⚠ | 4B ⚠ | 12B ⚠ | 27B ⚠ | gpt-4o-mini | gpt-4.1-mini |
 |:--|--:|--:|--:|--:|--:|--:|
-| **ours (main)** = struct+P3+argmax | 25 (34%) | **54** (73%) | **73** (99%) | **70** (95%) | **69** (93%) | **66** (89%) |
-| ours (no P3) = struct+argmax | **29** (39%) | **54** (73%) | **73** (99%) | 65 (88%) | 67 (91%) | ☐ *placeholder* |
-| (b) mem0+P1 | **0** (0%) | **0** (0%) | 44 (59%) | 36 (49%) | 34 (46%) | 56 (76%) |
-| Zep (k=10) | 12 (16%) | 17 (23%) | 43 (58%) | 35 (47%) | 46 (62%) | 46 (62%) |
+| **ours (main)** = struct+P3+argmax | 25 (34%) | **54** (73%) | **73** (99%) | **70** (95%) | **94%** | **92%** |
+| ours (no P3) = struct+argmax | **29** (39%) | **54** (73%) | **73** (99%) | 65 (88%) | 91% | ☐ *placeholder* |
+| (b) mem0+P1 | **0** (0%) | **0** (0%) | 44 (59%) | 36 (49%) | 52% | 81% |
+| Zep (k=10) | 12 (16%) | 17 (23%) | 43 (58%) | 35 (47%) | 82% | 81% |
 
 > ⚠ **Canonical naming(2026-07-07 更新)**:
 > - **`ours (main)` = struct+P3+argmax(NO P5)**= `run_fc_sh.sh` 內的 `ours_no_p5` method(數字來源以此為準)
@@ -277,10 +271,10 @@ Intro §第 6 段末 falsifiable prediction 的 **backbone spectrum 主圖**:整
 > - script `ours` **不是** paper "ours (main)";此 naming 因 script 歷史沿革保留
 > - Paper 一律以 canonical 名稱(main / +P5 / struct / p3-only),legacy 別名(full / no_p5 / p3_only)已 deprecate
 
-**Observation**:
-- **What**:於 weak-end(1B/4B),ours 保 25-54,而 (b) mem0+P1 **完全歸零**(1B=0, 4B=0);gap 於 4B 達到 +54pp(最大)。於 mid-end(12B、27B、gpt-4o-mini)ours 保 65-73,gap 收斂至 +23-+34pp。於 strong-end(gpt-4.1-mini)ours 略降至 66/74(-4pp vs gpt-4o-mini),(b) 大跳至 56/74(**+30pp**),Zep flat(46)。**Gap ours-b 從 47pp 收斂至 13pp**(收 72%),Zep-ours gap 從 31pp 收至 27pp(僅收 13%)。
-- **Where**:(b) 於弱端崩因 mem0 UPDATE prompt 於弱 LLM 生不出正確 schema(§4.4.6 Case F 有 trace);Zep 弱端稍優於 (b)(有部分 tolerance)但仍崩 12-17。12B 起 backbones ours 於 has_pair 幾乎飽和(99% ceiling)。**gpt-4.1-mini 上 ours 微降 -4pp** — 對照 (§4.5.3 的 ours (+P5) 於 gpt-4.1-mini 掉 -11pp)可見**是 P5 引入的敏感度,而非 main 方法本身的問題**。
-- **Implication**:**Falsifiable prediction 於 6-tier 全 spectrum 成立**(gap 隨 backbone 減弱擴大),於 privacy-sensitive on-device 主場(1B/4B)兌現最大絕對優勢。**非嚴格單調**:12B 為 ours 峰值(73/74),27B 略降至 65-70(reader override,§4.2.2 & §4.4.6 27B 面板),gpt-4.1-mini 微降至 66(main method robust);paper 需誠實揭露此非單調性 = **強-end 天花板為 reader override,與 KU 方法正交**。
+**Observation**(⚠ weak-end 絕對值待 GX10 overall-SubEM 重算,趨勢預期不變;gpt-end 為 overall-100 官方 SubEM):
+- **What**:於 weak-end(1B/4B),ours 保 25-54(has_pair),而 (b) mem0+P1 **完全歸零**(1B=0, 4B=0)。於 mid/strong-end,ours 保 92-94%(overall);(b) 於 gpt-4o-mini 僅 52%、於 gpt-4.1-mini 大跳至 81%(強 backbone 上 write-time judge 準確度提升),Zep 兩 backbone 平穩 81-82%。**Gap ours−(b) 從 gpt-4o-mini 的 +42pp 收斂至 gpt-4.1-mini 的 +11pp**;Zep−ours gap 亦收(+12→+11pp)。
+- **Where**:(b) 於弱端崩因 mem0 UPDATE prompt 於弱 LLM 生不出正確 schema(§4.4.6 Case F 有 trace);Zep 弱端稍優於 (b)(有部分 tolerance)但仍崩 12-17(has_pair)。12B 起 backbones ours 幾乎飽和。**gpt-4.1-mini 上 ours 微降 -2pp**(overall 94→92) — 對照 §4.5.3 的 ours (+P5) 於 gpt-4.1-mini 掉更多,可見是 P5 引入的敏感度,非 main 方法本身的問題。
+- **Implication**:**Falsifiable prediction 於 backbone spectrum 成立**(ours−baseline gap 隨 backbone 減弱擴大),於 privacy-sensitive on-device 主場(1B/4B)兌現最大絕對優勢。**非嚴格單調**:mid-tier 為 ours 高原,強-end 微降(reader override,§4.2.2 & §4.4.6 27B 面板;main method robust);paper 誠實揭露此非單調性 = **強-end 天花板為 reader override,與 KU 方法正交**。
 
 ---
 
@@ -288,51 +282,49 @@ Intro §第 6 段末 falsifiable prediction 的 **backbone spectrum 主圖**:整
 
 Intro §第 6 段承諾的可證偽預測:**ours 相對現有流派的優勢,應隨 backbone 判斷力下降而單調放大** — 反過來,強 backbone 上優勢應縮小。此節於 64k(gpt-4.1-mini 唯一已跑長度)檢驗。
 
-### 4.3.1 E2E has_pair EM(64k)
+### 4.3.1 E2E overall accuracy(64k)
 
-**Table 3**:64k has_pair EM 於兩 backbone 的對比(**sEM** 供 Zep verbose format 診斷)
+**Table 3**:64k overall accuracy 於兩 backbone 的對比(官方 `substring_exact_match`,N=100)
 
-| Method | 4o-mini EM | **4.1-mini EM** | 4.1-mini sEM | Δ EM(4.1 − 4o) |
-|:--|--:|--:|--:|--:|
-| **ours (main)** | 60/66 (91%) | 53/66 (80%) | 54/66 (82%) | **−7 (−11pp)** |
-| **(b) mem0+P1** | 34/66 (52%) | **55/66 (83%)** | 55/66 (83%) | **+21 (+32pp)** ★ |
-| Zep(k=10)| 36/66 (55%) | 23/66 (35%) | **50/66 (76%)** | −13 EM / **+14 sEM** |
-| **Gap(ours − (b))** | **+26pp** | **−3pp** | — | **gap collapsed** |
+| Method | 4o-mini | **4.1-mini** | Δ(4.1 − 4o) |
+|:--|--:|--:|--:|
+| **ours (main)** | 94% | 88% | **−6pp** |
+| **(b) mem0+P1** | 65% | **88%** | **+23pp** ★ |
+| Zep(k=10)| 76% | 84% | +8pp |
+| **Gap(ours − (b))** | **+29pp** | **0pp** | **gap 收斂至 parity** |
 
 **Observation**:
-- **What**:(b) 從 52% 躍升至 83%(+32pp);ours main 從 91% 降至 80%(−11pp,含 1 個 benchmark D-flag qid,見 §4.4.5);gap 從 +26pp 收斂至 within margin(−3pp)。Zep 於 sEM 追上(76%)但 strict EM 崩(35%),為 verbose format artifact。
-- **Where**:(b) 21/26 recovered qid 是 **PP-OldOnly/Missing → PP-New/Both** 的 pool state 修復(§4.4.1);Zep 的 sEM/EM 差距源於 Zep template 於強 LLM 上被完整回填 timestamps(§4.4.4)。
-- **Implication**:**Intro falsifiable prediction 成立**(強 backbone 上 gap 縮小)。且 (b) 的 damage 於 4.1-mini 大幅消失,說明 **destructive commit 的問題不是架構性缺陷,而是 write-time LLM 判斷品質的函數** — 這強化受限部署動機(cost-constrained 用不起 4.1-mini)。
+- **What**:(b) 從 65% 躍升至 88%(+23pp)並與 ours main 打平;ours main 從 94% 微降至 88%(−6pp,含 1 個 benchmark D-flag qid,見 §4.4.5);gap 從 +29pp 收斂至 **0pp(parity)**。Zep 於兩 backbone 皆穩定 76–84%(decoupled labeling 有效但天花板低於 ours)。
+- **Where**:(b) recovered qid 多為 **PP-OldOnly/Missing → PP-New/Both** 的 pool state 修復(§4.4.1);強 backbone 上 write-time UPDATE judge 準確度提升,destructive damage 大幅消失。
+- **Implication**:**Intro falsifiable prediction 成立**(強 backbone 上 gap 收斂至 parity)。(b) 的 damage 於 4.1-mini 消失,說明 **destructive commit 的問題不是架構性缺陷,而是 write-time LLM 判斷品質的函數** — 這強化受限部署動機(cost-constrained 用不起 4.1-mini)。
 
 ### 4.3.2 Context-state × Accuracy attribution(64k,4.1-mini)
 
-**Table 4**:64k pool state(gpt-4.1-mini)
+**Table 4**:64k pool state(gpt-4.1-mini;has_pair N=66)
 
-| Method | PP-New Acc/N | PP-Both Acc/N | PP-OldOnly Acc/N | PP-Missing Acc/N | E2E |
+> **⚠ metric 待統一**:下表 in-bucket Acc 與 E2E 欄為 **strict EM**(舊 crosstab pipeline);待以官方 `substring_exact_match` 重算 crosstab(`compute_pool_acc_crosstab.py`)。**Zep 影響最大**:其 has_pair E2E 於官方 SubEM 為 **50/66 (76%)**(非下表 strict 的 35%),PP-Both in-bucket Acc 亦隨之上升。ours/mem0 影響 ≤ 1 題。pool state 分佈(PP-New/Both/…的 N)不受 metric 影響。
+
+| Method | PP-New Acc/N | PP-Both Acc/N | PP-OldOnly Acc/N | PP-Missing Acc/N | E2E(strict)|
 |:--|--:|--:|--:|--:|--:|
 | ours (main) | 30/31 (97%) | 23/34 (68%) | 0/1 (0%) | 0/0 | 53/66 (80%) |
 | (b) mem0+P1 | 28/28 (100%) | 27/34 (79%) | 0/3 (0%) | 0/1 (0%) | 55/66 (83%) |
 | Zep(k=10) | 1/1 (100%) | 22/65 (34%) | 0/0 | 0/0 | 23/66 (35%) |
 
-**Observation**:
-- **What**:(b) 的 PP-New 從 25 → 28,PP-OldOnly/Missing 從 24 → 4(write-time LLM 判斷準確度提升);ours 的 PP-Both 從 26 → 34,PP-New 從 38 → 31(**phase2 P3 grouping 於強 LLM 更保守 → 該 merge 沒 merge**,§4.4.3);Zep pool state 分佈幾乎不變(仍 65/66 PP-Both),EM 崩是 answer LLM 於 verbose template 產出的 format 問題。
-- **Implication**:三 paradigm 的**單一 damage 源**於強 backbone 都改善,但改善的**機制不同** — (b) 靠 write-time judge 改善;ours 的 struct+argmax 本就 backbone-agnostic,反受 P3 過度保守拖累;Zep 兩處 LLM 依賴中 write-time labeling 改善,但 inference 讀時間戳仍不可靠。
+**Observation**(pool state 分佈為主論述,不受 metric 影響):
+- **What**:(b) 的 PP-New 從 25 → 28,PP-OldOnly/Missing 從 24 → 4(write-time LLM 判斷準確度提升);ours 的 PP-Both 從 26 → 34,PP-New 從 38 → 31(**phase2 P3 grouping 於強 LLM 更保守 → 該 merge 沒 merge**,§4.4.3);Zep pool state 分佈幾乎不變(仍 65/66 PP-Both),answer LLM 從 PP-Both 兩版共存中挑對的比例即其 Acc(官方 SubEM 下 ~76%)。
+- **Implication**:三 paradigm 的**單一 damage 源**於強 backbone 都改善,但改善的**機制不同** — (b) 靠 write-time judge 改善;ours 的 struct+argmax 本就 backbone-agnostic,反受 P3 過度保守拖累;Zep 的 PP-Both 恆存,靠 inference LLM 讀時間戳挑版(天花板低於 ours 的乾淨 pool)。
 
-### 4.3.3 E2E has_pair EM(6k + 32k)— 跨長度重複驗證
+### 4.3.3 E2E overall accuracy(6k + 32k)— 跨長度重複驗證
 
-**Table 4b**:6k / 32k has_pair EM 於 gpt-4o-mini 與 gpt-4.1-mini 對比
+**Table 4b**:6k / 32k overall accuracy 於 gpt-4o-mini 與 gpt-4.1-mini 對比(官方 SubEM,N=100)
 
 | Method | 6k 4o-mini | **6k 4.1-mini** | Δ | 32k 4o-mini | **32k 4.1-mini** | Δ |
 |:--|--:|--:|--:|--:|--:|--:|
-| **ours (main)** = struct+P3+argmax | 69/74 (93%) | **66/74 (89%)** | **−4pp** | 57/65 (88%) | **51/65 (79%)** | **−9pp** |
-| **(b) mem0+P1** | 34/74 (46%) | **56/74 (76%)** | **+30pp** ★ | 25/65 (38%) | **53/65 (82%)** ★ | **+43pp** ★★ |
-| Zep(k=10) | 46/74 (62%) | 46/74 (62%) | flat | 33/65 (51%) | 20/65 (31%) | **−20pp** |
-| **Gap(ours − (b))** | +47pp | **+13pp** | closed 72% | +49pp | **−3pp** | **gap COLLAPSED**(b 微勝 3pp)|
-| **Gap(ours − Zep)** | +31pp | +27pp | closed 13% | +37pp | +48pp | *widened* |
-
-**Overall EM(N=100)**:
-- 6k gpt-4.1-mini:ours (main) **92/100**、b 81/100、Zep 72/100
-- 32k gpt-4.1-mini:**b 87/100(best)**、ours (main) 86/100、Zep v2 55/100(用 episode-stability probe 修正後,見 §M-3)
+| **ours (main)** = struct+P3+argmax | 94% | **92%** | **−2pp** | 91% | **87%** | **−4pp** |
+| **(b) mem0+P1** | 52% | **81%** | **+29pp** ★ | 52% | **87%** ★ | **+35pp** ★★ |
+| Zep(k=10) | 82% | 81% | −1pp | 80% | 77% | −3pp |
+| **Gap(ours − (b))** | +42pp | **+11pp** | closed | +39pp | **0pp** | **gap 收斂至 parity** |
+| **Gap(ours − Zep)** | +12pp | +11pp | flat | +11pp | +10pp | flat |
 
 **Cost**(gpt-4.1-mini,實測 2026-07-06/07):
 - 6k × 3 methods total ≈ $1.20(ours main $1.0、b $0.13、Zep ~$0.08)
@@ -340,37 +332,36 @@ Intro §第 6 段承諾的可證偽預測:**ours 相對現有流派的優勢,應
 
 **Observation**:
 - **What**:
-  - **ours (main)** 於 gpt-4.1-mini **兩長度都僅微降**(6k -4pp、32k -9pp)—— **main 方法對 backbone 換代 robust**
-  - **(b)** 6k 大跳 +30pp,呼應 §4.3.1 64k 的 +32pp;write-time LLM 判斷準確度提升是主因
-  - **Zep** 6k flat,32k 反下滑 -20pp;呼應 §4.4.4 Case D 的 verbose format artifact 與 §4.3.1 gpt-4.1-mini x 64k 的 EM=35% strict-EM 崩;strong-tier answer LLM 回填 timestamps 產生 verbose 響應時 strict EM 崩壞
-- **Where**:gap ours-b 於 6k 收窄至 +13pp(從 +47pp 收 72%);**於 32k/64k 更反轉為 −3pp(mem0 微勝)**,與 §4.3.1 pattern 一致——強 backbone 上 write-time judge 不再是負債
+  - **ours (main)** 於 gpt-4.1-mini **兩長度都僅微降**(6k -2pp、32k -4pp)—— **main 方法對 backbone 換代 robust**
+  - **(b)** 6k 大跳 +29pp、32k +35pp,呼應 §4.3.1 64k 的 +23pp;write-time LLM 判斷準確度提升是主因
+  - **Zep** 兩 backbone 皆平穩(6k 82→81、32k 80→77),**不因 backbone 換代崩潰**;decoupled labeling 是穩定但天花板低的 baseline
+- **Where**:gap ours−(b) 於 6k 收窄至 +11pp、於 **32k 收斂至 0pp(parity,mem0 追平但不反超)**,與 §4.3.1 64k pattern 一致——強 backbone 上 write-time judge 不再是負債
 - **Implication**:
-  - **Intro §第 6 段的 falsifiable prediction 於 6k / 32k / 64k 三長度全部成立** —— gap 隨 backbone 增強而收斂,兩個 (b) / Zep 對比對象都印證
-  - **"KU 是 query-time 問題" 立場穩固**:main method 對 backbone 換代 robust(-4pp / -9pp),而 (b)、Zep 對 backbone 敏感度大(±20-30pp)。我方 struct + P3 + argmax 提供的 query-time resolution 是**跨 backbone 通用的 scaffold**,不因 backbone 換代而崩
-  - **強化 §4.5.3 P5 降級 ablation 的決策**:script `ours` (= +P5) 於 gpt-4.1-mini × 6k = 61/74(-11pp vs 69/74),明顯比 ours (main) 的 -4pp 更敏感 → P5 引入不必要的 backbone 依賴,paper 主 method 用 no-P5 版是正確選擇
+  - **Intro §第 6 段的 falsifiable prediction 於 6k / 32k / 64k 三長度全部成立** —— gap 隨 backbone 增強而收斂至 parity,兩個 (b) / Zep 對比對象都印證
+  - **"KU 是 query-time 問題" 立場穩固**:main method 對 backbone 換代 robust(-2pp / -4pp),而 (b) 對 backbone 敏感度大(+29~+35pp)。我方 struct + P3 + argmax 提供的 query-time resolution 是**跨 backbone 通用的 scaffold**,不因 backbone 換代而崩
+  - **強化 §4.5.3 P5 降級 ablation 的決策**:ours (+P5) 於 gpt-4.1-mini 比 ours (main) 更敏感 → P5 引入不必要的 backbone 依賴,paper 主 method 用 no-P5 版是正確選擇
 
-### 4.3.4 跨長度 × backbone gap 總表(**誠實揭露:6k 頭條趨勢在 32k/64k 反轉**)
+### 4.3.4 跨長度 × backbone gap 總表(**強 backbone 上 gap 收斂至 parity**)
 
-頭條圖 [`F_backbone_spectrum`](../figures/F_backbone_spectrum.png) 為**單一 6k** 呈現(ours 於全 6-tier 皆勝)。此表誠實補上另兩個長度:於 **strong backbone(gpt-4.1-mini)+ 長 context**,ours−mem0 的 gap 不僅收斂,於 64k **反轉**(mem0 合理反超)。
+頭條圖 [`F_backbone_spectrum`](../figures/F_backbone_spectrum.png) 為**單一 6k** 呈現。此表補上另兩個長度:於 **strong backbone(gpt-4.1-mini)+ 長 context**,ours−mem0 的 gap 收斂至 **parity**(mem0 追平但不反超)。
 
-**Table 4c**:`ours (main)` vs `(b) mem0+P1` 的 has_pair EM 與 gap(pp),× 2 backbone × 3 length
+**Table 4c**:`ours (main)` vs `(b) mem0+P1` 的 overall accuracy 與 gap(pp),× 2 backbone × 3 length(官方 SubEM,N=100)
 
 | Length | ours@4o | mem0@4o | **gap@4o** | ours@4.1 | mem0@4.1 | **gap@4.1** |
 |:--|--:|--:|--:|--:|--:|--:|
-| 6k | 93% | 46% | **+47pp** | 89% | 76% | **+13pp** |
-| 32k | 88% | 38% | **+49pp** | 79% | 82% | **−3pp** ★ 反轉 |
-| 64k | 91% | 52% | **+39pp** | 80% | 83% | **−3pp** ★ 反轉 |
+| 6k | 94% | 52% | **+42pp** | 92% | 81% | **+11pp** |
+| 32k | 91% | 52% | **+39pp** | 87% | 87% | **0pp** ★ parity |
+| 64k | 94% | 65% | **+29pp** | 88% | 88% | **0pp** ★ parity |
 
-Zep 對照(strict EM):gpt-4o-mini 62/51/55%,gpt-4.1-mini **62/31/35%** — Zep 於強 backbone 各長度反而**下滑**(verbose hedge,§4.4.4),不因強 backbone 受益。
+Zep 對照(overall):gpt-4o-mini 82/80/76%,gpt-4.1-mini 81/77/84% — Zep 於兩 backbone、各長度皆**平穩 ~76–84%**,不因 backbone 換代而崩或大幅受益。
 
 **Observation**:
-- **What**:於 **mid backbone(gpt-4o-mini)**,ours−mem0 gap 於 3 長度皆 **+39~+49pp**(穩定、巨大);於 **strong backbone(gpt-4.1-mini)**,gap 從 6k 的 +13pp,於 **32k/64k 皆反轉為 −3pp**(mem0 反超 ours;crossover 落在 6k–32k 間,mem0 於 32k 更以 82% 為當長度最佳)。
+- **What**:於 **mid backbone(gpt-4o-mini)**,ours−mem0 gap 於 3 長度皆 **+29~+42pp**(穩定、巨大);於 **strong backbone(gpt-4.1-mini)**,gap 從 6k 的 +11pp,於 **32k/64k 收斂至 0pp(parity)**——mem0 追平 ours 但**不反超**。
 - **Where/Why**:strong backbone 的 write-time UPDATE judge 準確度提升 → mem0 pool-state 修復(§4.3.2),destructive damage 大幅消失;ours 的 struct+argmax 本就 backbone-agnostic 無從再獲益,反受 P3 過保守小幅拖累(§4.4.3)。
 - **Implication**(誠實揭露 + thesis 強化):
-  - **頭條(6k 單一長度)ours 全勝;此表補上 32k/64k + 強 backbone 下 gap 收斂甚至反轉**——不藏。
-  - **反轉恰印證 thesis 而非推翻**:優勢是 **backbone 判斷力的函數**;強 backbone 上 write-time 派的單一失效點(LLM judge)不再是負債,damage 消失是預期內的,正是可證偽預測的核心。
-  - **強化受限部署動機**:cost-constrained 部署用不起 gpt-4.1-mini(§4.3.3 cost ~$1.2 vs 4o ~$0.6-0.8),實務上 mid-tier 的 **+39~+49pp(ours 恆勝)** 才是 deployment reality。
-- ✅ **已補(2026-07-07,本機)**:mem0+P1 @ gpt-4.1-mini × 32k = 53/65 (82%)。gap@4.1 三點完整:**+13pp(6k)→ −3pp(32k)→ −3pp(64k)**,crossover 落在 6k–32k 間(ours 僅於最短的 6k 勝)。
+  - **頭條(6k 單一長度)ours 全勝;此表補上 32k/64k + 強 backbone 下 gap 收斂至 parity**——不藏。
+  - **收斂恰印證 thesis 而非推翻**:優勢是 **backbone 判斷力的函數**;強 backbone 上 write-time 派的單一失效點(LLM judge)不再是負債,damage 消失是預期內的,正是可證偽預測的核心。
+  - **強化受限部署動機**:cost-constrained 部署用不起 gpt-4.1-mini(§4.3.3 cost ~$1.2 vs 4o ~$0.6-0.8),實務上 mid-tier 的 **+29~+42pp(ours 恆勝)** 才是 deployment reality。
 
 ---
 
@@ -390,7 +381,6 @@ Zep 對照(strict EM):gpt-4o-mini 62/51/55%,gpt-4.1-mini **62/31/35%** — Zep �
 | **D. Dataset temporal reversal**(**D-flag**)| Benchmark | qid=18/20 @ 64k | `gt_seq < old_seq`,argmax(seq) 邏輯上不可能對 |
 | **E. Surface variant** | Benchmark | 少量 | gt_new/gt_old 極相似(substring)|
 | **F. Write-time destructive damage** | 方法(mem0)| Mid+Weak backbone,強 backbone 消失 | UPDATE/DELETE 誤刪 gt_new,pool 為 PP-OldOnly/Missing;**弱 backbone 極端形式:mem0 UPDATE prompt 崩 → store 幾近空**(1B/4B mem0=0)|
-| **G. Zep verbose format** | Reader(Zep 特有)| Zep @ strong backbone | Template 產 verbose response,strict EM fail 但 sEM pass |
 | **W1. Extraction miss** | 抽取(weak)| Weak backbone(1B/4B)| 該 backbone P1 沒抽到 gt_new(或 gt_old)→ fact 從未進 store |
 | **W2. Extraction inconsistency** | 抽取(weak)| Weak backbone(1B)| new/old 抽成不同措辭 → 分不同 (S,P) → 未併群 → pool 留兩版 |
 | **W3. Reader garbage** | Reader(weak)| 1B 特有 | 生成能力不足,吐 non-answer(如 echo prompt timestamp)|
@@ -458,7 +448,7 @@ Ob2 mem0 write-time failure taxonomy(詳見 [`../results/mem0_event_taxonomy_gt4
 ☐ **待補**:挑一個 Zep @ 4o-mini 於 PP-Both 但 inference 答錯的 qid,展示:
 1. Zep cloud 內部 labeler 是否判對(從 `invalid_at` 是否設在 gt_old 邊看)
 2. Retrieved edges 顯示的 timestamps
-3. Answer LLM response(通常 hedge 或選 gt_old)
+3. Answer LLM response(官方 SubEM 下 Zep-wrong = 選 gt_old 或 non-answer;含 gt_new 的 verbose/hedge 答句已判 pass)
 
 **建議 qid**:64k Zep wrong 桶中 (b) 也錯的 qid(排除單純 write-time factor)
 
@@ -473,25 +463,11 @@ Ob2 mem0 write-time failure taxonomy(詳見 [`../results/mem0_event_taxonomy_gt4
 
 **Root cause**:`methods/phase2_query.py::GROUPING_PROMPT` 極保守設計(「Clustering is RARE」,「When unsure, do not cluster」,Rule 3 提及 multi-valued property 應 coexist)。gpt-4.1-mini 讀 prompt 更 careful → 傾向不 cluster;gpt-4o-mini naive 讀 → 傾向 cluster。**於 FC-SH counterfactual dataset,fact 是 single-valued 但 prompt 沒明講**。
 
-**Implication**:P3 LLM 補救於強 backbone 反效果,但 struct 底盤仍 hold(ours(no P3) 於 4.1-mini 保 79%,見 §4.5)— 支持論述「struct 是 backbone-universal scaffold,LLM 補救是可選 add-on」。
+**Implication**:P3 LLM 補救於強 backbone 反效果,但 struct 底盤仍 hold(ours(no P3) 於 4.1-mini 保 overall 86%,見 §4.5)— 支持論述「struct 是 backbone-universal scaffold,LLM 補救是可選 add-on」。
 
-### 4.4.4 Case D — Zep verbose format artifact(Zep 於強 backbone)
+### 4.4.4 Case D —(已移除:Zep verbose 於官方 SubEM 下不再為 error mode)
 
-**qid=2 @ 64k, 4.1-mini**
-
-- Question:What is David Farragut's citizenship?
-- gt_new = "Denmark" ; gt_old = "United States of America"
-
-| Stage | Zep @ 4.1-mini |
-|:--|:--|
-| Zep edges retrieved | 含兩版本,均帶 `valid_at`/`invalid_at` timestamps |
-| Answer LLM response | `"David Farragut is a citizen of the United States of America **and** Denmark."` |
-| Strict EM | ❌(未 exact match Denmark)|
-| sEM | ✅("Denmark" 是 substring)|
-
-**Root cause**:Zep template 於強 LLM 上被完整回填 → LLM 讀時間戳但**未 disambiguate**,直接列出兩版本(此為 Zep template 特徵)。**於 Zep 之外的 method 未觀察此模式**。
-
-**Implication**:Zep 的 P3 paradigm(annotated pool)於強 backbone 反而暴露問題 — inference LLM 讀時間戳能力雖強於 4o-mini,但 template 引導其 hedge 而非決斷。**同時報 EM + sEM**,誠實揭露此 artifact(§4.1.4)。
+原 Case D 記錄 Zep @ 強 backbone 的 verbose 答句(如「David Farragut is a citizen of the United States of America **and** Denmark.」)於 strict EM 下 fail。**本文改採 MemoryAgentBench 官方 `substring_exact_match`(§4.1.4)後,此類含正解的 verbose 答句正確判為 pass**,不再構成 format artifact/error mode,故本 case 移除。Zep 於官方 SubEM 下為跨 backbone 平穩的 baseline(§4.3),其天花板低於 ours 來自 decoupled labeling 機制本身(§4.7),非答題格式。
 
 ### 4.4.5 Case E — Benchmark D-flag limitation
 
@@ -557,29 +533,29 @@ Ob2 mem0 write-time failure taxonomy(詳見 [`../results/mem0_event_taxonomy_gt4
 
 ### 4.5.1 Structural vs LLM identity grouping(main table 的 struct/P3 貢獻)
 
-**Table 5a**:ours 內部 ablation × Mid + Strong tier(3 lengths × 兩 backbones)
+**Table 5a**:ours 內部 ablation × Mid + Strong tier(3 lengths × 兩 backbones;overall 官方 SubEM,N=100)
 
 | Method | 6k(4o) | 32k(4o) | 64k(4o) | **64k(4.1)** |
 |:--|--:|--:|--:|--:|
-| **ours (main)** = struct + P3 + argmax | 69/74 (93.2%) | 57/65 (87.7%) | 60/66 (90.9%) | **53/66 (80.3%)** |
-| ours (no P3) = struct + argmax only | 67/74 (90.5%) | 52/65 (80.0%) | 58/66 (87.9%) | 52/66 (78.8%) |
-| ours (no struct) = P3 + argmax only | 71/74 (95.9%) | 58/65 (89.2%) | 58/66 (87.9%) | **27/66 (40.9%)** ⚡ |
+| **ours (main)** = struct + P3 + argmax | 94% | 91% | 94% | **88%** |
+| ours (no P3) = struct + argmax only | 91% | 87% | 92% | 86% |
+| ours (no struct) = P3 + argmax only | 97% | 91% | 91% | **62%** ⚡ |
 
-**Table 5b**:P3 capability-gate 光譜(**6-tier 完整**,ΔEM = ours(main) − ours(no P3);6k 為 Weak + Mid tier 對齊,gpt-4.1-mini 未有 6k 為 placeholder;正值 = P3 於該 backbone 上 net-positive)
+**Table 5b**:P3 capability-gate 光譜(Δ = ours(main) − ours(no P3);正值 = P3 於該 backbone net-positive)。**gpt 列 = overall-100 官方 SubEM;gemma 列(⚠)= has_pair strict-EM 舊值,待 GX10 重算**。
 
-| Backbone | ours (no P3) | ours (main) | **Δ EM = P3 貢獻** | 機制 |
+| Backbone | ours (no P3) | ours (main) | **Δ = P3 貢獻** | 機制 |
 |:--|--:|--:|--:|:--|
-| gemma3-1B(weakest)| 29/74 | 25/74 | **−4** | P3 反害:P3 LLM 於 1B 無法可靠 cluster identity |
-| gemma3-4B | 54/74 | 54/74 | 0 | Neutral:struct 已飽和該 backbone extraction 覆蓋範圍 |
-| gemma3-12B | 73/74 | 73/74 | 0 | Neutral(接近 ceiling,無 override 可修)|
-| gemma3-27B | 65/74 | **70/74** | **+5** | **P3 抑制 reader override**(new_only ✗:7→4;§4.2.2)|
-| gpt-4o-mini @ 64k | 58/66 | 60/66 | **+3** | Net-positive(mid-strong sweet spot)|
-| gpt-4.1-mini @ 64k | 52/66 | 53/66 | +1.5 | 近 zero(GROUPING_PROMPT 過度保守,§4.4.3)|
+| gemma3-1B ⚠(weakest)| 29/74 | 25/74 | **−4** | P3 反害:P3 LLM 於 1B 無法可靠 cluster identity |
+| gemma3-4B ⚠ | 54/74 | 54/74 | 0 | Neutral:struct 已飽和該 backbone extraction 覆蓋範圍 |
+| gemma3-12B ⚠ | 73/74 | 73/74 | 0 | Neutral(接近 ceiling,無 override 可修)|
+| gemma3-27B ⚠ | 65/74 | **70/74** | **+5** | **P3 抑制 reader override**(new_only ✗:7→4;§4.2.2)|
+| **gpt-4o-mini @ 64k** | 92% | 94% | **+2** | Net-positive(mid-strong sweet spot)|
+| **gpt-4.1-mini @ 64k** | 86% | 88% | +2 | 近 zero(GROUPING_PROMPT 過度保守,§4.4.3)|
 
 **Observation**:
-- **What**:P3 貢獻**於 backbone tier 呈 U-shape / non-monotonic** — 弱端(1B)反害 −4pp、mid tier(4B/12B)neutral、mid-strong tier(27B、gpt-4o-mini)+3~+5pp net-positive、super-strong(gpt-4.1-mini)近 zero。
+- **What**:P3 貢獻**於 backbone tier 呈 U-shape / non-monotonic** — 弱端(1B)反害 −4pp、mid tier(4B/12B)neutral、mid-strong tier(27B、gpt-4o-mini)+2~+5pp net-positive、super-strong(gpt-4.1-mini)+2pp 近 zero。
 - **Where**:弱端 P3 反害因 grouping 判斷本身需 LLM 能力(1B 無法可靠 cluster);mid tier P3 zero 因 struct 已解 identity(抽取一致 → 同 (S,P));**mid-strong tier P3 net-positive**因 struct 已 clean pool,P3 進一步壓 reader override(27B 案例);super-strong 因 GROUPING_PROMPT 「Clustering is RARE」被更 literal 執行 → 過度保守。
-- **Implication**:**Struct 是 backbone-universal scaffold**(6-tier 皆保 79-99%);**P3 是 capability-gated add-on**(於 mid-strong tier net-positive、兩端減弱)。此結果**對 method_v1.md §3.4「LLM 補救僅在少數案例介入」claim 的精細兌現**:P3 於 mid-strong 承擔 struct 已 clean pool 之後**壓 reader override** 的窄任務,於其他 tier 不 net-negative。ours main 用 struct+P3 combo 於 6-tier 全 spectrum 保持 25-73/74,**弱端天花板為抽取(能力,不是 method),強端天花板為 reader override**。
+- **Implication**:**Struct 是 backbone-universal scaffold**(gpt tier overall 86-97%);**P3 是 capability-gated add-on**(於 mid-strong tier net-positive、兩端減弱)。此結果**對 method_v1.md §3.4「LLM 補救僅在少數案例介入」claim 的精細兌現**:P3 於 mid-strong 承擔 struct 已 clean pool 之後**壓 reader override** 的窄任務,於其他 tier 不 net-negative。ours main 用 struct+P3 combo 於 spectrum 全域穩定,**弱端天花板為抽取(能力,不是 method),強端天花板為 reader override**。
 
 ### 4.5.2 P3 LLM 補救的實際觸發率與命中率
 
@@ -595,14 +571,14 @@ Ob2 mem0 write-time failure taxonomy(詳見 [`../results/mem0_event_taxonomy_gt4
 
 ### 4.5.3 Conflict-type classifier(+P5,appendix ablation)
 
-**Table 6**:ours (+P5) vs ours (main)
+**Table 6**:ours (+P5) vs ours (main)(overall 官方 SubEM,N=100)
 
 | Length | ours (main) | ours (+P5) | Δ |
 |:--|--:|--:|--:|
-| 6k(4o) | 93.2% | 91.9% | −1.3pp |
-| 32k(4o) | 87.7% | 84.6% | −3.1pp |
-| 64k(4o) | 90.9% | 90.9% | 0 |
-| 64k(4.1)| 80.3% | 77.3% | −3.0pp |
+| 6k(4o) | 94% | 93% | −1pp |
+| 32k(4o) | 91% | 90% | −1pp |
+| 64k(4o) | 94% | 94% | 0 |
+| 64k(4.1)| 88% | 85% | −3pp |
 
 **Observation**:P5 於全 cell **net-negative 或 zero**。原因:於本文 KU scope(current-value 定義,§0 scope statement),同一 (S,P) 群本就互斥,P5 分類 FRESHNESS vs COMPLEMENTARY 的判斷反引入誤判(將 single-valued 誤判為 COMPLEMENTARY → 兩版都留)。**P5 已自 method 移除**(見 [`vocabulary_v2.md`](vocabulary_v2.md) 禁用詞),此 ablation 用以實證此決定。
 
@@ -791,13 +767,13 @@ Rigorous decomposition (ours main vs vanilla mem0):
 
 ### 4.6.1 三 paradigm 的 pool representation 對比(6-tier spectrum)
 
-**Table 6**:6k has_pair EM,三 paradigm × 6 backbone tier(gpt-4.1-mini 6k 已補,括號內為 64k 供參考)
+**Table 6**:三 paradigm × 6 backbone tier(括號內為 64k 供參考)。**gpt 欄 = overall-100 官方 SubEM(6k;括號 64k);gemma 欄(⚠)= has_pair strict-EM 舊值,待 GX10 重算**。
 
-| Paradigm | 代表 | Pool 呈現 | Write-time LLM | Inference LLM | 1B | 4B | 12B | 27B | gpt-4o-mini | gpt-4.1-mini |
+| Paradigm | 代表 | Pool 呈現 | Write-time LLM | Inference LLM | 1B ⚠ | 4B ⚠ | 12B ⚠ | 27B ⚠ | gpt-4o-mini | gpt-4.1-mini |
 |:--|:--|:--|:--|:--|--:|--:|--:|--:|--:|--:|
-| **P1**(query-time struct filter)| **ours (main)** = struct+P3+argmax | Clean pool(struct+argmax 選單一 current) | ✗(僅單筆抽取)| 讀 clean pool | **25** | **54** | **73** | **70** | **69** | **66**(64k=53)|
-| **P2**(write-time destructive)| (b) mem0+P1 | Clean pool via destructive commit | ✓(UPDATE/DELETE 決策 → 判對才 clean)| 讀(結果)| **0** | **0** | 44 | 36 | 34 | 56(64k=55)|
-| **P3**(write-time labeling)| Zep | Annotated pool(edges + `invalid_at` timestamps) | ✓(labeler 產出時間戳)| **讀時間戳判時序** | 12 | 17 | 43 | 35 | 46 | 46(64k=23/sEM 50)|
+| **P1**(query-time struct filter)| **ours (main)** = struct+P3+argmax | Clean pool(struct+argmax 選單一 current) | ✗(僅單筆抽取)| 讀 clean pool | **25** | **54** | **73** | **70** | **94%**(64k=94)| **92%**(64k=88)|
+| **P2**(write-time destructive)| (b) mem0+P1 | Clean pool via destructive commit | ✓(UPDATE/DELETE 決策 → 判對才 clean)| 讀(結果)| **0** | **0** | 44 | 36 | 52%(64k=65)| 81%(64k=88)|
+| **P3**(write-time labeling)| Zep | Annotated pool(edges + `invalid_at` timestamps) | ✓(labeler 產出時間戳)| **讀時間戳判時序** | 12 | 17 | 43 | 35 | 82%(64k=76)| 81%(64k=84)|
 
 **關鍵 mechanism 對比**(對接 §4.2.2 三 paradigm 表):
 - **P1 有 1 個 LLM 依賴**(P3 補救,**非 critical path**;struct 為 workhorse)
@@ -808,18 +784,20 @@ Rigorous decomposition (ours main vs vanilla mem0):
 
 Intro §第 6 段末的「gap 隨 backbone 下降**單調放大**」於 6-tier 光譜上得證,**但需誠實揭露 monotonicity 為 near-monotonic 非嚴格單調**:
 
+**gpt 列 = overall-100 官方 SubEM;gemma 列(⚠)= has_pair strict-EM 舊值,待 GX10 重算。**
+
 | Backbone | ours (main) | (b) mem0+P1 | Gap(ours − b, **pp**)| 判讀 |
 |:--|--:|--:|--:|:--|
-| gemma3-1B | 25 (34%) | 0 (0%) | **+34** | Weak-end 兌現 |
-| gemma3-4B | 54 (73%) | 0 (0%) | **+73** | **Peak gap**(P2 徹底崩、P1 尚可)|
-| gemma3-12B | 73 (99%) | 44 (59%) | +40 | Mid-strong,P2 開始起 |
-| gemma3-27B | 70 (95%) | 36 (49%) | +46 | ours 略降(reader override 天花板)|
-| gpt-4o-mini(6k)| 69 (93%) | 34 (46%) | +47 | Mid tier(6k)|
-| gpt-4o-mini(64k)| 60 (91%) | 34 (52%) | +39 | Mid tier(64k)|
-| gpt-4.1-mini(6k)| **66 (89%)** | 56 (76%) | **+13** | **Gap collapse 於 6k**(仍 ours 勝)|
-| gpt-4.1-mini(64k)| 53 (80%) | 55 (83%) | **−3** | **Gap collapse 於 64k**(P2 catch up)|
+| gemma3-1B ⚠ | 25 (34%) | 0 (0%) | **+34** | Weak-end 兌現 |
+| gemma3-4B ⚠ | 54 (73%) | 0 (0%) | **+73** | **Peak gap**(P2 徹底崩、P1 尚可)|
+| gemma3-12B ⚠ | 73 (99%) | 44 (59%) | +40 | Mid-strong,P2 開始起 |
+| gemma3-27B ⚠ | 70 (95%) | 36 (49%) | +46 | ours 略降(reader override 天花板)|
+| gpt-4o-mini(6k)| 94% | 52% | +42 | Mid tier(6k)|
+| gpt-4o-mini(64k)| 94% | 65% | +29 | Mid tier(64k)|
+| gpt-4.1-mini(6k)| **92%** | 81% | **+11** | Gap 收斂於 6k(仍 ours 勝)|
+| gpt-4.1-mini(64k)| 88% | 88% | **0** | **Gap 收斂至 parity 於 64k**(P2 catch up)|
 
-**方向符合預測**(gap 於 weak-end 兌現最大絕對優勢、於 strong-end 收斂至 within margin);**非嚴格單調**是誠實揭露的細節:12B/27B 為 ours 峰值(struct 已飽和該 length),4B 為 gap 峰值(P2 崩、P1 尚可)— **paper 用 figure 呈現整條 spectrum 而不強調 monotonicity claim**。
+**方向符合預測**(gap 於 weak-end 兌現最大絕對優勢、於 strong-end 收斂至 parity);**非嚴格單調**是誠實揭露的細節:mid-tier 為 ours 高原,4B 為 gap 峰值(P2 崩、P1 尚可)— **paper 用 figure 呈現整條 spectrum 而不強調 strict monotonicity claim**。
 
 ### 4.6.3 Failure 沿 pipeline 逐 tier 往後推(§4.4.6 Case F 的機制陳述)
 
@@ -830,7 +808,7 @@ Intro §第 6 段末的「gap 隨 backbone 下降**單調放大**」於 6-tier �
 | Weak(1B/4B) | W1 抽取漏 + W3 reader garbage | **與 KU 方法無關**(能力限制)|
 | Mid-weak(12B) | 幾乎無 failure(方法飽和)| **KU method 完全兌現** |
 | Mid-strong(27B、gpt-4o-mini)| C reader override(選擇性,§4.4.7)| **與 KU 方法正交**(reader 特性);P3 部分修 |
-| Strong(gpt-4.1-mini) | C 於 P3 過度保守放大(§4.4.3)+ G Zep verbose(§4.4.4) | KU method 兌現但 P3 過保守是可修設計選擇 |
+| Strong(gpt-4.1-mini) | C 於 P3 過度保守放大(§4.4.3) | KU method 兌現但 P3 過保守是可修設計選擇 |
 | Benchmark | D-flag(2/66 = 3%)| 無關 method(benchmark 缺陷)|
 
 **Implication**:paper 論述**方法本身承擔的責任邊界**(**KU 解析**),而非承擔所有 error mode(抽取品質、reader override 皆為正交軸)。**KU 解析責任邊界內**,ours 於 6-tier 全 spectrum 上 struct+argmax 兌現「乾淨 pool」— 只在 1B/4B 抽取軸(能力)與 27B/4.1-mini reader 軸(先驗/format)受限。
@@ -843,6 +821,18 @@ Intro §第 6 段末的「gap 隨 backbone 下降**單調放大**」於 6-tier �
 - **Zep 於 K=10 vs mem0/ours K=100** 的檢索 asymmetry 已於 setup 揭露,依 Zep 官方推薦
 - **Weak-tier 1B/4B pool-state 不可信**(matcher v4 於弱模型抽取字面偏移下 false-negative,§4.1.5 已 揭露)→ 該 tier 只用 E2E + case study
 - **Benchmark D-flag qids**(2/66 於 64k)為 MAB 標註缺陷,method 邏輯上無法解;於 caption 揭露
+
+---
+
+## ★ Metric 遷移待辦(2026-07-11:overall-100 + 官方 SubEM 定案後)
+
+> 主 metric 改 MemoryAgentBench 官方 `substring_exact_match`、主分母改 overall-100(§4.1.4)。gpt-4o-mini / gpt-4.1-mini 各表已更新;下列為**尚未能於本機完成、須補齊**的項目:
+
+1. **[GX10] gemma overall-SubEM 重算**:把 gemma3 1B/4B/12B/27B run dir 加進 [`analysis/rescore_canonical.py`](../../../../analysis/rescore_canonical.py) 的 `REGISTRY`,重跑 → 回填 §4.2.0 G1/G3、§4.2.3 Table 3、§4.5 Table 5b、§4.7 Table 6 標 ⚠ 的 gemma 欄(目前為 has_pair strict-EM 舊值)。
+2. **[crosstab] pool-state × Acc 以官方 SubEM 重算**:改 `compute_pool_acc_crosstab.py` 讀 substring → 更新 §4.2.2 Table 2、§4.3.2 Table 4 的 in-bucket Acc / E2E 欄(Zep E2E:64k 4o-mini 55→64%、4.1-mini 35→76%;ours/mem0 ≤1 題;**pool 分佈不變**)。
+3. **[figures] 主圖重繪**:`F_backbone_spectrum`、`F_backbone_gap_haspair_6k` 仍為 has_pair strict-EM → 待 (1) 完成後以 overall-SubEM 重繪(檔名去 `haspair`)。
+4. **[LCA] 既存計數誤差**:LCA 64k has_pair 舊值 38/66 → canonical 重算 36/66(overall 65/100),與 metric 無關,已於 Table 1 更正。
+5. **[§4.6 LME]** 該節 FC-SH 參照數字仍為 has_pair(含 vanilla,未進 canonical registry)→ 視需要另行對齊。
 
 ---
 

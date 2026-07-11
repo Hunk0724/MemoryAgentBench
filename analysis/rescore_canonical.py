@@ -181,27 +181,33 @@ def score_cell(run_dir, length):
         return None
     hp = load_haspair(length)
     data = json.load(open(f, encoding="utf-8"))["data"]
-    se = sb = cs = n = 0
+    # overall = all queries in the file (the official 100-query task metric).
+    # has_pair = KU-relevant subset (has gt_new/gt_old); only here is correct-sEM defined.
+    o_se = o_sb = o_n = 0
+    h_se = h_sb = h_cs = h_n = 0
     for it in data:
-        qid = it.get("query_id")
-        r = hp.get(qid)
-        if r is None:
-            continue
         pred = it.get("output")
         gt_new = it.get("answer")
         if pred is None or gt_new is None:
             continue
-        old_surface = extract_old_surface(r.get("gt_fact_text", ""), r.get("old_fact_text", ""))
-        n += 1
-        se += strict_em(pred, gt_new)
-        sb += official_subem(pred, gt_new)
-        cs += correct_sem(pred, gt_new, old_surface)
-    if n == 0:
+        o_n += 1
+        o_se += strict_em(pred, gt_new)
+        o_sb += official_subem(pred, gt_new)
+        r = hp.get(it.get("query_id"))
+        if r is not None:
+            old_surface = extract_old_surface(r.get("gt_fact_text", ""), r.get("old_fact_text", ""))
+            h_n += 1
+            h_se += strict_em(pred, gt_new)
+            h_sb += official_subem(pred, gt_new)
+            h_cs += correct_sem(pred, gt_new, old_surface)
+    if o_n == 0:
         return None
     is_custom = any(m in os.path.basename(f).lower() for m in _STALE_MARKERS)
-    return {"file": os.path.basename(f), "N": n,
+    return {"file": os.path.basename(f),
             "provenance": "custom-file-official-rescore" if is_custom else "official-main.py",
-            "strict_em": se, "official_subem": sb, "correct_sem": cs}
+            "overall_N": o_n, "overall_strict_em": o_se, "overall_subem": o_sb,
+            "haspair_N": h_n, "haspair_strict_em": h_se, "haspair_subem": h_sb,
+            "haspair_correct_sem": h_cs}
 
 
 # ---------------------------------------------------------------------------
@@ -210,17 +216,21 @@ def score_cell(run_dir, length):
 
 REGISTRY = {
     "gpt-4o-mini": {
-        "ours (main)":  "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5",
-        "ours (no P3)": "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct",
-        "ours (+P5)":   "gpt-4o-mini-mem0-chunk512-temp0-openai-unified",
-        "(b) mem0+P1":  "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_dest",
-        "Zep (k=10)":   "gpt-4o-mini-zep",
-        "LCA":          "gpt-4o-mini-temp0",
+        "ours (main)":     "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5",
+        "ours (no P3)":    "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct",
+        "ours (LLM only)": "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct",
+        "ours (+P5)":      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified",
+        "(b) mem0+P1":     "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_dest",
+        "Zep (k=10)":      "gpt-4o-mini-zep",
+        "LCA":             "gpt-4o-mini-temp0",
     },
     "gpt-4.1-mini": {
-        "ours (main)":  "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_no_p5",
-        "(b) mem0+P1":  "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_dest",
-        "Zep (k=10)":   "gpt-4.1-mini-zep",
+        "ours (main)":     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_no_p5",
+        "ours (no P3)":    "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_struct",
+        "ours (LLM only)": "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct",
+        "ours (+P5)":      "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified",
+        "(b) mem0+P1":     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_dest",
+        "Zep (k=10)":      "gpt-4.1-mini-zep",
     },
 }
 LENGTHS = ["6k", "32k", "64k"]
@@ -238,16 +248,16 @@ def main():
                 out_rows.append({"backbone": backbone, "method": method,
                                  "length": L, **res})
 
-    # console table
-    hdr = f"{'backbone':<13}{'method':<14}{'len':<5}{'N':>4}  {'strictEM':>12}{'correct-sEM':>14}{'off-SubEM':>12}"
+    # console table — overall (100-query) SubEM is the headline; has_pair SubEM for analysis
+    hdr = (f"{'backbone':<13}{'method':<14}{'len':<5}  "
+           f"{'overall SubEM':>16}{'has_pair SubEM':>16}")
     print(hdr)
     print("-" * len(hdr))
     for r in out_rows:
-        n = r["N"]
-        def cell(x):
-            return f"{x}/{n} ({100*x/n:.0f}%)"
-        print(f"{r['backbone']:<13}{r['method']:<14}{r['length']:<5}{n:>4}  "
-              f"{cell(r['strict_em']):>12}{cell(r['correct_sem']):>14}{cell(r['official_subem']):>12}")
+        on, hn = r["overall_N"], r["haspair_N"]
+        ov = f"{r['overall_subem']}/{on} ({100*r['overall_subem']/on:.0f}%)"
+        hp = f"{r['haspair_subem']}/{hn} ({100*r['haspair_subem']/hn:.0f}%)" if hn else "-"
+        print(f"{r['backbone']:<13}{r['method']:<14}{r['length']:<5}  {ov:>16}{hp:>16}")
 
     out_json = os.path.join(ANALYSIS_DIR, "canonical_fc_sh_metrics.json")
     with open(out_json, "w", encoding="utf-8") as fh:
