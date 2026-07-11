@@ -135,6 +135,27 @@ Pool state 分析建立於 **FC-SH 的 MQUAKE-derived counterfactual pair 特性
 - 該 arm 的設計:top-K 檢索 + serial-number 前綴 + 走 `rag_agent` template
 - 待補;實作後 abstract 「LLM 全程不參與 recency 裁決」的 headline 才有直接對照
 
+#### §M-4. Retrieval recall@K audit(2026-07-11 補記)
+
+**動機**:實作 Q-llm-recency baseline(§M-3 gap 的填補)前,需先確認 top-K 大小是否為 recall 上的變因;同時借此量化 (b) mem0+P1 的 write-time L0 damage。
+
+**做法**:對每個 has_pair query,以 matcher v4 檢查 `gt_new_fact` 是否出現在 top-K retrieved memories 內。script:[`analysis/recall_at_k_check.py`](../../../../analysis/recall_at_k_check.py)。
+
+**結果(gpt-4o-mini × 6k,N=74 has_pair)**:
+
+| Store | top-10 recall gt_new | top-100 recall gt_new | Δ(K=10 → 100)|
+|:--|:--:|:--:|:--:|
+| **ours (main) store**(P1 extraction + phase0_structural ADD) | **74/74 = 100%** | 74/74 = 100% | 0 |
+| **(b) mem0+P1 store**(same P1 + destructive UPDATE) | 38/74 = 51.4% | 39/74 = 52.7% | +1 |
+
+**判讀**:
+
+- **ours store 於 top-10 已 100% recall gt_new** → **top-K 不是 recall 變因**;Q-llm-recency 用 top-10 為 minimal-pair 對 ours (main) 的乾淨對照(differ only in "argmax vs LLM does recency"),不會被質疑「你們是漏 retrieval」。
+- **(b) mem0+P1 store 於 top-100 只 recall 52.7% gt_new** → **~47% has_pair queries 的 store 內根本沒 gt_new**(write-time destructive UPDATE 已刪掉)。這是 §4.4.1 Case A 「Write-time destructive damage → PP-OldOnly / PP-Missing」的**硬統計量化**:即使 K=100 上限,仍有將近一半 queries 的正確版本不在庫中,證實 **L0 damage 不可用 retrieval bandwidth 補救**。
+- **對 ours (main) 現行 top-100 的 implication**:top-100 於 recall 上 over-provisioned(top-10 已飽和);若後續於 gemma 弱 backbone 觀察到 attention degrade 於長 pool 的 penalty,可考慮降 K 為 optimization(future work,不擋主敘事)。
+
+**擴至 32k / 64k / gpt-4.1-mini 為 future work**;pattern 預期一致(ours store recall saturate 早、(b) store 上限受 destructive damage 綁死)。
+
 ### 4.1.5 Implementation details
 
 | Item | Value | 備註 |
