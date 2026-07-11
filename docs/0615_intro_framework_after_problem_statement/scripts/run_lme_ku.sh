@@ -106,6 +106,33 @@ elif [[ "$METHOD" == "ours_p5_reuse" ]]; then
   rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_CONFLICT_CACHE"
   # QUERY_ONLY flag passed to python (skip memorize step)
   QUERY_ONLY_FLAG="--query-only"
+elif [[ "$METHOD" == "ours_q_llm_recency" ]]; then
+  # Q-llm-recency baseline (2026-07-11) on LME-KU: naive fact-level RAG + LLM
+  # does recency judgment. Reuses ours_no_p5's populated store + write caches
+  # byte-for-byte (like ours_p5_reuse pattern) and only re-runs query phase
+  # with MEM0_QUERY_MODE=q_llm_recency + MEM0_P5_SKIP=1. Directly tests C1
+  # arm ("LLM 全程不參與 recency 裁決") on natural-language / KU chain data.
+  # Uses factconsolidation.rag_agent template (via MEM0_Q_LLM_RECENCY_TEMPLATE_DS
+  # override) so cross-dataset the LLM gets the same recency-rule instruction.
+  # Requires: ours_no_p5 must have completed with full 78 KU coverage on the
+  # same SHARD/NSHARD split.
+  AG=Structure_rag_gpt-4o-mini-mem0_512_openai_unified_q_llm_recency.yaml
+  export MEM0_TRIPLE_MODEL=gpt-4o-mini
+  export MEM0_EXTRACTION_CACHE="$PC/extraction_ours${SHARDSFX}.json"       # reuse (unchanged)
+  export MEM0_TRIPLE_CACHE="$PC/triple_ours_no_p5${SHARDSFX}.json"          # reuse ours_no_p5's
+  export MEM0_SUBJECT_CACHE="$PC/subject_ours_no_p5${SHARDSFX}.json"        # reuse ours_no_p5's
+  export MEM0_GROUPING_CACHE="$PC/grouping_ours_no_p5${SHARDSFX}.json"      # reuse ours_no_p5's
+  export MEM0_CONFLICT_CACHE="$PC/conflict_q_llm_recency${SHARDSFX}.json"   # unused with SKIP but fresh
+  export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/lme_q_llm_recency${SHARDSFX}_p1"
+  export MEM0_ADD_MODE=phase0_structural
+  export MEM0_QUERY_MODE=q_llm_recency
+  export MEM0_P5_SKIP=1
+  export MEM0_Q_LLM_RECENCY_TOPK="${MEM0_Q_LLM_RECENCY_TOPK:-100}"          # canonical top-100
+  export MEM0_Q_LLM_RECENCY_TEMPLATE_DS=factconsolidation_sh                 # cross-dataset canonical recency prompt (must contain "factconsolidation_" for DATASET_MAPPING prefix match)
+  # Reuse ours_no_p5's store + user_id namespace
+  SUBDS="longmemeval_s_ku_ours_no_p5${SHARDSFX}"
+  rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_CONFLICT_CACHE"
+  QUERY_ONLY_FLAG="--query-only"
 elif [[ "$METHOD" == "b" ]]; then
   AG=Structure_rag_gpt-4o-mini-mem0_512_openai_unified_dest.yaml
   export MEM0_TRIPLE_MODEL=gpt-4o-mini

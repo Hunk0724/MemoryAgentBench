@@ -1084,8 +1084,13 @@ class AgentWrapper:
                 # go in USER turn; SYSTEM turn is the short factconsolidation.system.
                 # Uses `retrieval_query` (stripped bare question) to avoid template
                 # nesting when the incoming `message` already carries an outer wrapper.
-                _sys = get_template(self.sub_dataset, 'system', self.agent_name)
-                _q_tmpl = get_template(self.sub_dataset, 'query', 'rag_agent')
+                # Template dataset override: for cross-dataset canonical prompt
+                # (e.g. LME run wants factconsolidation's recency-aware rag_agent
+                # rather than LME's chat-history rag_agent, so the "LLM does
+                # recency" arm gets the same recency instruction across datasets).
+                _tmpl_ds = os.environ.get("MEM0_Q_LLM_RECENCY_TEMPLATE_DS") or self.sub_dataset
+                _sys = get_template(_tmpl_ds, 'system', self.agent_name)
+                _q_tmpl = get_template(_tmpl_ds, 'query', 'rag_agent')
                 _wrapped_q = _q_tmpl.format(question=retrieval_query)
                 _user_content = memories_str + "\n" + _wrapped_q
                 llm_messages = [

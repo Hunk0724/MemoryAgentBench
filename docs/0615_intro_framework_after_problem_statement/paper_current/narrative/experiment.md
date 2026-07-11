@@ -172,6 +172,44 @@ Pool state 分析建立於 **FC-SH 的 MQUAKE-derived counterfactual pair 特性
 
 **paper 對照的建議 canonical 統一為 top-100**(所有 method 皆此值);top-10 觀察保留於 appendix / discussion 段,說明「Q-llm-recency 於 top-K 有 optimization 空間但仍不敵 ours 於弱 backbone 的 backbone-invariance」。
 
+#### §M-5. Cross-family × cross-benchmark Q-llm-recency probe(2026-07-11 補記)
+
+**動機**:§M-4 已於 gpt-4o-mini × FC-SH 6k 上證 Q-llm-recency 於強 backbone 上和 ours main 幾乎 parity(93% vs 94%);此節於**另一個 strong family(gpt-4.1-mini)**和**另一種 text characteristic(LME 自然 NL / KU chain)**再驗,揭露 baseline 弱點的 text-type / model-family 觸發條件。
+
+**跑法**:兩 runs 皆 top-100 canonical、shared ours_no_p5 store(byte-for-byte reuse,query-only);LME 用 `MEM0_Q_LLM_RECENCY_TEMPLATE_DS=factconsolidation_sh` 讓 LLM 於 LME 上也拿到 origin FC recency rule("larger serial = newer"),cross-dataset prompt canonical。
+
+| Setting | ours (main) | Q-llm-recency | Δ (main − Q-llm-rec) | 判讀 |
+|:--|:--:|:--:|:--:|:--|
+| FC-SH 6k × **gpt-4o-mini**(§M-4 baseline)| 94/100 = 94.0% | 93/100 = 93.0% | **+1pp** | strong-backbone 上 rule-following parity |
+| FC-SH 6k × **gpt-4.1-mini**(cross-family)| 92/100 = 92.0% | **69/100 = 69.0%** | **+23pp** | 更強 LLM 反被 pool duplicate freq 主導,忽略 ordinal rule |
+| LME-KU × **gpt-4o-mini**(cross-benchmark)| 55/78 = 70.5% | **58/78 = 74.4%** | **−3.9pp** | 自然 NL / A→B KU chain 上,LLM 讀 ordinal 反優於 argmax |
+
+**觀察 1 — cross-family FC-SH:strong LLM 不必然嚴格 follow "larger ord = newer"**
+
+sample qid=2(gt=India):retrieval pool 內含 `100. Rugby union was created in England.`(×5 copies,write-time duplicate)+ `186. Rugby union was created in India.`(×N)。
+- gpt-4o-mini 嚴格 rule-follow → 選 ordinal 186 → India ✓
+- gpt-4.1-mini semantic-reason("England 出現 5 次,India 出現較少 → 依 evidence weight 選 England")→ England ✗
+
+**核心 finding**:更 capable 的 LLM 更傾向於做 semantic reasoning over the retrieved pool,而非嚴格 rule-following——但 pool 內本身有 duplicate artifacts(write-time not-deduped 是 baseline 的固有屬性),LLM semantic reasoning 反被 artifacts 誤導。**argmax(ord) 免疫此 mode**(pre-resolved 為 single version)。
+
+**觀察 2 — cross-benchmark LME:LLM 於 NL / KU chain 上反優於 argmax**
+
+LME KU 78 題皆為 A→B 單次 update(§4.6),ordinals 由 dialogue turn 順序決定。natural NL 上:
+- LLM 讀「ord=310. new_fact」比 argmax 敏銳於 semantic entailment(e.g. "recent milestone" 語意鎖定 → 抓對版本)
+- ours (main) 的 P3 LLM identity grouping 於 FC-SH pattern 校過的邏輯,在 NL 上可能 overreach(group 錯 subject 導致 pool 被錯誤分群,argmax 錯 group)
+
+**這是 ours 於 LME 上比預期低(70.5%)的可能主因**,同時說明 Q-llm-recency 為何反優——它 by-design 不做 grouping,LLM 直接看 flat ordinal-prefixed pool 反而穩。
+
+**對 paper narrative 的 implication**:
+
+1. **C1 主張需精細化**:「LLM 全程不參與 recency 裁決」在 FC-SH 上(dense-fact / write-time duplicate 密)、於 strong-family variance 下**確實有正當性**(gpt-4.1-mini +23pp gap 為 direct evidence);但於 LME NL / KU chain 上**反例出現**——argmax 的 determinism advantage 於 dense-fact / duplicate-heavy setting 較顯著,於 NL / chain 上非優勢。
+2. **原 C1 abstract 表述需 hedge 或收窄至 conflict-dense / dense-fact benchmark**;若要維持 general claim,LME NL 上的 −3.9pp 反例需正文誠實揭露(於此 §M-5)。
+3. **實務 recommendation**:cross-text robustness 上,systematic KU 處理應為 hybrid(FC-SH → argmax;NL → LLM read ordinal),而 pure argmax 只於前者更優。這也是 abstract 中「我們犧牲了甚麼」值得增補的一項——**LME NL 上,ours 未取得 baseline 應有的優勢**,原因於 P3 identity grouping 於 NL 上 overreach。
+
+**跨方向的 GX10 補驗清單**(此 §M-5 open items):
+- gpt-4.1-mini × LME × Q-llm-recency:驗證 strong-family + NL 上 pattern(是否 4.1-mini 於 NL 上也 semantic-reason 反優 argmax、或 pool duplicate 少 → 4o vs 4.1 差距縮)
+- gemma tier × FC-SH × Q-llm-recency(GX10 handoff Task B):C1 主要 evidence,弱 backbone 上 gap widen 為 argmax immunity 的 mainline evidence
+
 ### 4.1.5 Implementation details
 
 | Item | Value | 備註 |
