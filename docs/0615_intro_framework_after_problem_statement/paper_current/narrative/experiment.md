@@ -37,6 +37,7 @@
 | **(b) mem0+P1** [Chhikara et al., ECAI 2025] | Coupled Update | LLM 決策 ADD/UPDATE/DELETE/NOOP 並就地執行(destructive commit) | **write-time destructive commit**(extraction 共用 ours P1 cache 隔離 extraction 因素) |
 | **(a) vanilla mem0**(appendix) | Coupled Update | 同 (b),但用 mem0 native L1 extractor | extraction quality 貢獻(對比 (b))|
 | **Zep** [Rasmussen et al., 2025] | Decoupled Update | Zep cloud LLM 標 *contradicts*/*duplicates* → 確定性設 `invalid_at`/`expired_at`,edge body 保留 | **write-time labeling + retrieval-layer temporal invalidation**(檢索層等效不可逆)|
+| **Deterministic freshness** [Reddy & Challaram, 2026, **concurrent**] | Post-retrieval assembly(freshness only)| 檢索 → LLM **extract candidates** → Python `max(serial)`(freshness 確定性,但 **identity/選候選仍 LLM**)| **identity 由 LLM extraction vs 我方結構 (S,P)**(freshness 兩者皆確定性)→ 直接跑他們 code、公平設定 **80% vs ours 94%**,失敗全為 world-prior extraction leak;見 [`../results/deterministic_freshness_baseline.md`](../results/deterministic_freshness_baseline.md)。與 Q-llm-recency(LLM 判 recency)互補為兩支 assembly 對照 |
 
 #### Different family(no memory architecture)
 
