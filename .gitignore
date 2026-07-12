@@ -78,6 +78,7 @@ analysis/results/p1_caches/
 analysis/results/p1_caches__*/
 # weak-model OUTDIRs (results.json from each gemma3 size; reproduction logs are the canonical record)
 outputs/**__gemma3-*/
+outputs/maxserial_theircode/bank_emb_*.npy
 # weak-model resource sampling logs
 docs/**/gemma_resource/
 # weak-model sp_index per size

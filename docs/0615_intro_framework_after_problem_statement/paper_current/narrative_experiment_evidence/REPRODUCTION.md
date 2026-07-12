@@ -218,6 +218,34 @@ MODEL_TAG=gpt-4o-mini RUN_OAI_KEY_NAME=OPENAI_API_KEY_A RUN_ZEP_KEY_NAME=ZEP_API
 
 ---
 
+## §2.5 Deterministic-freshness baseline(Reddy & Challaram 2026,直接對手)
+
+並行工作 "Don't Ask the LLM to Track Freshness"(BM25 → LLM extract candidates → Python `max(serial)`)。我們**直接 import 他們的程式碼**跑在我們設定下。結果與判讀:[`../results/deterministic_freshness_baseline.md`](../results/deterministic_freshness_baseline.md)。
+
+- **他們的 code**:vendored 於 [`../../related work/memory-conflict-resolution/`](../../related%20work/memory-conflict-resolution/)(MIT,commit `b6b92b4`)。
+- **driver**:`docs/0615_.../scripts/maxserial_theircode.py`(stub 掉他們的 Langfuse `_lf`,import `_pipeline._extract_candidates`(verbatim CANDIDATE_PROMPT)+ `_freshness_pick`)。
+- **設定**:bank = 我方 P1 抽取(extraction-controlled)+ ingestion ordinal;metric = 官方 overall-100 SubEM;backbone = `PIPELINE_MODEL`。
+
+### 執行(vector top-100 = 公平版,預設)
+```bash
+cd $REPO_ROOT
+set -a; . .env; set +a; export OPENAI_API_KEY="$OPENAI_API_KEY_A"
+export PIPELINE_MODEL=gpt-4o-mini
+python docs/0615_intro_framework_after_problem_statement/scripts/maxserial_theircode.py --length 6k
+# --retrieval bm25  -> authors' as-designed top-10 (reproduces their released 71%/62.2%)
+```
+> 也可用 harness 原生 `dotenv`(main.py:31 同法)載 key:`python -c "import dotenv,os,runpy,sys; dotenv.load_dotenv(); os.environ['OPENAI_API_KEY']=os.environ['OPENAI_API_KEY_A']; sys.argv=['x','--length','6k']; runpy.run_path('docs/0615_.../scripts/maxserial_theircode.py', run_name='__main__')"`。首次會 embed bank(快取 `outputs/maxserial_theircode/bank_emb_<L>.npy`)。
+
+### Expected(6k × gpt-4o-mini,官方 SubEM)
+| retrieval | overall | has_pair | extraction leak(wrong & n_cand=1)|
+|:--|:--:|:--:|:--:|
+| **vector top-100(公平)** | **80%** | **54/74 (73%)** | 20/20 |
+| bm25 top-10(as-designed)| 71% | 46/74 (62%) | 27/28(= 作者釋出值)|
+
+> **對照**:ours (main) 94% / Zep 82% / **作者 80%** / mem0+P1 52%(全 6k gpt-4o-mini overall SubEM)。失敗機制 = world-prior extraction leak(LLM 抽候選漏掉 counterfactual);ours (S,P) 結構 identity 免疫。詳見 results doc。
+
+---
+
 ## §3. LME-KU(LongMemEval Knowledge-Update)
 
 **執行 script**:`docs/0615_intro_framework_after_problem_statement/scripts/run_lme_ku.sh <method> [limit] [judge]`
