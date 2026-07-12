@@ -84,7 +84,7 @@
 **判讀**:
 - **1B = W1 乾淨範例**:P1 只抽到舊版 Galileo(gt_new 從未進 store)→ pool=old_only → 答舊。**這正是 §2 為何 1B/4B 不能用 cross-tab 的機制:pool 的 `old_only` 是抽取漏,不是解析錯**。
 - **4B**:巧合只抽到新版 → 對(抽取不全但方向對)。
-- **27B 這題「未」override**(答 Samuel Beckett,採用 pool)→ **override 不是必然**:Microsoft CEO / Elvis 配偶 27B 有強世界先驗 → override;Sidereus Nuncius 作者的反事實編輯先驗較弱 → 採用 pool。**override 率取決於 answer LLM 對該題世界先驗的強度**,這也解釋為何 27B override 只有 7/74(非全崩)。
+- **27B 這題「未」override**(答 Samuel Beckett,採用 pool)→ **override 不是必然**:Microsoft CEO / Elvis 配偶 27B 有強世界先驗 → override;Sidereus Nuncius 作者的反事實編輯先驗較弱 → 採用 pool。**override 率取決於 answer LLM 對該題世界先驗的強度**,這也解釋為何 27B override 只有少數題(官方 substring-EM 下 struct 2/74、no_p5 1/74;非全崩)。
 
 ---
 
@@ -92,8 +92,8 @@
 
 1. **失敗點沿 backbone 往後推**(W1 抽取 → W2 (S,P) split → 成功 → C override),是 per-backbone gemma extraction 的直接可視化。**弱端天花板 = 抽取(能力),強端天花板 = reader override(先驗)**,兩者都與 query-time KU **方法本身**正交。
 2. **12B 的成功機制是「一致性 not 正確性」**:reader 不需知道正解,只需 P1 把 new/old 抽成同一 (S,P) → mechanical argmax 解 KU。這精確兌現 intro 的 "decomposed **simple** tasks for weak model"。
-3. **27B override 有選擇性**(7/74):世界先驗強的題(CEO、名人配偶)才 override,弱先驗題(冷門反事實)採用 pool → 對照 Mac 64k gpt-4o-mini 的 Mode C,**override 是 answer-LLM 通性、非 local-model 特有**,strong backbone(gpt-4.1-mini)未必能救。
-4. **與 cross-tab 一致**:本 trace 的 27B「乾淨 pool + override」= [`F_crosstab_1227_6k`](../figures/F_crosstab_1227_6k.png) 的 `new_only ✗` 桶(struct 7 → no_p5 4);1B/4B 的抽取漏 = 為何其 pool-state 不可信、只能用 E2E+此 case study。
+3. **27B override 有選擇性且量小**(官方 substring-EM:struct 2/74、no_p5 1/74;strict-EM 的 7/4 有多數是 verbose-correct 被 strict 冤枉):世界先驗強的題(CEO、名人配偶)才 override,弱先驗題(冷門反事實)採用 pool → 對照 Mac 64k gpt-4o-mini 的 Mode C,**override 是 answer-LLM 通性、非 local-model 特有**,strong backbone(gpt-4.1-mini)未必能救。
+4. **與 cross-tab 一致**:本 trace 的 27B「乾淨 pool + override」= [`F_crosstab_1227_6k`](../figures/F_crosstab_1227_6k.png) 的 `new_only ✗` 桶(官方 substring-EM:struct 2 → no_p5 1);1B/4B 的抽取漏 = 為何其 pool-state 不可信、只能用 E2E+此 case study。
 
 ---
 

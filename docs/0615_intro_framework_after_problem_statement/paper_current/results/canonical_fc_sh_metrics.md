@@ -61,10 +61,40 @@
 
 Zep 跨 backbone、跨長度平穩在 ~76–84%(decoupled labeling 有效但天花板低於 ours),**不因強 backbone 崩潰**。先前 strict-EM 下「Zep 於 gpt-4.1-mini × 64k 崩至 35%」為 verbose 答句被 strict 冤枉的格式假陰性,官方 substring 已修正(同格 = 84% overall / 76% has_pair)。
 
-## ⚠ 待補:weak-tier(gemma3 1B/4B/12B/27B)
+## weak-tier(gemma3 1B/4B/12B/27B,GX10,官方 SubEM)— 2026-07-11 回填
 
-gemma raw outputs 於 GX10,**本機 `outputs/` 無**,故上表未含 weak tier。
-**GX10 action**:把 gemma run dir 加進 [`analysis/rescore_canonical.py`](../../../../analysis/rescore_canonical.py) 的 `REGISTRY`,重跑產出 gemma 的 **overall-100 官方 SubEM**,回填 §4.2.0 G1/G3、§4.2.3 Table 3、§4.5 Table 5b、§4.7 Table 6 的 gemma 欄(目前標 pending)。
+> GX10 **per-backbone gemma extraction**(`MEM0_TRIPLE_MODEL=gemma3:$SIZE`,非 held-fixed gpt-4o-mini;dir 名 `gpt-4o-mini-…__gemma3-{s}` 的 "gpt-4o-mini" 是 legacy template tag,見 [`weak_model_6k_analysis.md`](weak_model_6k_analysis.md))。主軸 = backbone spectrum @ 6k(全 method 完整);由 `rescore_canonical.py` REGISTRY 的 gemma tier 產出。
+
+### Overall(全 100 題,官方 SubEM)@ 6k — 主表數字
+
+| Method | 1B | 4B | 12B | 27B |
+|:--|:--|:--|:--|:--|
+| **ours (main)** = no_p5 | 44% | 79% | **99%** | **99%** |
+| ours (no P3) = struct | 52% | 79% | 99% | 97% |
+| ours (LLM only) = p3_only | 27% | 50% | 72% | 59% |
+| ours (+P5) | 27% | 55% | — | — |
+| (b) mem0+P1 | 5% | 11% | 64% | 54% |
+| (a) vanilla | — | 11% | 53% | 45% |
+| Zep (k=10) | 29% | 32% | 58% | 62% |
+
+（32k,ours(main):1B 54% / 4B 70% / 12B 98% / 27B 98%;struct 32k 因早期 `_final` bug 未完整。）
+
+### has_pair(N=74,官方 SubEM)@ 6k — 分析用
+
+| Method | 1B | 4B | 12B | 27B |
+|:--|:--|:--|:--|:--|
+| ours (main) | 27 | 54 | 73 | **73** |
+| ours (no P3) | 32 | 54 | 73 | 71 |
+| ours (LLM only) | 8 | 26 | 46 | 33 |
+| (b) mem0+P1 | 0 | 0 | 44 | 37 |
+| (a) vanilla | — | 0 | 32 | 29 |
+| Zep (k=10) | 20 | 18 | 43 | 42 |
+
+### 觀察(backbone-gap / P3 capability-gate / metric 遷移)
+1. **ours 於每個 backbone 主導**;write-time baseline(b/vanilla/Zep)於弱端崩最重(b=5%/11% @ 1B/4B)。
+2. **P3 capability-gate**(main − no P3,overall):1B **−8pp**(反害)、4B/12B **0**、27B **+2pp**。
+3. **SubEM 下「27B dip」大幅縮小**:strict-EM 下 no_p5/struct has_pair 為 70/65(/74),官方 SubEM 為 **73/71** → no_p5 幾乎無 dip(overall 99/99)、struct 僅 2pp。原 dip 有 3–6 題是 **verbose-correct 被 strict 冤枉**,非真 override;**真 override 殘留 struct ~3、no_p5 ~1 題**(qid 19/57 答舊值 SubEM 亦錯,見 [`weak_model_case_studies_6k.md`](weak_model_case_studies_6k.md))。
+4. **1B/4B has_pair pool-state cross-tab 不可信**(per-backbone gemma 抽取字面偏移 → matcher FN)→ 用 E2E + case study(§ [`weak_model_6k_analysis.md`](weak_model_6k_analysis.md) §2)。
 
 ## 已知殘餘不一致(與 metric 無關)
 

@@ -138,6 +138,12 @@ _STALE_MARKERS = ("full100", "backbone_swap", "smoke", "size10", "size3",
 _CUSTOM_FALLBACK = {
     ("gpt-4.1-mini-zep", "64k"):
         "factconsolidation_sh_64k_unknown_backbone_swap_size256_shots0_max_samplesunknown_k10_chunk512_results.json",
+    # gemma Zep path-A runs: filename carries `backbone_swap` (a stale marker) so
+    # pick_canonical_file skips it; force-pick the official-fields file here.
+    ("gemma3-1b-zep", "6k"):  "factconsolidation_sh_6k_unknown_backbone_swap_size256_shots0_max_samplesunknown_k10_chunk512_results.json",
+    ("gemma3-4b-zep", "6k"):  "factconsolidation_sh_6k_unknown_backbone_swap_size256_shots0_max_samplesunknown_k10_chunk512_results.json",
+    ("gemma3-12b-zep", "6k"): "factconsolidation_sh_6k_unknown_backbone_swap_size256_shots0_max_samplesunknown_k10_chunk512_results.json",
+    ("gemma3-27b-zep", "6k"): "factconsolidation_sh_6k_unknown_backbone_swap_size256_shots0_max_samplesunknown_k10_chunk512_results.json",
 }
 
 
@@ -233,6 +239,23 @@ REGISTRY = {
         "Zep (k=10)":      "gpt-4.1-mini-zep",
     },
 }
+
+# gemma tiers (GX10 per-backbone weak-model runs). NOTE: GX10 uses the gpt-4o-mini
+# TEMPLATE prefix + a `__gemma3-{s}` suffix on the run-dir (extraction is per-backbone
+# gemma via MEM0_TRIPLE_MODEL — the "gpt-4o-mini" in the dir name is a legacy template
+# tag, NOT the backbone). Expanded programmatically to avoid ~28 literal lines.
+_GEMMA_METHODS = {
+    "ours (main)":     "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5__gemma3-{s}",
+    "ours (no P3)":    "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_struct__gemma3-{s}",
+    "ours (LLM only)": "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_p3_only_no_struct__gemma3-{s}",
+    "ours (+P5)":      "gpt-4o-mini-mem0-chunk512-temp0-openai-unified__gemma3-{s}",   # only 1b/4b exist; others skip
+    "(b) mem0+P1":     "gpt-4o-mini-mem0-chunk512-temp0-openai-unified_dest__gemma3-{s}",
+    "(a) vanilla":     "gpt-4o-mini-mem0-chunk512-temp0-openai-native__gemma3-{s}",
+    "Zep (k=10)":      "gemma3-{s}-zep",
+}
+for _s in ("1b", "4b", "12b", "27b"):
+    REGISTRY[f"gemma3-{_s}"] = {m: t.format(s=_s) for m, t in _GEMMA_METHODS.items()}
+
 LENGTHS = ["6k", "32k", "64k"]
 
 

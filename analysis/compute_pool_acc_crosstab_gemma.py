@@ -29,8 +29,14 @@ ORDER = ["new_only", "both", "old_only", "neither"]
 
 
 def em_map(outsuf, s):
-    fs = glob.glob(f"outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-{outsuf}__gemma3-{s}/Conflict_Resolution/*sh_6k*results*.json")
-    return {r["query_id"]: bool(r["exact_match"]) for r in json.load(open(fs[0]))["data"]} if fs else None
+    # official MAB metric = substring_exact_match (2026-07-11 canonical migration);
+    # exclude smoke/size5 side-files and pick the full run.
+    fs = [f for f in glob.glob(f"outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-{outsuf}__gemma3-{s}/Conflict_Resolution/*sh_6k*results*.json")
+          if "smoke" not in f and "size5" not in f]
+    if not fs:
+        return None
+    best = max(fs, key=lambda f: len(json.load(open(f))["data"]))
+    return {r["query_id"]: bool(r["substring_exact_match"]) for r in json.load(open(best))["data"]}
 
 
 def pool_of(agentsuf, s, qid):
@@ -51,10 +57,18 @@ def state(pool, gtn, gto):
 print("# return_context × Acc cross-tab — GX10 weak-model (gemma3), FC-SH 6k has_pair")
 print()
 print("> **matcher v4** + **REAL per-qid `memories_str`** (the pool the answer LLM actually "
-      "saw; agent.py:1100), aligned to Mac's canonical method. N=74. EM = aggregated "
-      "`exact_match`. Reading: `new_only→✓` method isolated NEW & reader used it; `both→✓` "
-      "reader RESCUE (mixed pool, picked NEW); `new_only→✗` reader OVERRIDE (clean pool, "
-      "answered OLD); `old_only/neither→✗` NEW absent from pool (extraction/write loss).")
+      "saw; agent.py:1100), aligned to Mac's canonical method. N=74. **Acc = official "
+      "`substring_exact_match`** (2026-07-11 canonical migration; was strict exact_match). "
+      "Reading: `new_only→✓` method isolated NEW & reader used it; `both→✓` reader RESCUE "
+      "(mixed pool, picked NEW); `new_only→✗` reader OVERRIDE (clean pool, answered OLD); "
+      "`old_only/neither→✗` NEW absent from pool (extraction/write loss).")
+print()
+print("> ⚠️ **EXTRACTION IS PER-BACKBONE GEMMA, NOT held-fixed gpt-4o-mini** (GX10 matrix sets "
+      "`MEM0_TRIPLE_MODEL=gemma3:$SIZE`). The cross-tab is only RELIABLE for 12b/27b; on **1b/4b "
+      "the pool-state axis is NOT trustworthy** — gemma-1b/4b extract fewer facts (store ≈370 vs "
+      "12b/27b ≈450) whose surface diverges from GT, so matcher v4 false-negatives inflate the "
+      "`old_only/neither` (NEW-absent) bucket. **For 1b/4b use E2E + case-study** "
+      "(`weak_model_6k_analysis.md`). Store overlap-with-27b: 1b=5/100, 4b=82/100, 12b=99/100.")
 print()
 for disp, agentsuf, outsuf, _ in METHODS:
     print(f"## {disp}")

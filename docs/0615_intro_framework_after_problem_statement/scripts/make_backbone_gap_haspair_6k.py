@@ -37,11 +37,12 @@ def _pick(fs):
 
 
 def hp_em(pathglob):
+    # official MAB metric = substring_exact_match (2026-07-11 canonical migration)
     f = _pick(glob.glob(pathglob))
     if not f:
         return None
     d = json.load(open(f))["data"]
-    return sum(1 for r in d if r.get("exact_match") and r["query_id"] in HP)
+    return sum(1 for r in d if r.get("substring_exact_match") and r["query_id"] in HP)
 
 
 order = ["1b", "4b", "12b", "27b"]
@@ -69,10 +70,10 @@ for i, (name, fn, fc, hatch) in enumerate(METH):
 ax.set_xticks(x)
 ax.set_xticklabels([lab[b] for b in order])
 ax.set_xlabel("Backbone  (weak → strong)")
-ax.set_ylabel(f"has_pair Exact-Match  (x / {N})  ↑")
+ax.set_ylabel(f"has_pair substring-EM  (x / {N})  ↑")
 ax.set_ylim(0, N + 12)
 ax.set_title("FC-SH 6k knowledge-update accuracy by backbone (gemma3, GX10)\n"
-             "E2E exact-match — objective, valid at every backbone",
+             "official substring-EM — objective, valid at every backbone",
              fontsize=10.5, fontweight="bold", pad=8)
 ax.legend(fontsize=8.2, loc="upper left", frameon=False, ncol=1, borderaxespad=0.4)
 ax.grid(axis="y", ls=":", alpha=0.5)
