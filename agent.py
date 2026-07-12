@@ -1036,6 +1036,7 @@ class AgentWrapper:
             if _qmode is None and os.environ.get("MEM0_ADD_MODE") == "phase0_structural":
                 _qmode = "structural"  # backward-compat for early phase0 runs
             _final = None  # default; structural / else / exception all keep None
+            _q_llm_recency = (_qmode == "q_llm_recency")  # controls llm_messages construction below
             try:
                 if _qmode == "structural":
                     from methods.phase0_query import assemble_context, group_and_resolve
@@ -1046,6 +1047,25 @@ class AgentWrapper:
                     from methods.phase2_query import phase2_resolve
                     _final = phase2_resolve(_results, message)
                     memories_str = "\n".join(f"- {e['memory']}" for e in _final)
+                elif _qmode == "q_llm_recency":
+                    # Q-llm-recency baseline: naive fact-level RAG + LLM does recency
+                    # judgment from ordinal-prefixed facts. Directly tests C1
+                    # ("LLM 全程不參與 recency 裁決"): swap deterministic argmax(ord)
+                    # for LLM inference over the same store.
+                    # Design (locked 2026-07-11):
+                    #  - top-K = 10 (recall saturated per §M-4 audit; avoid weak-backbone
+                    #    attention degradation on long prompt)
+                    #  - Format "<ordinal>. <fact>" matching raw FC dataset serial
+                    #    number convention referenced by factconsolidation.rag_agent
+                    #    template ("newer fact has larger serial number")
+                    #  - Message structure follows origin _handle_embedding_rag: memories
+                    #    + rag_agent template with question go together in USER turn;
+                    #    SYSTEM turn = factconsolidation.system
+                    _K = int(os.environ.get("MEM0_Q_LLM_RECENCY_TOPK", "10"))
+                    memories_str = "\n".join(
+                        f"{(e.get('metadata') or {}).get('ordinal', -1)}. {e['memory']}"
+                        for e in _results[:_K]
+                    )
                 else:
                     memories_str = "\n".join(f"- {entry['memory']}" for entry in _results)
             except Exception as _e:
@@ -1058,27 +1078,55 @@ class AgentWrapper:
             # memory returns the direct answer plus the relationship chain).
             # MABench-as-is path (mem0_prompt_aware_graph=False) keeps the
             # original vector-only prompt.
-            if getattr(self, "mem0_prompt_aware_graph", False):
-                rels = relevant_memories.get("relations") or []
-                rels_str = "\n".join(
-                    f"- {r.get('source','?')} --[{r.get('relationship','?')}]--> "
-                    f"{r.get('destination','?')}"
-                    for r in rels
-                )
-                system_prompt = (
-                    "You are a helpful AI. Answer the question based on the facts "
-                    "and the relationship graph below.\n"
-                    f"Facts:\n{memories_str}\n\n"
-                    f"Relationships:\n{rels_str}\n"
-                )
+            if _q_llm_recency:
+                # Route via origin factconsolidation.rag_agent template + short system
+                # message (per _handle_embedding_rag pattern). Memories + query template
+                # go in USER turn; SYSTEM turn is the short factconsolidation.system.
+                # Uses `retrieval_query` (stripped bare question) to avoid template
+                # nesting when the incoming `message` already carries an outer wrapper.
+                # Template dataset override: for cross-dataset canonical prompt
+                # (e.g. LME run wants factconsolidation's recency-aware rag_agent
+                # rather than LME's chat-history rag_agent, so the "LLM does
+                # recency" arm gets the same recency instruction across datasets).
+                _tmpl_ds = os.environ.get("MEM0_Q_LLM_RECENCY_TEMPLATE_DS") or self.sub_dataset
+                _sys = get_template(_tmpl_ds, 'system', self.agent_name)
+                _q_tmpl = get_template(_tmpl_ds, 'query', 'rag_agent')
+                _wrapped_q = _q_tmpl.format(question=retrieval_query)
+                _user_content = memories_str + "\n" + _wrapped_q
+                llm_messages = [
+                    {"role": "system", "content": _sys},
+                    {"role": "user", "content": _user_content},
+                ]
+                # For introspection/logging parity with the standard branch below
+                system_prompt = _sys
             else:
-                # Generate assistant response (routed via _answer_with_client to support
-                # both OpenAI and Vertex/AI-Studio Gemini)
-                system_prompt = f"You are a helpful AI. Answer the question based on query and memories.\n{memories_str}\n"
-            llm_messages = [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": message + "\n\nCurrent Time: " + time.strftime("%Y-%m-%d %H:%M:%S")}
-            ]
+                # Mem0g-prompt-aware variant: verbalize graph relations into the
+                # system prompt, following the upstream mem0 cookbook pattern
+                # ("Choose Vector vs Graph Memory" — Expected behavior: graph
+                # memory returns the direct answer plus the relationship chain).
+                # MABench-as-is path (mem0_prompt_aware_graph=False) keeps the
+                # original vector-only prompt.
+                if getattr(self, "mem0_prompt_aware_graph", False):
+                    rels = relevant_memories.get("relations") or []
+                    rels_str = "\n".join(
+                        f"- {r.get('source','?')} --[{r.get('relationship','?')}]--> "
+                        f"{r.get('destination','?')}"
+                        for r in rels
+                    )
+                    system_prompt = (
+                        "You are a helpful AI. Answer the question based on the facts "
+                        "and the relationship graph below.\n"
+                        f"Facts:\n{memories_str}\n\n"
+                        f"Relationships:\n{rels_str}\n"
+                    )
+                else:
+                    # Generate assistant response (routed via _answer_with_client to support
+                    # both OpenAI and Vertex/AI-Studio Gemini)
+                    system_prompt = f"You are a helpful AI. Answer the question based on query and memories.\n{memories_str}\n"
+                llm_messages = [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": message + "\n\nCurrent Time: " + time.strftime("%Y-%m-%d %H:%M:%S")}
+                ]
             response_text, prompt_tokens, completion_tokens = self._answer_with_client(llm_messages)
 
             memory_retrieval_length = len(self.tokenizer.encode(memories_str, disallowed_special=()))

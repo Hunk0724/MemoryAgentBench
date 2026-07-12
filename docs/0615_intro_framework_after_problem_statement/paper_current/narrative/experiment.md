@@ -111,6 +111,105 @@ Pool state 分析建立於 **FC-SH 的 MQUAKE-derived counterfactual pair 特性
 - **Weak-backbone(gemma3 1B/4B)**:extraction 字面偏離 GT(store 事實數 370 vs 12B/27B 450),matcher precision 必然下降,**不呈現 pool state 分析**,僅報 E2E EM。**gemma3 12B/27B 可信**(pool-missing=0、store 與 27B 重疊 99%)。
 - **6k / 32k 於 gpt-4o-mini 的同等 audit**、**gpt-4.1-mini 於 64k 的 audit** 為 future work,pattern 預期一致。
 
+#### §M-3. Answer-template 逐-method audit(2026-07-11 補記)
+
+**Origin MemoryAgentBench 的 template 分配設計**([`MemoryAgentBench_origin/utils/templates.py:76-84`](https://github.com/HowieHwong/MemoryAgentBench)):
+
+| Baseline 家族 | Origin 指派的 answer template | 內含「find newer by serial number」規則? |
+|:--|:--|:--:|
+| **long_context_agent(LCA)** | `factconsolidation.long_context_agent`(`templates.py:80`)| ✅ 有 |
+| **rag_agent** | `factconsolidation.rag_agent`(`templates.py:81`)| ✅ 有 |
+| **agentic_memory_agent(letta / Agentic_memory)** | `factconsolidation.agentic_memory_agent`(`templates.py:82`)| ✅ 有 |
+| **mem0 / ours / (b) / vanilla** | **hardcoded stripped prompt** 於 `MemoryAgentBench_origin/agent.py:582` — `"You are a helpful AI. Answer the question based on query and memories.\n{memories_str}\n"` | ❌ 無 |
+| **Zep** | 於 `_handle_zep_agent` 自組 prompt(含 edges/nodes/episodes) | 依 Zep 內建 |
+
+**Fair 判定**:
+- 現行實驗**繼承 origin 對各 method 的 template 指派**,**我方無客製**
+- LCA / letta 用 template.py 官方 template(含 serial-number 規則)是原生設計
+- mem0 家族用 stripped template 也是**原生設計**(destructive-update 或 pre-resolved pool 已把「決策」發生在 write-time,LLM 讀 clean pool 抄即可)
+- 兩者對稱各自的 pool 呈現方式,**非我方為 ours 挑對自己有利的 template**
+
+**Gap 待補(motivates §4.5 P3/P5 之外的 Q-llm 對照 baseline)**:
+- `factconsolidation.rag_agent` template 存在 origin,但**目前沒有任何 baseline 使用它**
+- 該 template 定位為「naive fact-level RAG + LLM 讀 serial number 自判 recency」,正好對應 [`experiment_prove_main_claim.md §4.8.2 #2`](experiment_prove_main_claim.md) 標記的「Q-llm『LLM 做 recency』arm 缺」
+- 該 arm 的設計:top-K 檢索 + serial-number 前綴 + 走 `rag_agent` template
+- 待補;實作後 abstract 「LLM 全程不參與 recency 裁決」的 headline 才有直接對照
+
+#### §M-4. Retrieval recall@K audit(2026-07-11 補記)
+
+**動機**:實作 Q-llm-recency baseline(§M-3 gap 的填補)前,需先確認 top-K 大小是否為 recall 上的變因;同時借此量化 (b) mem0+P1 的 write-time L0 damage。
+
+**做法**:對每個 has_pair query,以 matcher v4 檢查 `gt_new_fact` 是否出現在 top-K retrieved memories 內。script:[`analysis/recall_at_k_check.py`](../../../../analysis/recall_at_k_check.py)。
+
+**結果(gpt-4o-mini × 6k,N=74 has_pair)**:
+
+| Store | top-10 recall gt_new | top-100 recall gt_new | Δ(K=10 → 100)|
+|:--|:--:|:--:|:--:|
+| **ours (main) store**(P1 extraction + phase0_structural ADD) | **74/74 = 100%** | 74/74 = 100% | 0 |
+| **(b) mem0+P1 store**(same P1 + destructive UPDATE) | 38/74 = 51.4% | 39/74 = 52.7% | +1 |
+
+**判讀**:
+
+- **ours store 於 top-10 已 100% recall gt_new** → **top-K 不是 recall 變因**;Q-llm-recency 用 top-10 為 minimal-pair 對 ours (main) 的乾淨對照(differ only in "argmax vs LLM does recency"),不會被質疑「你們是漏 retrieval」。
+- **(b) mem0+P1 store 於 top-100 只 recall 52.7% gt_new** → **~47% has_pair queries 的 store 內根本沒 gt_new**(write-time destructive UPDATE 已刪掉)。這是 §4.4.1 Case A 「Write-time destructive damage → PP-OldOnly / PP-Missing」的**硬統計量化**:即使 K=100 上限,仍有將近一半 queries 的正確版本不在庫中,證實 **L0 damage 不可用 retrieval bandwidth 補救**。
+- **對 ours (main) 現行 top-100 的 implication**:top-100 於 recall 上 over-provisioned(top-10 已飽和);若後續於 gemma 弱 backbone 觀察到 attention degrade 於長 pool 的 penalty,可考慮降 K 為 optimization(future work,不擋主敘事)。
+
+**擴至 32k / 64k / gpt-4.1-mini 為 future work**;pattern 預期一致(ours store recall saturate 早、(b) store 上限受 destructive damage 綁死)。
+
+**Q-llm-recency baseline 於 top-K 的實測(2026-07-11,gpt-4o-mini × 6k,shared ours_no_p5 store)**:
+
+| Configuration | Overall SubEM | Δ vs top-100 canonical |
+|:--|:--:|:--:|
+| Q-llm-recency @ **top-100(paper canonical)** | 93/100 = 93.0% | — |
+| Q-llm-recency @ top-10(sensitivity)| 96/100 = 96.0% | +3pp |
+| ours (main) @ top-100(對照 canonical)| 94/100 = 94% | +1pp |
+
+**判讀**:
+
+- **top-100 為 paper canonical**(與 ours main / (b) / vanilla 皆 top-100 對齊,cross-method fairness);Q-llm-recency vs ours main **同 K 對照 = 93% vs 94%,強 backbone 上 parity within 1pp**——LLM 於 top-100 讀 ordinals 判 recency 幾乎和 argmax 一樣好。
+- **top-10 為 sensitivity 觀察**:reduce K → 減 distractor + attention load → Q-llm-recency 反升 3pp。這是 write-time 派沒有的 optimization 空間(argmax 於任何 K 上都同結果,因為 pool 已 pre-resolved 為 single-version)。
+- **C1 主要 evidence 於弱 backbone(gemma tier)**:預期於弱端 Q-llm-recency 於 top-100 上崩得比 ours main 更兇,gap 隨 backbone 減弱 widen。若同時觀察 top-10 sensitivity 於弱端 pattern 一致,則 attention degradation 為次因,ordinal parsing 失敗為主因。
+
+**paper 對照的建議 canonical 統一為 top-100**(所有 method 皆此值);top-10 觀察保留於 appendix / discussion 段,說明「Q-llm-recency 於 top-K 有 optimization 空間但仍不敵 ours 於弱 backbone 的 backbone-invariance」。
+
+#### §M-5. Cross-family × cross-benchmark Q-llm-recency probe(2026-07-11 補記)
+
+**動機**:§M-4 已於 gpt-4o-mini × FC-SH 6k 上證 Q-llm-recency 於強 backbone 上和 ours main 幾乎 parity(93% vs 94%);此節於**另一個 strong family(gpt-4.1-mini)**和**另一種 text characteristic(LME 自然 NL / KU chain)**再驗,揭露 baseline 弱點的 text-type / model-family 觸發條件。
+
+**跑法**:兩 runs 皆 top-100 canonical、shared ours_no_p5 store(byte-for-byte reuse,query-only);LME 用 `MEM0_Q_LLM_RECENCY_TEMPLATE_DS=factconsolidation_sh` 讓 LLM 於 LME 上也拿到 origin FC recency rule("larger serial = newer"),cross-dataset prompt canonical。
+
+| Setting | ours (main) | Q-llm-recency | Δ (main − Q-llm-rec) | 判讀 |
+|:--|:--:|:--:|:--:|:--|
+| FC-SH 6k × **gpt-4o-mini**(§M-4 baseline)| 94/100 = 94.0% | 93/100 = 93.0% | **+1pp** | strong-backbone 上 rule-following parity |
+| FC-SH 6k × **gpt-4.1-mini**(cross-family)| 92/100 = 92.0% | **69/100 = 69.0%** | **+23pp** | 更強 LLM 反被 pool duplicate freq 主導,忽略 ordinal rule |
+| LME-KU × **gpt-4o-mini**(cross-benchmark)| 55/78 = 70.5% | **58/78 = 74.4%** | **−3.9pp** | 自然 NL / A→B KU chain 上,LLM 讀 ordinal 反優於 argmax |
+
+**觀察 1 — cross-family FC-SH:strong LLM 不必然嚴格 follow "larger ord = newer"**
+
+sample qid=2(gt=India):retrieval pool 內含 `100. Rugby union was created in England.`(×5 copies,write-time duplicate)+ `186. Rugby union was created in India.`(×N)。
+- gpt-4o-mini 嚴格 rule-follow → 選 ordinal 186 → India ✓
+- gpt-4.1-mini semantic-reason("England 出現 5 次,India 出現較少 → 依 evidence weight 選 England")→ England ✗
+
+**核心 finding**:更 capable 的 LLM 更傾向於做 semantic reasoning over the retrieved pool,而非嚴格 rule-following——但 pool 內本身有 duplicate artifacts(write-time not-deduped 是 baseline 的固有屬性),LLM semantic reasoning 反被 artifacts 誤導。**argmax(ord) 免疫此 mode**(pre-resolved 為 single version)。
+
+**觀察 2 — cross-benchmark LME:LLM 於 NL / KU chain 上反優於 argmax**
+
+LME KU 78 題皆為 A→B 單次 update(§4.6),ordinals 由 dialogue turn 順序決定。natural NL 上:
+- LLM 讀「ord=310. new_fact」比 argmax 敏銳於 semantic entailment(e.g. "recent milestone" 語意鎖定 → 抓對版本)
+- ours (main) 的 P3 LLM identity grouping 於 FC-SH pattern 校過的邏輯,在 NL 上可能 overreach(group 錯 subject 導致 pool 被錯誤分群,argmax 錯 group)
+
+**這是 ours 於 LME 上比預期低(70.5%)的可能主因**,同時說明 Q-llm-recency 為何反優——它 by-design 不做 grouping,LLM 直接看 flat ordinal-prefixed pool 反而穩。
+
+**對 paper narrative 的 implication**:
+
+1. **C1 主張需精細化**:「LLM 全程不參與 recency 裁決」在 FC-SH 上(dense-fact / write-time duplicate 密)、於 strong-family variance 下**確實有正當性**(gpt-4.1-mini +23pp gap 為 direct evidence);但於 LME NL / KU chain 上**反例出現**——argmax 的 determinism advantage 於 dense-fact / duplicate-heavy setting 較顯著,於 NL / chain 上非優勢。
+2. **原 C1 abstract 表述需 hedge 或收窄至 conflict-dense / dense-fact benchmark**;若要維持 general claim,LME NL 上的 −3.9pp 反例需正文誠實揭露(於此 §M-5)。
+3. **實務 recommendation**:cross-text robustness 上,systematic KU 處理應為 hybrid(FC-SH → argmax;NL → LLM read ordinal),而 pure argmax 只於前者更優。這也是 abstract 中「我們犧牲了甚麼」值得增補的一項——**LME NL 上,ours 未取得 baseline 應有的優勢**,原因於 P3 identity grouping 於 NL 上 overreach。
+
+**跨方向的 GX10 補驗清單**(此 §M-5 open items):
+- gpt-4.1-mini × LME × Q-llm-recency:驗證 strong-family + NL 上 pattern(是否 4.1-mini 於 NL 上也 semantic-reason 反優 argmax、或 pool duplicate 少 → 4o vs 4.1 差距縮)
+- gemma tier × FC-SH × Q-llm-recency(GX10 handoff Task B):C1 主要 evidence,弱 backbone 上 gap widen 為 argmax immunity 的 mainline evidence
+
 ### 4.1.5 Implementation details
 
 | Item | Value | 備註 |
@@ -120,7 +219,7 @@ Pool state 分析建立於 **FC-SH 的 MQUAKE-derived counterfactual pair 特性
 | Embedding | `text-embedding-3-small`(全 methods、全 backbones) | Weak-backbone 換本地 embedding 為 appendix sensitivity |
 | Temperature | 0(all LLM calls) | Deterministic |
 | Query preprocessing | Raw question(qa 模板 boilerplate 剝除)| ours + (b) 對稱;Zep 內建 `get_retrieval_query` 做同類剝離 |
-| Answer template | MAB 官方 qa template(不客製) | 避免「贏在答題 prompt」的混淆 |
+| Answer template | 各 method 用 origin 原生指派 template(見 §M-3 逐-method audit) | 避免「贏在答題 prompt」的混淆 |
 | Random seed | 單次 deterministic run | 無 error bar;temperature 0 下確定性極高(cross-machine 差異 ±2-3 題,已於 CLAUDE.md 記錄) |
 
 ---
