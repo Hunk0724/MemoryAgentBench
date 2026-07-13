@@ -24,9 +24,21 @@ OUR setup (experiment.md §4.1), i.e. what we hold to compare fairly:
 Set THEIR_REPO to the local clone (default: sibling of MemoryAgentBench).
 
 Usage:
+  # A) OpenAI backbone (default):
   export PIPELINE_MODEL=gpt-4o-mini
   set -a; . .env; set +a; export OPENAI_API_KEY="$OPENAI_API_KEY_A"
   python maxserial_theircode.py --length 6k
+
+  # B) gemma via Ollama (embed stays OpenAI, chat swaps to Ollama):
+  export PIPELINE_MODEL=gemma3:4b
+  export OLLAMA_CHAT_URL=http://localhost:11434/v1   # triggers dual-client mode
+  set -a; . .env; set +a; export OPENAI_API_KEY="$OPENAI_API_KEY_A"  # embed only
+  python maxserial_theircode.py --length 6k
+
+Dual-client mode (OLLAMA_CHAT_URL set):
+  - embeddings still call OpenAI text-embedding-3-small (bank_emb npy cache shared across backbones)
+  - chat.completions.create routes to OLLAMA_CHAT_URL with model=PIPELINE_MODEL
+  - filename model tag sanitized (`:` → `-`); output: {L}_{gemma3-Xb}_vector100.json
 """
 from __future__ import annotations
 
@@ -172,15 +184,31 @@ def main():
     queries = load_queries(args.length)
     if args.limit:
         queries = queries[: args.limit]
-    client = A.OpenAI(api_key=os.environ["OPENAI_API_KEY"])  # A.OpenAI = plain (stubbed)
-    # authors' code passes name="..." (a Langfuse-wrapped-client kwarg) to
-    # chat.completions.create; strip it for the plain client.
-    _comp = client.chat.completions
-    _orig_create = _comp.create
-    _comp.create = lambda *a, **kw: _orig_create(*a, **{k: v for k, v in kw.items() if k != "name"})
+
+    # Strip authors' `name="..."` kwarg (Langfuse-wrapped-client convention);
+    # the plain OpenAI SDK client does not accept it.
+    def _patch_strip_name(cli):
+        _comp = cli.chat.completions
+        _orig = _comp.create
+        _comp.create = lambda *a, **kw: _orig(*a, **{k: v for k, v in kw.items() if k != "name"})
+
+    embed_client = A.OpenAI(api_key=os.environ["OPENAI_API_KEY"])  # OpenAI, embeddings
+    ollama_chat_url = os.environ.get("OLLAMA_CHAT_URL")
+    if ollama_chat_url:
+        # Dual-client: chat.completions routed to Ollama (OpenAI-compatible endpoint);
+        # embeddings stay on real OpenAI (Ollama has no text-embedding-3-small analogue).
+        chat_client = A.OpenAI(api_key=os.environ.get("OLLAMA_API_KEY", "ollama"),
+                               base_url=ollama_chat_url)
+        _patch_strip_name(chat_client)
+        print(f"[dual-client] embed=OpenAI(text-embedding-3-small) | "
+              f"chat={ollama_chat_url} model={model}")
+    else:
+        chat_client = embed_client
+        _patch_strip_name(chat_client)
+
     if args.retrieval == "vector":
-        bank_emb = _load_or_build_bank_emb(client, args.length, fact_texts)
-        q_emb = _embed(client, [q["question"] for q in queries])
+        bank_emb = _load_or_build_bank_emb(embed_client, args.length, fact_texts)
+        q_emb = _embed(embed_client, [q["question"] for q in queries])
     else:
         bm25 = BM25Okapi([A.tokenize(t) for t in fact_texts])
     print(f"[authors' method × OUR setup] bank={len(fact_texts)} | queries={len(queries)} "
@@ -197,7 +225,7 @@ def main():
         else:
             retrieved = A.bm25_retrieve(bm25, q["question"], fact_indices, fact_texts, topk)
         # --- authors' verbatim resolution (their CANDIDATE_PROMPT + max serial) ---
-        cands = A._extract_candidates(client, q["question"], retrieved)
+        cands = A._extract_candidates(chat_client, q["question"], retrieved)
         chosen = A._freshness_pick(cands)
         answer = (chosen["answer_entity"] if chosen else "no answer") or "no answer"
         # --- our official metric ---
@@ -225,8 +253,10 @@ def main():
     print(f"has_pair: {hpcorr}/{hp} ({100*hpcorr/hp:.1f}%)")
     print(f"empty extraction: {n_empty}/{n} ({100*n_empty/n:.1f}%)")
 
+    # Sanitize model tag for filename cross-platform (gemma3:4b -> gemma3-4b)
+    model_tag = model.replace(":", "-").replace("/", "-")
     out = args.out or str(REPO / f"outputs/maxserial_theircode/"
-                          f"{args.length}_{model}_{args.retrieval}{topk}.json")
+                          f"{args.length}_{model_tag}_{args.retrieval}{topk}.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     json.dump({"length": args.length, "model": model, "source": "authors_pipeline",
                "retrieval": args.retrieval, "topk": topk,
