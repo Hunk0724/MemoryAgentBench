@@ -72,8 +72,13 @@ logs/proposition_extraction_sentinels.jsonl
 # =====================================================
 # qdrant vector stores (~2 GB) — regenerate by re-ingesting
 analysis/results/expanded/
-# extraction/triple/grouping caches (regenerable)
-analysis/results/p1_caches/
+# extraction/triple/grouping caches (regenerable) — except commit small P1
+# extraction caches so cross-machine Don't Ask / held-fixed baselines can reuse
+# the fixed fact bank without re-running LLM extraction (~1.5MB total for 4 lengths).
+analysis/results/p1_caches/*
+!analysis/results/p1_caches/extraction_cache_p1_*.json
+# ignore any subdir git creates (needed after the /* pattern above)
+analysis/results/p1_caches/*/
 # weak-model regime (gemma3-{1b,4b,12b,27b}) caches — per-model isolated
 analysis/results/p1_caches__*/
 # weak-model OUTDIRs (results.json from each gemma3 size; reproduction logs are the canonical record)
