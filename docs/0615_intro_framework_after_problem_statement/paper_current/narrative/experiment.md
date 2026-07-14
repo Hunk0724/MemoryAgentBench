@@ -265,6 +265,28 @@ Intro §第 6 段末的可證偽預測:**ours 相對現有流派的優勢應隨 
 
 **Figure 1**([`../figures/F_backbone_spectrum.png`](../figures/F_backbone_spectrum.png))— headline visualization,兩 panel 共 y-axis(overall accuracy %),gpt-4o-mini 為 mid-tier anchor 出現於兩 panel。**待 GX10 gemma overall-SubEM 重算後重繪**。
 
+#### Table G0 — Complete results: ALL methods × gemma3 backbones @ 6k(n=100, overall sEM)
+
+**完整原始結果表**(每個實驗的第一張表:全 method × 全 gemma backbone、分母 n=100、官方 `substring_exact_match`)。後續 G1–G4 為由此表切出的 focused comparison。gemma per-backbone 部署(P1 抽取 = 該 backbone 自身;§4.1.3 / §M-6 共用抽取鎖);single deterministic run(temp=0)。
+
+| Method(canonical 命名)| KU 機制 | 1B | 4B | 12B | 27B |
+|:--|:--|--:|--:|--:|--:|
+| **Ours (main) = Struct + LLM-Fallback** | Query-time 確定性 (S,P)+argmax(+P3 補救)| 44/100 | 79/100 | **99/100** | **99/100** |
+| Ours (Struct-Only) = "no P3" | Query-time 確定性 (S,P)+argmax(無 LLM)| **52/100** | 79/100 | **99/100** | 97/100 |
+| Ours (LLM-Identity-Only) = "no struct" | Query-time LLM grouping | 27/100 | 50/100 | 72/100 | 59/100 |
+| Ours (+P5)〔appendix,擬棄〕 | 上 + P5 conflict-type 分類 | 27/100 | 55/100 | –ᵃ | –ᵃ |
+| Vanilla-RAG (Q-llm recency) | Query-time LLM 判 recency | 30/100 | 48/100 | 68/100 | 69/100 |
+| Don't Ask (Q-llm identity, ours-P1) | Query-time LLM extract candidates | 1/100 | 38/100 | 84/100 | 95/100 |
+| Mem0 + P1 (Write-time LLM) | Write-time destructive update | 5/100 | 11/100 | 64/100 | 54/100 |
+| Mem0 Vanilla (native)〔appendix〕 | Write-time native 抽取+update | –ᵇ | 11/100 | 53/100 | 45/100 |
+| Zep (Write-time decoupled) | Write-time 非同步標記(cloud graph)ᶜ | 29/100 | 32/100 | 58/100 | 62/100 |
+
+ᵃ Ours(+P5)12B/27B 未跑(該區由 main/Struct-Only 主導,且 P5 擬自主表移除;弱端 27→55 已顯示 P5 的 LLM conflict-typing 在弱 backbone 反害)。
+ᵇ Mem0 Vanilla 1B = total collapse(native L1 抽取於弱 LLM 完全失效,無 results.json;§M-6)。
+ᶜ Zep graph 為 Mac 的 gpt-4o-mini cloud(內部 backbone 不明、無法替換),僅 answer-gen 走本地 gemma → 部署框架下需揭露此不對稱(caveat,§M-6)。
+
+**三群梯度形狀**(判讀,細節見 G1–G4):**結構型 ours(main / Struct-Only)弱端最抗跌**(1B 就有 44–52、12B 起飽和 ~99);**query-time LLM 決策型**(Vanilla-RAG / Don't Ask / LLM-Identity-Only)與 **write-time LLM 型**(Mem0+P1 / native)皆隨 backbone 減弱而崩,且 4B→12B 間有明顯 transition(LLM-KU 決策由不可用轉可用)。**唯一在弱 backbone 仍守得住的是 ours 的 deterministic (S,P)+temporal。**
+
 #### Table G1 — accuracy × 5 backbones @ 6k(weak → mid)
 
 | Backbone | ours (main) | mem0+P1 | Zep | Gap ours−mem0 | Gap ours−Zep |
