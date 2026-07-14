@@ -292,12 +292,20 @@ def _ollama_chat(prompt: str, model: str, url: str, timeout: int = 600) -> str:
     # override via OLLAMA_NUM_CTX. Applies to all local LLM calls (extraction,
     # triple, grouping, arity) — cheap KV-cache bump, big correctness win.
     _num_ctx = int(os.environ.get("OLLAMA_NUM_CTX", "8192"))
+    # num_predict = max output tokens (§M-6 uniform max_tokens bound). Ollama's
+    # default is -1 (unbounded up to num_ctx) -> a verbose weak backbone can
+    # ramble the whole KV window per extraction/triple/grouping call (llama3.1-8b
+    # ingestion measured ~2x slower than it should). Bound it: a 512-tok chunk's
+    # (S,P,O) extraction needs <1k tok; P3 grouping over top-100 fits in ~2k.
+    # Generous default 2048 (env OLLAMA_NUM_PREDICT); truncation -> that call's
+    # step-failure per §M-6, not silent corruption.
+    _num_predict = int(os.environ.get("OLLAMA_NUM_PREDICT", "2048"))
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "stream": False,
         "format": "json",
-        "options": {"temperature": 0, "num_ctx": _num_ctx},
+        "options": {"temperature": 0, "num_ctx": _num_ctx, "num_predict": _num_predict},
     }
     req = urllib.request.Request(
         url.rstrip("/") + "/api/chat",
