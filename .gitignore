@@ -81,8 +81,13 @@ analysis/results/p1_caches/*
 analysis/results/p1_caches/*/
 # weak-model regime (gemma3-{1b,4b,12b,27b}) caches — per-model isolated
 analysis/results/p1_caches__*/
-# weak-model OUTDIRs (results.json from each gemma3 size; reproduction logs are the canonical record)
-outputs/**__gemma3-*/
+# weak-model OUTDIRs: DO track the small FC-SH result JSONs so cross-machine
+# crosstab / case-study analysis can read raw per-qid outputs (nothing heavy
+# lives here — qdrant stores are under analysis/results/expanded/; ~6 MB total).
+# Ignore any non-result artifact; re-include dirs then the result JSONs.
+outputs/**__gemma3-*/**
+!outputs/**__gemma3-*/**/
+!outputs/**__gemma3-*/**/*results*.json
 outputs/maxserial_theircode/bank_emb_*.npy
 # weak-model resource sampling logs
 docs/**/gemma_resource/

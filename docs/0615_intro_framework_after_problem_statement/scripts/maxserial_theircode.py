@@ -46,6 +46,7 @@ import argparse
 import json
 import os
 import sys
+import time
 import types
 from pathlib import Path
 
@@ -112,7 +113,12 @@ def _embed(client, texts, batch=256):
 
 
 def _load_or_build_bank_emb(client, length, fact_texts):
-    p = REPO / f"outputs/maxserial_theircode/bank_emb_{length}.npy"
+    # bank_emb cache is keyed by the bank source: gpt-4o-mini P1 (default, shared
+    # across backbones) vs a per-backbone gemma P1 bank (MAXSERIAL_BANK_TAG set) —
+    # different fact texts -> different embeddings -> must not collide.
+    _tag = os.environ.get("MAXSERIAL_BANK_TAG", "")
+    _sfx = f"_{_tag}" if _tag else ""
+    p = REPO / f"outputs/maxserial_theircode/bank_emb_{length}{_sfx}.npy"
     if p.exists():
         emb = np.load(p)
         if emb.shape[0] == len(fact_texts):
@@ -132,9 +138,14 @@ def vector_retrieve(qemb, bank_emb, fact_indices, fact_texts, top_k):
 
 # ── OUR data: bank (P1 extraction, ordinal) + queries ────────────────────────
 def load_bank(length):
-    cache = json.load(open(
-        REPO / f"analysis/results/p1_caches/extraction_cache_p1_{length}.json",
-        encoding="utf-8"))
+    # Fact bank = P1 extraction, SHARED across all methods (ours / Don't Ask /
+    # Vanilla-RAG / mem0). Default = gpt-4o-mini P1. For per-backbone deployment,
+    # MAXSERIAL_BANK_CACHE points at that backbone's own P1 extraction (e.g.
+    # analysis/results/p1_caches__gemma3-4b/extraction_cache_p1_6k.json) so the
+    # candidate-extraction LLM operates on the SAME facts our pipeline extracted.
+    bank_path = os.environ.get("MAXSERIAL_BANK_CACHE") or str(
+        REPO / f"analysis/results/p1_caches/extraction_cache_p1_{length}.json")
+    cache = json.load(open(bank_path, encoding="utf-8"))
     fact_indices, fact_texts = [], []
     for facts in cache.values():
         for f in facts:
@@ -187,10 +198,19 @@ def main():
 
     # Strip authors' `name="..."` kwarg (Langfuse-wrapped-client convention);
     # the plain OpenAI SDK client does not accept it.
-    def _patch_strip_name(cli):
+    def _patch_strip_name(cli, inject=None):
+        # Strip authors' name= kwarg. `inject` (Ollama-only) adds default kwargs, e.g.
+        # max_tokens, to bound weak-backbone JSON-mode runaway generation (gemma-1b
+        # extracts a candidate for ALL 100 pool facts -> ~1.8-6.7k tokens; disclosed
+        # weak-backbone deviation, applied ONLY to the Ollama chat client).
         _comp = cli.chat.completions
         _orig = _comp.create
-        _comp.create = lambda *a, **kw: _orig(*a, **{k: v for k, v in kw.items() if k != "name"})
+        def _create(*a, **kw):
+            kw = {k: v for k, v in kw.items() if k != "name"}
+            for k, v in (inject or {}).items():
+                kw.setdefault(k, v)
+            return _orig(*a, **kw)
+        _comp.create = _create
 
     embed_client = A.OpenAI(api_key=os.environ["OPENAI_API_KEY"])  # OpenAI, embeddings
     ollama_chat_url = os.environ.get("OLLAMA_CHAT_URL")
@@ -199,7 +219,16 @@ def main():
         # embeddings stay on real OpenAI (Ollama has no text-embedding-3-small analogue).
         chat_client = A.OpenAI(api_key=os.environ.get("OLLAMA_API_KEY", "ollama"),
                                base_url=ollama_chat_url)
-        _patch_strip_name(chat_client)
+        # UNIFORM EXCEPTION POLICY (weak-backbone; see experiment.md appendix):
+        #  - max_tokens bounds runaway generation (a single call must not ramble
+        #    over all 100 retrieved facts).
+        #  - timeout is a per-call total wall budget: beyond it we DECLARE the
+        #    candidate-extraction step failed (resolves "still reasoning vs hung"
+        #    by definition; the try/except in the loop maps it to empty extraction).
+        _patch_strip_name(chat_client, inject={
+            "max_tokens": int(os.environ.get("MAXSERIAL_MAX_TOKENS", "4096")),
+            "timeout": float(os.environ.get("MAXSERIAL_TIMEOUT", "300")),
+        })
         print(f"[dual-client] embed=OpenAI(text-embedding-3-small) | "
               f"chat={ollama_chat_url} model={model}")
     else:
@@ -218,6 +247,7 @@ def main():
     n = ncorr = 0
     hp = hpcorr = 0
     n_empty = 0
+    step_stats = {}   # candidate-extraction step failure attribution (uniform policy)
     for i, q in enumerate(queries):
         # --- retrieval: OUR raw-q vector (fair) or authors' bm25 (cross-check) ---
         if args.retrieval == "vector":
@@ -225,7 +255,44 @@ def main():
         else:
             retrieved = A.bm25_retrieve(bm25, q["question"], fact_indices, fact_texts, topk)
         # --- authors' verbatim resolution (their CANDIDATE_PROMPT + max serial) ---
-        cands = A._extract_candidates(chat_client, q["question"], retrieved)
+        # UNIFORM POLICY: run the step unchanged, but wrap it so a weak-backbone
+        # exception (timeout / API error) becomes a DECLARED step-failure rather
+        # than a crash or unbounded hang. Timing lets us post-hoc separate
+        # runaway (slow, tokens flowing) from hang (timeout with no output).
+        _t0 = time.time()
+        _fail = None
+        try:
+            cands_raw = A._extract_candidates(chat_client, q["question"], retrieved)
+        except Exception as e:                       # noqa: BLE001 (declare step-fail)
+            cands_raw = []
+            _fail = type(e).__name__                 # e.g. APITimeoutError / APIError
+        _elapsed = round(time.time() - _t0, 2)
+        # Malformed-schema guard (disclosed): _parse_candidates does NOT validate
+        # per-candidate keys; weak backbones emit candidates missing "serial"/
+        # "answer_entity" or a non-int serial, which would crash _freshness_pick.
+        # Drop malformed candidates; none-left -> None -> "no answer" (empty).
+        cands = []
+        for _c in cands_raw:
+            if not (isinstance(_c, dict) and "answer_entity" in _c and "serial" in _c):
+                continue
+            try:
+                _c = {**_c, "serial": int(_c["serial"])}
+            except (TypeError, ValueError):
+                continue
+            cands.append(_c)
+        n_dropped = len(cands_raw) - len(cands)
+        # Attribute this query's candidate-extraction step (uniform categories):
+        if _fail:
+            cx_status = _fail                        # timeout / api-error
+        elif len(cands_raw) == 0:
+            cx_status = "empty_parse"                # returned but 0 parseable
+        elif len(cands) == 0:
+            cx_status = "malformed_all"              # all candidates schema-invalid
+        elif n_dropped:
+            cx_status = "partial_malformed"          # some usable, some dropped
+        else:
+            cx_status = "ok"
+        step_stats[cx_status] = step_stats.get(cx_status, 0) + 1
         chosen = A._freshness_pick(cands)
         answer = (chosen["answer_entity"] if chosen else "no answer") or "no answer"
         # --- our official metric ---
@@ -243,6 +310,8 @@ def main():
             "n_candidates": len(cands),
             "chosen_serial": chosen["serial"] if chosen else None,
             "answer": answer, "gt_answer": q.get("gt_answer"), "subem": correct,
+            "cand_extract_status": cx_status, "cand_extract_sec": _elapsed,
+            "n_malformed_dropped": n_dropped,
         })
         if (i + 1) % 20 == 0:
             print(f"  ...{i+1}/{len(queries)}")
@@ -252,6 +321,12 @@ def main():
     print(f"overall : {ncorr}/{n} ({100*ncorr/n:.1f}%)   <- canonical (experiment.md §4.1.4)")
     print(f"has_pair: {hpcorr}/{hp} ({100*hpcorr/hp:.1f}%)")
     print(f"empty extraction: {n_empty}/{n} ({100*n_empty/n:.1f}%)")
+    # candidate-extraction step attribution (uniform exception policy)
+    _secs = [r["cand_extract_sec"] for r in rows]
+    print("cand-extract step: " + " | ".join(f"{k}={v}" for k, v in sorted(step_stats.items()))
+          + f"  (sec: max={max(_secs):.1f} mean={sum(_secs)/len(_secs):.1f}"
+          + f" | timeout={os.environ.get('MAXSERIAL_TIMEOUT','300')}s"
+          + f" max_tokens={os.environ.get('MAXSERIAL_MAX_TOKENS','4096')})")
 
     # Sanitize model tag for filename cross-platform (gemma3:4b -> gemma3-4b)
     model_tag = model.replace(":", "-").replace("/", "-")
@@ -261,6 +336,10 @@ def main():
     json.dump({"length": args.length, "model": model, "source": "authors_pipeline",
                "retrieval": args.retrieval, "topk": topk,
                "overall": [ncorr, n], "has_pair": [hpcorr, hp], "n_empty": n_empty,
+               "bank_cache": os.environ.get("MAXSERIAL_BANK_CACHE", "gpt-4o-mini(default)"),
+               "policy": {"timeout_s": float(os.environ.get("MAXSERIAL_TIMEOUT", "300")),
+                          "max_tokens": int(os.environ.get("MAXSERIAL_MAX_TOKENS", "4096"))},
+               "cand_extract_step_stats": step_stats,
                "rows": rows}, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"wrote {out}")
 

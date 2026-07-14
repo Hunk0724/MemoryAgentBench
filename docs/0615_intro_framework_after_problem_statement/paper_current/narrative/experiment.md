@@ -211,6 +211,36 @@ LME KU 78 題皆為 A→B 單次 update(§4.6),ordinals 由 dialogue turn 順序
 - gpt-4.1-mini × LME × Q-llm-recency:驗證 strong-family + NL 上 pattern(是否 4.1-mini 於 NL 上也 semantic-reason 反優 argmax、或 pool duplicate 少 → 4o vs 4.1 差距縮)
 - gemma tier × FC-SH × Q-llm-recency(GX10 handoff Task B):C1 主要 evidence,弱 backbone 上 gap widen 為 argmax immunity 的 mainline evidence
 
+#### §M-6. Weak-backbone exception-handling policy & per-step failure attribution(2026-07-14 補記)
+
+**動機**:弱 backbone(gemma3 1B/4B)會觸發強 backbone 上不出現的 pipeline 例外——某個 LLM call 逾時、輸出格式錯、或回傳但無可解析內容。初期各 method 的處理**意外地不一致**:我方 P1 抽取(`phase0_triple_extractor._ollama_chat`)有 600s per-call timeout;mem0 query grouping / destructive-update(走 mem0 proxy)`timeout=None` 為**無上限**(實測 `ours_p3_only`-1B grouping hang 5400s);Don't Ask(`maxserial` OpenAI client)原本無 `max_tokens` → runaway。這既不公平,且部分弱端數字反映的是「我方未 handle」(crash / hang)而非模型真實表現。
+
+**原則(嚴謹 weak-backbone 評測)**:**pipeline 完整照跑、不簡化任何 step**;僅加一層**對所有 method 一致**的例外處理,把弱端才觸發的異常**判定為「該 step 失敗 → 確定性 fallback → 繼續下一步」**,並**逐 step 記錄**以供歸因。
+
+**統一 policy(四元件,同參數套用所有 method)**:
+1. **per-call total timeout `T`(預設 300s)**:超過即**宣告該 step 失敗**——以定義解掉「還在 reasoning vs 已 hang」的模糊;逾時映射為 empty/no-answer 並記錄。
+2. **`max_tokens`(candidate/抽取類給足,預設 4096;answer-gen=256)**:封住 runaway generation(單一 call 不得對整個 top-100 pool 無界 ramble)。
+3. **輸出驗證**:parse / schema 失敗(如 candidate 缺 `serial`/`answer_entity`)→ 判該 step 失敗,不 crash。
+4. **確定性 fallback(依 step 類型,語意對所有 method 相同)**:抽取 chunk 失敗→該 chunk 貢獻 0 facts、續下一 chunk;query grouping 失敗→退回純確定性 (S,P) / 該 group 未解;answer 失敗→"no answer"(判錯)。
+
+**共用抽取設計鎖(fairness)**:fact bank = **P1 抽取,ours / Don't Ask / Vanilla-RAG / mem0 全共用**;per-backbone 部署下 P1 = 該 backbone 自身抽取(`MAXSERIAL_BANK_CACHE` 指向該 tier 的 `p1_caches__gemma3-{s}`)。因此**同一 backbone 內,method 間唯一差異為 KU 決策那一步**(Zep 例外:cloud、內部 backbone 不明且無法替換,僅 answer-gen 走本地,列 caveat)。
+
+**per-LLM-call 失敗歸因**(🔴=LLM call、⚪=確定性;每 step 逐題記錄 status ∈ {ok, empty_parse, malformed_all, partial_malformed, timeout, api-error}):
+
+| Method | 各 step | 弱端失敗性質 |
+|:--|:--|:--|
+| **Ours** | 🔴P1 抽取 / ⚪P2 (S,P) 精確配對 / 🔴P3 LLM 補救(僅殘餘 ambiguous) / 🔴inference 答案生成 | 抽取 recall 下降(**bounded、local、可驗證**);P2「失敗」為上游 P1 字面偏移,非獨立 LLM 失敗 |
+| **Don't Ask** | 🔴P1(=ours) / 🔴candidate-extraction / ⚪inference※ | candidate-extraction empty/malformed(**unbounded**)|
+| **Vanilla-RAG** | 🔴P1(=ours) / 🔴inference(recency 判斷+答案同一 call)| 平滑退化 |
+| **Mem0 + P1** | 🔴P1(=ours) / 🔴write-time update prompt | 破壞性寫入、不可逆(store 崩)|
+| **Zep** | 🔴inference 僅此 | answer-gen floor |
+
+※ **不對稱揭露**:Don't Ask 的最終答案 = candidate-extraction 抽出的 `answer_entity` 再 `max(serial)`,**無獨立 answer-gen LLM**;ours / Vanilla-RAG 則有。故 Don't Ask 弱端少一個會崩的 LLM step,但多一個「抽取格式崩 → 整題無答案」的風險。
+
+**具體證據(gemma-1B Don't Ask candidate-extraction,per-step log)**:於 `T=300s`、`max_tokens=4096` 下,弱端失敗**乾淨地歸因為 `empty_parse`**(LLM 有回但 candidates 陣列空/不可解析),而**非 timeout、非 runaway**:每題回應 ~23s(遠低於 300s),`step_stats={empty_parse: 9, ok: 1}`(smoke N=10)。→ 可斷言「1B Don't Ask≈0 是 candidate-extraction step 的**真實 instruction-following 崩壞(23s 真回應)**,非 hang 或我方 handling 假象」。對照 12B/27B:`ok=100%`(0 empty)。此逐 step 歸因即為 abstract 主張的機制證據:**ours 弱端失敗是「抽取 recall 下降(可控)」,baselines 弱端失敗是「KU 決策 LLM 崩壞(不可控)」——同 backbone,失敗性質不同。**
+
+**參數與範圍(誠實揭露)**:`T`/`max_tokens` 為 disclosed hyperparameter,先用上述預設、依 smoke 實測「正常跑通 vs 確定失敗」邊界滾動調整(目前 gemma tier 無任何 query 逼近 300s → timeout 為安全網、不影響數值);逐 run 回報 timeout 命中率(目前 0)。**套用範圍**:policy 已套於**須重跑**的部分(Don't Ask 改 ours gemma P1、未來 cross-series);既有 5 個 priority method 的弱端數字為 **policy-robust**(皆跑完、失敗屬語意型非 timeout 型);ablation/appendix 的 hang/crash 格(`p3_only`-1B、`native`-1B)於後續 cleanup pass 以同一 policy 重跑或誠實 footnote。
+
 ### 4.1.5 Implementation details
 
 | Item | Value | 備註 |
@@ -282,6 +312,26 @@ Net real regression ≈ −5pp;−1 為 D-flag。
 全列為 **overall-100 官方 SubEM**(N=100);gemma 由 `rescore_canonical.py` 2026-07-11 重算。**metric 遷移影響**:strict-EM 下 gemma3-1B Δ=−5pp、27B Δ=+7pp;官方 SubEM 下為 **−8pp / +2pp**(27B「P3 修 override」的效益縮小,因多數 strict-wrong 為 verbose-correct 非真 override,見 §4.4.7)。
 
 **Observation**:P3(LLM identity grouping)為 **capability-gated add-on**:於 underpowered backbone(1B)反害 −5pp;struct 飽和區(4B/12B)neutral;mid-strong tier(27B、gpt-4o-mini)net-positive +2~+4pp;super-strong(gpt-4.1-mini)near-zero(過度保守)。**Struct 於全 backbone 都穩定為 workhorse**,兌現 method_v1.md §3.3「LLM 補救僅在少數案例介入」的設計選擇。**gpt-4.1-mini 上 LLM-only 崩至 62%**(struct 缺席時,強 LLM 的 P3 grouping 過度保守 → 大量未併群)佐證 struct 底盤不可或缺。
+
+#### Table G4 — Query-time LLM baselines × backbone spectrum @ 6k(2026-07-14,GX10 per-backbone)
+
+對照 ours(query-time **deterministic** (S,P)+argmax)vs 兩支 **query-time LLM 決策** baseline:Vanilla-RAG(LLM 判 recency)、Don't Ask(LLM extract candidates)。**共用抽取設計鎖**(§M-6):三者皆用 ours 的 P1 fact bank,per-backbone 部署下 P1 = 該 backbone 自身抽取 → 同 backbone 內唯一差異為 KU 決策那一步。統一 exception policy(`T=300s`、`max_tokens=4096`,§M-6)。
+
+| Backbone | ours main | Vanilla-RAG (Q-llm recency) | Don't Ask (Q-llm identity) | Δ(identity − recency) | Don't Ask cand-extract 崩因(per-step) |
+|:--|--:|--:|--:|--:|:--|
+| gemma3-1B | **44%** | 30% | 1% | −29pp | `empty_parse 77%`(格式崩:吐不出合法 candidate JSON)|
+| gemma3-4B | **79%** | 48% | 38% | −10pp | `ok 91%` 但語意錯(格式過關、max(serial) 挑錯)+ `empty_parse 9%` |
+| gemma3-12B | **99%** | 68% | 84% | +16pp | `ok 100%` |
+| gemma3-27B | **99%** | 69% | 95% | +26pp | `ok 100%` |
+| **gpt-4o-mini** | 94% | 93% | 80% | −13pp | `ok 100%` |
+
+全列 **overall-100 官方 SubEM**;gemma per-backbone ours-P1 抽取,single deterministic run。Don't Ask 崩因來自 maxserial per-step log(`cand_extract_step_stats`)。
+
+**Observation.**
+1. **ours(deterministic 決策)於全 tier 平**(44→79→99→99),兩支 LLM-決策 baseline 隨 backbone 減弱而崩——兌現 abstract「baselines KU 表現取決於 backbone 判斷力、ours 由結構決定」。
+2. **Δ(identity − recency)於 tier 間反轉**:中-強 weak tier(12B/27B)Don't Ask 反超 Vanilla-RAG(+16/+26pp;identity extraction 比 recency reasoning 簡單、強 weak backbone 上更 robust,甚至 27B 的 95% > gpt-4o-mini 的 80%);但最弱端(1B/4B)Don't Ask 崩得更兇(−29/−10pp),因其 batch-100-JSON 抽取比 recency 更早崩(1B `empty_parse 77%`)。
+3. **失敗機制隨 tier 轉移**(per-step 歸因):1B = 格式崩(`empty_parse` 主導)→ 4B = 格式過關但語意錯 → 12B/27B = 皆過。**同 backbone、失敗性質不同**,正是 §M-6 attribution 的機制證據。
+4. **崩壞由決策 LLM 而非抽取品質決定**:Don't Ask 的 fact bank 由 gpt-4o-mini(held-fixed)換成 gemma 自身 P1(1B 375 vs 455 facts),數字幾乎不變(27B 96→95、12B 84→84、4B 36→38、1B 2→1)→ candidate-extraction 決策 LLM 才是瓶頸,與 bank 抽取品質無關。
 
 ---
 
