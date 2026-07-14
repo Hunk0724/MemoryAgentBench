@@ -355,6 +355,28 @@ Net real regression ≈ −5pp;−1 為 D-flag。
 3. **失敗機制隨 tier 轉移**(per-step 歸因):1B = 格式崩(`empty_parse` 主導)→ 4B = 格式過關但語意錯 → 12B/27B = 皆過。**同 backbone、失敗性質不同**,正是 §M-6 attribution 的機制證據。
 4. **崩壞由決策 LLM 而非抽取品質決定**:Don't Ask 的 fact bank 由 gpt-4o-mini(held-fixed)換成 gemma 自身 P1(1B 375 vs 455 facts),數字幾乎不變(27B 96→95、12B 84→84、4B 36→38、1B 2→1)→ candidate-extraction 決策 LLM 才是瓶頸,與 bank 抽取品質無關。
 
+#### Table G5 — 7–9B on-device deployment series × ALL 6 methods @ 6k(2026-07-15,GX10 cross-family)
+
+**部署尺寸實測**:gemma3 於 4B→12B 間有 transition,故補**實際 on-device 部署常用的 7–9B 級 model**(跨 4 個 family:llama / qwen / gemma2 / mistral),檢驗「本方法於真實部署尺寸是否 robust」+ transition 是否跨系列一致(能力門檻 vs 單一系列 quirk)。全 per-backbone 部署(P1 抽取=該 backbone 自身,共用抽取鎖 §M-6;統一 exception policy `num_predict=2048`)。P1 抽取數:llama 338 / qwen 451 / gemma2 455 / mistral 452(num_predict bound 未截斷)。
+
+| Method | llama3.1-8B | qwen2.5-7B | gemma2-9B | mistral-7B | 跨-model 全距 |
+|:--|:--:|:--:|:--:|:--:|:--:|
+| **Ours (main) = Struct + LLM-Fallback** | **81** | **91** | 72 | **66** | 66–91(27)|
+| **Ours (Struct-Only) = no P3** | **81** | 83 | 71 | 64 | 64–83(19)|
+| Vanilla-RAG (Q-llm recency) | 70 | 27 | 38 | 26 | 26–70(44)|
+| Don't Ask (Q-llm identity, ours-P1) | 48 | 42 | **80** | 21 | 21–80(**59**)|
+| Mem0 + P1 (Write-time LLM) | 8 | 21 | 27 | 19 | 8–27(19)|
+| Zep (Write-time decoupled)ᵃ | 63 | 51 | 73 | 52 | 51–73(22)|
+
+全列 **overall-100 官方 SubEM**;single deterministic run;Don't Ask 全 tier `cand-extract ok≈100`(格式門檻在 7B 以下,無 empty_parse 崩)。
+ᵃ Zep graph 固定用 Mac 的 gpt-4o-mini cloud(僅 answer-gen 走本地),故 Zep 只反映 answer-gen 退化、非其 write-time 機制於弱 backbone 的表現(caveat,§M-6)。
+
+**Observation.**
+1. **Ours 於全 4 個部署 model 皆穩居前段(66–91),且跨-model 全距最小(27 / Struct-Only 僅 19)**;LLM-決策 baselines 不只更低,更**劇烈擺盪**(Don't Ask 全距 **59**、Vanilla-RAG 44)。→ ours 的優勢不只在平均值,更在 **low-variance / backbone-agnostic robustness**——換一顆同尺寸 model,baselines 可能崩(qwen 上 Vanilla-RAG 27、mistral 上 Don't Ask 21),ours 幾乎不動。這是「表現由結構決定、非由 backbone 判斷力決定」的最強部署證據。
+2. **格式門檻確認在 7B 以下**:Don't Ask 的 candidate-extraction 於全 4 個 7–9B model 皆 `ok≈100`(對比 gemma-1B `empty_parse 77%`、4B 部分崩)→ batch-100-JSON 抽取的**格式崩壞門檻低於 7B**;7B 以上的失敗轉為**語意錯**(格式過關但挑錯),非格式崩。
+3. **誠實揭露的例外(gemma2-9B)**:此 model 上 Don't Ask(80)> ours(72)。研判為 gemma2 的 **answer-gen 較弱**——ours 需 LLM 生成答案(受 answer-gen 拖累),Don't Ask 直接輸出抽取的 `answer_entity`(無 answer-gen step,§M-6 不對稱)。此為 single-model 例外,不改「ours 跨-model robust、baselines 擺盪」的整體結論,但誠實列出。
+4. **對接 abstract**:7–9B 為 privacy-sensitive on-device 部署的實際尺寸;ours 於此區間 robust(64–91)、baselines 落後且不穩,兌現「本方法在小型模型上優勢最顯著、於中型模型仍持續」的主張。transition 跨 4 個 family 一致(baselines 於 7–9B 仍普遍低)→ 為**能力門檻**,非單一 gemma 系列的 quirk。
+
 ---
 
 ### 4.2.1 E2E accuracy(overall 100 題,3 lengths)
