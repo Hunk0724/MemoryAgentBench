@@ -1066,6 +1066,94 @@ class AgentWrapper:
                         f"{(e.get('metadata') or {}).get('ordinal', -1)}. {e['memory']}"
                         for e in _results[:_K]
                     )
+                elif _qmode == "q_llm_recency_two_stage":
+                    # Two-stage Q-llm-recency (2026-07-14): separates recency
+                    # filtering from answer generation so Stage 2 stays
+                    # byte-identical to the standard else-branch (ours main /
+                    # vanilla / b) — enabling fair comparison on datasets whose
+                    # native rag_agent lacks a recency instruction (e.g. LME).
+                    # Stage 1 prompt mirrors FC-SH `factconsolidation.rag_agent`
+                    # (recency rule + "solve conflicts by finding newest fact
+                    # with larger serial") but re-targets output from "Answer:"
+                    # to "Selected serial:" so downstream code can filter to
+                    # winners. Fallback (0 valid ordinals returned): use full
+                    # top-K — fallback rate is a natural diagnostic of Q-llm-
+                    # recency's LLM judgment reliability on the dataset.
+                    _K = int(os.environ.get("MEM0_Q_LLM_RECENCY_TOPK", "100"))
+                    _topK = _results[:_K]
+                    _numbered = "\n".join(
+                        f"{(e.get('metadata') or {}).get('ordinal', -1)}. {e['memory']}"
+                        for e in _topK
+                    )
+                    _s1_sys = (
+                        "You are a helpful assistant that can read the context "
+                        "and memorize it for future retrieval."
+                    )
+                    _s1_user = (
+                        f"{_numbered}\n\n"
+                        "Pretend you are a knowledge management system. Each "
+                        "fact in the knowledge pool above is provided with a "
+                        "serial number at the beginning, and the newer fact "
+                        "has larger serial number.\n"
+                        "You need to solve the conflicts of facts in the "
+                        "knowledge pool by finding the newest fact with larger "
+                        "serial number. You need to identify the winning fact "
+                        "based on this rule **only** from the knowledge pool "
+                        "you have memorized rather than the real facts in real "
+                        "world.\n\n"
+                        "For example:\n\n"
+                        "[Knowledge Pool]\n"
+                        "1. The name of the current president of Russia is Vladimir Putin.\n"
+                        "5. The name of the current president of Russia is Donald Trump.\n\n"
+                        "Question: Based on the provided Knowledge Pool, what "
+                        "is the name of the current president of Russia?\n"
+                        "Selected serial: 5\n\n"
+                        f"Now identify the serial for the Question: Based on "
+                        f"the provided Knowledge Pool, {retrieval_query}\n"
+                        "Selected serial:"
+                    )
+                    _s1_messages = [
+                        {"role": "system", "content": _s1_sys},
+                        {"role": "user", "content": _s1_user},
+                    ]
+                    _s1_resp, _s1_in_tok, _s1_out_tok = self._answer_with_client(_s1_messages)
+                    _retrieved_ords = {(e.get("metadata") or {}).get("ordinal", -1) for e in _topK}
+                    _ord_to_item = {(e.get("metadata") or {}).get("ordinal", -1): e for e in _topK}
+                    _raw_ords = [int(x) for x in re.findall(r"\d+", _s1_resp or "")]
+                    _selected_ords = []
+                    _seen_ords = set()
+                    for _o in _raw_ords:
+                        if _o in _retrieved_ords and _o not in _seen_ords:
+                            _selected_ords.append(_o)
+                            _seen_ords.add(_o)
+                    _fallback = not _selected_ords
+                    if _fallback:
+                        _winners = _topK
+                        print(f"[q_llm_recency_2s] Stage 1 returned 0 valid "
+                              f"ordinals; fallback to full top-{_K}. "
+                              f"raw_resp={(_s1_resp or '')[:120]!r}")
+                    else:
+                        _winners = [_ord_to_item[_o] for _o in _selected_ords]
+                    memories_str = "\n".join(f"- {e['memory']}" for e in _winners)
+                    _s1_log_dir = os.environ.get("MEM0_CAND_LOG_DIR")
+                    if _s1_log_dir:
+                        try:
+                            os.makedirs(_s1_log_dir, exist_ok=True)
+                            with open(os.path.join(_s1_log_dir, "q_llm_recency_2s_stage1.jsonl"),
+                                      "a", encoding="utf-8") as _f:
+                                _f.write(json.dumps({
+                                    "query_id": query_id,
+                                    "context_id": context_id,
+                                    "n_retrieved": len(_topK),
+                                    "n_selected": len(_winners),
+                                    "selected_ords": _selected_ords,
+                                    "fallback": _fallback,
+                                    "raw_resp": _s1_resp,
+                                    "s1_in_tok": _s1_in_tok,
+                                    "s1_out_tok": _s1_out_tok,
+                                }, ensure_ascii=False) + "\n")
+                        except Exception as _e:
+                            print(f"[q_llm_recency_2s log] failed: {_e}")
                 else:
                     memories_str = "\n".join(f"- {entry['memory']}" for entry in _results)
             except Exception as _e:
@@ -1167,7 +1255,43 @@ class AgentWrapper:
         import inspect
         from zep_cloud import Message
         from methods.zep import compose_search_context, llm_response, get_retrieval_query, construct_messages
-        
+
+        # ── enhanced Zep logging (2026-07-12) ──
+        # Log dir gated by ZEP_LOG_DIR env. When set, capture:
+        #   graph_add.jsonl         : each graph.add call + response
+        #   add_context.jsonl       : each thread.add_messages with return_context=True
+        #   search_results.jsonl    : each graph.search full return payload per scope
+        # No-op when unset. See project_zep_timeout_wait_cloud memory.
+        _zep_log_dir = os.environ.get("ZEP_LOG_DIR")
+
+        def _zep_to_dict(obj):
+            """Convert Zep SDK object to JSON-serializable dict."""
+            if obj is None:
+                return None
+            if hasattr(obj, "model_dump"):
+                try:
+                    return obj.model_dump(mode="json")
+                except Exception:
+                    pass
+            if hasattr(obj, "dict"):
+                try:
+                    return obj.dict()
+                except Exception:
+                    pass
+            if isinstance(obj, list):
+                return [_zep_to_dict(x) for x in obj]
+            return str(obj)
+
+        def _zep_log(name, payload):
+            if not _zep_log_dir:
+                return
+            try:
+                os.makedirs(_zep_log_dir, exist_ok=True)
+                with open(os.path.join(_zep_log_dir, f"{name}.jsonl"), "a", encoding="utf-8") as _f:
+                    _f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+            except Exception as _e:
+                logging.error(f"[zep-log {name}] failed: {_e}")
+
         # user id / session id / oai client
         user_id = f'user_{context_id}_{self.sub_dataset}'
         graph_id = f'graph_{context_id}_{self.sub_dataset}'
@@ -1192,19 +1316,46 @@ class AgentWrapper:
         else:
             pass
             
+        # Query-only mode (2026-07-13, ablation-friendly): skip ingest when graph
+        # is already populated on Zep cloud from a prior run. Also skips the
+        # async-wait block below since graph is assumed stable. Env-gated:
+        #   ZEP_QUERY_ONLY=1  → skip graph.add + thread.add_messages + initial wait
+        # No-op when unset.
+        _zep_query_only = os.environ.get("ZEP_QUERY_ONLY") == "1"
+
         if memorizing:
+            if _zep_query_only:
+                return "Memorized (query-only skip)"
             # graph add
             memorize_template = get_template(self.sub_dataset, 'memorize', self.agent_name)
             content = memorize_template.format(context=message, **({'time_stamp': time.strftime("%Y-%m-%d %H:%M:%S")} if '{time_stamp}' in memorize_template else {}))
-            self.client.graph.add(
-                graph_id=graph_id, 
+            _t_ga = time.time()
+            graph_add_resp = self.client.graph.add(
+                graph_id=graph_id,
                 type="text",
                 data=content[:9998]
             )
+            _zep_log("graph_add", {
+                "context_id": context_id, "graph_id": graph_id,
+                "content_chars": len(content),
+                "content_truncated": len(content) > 9998,
+                "wall_s": round(time.time() - _t_ga, 3),
+                "response": _zep_to_dict(graph_add_resp),
+            })
 
             # # thread add
             messages = construct_messages(content, user_id)
-            self.client.thread.add_messages(thread_id=thread_id, messages=messages)
+            _t_ta = time.time()
+            add_msgs_resp = self.client.thread.add_messages(
+                thread_id=thread_id, messages=messages, return_context=True
+            )
+            _zep_log("add_context", {
+                "context_id": context_id, "thread_id": thread_id,
+                "n_messages": len(messages),
+                "wall_s": round(time.time() - _t_ta, 3),
+                "context": _zep_to_dict(getattr(add_msgs_resp, "context", None)),
+                "response": _zep_to_dict(add_msgs_resp),
+            })
             return "Memorized"
         else:
             # Wait for Zep async processing on first query for this context.
@@ -1214,28 +1365,41 @@ class AgentWrapper:
             # v2 fix: previous edge-count probe with limit=3 passed silently at 32k
             # because Zep returned first 3 edges even when only ~10/60 chunks were
             # processed. Episode count (== graph.add calls) is a direct progress signal.
+            if _zep_query_only:
+                # Skip wait entirely — graph assumed populated + stable from prior run
+                self._zep_waited_for_context = context_id
+                print(f"\n[zep-query-only] skipping wait for context {context_id} (assumed cached)")
+
             if not getattr(self, '_zep_waited_for_context', None) == context_id:
-                initial_wait = 360
-                print(f"\nWaiting {initial_wait}s for Zep async processing of context {context_id}...")
+                # Length-adaptive wait: 262k needs much longer for Zep async graph build.
+                # 32k/64k default: 360s + up to 8×300s probes = ~46min max.
+                # 262k: 1200s + up to 20×300s probes = ~120min max.
+                # Override via ZEP_INITIAL_WAIT / ZEP_MAX_PROBES env.
+                _is_262k = "262k" in self.sub_dataset
+                initial_wait = int(os.environ.get("ZEP_INITIAL_WAIT",
+                                                  1200 if _is_262k else 360))
+                max_probes = int(os.environ.get("ZEP_MAX_PROBES",
+                                                20 if _is_262k else 8))
+                print(f"\nWaiting {initial_wait}s for Zep async processing of context {context_id} (max_probes={max_probes})...")
                 time.sleep(initial_wait)
                 elapsed = initial_wait
                 last_n_episodes = -1
-                for probe in range(8):  # up to 8 probes after initial wait
+                for probe in range(max_probes):  # up to max_probes after initial wait
                     try:
                         probe_res = self.client.graph.search(graph_id=graph_id, query="a the of", scope='episodes', limit=200)
                         n_epis = len(probe_res.episodes) if probe_res and probe_res.episodes else 0
                         if n_epis > 0 and n_epis == last_n_episodes:
                             print(f"  Zep graph ready after {elapsed}s (episodes stable at {n_epis})")
                             break
-                        if probe == 7:
-                            print(f"  WARNING: Zep episodes={n_epis} after {elapsed}s (not stabilized after 8 probes); proceeding")
+                        if probe == max_probes - 1:
+                            print(f"  WARNING: Zep episodes={n_epis} after {elapsed}s (not stabilized after {max_probes} probes); proceeding")
                             break
-                        print(f"  Probe {probe+1}/8 at {elapsed}s: {n_epis} episodes (was {last_n_episodes}); sleeping 300s more...")
+                        print(f"  Probe {probe+1}/{max_probes} at {elapsed}s: {n_epis} episodes (was {last_n_episodes}); sleeping 300s more...")
                         last_n_episodes = n_epis
                         time.sleep(300)
                         elapsed += 300
                     except Exception as e:
-                        print(f"  Probe {probe+1}/8 exception ({e.__class__.__name__}): {e}; sleeping 300s more...")
+                        print(f"  Probe {probe+1}/{max_probes} exception ({e.__class__.__name__}): {e}; sleeping 300s more...")
                         time.sleep(300)
                         elapsed += 300
                 self._zep_waited_for_context = context_id
@@ -1246,10 +1410,19 @@ class AgentWrapper:
             retrieval_query = get_retrieval_query(message)
             print(f"\n\n\nretrieval_query: {retrieval_query}\n\n\n")
 
+            # Ablation env (2026-07-13):
+            #   ZEP_TOP_K       overrides self.retrieve_num (default 10 per Zep official)
+            #                   → test if long-context (262k) crash is top-K cap driven
+            #   ZEP_EDGES_ONLY  skip nodes + episodes fetching + compose
+            #                   → isolate fact-level edges as the only memory granularity
+            # Both env-gated, byte-identical to before when unset. See ZEP 262k ablation §.
+            _zep_top_k = int(os.environ.get("ZEP_TOP_K", str(self.retrieve_num)))
+            _zep_edges_only = os.environ.get("ZEP_EDGES_ONLY") == "1"
+
             def _search_with_retry(scope, retries=3, wait=30):
                 for attempt in range(retries):
                     try:
-                        return self.client.graph.search(graph_id=graph_id, query=retrieval_query[:399], scope=scope, limit=self.retrieve_num)
+                        return self.client.graph.search(graph_id=graph_id, query=retrieval_query[:399], scope=scope, limit=_zep_top_k)
                     except Exception as e:
                         if attempt < retries - 1:
                             print(f"  Zep search {scope} failed ({e.__class__.__name__}), retry {attempt+1}/{retries} after {wait}s...")
@@ -1258,17 +1431,54 @@ class AgentWrapper:
                             raise
                 return None
 
-            edges_results = _search_with_retry('edges').edges
-            node_results = _search_with_retry('nodes').nodes
-            episode_results = _search_with_retry('episodes').episodes
-            
-            # print(f"\n\n\nepisode_results: {episode_results}\n\n\n")
-            # print(f"\n\n\nedges_results: {edges_results}\n\n\n")
-            # print(f"\n\n\nnode_results: {node_results}\n\n\n")
-                        
+            _t_es = time.time(); edges_full = _search_with_retry('edges'); _t_ne = time.time() - _t_es
+            if _zep_edges_only:
+                nodes_full = None; eps_full = None; _t_nn = 0.0; _t_np = 0.0
+            else:
+                _t_es = time.time(); nodes_full = _search_with_retry('nodes'); _t_nn = time.time() - _t_es
+                _t_es = time.time(); eps_full = _search_with_retry('episodes'); _t_np = time.time() - _t_es
+            edges_results = edges_full.edges if edges_full else None
+            node_results = nodes_full.nodes if nodes_full else None
+            episode_results = eps_full.episodes if eps_full else None
+
+            _zep_log("search_results", {
+                "query_id": query_id, "context_id": context_id,
+                "retrieval_query": retrieval_query,
+                "edges": {"wall_s": round(_t_ne, 3),
+                          "results": [_zep_to_dict(x) for x in (edges_results or [])]},
+                "nodes": {"wall_s": round(_t_nn, 3),
+                          "results": [_zep_to_dict(x) for x in (node_results or [])]},
+                "episodes": {"wall_s": round(_t_np, 3),
+                             "results": [_zep_to_dict(x) for x in (episode_results or [])]},
+            })
+
             # thread search / currently we do not use the thread info
-            memory = self.client.thread.get_user_context(thread_id=thread_id)
+            # Retry with backoff on rate-limit / transient (FREE plan caps
+            # get_user_context at 5/min — must wait per response Retry-After).
+            _t_uc = time.time()
+            _uc_retries = 6
+            for _uc_i in range(_uc_retries):
+                try:
+                    memory = self.client.thread.get_user_context(thread_id=thread_id)
+                    break
+                except Exception as _uce:
+                    _emsg = str(_uce)
+                    if "429" in _emsg or "rate limit" in _emsg.lower():
+                        _wait = 45 if _uc_i < 3 else 90
+                        print(f"  get_user_context 429 rate-limit, retry {_uc_i+1}/{_uc_retries} after {_wait}s")
+                        time.sleep(_wait)
+                        continue
+                    if _uc_i == _uc_retries - 1:
+                        raise
+                    print(f"  get_user_context transient ({_uce.__class__.__name__}), retry {_uc_i+1}/{_uc_retries} after 30s")
+                    time.sleep(30)
             context_block = memory.context
+            _zep_log("user_context", {
+                "query_id": query_id, "context_id": context_id,
+                "wall_s": round(time.time() - _t_uc, 3),
+                "context_block": context_block,
+                "memory_response": _zep_to_dict(memory),
+            })
 
             # Prompt an LLM with relevant context
             retrieved_context = compose_search_context(edges_results, node_results, context_block, episode_results)

@@ -684,11 +684,13 @@ Ob2 mem0 write-time failure taxonomy(詳見 [`../results/mem0_event_taxonomy_gt4
 
 ---
 
-## 4.6 Generalization — LongMemEval-KU(**draft,待 baseline runs 完 fill 數字**)
+## 4.6 Generalization — LongMemEval-KU
 
-> **★ 決策(2026-07-07):LME-KU 目前只採用 `ours (main)` + `vanilla mem0`**(有 cost/log 記錄、可信)。
-> - **`ours (+P5)` 於 LME-KU 待觀察、暫不採用**:原 **83.3%(65/78)結果無 log 記錄**(cost log 未取、run 條件未存)→ **需重跑**後才可引用。在此之前本節所有 +P5 相關數字、+12.8pp 發現與 outcome-B decomposition **僅作 pending 參考,不進 paper claim**。
-> - **本節主基準 = ours (main) 70.5% vs vanilla 67.9%(gap +2.6pp → outcome C)**;`(b) mem0+P1` 進行中、`Zep` deferred(§4.6.7)。
+> **★ 決策更新(2026-07-14):LME-KU 主表 canonical 為 4 個 method**——`ours (main)` 70.5%、`(a) vanilla mem0` 67.9%、`(b) mem0+P1` 60.3%、`Q-llm-recency (two-stage)` 69.2%(見 §4.6.4 Table 7)。
+> - **`Q-llm-recency single-stage` 74.4% 已完全 drop**(不再引用於任何 claim):該版於 LME 上被 env override 到 FC-SH `factconsolidation.rag_agent` template(含「serial 大 = 新」recency rule),但 LME 原生 rag_agent 沒有此規則 → **唯一被 prompt-augmented 的 method**,對比 ours/vanilla/b 不公平。改為 two-stage 版本(見 §4.6.4a)後 = **69.2%(canonical)**。
+> - **`Don't Ask (Reddy & Challaram, 2026)` 未於 LME-KU 執行,列 future work**:其 mechanism 依賴 dataset-provided numbered fact bank + global serial ordering(FC-SH 原生設計);LME-KU 是 per-session unnumbered conversational data,強行 adapter 需自建 per-session bank + 自定 serial 語義,已偏離作者原論文 scope。詳見 §4.6.7 Don't Ask on LME rationale。
+> - **`ours (+P5)` 已 verified net-zero**(2026-07-07 reuse = ours main 55/78);orig 83.3% 為 non-reproducible store-state artifact,已 drop。
+> - **`Zep` deferred**(free plan 128k 上限,§4.6.7 未改)。
 
 ### 4.6.1 動機:為何做 LME-KU?
 
@@ -716,12 +718,14 @@ Reviewer 必然質疑:**「你們於 FC-SH 上的優勢,是否僅來自這個 da
 - **Dataset**:LongMemEval-s cleaned (Wu et al., ICLR 2025);78 個 `knowledge-update` queries(篩自 500 sessions,verified 2026-07-04)
 - **Session length**:~115K tokens per instance
 - **Backbones**:gpt-4o-mini(mid tier,primary);pending gpt-4o(strong)
-- **Methods**(**目前採用**:ours (main) + vanilla mem0;(b) 進行中;**+P5 待重跑、Zep deferred**):
-  - **ours (main)** = struct + P3 + argmax(NO P5)= script `ours_no_p5` ✅ 採用
-  - **ours (+P5)** = main + P5 conflict-type(script `ours`)— **⚠ 待觀察·暫不採用於 LME-KU;原 83.3% 無 log 記錄 → 需重跑**
+- **Methods**(**canonical 2026-07-14**:ours (main)、vanilla、(b)、Q-llm-recency two-stage;Zep deferred;Don't Ask out of scope):
+  - **ours (main)** = struct + P3 + argmax(NO P5)= script `ours_no_p5` ✅ canonical
+  - **ours (+P5)** = main + P5 conflict-type(script `ours`)= **P5 net-zero(2026-07-07 reuse 驗證),appendix ablation**
+  - **Q-llm-recency (two-stage)** = script `ours_q_llm_recency_2s`。**Stage 1** 用 FC-SH-mirror recency prompt(hardcoded 於 [`agent.py:_qmode="q_llm_recency_two_stage"`](../../../../agent.py)),LLM 從 top-100 `{ordinal}. {memory}` 挑 winner serial;**Stage 2** 用 LME 原生 rag_agent template(byte-identical to ours/vanilla/b else-branch),LLM 只看 winner memories 答題。**Rigor 補**:相對舊 `single-stage` 版(env override 到 FC-SH template 於 LME 上是唯一 prompt-augmented method),two-stage 移除此 augmentation,Stage 2 與其他 method 完全對稱。
   - **(b) mem0+P1** = coupled write-time destructive(共用 ours' P1 extraction cache)
   - **(a) vanilla mem0** = coupled write-time + native mem0 extractor
-  - **Zep** = decoupled write-time labeling(k=10)
+  - **Zep** = decoupled write-time labeling(k=10)— deferred(§4.6.7)
+  - **Don't Ask (Reddy & Challaram, 2026)** = concurrent Q-llm-identity baseline — **out of scope on LME-KU**(見 §4.6.7 rationale)
 - **Metric**:LongMemEval 官方 gpt-4o-mini judge(`llm_based_eval/evaluate_qa_official.py`)of binary label per query
 - **Pipeline alignment**:所有 methods 於相同 chunker + raw-question retrieval + gen_max=256(對稱 FC-SH audit)
 - **Runner**:`docs/0615_.../scripts/run_lme_ku.sh <method>`(2-shard 平行,per-shard cost log at `logs/cost_lme_<method>_sN.jsonl`)
@@ -731,11 +735,16 @@ Reviewer 必然質疑:**「你們於 FC-SH 上的優勢,是否僅來自這個 da
 | Method | LME-KU KU accuracy(N=78)| Cost(gpt-4o-mini)| FC-SH 64k has_pair EM(N=66,參照)| ΔGap(ours main − method)|
 |:--|:-:|:-:|:-:|:-:|
 | **ours (main)** = struct+P3+argmax | **55/78 = 70.5%** | $1.88 | 60/66 (90.9%) | — |
-| **ours (+P5) reuse**(2026-07-07,reproducible)| **55/78 = 70.5%** | ~$0.5(query-only)| 60/66 (90.9%) | **0pp — P5 net-zero** |
-| ~~ours (+P5) Jun 30(4-shard,非 reproducible)~~ | ~~65/78 = 83.3%~~ | — | — | ~~(見下方 P5 verification 段)~~ |
-| (a) vanilla mem0 | **53/78 = 67.9%** | $4.13 | — | +2.6pp |
-| (b) mem0+P1 | **47/78 = 60.3%** | ~$4(78 KU × 2 shards)| 34/66 (52%) | **+10.2pp** |
-| Zep(k=10)| ☐ deferred(Zep free plan 128k 上限,見 §4.6.7) | — | 36/66 (55%) | ☐ |
+| ours (+P5) reuse(2026-07-07)| 55/78 = 70.5% | ~$0.5(query-only)| 60/66 (90.9%) | 0pp — P5 net-zero(appendix ablation)|
+| **Q-llm-recency (two-stage)** = Stage 1 LLM recency filter → Stage 2 LME native answer | **54/78 = 69.2%** | ~$0.05(query-only,Stage 1 = $0.023)| — | +1.3pp |
+| (a) vanilla mem0 | 53/78 = 67.9% | $4.13 | — | +2.6pp |
+| (b) mem0+P1 | 47/78 = 60.3% | ~$4(78 KU × 2 shards)| 34/66 (52%) | +10.2pp |
+| Don't Ask (Reddy & Challaram, 2026) | ☐ **not attempted** — out of scope(§4.6.7)| — | 6k=54 32k=51 64k=54 262k=63(參照 §4.2)| — |
+| Zep(k=10)| ☐ deferred(free plan 128k 上限,§4.6.7)| — | 36/66 (55%) | — |
+
+**⚠ 已 drop 的舊數字**(不再引用於任何 claim):
+- `Q-llm-recency (single-stage)` 74.4%(58/78):env override 到 FC-SH `factconsolidation.rag_agent` template,唯一被 prompt-augmented 的 method → **不公平**;見 §4.6.4a rigor correction。
+- `ours (+P5)` Jun 30 4-shard 83.3%(65/78):non-reproducible store-state artifact(4-shard vs 2-shard 產生的 P1 extraction 有 non-deterministic 差);見 §4.6.4 P5 verification 段(下方保留)。
 
 **Cost 附註**(gpt-4o-mini pricing:$0.15/M in、$0.60/M out):
 - ours (main):9,561 calls,7.4M in + 1.3M out
@@ -778,6 +787,32 @@ Reviewer 必然質疑:**「你們於 FC-SH 上的優勢,是否僅來自這個 da
 - Patch:`run_lme_ku.sh` 加 `ours_p5_reuse` method + `run_longmemeval_ku.py` 加 `--query-only` flag(skip memorize,只跑 query phase)
 - 執行:reuse ours_no_p5 populated store(SUBDS override `longmemeval_s_ku_ours_no_p5${SHARDSFX}`)+ unset MEM0_P5_SKIP → P5 於 query 時啟動
 - Wall:5.6 min/shard(query-only 比 full run 快 ~15x);Cost:~$0.5
+
+### 4.6.4a Rigor correction:Q-llm-recency single-stage 74.4% 已 drop,two-stage 69.2% 為 canonical(2026-07-14)
+
+**問題**:早先版 `MEM0_QUERY_MODE=q_llm_recency` 於 LME-KU 上被 [`run_lme_ku.sh`](../../scripts/run_lme_ku.sh) 顯式 set `MEM0_Q_LLM_RECENCY_TEMPLATE_DS=factconsolidation_sh` 把 template override 到 **FC-SH `factconsolidation.rag_agent`**——該 template 明示 recency rule「newer fact has larger serial number」+ 提供 KM system 解衝突指示。**於 LME 上,ours main / vanilla / (b) 全走 LME 原生 rag_agent(無 recency rule),唯 Q-llm-recency 被 inject 此規則** → prompt-side unfair augmentation。舊 74.4%(58/78)已完全 drop。
+
+**修正**:新 `MEM0_QUERY_MODE=q_llm_recency_two_stage`(agent.py 新 branch,2026-07-14)拆為兩階段:
+- **Stage 1(recency filter)**:LLM 讀 top-100 `{ordinal}. {memory}` + **FC-SH-mirror prompt**(hardcoded,忠實抄「solve conflicts by finding the newest fact with larger serial number」),output = `Selected serial: N` list。**不為 LME 多值特性 tune,mirror FC-SH 單 winner 定義**。
+- **Stage 2(answer)**:winners 用 `- {memory}` 格式(**無 ordinal、無 recency rule**)+ LME 原生 rag_agent template → 走 else-branch 與 ours/vanilla/b **byte-identical**。
+- **Fallback**:Stage 1 返回 0 有效 ordinal → winners = full top-100(safe fallback,fallback 率為診斷指標)。
+
+**Two-stage 結果(LME-KU × gpt-4o-mini,N=78)**:
+- **Canonical accuracy = 54/78 = 69.2%**(judge = gpt-4o-mini)
+- **Δ(single→two-stage)= −5.1pp**(74.4% → 69.2%)= unfair augmentation 的貢獻
+- **Δ(ours main − Q-llm-recency two-stage)= +1.3pp**(70.5% vs 69.2%)= clean architectural gap 於 personal-fact 場景
+
+**Stage 1 診斷(78 queries)**:
+- **Fallback rate: 1/78 = 1.3%**(LLM 幾乎總能挑出 valid ordinal)
+- **Selection 分布:77 queries 選 1 個 winner、1 fallback(100 個)** → FC-SH-mirror「find THE newest」單一 winner mental model 於 77/78 次被 LLM 執行
+- **Avg tokens per S1 call**:in=1979, out=3
+- **Total S1 cost**:$0.023
+- **唯一 fallback case**(qid `2698e78f_abs`):LLM 回應「no mention of Dr. Johnson... refer to Dr. Smith」,是 legitimate no-match(top-100 內確實無 relevant fact)
+
+**論點意涵**:
+1. Q-llm-recency two-stage 69.2% > vanilla mem0 67.9% = **LLM recency 機制對 vanilla 貢獻僅 +1.3pp**(遠小於 single-stage 74.4% 暗示的 +6.5pp);說明**Q-llm 機制本身的邊際貢獻於 LME 上很小**。
+2. Ours main 70.5% > Q-llm-recency two-stage 69.2% = **Q-det 於 personal-fact 對 Q-llm 仍勝 +1.3pp**;結合 FC-SH 上 Q-det > Q-llm-recency +12pp(6k→262k mean),**Q-det 於兩 dataset 皆 mildly 勝過 Q-llm 家族**,但 magnitude 高度 dataset-dependent。
+3. **Rigor lesson**:template symmetry 檢查於 cross-method comparison 是必要 audit,不能忽略;此次發現的 5.1pp inflation 若未修正即進 paper 會 mislead reviewer。
 
 ### 4.6.5 Gap Decomposition(**核心分析**)
 
@@ -857,7 +892,25 @@ Rigorous decomposition (ours main vs vanilla mem0):
   - 早期 orig ours (+P5) 83.3% 差異來自 store state(non-deterministic P1),**不是 P5 效果**
   - 現行 §4.5.3「P5 已自 method 移除」的決定 **強化**:FC-SH -1 to -3pp、LME-KU 0pp,兩 dataset 都不 support P5 進主 method
   - P5 保留為 §4.5.3 appendix ablation(展示已考慮並排除)
-  - **★ 前置**:LME-KU 的 +12.8pp 依賴**無 log 記錄的 ours(+P5)=83.3%** → **需先重跑 ours(+P5) @ LME-KU**(帶完整 cost/run log)才能定此 A/B/C 決策(見 §4.6 決策 banner)。
+
+**★ Don't Ask (Reddy & Challaram, 2026) on LME-KU — out of scope rationale(2026-07-14)**
+
+Don't Ask 於 §4.2(FC-SH main table)為我們的 concurrent Q-llm-identity baseline,原論文(arXiv:2606.01435, MIT vendored commit `b6b92b4`)之 mechanism:
+1. **BM25/vector retrieval** over a numbered fact bank
+2. **LLM `_extract_candidates`** on retrieved chunks(author's `CANDIDATE_PROMPT`,verbatim)
+3. **Deterministic `max(serial)`** picks winner from candidates
+
+**LME-KU 上執行的三個結構性障礙**:
+
+| 障礙 | 說明 | 結果 |
+|:--|:--|:--|
+| **B1. Fact bank 顆粒不同** | FC-SH 是**單一 global bank per length**(dataset 提供 numbered facts:6k=455 / 32k=2310 / 64k=4580 / 262k=18332)。LME-KU 是 **per-session 對話**(78 sessions × ~115K tokens each),無 dataset-provided numbered fact bank | 需 build **per-session bank**(78 次獨立 bank + serial 分配),已離開作者「單一 bank + `max(serial)`」的 canonical setup |
+| **B2. Serial 語義不對應** | FC-SH 的 serial 來自 dataset 原生 fact ordering(反映 counterfactual editing order),與 conversation temporal 直接對應 → `max(serial)` = 最新版本。LME-KU 對話沒有 dataset-provided serial;若自訂 serial(如 chunk ingestion order 或 P1 extraction order),**serial 語義變成「我方定義」而非「dataset 定義」** | Winner selection 的 deterministic 保證失效——`max(serial)` 於自訂 serial 上未必對應真實 temporal 最新 |
+| **B3. Original paper 明示 scope** | Reddy & Challaram 2026 paper §Experiments 專注 FC benchmark(dense counterfactual world-fact);未主張 conversational personal-fact 場景 | 於 LME 執行等於**我方擴展作者 mechanism 到未被主張的 setting**,不是 replication,scientific attribution 需明確揭露 |
+
+**決策**:**Not attempted on LME-KU;deferred to future work**。若未來執行,需 explicitly frame 為「our extension of Don't Ask to non-native benchmark(per-session bank + our-defined serial)」,不能列為 replication 或直接 vs ours main 對比。此立場**保守但誠實**——同時避免給讀者誤讀「我方於 LME 上仍勝 Don't Ask」的偏袒印象(此結果可能全來自 adapter design choices)。
+
+**替代 Q-llm 家族 evidence 於 LME-KU** 已由 **Q-llm-recency two-stage**(§4.6.4a)提供:於 personal-fact 場景 Q-det(ours main 70.5%)> Q-llm-recency(69.2%),Δ = +1.3pp。這已足以支撐 §4.6.5 「architectural universal 貢獻小但正」的判讀,不需依賴 Don't Ask evidence。
 
 ---
 

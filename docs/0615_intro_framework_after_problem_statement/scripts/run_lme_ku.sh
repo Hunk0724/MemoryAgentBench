@@ -27,7 +27,7 @@ if [[ -n "${RUN_OAI_KEY_NAME:-}" ]]; then
 fi
 [[ -z "${OPENAI_API_KEY:-}" ]] && { echo "[key] ERROR: no OPENAI_API_KEY"; exit 1; }
 
-METHOD="${1:?need method (ours|ours_no_p5|b|vanilla)}"
+METHOD="${1:?need method (ours|ours_no_p5|ours_p5_reuse|ours_q_llm_recency|ours_q_llm_recency_2s|b|vanilla)}"
 LIMIT="${2:-0}"
 JUDGE="${3:-0}"
 SHARD="${SHARD:-0}"
@@ -130,6 +130,33 @@ elif [[ "$METHOD" == "ours_q_llm_recency" ]]; then
   export MEM0_Q_LLM_RECENCY_TOPK="${MEM0_Q_LLM_RECENCY_TOPK:-100}"          # canonical top-100
   export MEM0_Q_LLM_RECENCY_TEMPLATE_DS=factconsolidation_sh                 # cross-dataset canonical recency prompt (must contain "factconsolidation_" for DATASET_MAPPING prefix match)
   # Reuse ours_no_p5's store + user_id namespace
+  SUBDS="longmemeval_s_ku_ours_no_p5${SHARDSFX}"
+  rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_CONFLICT_CACHE"
+  QUERY_ONLY_FLAG="--query-only"
+elif [[ "$METHOD" == "ours_q_llm_recency_2s" ]]; then
+  # Two-stage Q-llm-recency on LME-KU (2026-07-14): removes the FC-SH template
+  # override that made single-stage ours_q_llm_recency an unfair prompt-augmented
+  # baseline on LME (LME native rag_agent lacks recency instruction). Stage 1
+  # uses FC-SH `factconsolidation.rag_agent`-mirror prompt to pick winner
+  # serials (hardcoded in agent.py:q_llm_recency_two_stage branch); Stage 2
+  # uses LME native rag_agent (byte-identical to ours main / vanilla / b).
+  # Reuses ours_no_p5's populated store + write caches (query-only).
+  AG=Structure_rag_gpt-4o-mini-mem0_512_openai_unified_q_llm_recency.yaml
+  export MEM0_TRIPLE_MODEL=gpt-4o-mini
+  export MEM0_EXTRACTION_CACHE="$PC/extraction_ours${SHARDSFX}.json"       # reuse (unchanged)
+  export MEM0_TRIPLE_CACHE="$PC/triple_ours_no_p5${SHARDSFX}.json"          # reuse ours_no_p5's
+  export MEM0_SUBJECT_CACHE="$PC/subject_ours_no_p5${SHARDSFX}.json"        # reuse ours_no_p5's
+  export MEM0_GROUPING_CACHE="$PC/grouping_ours_no_p5${SHARDSFX}.json"      # reuse ours_no_p5's
+  export MEM0_CONFLICT_CACHE="$PC/conflict_q_llm_recency_2s${SHARDSFX}.json" # unused with SKIP
+  export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/lme_q_llm_recency_2s${SHARDSFX}_p1"
+  export MEM0_ADD_MODE=phase0_structural
+  export MEM0_QUERY_MODE=q_llm_recency_two_stage
+  export MEM0_P5_SKIP=1
+  export MEM0_Q_LLM_RECENCY_TOPK="${MEM0_Q_LLM_RECENCY_TOPK:-100}"          # canonical top-100
+  # NOTE: intentionally NOT setting MEM0_Q_LLM_RECENCY_TEMPLATE_DS. Stage 2
+  # uses LME native rag_agent template (else-branch in agent.py), same as
+  # ours main / vanilla / b — this is the fairness fix vs single-stage.
+  # Reuse ours_no_p5's store + user_id namespace (same as single-stage).
   SUBDS="longmemeval_s_ku_ours_no_p5${SHARDSFX}"
   rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_CONFLICT_CACHE"
   QUERY_ONLY_FLAG="--query-only"
