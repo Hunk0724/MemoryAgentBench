@@ -686,6 +686,62 @@
   "haspair_correct_sem": 24
  },
  {
+  "backbone": "gpt-5.4-mini",
+  "method": "ours (main)",
+  "length": "6k",
+  "file": "factconsolidation_sh_6k_unknown_in6000_size256_shots0_max_samplesunknown_k100_chunk512_results.json",
+  "provenance": "official-main.py",
+  "overall_N": 100,
+  "overall_strict_em": 99,
+  "overall_subem": 99,
+  "haspair_N": 74,
+  "haspair_strict_em": 73,
+  "haspair_subem": 73,
+  "haspair_correct_sem": 73
+ },
+ {
+  "backbone": "gpt-5.4-mini",
+  "method": "(b) mem0+P1",
+  "length": "6k",
+  "file": "factconsolidation_sh_6k_unknown_in6000_size256_shots0_max_samplesunknown_k100_chunk512_results.json",
+  "provenance": "official-main.py",
+  "overall_N": 100,
+  "overall_strict_em": 70,
+  "overall_subem": 70,
+  "haspair_N": 74,
+  "haspair_strict_em": 47,
+  "haspair_subem": 47,
+  "haspair_correct_sem": 47
+ },
+ {
+  "backbone": "gpt-5.4-mini",
+  "method": "Q-llm-recency",
+  "length": "6k",
+  "file": "factconsolidation_sh_6k_unknown_in6000_size256_shots0_max_samplesunknown_k100_chunk512_results.json",
+  "provenance": "official-main.py",
+  "overall_N": 100,
+  "overall_strict_em": 98,
+  "overall_subem": 98,
+  "haspair_N": 74,
+  "haspair_strict_em": 72,
+  "haspair_subem": 72,
+  "haspair_correct_sem": 72
+ },
+ {
+  "backbone": "gpt-5.4-mini",
+  "method": "Zep (k=10)",
+  "length": "6k",
+  "file": "factconsolidation_sh_6k_unknown_in6000_size256_shots0_max_samplesunknown_k10_chunk512_results.json",
+  "provenance": "official-main.py",
+  "overall_N": 100,
+  "overall_strict_em": 93,
+  "overall_subem": 93,
+  "haspair_N": 74,
+  "haspair_strict_em": 67,
+  "haspair_subem": 67,
+  "haspair_correct_sem": 67
+ },
+ {
   "backbone": "gpt-4o-mini",
   "method": "Don't Ask (author's, vec-top100)",
   "length": "6k",
@@ -740,5 +796,19 @@
   "haspair_strict_em": 63,
   "haspair_subem": 63,
   "haspair_correct_sem": 63
+ },
+ {
+  "backbone": "gpt-5.4-mini",
+  "method": "Don't Ask (author's, vec-top100)",
+  "length": "6k",
+  "file": "6k_gpt-5.4-mini_vector100.json",
+  "provenance": "custom-format-official-rescore-single-gt",
+  "overall_N": 100,
+  "overall_strict_em": 96,
+  "overall_subem": 96,
+  "haspair_N": 74,
+  "haspair_strict_em": 70,
+  "haspair_subem": 70,
+  "haspair_correct_sem": 70
  }
 ]

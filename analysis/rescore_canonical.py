@@ -240,6 +240,15 @@ REGISTRY = {
         "(b) mem0+P1":     "gpt-4.1-mini-mem0-chunk512-temp0-openai-unified_dest",
         "Zep (k=10)":      "gpt-4.1-mini-zep",
     },
+    # gpt-5.4-mini strong-tier backbone probe (2026-07-15). Tests whether
+    # the strongest OpenAI mini-tier model closes the ours vs baselines gap
+    # observed on gpt-4o-mini (mid-tier). Only 6k first for cost efficiency.
+    "gpt-5.4-mini": {
+        "ours (main)":     "gpt-5.4-mini-mem0-chunk512-temp0-openai-unified_no_p5",
+        "(b) mem0+P1":     "gpt-5.4-mini-mem0-chunk512-temp0-openai-unified_dest",
+        "Q-llm-recency":   "gpt-5.4-mini-mem0-chunk512-temp0-openai-unified_q_llm_recency",
+        "Zep (k=10)":      "gpt-5.4-mini-zep",
+    },
 }
 
 # gemma tiers (GX10 per-backbone weak-model runs). NOTE: GX10 uses the gpt-4o-mini
@@ -271,6 +280,10 @@ CUSTOM_MAXSERIAL = {
     "gpt-4o-mini": {
         "Don't Ask (author's, vec-top100)":
             os.path.join(OUTPUTS_DIR, "maxserial_theircode", "{L}_gpt-4o-mini_vector100.json"),
+    },
+    "gpt-5.4-mini": {
+        "Don't Ask (author's, vec-top100)":
+            os.path.join(OUTPUTS_DIR, "maxserial_theircode", "{L}_gpt-5.4-mini_vector100.json"),
     },
 }
 

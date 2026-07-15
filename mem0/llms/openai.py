@@ -89,13 +89,22 @@ class OpenAILLM(LLMBase):
         Returns:
             str: The generated response.
         """
+        # GPT-5 family (and o1/o3/o4 reasoning models) rejected `max_tokens`
+        # since March 2026 (HTTP 400 "unsupported_parameter"); require the
+        # renamed `max_completion_tokens`. Detect by model-name prefix and
+        # route accordingly so older-model callers are byte-identical.
+        _model_name = str(self.config.model or "").lower()
+        _needs_max_completion = any(
+            _model_name.startswith(p) for p in ("gpt-5", "o1", "o3", "o4")
+        )
         params = {
             "model": self.config.model,
             "messages": messages,
             "temperature": self.config.temperature,
-            "max_tokens": self.config.max_tokens,
             "top_p": self.config.top_p,
         }
+        if self.config.max_tokens is not None:
+            params["max_completion_tokens" if _needs_max_completion else "max_tokens"] = self.config.max_tokens
 
         if os.getenv("OPENROUTER_API_KEY"):
             openrouter_params = {}

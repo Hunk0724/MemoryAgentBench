@@ -84,6 +84,38 @@ Overall SubEM (%) — official post-process semantics, canonical file per cell.
 | `(b) mem0+P1` | 76 (56/74) | 82 (53/65) | 83 (55/66) | — |
 | `Zep (k=10)` | 65 (48/74) | 32 (21/65) | 36 (24/66) | — |
 
+## Backbone: `gpt-5.4-mini`
+
+### Overall SubEM (headline)
+
+| Method | 6k | 32k | 64k | 262k |
+|:--|:--:|:--:|:--:|:--:|
+| `ours (main)` | 99 (99/100) | — | — | — |
+| `(b) mem0+P1` | 70 (70/100) | — | — | — |
+| `Q-llm-recency` | 98 (98/100) | — | — | — |
+| `Zep (k=10)` | 93 (93/100) | — | — | — |
+| `Don't Ask (author's, vec-top100)` | 96 (96/100) | — | — | — |
+
+### has_pair SubEM (KU-relevant subset)
+
+| Method | 6k | 32k | 64k | 262k |
+|:--|:--:|:--:|:--:|:--:|
+| `ours (main)` | 99 (73/74) | — | — | — |
+| `(b) mem0+P1` | 64 (47/74) | — | — | — |
+| `Q-llm-recency` | 97 (72/74) | — | — | — |
+| `Zep (k=10)` | 91 (67/74) | — | — | — |
+| `Don't Ask (author's, vec-top100)` | 95 (70/74) | — | — | — |
+
+### has_pair correct-sEM (gt_new present ∧ gt_old absent)
+
+| Method | 6k | 32k | 64k | 262k |
+|:--|:--:|:--:|:--:|:--:|
+| `ours (main)` | 99 (73/74) | — | — | — |
+| `(b) mem0+P1` | 64 (47/74) | — | — | — |
+| `Q-llm-recency` | 97 (72/74) | — | — | — |
+| `Zep (k=10)` | 91 (67/74) | — | — | — |
+| `Don't Ask (author's, vec-top100)` | 95 (70/74) | — | — | — |
+
 ---
 
 ## Provenance & missing cells

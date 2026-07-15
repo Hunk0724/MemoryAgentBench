@@ -593,13 +593,21 @@ class AgentWrapper:
                 pt = ct = 0
             return text, pt, ct
 
-        # OpenAI / Azure
-        response = self.client.chat.completions.create(
+        # OpenAI / Azure. GPT-5 family + o-series reasoning models rejected
+        # `max_tokens` since March 2026 (HTTP 400 "unsupported_parameter");
+        # require `max_completion_tokens`. Route by model-name prefix so
+        # older-model callers stay byte-identical.
+        _mn = str(self.model or "").lower()
+        _needs_mc = any(_mn.startswith(p) for p in ("gpt-5", "o1", "o3", "o4"))
+        _tok_val = max_tokens or self.max_tokens
+        _create_kwargs = dict(
             model=self.model,
             messages=messages,
             temperature=temperature if temperature is not None else self.temperature,
-            max_tokens=max_tokens or self.max_tokens,
         )
+        if _tok_val is not None:
+            _create_kwargs["max_completion_tokens" if _needs_mc else "max_tokens"] = _tok_val
+        response = self.client.chat.completions.create(**_create_kwargs)
         return (
             response.choices[0].message.content,
             response.usage.prompt_tokens,

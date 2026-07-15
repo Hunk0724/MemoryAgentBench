@@ -557,6 +557,37 @@ Zep 對照(overall):gpt-4o-mini 82/80/76%,gpt-4.1-mini 81/77/84% — Zep 於兩 
   - **收斂恰印證 thesis 而非推翻**:優勢是 **backbone 判斷力的函數**;強 backbone 上 write-time 派的單一失效點(LLM judge)不再是負債,damage 消失是預期內的,正是可證偽預測的核心。
   - **強化受限部署動機**:cost-constrained 部署用不起 gpt-4.1-mini(§4.3.3 cost ~$1.2 vs 4o ~$0.6-0.8),實務上 mid-tier 的 **+29~+42pp(ours 恆勝)** 才是 deployment reality。
 
+### 4.3.5 gpt-5.4-mini strong-tier probe(6k,2026-07-15)
+
+第二次 falsifiable check,對象 = OpenAI 新 mini-tier(gpt-5.4-mini,released 2026-03-17,$0.75/M in、$4.50/M out)。**只跑 6k**(cost efficiency:5 methods total ~$1-2;決策依據 = 6k 上 gap 收斂已足夠 falsifiability check → 不必花 ~$227 於 gpt-4o full sweep)。加入兩個 Q-llm 家族 baseline(§4.2 引入的 Don't Ask、Q-llm-recency)。
+
+**Table 5**:3-backbone × 5-method × 6k Overall sEM(N=100,官方 SubEM;完整表 + caption 見 [`../results/fc_sh_backbone_spectrum_6k.md`](../results/fc_sh_backbone_spectrum_6k.md))
+
+| Method | gpt-4o-mini | gpt-4.1-mini | **gpt-5.4-mini** | Δ(4o→5.4) |
+|:--|:--:|:--:|:--:|:--:|
+| **ours (main)** | **94** | 92 | **99** | +5 |
+| Q-llm-recency | 93 | — | **98** | +5 |
+| Don't Ask | 80 | — | **96** | +16 |
+| Zep(k=10) | 82 | 81 | **93** | +11 |
+| (b) mem0+P1 | 52 | **81** | **70** | +18 ⚠ non-monotonic |
+| **spread(max − min)** | **42pp** | — | **29pp** | **收窄 −13pp** |
+
+**Observation**(三大 finding,細節於 [`fc_sh_backbone_spectrum_6k.md`](../results/fc_sh_backbone_spectrum_6k.md#三大-finding)):
+- **(F1)Ours main 於強 backbone 仍為 outright leader**:99 於 gpt-5.4-mini,vs best baseline Q-llm-recency 98 = +1pp;vs weakest baseline mem0+P1 70 = +29pp。**架構優勢 gap 收斂但不 collapse**,ours 於強 backbone 上仍是唯一 saturation 的 method。
+- **(F2)Spread 從 42pp 收窄至 29pp**:主要由**最弱 baseline 上升**驅動(mem0+P1 +18、Don't Ask +16、Zep +11);ours main 微升 +5。**LLM-based KU judgement 於強 backbone 抬升「地板」但沒抬升「天花板」**。
+- **(F3)Mem0+P1 anomaly**:gpt-4.1-mini 81 → gpt-5.4-mini 70(**−11pp,唯一 non-monotonic**)。假設 = reasoning-family model(gpt-5.4-mini)對 destructive UPDATE prompt 更保守 → NOOP 頻率上升 → 錯過 legitimate UPDATE case。**寫進 §4.4 case study 待 audit**。
+
+**Implication**:§4.3 falsifiable prediction「gap 隨 backbone 增強而收斂」**部分兌現**:
+- **兌現**於 decoupled(Zep +11)、Q-llm 家族(Don't Ask +16、Q-llm-recency +5);
+- **反常**於 coupled destructive(mem0+P1 non-monotonic);
+- **paper 主 narrative「架構優勢主要於 mid-tier backbone(gpt-4o-mini)彰顯」加強而非推翻** — 於強 backbone 上 ours 仍為 outright leader(99/100),差距縮小到 +1pp 但仍非 zero;於弱 baseline(mem0+P1)於強 backbone 反常下滑,揭示「更強 backbone ≠ 更好 KU decision」— 是 method-specific 而非 universal 收斂。
+- **Falsifiable check 節省**:6k 上已可下結論,不需 gpt-4o × 全 4 length × 5 method 補齊(節省 ~$227)。
+
+**Caveats**(paper 揭露):
+- gpt-5.4-mini 只跑 6k(strong-tier probe);長 context 未測 → 若 §4.6 敘事需長 context 收斂數據可補
+- `max_tokens` patch:gpt-5-family + o1/o3/o4 系列 reject 舊參數,patch by-model-prefix routing 於 `mem0/llms/openai.py` + `agent.py:_answer_with_client`;舊 backbone byte-identical
+- **Backbone 路徑隔離不對稱**:gpt-4.1-mini 用 shared-path with gpt-4o-mini(可能 inherit populated state);gpt-5.4-mini 用 backbone-tagged path(gemma pattern);**mem0+P1 三 backbone 對比可能被 store state 差異干擾**(F3 caveat)
+
 ---
 
 ## 4.4 Error-Mode Case Studies
