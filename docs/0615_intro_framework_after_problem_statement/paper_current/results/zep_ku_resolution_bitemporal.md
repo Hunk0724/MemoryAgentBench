@@ -3,8 +3,8 @@
 > **目的**:證明 Zep 的 KU 行為**無法**用文字 pool_state(PP-Both/OldOnly/…)量測,必須讀 bi-temporal 欄位(`valid_at`/`invalid_at`)。這是跨方法 pool_state 不可比性的實證(見 [`matcher_specification.md`](../matcher_specification.md) §3.4)。
 >
 > **產生**:`python analysis/classify_zep_ku_resolution.py`(canonical;import `match_pair` + `_em_from_perqid`,MABench env)。
-> **資料**:`outputs/rag_retrieved/Structure_rag_zep/k_10/factconsolidation_sh_{6k,32k,64k}/chunksize_512/query_*_context_*.json`;backbone = gpt-4o-mini × temp 0;k=10。
-> **日期**:2026-07-07。
+> **資料**:`outputs/rag_retrieved/Structure_rag_zep/k_10/factconsolidation_sh_{6k,32k,64k,262k}/chunksize_512/query_*_context_*.json`;backbone = gpt-4o-mini × temp 0;k=10。
+> **日期**:2026-07-07(6k/32k/64k)、2026-07-16(262k + invalidation coverage 統計)。
 
 ---
 
@@ -99,13 +99,24 @@ Zep 的 KU 決定寫在 **bi-temporal 欄位**,不在文字。要量測必須讀
 | NotBothExtracted | 1 | 1.5% | 1 | 0 | 100.0% |
 | **TOTAL** | **66** | | **36** | **30** | **54.5%** |
 
+**262k**（has_pair N=77;multi-edge 5/77;2026-07-16 補跑)
+| bucket | n | pct | EM✓ | EM✗ | acc% |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| Resolved-Correct | 5 | 6.5% | 4 | 1 | 80.0% |
+| Resolved-Backward | 1 | 1.3% | 0 | 1 | 0.0% |
+| Additive-NoKU | 6 | 7.8% | 3 | 3 | 50.0% |
+| Other-Ambiguous | 2 | 2.6% | 1 | 1 | 50.0% |
+| **NotBothExtracted** | **63** | **81.8%** | 3 | 60 | **4.8%** |
+| **TOTAL** | **77** | | **11** | **66** | **14.3%** |
+
 ### 3.2 分桶佔比 × 長度（趨勢）
 
-| length | Resolved-Correct | Resolved-Backward | Additive-NoKU | Other-Ambiguous | overall acc |
-| :--- | ---: | ---: | ---: | ---: | ---: |
-| 6k | 23% | 30% | 39% | 8% | 62% |
-| 32k | 9% | 3% | 77% | 6% | 51% |
-| 64k | 17% | 0% | 74% | 8% | 55% |
+| length | Resolved-Correct | Resolved-Backward | Additive-NoKU | Other-Ambiguous | NotBothExtracted | overall acc |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 6k | 23% | 30% | 39% | 8% | 0% | 62% |
+| 32k | 9% | 3% | 77% | 6% | 5% | 51% |
+| 64k | 17% | 0% | 74% | 8% | 2% | 55% |
+| **262k** | 6% | 1% | **8%** | 3% | **82%** | **14%** |
 
 **哪些桶穩健(引用時的信心分級)**:
 - **Additive-NoKU = headline,且為保守下界**:matcher over-match 只會把 query 踢**出** additive(多抓一個 invalid edge → 移到 Other/Resolved),故真實 additive ≥ 報告值。32k/64k 74–77% 站得住。
@@ -116,6 +127,21 @@ Zep 的 KU 決定寫在 **bi-temporal 欄位**,不在文字。要量測必須讀
 ### 3.3 contradiction-handoff 驗證(機制真實性)
 
 Resolved-* 桶本身即以 `loser.invalid_at == winner.valid_at` 為判準,故全桶皆滿足此簽章。人工細查 6k Resolved-Backward 17 例(first-match 版):**15/17 為乾淨單 entity 的 counterfactual 反向失效**(如 Imelda→atheism 失效留 Catholicism、Sable→Czech 失效留 USA、Darwin→Amala Paul 失效留 Emma),2/17 為 matcher over-match(如 qid=15「X located in continent Y」跨 entity 叢集)→ 已於 handoff-verify 後歸類。→ 證實開源 graphiti「衝突時 `loser.invalid_at = winner.valid_at`」機制在 **Zep Cloud** 產出的資料上屬實(非猜測)。
+
+### 3.4 Invalidation coverage(全 test set 邊層統計,2026-07-16 新增)
+
+**metric**:對每 length 的 Zep top-10 dump,統計 `(帶 invalid_at 的 edge) / (全 edge)` 於 100 queries × 10 edges 的樣本空間。這是「Zep 有多常給 edge 貼 invalidation tag」的整體指標,對應 fc_sh_main_table_4length.md caveat 引述的「僅 X% of retrieved edges 帶 `invalid_at`」。
+
+| length | invalidated / total edges | coverage |
+| :--- | ---: | ---: |
+| 6k | 219 / 1000 | **21.90%** |
+| 32k | 62 / 1000 | 6.20% |
+| 64k | 97 / 1000 | 9.70% |
+| **262k** | **63 / 1000** | **6.30%** |
+
+- **6k 21.90%** 對應 §3.1 的高 Resolved-Correct + Resolved-Backward 佔比(23%+30% = 53% has_pair 觸發 KU 判斷)—— 短 context 密度高,contradiction 觸發率也高。
+- **32k 6.20% → 64k 9.70%**:32k 的低 coverage 對應 §3.1 additive-NoKU 77%(bounded top-k 搜尋 miss 舊 edge → 不觸發 contradiction);64k 略回升與 has_pair 分母(65→66)+ Resolved-Correct 佔比(9%→17%)一致。
+- **262k 6.30%**(= fc_sh_main_table_4length.md caveat 引述的 6.3% source):write-time 側 contradiction 觸發率確實極低;但**單此無法解釋 262k crash 到 14%**(64k 覆蓋率 9.70% 但 acc 55%)。真正主因見 §4C。
 
 ---
 
@@ -149,6 +175,23 @@ Resolved-* 桶本身即以 `loser.invalid_at == winner.valid_at` 為判準,故�
 
 ---
 
+## §4C 為何 262k 崩塌 = **query-time retrieval miss 主導**(2026-07-16 新增)
+
+先前推論(§4B 之外的長度趨勢)以「圖越大 → bounded top-k semantic search 越常 miss 舊 edge → additive-NoKU 單調上升」外推 262k,預期 additive-NoKU 佔比繼續升高、write-time invalidation 覆蓋率繼續下降。**262k 補跑資料完全推翻此外推**——additive-NoKU 於 262k **反而崩到 8%**(vs 32k 77% / 64k 74%),NotBothExtracted 一舉升到 **82%**(63/77 has_pair 於 top-10 沒同時看見 old + new 兩版)。
+
+**修正機制**:
+
+1. **262k 主因 = query-time top-10 retrieval miss**,而非 write-time invalidation 覆蓋不足。圖大小(chunk 數約 6k 12 個 → 262k 512+ 個)使 Zep semantic search 於 has_pair 之 target edge 對抗大量 distractor 時,**單一 target(gt_new 或 gt_old)已難進 top-10,兩版同時進 top-10 幾乎不可能**(6k 100% both 進 → 262k 只 18% both 進)。
+2. **Additive-NoKU 崩塌是 NotBothExtracted 主導的副作用**:262k 中僅 14/77 has_pair 的 both 版本進了 top-10;於此小樣本內 additive 佔 6/14 ≈ 43%(與 64k additive/(has_pair − NotBothExtracted) = 49/65 = 75% 相比仍下降,但已非誇張的 8%)。**分母口徑對 § 3.2 的長度趨勢讀法有影響**:應以「NotBothExtracted 是否主導」為第一層判讀,再看剩餘分桶。
+3. **6.3% invalidation coverage 為 write-time 側的次要指標**:262k 中 63/1000 edges 帶 `invalid_at`,雖確實極低,但**若母數只算「both 版本進 top-10 且 has_pair」的 14 例,invalidation 觸發率並不特別差於 32k/64k**。fc_sh_main_table_4length caveat 引用「6.3%」時應同時揭露 82% NotBothExtracted 主因,否則會誤導 paper 讀者以為 crash 完全是 write-time invalidation 不足。
+
+**與先前 top-K asymmetry 驗證的一致性**:Zep top-50 於 262k(46/100 queries before rate-limit)= 28.3% ≈ k=10 29%,先前解讀為「top-K 上限不是崩塌根因」→ 現機制解讀為「262k 圖太大 → 語意 rank 上 target edge 被 distractor 淹沒 → 拉到 top-50 也抓不到 both 版本」;top-K 排除實驗與 82% NotBothExtracted 是同一機制的兩個表徵。
+
+**262k 崩塌完整敘述(供 paper 引用)**:
+> Zep 於 262k 的 crash(overall 29%、has_pair 14%)由 write-time / query-time **兩層問題**構成,兩層皆為「圖大小 → semantic search 對特定 target edge 難以精準檢索」的表徵。**write-time 側**:bounded top-k 語意搜尋於大圖上使 contradiction 觸發率下降(invalidation coverage 從 6k 21.9% 降至 262k 6.3%);**query-time 側**(主因):top-10 retrieval 於 has_pair 中 82% 抓不到 both 版本,答題 LLM 於 pool 內沒有 old + new 可比 → 只能靠世界先驗猜舊值 → has_pair acc 14.3%。單看 write-time invalidation 覆蓋率不足以解釋 crash(64k 覆蓋率 9.7% 但 acc 55%);query-time NotBothExtracted 主導才是主因。
+
+---
+
 ## §5 對 paper 分析方法的結論
 
 - **文字 pool_state → Acc 的中介分析**對 **mem0 / ours 有效**(其 KU resolution 落在 pool 文字:mem0 write-time 刪、ours query-time 解成 new-only),對 **Zep 無效**(KU 在 bi-temporal 呈現層)。
@@ -164,3 +207,10 @@ Resolved-* 桶本身即以 `loser.invalid_at == winner.valid_at` 為判準,故�
 - Resolved-Backward / Other 於 32k/64k n 很小(≤5),acc 勿過度解讀;主敘事用 Additive-NoKU 的長 context 主導 + Resolved-Correct 的高 acc 對比。
 - backbone 僅 gpt-4o-mini;gpt-4.1-mini / gemma 未跑本分類(Zep 路徑非各 backbone 都有 edges dump)。
 - **未來精修(非必要)**:改用「與完整 gt fact 最接近的單一 edge」取代 stem-based match_pair,可壓低 multi-edge 噪音、收斂 Other-Ambiguous;但 headline(Additive 主導、Resolved-Correct 高 acc)不受影響,列 optional。
+
+---
+
+## 更新紀錄
+
+- **2026-07-07**:建檔;6k/32k/64k 4-bucket + handoff-verified + §4B 短 context backward 機制。
+- **2026-07-16**:補 262k(N=77;§3.1 表 + §3.2 趨勢加 262k row)+ §3.4 invalidation coverage 全 4-length 對照(找回 fc_sh_main_table_4length caveat 引述的 6.3% source)+ §4C 262k crash 機制修正(query-time retrieval miss 主導,非 write-time invalidation 不足)。腳本 patch:`analysis/classify_zep_ku_resolution.py`(LENGTHS 加 262k、`analyze_length`/`print_report` 加 invalidation coverage)+ `analysis/compute_pool_acc_crosstab.py`(GT_PATHS 加 262k → `sh_262k_mquake_analysis.json`)。

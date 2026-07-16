@@ -88,6 +88,7 @@ GT_PATHS = {
     "6k": "analysis/results/sh_512_mquake_analysis.json",
     "32k": "analysis/results/sh_32k_mquake_analysis.json",
     "64k": "analysis/results/sh_64k_mquake_analysis.json",
+    "262k": "analysis/results/sh_262k_mquake_analysis.json",
 }
 
 # (method_display_name, per-query JSON root, "pool key",

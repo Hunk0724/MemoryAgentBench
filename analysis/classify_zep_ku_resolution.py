@@ -66,7 +66,7 @@ from compute_m1_m2_m3 import match_pair  # noqa: E402
 from compute_pool_acc_crosstab import load_gt, _em_from_perqid  # noqa: E402
 
 ZEP_ROOT = REPO / "outputs/rag_retrieved/Structure_rag_zep/k_10"
-LENGTHS = ["6k", "32k", "64k"]
+LENGTHS = ["6k", "32k", "64k", "262k"]
 
 BUCKETS = [
     "Resolved-Correct",
@@ -135,6 +135,29 @@ def analyze_length(L, dump_qids=False):
     n_no_json = 0
     rows = []
 
+    # Global invalidation coverage (over ALL 100 queries, not only has_pair — the
+    # 6.3%-style headline is 'of all edges the answer LLM sees, how many carry
+    # invalid_at'). Sample space = every edge in every query_*.json across the
+    # full FC-SH test set at this length.
+    all_qids = sorted(gt.keys())
+    n_edges_total = 0
+    n_edges_invalidated = 0
+    n_queries_read = 0
+
+    for qid in all_qids:
+        files = glob.glob(str(qdir / f"query_{qid}_context_*.json"))
+        if not files:
+            continue
+        try:
+            j = json.load(open(files[0], encoding="utf-8"))
+        except Exception:
+            continue
+        n_queries_read += 1
+        for e in (j.get("edges") or []):
+            n_edges_total += 1
+            if e.get("invalid_at"):
+                n_edges_invalidated += 1
+
     for qid in hp_qids:
         files = glob.glob(str(qdir / f"query_{qid}_context_*.json"))
         if not files:
@@ -164,6 +187,9 @@ def analyze_length(L, dump_qids=False):
         "n_no_json": n_no_json, "n_multi_edge": n_multi_edge,
         "bucket_ct": bucket_ct, "bucket_em": bucket_em,
         "rows": rows,
+        "n_queries_read": n_queries_read,
+        "n_edges_total": n_edges_total,
+        "n_edges_invalidated": n_edges_invalidated,
     }
 
 
@@ -186,6 +212,16 @@ def print_report(res):
           f"{tot_ok:>5}{n - tot_ok:>5}{100*tot_ok/n if n else 0:>6.1f}%")
     print(f"\n  note: Resolved-* are handoff-verified (winner.valid==loser.invalid). "
           f"multi-edge-per-version queries: {res['n_multi_edge']}/{n}")
+    # Invalidation coverage — over all edges the answer LLM sees across the full
+    # test set (all 100 queries), not restricted to has_pair. This is the
+    # 6.3%-style headline for "how often does Zep tag an edge as invalid".
+    te = res.get("n_edges_total", 0)
+    ie = res.get("n_edges_invalidated", 0)
+    qr = res.get("n_queries_read", 0)
+    if te:
+        print(f"  invalidation coverage @ {L}: {ie}/{te} edges = "
+              f"{100*ie/te:.2f}% carry invalid_at "
+              f"(across {qr} queries, avg {te/qr:.1f} edges/query)")
 
 
 def main():
