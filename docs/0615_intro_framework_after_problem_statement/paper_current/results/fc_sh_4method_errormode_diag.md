@@ -154,7 +154,9 @@ Q-llm-recency = raw retrieval(**與 ours 同 store**)+ ordinal-prefixed pool + L
 | 6k | 60/74 = **81%** | 10/74 = **14%** | 4 | **56 / 4** | **9 / 1**(90%)|
 | 32k| 50/65 = **77%** | 14/65 = **22%** | 1 | **45 / 5** | **11 / 3**(79%)|
 | 64k| 45/66 = **68%** | 21/66 = **32%** | 0 | **43 / 2** | **17 / 4**(81%)|
-| 262k| ☐ PENDING(approval)| ☐ | ☐ | ☐ | ☐ |
+| **262k**| 76/77 = **99%** ⚠ | 1/77 = **1%** ⚠ | 0 | **63 / 13** | **0 / 1**(0%)|
+
+**⚠ 262k 反轉 6k→64k structural↓ / dynamic↑ 趨勢**(2026-07-17 補跑,`scratchpad/diag1_262k.py`)。原因不是 P3 需求變低,而是 **P1 extractor 於 262k 的大 fact bank(18321 triples,vs 6k 455)上更常抽出 canonical (S,P) 形式**(same-fact 於眾多 chunk 重複出現 → extractor 較穩定產出同一 (S,P) → L0 raw exact match 佔絕大多數 76/76 structural pool)。**Proxy 於 262k 明顯低估 dynamic 佔比**:實際 P3-active queries(main-vs-struct diff)= **9 queries(7 rescue + 2 regress,§4a)**,proxy 只捕到 1 → **proxy 佔比讀為「L0 exact-merge 發生率」而非「dynamic pool 真實佔比」**。**262k 較 rigor 的 P3 impact 讀法**:直接看 §4a P3 rescue = +5(§1.1 主表 68 − 63 = +5),而非 Diagnostic 1 dynamic-P3 命中率。
 
 **四象限拆分(main 判分)**:
 - **structural 命中且 correct**:56 / 45 / 43(argmax 於同 (S,P) 群取最新版,pool 乾淨,reader 抄對)
@@ -163,9 +165,9 @@ Q-llm-recency = raw retrieval(**與 ours 同 store**)+ ordinal-prefixed pool + L
 - **dynamic 觸發、P3 後 wrong**:1 / 3 / 4(P3 未併或 mis-merge;見 Diagnostic 3 (b))
 
 **三段論**:
-- **(What)** structural pool 佔多數(68-81%),但**佔比隨長度單調下降**(81→77→68%),dynamic/P3 佔比**單調上升**(14→22→32%)。new_missing(P2 抽取漏 gt_new)隨長度**下降**(4→1→0,長 context 給 P2 更多抽對機會)。
-- **(Where)** dynamic-pool 的 P3 in-bucket accuracy 穩定 79-90%;**dynamic-pool 佔比隨長度變大 → P3 承擔的題數變多**(10→14→21)→ 直接解釋 §4.2.3 **Δ_A(P3 貢獻)隨長度成長**(6k +2 → 262k +5):不是 P3 變準,而是**需要 P3 的題(predicate/subject variant)隨 context 累積變多**。
-- **(Implication)** 兌現 method_v1 §3.3「LLM 補救僅在少數案例介入」:P3 只在 14-32% 的 query 上真正做識別工作,其餘 68-81% 由確定性 (S,P)+argmax 解決;且 P3 觸發區的正確率高(≥79%)。**Struct 是 backbone-invariant workhorse,P3 是隨長度邊際效益成長的窄任務 add-on。**
+- **(What)** structural pool 佔多數(68-81% @ 6k/32k/64k),於 **6k→64k 佔比隨長度單調下降**(81→77→68%),dynamic/P3 佔比**單調上升**(14→22→32%);**262k proxy 反轉為 99% structural**(見上方 ⚠ caveat:反映 P1 extractor 於大 bank 上更常產出 canonical (S,P) 形式,非真 dynamic 佔比下降)。new_missing(P2 抽取漏 gt_new)隨長度**單調下降**(4→1→0→0,長 context 給 P2 更多抽對機會)。
+- **(Where)** dynamic-pool 的 P3 in-bucket accuracy 於 6k/32k/64k 穩定 79-90%;**dynamic-pool 佔比隨長度變大 → P3 承擔的題數變多**(10→14→21)→ 直接解釋 §4.2.3 **Δ_A(P3 貢獻)隨長度成長**(6k +2 → 64k +2 → 262k +5)。**262k 雖 proxy dynamic 佔比降回 1%,但實際 main-vs-struct diff 顯示 9 個 P3-active queries、net +5 rescue**,與趨勢一致 —— 需要 P3 的題(predicate/subject variant)隨 context 累積並未變少,只是 proxy 於大 bank 上失去解析力。
+- **(Implication)** 兌現 method_v1 §3.3「LLM 補救僅在少數案例介入」:6k→64k 上 P3 只在 14-32% 的 query 上真正做識別工作,其餘由確定性 (S,P)+argmax 解決;且 P3 觸發區的正確率高(≥79%)。**262k 上實際 P3-active = 9/77 ≈ 12%**(§4a diff-based),仍屬「少數案例」。**Struct 是 backbone-invariant workhorse,P3 是隨長度邊際效益成長的窄任務 add-on;paper 引用時應用 §4a P3 rescue 為主指標,Diagnostic 1 proxy 於 262k 作 caveat 揭露。**
 
 ---
 
@@ -215,3 +217,4 @@ Q-llm-recency = raw retrieval(**與 ours 同 store**)+ ordinal-prefixed pool + L
 ## 更新歷程
 - **2026-07-13**:建檔;per-qid 診斷 4 method × 4 length,逐格吻合 canonical 主表;補 experiment.md §4.4 缺的 query-time 家族 case study。腳本 `scratchpad/diag_4method.py`(READ-ONLY,沿用 `rescore_canonical.official_subem`)。
 - **2026-07-13(續)**:加 Diagnostic 1(structural/dynamic routing,offline (S,P) proxy,6k/32k/64k;262k pending approval)、Diagnostic 2(structural vs LLM-only union table)、Diagnostic 3(ours main 30 wrong 分類 a/b/c/d/e)。腳本 `scratchpad/diag123.py`(READ-ONLY,沿用 `attribute_sp_merge` normalization + `rescore_canonical.official_subem`;無 API/store/embedding)。
+- **2026-07-17**:Diagnostic 1 補齊 262k row(76/77 structural, 1/77 dynamic, struct-hit 63/13, dynamic-P3 0/1)+ 三段論加入趨勢反轉 caveat(P1 大 bank 效應 → proxy 於 262k 失解析力)。P3 rescue = +5 引用 §4a diff-based。腳本 `scratchpad/diag1_262k.py`(mirror `attribute_sp_merge_6k.py` L0/L1/L2 邏輯,加 `derive_old_answer` from `gt_fact_text` − `old_fact_text` diff,因 `sh_262k_mquake_analysis.json` 無 `old_answer` key)。

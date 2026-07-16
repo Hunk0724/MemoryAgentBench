@@ -1,60 +1,69 @@
 #!/usr/bin/env python3
-"""F_backbone_spectrum — HEADLINE figure: single-length (6k) backbone spectrum.
+"""F_backbone_spectrum -- HEADLINE Figure: 6-tier backbone spectrum @ FC-SH 6k.
 
-Single panel, 6-tier backbone (gemma3-1B/4B/12B/27B -> gpt-4o-mini -> gpt-4.1-mini),
-3 methods. Shows the falsifiable prediction at ONE consistent length:
-  ours−baseline gap is huge on weak backbones (mem0 = 0 on 1B/4B),
-  narrows as backbone judgment strengthens (gap +13pp on gpt-4.1-mini).
+6-tier x-axis (weak -> mid -> strong):
+  gemma3-1B -> 4B -> 12B -> 27B -> gpt-4o-mini -> gpt-5.4-mini
+(gpt-4.1-mini dropped 2026-07-17 per paper decision: gpt-5.4-mini as strong tier.)
 
-64k reversal (mem0 overtakes ours at gpt-4.1-mini) is disclosed separately in
-§4.3.4 cross-length table, NOT in this clean headline.
+5 methods, LINE plot (per style_rules "trends -> lines"), overall sEM @ 6k
+(N=100, official substring_exact_match). Numbers sourced from:
+  - canonical_fc_sh_metrics.md (gemma weak tier)
+  - fc_sh_main_table_4length.md (gpt-4o-mini column, 6k row)
+  - fc_sh_backbone_spectrum_6k.md (gpt-5.4-mini)
+  - outputs/*_q_llm_recency__gemma3-*/ (Vanilla-RAG gemma tier, verified 2026-07-17)
+  - outputs/maxserial_theircode/6k_gemma3-*_vector100.json (Don't Ask gemma tier)
 
-has_pair EM, N=74 (6k). Data verified from per-qid response via MAB
-default_post_process semantics (2026-07-07: gpt-4.1-mini ours-main no_p5 = 66/74).
+Style (per style_rules_tables_figures_writing.md):
+  - line plot with marker+linestyle+greyscale (B&W-safe)
+  - minimal chartjunk: axis + legend + on-line data labels
+  - abbreviation caption gloss lives in the paper caption, not the figure
 """
 import matplotlib.pyplot as plt
-from matplotlib.patches import Patch
 import numpy as np
 import os
 
-BACKBONES = ["gemma3-1B", "gemma3-4B", "gemma3-12B", "gemma3-27B", "gpt-4o-mini", "gpt-4.1-mini"]
-N = 74  # has_pair @ 6k
+BACKBONES = ["gemma3-1B", "gemma3-4B", "gemma3-12B", "gemma3-27B",
+             "gpt-4o-mini", "gpt-5.4-mini"]
+
+# 5 methods x 6 tiers, overall sEM at 6k (N=100)
 SERIES = [
-    ("ours (identity grouping)",         [25, 54, 73, 70, 69, 66], "#222222"),
-    ("zep (decoupled write-time label)", [12, 17, 43, 35, 46, 46], "#888888"),
-    ("mem0+unified extract",             [ 0,  0, 44, 36, 34, 56], "#CCCCCC"),
+    # (label, values[6], color, linestyle, marker)
+    ("Ours (Struct + LLM-Fallback)",
+     [44, 79, 99, 99, 94, 99], "#111111", "-",  "o"),
+    ("Vanilla-RAG (Q-time LLM temporal)",
+     [30, 48, 68, 69, 93, 98], "#333333", "--", "s"),
+    ("Don't Ask (Q-time LLM extraction)",
+     [ 2, 36, 84, 96, 80, 96], "#555555", "-.", "^"),
+    ("Zep (Write-time decoupled)",
+     [29, 32, 58, 62, 82, 93], "#777777", ":",  "D"),
+    ("Mem0 + P1 (Write-time destructive)",
+     [ 5, 11, 64, 54, 52, 70], "#999999", (0, (3,1,1,1)), "v"),
 ]
 
-fig, ax = plt.subplots(figsize=(11.5, 5.2))
+fig, ax = plt.subplots(figsize=(9.5, 5.6))
 x = np.arange(len(BACKBONES))
-n = len(SERIES)
-w = 0.26
-for i, (label, hits, fc) in enumerate(SERIES):
-    offs = (i - (n - 1) / 2) * w
-    pcts = [100 * h / N for h in hits]
-    ax.bar(x + offs, pcts, w, label=label, facecolor=fc, edgecolor="black",
-           linewidth=0.9, zorder=3)
-    for xb, pct, h in zip(x + offs, pcts, hits):
-        ax.annotate(f"{round(pct)}%\n({h}/{N})", (xb, pct),
-                    textcoords="offset points", xytext=(0, 3),
-                    ha="center", va="bottom", fontsize=8)
+for label, ys, color, ls, mk in SERIES:
+    ax.plot(x, ys, color=color, linestyle=ls, marker=mk, linewidth=1.6,
+            markersize=6, markerfacecolor="white", markeredgewidth=1.4,
+            label=label, zorder=3)
+    for xi, yi in zip(x, ys):
+        ax.annotate(f"{yi}", (xi, yi), textcoords="offset points",
+                    xytext=(0, 6), ha="center", va="bottom", fontsize=8)
 
 ax.set_xticks(x)
-ax.set_xticklabels(BACKBONES)
+ax.set_xticklabels(BACKBONES, rotation=15, ha="right")
+ax.set_ylim(-5, 108)
+ax.set_yticks(range(0, 101, 20))
+ax.set_ylabel("Overall sEM  (%)  ↑", fontsize=11)
+ax.set_xlabel("Backbone  (weak → strong)", fontsize=11)
+ax.set_title("FC-SH 6k overall sEM across backbone spectrum",
+             fontsize=12.5, pad=10)
 ax.yaxis.grid(True, color="#DDDDDD", linewidth=0.6, zorder=0)
 ax.set_axisbelow(True)
 for s in ("top", "right"):
     ax.spines[s].set_visible(False)
-ax.set_ylim(0, 118)
-ax.set_yticks(range(0, 101, 20))
-ax.set_ylabel("has_pair Exact-Match (%)  ↑", fontsize=11)
-ax.set_xlabel("Backbone  (weak → strong judgment)", fontsize=11)
-
-handles = [Patch(facecolor=fc, edgecolor="black", label=lbl) for (lbl, _, fc) in SERIES]
-ax.legend(handles=handles, loc="upper center", ncol=3, fontsize=9.5,
-          frameon=True, framealpha=0.95, bbox_to_anchor=(0.5, 1.10))
-fig.suptitle("FC-SH has_pair EM across backbone spectrum @ 6k — gap widens on weak, collapses on strong",
-             fontsize=12.5, y=1.02)
+ax.legend(loc="lower right", fontsize=9, frameon=True, framealpha=0.95,
+          ncol=1)
 
 fig.tight_layout()
 HERE = os.path.dirname(os.path.abspath(__file__))
