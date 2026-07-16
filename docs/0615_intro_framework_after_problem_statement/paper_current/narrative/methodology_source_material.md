@@ -1,8 +1,9 @@
 # Methodology Source Material — 論文 Methodology 章的完整素材(2026-07-16)
 
 > **用途**:寫 Methodology 章的**單一來源**。所有 pipeline 步驟、prompts、hyperparameters、baseline 執行細節皆抄自 canonical run,能直接引用。
-> **範疇**:僅收錄**論文實際使用**的方法設計 + prompts。 dead code(HippoRAG、MemoRAG、GraphRAG、Letta、Cognee、mem0g、L1/L2/broadened-native 等)於 §Excluded 明列**不寫進 methodology**。
+> **範疇**:僅收錄**論文實際使用**的方法設計 + prompts。實作端存在但論文不寫的內容(HippoRAG、MemoRAG、GraphRAG、Letta、Cognee、mem0g、L1/L2/broadened-native superseded prompts、`_sp_index` 倒排索引 + `hybrid_retrieve` build-only dead code、`ours (+P5)` 已 drop 的 conflict-type classifier 等)**一律不進本檔**。
 > **對應敘事**:[`abstract_0716.md`](abstract_0716.md)、[`introduction_0716.md`](introduction_0716.md)、[`related_work_0716.md`](related_work_0716.md)。三個 commitment(faithful write、query-time KU、decomposed simple LLM tasks)於 CLAUDE.md 已定義。
+> **Canonical method 命名**(對接 [`../results/fc_sh_main_table_4length.md`](../results/fc_sh_main_table_4length.md)):§1-§6 描述的 canonical 方法 = **Ours (Struct + LLM-Fallback)**(script `ours_no_p5`);兩個 method variant ablation 於 §7 敘明,分別為 **Ours (Struct-Only)** 與 **Ours (LLM-Identity-Only)**。
 
 ---
 
@@ -243,7 +244,7 @@ Facts:
 - **Copula collapse**:`is/was/are/were/be/been/being` → `be`
 - **例**:`"is the capital of"` → `"be capital"`;`"was born in"` → `"be born in"`
 
-**(S,P) key 建構**:`sp_key = f"{subject_id}\x1f{predicate_norm}"`(SEP = `\x1f` US char,跨 mem0/methods/analysis 統一)。此 key **不作為倒排索引 lookup**(見 §10.4),而是**以 canonical string 形式儲存在每則 memory 的 `metadata.triple` 內**,query-time 時 [§4.1 group_and_resolve](#41-phase-0-structural-grouping--deterministic-freshness) 直接從 metadata 讀取後分群。
+**(S,P) key 建構**:`sp_key = f"{subject_id}\x1f{predicate_norm}"`(SEP = `\x1f` US char,跨 mem0/methods/analysis 統一)。此 key **以 canonical string 形式儲存在每則 memory 的 `metadata.triple` 內**,query-time 時 [§4.1 group_and_resolve](#41-phase-0-structural-grouping--deterministic-freshness) 直接從 metadata 讀取後分群(不作為額外的倒排索引 lookup)。
 
 **Ablation candidate**(future work,§4.5 可擴):normalize_subject / normalize_predicate 於強 backbone 上關掉(直接用 raw subject/predicate 建 SP key)→ 觀察同一 fact 於 (S,P) 分群下的 collision rate 變化(如 `"is the capital of"` vs `"was capital of"` 是否會落到不同群)+ 下游 has_pair sEM,量化 normalization 的具體貢獻。
 
@@ -445,30 +446,35 @@ Memory entries:
 
 **File**:[`methods/phase2_query.py:463-492`](../../../../methods/phase2_query.py#L463-L492)。
 
+Canonical flow:
+- **Structural pool**(來自 [§4.3 conditional_structural_routing](#43-orchestrator--phase2_resolve))+ **P3 identity clusters**(§4.2)彙整為 groups
+- 每個 ≥2 群直接 argmax(`metadata.ordinal`),舊版本 drop、tie-safe(全部 max ordinal 留下)
+
 ```python
 def phase2_resolve(candidates, query):
+    """Canonical: Phase 0 structural (S,P) pool + Phase 3 LLM identity
+    clusters → argmax(ordinal) per group. LLM never picks recency; ties are
+    kept in full to avoid arbitrary drops.
+    """
     structural_pool, dynamic_pool = conditional_structural_routing(candidates)
-    clusters = llm_identity_clusters(dynamic_pool, query)  # P3
+    clusters = llm_identity_clusters(dynamic_pool, query)   # P3 identity fallback
     groups = list(structural_pool.values()) + clusters
-    p5_skip = os.environ.get("MEM0_P5_SKIP") == "1"
     drop = set()
     for g in groups:
         if len(g) < 2:
             continue
-        if not p5_skip and _classify_conflict_type(g, query) != "freshness":
-            continue   # NO_CONFLICT / COMPLEMENTARY → keep all
         d, _ = _drop_older(g)   # argmax(ordinal); ties safe
         drop |= d
     return [it for it in candidates if _id(it) not in drop]
 ```
 
-**於 main method**:設 `MEM0_P5_SKIP=1` → **每個 ≥2 群一律 argmax(ordinal)**,不呼 P5。這是 paper canonical setup(見 §7 ablation)。
+**核心屬性**:此 orchestrator 是 **Ours (Struct + LLM-Fallback)** 的 query-time entry;所有 KU 版本判定都於此完成,answer LLM 只讀 resolved 後的乾淨集合。
 
 ### §4.4 Answer LLM Prompt(benchmark-native)
 
 **File**:[`agent.py:1177-1225`](../../../../agent.py#L1177-L1225)。
 
-`ours main`(非 q_llm_recency)於 answer 階段走 else-branch:
+`Ours (Struct + LLM-Fallback)`(非 q_llm_recency)於 answer 階段走 else-branch:
 - **SYSTEM**:`"You are a helpful AI. Answer the question based on query and memories.\n{memories_str}\n"` 其中 `memories_str = "\n".join(f"- {m}" for m in resolved)`
 - **USER**:`{message} + "\n\nCurrent Time: " + <timestamp>`
   - `message` = MABench harness 已用 dataset-native `rag_agent` template 包好的 wrapped question(FC-SH 含 recency instruction、LME 含 chat-history instruction)
@@ -477,9 +483,9 @@ def phase2_resolve(candidates, query):
 
 ## §5. Baseline 執行細節(論文實際比較)
 
-### §5.1 (a) vanilla mem0(mem0 native L1 extractor + destructive commit)
+### §5.1 (a) vanilla mem0(mem0 upstream default extractor + destructive commit)
 
-**Yaml**:`Structure_rag_gpt-4o-mini-mem0_512_openai_native.yaml`(**沒有** `use_unified_extractor: true` → 走 mem0 內建 L1 `FACT_RETRIEVAL_PROMPT`)。
+**Yaml**:`Structure_rag_gpt-4o-mini-mem0_512_openai_native.yaml`(**沒有** `use_unified_extractor: true` → 走 mem0 upstream 內建 `FACT_RETRIEVAL_PROMPT`,**無我方 modification**)。
 **Env**:`unset MEM0_ADD_MODE MEM0_QUERY_MODE MEM0_EXTRACTION_CACHE MEM0_TRIPLE_CACHE`(mem0 完整原生 flow:抽取 + 破壞性 UPDATE/DELETE 判斷)。
 **Query**:agent.py else-branch(line 1165)raw top-k concatenation,無 query-time resolve。
 
@@ -543,11 +549,11 @@ Return ONLY valid JSON:
 ### §5.5 Q-llm-recency Single-Stage(FC-SH benchmark-native)
 
 **Yaml**:`Structure_rag_gpt-4o-mini-mem0_512_openai_unified_q_llm_recency.yaml`(reuse `ours_no_p5` populated store)。
-**Env**:`MEM0_ADD_MODE=phase0_structural`、`MEM0_QUERY_MODE=q_llm_recency`、`MEM0_P5_SKIP=1`、`MEM0_Q_LLM_RECENCY_TOPK=100`(FC-SH canonical)。
+**Env**:`MEM0_ADD_MODE=phase0_structural`、`MEM0_QUERY_MODE=q_llm_recency`、`MEM0_Q_LLM_RECENCY_TOPK=100`(FC-SH canonical)。
 **Branch**:[`agent.py:1058-1076`](../../../../agent.py#L1058-L1076)。
 **Memories format**:`{ordinal}. {memory}` 對 top-K。
 **Prompt template**:走 `factconsolidation.system` + `factconsolidation.rag_agent`(benchmark-native,見 §6),template 內含「serial 大 = 新」recency rule。
-**於 FC-SH 上 fair**:此 template 是 dataset 原生設計,ours main / vanilla / (b) 於 answer 階段也用同一 template。
+**於 FC-SH 上 fair**:此 template 是 dataset 原生設計,Ours (Struct + LLM-Fallback) / vanilla / (b) 於 answer 階段也用同一 template。
 **於 LME-KU 上 NOT fair**:LME 原生 template 沒有 recency rule → 若 override 到 FC template 則 Q-llm-recency 是唯一被 prompt-augment 的 method → 因此 LME 上改用 two-stage(§5.6)。
 
 ### §5.6 Q-llm-recency Two-Stage(LME rigor fix)
@@ -588,8 +594,8 @@ Pool, {raw_question}
 Selected serial:
 ```
 
-**Parse**:`re.findall(r"\d+", stage1_resp)` → 過濾到 retrieved ordinals 集合內 → dedup 保序。**Fallback**:0 valid ordinal → winners = full top-K(safe fallback,fallback 率為診斷指標;LME 上實測 1/78 = 1.3%)。
-**Stage 2**:winners 用 `- {memory}` 格式(**無 ordinal、無 recency rule**)→ 走 else-branch → LME native `rag_agent` template + `factconsolidation.system`(SYSTEM 相同,USER 為 native template wrapping) → 與 ours main / vanilla / b **byte-identical**。
+**Parse**:`re.findall(r"\d+", stage1_resp)` → 過濾到 retrieved ordinals 集合內 → dedup 保序。**Fallback**:0 valid ordinal → winners = full top-K(safe fallback;fallback 觸發率為 Stage 1 LLM 判斷失敗率的診斷指標,實測數值進 experiments 章)。
+**Stage 2**:winners 用 `- {memory}` 格式(**無 ordinal、無 recency rule**)→ 走 else-branch → LME native `rag_agent` template + `factconsolidation.system`(SYSTEM 相同,USER 為 native template wrapping) → 與 Ours (Struct + LLM-Fallback) / vanilla / b **byte-identical**。
 
 ---
 
@@ -641,30 +647,23 @@ phrase if possible.
 
 ---
 
-## §7. Ablation Components(不進 main method,但於 §4.5 ablation 使用)
+## §7. Method Variants for Ablation(命名對應 [`../results/fc_sh_main_table_4length.md`](../results/fc_sh_main_table_4length.md))
 
-### §7.1 `ours_struct`(no P3):Phase 0 structural only
+兩個 variant 與 canonical **Ours (Struct + LLM-Fallback)** 各分擔 P3 identity fallback 與 (S,P) structural pool 的**單邊**責任,量化每個 component 的獨立貢獻。
 
+### §7.1 Ours (Struct-Only)
+
+**Script METHOD**:`ours_struct`
 **Env**:`MEM0_ADD_MODE=phase0_structural`、`MEM0_QUERY_MODE=structural`。
 **Branch**:agent.py:1049-1053 → `phase0_query.group_and_resolve` + `assemble_context`。
 **Skips**:Phase 3 LLM identity fallback(triple-null / singleton (S,P) 的 candidates 直接 pass through,不 merge)。
-**用意**:量化「純 (S,P) structural + argmax」的貢獻。
+**用意**:量化「純 (S,P) structural + argmax(ordinal)」的貢獻;無 LLM 介入 identity 判斷。
 
-### §7.2 `ours_p3_only_no_struct`(LLM only):P3 without structural
+### §7.2 Ours (LLM-Identity-Only)
 
-**Env**:`MEM0_ADD_MODE=phase0_structural`(仍需 P2 抽取 metadata)+ `MEM0_QUERY_MODE=phase2` + `MEM0_STRUCTURAL_SKIP=1`(把所有 candidates 送 dynamic_pool,全交 P3 LLM 分群)。
-**用意**:量化「純 LLM P3 分群」的貢獻(無 (S,P) 加速)。
-
-### §7.3 `ours (+P5)` conflict-type classifier
-
-**Env**:`MEM0_ADD_MODE=phase0_structural`、`MEM0_QUERY_MODE=phase2`、**不設** `MEM0_P5_SKIP=1`(P5 啟用)。
-**File**:[`methods/phase2_query.py:397-419`](../../../../methods/phase2_query.py#L397-L419)(`CONFLICT_TYPE_PROMPT`)、[`lines 197-249`](../../../../methods/phase2_query.py#L197-L249)(predicate arity guard)。
-**Branch(phase2_resolve line 488)**:對每個 ≥2 群,呼 `_classify_conflict_type()` 分三類:
-- `NO_CONFLICT` → keep all(非同 fact,無需 resolve)
-- `COMPLEMENTARY` → keep all(multi-valued,如 hobbies)
-- `FRESHNESS` → `_drop_older()`(argmax(ordinal))
-
-**Paper §4.5.3 結論**:P5 於 FC-SH -1 to -3pp(net-negative);於 LME-KU net-zero(2026-07-07 P5 reuse verification)→ **paper main method drops P5**,保留為 ablation。
+**Script METHOD**:`ours_p3_only_no_struct`
+**Env**:`MEM0_ADD_MODE=phase0_structural`(仍需 P2 抽取 metadata,供 subject-consistency guard 用)+ `MEM0_QUERY_MODE=phase2` + `MEM0_STRUCTURAL_SKIP=1`(把所有 candidates 送 dynamic_pool,全交 P3 LLM 分群)。
+**用意**:量化「純 LLM P3 identity 分群 + argmax(ordinal)」的貢獻;無 (S,P) structural 加速。
 
 ---
 
@@ -684,7 +683,6 @@ phrase if possible.
 | **Q-llm-recency top-K** | 100 canonical | `MEM0_Q_LLM_RECENCY_TOPK` env |
 | **Vector store** | qdrant on_disk | yaml `mem0_config.vector_store` |
 | **Store 隔離** | yaml path + `__<sub_dataset>` 後綴(agent.py:265-273 自動加) | `agent.py:265-273` |
-| **P5(conflict-type classifier)** | **OFF**(canonical);on 於 ablation | `MEM0_P5_SKIP=1` env |
 | **max_tokens patch** | gpt-5.4-mini + o1/o3/o4 系列改 `max_completion_tokens`(by-model-prefix routing) | `mem0/llms/openai.py:92-105`、`agent.py:596-611` |
 
 ---
@@ -698,74 +696,3 @@ phrase if possible.
 **分母**:
 - **Overall sEM**:全 100 queries per length(FC-SH)、78 queries(LME-KU KU subset)。**headline metric**。
 - **has_pair sEM**:FC-SH 100 queries 中真正含 old/new 版本的子集(6k=74、32k=65、64k=66、262k=77)。**mechanism metric**。
-
----
-
-## §10. Explicit Exclusions — Dead Code(不進 Methodology 章)
-
-以下**存在於 repo 但論文完全未使用**,寫 Methodology 時**不需要提及**:
-
-### §10.1 未使用的 method 檔案
-- [`methods/graph_rag.py`](../../../../methods/graph_rag.py)(GraphRAG)— 未跑
-- [`methods/hipporag/`](../../../../methods/hipporag/)— 早期實驗,已停用
-- [`methods/memorag/`](../../../../methods/memorag/)、[`methods/raptor.py`](../../../../methods/raptor.py)、[`methods/self_rag.py`](../../../../methods/self_rag.py) — 未跑
-- Letta 相關:agent.py `_handle_letta_agent` + `_is_agent_type("letta")` — 未跑
-- Cognee 相關:agent.py `_handle_cognee_agent` — 未跑
-- mem0g(mem0 graph enabled)— agent.py:331-336, 510 code path — 未於 paper 使用
-
-### §10.2 Superseded prompt(被 unified extractor 取代)
-[`methods/mem0_fc_prompt_fix.py`](../../../../methods/mem0_fc_prompt_fix.py) 內以下 function **均已淘汰**:
-- `make_l1_modified_prompt`(lines 39-55)
-- `make_l2_knowledge_prompt`(lines 95-97)
-- `make_broadened_native_prompt`(lines 124-175)
-
-`use_unified_extractor: false` 路徑 = 走這些舊 prompt → **論文所有 canonical run 均 `use_unified_extractor: true`**,舊 prompt 不需寫入 Methodology。
-
-### §10.3 未使用的 embedder / retriever
-- NV-Embed-v2、OpenAIEmbedding legacy 路徑於 agent.py:1675-1678 — 不進 canonical(canonical 用 `text-embedding-3-small`)
-
-### §10.4 (S,P) 倒排索引與 `hybrid_retrieve`(build-only,query-time dead)
-
-**Implementation-only,論文不寫**:
-- `self._sp_index` dict + `MEM0_SP_INDEX_PATH` JSON 持久化([`mem0/memory/main.py:76-79, 1058-1076`](../../../../mem0/memory/main.py#L1058-L1076))
-- `methods/phase0_query.py:hybrid_retrieve()`([lines 113-126](../../../../methods/phase0_query.py#L113-L126))— 唯一會讀 `sp_index` 的 function
-
-**驗證**(grep 全 repo):`hybrid_retrieve` **無 call site**;canonical query flow(`_handle_mem0_agent` → `self.memory.search` → `group_and_resolve` / `phase2_resolve`)全部從 **per-memory `metadata.triple`** 讀 (S,P) 分群,不查倒排索引。
-
-**與 §2.6 metadata schema 的關係**:(S,P) canonical form 是必要的(存在 per-memory metadata),但**倒排索引資料結構未被使用**;methodology 章僅寫 metadata schema,不寫倒排索引。
-
-**Code cleanup 建議**(不擋 paper):`_sp_index` build + persist 可移除;`hybrid_retrieve` 可整段刪除。
-
----
-
-## §11. Canonical Execution Recipes(reproducibility)
-
-### §11.1 FC-SH ours main
-```bash
-RUN_OAI_KEY_NAME=OPENAI_API_KEY_A \
-  bash docs/0615_intro_framework_after_problem_statement/scripts/run_fc_sh.sh 6k ours_no_p5
-```
-- Env 設 `MEM0_ADD_MODE=phase0_structural`、`MEM0_QUERY_MODE=phase2`、`MEM0_P5_SKIP=1`、`MEM0_TRIPLE_MODEL=gpt-4o-mini`
-- Yaml:`Structure_rag_gpt-4o-mini-mem0_512_openai_unified_no_p5.yaml`
-
-### §11.2 LME-KU ours main
-```bash
-RUN_OAI_KEY_NAME=OPENAI_API_KEY_A SHARD=0 NSHARD=2 \
-  bash docs/0615_intro_framework_after_problem_statement/scripts/run_lme_ku.sh ours_no_p5
-```
-- 2-shard 平行(SHARD=0/1),分別用 Key A/B
-- Merge 兩 shard hyps 後跑官方 judge
-
-### §11.3 Backbone extension(gpt-5.4-mini 例)
-```bash
-MODEL_TAG=gpt-5.4-mini RUN_OAI_KEY_NAME=OPENAI_API_KEY_A \
-  bash docs/0615_.../scripts/run_fc_sh.sh 6k ours_no_p5
-```
-- 自動用 `configs/agent_conf/RAG_Agents/gpt-5.4-mini/*.yaml`
-- Cache 於 `p1_caches__gpt-5.4-mini/`(TAG_SFX 自動加)
-
----
-
-## 更新歷程
-
-- **2026-07-16**:本檔建立;整合 [`abstract_0716.md`](abstract_0716.md) / [`introduction_0716.md`](introduction_0716.md) / [`related_work_0716.md`](related_work_0716.md) 的敘事定位 + 所有實際使用 prompts + hyperparameters + baseline execution paths + explicit exclusion。
