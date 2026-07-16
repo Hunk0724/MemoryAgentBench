@@ -247,7 +247,7 @@ Table 8 對照 ours 於 FC-SH 6k(counterfactual)vs LME-KU(personal)上 相對 ba
 
 **Observation**:
 - **兩 identity mechanism 互補、缺一不可**:LLM-Identity-Only 於**短 context(6k)嚴格支配** structural(97 > 91);但於**長 context(262k)** structural 反成關鍵(見 §Diagnostic 2:「只有 structural 對」的題數隨長度單調成長 0 → 2 → 3 → 5,independent 貢獻於 262k 最大)。**Full method 於每長度取兩者聯集**,於 4 length 保穩 91-94%。
-- **P3 於 mid tier 淨貢獻**:full − Struct-Only Δ = **+3 / +4 / +2 / +5**(6k/32k/64k/262k;長 context 邊際效益最大)。
+- **P3 於 mid tier 淨貢獻(overall sEM diff,由 Table 9 自算)**:full − Struct-Only Δ = **+3 / +4 / +2 / +5**(6k / 32k / 64k / 262k)。若限於 has_pair 子集(N = 74 / 65 / 66 / 77)以 per-qid rescue 減 regress 讀,淨值為 **+2 / +4 / +2 / +5**;6k 差異(+3 vs +2)因 full method 於 no_conflict 子集(26 題)多修對 1 題,其餘 3 length 一致。長 context 邊際效益最大;§4.7.2 深入 P3 觸發率。
 
 ### 4.6.2 P3 capability-gate across backbone
 
@@ -286,32 +286,40 @@ Per-qid 逐題分析(6k/32k/64k/262k 4 length × 3 baseline;fc_sh_4method_errorm
 
 ### 4.7.2 P3 rescue rate and trigger rate(D2)
 
-Offline (S,P)-merge proxy(mirror `attribute_sp_merge`;讀 `triple_cache_p1_{L}` + `sh_{L}_mquake_analysis`)量化 P3 於 pipeline 中的實際承擔:
+Offline (S,P)-merge proxy(mirror `attribute_sp_merge`;讀 `triple_cache_p1_{L}` + `sh_{L}_mquake_analysis`)於 has_pair 子集(N = 74 / 65 / 66 / 77)量化 P3 於 pipeline 中的實際承擔:
 
-**Table 11**:P3 觸發率(6k/32k/64k 為 proxy;262k 為 diff-based ground truth)
+**Table 11**:P3 觸發率(has_pair 子集;6k/32k/64k 為 offline (S,P)-merge proxy;262k 為 diff-based ground truth)
 
-| Length | structural pool(argmax 解) | dynamic pool(P3 補救)| P3 in-bucket accuracy |
-|:--|:-:|:-:|:-:|
-| 6k | 81% | 14% | 90% |
-| 32k | 77% | 22% | 79% |
-| 64k | 68% | 32% | 81% |
-| 262k(diff-based)| 88% | 12%(9/77 P3-active)| 78% |
+| Length | structural pool(argmax 解)| dynamic pool(P3 補救)| new_missing(P2 抽取失敗)| P3 in-bucket accuracy |
+|:--|:-:|:-:|:-:|:-:|
+| 6k(N=74)| 60/74 = 81% | 10/74 = 14% | **4/74 = 5%** | 9/10 = 90% |
+| 32k(N=65)| 50/65 = 77% | 14/65 = 22% | **1/65 = 1%** | 11/14 = 79% |
+| 64k(N=66)| 45/66 = 68% | 21/66 = 32% | 0/66 = 0% | 17/21 = 81% |
+| 262k(N=77;diff-based)| 68/77 = 88% | 9/77 = 12%(7 rescue + 2 regress)| 0/77 = 0% | 7/9 = 78% |
 
-- **6k → 64k 佔比隨長度單調變化**:structural ↓(81→77→68%),dynamic ↑(14→22→32%);P3 承擔的題數變多(10→14→21)→ 直接解釋 §4.6.1 Δ_A(P3 貢獻)隨長度成長。
+**Column semantics**:
+- **structural pool**:gt_new 與 gt_old 的抽取 triple 於 L0/L1/L2 normalization 下同 (S,P) key 且群大小 ≥ 2 → argmax(ordinal) 於群內取新版。
+- **dynamic pool**:gt_new 與 gt_old 分到不同 (S,P) key 且各自為 singleton,或 triple-null → 進 P3 LLM identity clusters 補救(對接 method 章 §3.4;code 於 `phase2_query.py::conditional_structural_routing:164-187`,dynamic_pool = `no_triple + singleton_triple`)。
+- **new_missing**:P2 gpt-4o-mini extractor 於該 query 未抽出 gt_new triple → fact bank 內無新版可供解 → pipeline 於 P2 前已失敗,structural / dynamic / P3 均無從補救;6k 4 題最多(短 context 給 P2 機會少),長 context 降至 0。
+- **P3 in-bucket accuracy**:於 dynamic pool 觸發的 queries 中,ours (Struct + LLM-Fallback) 答對的比例;穩定 78-90%,不下拉 pipeline 整體品質。
+- **三欄相加為 100%**:structural + dynamic + new_missing 覆蓋全 has_pair query 集。
+
+**Observations**:
+- **6k → 64k structural / dynamic 佔比隨長度單調變化**:structural ↓(81→77→68%),dynamic ↑(14→22→32%);P3 承擔的題數變多(10→14→21)→ 直接解釋 §4.6.1 Δ_P3(隨長度邊際效益成長)。
 - **262k proxy 反轉為 99% structural**(caveat:P1 於大 fact bank 上更常產出 canonical (S,P) → L0 exact match 佔絕大多數 → proxy 於 262k 失解析力)—— 改用 main-vs-struct diff 讀為 ground truth:實際 P3-active queries = **9/77 = 12%**(7 rescue + 2 regress),與 6k/32k/64k 趨勢一致。
 - **P3 in-bucket accuracy 穩定 78-90%**;於 dynamic-pool 觸發區的正確率高,不下拉 pipeline 整體品質。
 
-**兌現 method 章 §3.4「LLM 僅為補救」定位**:P3 只在 12-32% 的 query 上真正做識別工作,其餘 68-88% 由確定性 (S,P)+argmax 解決,且 P3 觸發區的正確率高。**Struct 為 backbone-invariant workhorse;P3 為隨長度邊際效益成長的窄任務 add-on**。
+**兌現 method 章 §3.4「LLM 僅為補救」定位**:P3 只在 12-32% 的 query 上真正做識別工作,其餘 68-88% 由確定性 (S,P)+argmax 解決;P3 觸發區的正確率高。**Struct 為 backbone-invariant workhorse;P3 為隨長度邊際效益成長的窄任務 add-on**。
 
 ### 4.7.3 Zep 262k crash mechanism(mechanism finding)
 
-Zep 於 262k overall sEM = 29%,較 64k 76% 大幅下降。原先推論(fc_sh_main_table_4length caveat)為「write-time invalidation 覆蓋不足(6.3%)」,但 2026-07-16 補跑 `analysis/classify_zep_ku_resolution.py --length 262k` 顯示:
+Zep 於 262k **overall sEM = 29%**(較 64k overall 76% 大幅下降;has_pair 子集 sEM 亦從 64k 64% 降至 262k **16%**,分母 66→77)。原先推論(fc_sh_main_table_4length caveat)為「write-time invalidation 覆蓋不足(6.3%)」,但 2026-07-16 補跑 `analysis/classify_zep_ku_resolution.py --length 262k` 顯示:
 
-- **NotBothExtracted = 82%**(63/77 has_pair 中,top-10 retrieval 沒同時抓到 old + new 兩版)—— 答題 LLM 於 pool 內根本沒看到 both versions,無法區辨 → 靠 world-prior 猜 → has_pair acc 14.3%
-- Additive-NoKU 反而崩到 8%(vs 32k 77% / 64k 74%),因為 both 版本進 top-10 的機會太少
-- Invalidation coverage 6.30%(63/1000 edges)—— 為 write-time 側的次要指標,單此不足以解釋 crash(64k 覆蓋率 9.7% 但 acc 55%)
+- **NotBothExtracted = 82%**(63/77 has_pair 中,top-10 retrieval 沒同時抓到 old + new 兩版)—— 答題 LLM 於 pool 內根本沒看到 both versions,無法區辨 → 靠 world-prior 猜 → 對應 262k has_pair sEM 崩至 16%。
+- Additive-NoKU 反而崩到 8%(vs 32k 77% / 64k 74%),因為 both 版本進 top-10 的機會太少;無法再作為長度趨勢外推。
+- Invalidation coverage **6.30%**(63/1000 edges tagged with `invalid_at`)—— 為 write-time 側的次要指標,單此不足以解釋 crash(對照:64k invalidation coverage 9.7%,同格 sEM 仍達 has_pair 64% / overall 76%)。
 
-**結論**:Zep 262k crash 由**兩層問題疊加**構成,兩層皆為「圖大小 → semantic search 對特定 target edge 難以精準檢索」的表徵。**query-time retrieval miss 為主因**(top-10 抓不到 both 版本 → answer LLM 沒 both facts 可比 → 只能靠世界先驗猜舊)。**Top-K 已排除為根因**:Zep top-50 於 262k(46/100 queries before rate-limit)= 28.3%,與 k=10 29% 統計等價 → 拉到 top-50 也抓不到 both 版本。詳 [`../results/zep_ku_resolution_bitemporal.md §4C`](../results/zep_ku_resolution_bitemporal.md)。
+**結論**:Zep 262k crash 由**兩層問題疊加**構成,兩層皆為「圖大小 → semantic search 對特定 target edge 難以精準檢索」的表徵。**query-time retrieval miss 為主因**(top-10 抓不到 both 版本 → answer LLM 沒 both facts 可比 → 只能靠世界先驗猜舊)。**Top-K 已排除為根因**:Zep top-50 於 262k(46/100 queries before rate-limit)overall sEM = 28.3%,與 k=10 overall 29% 統計等價 → 拉到 top-50 也抓不到 both 版本。詳 [`../results/zep_ku_resolution_bitemporal.md §4C`](../results/zep_ku_resolution_bitemporal.md)。
 
 ### 4.7.4 Limitations and scope(D3)
 
