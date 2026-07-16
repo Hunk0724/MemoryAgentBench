@@ -197,7 +197,8 @@ Facts:
 ### §2.4 Subject-Only Fallback(triple-null 補救)
 
 **Prompt**:[`SUBJECT_EXTRACTION_PROMPT`](../../../../methods/phase0_triple_extractor.py#L119-L142)(triple 判定為 `null` 時使用)。
-**目的**:即使無 (S,P,O),也給每則記憶一個 `subject_fallback` metadata,讓 query-time subject-consistency guard 能運作。
+**用途**(query-time 實際被讀):填入 `metadata.subject_fallback` → 於 [§4.2 P3 identity fallback](#42-phase-3-llm-identity-fallback) 的 `_subject_consistent()` guard 中讀取([`phase2_query.py:143`](../../../../methods/phase2_query.py#L143));**guard 於 P3 LLM 建議的 cluster 內若成員橫跨 ≥2 個不同 subject 就 reject**,對 triple-null 的抽象/敘述性記憶(subjective / narrative / multi-fact),subject_fallback 是這個 guard 唯一能啟用的訊號。移除此 fallback → triple-null 記憶於 P3 分群時 subject 皆為 `None` → guard 失效 → LLM 錯 merge 頻率上升。
+**Ablation candidate**(future work,§4.5 可擴):`SUBJECT_EXTRACTION_PROMPT` 停用 → 只比 subject_fallback 有無時 P3 錯 merge rate + 下游 has_pair sEM,量化 subject fallback 的具體貢獻。
 
 ```
 Identify the single entity each fact is primarily ABOUT — the subject it
@@ -242,24 +243,23 @@ Facts:
 - **Copula collapse**:`is/was/are/were/be/been/being` → `be`
 - **例**:`"is the capital of"` → `"be capital"`;`"was born in"` → `"be born in"`
 
-**(S,P) key 建構**:`sp_key = f"{subject_id}\x1f{predicate_norm}"`(SEP = `\x1f` US char,跨 mem0/methods/analysis 統一)。
+**(S,P) key 建構**:`sp_key = f"{subject_id}\x1f{predicate_norm}"`(SEP = `\x1f` US char,跨 mem0/methods/analysis 統一)。此 key **不作為倒排索引 lookup**(見 §10.4),而是**以 canonical string 形式儲存在每則 memory 的 `metadata.triple` 內**,query-time 時 [§4.1 group_and_resolve](#41-phase-0-structural-grouping--deterministic-freshness) 直接從 metadata 讀取後分群。
 
-### §2.6 Storage — qdrant + Ordinal + (S,P) 倒排索引
+**Ablation candidate**(future work,§4.5 可擴):normalize_subject / normalize_predicate 於強 backbone 上關掉(直接用 raw subject/predicate 建 SP key)→ 觀察同一 fact 於 (S,P) 分群下的 collision rate 變化(如 `"is the capital of"` vs `"was capital of"` 是否會落到不同群)+ 下游 has_pair sEM,量化 normalization 的具體貢獻。
+
+### §2.6 Storage — qdrant + Per-Memory (S,P) Metadata
 
 **Entry point**:`_add_phase0_structural()` at [`mem0/memory/main.py:985-1103`](../../../../mem0/memory/main.py#L985-L1103)。
 
 **Per-fact write flow**(lines 1026-1067):
 1. `fact_ordinal = chunk_ordinal + fact_within_chunk_idx` — per-user global fact-level counter
-2. `md = {**metadata, "ordinal": fact_ordinal, "triple": {subject_id, predicate_norm, object_text, confidence, subject_raw, predicate_raw}}`
+2. 組 metadata:`md = {**metadata, "ordinal": fact_ordinal, "triple": <see schema below>}`(triple-null 時改填 `subject_fallback`)
 3. Batch embed fact text([line 1022](../../../../mem0/memory/main.py#L1022))
 4. `_create_memory(fact, embedding, md)` → 寫入 qdrant collection
-5. If triple non-null:`self._sp_index[sp_key].append(memory_id)`
-
-**(S,P) 倒排索引持久化**:`self._sp_index` 於 process 內為 in-memory dict;每次寫入後 dump 到 `MEM0_SP_INDEX_PATH` 的 JSON(tuple keys flattened,跨 process 可讀取)。
 
 **Store 隔離**:agent.py:265-273 自動 append `__<sub_dataset>` 於 yaml `path:` 與 `collection_name:`(不同 dataset / length 各自獨立 store)。
 
-**Metadata schema**(每則 memory):
+**Per-memory metadata schema**(query-time 直接讀取):
 ```json
 {
   "ordinal": <int>,
@@ -273,7 +273,7 @@ Facts:
   }
 }
 ```
-或(triple null 時):
+或(triple 抽取為 null 時):
 ```json
 {
   "ordinal": <int>,
@@ -282,8 +282,10 @@ Facts:
 }
 ```
 
-**核心設計 note**([mem0/memory/main.py:313-317](../../../../mem0/memory/main.py#L313-L317)):
+**核心設計 note — Ordinal**([mem0/memory/main.py:313-317](../../../../mem0/memory/main.py#L313-L317)):
 > "Fact-level ordinal: per-uid GLOBAL per-fact counter (not per-chunk) … so query-side max()=newest needs ZERO change while intra-chunk same-(S,P) ties disappear."
+
+**Query-time consumption**([§4.1](#41-phase-0-structural-grouping--deterministic-freshness)):`self.memory.search(query, ..., limit=100)` 取回 top-K memories → 直接於這 100 則 memory 各自的 `metadata.triple.(subject_id, predicate_norm)` 上分群 → 每群 argmax(`metadata.ordinal`)。**沒有額外的 (S,P) inverted-index lookup**;(S,P) canonical form 純粹以 per-memory metadata 呈現。
 
 ---
 
@@ -721,6 +723,18 @@ phrase if possible.
 
 ### §10.3 未使用的 embedder / retriever
 - NV-Embed-v2、OpenAIEmbedding legacy 路徑於 agent.py:1675-1678 — 不進 canonical(canonical 用 `text-embedding-3-small`)
+
+### §10.4 (S,P) 倒排索引與 `hybrid_retrieve`(build-only,query-time dead)
+
+**Implementation-only,論文不寫**:
+- `self._sp_index` dict + `MEM0_SP_INDEX_PATH` JSON 持久化([`mem0/memory/main.py:76-79, 1058-1076`](../../../../mem0/memory/main.py#L1058-L1076))
+- `methods/phase0_query.py:hybrid_retrieve()`([lines 113-126](../../../../methods/phase0_query.py#L113-L126))— 唯一會讀 `sp_index` 的 function
+
+**驗證**(grep 全 repo):`hybrid_retrieve` **無 call site**;canonical query flow(`_handle_mem0_agent` → `self.memory.search` → `group_and_resolve` / `phase2_resolve`)全部從 **per-memory `metadata.triple`** 讀 (S,P) 分群,不查倒排索引。
+
+**與 §2.6 metadata schema 的關係**:(S,P) canonical form 是必要的(存在 per-memory metadata),但**倒排索引資料結構未被使用**;methodology 章僅寫 metadata schema,不寫倒排索引。
+
+**Code cleanup 建議**(不擋 paper):`_sp_index` build + persist 可移除;`hybrid_retrieve` 可整段刪除。
 
 ---
 
