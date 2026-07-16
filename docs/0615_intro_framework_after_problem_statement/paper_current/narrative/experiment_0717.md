@@ -116,7 +116,7 @@ Chunker chunk_size=512(mem0 native FactConsolidation-aware / uniform);retrieval 
    - **Vanilla-RAG non-monotonic dip 於 32k**(93→77→85→81;LLM 判 recency 於 flat ordinal pool 上不穩定,§4.7 D1);
    - **Don't Ask 是唯一越長越強的 baseline**(80→86-88;bank 越大,LLM extraction 越常抓到 both 版本,leak 率下降;§4.7 D1)。
 4. **Ours ablation 的長度分工**:Ours (LLM-Identity-Only) 於**短 context(6k)**贏(97 > 94);Ours (Struct-Only) 於**長 context(262k)**貢獻大;full method 於每 length 取兩者上界(§4.6 ablation 深入拆解)。
-5. **Mean 4L 排序**:full Ours = **92.5** > 三 ablation 89.0-92.0 > Don't Ask 85.0 > Vanilla-RAG 84.0;所有 write-time baseline ≤ 67.5(Zep)、64k 前 mem0+P1 仍 <55%。
+5. **Mean 4L 排序**:full Ours = **92.5** > 三 ablation 89.0-92.0 > Don't Ask 85.0 > Vanilla-RAG 84.0 > LCA 67.5(memory-less);所有 write-time baseline ≤ **66.8**(Zep),Mem0 + P1 全長 <55%,Mem0 Vanilla 於 20.8。
 
 ---
 
@@ -300,13 +300,13 @@ Offline (S,P)-merge proxy(mirror `attribute_sp_merge`;讀 `triple_cache_p1_{L}` 
 **Column semantics**:
 - **structural pool**:gt_new 與 gt_old 的抽取 triple 於 L0/L1/L2 normalization 下同 (S,P) key 且群大小 ≥ 2 → argmax(ordinal) 於群內取新版。
 - **dynamic pool**:gt_new 與 gt_old 分到不同 (S,P) key 且各自為 singleton,或 triple-null → 進 P3 LLM identity clusters 補救(對接 method 章 §3.4;code 於 `phase2_query.py::conditional_structural_routing:164-187`,dynamic_pool = `no_triple + singleton_triple`)。
-- **new_missing**:P2 gpt-4o-mini extractor 於該 query 未抽出 gt_new triple → fact bank 內無新版可供解 → pipeline 於 P2 前已失敗,structural / dynamic / P3 均無從補救;6k 4 題最多(短 context 給 P2 機會少),長 context 降至 0。
+- **new_missing(proxy-analysis 限制,非 pipeline routing bucket)**:於 offline proxy 中,fact bank 內無任何 triple 的 `.object` 欄位比中 gt_new(該 query 的 counterfactual 新值);proxy 無 gt_new-side triple 可對照 → 無從判定屬 structural 或 dynamic → **排除為第三個獨立 bucket**。**此不同於「pipeline 內 triple-null」**(那類 candidate 於 phase 2 仍照常走 `conditional_structural_routing` 進 dynamic_pool 由 P3 補救,見 code line 164-187);new_missing 為離線分析的分類限制,pipeline 本身仍對該 query 執行檢索與 routing,只是**下游答題通常也失敗**(P1 抽取漏或 P2 產出的 triple.object 與 gt_new 表面不符 → answer LLM 於 pool 內找不到 counterfactual 新值)。6k 4 題最多(短 context 給 P1/P2 機會少),長 context 降至 0。
 - **P3 in-bucket accuracy**:於 dynamic pool 觸發的 queries 中,ours (Struct + LLM-Fallback) 答對的比例;穩定 78-90%,不下拉 pipeline 整體品質。
 - **三欄相加為 100%**:structural + dynamic + new_missing 覆蓋全 has_pair query 集。
 
 **Observations**:
 - **6k → 64k structural / dynamic 佔比隨長度單調變化**:structural ↓(81→77→68%),dynamic ↑(14→22→32%);P3 承擔的題數變多(10→14→21)→ 直接解釋 §4.6.1 Δ_P3(隨長度邊際效益成長)。
-- **262k proxy 反轉為 99% structural**(caveat:P1 於大 fact bank 上更常產出 canonical (S,P) → L0 exact match 佔絕大多數 → proxy 於 262k 失解析力)—— 改用 main-vs-struct diff 讀為 ground truth:實際 P3-active queries = **9/77 = 12%**(7 rescue + 2 regress),與 6k/32k/64k 趨勢一致。
+- **262k proxy 反轉為 99% structural**(caveat:P2 triple extractor 於大 fact bank 上,同一 fact 於多 chunk 重複 → P2 較常穩定產出同一 canonical (S,P) → 於 gt_new / gt_old 兩側 triple 都能配到 (S,P) 完全一致者的機率上升 → 誤標 structural 佔比 → **proxy 於 262k 失解析力**)—— 改用 main-vs-struct diff 讀為 ground truth:實際 P3-active queries = **9/77 = 12%**(7 rescue + 2 regress),與 6k/32k/64k 趨勢一致。
 - **P3 in-bucket accuracy 穩定 78-90%**;於 dynamic-pool 觸發區的正確率高,不下拉 pipeline 整體品質。
 
 **兌現 method 章 §3.4「LLM 僅為補救」定位**:P3 只在 12-32% 的 query 上真正做識別工作,其餘 68-88% 由確定性 (S,P)+argmax 解決;P3 觸發區的正確率高。**Struct 為 backbone-invariant workhorse;P3 為隨長度邊際效益成長的窄任務 add-on**。
