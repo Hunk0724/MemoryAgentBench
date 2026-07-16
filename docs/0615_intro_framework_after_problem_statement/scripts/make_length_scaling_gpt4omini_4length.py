@@ -71,10 +71,13 @@ ax.set_axisbelow(True)
 for s in ("top", "right"):
     ax.spines[s].set_visible(False)
 
-ax.legend(loc="lower left", fontsize=8.4, frameon=True, framealpha=0.95,
-          handlelength=2.8, borderpad=0.6, labelspacing=0.4)
+ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.14), ncol=3,
+          fontsize=8.4, frameon=True, framealpha=0.95,
+          handlelength=2.8, borderpad=0.6, labelspacing=0.4,
+          columnspacing=1.6)
 
 fig.tight_layout()
+fig.subplots_adjust(bottom=0.24)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.path.dirname(HERE)
