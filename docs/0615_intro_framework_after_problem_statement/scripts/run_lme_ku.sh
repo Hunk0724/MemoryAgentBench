@@ -27,7 +27,7 @@ if [[ -n "${RUN_OAI_KEY_NAME:-}" ]]; then
 fi
 [[ -z "${OPENAI_API_KEY:-}" ]] && { echo "[key] ERROR: no OPENAI_API_KEY"; exit 1; }
 
-METHOD="${1:?need method (ours|ours_no_p5|ours_p5_reuse|ours_q_llm_recency|ours_q_llm_recency_2s|b|vanilla)}"
+METHOD="${1:?need method (ours|ours_no_p5|ours_no_p5_guard_off|ours_p5_reuse|ours_q_llm_recency|ours_q_llm_recency_2s|b|vanilla)}"
 LIMIT="${2:-0}"
 JUDGE="${3:-0}"
 SHARD="${SHARD:-0}"
@@ -105,6 +105,28 @@ elif [[ "$METHOD" == "ours_p5_reuse" ]]; then
   # Only rm the FRESH state (conflict cache + cand log); NEVER rm the reused caches/store
   rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_CONFLICT_CACHE"
   # QUERY_ONLY flag passed to python (skip memorize step)
+  QUERY_ONLY_FLAG="--query-only"
+elif [[ "$METHOD" == "ours_no_p5_guard_off" ]]; then
+  # Subject-consistency guard ablation on LME (2026-07-17). Mirror
+  # ours_p5_reuse pattern exactly (reuse ours_no_p5 store + write caches +
+  # query-only) but instead of enabling P5 we set MEM0_SUBJECT_GUARD_OFF=1
+  # so llm_identity_clusters accepts every LLM-proposed cluster (no
+  # cross-subject rejection). Isolates the guard's contribution to LME EM.
+  # Requires: ours_no_p5 s0/s1 must have completed with full 78 KU coverage.
+  AG=Structure_rag_gpt-4o-mini-mem0_512_openai_unified_no_p5_guard_off.yaml
+  export MEM0_TRIPLE_MODEL=gpt-4o-mini
+  export MEM0_EXTRACTION_CACHE="$PC/extraction_ours${SHARDSFX}.json"       # reuse (unchanged)
+  export MEM0_TRIPLE_CACHE="$PC/triple_ours_no_p5${SHARDSFX}.json"          # reuse ours_no_p5's
+  export MEM0_SUBJECT_CACHE="$PC/subject_ours_no_p5${SHARDSFX}.json"        # reuse ours_no_p5's
+  export MEM0_GROUPING_CACHE="$PC/grouping_ours_no_p5${SHARDSFX}.json"      # reuse ours_no_p5's (LLM raw output cached; guard applied at use-time)
+  export MEM0_CONFLICT_CACHE="$PC/conflict_ours_no_p5_guard_off${SHARDSFX}.json"  # unused with P5 SKIP but fresh
+  export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/lme_ours_no_p5_guard_off${SHARDSFX}_p1"
+  export MEM0_ADD_MODE=phase0_structural
+  export MEM0_QUERY_MODE=phase2
+  export MEM0_P5_SKIP=1
+  export MEM0_SUBJECT_GUARD_OFF=1                                    # <-- the ONE thing that differs from ours_no_p5
+  SUBDS="longmemeval_s_ku_ours_no_p5${SHARDSFX}"                     # reuse ours_no_p5's namespace
+  rm -rf "$MEM0_CAND_LOG_DIR" "$MEM0_CONFLICT_CACHE"
   QUERY_ONLY_FLAG="--query-only"
 elif [[ "$METHOD" == "ours_q_llm_recency" ]]; then
   # Q-llm-recency baseline (2026-07-11) on LME-KU: naive fact-level RAG + LLM

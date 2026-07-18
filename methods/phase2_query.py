@@ -146,7 +146,14 @@ def _subject(it):
 def _subject_consistent(members):
     """Guard: reject an LLM cluster whose members span >=2 distinct KNOWN
     subjects (different specific entities = different facts). Members with an
-    unknown (None) subject do not block — those are the genuinely LLM-only cases."""
+    unknown (None) subject do not block — those are the genuinely LLM-only cases.
+
+    Ablation: env MEM0_SUBJECT_GUARD_OFF=1 bypasses the guard entirely
+    (accepts every LLM-proposed cluster). Isolates the guard's contribution
+    to final EM. Default behavior unchanged when env unset.
+    """
+    if os.environ.get("MEM0_SUBJECT_GUARD_OFF") == "1":
+        return True
     subs = {s for s in (_subject(m) for m in members) if s}
     return len(subs) <= 1
 

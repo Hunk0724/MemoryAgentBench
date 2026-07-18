@@ -32,7 +32,7 @@ fi
 if [[ -z "${OPENAI_API_KEY:-}" ]]; then echo "[key] ERROR: no OPENAI_API_KEY resolved"; exit 1; fi
 
 L="${1:?need L (6k|32k|64k|262k)}"
-METHOD="${2:?need method (ours|ours_struct|ours_no_p5|ours_p3_only_no_struct|b|vanilla)}"
+METHOD="${2:?need method (ours|ours_struct|ours_no_p5|ours_no_p5_guard_off|ours_p3_only_no_struct|ours_q_llm_recency|b|vanilla)}"
 LOGROOT=docs/0615_intro_framework_after_problem_statement/logs
 DCONF=configs/data_conf/Conflict_Resolution
 
@@ -149,6 +149,34 @@ elif [[ "$METHOD" == "ours_no_p5" ]]; then
          "$MEM0_CONFLICT_CACHE" "$STOREBASE/$STORE" \
          "$OUTDIR/Conflict_Resolution/"*sh_${L}*results*.json
   ANSDIR="outputs/rag_retrieved/Structure_rag_gpt-4o-mini-mem0_512_openai_unified_no_p5${TAG_SFX}/k_100/factconsolidation_sh_${L}/chunksize_512"
+elif [[ "$METHOD" == "ours_no_p5_guard_off" ]]; then
+  # Subject-consistency guard ablation (2026-07-17): mirror ours_no_p5 exactly
+  # BUT set MEM0_SUBJECT_GUARD_OFF=1 so llm_identity_clusters accepts every
+  # LLM-proposed cluster (no cross-subject rejection). Reuses the ours_no_p5
+  # populated store + all write-time caches byte-for-byte; only query behavior
+  # differs (guard bypassed). Isolates the guard's contribution to final EM.
+  # Requires: ours_no_p5 must have been run first at this length.
+  TAG=unified_no_p5_guard_off
+  AG="Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_unified_no_p5_guard_off.yaml"
+  STORE="qdrant_gpt4o_512_openai_unified_no_p5${TAG_SFX}__factconsolidation_sh_${L}"   # shared with ours_no_p5
+  export MEM0_TRIPLE_MODEL="${MEM0_TRIPLE_MODEL:-gpt-4o-mini}"
+  export MEM0_EXTRACTION_CACHE="$PC/extraction_cache_p1_${L}.json"    # reuse ours_no_p5
+  export MEM0_TRIPLE_CACHE="$PC/triple_cache_p1_${L}.json"            # reuse ours_no_p5
+  export MEM0_SUBJECT_CACHE="$PC/subject_cache_p1_${L}.json"          # reuse ours_no_p5
+  export MEM0_GROUPING_CACHE="$PC/grouping_cache_no_p5_${L}.json"     # reuse ours_no_p5 (LLM raw output cached; guard applied at use-time)
+  export MEM0_CONFLICT_CACHE="$PC/conflict_cache_no_p5_${L}.json"     # reuse
+  export MEM0_SP_INDEX_PATH="$PWD/analysis/results/phase0/sp_index_no_p5_sh_${L}${TAG_SFX}.json"
+  export MEM0_CAND_LOG_DIR="$PWD/$LOGROOT/sh_${L}_no_p5_guard_off${TAG_SFX}"
+  export MEM0_ADD_MODE=phase0_structural
+  export MEM0_QUERY_MODE=phase2
+  export MEM0_P5_SKIP=1
+  export MEM0_SUBJECT_GUARD_OFF=1                                    # <-- the ONE thing that differs from ours_no_p5
+  OUTDIR="outputs/gpt-4o-mini-mem0-chunk512-temp0-openai-unified_no_p5_guard_off${TAG_SFX}"
+  # DO NOT rm the shared store / caches (would destroy ours_no_p5). Only clean
+  # this run's fresh outputs.
+  rm -rf "$MEM0_CAND_LOG_DIR" \
+         "$OUTDIR/Conflict_Resolution/"*sh_${L}*results*.json
+  ANSDIR="outputs/rag_retrieved/Structure_rag_${MODEL_TAG:-gpt-4o-mini}-mem0_512_openai_unified_no_p5_guard_off${TAG_SFX}/k_100/factconsolidation_sh_${L}/chunksize_512"
 elif [[ "$METHOD" == "ours_q_llm_recency" ]]; then
   # Q-llm-recency baseline: naive fact-level RAG + LLM does recency judgment.
   # Uses a dedicated yaml (unified_q_llm_recency.yaml) that shares the qdrant
