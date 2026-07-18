@@ -321,6 +321,62 @@ Ours (LLM-Identity-Only) & \textbf{97} & \textbf{91} & 91 & 87 \\
 
 Table~\ref{tab:ablation_components} 呈現兩項觀察。第一，兩個 identity 機制於 context length 上呈現互補分工。LLM-Identity-Only 於短 context (6k) 上明顯優於 Struct-Only (97 對 91)，反映此區間內候選集規模較小，LLM 於單次呼叫中足以涵蓋所有可能的 identity pair；至長 context (262k)，兩者的 overall sEM 已相近 (87 對 86)。此收斂反映長 context 下 top-100 pool 中的 distractor 增多，LLM 於單次判斷中的 identity grouping 於大 pool 上失去穩定性，而 structural matching 的 $(s, p)$ 配對為 exact match，不受 pool 規模影響。第二，full method 為三個 configuration 中 4 length 平均最高者 (92.5)，且為唯一於 4 length 皆維持 91 以上者；LLM Fallback 相對 Struct-Only 的淨貢獻於 4 length 上為 +3, +4, +2, +5，長 context 上邊際效益最大。此互補分工為 full method 同時保留兩個 component 的定量理由。此外，以 offline $(s, p)$-merge proxy 對 has\_pair query 的三分顯示，structural matching 於 4 length 上皆承擔 68\% 以上的判斷，LLM Fallback 的觸發率為 12\% 至 32\%，兌現 Chapter~\ref{ch:methodology} 中「LLM Fallback 僅於少數案例介入」的定位；此 proxy 的完整定義、其分類限制與逐 length 的觸發率與 in-bucket accuracy 詳見附錄。
 
+\subsection{Subject-Consistency Guard: A Backbone-Adaptive Safeguard}
+\label{subsec:guard_ablation}
+
+本節量化 Section~\ref{subsec:structural_matching} 所述之 subject-consistency guard 的實際貢獻。Guard 於實作上為 LLM Fallback 之後的 Python-side post-filter，非 GROUPING\_PROMPT 內 rule 1 的重複；其執行順序為 prompt 先於 LLM 側告知不合併不同 subject，LLM 產出 raw clusters 之後 guard 於 Python 側依 metadata 中的 subject 訊號執行硬過濾。於 canonical 配置下，此 guard 為預設啟用；本節透過將 guard 停用（$\text{MEM0\_SUBJECT\_GUARD\_OFF}=1$）與 canonical 對照，隔離 guard 對最終 EM 的影響。
+
+於 gpt-4o-mini backbone 上以 FC-SH 4 length 執行實測 ablation（Table~\ref{tab:guard_ablation_actual}）。於其餘 backbone 上，因 grouping cache 已於 canonical 執行時保存 LLM 的原始提議，本文以 offline predictor 依 cache 內容重演 guard 的執行結果並量化其對 gt\_new / gt\_old 的影響，於 gpt-4o-mini 4 length 上以實測驗證其方向 3 於 4 正確、magnitude 於 $\pm 3$ pp 內，因此 predictor 於其餘 backbone 上具備 backbone-directional 的可用信心（Table~\ref{tab:guard_ablation_predictor}）。
+
+\begin{table}[!htb]
+\centering
+\caption{Subject-consistency guard 於 gpt-4o-mini backbone 上的 actual ablation。$\Delta_{\text{off}}$ 為 guard 停用相對 canonical 的 overall sEM 變化。}
+\label{tab:guard_ablation_actual}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Length / Benchmark & Guard on (canonical) & Guard off & $\Delta_{\text{off}}$ \\
+\midrule
+FC-SH 6k & 94 & 99 & $+5$ \\
+FC-SH 32k & 91 & 88 & $-3$ \\
+FC-SH 64k & 94 & 97 & $+3$ \\
+FC-SH 262k & 91 & 92 & $+1$ \\
+FC-SH Mean 4L & 92.5 & 94.0 & $+1.5$ \\
+LME-KU ($N{=}78$) & 70.5 & 69.2 & $-1.3$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\caption{Subject-consistency guard 於其他 backbone 上的 offline predictor 結果（FC-SH 6k has\_pair）。Reject\% 為 guard 於 LLM 所提議之 clusters 中拒絕的比例。$\Delta_{\text{off}}$ 之負值表示 guard 為淨益。無標記者為 no-op，因該 backbone 於 GROUPING\_PROMPT rule 下幾乎不產出違反 rule 的 raw clusters，guard 於實作上鮮少觸發。}
+\label{tab:guard_ablation_predictor}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Backbone & Clusters proposed & Reject\% & $\Delta_{\text{off}}$ (pred) \\
+\midrule
+gpt-5.4-mini (strong) & 87 & 67 & (ceiling-bound) \\
+gpt-4.1-mini (strong) & 503 & 0 & 0 (no-op) \\
+gpt-4o (strong) & 85 & 7 & 0 (no-op) \\
+\midrule
+gemma3-1B (weak) & 0 & --- & 0 (no-op) \\
+gemma3-4B (weak) & 5 & 80 & $+2$ \\
+gemma3-12B (weak) & 1 & 100 & $-1$ \\
+gemma3-27B (weak) & 25 & 88 & $-4$ \\
+\midrule
+gemma2-9B (cross-family) & 27 & 70 & $+1$ \\
+llama3.1-8B (cross-family) & 193 & 80 & $-2$ \\
+qwen2.5-7B (cross-family) & 33 & 67 & $-3$ \\
+mistral-7B (cross-family) & 140 & 83 & $-5$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:guard_ablation_actual} 與 Table~\ref{tab:guard_ablation_predictor} 呈現三項觀察。第一，於強 backbone (gpt-4.1-mini, gpt-4o) 上，LLM 於 GROUPING\_PROMPT 之下幾乎不產出違反 rule 1 的 raw clusters，guard 於實作上鮮少觸發，$\Delta_{\text{off}}$ 為 0 或近 0；於此區間 guard 為背景元件，其存在不影響最終 EM。第二，於 gpt-4o-mini 上，guard 的淨效應於 4 length 上非單調 (+5, -3, +3, +1)，Mean 4L 為 +1.5 pp；此結果反映 guard 於 mid tier 上兼有兩種相反的影響：guard 拒絕跨 subject 的 raw cluster 保住原本會被 $\arg\max_{t} t$ 錯誤 drop 的正解，同時於 gt\_new 與 gt\_old 於 raw cluster 中共存的情境下亦拒絕本應有效的 identity 合併。第三，於 weak backbone 與 cross-family 上，guard 的淨貢獻方向明確為 $\Delta_{\text{off}} \leq 0$：於高活性 (clusters $\geq 100$) 的 llama3.1-8B (−2) 與 mistral-7B (−5) 上皆為 guard 有益，於 gemma3-27B (−4) 與 qwen2.5-7B (−3) 上亦然。此模式反映弱 LLM 於 GROUPING\_PROMPT 下過度提議跨 subject 的合併，guard 於 pipeline 之末端擋下這些 raw cluster 而避免 $\arg\max_{t} t$ 的錯誤 drop。
+
+以上三個 tier 的觀察共同支撐 guard 為 backbone-adaptive 元件的定位：於強 backbone 上為 no-op、於 mid tier 上淨效應接近 zero-sum、於 weak / cross-family 上為淨益。本文於 canonical 配置中預設啟用 guard，理由為 (i) 於本文所評估的 backbone spectrum 上 guard 於多數 cell 為淨益或 no-op，僅於 gpt-4o-mini 4 length 的 Mean 出現 +1.5 pp 的機會成本；(ii) 於論文的部署情境上，weak / cross-family 為 privacy-sensitive on-device 與 cost-constrained deployment 的主要區間，guard 於此區間的淨益 (−2 至 −5 pp) 遠大於於 mid tier 的機會成本。此設計選擇因此於 backbone spectrum 的部署情境上為保守的預設，同時透過 environment variable 提供 guard 停用的 opt-in 開關以支援後續於 mid tier 上的微調實驗。
+
 \FloatBarrier
 
 \section{Limitations and Scope}

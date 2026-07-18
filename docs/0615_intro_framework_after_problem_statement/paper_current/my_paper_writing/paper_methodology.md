@@ -131,6 +131,7 @@ LLM Fallback 不修改記憶，亦不對 $\mathcal{M}$ 中既有事實進行任�
 
 為降低 LLM 於 identity 判斷中錯誤合併不同事實的風險，LLM Fallback 附加一項 subject-consistency 檢查：若 LLM 所建議的 identity cluster 內部存在兩個以上明確且不同的 subject，則拒絕此 cluster。
 殘餘 pool 中的兩類候選於此檢查上所依據的訊號來源不同：具備 triple 的 singleton 候選直接以其 triple 中的 subject 作為比對依據，triple-null 候選則因無 triple 可讀，須倚賴 Section~\ref{sec:writetime} 於此情境下所抽取的 subject fallback，該 fallback 為此類候選唯一可供此檢查啟用的訊號。兩者共同使此檢查得以對橫跨不同實體的錯誤合併給出 deterministic 的否決依據。
+此檢查於實作上為 LLM Fallback 之後的獨立 post-filter，非 GROUPING\_PROMPT 內的 prompt-side rule 的重複；於 Section~\ref{subsec:guard_ablation} 中以 ablation 呈現其貢獻於 backbone spectrum 上的分佈。
 
 經過此檢查後所保留 the cluster，連同 structural matching 主路徑所產生的群，一併進入 $\arg\max_{t} t$ 決定當前版本；未被歸入任何 cluster 的殘餘候選（包含被此檢查否決的 cluster 之成員）各自視為獨立的單一成員群。
 所有群所產出的當前版本共同構成 Current Version(s)，作為 answer 階段的輸入。完整 prompt 見附錄。
