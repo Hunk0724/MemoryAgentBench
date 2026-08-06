@@ -1,0 +1,10 @@
+\chapter{Conclusion}
+\label{ch:conclusion}
+
+本文指出，既有 KU 方法無論將判斷設計於寫入階段（write-time）或查詢階段（query-time），辨識哪些候選記憶對應到同一事實，這一步皆由 LLM 的語意判斷負責，KU 的表現因而取決於 backbone 的判斷能力。而實際部署常受隱私或成本的限制，可用的模型多為中小模型，此時 LLM 難以做出可靠的判斷；且當新事實與 LLM 既有知識衝突時，LLM 傾向以既有知識回答，而未依輸入的資訊做出更新。
+
+在此場景中，LLM 的誤判是預期中會發生的，本文的設計因此從降低誤判的代價與避免誤判的發生出發。write-time 的判斷次數等於進入記憶的事實數量，記憶累積得越久，誤判的次數就可能越多，而判斷結果又在當下寫入記憶，一旦判錯，正確版本在任何查詢之前便已從記憶中被移除。本文因此將 KU 判斷延後至 query-time，write-time 只以 append 的方式保留所有版本並抽取事實的 triple 結構，記憶不因判斷而改動。而對於 LLM 可能誤判，本文的核心觀察是 KU 判斷所隱含的兩個子問題皆不需語意判斷即可解決：辨識同一事實可由 $(\text{subject}, \text{predicate})$ 的結構配對負責，決定當前版本可由寫入時序的比較負責。因此 query-time 的判斷以 deterministic 的方式執行，LLM 僅在結構配對失效的少數候選上作為補救。
+
+本文於兩個文本特性不同的 KU benchmark 上與既有方法比較。於 counterfactual 型情境（FC-SH），本方法的平均正確率高於全部既有方法，且不隨 context 變長而下滑；逐題錯誤分析顯示 baseline 的失敗幾乎都回退到世界知識中的舊值，此一致的失敗方向指向 LLM 對既有知識的偏好，而本方法以結構配對辨識版本，依設計不落入此偏好。於不同判斷能力的 backbone 對照下，本方法相對 baseline 的差距隨 backbone 能力減弱而擴大，隨其增強而收斂，此模式對應本方法的設計，$(\text{subject}, \text{predicate})$ 的 exact match 不需語意判斷，因而不隨 backbone 減弱而失效。於作為對照條件的 personal 型情境（LME-KU），新事實與 LLM 既有知識無衝突，本方法相對 baseline 的差距明顯縮小，其中與本方法機制最接近的既有方法由領先 7.5 百分點反轉為落後 5.1 百分點；此反轉與前述所預期的一致，因此佐證 counterfactual 情境上的差距確實來自 LLM 對既有知識的偏好
+
+綜合上述結果，本文將主要的 KU 判斷從 LLM 移出，改以 deterministic 結構配對負責。於新進事實與 LLM 既有知識衝突且 backbone 判斷能力受限的情境下，讓 deterministic 機制負責主要判斷，LLM 僅作補救，是一種有效的記憶系統 KU 架構設計。

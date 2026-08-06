@@ -1045,6 +1045,8 @@ class AgentWrapper:
                 _qmode = "structural"  # backward-compat for early phase0 runs
             _final = None  # default; structural / else / exception all keep None
             _q_llm_recency = (_qmode == "q_llm_recency")  # controls llm_messages construction below
+            _dont_ask = (_qmode == "dont_ask")  # Don't Ask: mode produces the answer itself, skip answer-gen call
+            _dont_ask_result = None  # (answer, in_tok, out_tok, messages) when dont_ask succeeds
             try:
                 if _qmode == "structural":
                     from methods.phase0_query import assemble_context, group_and_resolve
@@ -1162,6 +1164,110 @@ class AgentWrapper:
                                 }, ensure_ascii=False) + "\n")
                         except Exception as _e:
                             print(f"[q_llm_recency_2s log] failed: {_e}")
+                elif _qmode == "dont_ask":
+                    # Don't Ask (Reddy & Challaram, 2026) — faithful port to LME-KU.
+                    # Reference mechanism (maxserial): ONE LLM candidate-extraction
+                    # over an ordinal-numbered top-K pool, then DETERMINISTIC
+                    # max(serial) selects the freshest matching candidate; that
+                    # candidate's answer_entity IS the final answer — there is NO
+                    # answer-generation LLM call. Recency signal = per-user_id mem0
+                    # `ordinal` (chronological: later session -> larger ordinal),
+                    # i.e. the SAME bank ours uses (this branch runs query-only over
+                    # ours_no_p5's populated store). Mechanism unchanged from the
+                    # reference; only the extraction prompt is reworded for LME's
+                    # first-person conversational personal facts (vs the original FC
+                    # (S,P) factoid prompt that required a verbatim named subject).
+                    _K = int(os.environ.get("MEM0_DONT_ASK_TOPK", "100"))
+                    _topK = _results[:_K]
+                    _numbered = "\n".join(
+                        f"{(e.get('metadata') or {}).get('ordinal', -1)}. {e['memory']}"
+                        for e in _topK
+                    )
+                    _ord_set = {(e.get("metadata") or {}).get("ordinal", -1) for e in _topK}
+                    _da_tmpl = (
+                        "You are given retrieved items from a user's personal memory. "
+                        "Each item has a FRESHNESS marker (the prefix integer) — a "
+                        "higher marker means the item was recorded more recently.\n\n"
+                        "Your job: identify EVERY item that DIRECTLY answers the "
+                        "question, and extract the answer from each such item.\n\n"
+                        "Do NOT compare freshness markers. Do NOT pick a \"best\" one. "
+                        "Include ALL items that answer the question.\n\n"
+                        "Rules:\n"
+                        "1. An item answers the question only if it states the specific "
+                        "piece of information the question asks about (e.g. the user's "
+                        "current city, job, or preference). A related-but-different "
+                        "topic does NOT count.\n"
+                        "2. Most items describe the user (\"User ...\"); treat the user "
+                        "as the subject unless the question names someone else.\n"
+                        "3. If the user has multiple conflicting values recorded at "
+                        "different freshness markers, INCLUDE BOTH as separate "
+                        "candidates. Do not pick.\n"
+                        "4. If no item answers the question, return an empty list.\n"
+                        "5. Copy the item's text verbatim into `fact_text`, and put the "
+                        "concise answer to the question into `answer_entity`.\n\n"
+                        "Question: {question}\n\n"
+                        "Items:\n{pool}\n\n"
+                        "Return ONLY valid JSON: {{\"candidates\": [{{\"serial\": <int>, "
+                        "\"fact_text\": \"<verbatim>\", \"answer_entity\": "
+                        "\"<answer>\"}}, ...]}}"
+                    )
+                    _da_sys = "You are a careful information-extraction system that outputs only JSON."
+                    _da_user = _da_tmpl.format(question=retrieval_query, pool=_numbered)
+                    _da_messages = [
+                        {"role": "system", "content": _da_sys},
+                        {"role": "user", "content": _da_user},
+                    ]
+                    _da_resp, _da_in_tok, _da_out_tok = self._answer_with_client(_da_messages)
+                    # Parse candidates (robust: direct json, then first {...} block).
+                    _cands = []
+                    try:
+                        _parsed = json.loads(_da_resp)
+                        _cands = _parsed.get("candidates", []) if isinstance(_parsed, dict) else []
+                    except Exception:
+                        _m = re.search(r"\{.*\}", _da_resp or "", re.S)
+                        if _m:
+                            try:
+                                _cands = (json.loads(_m.group(0)) or {}).get("candidates", [])
+                            except Exception:
+                                _cands = []
+                    # Deterministic freshness pick: max serial among extracted
+                    # candidates whose serial is actually in the retrieved pool.
+                    _valid = []
+                    for _c in (_cands or []):
+                        try:
+                            _s = int(_c.get("serial"))
+                        except (TypeError, ValueError):
+                            continue
+                        if _s in _ord_set:
+                            _valid.append((_s, str(_c.get("answer_entity", "")).strip()))
+                    if _valid:
+                        _chosen = max(_valid, key=lambda t: t[0])
+                        _da_answer = _chosen[1] or "no answer"
+                        _chosen_serial = _chosen[0]
+                    else:
+                        _da_answer = "no answer"
+                        _chosen_serial = None
+                    memories_str = _numbered
+                    _dont_ask_result = (_da_answer, _da_in_tok, _da_out_tok, _da_messages)
+                    _da_log_dir = os.environ.get("MEM0_CAND_LOG_DIR")
+                    if _da_log_dir:
+                        try:
+                            os.makedirs(_da_log_dir, exist_ok=True)
+                            with open(os.path.join(_da_log_dir, "dont_ask_extract.jsonl"),
+                                      "a", encoding="utf-8") as _f:
+                                _f.write(json.dumps({
+                                    "query_id": query_id,
+                                    "context_id": context_id,
+                                    "n_retrieved": len(_topK),
+                                    "n_candidates": len(_valid),
+                                    "chosen_serial": _chosen_serial,
+                                    "answer": _da_answer,
+                                    "raw_resp": _da_resp,
+                                    "in_tok": _da_in_tok,
+                                    "out_tok": _da_out_tok,
+                                }, ensure_ascii=False) + "\n")
+                        except Exception as _e:
+                            print(f"[dont_ask log] failed: {_e}")
                 else:
                     memories_str = "\n".join(f"- {entry['memory']}" for entry in _results)
             except Exception as _e:
@@ -1174,7 +1280,13 @@ class AgentWrapper:
             # memory returns the direct answer plus the relationship chain).
             # MABench-as-is path (mem0_prompt_aware_graph=False) keeps the
             # original vector-only prompt.
-            if _q_llm_recency:
+            if _dont_ask and _dont_ask_result is not None:
+                # Don't Ask: the answer was already produced by candidate
+                # extraction + deterministic max(serial); there is NO
+                # answer-generation call (faithful to the reference pipeline).
+                response_text, prompt_tokens, completion_tokens, llm_messages = _dont_ask_result
+                system_prompt = llm_messages[0]["content"]
+            elif _q_llm_recency:
                 # Route via origin factconsolidation.rag_agent template + short system
                 # message (per _handle_embedding_rag pattern). Memories + query template
                 # go in USER turn; SYSTEM turn is the short factconsolidation.system.
@@ -1223,7 +1335,8 @@ class AgentWrapper:
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": message + "\n\nCurrent Time: " + time.strftime("%Y-%m-%d %H:%M:%S")}
                 ]
-            response_text, prompt_tokens, completion_tokens = self._answer_with_client(llm_messages)
+            if not (_dont_ask and _dont_ask_result is not None):
+                response_text, prompt_tokens, completion_tokens = self._answer_with_client(llm_messages)
 
             memory_retrieval_length = len(self.tokenizer.encode(memories_str, disallowed_special=()))
             query_time_len = time.time() - self.agent_start_time - memory_construction_time

@@ -1,0 +1,127 @@
+% 本地method_v1
+\chapter{Methodology}
+\label{ch:methodology}
+ 
+\section{Overview}
+\label{sec:method_overview}
+本文方法以使用者在長期互動中產生的對話作為輸入，將對話中抽取的事實建為外部記憶，並於後續查詢觸發時，從記憶中辨識事實的當前版本作為輸出。方法的目標是讓記憶系統在建構與檢索的過程中正確處理 KU：當同一事實在不同時間點被多次抽取，累積出多個版本時，查詢回傳的應是最新版本，而非過時版本。整體流程如圖~\ref{fig:method_overview_new}，分為 write-time 與 query-time 兩個階段。
+ 
+\figt{\textwidth}
+{figs/method_overview_new}
+{本文方法的整體架構。Write-time 將事實連同寫入時序 $t$ 以 append 方式寫入記憶 $\mathcal{M}$，同一事實的多個版本並存；query-time 以 $(\text{subject}, \text{predicate})$ 分群並取寫入時序最新者為當前版本，僅殘餘候選交由 LLM Fallback 補救。黃色為 LLM component，藍色為不涉及 LLM 的 deterministic component。}
+{fig:method_overview_new}
+{}
+ 
+Write-time 負責把對話中新出現的事實忠實寫入記憶，不對記憶中既有事實做任何跨事實的判斷。此階段以 LLM 把對話文字結構化為事實，並連同寫入時序 $t$ 以 append 方式寫入記憶 $\mathcal{M}$，同一事實在不同時點的多個版本因此並存於記憶中（細節見 Section~\ref{sec:writetime}）。
+ 
+Query-time 負責在查詢觸發時，從記憶中辨識當前版本。此階段先檢索與查詢相關的候選，再以結構配對辨識同一事實，並以寫入時序最新者為當前版本，此主要判斷不呼叫 LLM；少數 structural matching 無法分群的殘餘候選，才交由 LLM 補救其歸屬（細節見 Section~\ref{sec:querytime}）。兩者產出的當前版本與 query 共同送入 backbone 作答。
+ 
+此架構包含三項核心設計原則。第一，write-time 不做任何跨筆判斷，所有版本並存於記憶中，錯誤的 KU 判斷不會在寫入階段被不可逆地寫進記憶。第二，query-time 的主要 KU 判斷（同一事實的辨識與當前版本的選擇）為 deterministic 操作，不呼叫 LLM，因此這一步的判斷不隨 backbone 判斷能力變動，也不受 knowledge conflict 情境下 LLM 判斷偏好的影響；此限定僅及於 KU 判斷這一步，本方法的 write-time extraction 與答題階段仍呼叫 LLM，其品質仍受 backbone 能力影響，此點於 Section~\ref{sec:backbone_robustness} 一併討論。第三，LLM 在整體架構中參與 fact extraction、triple extraction，以及 triple-null 時的 subject fallback，皆不涉及跨筆事實的取代判斷，也不修改記憶。
+ 
+\section{Notation and Formal Definitions}
+\label{sec:notation}
+本節建立後續章節共用的符號與形式化定義，以及本方法依賴的假設。表~\ref{tab:notation} 整理本章使用的主要符號，以下先以此界定事實的表示，同一事實的判準與當前版本的判準，再說明方法所依賴的 single-valued 假設。
+ 
+\begin{table}[!htb]
+\centering
+\caption{本章使用的主要符號。}
+\label{tab:notation}
+\small
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+符號 & 意義 \\
+\midrule
+$s,\ p,\ o$ & 一則事實的 subject，predicate，object \\
+$t$ & 事實寫入記憶的時序（ingestion time）\\
+$f, t_f$ & 一筆事實 $f=(s,p,o,t)$，$t_f$ 為其寫入時序 \\
+$\mathcal{M}$ & 記憶，所有已寫入事實的集合 \\
+$\mathcal{M}_{s,p}$ & $\mathcal{M}$ 中 subject 為 $s$，predicate 為 $p$ 的事實子集 \\
+$f^{*}_{s,p}$ & $(s,p)$ 的當前版本 \\
+$q$ & 查詢 \\
+$\mathcal{C}$ & 候選集，vector search 取回的 top-$K$ 候選 \\
+canonical key & normalization 後的 $(s,p)$，配對時實際使用的 key \\
+\bottomrule
+\end{tabularx}
+\end{table}
+ 
+本方法把記憶中每筆事實表示為四元組 $(s, p, o, t)$，其中 $s$，$p$，$o$ 是這則事實的 subject，predicate，object，$t$ 是它寫入記憶的時序（ingestion time）；記憶 $\mathcal{M}$ 是所有已寫入事實的集合。
+ 
+兩筆事實 $(s_1, p_1, o_1, t_1)$ 與 $(s_2, p_2, o_2, t_2)$ 視為同一事實的條件，是 subject 與 predicate 皆相同，即 $s_1 = s_2$ 且 $p_1 = p_2$，object 與寫入時序不納入此判斷。
+ 
+對任一組 $(s, p)$，令
+\[
+\mathcal{M}_{s,p} = \{(s', p', o', t') \in \mathcal{M} : s' = s,\ p' = p\}
+\]
+為記憶中 subject 為 $s$，predicate 為 $p$ 的所有事實，其當前版本取寫入時序最新的一筆：
+\begin{equation}
+\label{eq:current}
+f^{*}_{s,p} = \arg\max_{f \in \mathcal{M}_{s,p}} t_f.
+\end{equation}
+ 
+依此，KU 任務即：給定記憶 $\mathcal{M}$ 與查詢 $q$，從 $\mathcal{M}$ 中找出與 $q$ 相關的事實，並在同一事實存在多個版本時，回傳其當前版本，也就是式~\eqref{eq:current} 中寫入時序最新的一筆。本方法在後續章節即以這組符號展開 write-time 與 query-time 的各 component 設計。
+ 
+本方法依賴一項核心假設：對於同一 $(\text{subject}, \text{predicate})$，同一時點只有一個當前版本，也就是該屬性（property）為 single-valued。屬性依此可分為兩類：single-valued 的屬性於同一時點只對應一個值，新值出現即代表舊值不再成立，例如某人物的出生地、某作品的作者、某國的首都；multi-valued 的屬性於同一時點可以有多個值同時成立，新值出現不代表舊值失效，例如使用者會的語言、使用者的興趣。本方法以寫入時序最新者選出單一版本，此設計只在前者成立，因此本文將處理範圍界定於 single-valued 的屬性。
+
+此範圍在 counterfactual 型 KU 情境成立，因為這類情境所評測的屬性在型態上皆屬 single-valued，同一 $(\text{subject}, \text{predicate})$ 於同一時點只對應一個 gold value。在 personal 型 KU 情境，此範圍涵蓋 single-valued 的個人事實（例如使用者居住的城市），本方法的版本判斷即以這類事實為對象；multi-valued 的個人事實不在本方法處理範圍，此邊界於 Section~\ref{sec:limitations} 一併討論。
+ 
+\section{Write-time Pipeline}
+\label{sec:writetime}
+Write-time 負責把對話中新出現的事實忠實寫入記憶，不對記憶中既有事實做任何跨筆判斷。這個階段只用 LLM 做一件事：把非結構化的對話文字抽成結構化的事實表示，也就是接下來的 fact extraction 與 triple extraction。這類抽取只處理單筆事實內部的結構化，不比較，也不取代記憶中的既有事實，因此不會碰到「新事實是否與 LLM 既有知識一致」這種在 knowledge conflict 下容易出錯的判斷。至於哪筆事實該取代哪筆，哪個是當前版本，這類跨筆的 KU 判斷 write-time 一律不做，全部留到 query-time。
+ 
+\subsection{Fact Extraction}
+\label{subsec:fact_extraction}
+Fact extraction 以 LLM 把使用者發話中所斷言的內容切分為原子事實（atomic fact），每筆事實對應一個斷言。此步驟為後續 triple extraction 提供 atomic 的輸入單位，其設計相對通用，不包含本方法的核心設計。
+ 
+\subsection{Triple Extraction}
+\label{subsec:triple_extraction}
+選用 $(s, p, o)$ 表示的核心理由，在於它的 partition 性質適合 KU 場景。Knowledge editing 領域將一次事實更新形式化為：在固定的 subject 與 relation 之下，以新的 object 取代舊的 object~\cite{cohen2024evaluating}。依此形式，同一則事實的不同版本只在 object 上有差異，而 $(\text{subject}, \text{predicate})$ 於各版本間保持不變，因此可以作為 fact identity 的 anchor，object 則帶有跨版本的差異，這直接對應 Section~\ref{sec:querytime} 中 structural matching 依 $(\text{subject}, \text{predicate})$ 配對同一事實的做法。
+ 
+為了讓這個 partition 性質在實作中成立，triple extraction 要求 subject 是這則事實講的不變實體，object 是當下所斷言的可變值，predicate 是連結兩者的關係。遇到名詞化的關係表達（例如「the CEO of Acme is Jane Doe」），要把名詞片語拆開，取 subject 為 Acme，predicate 為 "has CEO"，object 為 Jane Doe，以確保同一實體的同一屬性在不同表述下仍映射到同一 $(\text{subject}, \text{predicate})$。
+ 
+對於無法乾淨映射為單一 $(s, p, o)$ 的原子事實（主觀狀態或敘事、多筆獨立事實、指代不明），triple 設為 null，並以一次簡短的補充 LLM 呼叫抽出它主要講的實體作為 subject fallback，供 Section~\ref{sec:querytime} 中 LLM Fallback 的 subject-consistency 檢查使用。
+ 
+Triple extraction 產出的 $(s, p, o)$ 會先經過 normalization，讓文字表達上的差異（例如冠詞，copula 的形式變化）不會阻礙同一事實的配對，以支援 structural matching 在 query-time 的 exact match。normalization 後的 $(s, p)$ 稱為 canonical key，是 structural matching 配對時實際使用的 key。
+ 
+每筆事實寫入記憶時，以 append 方式加入 $\mathcal{M}$，不對記憶中既有事實做任何比對或修改。每筆事實的 metadata 包含：事實原文，抽取所得的 $(s, p, o)$ 與其 canonical key，以及寫入時序 $t$。寫入時序 $t$ 在實作中以 per-user 的 fact-level 遞增計數器實現，使同一使用者記憶內的 $t$ 為全序，讓「當前版本取最新時序」的比較能以 deterministic 方式進行。
+ 
+\section{Query-time KU Resolution}
+\label{sec:querytime}
+Query-time 負責本方法的 KU 判斷。此階段的 KU 判斷可分為兩個子問題：fact identity 是辨識哪幾筆候選記憶對應同一事實，version decision 是決定同一事實的多個版本中哪一個是當前版本。本方法對這兩個子問題的處理，分別對應前一節同一事實與當前版本的判準：fact identity 主要以 $(s, p)$ 的 structural matching 完成，少數 structural matching 無法分群的情況交由 LLM 補救；version decision 完全由寫入時序的比較完成，不涉及 LLM。Algorithm~\ref{alg:query} 給出 query-time 的完整流程，本節以下各小節依 candidate retrieval、structural matching 與 LLM Fallback 的順序，說明其中各步驟的設計。
+
+\begin{algorithm}[htbp]
+\caption{Query-time KU Resolution}
+\label{alg:query}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\Input{Query $q$, memory $\mathcal{M}$}
+\Output{Current versions $\mathcal{V}$}
+$\mathcal{C} \gets \textsc{TopK-VectorSearch}(q, \mathcal{M})$\;
+$\mathcal{C}_{\text{struct}}, \mathcal{C}_{\text{null}} \gets$ partition $\mathcal{C}$ by $(s, p)$ canonical key availability\;
+$\mathcal{G} \gets$ group $\mathcal{C}_{\text{struct}}$ by canonical key\;
+$\mathcal{G}_{\text{multi}} \gets \{g \in \mathcal{G} : |g| \geq 2\}$\;
+$\mathcal{R} \gets \mathcal{C}_{\text{null}} \cup \bigcup \{g \in \mathcal{G} : |g| = 1\}$ \tcp*{residual pool: triple-null + singleton}
+$\mathcal{G}_{\text{fallback}} \gets \textsc{LLM-Fallback}(\mathcal{R}, q)$ with subject-consistency check\;
+\tcp{unclustered members of $\mathcal{R}$ remain as singleton groups in $\mathcal{G}_{\text{fallback}}$}
+$\mathcal{V} \gets \emptyset$\;
+\ForEach{$g \in \mathcal{G}_{\text{multi}} \cup \mathcal{G}_{\text{fallback}}$}{
+    $\mathcal{V} \gets \mathcal{V} \cup \{\arg\max_{f \in g} t_f\}$\;
+}
+\Return $\mathcal{V}$\;
+\end{algorithm}
+
+\subsection{Candidate Retrieval}
+\label{subsec:candidate_retrieval}
+給定查詢 $q$，以 vector search 從記憶 $\mathcal{M}$ 中取回與 $q$ 語意相關的 top-$K$ 候選事實，組成候選集 $\mathcal{C}$。此步驟是標準的 dense retrieval，embedding 對象為 Section~\ref{sec:writetime} 寫入時保留的事實原文。
+
+\subsection{Structural Matching and LLM Fallback}
+\label{subsec:structural_matching}
+Structural matching 是 query-time KU 判斷的主要做法，以 $(s, p)$ 為 key 把候選集 $\mathcal{C}$ 分群，每群內以寫入時序最新者為當前版本。以 $(s, p)$ 分群對應前述同一事實的判準，即 canonical key 的 exact match；取寫入時序最新者則對應當前版本的判準，兩者都是 deterministic 操作。這個做法不呼叫 LLM，因此其版本判斷不隨 backbone 能力變動，也不受 knowledge conflict 情境下 LLM 判斷偏好的影響。
+
+Structural matching 要能運作，前提是候選事實都能被配對為 $(s, p)$ 群，但有兩類候選不滿足這個前提。其一是 Section~\ref{sec:writetime} 所述，triple extraction 中無法乾淨映射為單一 $(s, p, o)$ 的候選（主觀狀態或敘事、多筆獨立事實、指代不明），其 triple 為 null，在 $\mathcal{C}$ 中沒有 canonical key 可供分群。其二是依 canonical key 分群後只含單一成員的 singleton 群；這類成員雖然有 key，但若同一事實的另一版本因抽取用字差異落入了不同 key，兩個版本就各自成為 singleton，群內只有一個成員，無從比較版本。這兩類候選共同組成殘餘 pool，交由 LLM Fallback 補救。
+
+LLM Fallback 只做 identity 判斷，也就是針對殘餘 pool 以語意判斷哪幾筆對應同一事實，不判斷版本新舊；判斷出的群內部，仍以寫入時序最新者為當前版本，version decision 在這條處理上仍是 deterministic。LLM Fallback 不修改記憶，也不對 $\mathcal{M}$ 中既有事實做任何寫入。
+LLM Fallback 於殘餘 pool 上以語意判斷 identity，其結果可分為兩類。一類是把因 predicate 表達差異（例如「was authored by」與「has author」）而未能配對的同一 subject 之不同版本正確合併，這正是 fallback 存在的目的；另一類是把 predicate 與 object 恰好相同、但 subject 為不同實體的候選誤合為同一群，這類 cross-subject 誤合是 fallback 於強 backbone 上最主要的失敗來源。為避免後者，LLM Fallback 附加一項 deterministic 的 subject-consistency 檢查：若一個群內含兩個以上明確且不同的 subject，即拒絕此事實配對；有 triple 的候選以其 canonical subject 為比對依據，triple-null 候選則以 Section~\ref{sec:writetime} 抽出的 subject fallback 為訊號。
+
+此檢查的設計依據為 fallback 兩類錯誤的代價不對稱：誤合（false merge）會使一個合法的值在版本選擇中被捨棄，誤分（false split）僅使候選以多版本形式進入答題階段，後者的代價明顯較低。因此本方法將護欄偏向否決側：檢查以整群拒絕的方式執行，被拒絕的成員各自視為單一成員群，此失敗模式等同於該筆事實未經整併，不會產生新的資訊損失。
+
+通過這項檢查而保留的群，連同 structural matching 主要做法產生的群，一起以寫入時序最新者決定當前版本；沒有被歸入任何群的殘餘候選（包含被此檢查否決的成員），各自視為獨立的單一成員群。所有群產出的當前版本，共同作為 answer 階段的輸入。

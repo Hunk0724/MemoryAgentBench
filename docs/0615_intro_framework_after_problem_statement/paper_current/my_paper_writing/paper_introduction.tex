@@ -1,0 +1,38 @@
+\chapter{Introduction}
+\label{ch:introduction}
+\section{Background}
+
+近年基於大型語言模型（Large Language Models, LLMs）的智慧代理已被廣泛應用於需要跨越多個對話與使用者長期互動的場景。然而 LLM 本身為無狀態（stateless），僅能在有限的 context window 內運作。為在跨對話的長期互動中維持連貫性，需引入外部記憶（external memory）持續保存並檢索對話中累積的資訊。
+
+隨著記憶持續累積對話中提供的資訊，同一事實會於不同時點寫入不同版本，記憶中因此保留同一事實的多個版本。當後續查詢觸發檢索時，新舊版本會被一併取回並作為 context 提供給 LLM，回答可能因此取自過時版本而非當前版本。
+辨識同一事實在記憶中的多個版本，並採用其最新版本，此問題被稱為知識更新（Knowledge Update, KU）。近期多個長期記憶 benchmark 將 KU 明確列為記憶系統的核心能力之一\cite{wulongmemeval}\hspace{-0.05em}\cite{hu2026evaluating}\hspace{-0.05em}\cite{tavakoli2026beyond}。
+
+另一方面，KU 情境根據新事實的特性可再分為兩類。一類是 counterfactual 型 KU，新事實明顯與世界事實不符，但要求記憶系統以新事實為準，例如 MemoryAgentBench 的 FactConsolidation 任務即以 MQUAKE 中的 counterfactual 事實所建構\cite{hu2026evaluating}\hspace{-0.05em}\cite{zhong2023mquake}。另一類是 personal 型 KU，新事實為使用者個人資訊隨時間的變動，例如 LongMemEval 的 knowledge-update 任務以自然對話中使用者事實所建構\cite{wulongmemeval}。兩類情境於後續章節分別稱為 counterfactual 型與 personal 型 KU 情境，用以區分本文的實驗設計與觀察。
+
+\section{Motivation}
+
+一個通用的記憶系統依資訊被處理的時機，可分為寫入階段（write-time）與查詢階段（query-time）。write-time 負責將新資訊建構到記憶中，並決定新資訊與既有記憶的關係；query-time 則依當前查詢從記憶中檢索相關內容作為 context 提供 LLM 推論使用。
+
+在此階段區分之下，一個 KU 判斷機制包含兩個彼此獨立的設計面向：判斷於何時做出、判斷由什麼機制做出。前者決定誤判的後果落在哪裡，若判斷於 write-time 做出，其結果會直接改變記憶的內容；若判斷延後至 query-time 做出，記憶的內容不因判斷而改變。後者決定誤判本身是否容易發生，若判斷交由 LLM 的語意理解做出，判斷品質便取決於模型的能力；若判斷改由事實的結構資訊與 metadata 做出，則不涉及語意理解。本文以這兩個面向檢視既有方法，並據此說明本文的設計選擇。
+
+現有方法可依 KU 判斷的時機分為三種處理策略。早期方法將 KU 判斷設計在 write-time，由 LLM 於單次呼叫中同時判斷記憶要如何被操作（如 ADD、UPDATE、DELETE）並執行寫入\cite{chhikara2025mem0}\hspace{-0.05em}\cite{fang2026lightmem}。此類方法的判斷與執行位於同一次 LLM 呼叫之中，一旦誤判就直接將錯誤寫入記憶。為降低此風險，後續研究於 write-time 將判斷與執行解耦，LLM 僅負責輸出新舊事實之間的關係類別（如 contradict 與 duplicate），實際的操作則交由 deterministic 系統執行\cite{rasmussen2025zep}\hspace{-0.05em}\cite{wang2026less}。此類方法雖降低了 LLM 對記憶的直接修改，KU 判斷仍然於 write-time 完成，判斷結果依然在寫入當下就寫定於記憶之中。近期研究則進一步將 KU 判斷延後至 query-time，記憶始終保留所有版本，只在查詢觸發時對檢索出的候選事實進行判斷\cite{reddy2026don}。以前述兩個設計面向來看，這三種策略的差異集中在判斷時機這一面向，由 write-time 逐步移至 query-time；判斷機制這一面向則始終未變，辨識哪些候選記憶對應到同一事實，這一步從最早的方法到近期的 query-time 方法都由 LLM 的語意判斷負責。以 Reddy 與 Challaram 的方法為例，其已將版本先後的決定改由事實序號的 deterministic 比較負責，但辨識同一事實仍在 query-time 由 LLM 完成\cite{reddy2026don}。
+
+另一方面，語言模型在實務上經常被部署於 backbone 能力受限的環境。當資料不能離開裝置或機構時，推論就必須留在本地端執行，而本地端的硬體條件使可用的模型限於輕量化的中小模型，醫療是最典型的例子：雲端服務必須將受保護的病患資料傳送至遠端伺服器，部分法規並不允許個人健康資料以此方式輸出，因此合理的做法是讓模型在醫療機構的本地端運行，而能夠部署的多為 7B 這個等級的模型\cite{wiest2025deidentifying}\hspace{-0.05em}\cite{wiest2024privacy}\hspace{-0.05em}\cite{pham2025slimlm}。成本受限的情境也是如此，部署會在模型能力與價格之間權衡，實務上採用成本較低的較小模型\cite{chenfrugalgpt}。上述都是語言模型本身的部署條件，而記憶系統是接在這樣的語言模型上運作的，因此會承接同一個條件。也就是說，一個要服務這類部署的記憶系統，在設計上不能假設自己有一個判斷可靠的 backbone。本文即以此為前提，將 LLM 的誤判視為預期中會發生的情況，並在此前提下重新檢視前述兩個設計面向。
+
+在誤判為預期的前提下，將 KU 判斷設計在 write-time 的問題在於誤判的後果不可逆。write-time 的判斷次數等於進入記憶的事實數量，記憶累積得越久，暴露於誤判之下的次數就越多；而此類判斷的結果會在寫入當下直接寫定於記憶，有的直接覆寫舊值，有的將舊值標記為失效。只要其中一次判錯，正確的版本在使用者提出任何查詢之前就已經從記憶中被移除，後續無論如何檢索都無法再取回。因此本文的第一個設計選擇是不在 write-time 做任何 KU 判斷，將所有版本原封不動地保留，並把判斷延後至 query-time，只在檢索回來的少數候選上進行。此安排的關鍵不在於判斷因此變得比較準確，而在於判斷不再具有破壞性：即使某一次判斷出錯，記憶中的正確版本仍然存在，下一次查詢仍有機會取得它。
+
+將判斷延後至 query-time 處理的是誤判的後果，並未處理判斷本身是否準確。只要辨識同一事實這一步仍由 LLM 的語意判斷負責，KU 的表現就受到兩個層面的限制。一個是 backbone 能力的限制，部署的既然是中小模型，判斷品質便受限於該模型所能達到的程度，將判斷搬到 query-time 並不會使它變得更會判斷。另一個是 LLM 於知識衝突（knowledge conflict）下的判斷偏好，近期研究指出，當 context 中提供的新資訊與 LLM 內部的既有知識不一致時，即便 prompt 已明確要求以提供的資訊為準，LLM 仍傾向以自身知識回答\cite{longpre2021entity}\hspace{-0.05em}\cite{xu2024knowledge}；此偏好來自模型內部知識與 context 之間的競爭，因此不會因為換用能力更強的模型而消失。因此本文的第二個設計選擇是將判斷本身從 LLM 移出，LLM 僅保留事實抽取這類較單純的職責，判斷則交由不涉及語意理解的機制執行。
+
+\section{Research Objective}
+
+基於上述觀察，在 backbone 能力受限的部署條件下，KU 判斷若於 write-time 做出，誤判的後果不可逆；判斷若由 LLM 做出，KU 的表現便受 LLM 的判斷能力與判斷偏好所影響。本文的核心問題是：將 KU 判斷延後至 query-time，並將判斷本身從 LLM 執行改為以 deterministic 機制執行，是否能使 KU 的表現不再依賴 LLM 的判斷能力，且不再受 LLM 判斷偏好的影響？
+
+要以 deterministic 機制取代 LLM 判斷，須先確認 KU 是否能不靠語意判斷就能解決。KU 判斷隱含兩個子問題：辨識哪些候選記憶對應同一事實（fact identity），以及決定其中哪一個為當前版本（version decision）。就辨識同一事實而言，KU 發生於 fact-level 的記憶粒度，而事實可表示為 $(\text{subject}, \text{predicate}, \text{object})$ 的三元組（triple）形式~\cite{zhong2023comprehensive}，其中 $(\text{subject}, \text{predicate})$ 指此事實的實體與屬性，object 為該屬性的值。在同一屬性於同一時點僅取單一值的前提下，同一 $(\text{subject}, \text{predicate})$ 即對應同一事實，辨識同一事實能夠透過 $(\text{subject}, \text{predicate})$ 的結構配對負責。就決定當前版本而言，KU 情境下同一事實於同一時間點僅有一個當前版本，寫入時序較新者即為當前版本，版本決定能夠透過寫入時序上的比較負責。兩個子問題皆能由事實的結構與寫入時序負責，不需 LLM 的語意判斷，此為 deterministic 機制執行 KU 判斷的可行性基礎。
+
+因此，本文提出以 deterministic 結構配對為主要 KU 判斷方式：write-time 只保留所有版本，並對事實抽取結構化資訊，不進行任何 KU 判斷；query-time 才進行 KU 判斷，並以 $(\text{subject}, \text{predicate})$ 配對辨識同一事實，透過事實寫入時序決定當前版本。LLM 於此設計中僅於結構配對失效的情況下作為補救介入，不參與主要判斷，也不修改記憶。本文的研究目標包含以下三點：
+
+\begin{itemize}
+\item 本文提出以 deterministic 結構配對為主要 KU 判斷方式的記憶系統機制。此機制將 KU 判斷從 LLM 執行改為由確定性操作執行，使 KU 判斷不再依賴 LLM 的語意判斷。
+\item 本文於 counterfactual 型 KU 情境上與既有方法比較，檢驗本方法相對既有方法的 KU 準確率，並透過對 query-time baseline 錯誤模式的逐題分析，檢驗既有方法與本方法的差距是否來自 LLM 傾向以既有知識作答，因而抗拒更新 counterfactual 的新事實。為進一步檢驗此歸因，本文另以 personal 型 KU 情境作為對照條件。此情境中的新事實與 LLM 既有知識無衝突，LLM 於判斷時不受既有知識偏好的抗力，因此若上述歸因成立，本方法與既有方法的差距應於此情境下明顯縮小。
+\item 本文透過以不同能力的 backbone 進行對照實驗，檢驗既有以 LLM 判斷 KU 的方法其準確率是否隨 backbone 能力減弱而下滑，以及本方法以結構配對負責版本判斷，這一步不經 LLM 的設計，其退化是否較既有方法小，兩者的差距是否因此隨 backbone 能力減弱而擴大。
+\end{itemize}

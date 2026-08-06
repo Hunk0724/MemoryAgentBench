@@ -12,8 +12,7 @@ Design (mirrors F_mainexp_ladder_6k.py style):
       solid  = query-time deterministic
       dashed = query-time LLM
       dotted = write-time LLM
-  - Family band + separator: Gemma3 (per-backbone extraction) | GPT tier
-      -> honest extraction confound disclosure
+  - Family band + separator: Gemma3 | GPT tier (both per-backbone extraction)
 
 6-tier x-axis (weak -> mid -> strong):
   gemma3-1B -> 4B -> 12B -> 27B -> gpt-4o-mini -> gpt-5.4-mini
@@ -69,9 +68,9 @@ for s in ("top", "right"):
 # --- family band (Gemma3 | GPT) : honest extraction caveat ---
 ax.axvspan(-0.25, 3.5, facecolor="#000000", alpha=0.045, zorder=0)
 ax.axvline(3.5, color="#BBBBBB", linewidth=0.9, linestyle=(0, (2, 2)), zorder=1)
-ax.text(1.5, 103.5, "Gemma3  (per-backbone extraction)", ha="center",
+ax.text(1.5, 103.5, "Gemma3", ha="center",
         va="bottom", fontsize=8.2, color="#777777")
-ax.text(4.5, 103.5, "GPT  (held-fixed gpt-4o-mini extraction)", ha="center",
+ax.text(4.5, 103.5, "GPT", ha="center",
         va="bottom", fontsize=8.2, color="#777777")
 
 ax.legend(loc="lower right", fontsize=8.4, frameon=True, framealpha=0.95,

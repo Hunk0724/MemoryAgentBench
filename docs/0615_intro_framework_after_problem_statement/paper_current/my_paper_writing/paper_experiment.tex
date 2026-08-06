@@ -1,0 +1,365 @@
+% 本地exp_v2
+\chapter{Experiments}
+\label{ch:experiments}
+ 
+本章在兩個文本特性不同的 KU benchmark 上評估本方法，並圍繞一個核心問題組織：本方法與既有方法在 counterfactual 情境上的表現差距，是否來自 LLM 於知識衝突下對既有知識的偏好。Section~\ref{sec:setup} 交代兩個 benchmark、baselines、backbones、metrics 與共用的實作設定。Section~\ref{sec:main_fcsh} 於單一主 backbone 上呈現 counterfactual 情境（FC-SH）的整體結果，並透過對 baseline 失敗題的逐題分析，檢視上述差距是否對應既有知識偏好。Section~\ref{sec:backbone_robustness} 改換不同判斷能力的 backbone，檢視此差距是否隨 backbone 能力減弱而擴大。Section~\ref{subsec:lme_control} 改以無知識衝突的 personal 情境（LME-KU）作為對照條件，自反方向檢視同一歸因：若差距確來自既有知識偏好，則於此情境上應明顯縮小。最後 Section~\ref{sec:limitations} 說明本方法的適用範圍與實驗設定上的邊界。
+ 
+\section{Experimental Setup}
+\label{sec:setup}
+ 
+\subsection{Datasets}
+\label{subsec:datasets}
+ 
+本文在兩個 benchmark 的 KU 任務上評估。第一個是 MemoryAgentBench 中的 FactConsolidation Single-Hop (FC-SH)~\cite{hu2026evaluating}，其文本由 MQuAKE~\cite{zhong2023mquake} 的多個 counterfactual edit pair 組成，每一句是序號加上 fact statement，全體是一份編號列表，對應 counterfactual 型 KU 情境（新事實與 LLM 既有知識衝突）。
+ 
+第二個是 LongMemEval~\cite{wulongmemeval} 中的 knowledge-update subtask (LME-KU)，其 context 由多個 session 的自然對話組成，對應 personal 型 KU 情境（使用者事實隨時間變動，與 LLM 既有知識無衝突）。兩者的統計整理於 Table~\ref{tab:datasets}。FC-SH 沿用 benchmark 官方的 100-query 子集作為主要評測分母，對齊官方 evaluation 慣例。
+ 
+\begin{table}[!htb]
+\centering
+\caption{兩個 benchmark 的統計。}
+\label{tab:datasets}
+\small
+\begin{tabularx}{\linewidth}{lXX}
+\toprule
+Property & FC-SH & LME-KU \\
+\midrule
+Source & MemoryAgentBench~\cite{hu2026evaluating} & LongMemEval~\cite{wulongmemeval} \\
+KU 情境 & Counterfactual & Personal \\
+Context lengths & 6k, 32k, 64k, 262k tokens & 平均 128k tokens per query \\
+Context 結構 & 編號 fact statement 列表 & 多 session 對話（平均 488 turns）\\
+Queries & 100 per length & 78 KU questions \\
+\bottomrule
+\end{tabularx}
+\end{table}
+ 
+\subsection{Baselines}
+\label{subsec:baselines}
+本文依 KU 判斷的時機（對應 Chapter~\ref{ch:related_work} 的 taxonomy）選取代表性 baselines，分為 write-time KU 與 query-time KU 兩類，另加一組無記憶的 long-context baseline 作為對照。各方法的 KU 判斷機制整理於 Table~\ref{tab:baselines}，共用的實作設定見 Section~\ref{subsec:implementation}。Mem0 是本方法最直接的對照，因為本方法的記憶框架即以 Mem0 為基礎修改、與其共用 memory bank 與 retrieval，兩者的差異集中在 extraction 與 KU 判斷（框架細節見 Section~\ref{subsec:implementation}）。
+ 
+\begin{table}[!htb]
+\centering
+\caption{Baselines，於 Chapter~\ref{ch:related_work} 對應 KU 判斷時機的分類。表中 serial 為候選的寫入序號；本文實驗環境下各 method 的 serial 皆為本方法的 ingestion time（見 Section~\ref{subsec:implementation}）。}
+\label{tab:baselines}
+\small
+\begin{tabularx}{\linewidth}{llX}
+\toprule
+Method & Timing & 判斷機制 \\
+\midrule
+Mem0 Vanilla~\cite{chhikara2025mem0} & Write-time coupled & LLM 於單次呼叫輸出 ADD/UPDATE/DELETE/NOOP 並就地覆寫 \\
+Mem0 + Fact Extraction~\cite{chhikara2025mem0} & Write-time coupled & 本方法的 fact extraction 加上 Mem0 destructive UPDATE \\
+Zep~\cite{rasmussen2025zep} & Write-time decoupled & 內部 LLM 標記 contradict 或 duplicate，舊 edge 被 invalidated \\
+Long-Context Agent & 無記憶 & 直接以 full context 答題 \\
+Vanilla-RAG & Query-time LLM & 檢索後以 serial-prefixed 格式呈現，由 LLM 依序號判斷較新版本 \\
+Don't Ask~\cite{reddy2026don} & Query-time LLM & LLM 抽出語意相符候選（指示全抽、不比序號），再以 $\max(\text{serial})$ 選版本並直接輸出 \\
+\midrule
+Ours (Struct + LLM-Fallback) & Query-time deterministic & $(s, p)$ structural matching，以 ingestion time 最新者選版本，LLM fallback matching 補救殘餘 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+ 
+在 write-time KU 中，Mem0~\cite{chhikara2025mem0} 於單次 LLM 呼叫中判斷新舊事實的取代關係並直接覆寫記憶（destructive UPDATE），被覆寫的舊值無法在後續查詢中取回；Zep~\cite{rasmussen2025zep} 將 LLM 的職責限縮為標記 contradict 或 duplicate，由系統把舊 edge 標為失效。本文另以 Mem0 + Fact Extraction 作為對照：Mem0 原生 extraction 為 personal fact 設計，遇到 FC-SH 的 counterfactual 事實常抽不出來，為避免 Mem0 輸在沒抽到事實而非 KU 判斷，本文把其 extraction 換成本方法的 fact extraction、其餘不變（見 Section~\ref{subsec:implementation}）。
+ 
+在 query-time KU 中，Vanilla-RAG 代表「把 RAG 的處理策略直接搬到 KU」的做法，查詢時把候選連同序號交給 LLM，由 LLM 依序號判斷較新版本。Don't Ask~\cite{reddy2026don} 是與本方法最接近的近期研究，其 query-time 由 LLM 抽出所有語意相符的候選（prompt 明確指示把同一主題的多個版本全部抽出、不比較序號），再以程式碼取序號最大者為當前版本並直接輸出答案，版本選擇與答題皆不再呼叫 LLM。本方法與 Don't Ask 的關鍵差異即在此：兩者都以程式碼對序號取最大來決定版本，但 Don't Ask 辨識同一事實仍靠 LLM 的 candidate extraction，本方法則把辨識同一事實也結構化為 $(s, p)$ 配對。
+ 
+無記憶對照 LCA 直接以 full context 答題，沒有 write 與 retrieve 的流程。
+ 
+本方法把 KU 判斷完全移出 LLM：以 $(s, p)$ 的 structural matching 辨識同一事實，以 ingestion time 最新者決定版本，僅在 structural matching 無法分群的殘餘候選上以 LLM fallback matching 補救。
+ 
+\subsection{Backbones}
+\label{subsec:backbones}
+ 
+本文於三個能力區間、共六個 model 上評測，對應 Chapter~\ref{ch:introduction} 所述的三種 LLM 部署情境：privacy-sensitive on-device 情境~\cite{pham2025slimlm} 以 gemma3 系列（1B, 4B, 12B, 27B）涵蓋，cost-constrained API 情境~\cite{chenfrugalgpt} 以 gpt-4o-mini 為主 backbone，strong backbone 情境以 gpt-5.4-mini 為強端 reference。此外，為檢驗 KU 表現隨 backbone 退化的現象是否跨不同family成立，本文另在 Gemma2-9B、Llama3.1-8B、Qwen2.5-7B、Mistral-7B 四個獨立系列的 7--9B open-weight model 上評測。
+ 
+上述 backbone 的評測構成兩個互補的 view。gemma3 是同一 family 內、由 1B 至 27B 的不同 backbone scale，用以觀察 KU 表現如何隨同一系列的能力增減而變化；cross-family 組固定在 7--9B⋯改換四個獨立 family，用以確認 KU 表現隨 backbone 變化的現象是此能力區間的普遍現象，而非單一 model 系列的特例。
+ 
+除 Mem0 Vanilla 與 Zep 外，所有 method 在 local model 上皆採 per-backbone extraction：fact extraction 與 triple extraction 由該 backbone 自身執行，同一 backbone 內所有 method 共用這一份抽取結果（bank），因此同一 backbone 內各 method 的差異集中在 KU 判斷這一步，比較是公平的。此設定的一項後果是，跨 backbone 的絕對分數同時受該 backbone 自身 extraction 品質影響，這一點於 Section~\ref{sec:backbone_robustness} 中一併討論，本文不宣稱任一組實驗已將 extraction 品質的影響隔離。
+ 
+\subsection{Metrics}
+\label{subsec:metrics}
+ 
+FC-SH 採用官方的 substring exact match (sEM) metric~\cite{hu2026evaluating}。後處理包含答案 normalization（轉小寫、去除標點與冠詞、正規化空白），並對模型原始輸出與其解析後片段（Answer: 之後的內容）分別計分取最大值；sEM 判定為 normalization 後的 ground truth 是否為 normalization 後預測的子字串。主要評測分母為每 length 100 個 query，對齊官方 evaluation 慣例。
+ 
+LME-KU 採用 LongMemEval 官方的 LLM autoeval~\cite{wulongmemeval}，以 gpt-4o-mini-2024-07-18 作為 judge model，主要評測分母為 78 個 KU questions。所有實驗以 temperature 0 執行單次 run。
+ 
+\subsection{Implementation Details}
+\label{subsec:implementation}
+ 
+\subsubsection{Memory Framework and Retrieval}本方法的記憶框架以 Mem0~\cite{chhikara2025mem0} 為基礎修改：沿用其 memory bank 與 retrieval，替換 extraction 與 update module，並在 retrieval 之後新增 structural matching 與 LLM fallback matching。因此本方法與 Mem0 系列共用完全相同的 memory bank 與 retrieval，兩者的差異集中在 extraction 與 KU 判斷這兩處，這使 Mem0 系列成為隔離 KU 判斷效果的最直接對照。Chunker 使用 chunk size 512，retrieval 以 vector search 取回 top-100 候選，embedding model 為 text-embedding-3-small（1536 維度）。Zep 依其官方推薦使用 top-10 檢索。所有 backbone 推論時 temperature 設為 0。
+ 
+\subsubsection{Extraction Setup}除 Mem0 Vanilla 與 Zep 外，所有 method 在 local model 上皆採 per-backbone extraction：fact extraction 與 triple extraction 由該 backbone 自身執行，同一 backbone 內所有 method 共用這一份抽取結果（bank）。因此同一 backbone 內各 method 面對的是相同的 bank，差異只在 KU 判斷這一步，比較是公平的。
+ 
+其中 Mem0 + Fact Extraction 為隔離 extraction 變因而設：Mem0 原生 extraction 為 personal fact設計，遇到 FC-SH 的 counterfactual 事實常抽不出來，若直接以其原生 extraction 跑 FC-SH，Mem0 會輸在沒抽到事實而非 KU 判斷本身；換上本方法的 fact extraction、其餘不變後，Mem0 系列與本方法的差異就集中在 destructive UPDATE 與本方法 deterministic 處理之間。
+ 
+此外，本文各 method 用於版本判斷的序號皆為本方法的寫入時序（ingestion time）：Don't Ask 原生設計讀取 benchmark 提供的 serial，在本文的實驗環境中，此 serial 即為本方法為每筆事實指派的 ingestion time，因此各 method 的版本判斷基於相同的序號來源，差異只在如何使用此序號。
+ 
+\subsubsection{Answer-stage Prompt Alignment}答題階段的 prompt 對齊分為兩個層次。任務指令層在全部 method 上一致：所有 method 的 question 皆由 benchmark 原生的 conversation creator 統一 wrap 為含序號規則與「僅依記憶中的知識作答，而非真實世界的事實」指令的 formatted query，再原封傳入各 method 的 handler，因此沒有任何 method 在此規則的可得性上取得優勢。
+ 
+Inference scaffolding 層則沿用各 method 在 benchmark 中的原生 handler。其中本方法、Mem0 Vanilla 與 Mem0 + Fact Extraction 三者共用同一 handler，system message 與 memory 呈現格式完全相同，差異僅在送入答題階段的 memory selection，此為本文最主要的受控對照；Vanilla-RAG 與此共用同一 handler 骨架，但 memory 以 ordinal-prefixed 格式呈現並搭配對應的 system message，此差異為該 baseline 的必要條件（見 Section~\ref{subsec:baselines}）。
+ 
+\subsubsection{Vanilla-RAG Call Structure across Benchmarks}Vanilla-RAG 在兩個 benchmark 上採用不同的呼叫結構，原因是兩個 benchmark 的原生答題 template 不同。FC-SH 的原生答題 template 本身即含序號規則，因此 Vanilla-RAG 在 FC-SH 上為單次呼叫，同一次呼叫中同時判斷版本與作答。
+ 
+LME-KU 的原生答題 template 不含此規則，若在 LME-KU 上沿用單次呼叫，Vanilla-RAG 會是全表唯一在答題 template 上與其餘 method 不一致者，分數就無法歸因於 KU 機制。因此本文在 LME-KU 上改採兩階段：第一階段由 LLM 從 ordinal-prefixed 的 top-100 候選中選出 winners，第二階段以 LME 原生 template 作答，此 template 與其餘 method 完全相同。
+ 
+\subsubsection{Don't Ask Exception}Don't Ask 在上述對齊架構中為一項例外。其實作直接沿用作者公開 repository 的 pipeline：LLM 僅參與 candidate extraction 一步，版本選擇由 $\max(\text{serial})$ 確定性完成，答案直接取自結構化欄位，不經答題階段的 LLM 呼叫。此設計本身沒有答題 prompt 可供對齊，其 candidate extraction 也因此未收到上述「僅依記憶中的知識作答」的任務指令 wrap。本文忠實重現其原始設計而不作介入，此差異於解讀其結果時應納入考量。上述為 FC-SH 之情形；於 LME-KU，因其事實為第一人稱對話式個人事實（主體為隱含的使用者、答案常非單一命名 entity），原 repository 的 $(s, p)$ factoid extraction prompt 無法直接套用，本文將其忠實改寫為對應個人事實的版本，其餘機制（抽出全部相符候選、$\max(\text{serial})$ 取最新、直接輸出 answer entity、不經答題階段）不變；其執行為 query-only、重用本方法的 per-user 記憶，故 serial 即本方法的寫入時序、檢索亦與本方法相同。
+ 
+ 
+\section{Main Results on FC-SH}
+\label{sec:main_fcsh}
+ 
+\subsection{Overall Performance}
+\label{subsec:fcsh_overall}
+表~\ref{tab:fcsh_main} 為各 method 於 gpt-4o-mini 在四個 context length 上的 sEM，分母為每 length 100 個 query。本方法平均達 92.5\%，在 32k、64k、262k 三個較長 length 上為各 method 最高，在最短的 6k 上與 Vanilla-RAG（93\%）相當。
+ 
+\begin{table}[!htb]
+\centering
+\caption{FC-SH 於 gpt-4o-mini 的 sEM (\%)，分母每 length 100 個 query。}
+\label{tab:fcsh_main}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Method & 6k & 32k & 64k & 262k & AVG \\
+\midrule
+Mem0 Vanilla & 16 & 22 & 28 & 17 & 20.8 \\
+Mem0 + Fact Extraction & 52 & 52 & 65 & 50 & 54.8 \\
+Zep & 82 & 80 & 76 & 29 & 66.8 \\
+LCA (full context) & 88 & 74 & 65 & 43 & 67.5 \\
+Vanilla-RAG & 93 & 77 & 85 & 81 & 84.0 \\
+Don't Ask & 80 & 86 & 88 & 86 & 85.0 \\
+\midrule
+\textbf{Ours} & \textbf{94} & \textbf{91} & \textbf{94} & \textbf{91} & \textbf{92.5} \\
+\bottomrule
+\end{tabular}
+\end{table}
+ 
+比平均分數更值得注意的是跨 length 的穩定性。本方法在四個 length 上維持於 $91\sim94\%$，最大波動 3 百分點；多數 baseline 則隨 context 變長而明顯惡化，Zep 由 6k 的 82\% 降至 262k 的 29\%，LCA 由 88\% 降至 43\%，Vanilla-RAG 雖在 6k 達 93\%，於 32k 亦降至 77\%。
+ 
+此對比指向本方法與 baseline 的一項結構差異：本方法在 query-time 以 $(s, p)$ 的 structural matching 辨識版本，判斷成本不隨候選數量與 context 長度上升；而以 LLM 在 query-time 逐一判斷版本的做法，需在更長且更多的候選中維持判斷品質，在長 context 下較難維持。
+ 
+在此之中，Don't Ask 是唯一不隨 length 惡化的 baseline（$80\sim88\%$），與其餘 baseline 的走勢不同。這是因為 Don't Ask 同樣以確定性方式（取序號最大者）決定版本、不在長 context 下逐一比較，因此不受 context 變長影響；其分數的上限另有來源，於 Section~\ref{subsec:fcsh_errormode} 說明。
+ 
+\subsection{Error Mode: Where the New Version Is Dropped}
+\label{subsec:fcsh_errormode}
+ 
+本方法在 FC-SH 上的領先，對應 counterfactual 型 KU 的核心困難：當新事實與 LLM 既有知識衝突時，LLM 傾向以既有知識作答。本節指出，baselines 在 FC-SH 上的失敗主要來自此偏好，而非檢索或機制問題。分析聚焦於 \texttt{has\_pair} 子集（ground truth 同時含舊值與 counterfactual 新值，分母 $6\text{k}/32\text{k}/64\text{k}/262\text{k} = 74/65/66/77$），只有這類 query 才真正觸發 KU 判斷。
+ 
+一個跨方法一致的現象是：幾乎所有 method 失敗時，最終答案都回退到 \texttt{gt\_old}（世界知識中的舊值）。此共同的失敗方向即已指向既有知識偏好；各 method 的差異僅在於新版於 pipeline 何處被丟棄。
+ 
+write-time 方法（Mem0、Zep）的新版在寫入階段即被覆寫或未被標為失效，query-time 檢索時記憶中已無新版可取回，因此無法追蹤新版於決策點的去向，其失敗也就無法乾淨區分為既有知識偏好或機制與能力。本節的偏好判讀因此聚焦於能明確追蹤新版去向的 query-time 方法（Vanilla-RAG、Don't Ask），這類方法的記憶保留了所有版本，新版是否抵達最終決策點、以及抵達後是否被採納，皆可逐題計數。
+ 
+表~\ref{tab:errormode_twocol} 依 \texttt{gt\_new} 被丟棄的位置，將 query-time 方法在 \texttt{has\_pair} 上的每題失敗分為兩類：「抽取前丟棄」指 \texttt{gt\_new} 在版本決定之前即被丟棄，且未進入答題階段；「答題仍答舊」指 \texttt{gt\_new} 已在候選集內，且LLM 仍輸出舊值。兩類的分布呈現明顯的左右分裂：Don't Ask 的失敗幾乎全落在「抽取前丟棄」，其 candidate extraction 在新版位於 top-100 候選集時仍未將其抽出；Vanilla-RAG 的失敗幾乎全落在「答題仍答舊」，其序號規則已寫入 prompt，recency judge 仍選擇舊值。同一偏好因此在兩個 method 上以 pipeline 不同位置的形式出現，一個在 candidate extraction，一個在答題階段的 recency judge。
+ 
+\begin{table}[!htb]
+\centering
+\caption{Query-time 方法在 \texttt{has\_pair} 上的失敗分布（gpt-4o-mini）。每題失敗依 \texttt{gt\_new} 被丟棄的位置分為兩類：\textbf{抽取前丟棄}指 \texttt{gt\_new} 未進入答題階段，\textbf{答題仍答舊}指 \texttt{gt\_new} 已在候選集內、LLM 仍輸出舊值。兩類合計為該 length 的總失敗題數。$^{\dagger}$ 標記的答題失敗中，部分為 benchmark 序號標記相反所致（非方法本身失敗）。}
+\label{tab:errormode_twocol}
+\small
+\begin{tabular}{lcccccccc}
+\toprule
+& \multicolumn{2}{c}{6k} & \multicolumn{2}{c}{32k} & \multicolumn{2}{c}{64k} & \multicolumn{2}{c}{262k} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+Method & 抽取前 & 答題 & 抽取前 & 答題 & 抽取前 & 答題 & 抽取前 & 答題 \\
+\midrule
+Don't Ask & 20 & 0 & 10 & 3$^{\dagger}$ & 11 & 2$^{\dagger}$ & 11 & 3$^{\dagger}$ \\
+Vanilla-RAG & 0 & 7 & 0 & 23 & 0 & 15 & 1 & 18 \\
+\bottomrule
+\end{tabular}
+\end{table}
+ 
+此偏好最乾淨的證據來自 LCA，它無檢索、無 memory pipeline，完整編號 fact list（新舊兩版皆在）直接進入 prompt，因此不含任何 pipeline confound。於輸入未被截斷的 6k/32k/64k，LCA 失敗中仍有 $67\sim87\%$ 答 \texttt{gt\_old}，即新版就在 context 內、LLM 仍拒絕採納。此結果與表~\ref{tab:errormode_twocol} 的 query-time 觀察一致：三個 query-time 方法於 262k 皆無實質 retrieval miss，說明失敗與 context 長度無關，而是 LLM 在拿到新版時拒絕採納。Listing~\ref{lst:dontask_case} 以一題呈現 Don't Ask 的逐字 candidate 輸出，直接顯示新版位於候選集卻未被抽出。
+\needspace{10\baselineskip}
+\begin{lstlisting}[style=tracebox, caption={一題 counterfactual 的 per-qid trace（FC-SH 6k, qid 8）。新舊版皆位於 top-100 候選集，新版序號較大；Don't Ask 的 candidate extraction 逐字輸出僅含舊版一個候選，新版是被 LLM 拒絕抽取），取序號最大者因此只能回傳舊值。本方法於同一候選集以 $(s, p)$ 歸群取最新序號，正確選出新版。}, label={lst:dontask_case}]
+Q: What is the official language of Japan?
+Top-100 pool (both versions present):
+  240  The official language of Japan is Japanese.   [gt_old]
+  439  The official language of Japan is Swedish.    [gt_new, newer serial]
+Don't Ask extraction (raw): {"candidates":[{"serial":240,...,"answer_entity":"Japanese"}]}
+  n_candidates=1, n_malformed_dropped=0   (serial 439 never extracted)
+  max(serial)=240  =>  "Japanese"   [wrong; gt="Swedish"]
+Ours (same pool): group (Japan, official-language) -> newest 439  =>  "Swedish"   [correct]
+\end{lstlisting}
+本方法以 $(s, p)$ 的 structural matching 辨識版本，同一事實的新舊版只要落入相同的 $(s, p)$ 群即一併納入，版本辨識為確定性配對，不經 LLM 對候選的語意抽取，因此依設計不暴露於前述既有知識偏好。此結果支持 Chapter~\ref{ch:introduction} 的論點：於 query-time 或 write-time 以 LLM 判斷版本的方法，在 counterfactual 情境下受既有知識偏好影響；而本方法將版本辨識移出 LLM 並以 $(s, p)$ 結構配對負責，依設計不落入同一偏好。至於本方法內部 structural matching 與 LLM Fallback 兩個 component 各自的貢獻，以及本方法自身的殘餘失敗來源，於 Section~\ref{subsec:fcsh_ablation} 分析。
+ 
+\subsection{Ablation: Structural Matching and LLM Fallback}
+\label{subsec:fcsh_ablation}
+ 
+本節量化本方法兩個 component（structural matching 與 LLM Fallback）於 context length 上的分工，同時揭露本方法自身的殘餘失敗來源。表~\ref{tab:ablation_components} 呈現本方法三個 configuration 於 FC-SH 4 length 上的 overall sEM：Struct-Only 保留 structural matching 與寫入時序最新者的版本選擇而關閉 LLM Fallback，LLM-Identity-Only 則關閉 structural matching、將所有候選送入 LLM 判斷 identity，Struct + LLM-Fallback 為本方法的完整版本。
+\begin{table}[!htb]
+\centering
+\caption{FC-SH overall sEM (\%) 於 gpt-4o-mini backbone，本方法三個 configuration 的比較。Bold 表示該 length 上的最佳結果（含並列）。}
+\label{tab:ablation_components}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & 6k & 32k & 64k & 262k \\
+\midrule
+Ours (Struct-Only) & 91 & 87 & 92 & 86 \\
+Ours (LLM-Identity-Only) & \textbf{97} & \textbf{91} & 91 & 87 \\
+\textbf{Ours (Struct + LLM-Fallback)} & 94 & \textbf{91} & \textbf{94} & \textbf{91} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+ 
+LLM-Identity-Only 於短 context（6k）上高於 Struct-Only（97 對 91），反映此區間候選集規模較小，LLM 於單次判斷中足以涵蓋所有可能的 identity pair；至長 context（262k），兩者已相近（87 對 86）。此收斂反映長 context 下 top-100 pool 中的 distractor 增多，LLM 於單次判斷中的 identity grouping 在大 pool 上較不穩定，而 structural matching 的 $(s, p)$ 配對為 exact match，不受 pool 規模影響。Struct-Only 的剩餘失敗即來自此處的另一面：新舊版因抽取用字差異落入不同的 $(s, p)$ 群，同群只剩單一成員時無從比較版本，此為 $(s, p)$ 與 triple extraction 的品質問題，而非既有知識偏好。
+Ours (Struct + LLM-Fallback)為三個 configuration 中 4 length 平均最高（92.5），且為唯一於 4 length 皆維持 91 以上者；LLM Fallback 相對 Struct-Only 的變化於 4 length 上為 $+2～+5$（百分點），長 context 上邊際效益最大。
+ 
+一項需要說明的是，Ours (Struct + LLM-Fallback) 在 6k、32k 上並非最佳，LLM-Identity-Only 於此二 length 更高或持平。本方法仍以 Struct + LLM-Fallback 為完整版本，並非因其在 gpt-4o-mini 上每個 length 皆最高，而是因為 LLM-Identity-Only 將 identity 判斷全交給 LLM，正是本文所要避開的 KU 判斷依賴 LLM 的做法；其在強 backbone 和 短 context 上的分數雖高，但此依賴會在較弱 backbone 上失效（見 Section~\ref{sec:backbone_robustness}）。完整版本以 structural matching 為主判斷、僅以少量 LLM 補救殘餘，換取的是跨 backbone 的穩健，而非單一強 backbone 上的最高分。
+ 
+上述相對 Struct-Only 的變化與分工建立於 gpt-4o-mini 這一個 backbone。在此強 backbone 上，三個 configuration 的差異其實有限（overall sEM 落在 $86\sim97\%$），完整版本設計的必要性尚未充分顯現；LLM Fallback 相對 Struct-Only 的變化是否隨 backbone 能力改變（包含在較弱 backbone 上可能反轉為負），以及 structural matching 相對 LLM identity 的優勢是否隨 backbone 減弱而擴大，為下一節所要檢視的問題。
+ 
+\section{Robustness across Backbone Capabilities}
+\label{sec:backbone_robustness}
+ 
+Section~\ref{sec:main_fcsh} 的結果建立於單一 backbone（gpt-4o-mini）。本節檢視當 backbone 的判斷能力改變時，本方法相對 baseline 的表現是否穩定。本文的核心主張是本方法將 KU 的版本判斷移出 LLM、以 $(s, p)$ 結構配對負責，因此主判斷不依賴 backbone 的判斷能力；據此，backbone 能力越弱，以 LLM 判斷 KU 的 baseline 應退化越多，而本方法的退化應較小，兩者差距因此隨 backbone 減弱而擴大。
+ 
+本節於三組 backbone 上檢視此預測：gemma3 同一 family 的四個 backbone scale、四個獨立 family 的 7--9B model，以及兩個較強的 GPT backbone。所有實驗皆為 per-backbone extraction，即 fact 與 triple extraction 由該 backbone 自身執行；此設定下跨 backbone 的絕對分數同時受該 backbone extraction 品質影響，本節的論證因此以「同一 backbone 內各 method 的相對差距如何隨能力變化」為主，而非跨 backbone 的絕對值比較。
+ 
+\subsection{Gemma3 Backbone Scales}
+\label{subsec:gemma3}
+ 
+表~\ref{tab:gemma3} 為 gemma3 四個 backbone scale（1B 至 27B）於 FC-SH 6k 的 overall sEM。
+ 
+\begin{table}[!htb]
+\centering
+\caption{FC-SH 6k overall sEM (\%) 於 gemma3 四個 backbone scale，per-backbone extraction。Bold 為該 scale 上的最佳結果（含並列）。$\Delta$ 為本方法相對既有最佳 baseline 之領先。Mem0 Vanilla 於 1B 因資源限制未執行，以「—」標示。}
+\label{tab:gemma3}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & 1B & 4B & 12B & 27B \\
+\midrule
+Mem0 Vanilla & — & 11 & 45 & 45 \\
+Mem0 + Fact Extraction & 5 & 11 & 64 & 54 \\
+Zep ($k=10$) & 29 & 32 & 58 & 62 \\
+Vanilla-RAG & 30 & 48 & 68 & 69 \\
+Don't Ask & 2 & 36 & 84 & 96 \\
+\midrule
+Ours (Struct-Only) & \textbf{52} & \textbf{79} & \textbf{99} & 97 \\
+\textbf{Ours (Struct + LLM-Fallback)} & 44 & \textbf{79} & \textbf{99} & \textbf{99} \\
+\midrule
+$\Delta$ (vs. Best Baseline) & $+14$ & $+31$ & $+15$ & $+3$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+ 
+三個 backbone 間的變化印證本節的預測。於最弱的 1B，以 LLM 判斷 KU 的 baseline 幾乎全數失效，Don't Ask 僅 2、Mem0 + Fact Extraction 僅 5、Vanilla-RAG 為 30；本方法的 Struct-Only 於同一 backbone 仍達 52，為全表最高。此對比是本方法主判斷不依賴 backbone 的最直接一格：baseline 的 KU 判斷需要 backbone 具備足夠的語意判斷能力，1B 不具備此能力，而 $(s, p)$ 的 exact match 不需要語意判斷，因此不隨 backbone 減弱而失效。隨 backbone scale 上升，baseline 的判斷能力恢復，其分數快速追近：於 27B，Don't Ask 達 96、Vanilla-RAG 達 69，與本方法的差距明顯縮小。此收斂本身即支持本節的主張，baseline 的失敗來自 backbone 判斷能力不足，一旦 backbone 夠強、此瓶頸解除，差距自然縮小。
+ 
+本方法內部 LLM Fallback 相對 Struct-Only 的變化，於此組 backbone 上呈現與上述一致的方向。由表~\ref{tab:gemma3} 中兩列相減，Fallback 的貢獻於 1B 為 $-8$（44 對 52），於 4B 與 12B 為 $0$（分別為 79 與 99），於 27B 為 $+2$（99 對 97）；而 Section~\ref{subsec:fcsh_ablation} 中同一比較於 gpt-4o-mini 上為 $+3, +4, +2, +5$ 個百分點。此序列隨 backbone 能力單調上升：Fallback 本身是一次 LLM 呼叫，其判斷品質同樣受 backbone 能力限制，因此於最弱的 1B 反轉為負，須至較強的 backbone 才穩定為正（於 1B 轉為負的可能機制為 identity 補救時將不同事實誤合併，此機制為推測）。這說明即使是本方法所保留的這一小部分 LLM 判斷，其價值仍取決於 backbone 能力，與本文將主判斷移出 LLM 的設計動機一致。
+ 
+\subsection{Consistency across Model Families}
+\label{subsec:crossfamily}
+ 
+gemma3 的觀察來自單一 family。為檢視「KU 表現隨 backbone 減弱而退化」而非 gemma3 family 的特例⋯四個獨立 family 的 7--9B model 上評測，此區間對應 gemma3 中 baseline 快速追近的過渡帶。
+ 
+\begin{table}[!htb]
+\centering
+\caption{FC-SH 6k overall sEM (\%) 於四個獨立 open-weight family 的 7--9B 模型。Bold 為該模型上的最佳結果（含並列）。$\Delta$ 為本方法相對既有最佳 baseline 之領先。}
+\label{tab:crossfamily}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & Llama3.1-8B & Qwen2.5-7B & Gemma2-9B & Mistral-7B \\
+\midrule
+Mem0 + Fact Extraction & 8 & 21 & 27 & 19 \\
+Zep ($k=10$) & 63 & 51 & 73 & 52 \\
+Vanilla-RAG & 70 & 27 & 38 & 26 \\
+Don't Ask & 48 & 42 & \textbf{80} & 21 \\
+\midrule
+Ours (Struct-Only) & \textbf{81} & 83 & 71 & 64 \\
+\textbf{Ours (Struct + LLM-Fallback)} & \textbf{81} & \textbf{91} & 72 & \textbf{66} \\
+\midrule
+$\Delta$ (vs. Best Baseline) & $+11$ & $+40$ & $-8$ & $+14$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+表~\ref{tab:crossfamily} 為四個獨立 family 中，本方法於三個為最高且領先可觀。唯一例外 Gemma2-9B（本方法 72、Don't Ask 80）並非本方法失效，而是 Don't Ask 在此 backbone 上異常升高：其跨 family 分數為 21--80，Gemma2-9B 的 80 遠高於其餘三家（21--48），而本方法 72 仍落在其正常區間（66--91）內。此升高源於 Don't Ask 的 candidate extraction 指示「列出所有衝突版本、不預先挑選」，Gemma2-9B 恰為四者中唯一嚴格遵守者，其餘 family 則只列單一候選或匹配到無關候選。此結果正說明既有 query-time LLM baseline 的表現取決於該 backbone 是否恰好擅長其所依賴的 LLM 能力，跨 family 高度不穩；而本方法因版本辨識為確定性 $(s, p)$ 配對，於同一能力區間跨四個獨立 family 維持在 66--91；相對於同屬 query-time 以 LLM 判斷的兩個 baseline（Vanilla-RAG 26--70、Don't Ask 21--80），其跨 family 變異明顯較小。
+ 
+\subsection{Stronger Backbones}
+\label{subsec:strongbackbone}
+ 
+表~\ref{tab:strongbackbone} 為兩個較強 GPT backbone 的結果，其中 gpt-4o-mini 即 Section~\ref{sec:main_fcsh} 的主 backbone（此處取 6k）。
+ 
+\begin{table}[!htb]
+\centering
+\caption{FC-SH 6k overall sEM (\%) 於兩個 GPT backbone，per-backbone extraction。Bold 為該 backbone 上的最佳結果（含並列）。}
+\label{tab:strongbackbone}
+\small
+\begin{tabular}{lcc}
+\toprule
+Method & gpt-4o-mini & gpt-5.4-mini \\
+\midrule
+Mem0 + Fact Extraction & 52 & 70 \\
+Zep ($k=10$) & 82 & 93 \\
+Vanilla-RAG & 93 & \textbf{98} \\
+Don't Ask & 80 & 96 \\
+\textbf{Ours (Struct + LLM-Fallback)} & \textbf{94} & \textbf{98} \\
+\bottomrule
+\end{tabular}
+\end{table}
+ 
+於兩個較強 backbone，各 method 的分數整體上移並相互靠近：gpt-5.4-mini 上，Vanilla-RAG 已與本方法並列 98，Don't Ask 96、Zep 93 亦逼近。這延續 gemma3-27B 已呈現的趨勢：backbone 的判斷能力越強，以 LLM 判斷 KU 的 baseline 越能正確處理版本，本方法基於結構的優勢因此在強 backbone 上不明顯。本方法的價值於是主要體現在 backbone 判斷能力受限時，此正對應 Chapter~\ref{ch:introduction} 所述的實際部署情境。
+ 
+\subsection*{Summary}
+ 
+綜合三組 backbone，本方法相對 baseline 的差距隨 backbone 判斷能力減弱而擴大、隨其增強而收斂，此模式在 gemma3 同一 family 的不同 backbone scale、四個獨立系列的 7--9B model 上皆一致成立。這對應本節開頭的預測，也支持本文的核心主張：將 KU 的版本判斷以 $(s, p)$ 結構配對負責、而非交由 LLM，使本方法的 KU 表現在 backbone 判斷能力受限時仍能維持。
+ 
+ 
+\section{LME-KU as a Control Condition}
+\label{subsec:lme_control}
+ 
+Section~\ref{subsec:fcsh_errormode} 自失敗模式的方向支持前述歸因，本節則以對照條件自另一方向檢驗同一歸因。LME-KU 對應 personal 型 KU 情境，其事實隨使用者狀態變動（例如居住城市與職業），與 LLM 既有知識無衝突，因此 LLM 於判斷時不會因既有知識而抗拒採用新版。若 Section~\ref{subsec:fcsh_errormode} 的歸因成立，則本方法與 baseline 於此情境上的差距應明顯縮小。表~\ref{tab:lme_main} 為各 method 於 LME-KU 的 accuracy。
+ 
+\begin{table}[!htb]
+\centering
+\caption{LME-KU accuracy (\%) 於 gpt-4o-mini，$N=78$。Bold 為最佳結果。$\dagger$ Don't Ask 的 pipeline 不含答題階段，答案直接取自 candidate extraction 的 answer\_entity 欄位（見 Section~\ref{subsec:implementation}）。}
+\label{tab:lme_main}
+\small
+\begin{tabular}{lcc}
+\toprule
+Method & correct / 78 & acc \\
+\midrule
+Mem0 + Fact Extraction & 47 / 78 & 60.3 \\
+Mem0 Vanilla & 53 / 78 & 67.9 \\
+Vanilla-RAG (2-stage) & 54 / 78 & 69.2 \\
+Ours (Struct + LLM-Fallback) & 55 / 78 & 70.5 \\
+\textbf{Don't Ask}$\dagger$ & \textbf{59 / 78} & \textbf{75.6} \\
+\bottomrule
+\end{tabular}
+\end{table}
+ 
+Zep 因其 free plan 的 per-graph 128k token 上限低於 LME context 的平均 127.7k，未能完整執行，未列入表~\ref{tab:lme_main}。Don't Ask 則以其原始機制執行並列入表~\ref{tab:lme_main}（標 $\dagger$）：query-time 由 LLM 抽出候選、以 $\max(\text{serial})$ 取最新版並直接輸出該候選的 answer entity，不經答題階段。其 serial 採用與本方法共用的 per-user 寫入時序，檢索池亦與本方法相同；僅 candidate extraction 的 prompt 由 FC-SH 的 $(s, p)$ factoid 版本忠實改寫為 LME 的第一人稱個人事實版本，機制本身不變（見 Section~\ref{subsec:implementation}）。
+ 
+ 
+本方法相對 baseline 的 gap 於兩個情境上的對照見表~\ref{tab:lme_gap}。跨 benchmark 相減要求兩端 pipeline 一致，故此處採 Don't Ask 一列：其於兩個 benchmark 上的呼叫結構完全相同（單次 candidate extraction 後以 $\max(\text{serial})$ 確定性選版、不經答題階段），無須因 benchmark 而調整。FC-SH 一端採 4 length 平均，因 LME-KU 的 context 平均為 127.7k，與任一單一 length 皆不對應。
+ 
+ 
+\begin{table}[!htb]
+\centering
+\caption{本方法相對 baseline 的 gap 於兩個 KU 情境上的對照。負值表示本方法低於該 baseline。FC-SH 欄採 4 length 平均（表~\ref{tab:fcsh_main} 的 AVG 欄）。}
+\label{tab:lme_gap}
+\small
+\begin{tabular}{lcc}
+\toprule
+對照 baseline & FC-SH AVG (counterfactual) & LME-KU (personal) \\
+\midrule
+vs. Mem0 + Fact Extraction & $+37.7$ 百分點 (92.5 對 54.8) & $+10.2$ 百分點 (70.5 對 60.3) \\
+vs. Don't Ask & $+7.5$ 百分點 (92.5 對 85.0) & $-5.1$ 百分點 (70.5 對 75.6) \\
+\bottomrule
+\end{tabular}
+\end{table}
+ 
+本方法相對 baseline 的 gap 於 personal 型情境上明顯縮小，相對 Mem0 + Fact Extraction 自 $+37.7$ 百分點 縮小至 $+10.2$ 百分點，相對 Don't Ask 則自 $+7.5$ 百分點 縮小並反轉為 $-5.1$ 百分點。此縮小的方向與 Section~\ref{subsec:fcsh_errormode} 的歸因所預測者一致：情境轉為 personal 型後，baseline 於「LLM 傾向以既有知識作答」這一失敗模式上的降低，gap 因此縮小。此為對照條件的核心結果，這一結果與該歸因所預測者一致，因而佐證 counterfactual 情境上的大幅 gap 確實來自 LLM 對既有知識的偏好。
+ 
+本方法與 Don't Ask 的對照是此節最具鑑別力的一組，因兩者的差異僅在一處。兩者皆以程式碼取序號最大者決定版本，且於本文的實驗環境中共用同一 fact bank、同一檢索池與同一序號來源（見 Section~\ref{subsec:implementation}），唯一差異在於如何辨識同一事實：Don't Ask 交由 LLM 的 candidate extraction，本方法則以 $(s, p)$ 結構配對。此對照於兩個情境上翻轉符號：於 counterfactual 的 FC-SH，本方法領先 $7.5$ 百分點，其來源已於 Section~\ref{subsec:fcsh_errormode} 定位為 Don't Ask 的 candidate extraction 在新版位於候選集時仍未將其抽出；於 personal 的 LME-KU，此領先反轉為 $-5.1$ 百分點。由於其餘component 相同，此反轉指出：將同一事實的辨識自 LLM 移出、改以結構配對承擔，其效益取決於情境是否存在 knowledge conflict。
+ 
+Mem0 + Fact Extraction 一列的縮小為保守估計。此 baseline 於 LME-KU 上反轉並低於 Mem0 Vanilla 7.6 百分點。一個可能的機制是：LME-KU 對話的事實密度較低，本方法的 fact extraction 抽出更多且更細的事實，Mem0 的 destructive UPDATE 因而有更多機會產生 missing ADD 或 cross-item confusion，使其損害大於 Mem0 原生 extraction；此機制為推測，但無論確切機制為何，此 confound 的方向皆為壓低該 baseline 於 LME-KU 上的分數、使 gap 擴大，與本節所欲論證的縮小方向相反。因此觀察到自 $+37.7$ 百分點 至 $+10.2$ 百分點的縮小，該縮小為保守估計。
+ 
+於 LME-KU 上本方法為 70.5，低於 Don't Ask 的 75.6。此結果與前兩節所建立者一致：Section~\ref{subsec:fcsh_errormode} 指出以 LLM 承擔 KU 判斷的失敗來自 counterfactual 情境下對既有知識的偏好，Section~\ref{sec:backbone_robustness} 則指出此類方法於 backbone 判斷能力足夠時即可正確處理版本。LME-KU 於 gpt-4o-mini 上恰好同時滿足這兩項有利條件：情境不存在 knowledge conflict，backbone 的判斷能力足夠，因此以 LLM 辨識同一事實的做法在此處足以處理，本方法將該步驟結構化所換得的優勢也隨之消失。
+
+\section{Limitations and Scope}
+\label{sec:limitations}
+ 
+本方法定位於 single-valued KU 情境，即同一 $(s, p)$ 於同一時點只有一個當前版本。於 counterfactual 型 KU 情境（FC-SH），本方法的優勢集中於處理 LLM 對既有知識的偏好（Section~\ref{subsec:fcsh_errormode}），此為本方法適用範圍最廣的情境。
+在 personal 型情境（LME-KU），因不存在 knowledge conflict，且 backbone 的判斷能力足夠，以 LLM 為主的判斷表現可靠，本方法於此情境為 70.5，低於最強 baseline Don't Ask 的 75.6（Section~\ref{subsec:lme_control}）。
+本方對於 multi-valued personal 事實（例如使用者會的語言、興趣，同一 property 於同時點可有多個值）不在本方法處理範圍。

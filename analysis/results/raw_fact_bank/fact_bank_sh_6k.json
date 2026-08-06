@@ -1,0 +1,1832 @@
+{
+ "length": "6k",
+ "source": "factconsolidation_sh_6k",
+ "n_facts_raw": 455,
+ "n_facts_unique": 455,
+ "n_questions": 100,
+ "context_chars": 26157,
+ "serial_min": 0,
+ "serial_max": 454,
+ "facts": [
+  {
+   "serial": 0,
+   "fact": "Thomas Kyd was born in the city of London"
+  },
+  {
+   "serial": 1,
+   "fact": "The chairperson of Fatah is Mahmoud Abbas"
+  },
+  {
+   "serial": 2,
+   "fact": "Amy Winehouse died in the city of Camden Town"
+  },
+  {
+   "serial": 3,
+   "fact": "Hines Ward plays the position of wide receiver"
+  },
+  {
+   "serial": 4,
+   "fact": "Bengaluru is located in the continent of Asia"
+  },
+  {
+   "serial": 5,
+   "fact": "Pedro Pierluisi worked in the city of Washington, D.C"
+  },
+  {
+   "serial": 6,
+   "fact": "Rogério Ceni plays the position of goalkeeper"
+  },
+  {
+   "serial": 7,
+   "fact": "The director of British Broadcasting Corporation is Tony Hall, Baron Hall of Birkenhead"
+  },
+  {
+   "serial": 8,
+   "fact": "Victoria Beckham is married to David Beckham"
+  },
+  {
+   "serial": 9,
+   "fact": "The headquarters of University of Minnesota is located in the city of Minneapolis"
+  },
+  {
+   "serial": 10,
+   "fact": "The author of A Wizard of Earthsea is Ursula K. Le Guin"
+  },
+  {
+   "serial": 11,
+   "fact": "Ferdinand Marcos is married to Imelda Marcos"
+  },
+  {
+   "serial": 12,
+   "fact": "The headquarters of University of California, Berkeley is located in the city of Berkeley"
+  },
+  {
+   "serial": 13,
+   "fact": "The chief executive officer of Apple Inc. is Tim Cook"
+  },
+  {
+   "serial": 14,
+   "fact": "Lisa Leslie plays the position of center"
+  },
+  {
+   "serial": 15,
+   "fact": "The univeristy where Galileo Galilei was educated is University of Pisa"
+  },
+  {
+   "serial": 16,
+   "fact": "Chanel was founded by Coco Chanel"
+  },
+  {
+   "serial": 17,
+   "fact": "Church of Scotland was founded by John Knox"
+  },
+  {
+   "serial": 18,
+   "fact": "Slovakia national football team is associated with the sport of association football"
+  },
+  {
+   "serial": 19,
+   "fact": "Alta IF is associated with the sport of association football"
+  },
+  {
+   "serial": 20,
+   "fact": "Shingon Buddhism was founded by Kūkai"
+  },
+  {
+   "serial": 21,
+   "fact": "The capital of Tang Empire is Chang'an"
+  },
+  {
+   "serial": 22,
+   "fact": "Robert A. Heinlein is a citizen of United States of America"
+  },
+  {
+   "serial": 23,
+   "fact": "Galwegians RFC is associated with the sport of rugby union"
+  },
+  {
+   "serial": 24,
+   "fact": "Ferdinand von Richthofen is a citizen of Germany"
+  },
+  {
+   "serial": 25,
+   "fact": "Aladdin Sane was performed by David Bowie"
+  },
+  {
+   "serial": 26,
+   "fact": "The capital of Germany is Berlin"
+  },
+  {
+   "serial": 27,
+   "fact": "The author of Starship Troopers is Robert A. Heinlein"
+  },
+  {
+   "serial": 28,
+   "fact": "Satya Nadella was born in the city of Hyderabad"
+  },
+  {
+   "serial": 29,
+   "fact": "Madame du Barry is a citizen of France"
+  },
+  {
+   "serial": 30,
+   "fact": "Pakistan International Airlines was founded in the city of Karachi"
+  },
+  {
+   "serial": 31,
+   "fact": "quarterback is associated with the sport of American football"
+  },
+  {
+   "serial": 32,
+   "fact": "The author of The Witcher is Andrzej Sapkowski"
+  },
+  {
+   "serial": 33,
+   "fact": "The capital of Great Britain is London"
+  },
+  {
+   "serial": 34,
+   "fact": "Chanel was founded by Andy Warhol"
+  },
+  {
+   "serial": 35,
+   "fact": "Steve Sax is associated with the sport of baseball"
+  },
+  {
+   "serial": 36,
+   "fact": "Hines Ward plays the position of cornerback"
+  },
+  {
+   "serial": 37,
+   "fact": "Frank Zappa died in the city of Los Angeles"
+  },
+  {
+   "serial": 38,
+   "fact": "Dave Filoni is employed by Lucasfilm"
+  },
+  {
+   "serial": 39,
+   "fact": "Henri Grégoire is a citizen of France"
+  },
+  {
+   "serial": 40,
+   "fact": "Christianity was founded in the city of Jerusalem"
+  },
+  {
+   "serial": 41,
+   "fact": "Germany is located in the continent of Europe"
+  },
+  {
+   "serial": 42,
+   "fact": "Vijay Mallya is a citizen of India"
+  },
+  {
+   "serial": 43,
+   "fact": "Christianity was founded in the city of Taipei"
+  },
+  {
+   "serial": 44,
+   "fact": "Kūkai speaks the language of Japanese"
+  },
+  {
+   "serial": 45,
+   "fact": "Friedrich Nietzsche is famous for Thus Spoke Zarathustra"
+  },
+  {
+   "serial": 46,
+   "fact": "wide receiver is associated with the sport of American football"
+  },
+  {
+   "serial": 47,
+   "fact": "Ron Dennis is employed by McLaren Automotive"
+  },
+  {
+   "serial": 48,
+   "fact": "Israel was founded by David Ben-Gurion"
+  },
+  {
+   "serial": 49,
+   "fact": "Israel was founded by Philippe, Duke of Orléans"
+  },
+  {
+   "serial": 50,
+   "fact": "quarterback is associated with the sport of Muay Thai"
+  },
+  {
+   "serial": 51,
+   "fact": "Frank Zappa died in the city of Berlin"
+  },
+  {
+   "serial": 52,
+   "fact": "Blood on the Tracks was performed by Bob Dylan"
+  },
+  {
+   "serial": 53,
+   "fact": "Ursula K. Le Guin died in the city of Portland"
+  },
+  {
+   "serial": 54,
+   "fact": "The chairperson of Congolese Party of Labour is Denis Sassou-Nguesso"
+  },
+  {
+   "serial": 55,
+   "fact": "Colin Irwin is a citizen of United Kingdom"
+  },
+  {
+   "serial": 56,
+   "fact": "Canada is located in the continent of North America"
+  },
+  {
+   "serial": 57,
+   "fact": "cricket was created in the country of England"
+  },
+  {
+   "serial": 58,
+   "fact": "Nicolae Ceaușescu is married to Elena Ceaușescu"
+  },
+  {
+   "serial": 59,
+   "fact": "pesäpallo was created in the country of Finland"
+  },
+  {
+   "serial": 60,
+   "fact": "Leo Stein is a citizen of United States of America"
+  },
+  {
+   "serial": 61,
+   "fact": "Walter Chrysler's child is Walter Percy Chrysler Jr"
+  },
+  {
+   "serial": 62,
+   "fact": "Yves Montand is married to Simone Signoret"
+  },
+  {
+   "serial": 63,
+   "fact": "The univeristy where Joan Didion was educated is University of California, Berkeley"
+  },
+  {
+   "serial": 64,
+   "fact": "The director of American Broadcasting Company is Bob Iger"
+  },
+  {
+   "serial": 65,
+   "fact": "Born in the U.S.A. was performed by Bruce Springsteen"
+  },
+  {
+   "serial": 66,
+   "fact": "Rand al'Thor was created by Robert Jordan"
+  },
+  {
+   "serial": 67,
+   "fact": "Buddhism was founded by Gautama Buddha"
+  },
+  {
+   "serial": 68,
+   "fact": "Natalie Portman is affiliated with the religion of Judaism"
+  },
+  {
+   "serial": 69,
+   "fact": "point guard is associated with the sport of basketball"
+  },
+  {
+   "serial": 70,
+   "fact": "Kingdom of Ireland is affiliated with the religion of Catholic Church"
+  },
+  {
+   "serial": 71,
+   "fact": "Rocket Man was performed by Elton John"
+  },
+  {
+   "serial": 72,
+   "fact": "Stephen Crane is famous for The Red Badge of Courage"
+  },
+  {
+   "serial": 73,
+   "fact": "Hal Needham is a citizen of United States of America"
+  },
+  {
+   "serial": 74,
+   "fact": "The chief executive officer of Valve Corporation is Gabe Newell"
+  },
+  {
+   "serial": 75,
+   "fact": "Australia is located in the continent of Oceania"
+  },
+  {
+   "serial": 76,
+   "fact": "The author of The Birth of Tragedy is Friedrich Nietzsche"
+  },
+  {
+   "serial": 77,
+   "fact": "The author of The Birth of Tragedy is Stephen Crane"
+  },
+  {
+   "serial": 78,
+   "fact": "placekicker is associated with the sport of American football"
+  },
+  {
+   "serial": 79,
+   "fact": "The name of the current head of state in United Kingdom is Elizabeth II"
+  },
+  {
+   "serial": 80,
+   "fact": "The chairperson of Harvard University is Lawrence S. Bacow"
+  },
+  {
+   "serial": 81,
+   "fact": "Carlos Gómez is associated with the sport of baseball"
+  },
+  {
+   "serial": 82,
+   "fact": "The Prime Minister of Sweden is Stefan Löfven"
+  },
+  {
+   "serial": 83,
+   "fact": "The type of music that Dale Evans plays is country music"
+  },
+  {
+   "serial": 84,
+   "fact": "Laura Bush is married to George W. Bush"
+  },
+  {
+   "serial": 85,
+   "fact": "The chief executive officer of Microsoft is Satya Nadella"
+  },
+  {
+   "serial": 86,
+   "fact": "Ferdowsi is famous for Shahnameh"
+  },
+  {
+   "serial": 87,
+   "fact": "Catherine Dickens is a citizen of United Kingdom"
+  },
+  {
+   "serial": 88,
+   "fact": "Andrzej Sapkowski speaks the language of Polish"
+  },
+  {
+   "serial": 89,
+   "fact": "The official language of Moscow is Russian"
+  },
+  {
+   "serial": 90,
+   "fact": "The type of music that John McVie plays is rock music"
+  },
+  {
+   "serial": 91,
+   "fact": "Nobuhiro Watsuki is famous for Rurouni Kenshin"
+  },
+  {
+   "serial": 92,
+   "fact": "The company that produced Il-2 Shturmovik is Ilyushin"
+  },
+  {
+   "serial": 93,
+   "fact": "Gala RFC is associated with the sport of rugby union"
+  },
+  {
+   "serial": 94,
+   "fact": "Princess Alice, Duchess of Gloucester is affiliated with the religion of Anglicanism"
+  },
+  {
+   "serial": 95,
+   "fact": "sumo was created in the country of Japan"
+  },
+  {
+   "serial": 96,
+   "fact": "Meredith Grey was performed by Ellen Pompeo"
+  },
+  {
+   "serial": 97,
+   "fact": "The univeristy where Samuel Beckett was educated is Trinity College Dublin"
+  },
+  {
+   "serial": 98,
+   "fact": "Israel is located in the continent of Asia"
+  },
+  {
+   "serial": 99,
+   "fact": "The official language of England is English"
+  },
+  {
+   "serial": 100,
+   "fact": "rugby union was created in the country of England"
+  },
+  {
+   "serial": 101,
+   "fact": "The headquarters of Fordham University is located in the city of New York City"
+  },
+  {
+   "serial": 102,
+   "fact": "Club Nouveau was created in the country of United States of America"
+  },
+  {
+   "serial": 103,
+   "fact": "The capital of Japan is Tokyo"
+  },
+  {
+   "serial": 104,
+   "fact": "FC Vorskla Poltava is associated with the sport of association football"
+  },
+  {
+   "serial": 105,
+   "fact": "United Kingdom is located in the continent of Europe"
+  },
+  {
+   "serial": 106,
+   "fact": "Leonte Răutu is employed by University of Bucharest"
+  },
+  {
+   "serial": 107,
+   "fact": "The author of Our Mutual Friend is Charles Dickens"
+  },
+  {
+   "serial": 108,
+   "fact": "Boston was founded by John Winthrop"
+  },
+  {
+   "serial": 109,
+   "fact": "The chief executive officer of Twitter is Jack Dorsey"
+  },
+  {
+   "serial": 110,
+   "fact": "Mike D'Antoni plays the position of point guard"
+  },
+  {
+   "serial": 111,
+   "fact": "Westinghouse Electric was founded in the city of Pittsburgh"
+  },
+  {
+   "serial": 112,
+   "fact": "Mario Puzo is famous for The Godfather"
+  },
+  {
+   "serial": 113,
+   "fact": "London is located in the continent of Europe"
+  },
+  {
+   "serial": 114,
+   "fact": "The headquarters of University of California, Berkeley is located in the city of Botevgrad"
+  },
+  {
+   "serial": 115,
+   "fact": "The name of the current head of state in United States of America is Donald Trump"
+  },
+  {
+   "serial": 116,
+   "fact": "The official language of Australia is English"
+  },
+  {
+   "serial": 117,
+   "fact": "Pius XII died in the city of Castel Gandolfo"
+  },
+  {
+   "serial": 118,
+   "fact": "Jack Dorsey is a citizen of United States of America"
+  },
+  {
+   "serial": 119,
+   "fact": "Sarit Thanarat is affiliated with the religion of Buddhism"
+  },
+  {
+   "serial": 120,
+   "fact": "Elvis Presley is married to Priscilla Presley"
+  },
+  {
+   "serial": 121,
+   "fact": "Andy Warhol died in the city of New York City"
+  },
+  {
+   "serial": 122,
+   "fact": "Kylie Minogue speaks the language of English"
+  },
+  {
+   "serial": 123,
+   "fact": "Madame du Barry is a citizen of Great Britain"
+  },
+  {
+   "serial": 124,
+   "fact": "The author of Sidereus Nuncius is Galileo Galilei"
+  },
+  {
+   "serial": 125,
+   "fact": "Olga of Kiev died in the city of Kyiv"
+  },
+  {
+   "serial": 126,
+   "fact": "The name of the current head of state in United States of America is Connachta"
+  },
+  {
+   "serial": 127,
+   "fact": "Israel is located in the continent of North America"
+  },
+  {
+   "serial": 128,
+   "fact": "Oscar Wilde died in the city of Paris"
+  },
+  {
+   "serial": 129,
+   "fact": "Joe Hockey is a citizen of Australia"
+  },
+  {
+   "serial": 130,
+   "fact": "The headquarters of Bowdoin College is located in the city of Brunswick"
+  },
+  {
+   "serial": 131,
+   "fact": "Charles Dickens is married to Catherine Dickens"
+  },
+  {
+   "serial": 132,
+   "fact": "Ford Motor Company was founded by Henry Ford"
+  },
+  {
+   "serial": 133,
+   "fact": "FC Vorskla Poltava is associated with the sport of basketball"
+  },
+  {
+   "serial": 134,
+   "fact": "Moshe Kahlon works in the field of politician"
+  },
+  {
+   "serial": 135,
+   "fact": "Laura Bush is married to Princess Alice, Duchess of Gloucester"
+  },
+  {
+   "serial": 136,
+   "fact": "The chief executive officer of Boeing is Dennis Muilenburg"
+  },
+  {
+   "serial": 137,
+   "fact": "David Beckham is associated with the sport of association football"
+  },
+  {
+   "serial": 138,
+   "fact": "David Bowie is married to Iman"
+  },
+  {
+   "serial": 139,
+   "fact": "Elvis Presley is married to Charles the Bold"
+  },
+  {
+   "serial": 140,
+   "fact": "The name of the current head of the Pittsburgh government is Bill Peduto"
+  },
+  {
+   "serial": 141,
+   "fact": "Tony Blair is married to Cherie Blair"
+  },
+  {
+   "serial": 142,
+   "fact": "Andy Warhol died in the city of Montmélian"
+  },
+  {
+   "serial": 143,
+   "fact": "McLaren Automotive was founded in the city of Woking"
+  },
+  {
+   "serial": 144,
+   "fact": "The univeristy where Bill Frisell was educated is Berklee College of Music"
+  },
+  {
+   "serial": 145,
+   "fact": "Hugh Hefner is famous for Playboy"
+  },
+  {
+   "serial": 146,
+   "fact": "The author of Our Mutual Friend is Charles Darwin"
+  },
+  {
+   "serial": 147,
+   "fact": "The author of Lady Windermere's Fan is Oscar Wilde"
+  },
+  {
+   "serial": 148,
+   "fact": "The univeristy where Bob Dylan was educated is University of Minnesota"
+  },
+  {
+   "serial": 149,
+   "fact": "FC Irtysh Omsk is associated with the sport of association football"
+  },
+  {
+   "serial": 150,
+   "fact": "cricket was created in the country of Australia"
+  },
+  {
+   "serial": 151,
+   "fact": "The official language of Australia is Arabic"
+  },
+  {
+   "serial": 152,
+   "fact": "Stephen McNeil works in the field of politician"
+  },
+  {
+   "serial": 153,
+   "fact": "Adalbert of Prague is affiliated with the religion of Catholic Church"
+  },
+  {
+   "serial": 154,
+   "fact": "Transcendental Meditation movement was founded by Maharishi Mahesh Yogi"
+  },
+  {
+   "serial": 155,
+   "fact": "Charlie Hebdo was created in the country of France"
+  },
+  {
+   "serial": 156,
+   "fact": "The capital of Soviet Union is Moscow"
+  },
+  {
+   "serial": 157,
+   "fact": "Kylie Minogue speaks the language of German"
+  },
+  {
+   "serial": 158,
+   "fact": "The capital of India is New Delhi"
+  },
+  {
+   "serial": 159,
+   "fact": "The name of the current head of state in Soviet Union is Mikhail Gorbachev"
+  },
+  {
+   "serial": 160,
+   "fact": "baseball was created in the country of United States of America"
+  },
+  {
+   "serial": 161,
+   "fact": "post-punk was created in the country of United Kingdom"
+  },
+  {
+   "serial": 162,
+   "fact": "country music was created in the country of United States of America"
+  },
+  {
+   "serial": 163,
+   "fact": "The capital of France is Paris"
+  },
+  {
+   "serial": 164,
+   "fact": "Charles Darwin is married to Emma Darwin"
+  },
+  {
+   "serial": 165,
+   "fact": "Country Joe McDonald is a citizen of United States of America"
+  },
+  {
+   "serial": 166,
+   "fact": "Stefan Löfven worked in the city of Stockholm"
+  },
+  {
+   "serial": 167,
+   "fact": "The capital of Italy is Rome"
+  },
+  {
+   "serial": 168,
+   "fact": "center is associated with the sport of basketball"
+  },
+  {
+   "serial": 169,
+   "fact": "Lisa Leslie plays the position of goaltender"
+  },
+  {
+   "serial": 170,
+   "fact": "Alan Jay Lerner died in the city of New York City"
+  },
+  {
+   "serial": 171,
+   "fact": "The capital of France is Harare"
+  },
+  {
+   "serial": 172,
+   "fact": "Bagratuni Dynasty is affiliated with the religion of Christianity"
+  },
+  {
+   "serial": 173,
+   "fact": "The headquarters of University of Bucharest is located in the city of Bucharest"
+  },
+  {
+   "serial": 174,
+   "fact": "split-finger fastball is associated with the sport of baseball"
+  },
+  {
+   "serial": 175,
+   "fact": "Igor of Kiev is married to Olga of Kiev"
+  },
+  {
+   "serial": 176,
+   "fact": "Narendra Modi is a citizen of India"
+  },
+  {
+   "serial": 177,
+   "fact": "The capital of Tang Empire is Beaumont"
+  },
+  {
+   "serial": 178,
+   "fact": "Steve Jobs was born in the city of San Francisco"
+  },
+  {
+   "serial": 179,
+   "fact": "The capital of Soviet Union is Russellville"
+  },
+  {
+   "serial": 180,
+   "fact": "The author of Endymion is John Keats"
+  },
+  {
+   "serial": 181,
+   "fact": "Blood on the Tracks was performed by Lou Reed"
+  },
+  {
+   "serial": 182,
+   "fact": "Edmund Burke is a citizen of Kingdom of Ireland"
+  },
+  {
+   "serial": 183,
+   "fact": "Daphne du Maurier is a citizen of United Kingdom"
+  },
+  {
+   "serial": 184,
+   "fact": "The official language of United Kingdom is English"
+  },
+  {
+   "serial": 185,
+   "fact": "The capital of Romania is Bucharest"
+  },
+  {
+   "serial": 186,
+   "fact": "rugby union was created in the country of India"
+  },
+  {
+   "serial": 187,
+   "fact": "Hyderabad is located in the continent of Asia"
+  },
+  {
+   "serial": 188,
+   "fact": "The chief executive officer of Microsoft is Steve Jobs"
+  },
+  {
+   "serial": 189,
+   "fact": "Hugh Hefner is famous for The Vampyre"
+  },
+  {
+   "serial": 190,
+   "fact": "The capital of Czech Republic is Prague"
+  },
+  {
+   "serial": 191,
+   "fact": "Aristotle's child is Nicomachus"
+  },
+  {
+   "serial": 192,
+   "fact": "Ernst Heinkel is a citizen of Germany"
+  },
+  {
+   "serial": 193,
+   "fact": "Catholic Church was founded by Jesus Christ"
+  },
+  {
+   "serial": 194,
+   "fact": "Bo Ryan is associated with the sport of basketball"
+  },
+  {
+   "serial": 195,
+   "fact": "T. S. Eliot speaks the language of English"
+  },
+  {
+   "serial": 196,
+   "fact": "The company that produced AP1000 is Westinghouse Electric"
+  },
+  {
+   "serial": 197,
+   "fact": "T. S. Eliot speaks the language of French"
+  },
+  {
+   "serial": 198,
+   "fact": "The capital of Papal States is Rome"
+  },
+  {
+   "serial": 199,
+   "fact": "The Wheel of Time was written in the language of English"
+  },
+  {
+   "serial": 200,
+   "fact": "The author of Categories is Aristotle"
+  },
+  {
+   "serial": 201,
+   "fact": "The chief executive officer of Apple Inc. is Vijay Mallya"
+  },
+  {
+   "serial": 202,
+   "fact": "The name of the current head of the Japan government is Shinzō Abe"
+  },
+  {
+   "serial": 203,
+   "fact": "Ernst Heinkel is a citizen of Tang Empire"
+  },
+  {
+   "serial": 204,
+   "fact": "Charles Messier is a citizen of France"
+  },
+  {
+   "serial": 205,
+   "fact": "Pakistan International Airlines was founded in the city of Sweden"
+  },
+  {
+   "serial": 206,
+   "fact": "John Keats died in the city of Rome"
+  },
+  {
+   "serial": 207,
+   "fact": "The director of Madonna is Guy Oseary"
+  },
+  {
+   "serial": 208,
+   "fact": "The univeristy where Samuel Beckett was educated is University of Southern California"
+  },
+  {
+   "serial": 209,
+   "fact": "The capital of Italy is Duluth"
+  },
+  {
+   "serial": 210,
+   "fact": "Cédric Klapisch is a citizen of France"
+  },
+  {
+   "serial": 211,
+   "fact": "England is located in the continent of Europe"
+  },
+  {
+   "serial": 212,
+   "fact": "jazz was created in the country of United States of America"
+  },
+  {
+   "serial": 213,
+   "fact": "Darryl Strawberry is associated with the sport of baseball"
+  },
+  {
+   "serial": 214,
+   "fact": "William Waynflete speaks the language of English"
+  },
+  {
+   "serial": 215,
+   "fact": "Sandy Alderson is associated with the sport of baseball"
+  },
+  {
+   "serial": 216,
+   "fact": "basketball was created in the country of United States of America"
+  },
+  {
+   "serial": 217,
+   "fact": "Narendra Modi is a citizen of Australia"
+  },
+  {
+   "serial": 218,
+   "fact": "Methodism was founded by John Wesley"
+  },
+  {
+   "serial": 219,
+   "fact": "point guard is associated with the sport of cricket"
+  },
+  {
+   "serial": 220,
+   "fact": "Australia is located in the continent of South America"
+  },
+  {
+   "serial": 221,
+   "fact": "Windows Phone was developed by Microsoft"
+  },
+  {
+   "serial": 222,
+   "fact": "The chairperson of Harvard University is Peter Diamandis"
+  },
+  {
+   "serial": 223,
+   "fact": "goaltender is associated with the sport of ice hockey"
+  },
+  {
+   "serial": 224,
+   "fact": "Sasanian Empire was founded by Ardashir I"
+  },
+  {
+   "serial": 225,
+   "fact": "Henri Grégoire is a citizen of India"
+  },
+  {
+   "serial": 226,
+   "fact": "Dave Filoni is employed by British Broadcasting Corporation"
+  },
+  {
+   "serial": 227,
+   "fact": "Irving Fryar plays the position of wide receiver"
+  },
+  {
+   "serial": 228,
+   "fact": "India is located in the continent of Asia"
+  },
+  {
+   "serial": 229,
+   "fact": "Rocket Man was performed by Ayumi Hamasaki"
+  },
+  {
+   "serial": 230,
+   "fact": "Ford Motor Company was founded by Henri Grégoire"
+  },
+  {
+   "serial": 231,
+   "fact": "Walter Chrysler's child is Charles Frederick, Duke of Holstein-Gottorp"
+  },
+  {
+   "serial": 232,
+   "fact": "The chairperson of Fatah is Moshe Kahlon"
+  },
+  {
+   "serial": 233,
+   "fact": "Yves Montand is married to Natalie Portman"
+  },
+  {
+   "serial": 234,
+   "fact": "Bengaluru is located in the continent of Oceania"
+  },
+  {
+   "serial": 235,
+   "fact": "Tunisia national football team is associated with the sport of association football"
+  },
+  {
+   "serial": 236,
+   "fact": "The director of The Beatles is Brian Epstein"
+  },
+  {
+   "serial": 237,
+   "fact": "Canadair was founded in the city of Montreal"
+  },
+  {
+   "serial": 238,
+   "fact": "SteamOS was developed by Valve Corporation"
+  },
+  {
+   "serial": 239,
+   "fact": "Cédric Klapisch is a citizen of Malaysia"
+  },
+  {
+   "serial": 240,
+   "fact": "The official language of Japan is Japanese"
+  },
+  {
+   "serial": 241,
+   "fact": "AppleScript was developed by Apple Inc"
+  },
+  {
+   "serial": 242,
+   "fact": "The official language of United States of America is American English"
+  },
+  {
+   "serial": 243,
+   "fact": "The type of music that Dana International plays is pop music"
+  },
+  {
+   "serial": 244,
+   "fact": "Sable is a citizen of United States of America"
+  },
+  {
+   "serial": 245,
+   "fact": "Brian Epstein is a citizen of United Kingdom"
+  },
+  {
+   "serial": 246,
+   "fact": "Robert Jordan is famous for The Wheel of Time"
+  },
+  {
+   "serial": 247,
+   "fact": "The capital of United States of America is Washington, D.C"
+  },
+  {
+   "serial": 248,
+   "fact": "Imelda Marcos is affiliated with the religion of Catholicism"
+  },
+  {
+   "serial": 249,
+   "fact": "The name of the current head of state in United Kingdom is Emmerson Mnangagwa"
+  },
+  {
+   "serial": 250,
+   "fact": "Country Joe McDonald is a citizen of Romania"
+  },
+  {
+   "serial": 251,
+   "fact": "Past Masters was performed by The Beatles"
+  },
+  {
+   "serial": 252,
+   "fact": "wide receiver is associated with the sport of rugby"
+  },
+  {
+   "serial": 253,
+   "fact": "The company that produced Ford Transit Connect is Ford Motor Company"
+  },
+  {
+   "serial": 254,
+   "fact": "Henry Ford is a citizen of United States of America"
+  },
+  {
+   "serial": 255,
+   "fact": "The capital of Iran is Tehran"
+  },
+  {
+   "serial": 256,
+   "fact": "Vito Corleone was created by Mario Puzo"
+  },
+  {
+   "serial": 257,
+   "fact": "Le Petit Parisien was created in the country of France"
+  },
+  {
+   "serial": 258,
+   "fact": "flanker is associated with the sport of rugby union"
+  },
+  {
+   "serial": 259,
+   "fact": "Nobuhiro Watsuki is famous for The Fairly OddParents"
+  },
+  {
+   "serial": 260,
+   "fact": "Kingdom of Ireland is affiliated with the religion of Zoroastrianism"
+  },
+  {
+   "serial": 261,
+   "fact": "pesäpallo was created in the country of Philippines"
+  },
+  {
+   "serial": 262,
+   "fact": "Mahmoud Abbas works in the field of politician"
+  },
+  {
+   "serial": 263,
+   "fact": "George W. Bush is affiliated with the religion of United Methodist Church"
+  },
+  {
+   "serial": 264,
+   "fact": "Sasanian Empire was founded by Walter Chrysler"
+  },
+  {
+   "serial": 265,
+   "fact": "Canadair was founded in the city of Tucson"
+  },
+  {
+   "serial": 266,
+   "fact": "Karen Armstrong is affiliated with the religion of Catholic Church"
+  },
+  {
+   "serial": 267,
+   "fact": "post-punk was created in the country of Canada"
+  },
+  {
+   "serial": 268,
+   "fact": "Ellen Pompeo is a citizen of United States of America"
+  },
+  {
+   "serial": 269,
+   "fact": "Daniele De Rossi plays the position of midfielder"
+  },
+  {
+   "serial": 270,
+   "fact": "Oscar Wilde died in the city of Guangzhou"
+  },
+  {
+   "serial": 271,
+   "fact": "The author of The Marriage of Figaro is Pierre Beaumarchais"
+  },
+  {
+   "serial": 272,
+   "fact": "association football was created in the country of England"
+  },
+  {
+   "serial": 273,
+   "fact": "Viva Las Vegas was performed by Elvis Presley"
+  },
+  {
+   "serial": 274,
+   "fact": "F-22 Raptor was developed by Lockheed Martin"
+  },
+  {
+   "serial": 275,
+   "fact": "The chief executive officer of Twitter is Bernard Arnault"
+  },
+  {
+   "serial": 276,
+   "fact": "The Prime Minister of Sweden is Pedro Pierluisi"
+  },
+  {
+   "serial": 277,
+   "fact": "SteamOS was developed by ABB Group"
+  },
+  {
+   "serial": 278,
+   "fact": "The Vampyre was written in the language of English"
+  },
+  {
+   "serial": 279,
+   "fact": "Slovakia national football team is associated with the sport of cricket"
+  },
+  {
+   "serial": 280,
+   "fact": "India is located in the continent of Africa"
+  },
+  {
+   "serial": 281,
+   "fact": "The type of music that Dana International plays is Australian hip hop"
+  },
+  {
+   "serial": 282,
+   "fact": "John Walsh is affiliated with the religion of Catholic Church"
+  },
+  {
+   "serial": 283,
+   "fact": "Pius XII died in the city of Wolverhampton"
+  },
+  {
+   "serial": 284,
+   "fact": "The capital of Australia is Canberra"
+  },
+  {
+   "serial": 285,
+   "fact": "Aladdin Sane was performed by Yves Montand"
+  },
+  {
+   "serial": 286,
+   "fact": "The univeristy where Lou Reed was educated is Syracuse University"
+  },
+  {
+   "serial": 287,
+   "fact": "Methodism was founded by Joseph Goebbels"
+  },
+  {
+   "serial": 288,
+   "fact": "Back to Black was performed by Amy Winehouse"
+  },
+  {
+   "serial": 289,
+   "fact": "The type of music that Michael Mantler plays is jazz"
+  },
+  {
+   "serial": 290,
+   "fact": "The director of Lucasfilm is Kathleen Kennedy"
+  },
+  {
+   "serial": 291,
+   "fact": "Surrey Senior Cup is associated with the sport of association football"
+  },
+  {
+   "serial": 292,
+   "fact": "Gennady Rozhdestvensky died in the city of Moscow"
+  },
+  {
+   "serial": 293,
+   "fact": "Ayumi Hamasaki is a citizen of Japan"
+  },
+  {
+   "serial": 294,
+   "fact": "Amala Paul is a citizen of India"
+  },
+  {
+   "serial": 295,
+   "fact": "The official language of United States of America is German"
+  },
+  {
+   "serial": 296,
+   "fact": "New Firm is associated with the sport of association football"
+  },
+  {
+   "serial": 297,
+   "fact": "Playboy was written in the language of English"
+  },
+  {
+   "serial": 298,
+   "fact": "The type of music that Michael Mantler plays is post-punk"
+  },
+  {
+   "serial": 299,
+   "fact": "Sable is a citizen of Czech Republic"
+  },
+  {
+   "serial": 300,
+   "fact": "Sigmund Freud died in the city of London"
+  },
+  {
+   "serial": 301,
+   "fact": "The author of A Wizard of Earthsea is Pius XII"
+  },
+  {
+   "serial": 302,
+   "fact": "Nadezhda Krupskaya died in the city of Moscow"
+  },
+  {
+   "serial": 303,
+   "fact": "David Beckham is associated with the sport of cricket"
+  },
+  {
+   "serial": 304,
+   "fact": "Shingon Buddhism was founded by William Waynflete"
+  },
+  {
+   "serial": 305,
+   "fact": "The author of The Witcher is T. S. Eliot"
+  },
+  {
+   "serial": 306,
+   "fact": "Thomas Kyd was born in the city of Leeds"
+  },
+  {
+   "serial": 307,
+   "fact": "Jesus Christ worked in the city of Galilee"
+  },
+  {
+   "serial": 308,
+   "fact": "John Harkes is associated with the sport of association football"
+  },
+  {
+   "serial": 309,
+   "fact": "The univeristy where Bill Frisell was educated is The University of the Arts"
+  },
+  {
+   "serial": 310,
+   "fact": "goaltender is associated with the sport of pesäpallo"
+  },
+  {
+   "serial": 311,
+   "fact": "Bob Iger is a citizen of United States of America"
+  },
+  {
+   "serial": 312,
+   "fact": "John Knox worked in the city of Edinburgh"
+  },
+  {
+   "serial": 313,
+   "fact": "Benjamin Mazar is a citizen of Israel"
+  },
+  {
+   "serial": 314,
+   "fact": "The headquarters of Ilyushin is located in the city of Moscow"
+  },
+  {
+   "serial": 315,
+   "fact": "Surrey Senior Cup is associated with the sport of basketball"
+  },
+  {
+   "serial": 316,
+   "fact": "Pierre Beaumarchais was born in the city of Paris"
+  },
+  {
+   "serial": 317,
+   "fact": "Priscilla Presley is a citizen of United States of America"
+  },
+  {
+   "serial": 318,
+   "fact": "Back to Black was performed by Frank Zappa"
+  },
+  {
+   "serial": 319,
+   "fact": "Bernard Arnault is a citizen of France"
+  },
+  {
+   "serial": 320,
+   "fact": "Stephen McNeil works in the field of journalist"
+  },
+  {
+   "serial": 321,
+   "fact": "placekicker is associated with the sport of rugby"
+  },
+  {
+   "serial": 322,
+   "fact": "Amala Paul is a citizen of Belgium"
+  },
+  {
+   "serial": 323,
+   "fact": "cornerback is associated with the sport of American football"
+  },
+  {
+   "serial": 324,
+   "fact": "The name of the current head of the Council of People's Commissars government is Vladimir Lenin"
+  },
+  {
+   "serial": 325,
+   "fact": "midfielder is associated with the sport of association football"
+  },
+  {
+   "serial": 326,
+   "fact": "Rand al'Thor was created by Ferdowsi"
+  },
+  {
+   "serial": 327,
+   "fact": "The author of Sketches by Boz is Charles Dickens"
+  },
+  {
+   "serial": 328,
+   "fact": "split-finger fastball is associated with the sport of cricket"
+  },
+  {
+   "serial": 329,
+   "fact": "Vijay Mallya is a citizen of Papal States"
+  },
+  {
+   "serial": 330,
+   "fact": "Robert Parish plays the position of center"
+  },
+  {
+   "serial": 331,
+   "fact": "Maharishi Mahesh Yogi is affiliated with the religion of Hinduism"
+  },
+  {
+   "serial": 332,
+   "fact": "Aristotle's child is George Alexander Kohut"
+  },
+  {
+   "serial": 333,
+   "fact": "The univeristy where Elena Ceaușescu was educated is University of Bucharest"
+  },
+  {
+   "serial": 334,
+   "fact": "Robert Parish plays the position of quarterback"
+  },
+  {
+   "serial": 335,
+   "fact": "Charles Darwin is married to Amala Paul"
+  },
+  {
+   "serial": 336,
+   "fact": "William Waynflete speaks the language of Latin"
+  },
+  {
+   "serial": 337,
+   "fact": "Born in the U.S.A. was performed by Dana International"
+  },
+  {
+   "serial": 338,
+   "fact": "Andrew Carnegie is a citizen of United States of America"
+  },
+  {
+   "serial": 339,
+   "fact": "Adalbert of Prague is affiliated with the religion of atheism"
+  },
+  {
+   "serial": 340,
+   "fact": "Sandy Alderson is associated with the sport of association football"
+  },
+  {
+   "serial": 341,
+   "fact": "The capital of India is Grosseto"
+  },
+  {
+   "serial": 342,
+   "fact": "Thomas Arne was born in the city of London"
+  },
+  {
+   "serial": 343,
+   "fact": "Charles Messier is a citizen of Iran"
+  },
+  {
+   "serial": 344,
+   "fact": "The author of Starship Troopers is Daphne du Maurier"
+  },
+  {
+   "serial": 345,
+   "fact": "Thus Spoke Zarathustra was created in the country of Germany"
+  },
+  {
+   "serial": 346,
+   "fact": "Bo Ryan is associated with the sport of association football"
+  },
+  {
+   "serial": 347,
+   "fact": "The chief executive officer of ABB Group is Ulrich Spiesshofer"
+  },
+  {
+   "serial": 348,
+   "fact": "basketball was created in the country of Soviet Union"
+  },
+  {
+   "serial": 349,
+   "fact": "The univeristy where Wilhelm II was educated is University of Bonn"
+  },
+  {
+   "serial": 350,
+   "fact": "Free as a Bird was performed by The Beatles"
+  },
+  {
+   "serial": 351,
+   "fact": "The name of the current head of the Council of People's Commissars government is Tony Blair"
+  },
+  {
+   "serial": 352,
+   "fact": "Coco Chanel died in the city of Paris"
+  },
+  {
+   "serial": 353,
+   "fact": "Club Nouveau was created in the country of Soviet Union"
+  },
+  {
+   "serial": 354,
+   "fact": "The director of Madonna is Narendra Modi"
+  },
+  {
+   "serial": 355,
+   "fact": "The type of music that Bruce Springsteen plays is rock music"
+  },
+  {
+   "serial": 356,
+   "fact": "The company that produced AP1000 is Canadair"
+  },
+  {
+   "serial": 357,
+   "fact": "Iman is affiliated with the religion of Islam"
+  },
+  {
+   "serial": 358,
+   "fact": "Charlie Hebdo was created in the country of Italy"
+  },
+  {
+   "serial": 359,
+   "fact": "rap rock was created in the country of United States of America"
+  },
+  {
+   "serial": 360,
+   "fact": "Transcendental Meditation movement was founded by Adalbert of Prague"
+  },
+  {
+   "serial": 361,
+   "fact": "John Walsh is affiliated with the religion of Methodism"
+  },
+  {
+   "serial": 362,
+   "fact": "cornerback is associated with the sport of field hockey"
+  },
+  {
+   "serial": 363,
+   "fact": "The origianl broadcaster of 666 Park Avenue is American Broadcasting Company"
+  },
+  {
+   "serial": 364,
+   "fact": "Past Masters was performed by Madonna"
+  },
+  {
+   "serial": 365,
+   "fact": "The name of the current head of state in Soviet Union is Elizabeth II"
+  },
+  {
+   "serial": 366,
+   "fact": "Thomas Arne was born in the city of Bengaluru"
+  },
+  {
+   "serial": 367,
+   "fact": "Andrew Carnegie is a citizen of United Kingdom"
+  },
+  {
+   "serial": 368,
+   "fact": "Moshe Kahlon works in the field of soldier"
+  },
+  {
+   "serial": 369,
+   "fact": "Nicolae Ceaușescu is married to Wilhelm II"
+  },
+  {
+   "serial": 370,
+   "fact": "Buddhism was founded by Mekere Morauta"
+  },
+  {
+   "serial": 371,
+   "fact": "Charles the Bold is a citizen of France"
+  },
+  {
+   "serial": 372,
+   "fact": "John Keats died in the city of Leipzig"
+  },
+  {
+   "serial": 373,
+   "fact": "Malaysia is located in the continent of Asia"
+  },
+  {
+   "serial": 374,
+   "fact": "Imelda Marcos is affiliated with the religion of atheism"
+  },
+  {
+   "serial": 375,
+   "fact": "The name of the current head of the Italy government is Giuseppe Conte"
+  },
+  {
+   "serial": 376,
+   "fact": "New Firm is associated with the sport of baseball"
+  },
+  {
+   "serial": 377,
+   "fact": "The capital of United Kingdom is London"
+  },
+  {
+   "serial": 378,
+   "fact": "The capital of England is London"
+  },
+  {
+   "serial": 379,
+   "fact": "The chief executive officer of Lockheed Martin is Marillyn Hewson"
+  },
+  {
+   "serial": 380,
+   "fact": "The headquarters of Berklee College of Music is located in the city of Boston"
+  },
+  {
+   "serial": 381,
+   "fact": "Elton John is a citizen of United Kingdom"
+  },
+  {
+   "serial": 382,
+   "fact": "baseball was created in the country of Japan"
+  },
+  {
+   "serial": 383,
+   "fact": "The official language of Moscow is German"
+  },
+  {
+   "serial": 384,
+   "fact": "F-22 Raptor was developed by Boeing"
+  },
+  {
+   "serial": 385,
+   "fact": "Ron Dennis is employed by Pakistan International Airlines"
+  },
+  {
+   "serial": 386,
+   "fact": "Ferdinand von Richthofen is a citizen of Canada"
+  },
+  {
+   "serial": 387,
+   "fact": "The headquarters of The University of the Arts is located in the city of Philadelphia"
+  },
+  {
+   "serial": 388,
+   "fact": "The capital of Australia is Oderzo"
+  },
+  {
+   "serial": 389,
+   "fact": "association football was created in the country of Italy"
+  },
+  {
+   "serial": 390,
+   "fact": "Vito Corleone was created by Nobuhiro Watsuki"
+  },
+  {
+   "serial": 391,
+   "fact": "Shahnameh was written in the language of Persian"
+  },
+  {
+   "serial": 392,
+   "fact": "The director of American Broadcasting Company is Ernst Heinkel"
+  },
+  {
+   "serial": 393,
+   "fact": "The chief executive officer of Boeing is Adel al-Jubeir"
+  },
+  {
+   "serial": 394,
+   "fact": "Alan Jay Lerner died in the city of Mansourah, Algeria"
+  },
+  {
+   "serial": 395,
+   "fact": "Joseph Goebbels worked in the city of Berlin"
+  },
+  {
+   "serial": 396,
+   "fact": "The capital of United States of America is Harrisville"
+  },
+  {
+   "serial": 397,
+   "fact": "San Francisco is located in the continent of North America"
+  },
+  {
+   "serial": 398,
+   "fact": "The author of The Marriage of Figaro is Thomas Kyd"
+  },
+  {
+   "serial": 399,
+   "fact": "The univeristy where Lou Reed was educated is Fordham University"
+  },
+  {
+   "serial": 400,
+   "fact": "The company that produced Ford F-Series is Ford Motor Company"
+  },
+  {
+   "serial": 401,
+   "fact": "The author of Sidereus Nuncius is Samuel Beckett"
+  },
+  {
+   "serial": 402,
+   "fact": "Emma Watson speaks the language of English"
+  },
+  {
+   "serial": 403,
+   "fact": "rap rock was created in the country of Russian Empire"
+  },
+  {
+   "serial": 404,
+   "fact": "The origianl broadcaster of The Brady Bunch is American Broadcasting Company"
+  },
+  {
+   "serial": 405,
+   "fact": "Carlos Gómez is associated with the sport of basketball"
+  },
+  {
+   "serial": 406,
+   "fact": "Denis Sassou-Nguesso works in the field of politician"
+  },
+  {
+   "serial": 407,
+   "fact": "Sophia Hawthorne is married to Nathaniel Hawthorne"
+  },
+  {
+   "serial": 408,
+   "fact": "The chief executive officer of ABB Group is Bernard Arnault"
+  },
+  {
+   "serial": 409,
+   "fact": "The headquarters of University of Bucharest is located in the city of Ankara"
+  },
+  {
+   "serial": 410,
+   "fact": "Natalie Portman is affiliated with the religion of interdenominational organization"
+  },
+  {
+   "serial": 411,
+   "fact": "Ardashir I's child is Shapur I"
+  },
+  {
+   "serial": 412,
+   "fact": "Karen Armstrong is affiliated with the religion of Church of Scotland"
+  },
+  {
+   "serial": 413,
+   "fact": "Hermione Granger was performed by Emma Watson"
+  },
+  {
+   "serial": 414,
+   "fact": "Derek Shepherd is married to Meredith Grey"
+  },
+  {
+   "serial": 415,
+   "fact": "The type of music that John McVie plays is rap rock"
+  },
+  {
+   "serial": 416,
+   "fact": "midfielder is associated with the sport of sumo"
+  },
+  {
+   "serial": 417,
+   "fact": "Steve Sax is associated with the sport of association football"
+  },
+  {
+   "serial": 418,
+   "fact": "Tunisia national football team is associated with the sport of basketball"
+  },
+  {
+   "serial": 419,
+   "fact": "Blair Walsh plays the position of placekicker"
+  },
+  {
+   "serial": 420,
+   "fact": "Sophia Hawthorne is married to Joan Didion"
+  },
+  {
+   "serial": 421,
+   "fact": "Philadelphia was founded by William Penn"
+  },
+  {
+   "serial": 422,
+   "fact": "Vladimir Lenin is married to Nadezhda Krupskaya"
+  },
+  {
+   "serial": 423,
+   "fact": "Stephen Crane is famous for Charlie Hebdo"
+  },
+  {
+   "serial": 424,
+   "fact": "Tony Blair is married to Alan Jay Lerner"
+  },
+  {
+   "serial": 425,
+   "fact": "Hermione Granger was performed by Kylie Minogue"
+  },
+  {
+   "serial": 426,
+   "fact": "The Vampyre was written in the language of German"
+  },
+  {
+   "serial": 427,
+   "fact": "Joe Hockey is a citizen of Italy"
+  },
+  {
+   "serial": 428,
+   "fact": "The director of British Broadcasting Corporation is Narendra Modi"
+  },
+  {
+   "serial": 429,
+   "fact": "France is located in the continent of Europe"
+  },
+  {
+   "serial": 430,
+   "fact": "The author of Sketches by Boz is Sigmund Freud"
+  },
+  {
+   "serial": 431,
+   "fact": "Joseph Story is employed by Harvard University"
+  },
+  {
+   "serial": 432,
+   "fact": "The name of the current head of the United States of America government is Donald Trump"
+  },
+  {
+   "serial": 433,
+   "fact": "Gabe Newell is a citizen of United States of America"
+  },
+  {
+   "serial": 434,
+   "fact": "Rogério Ceni plays the position of flanker"
+  },
+  {
+   "serial": 435,
+   "fact": "Germany is located in the continent of Africa"
+  },
+  {
+   "serial": 436,
+   "fact": "Le Petit Parisien was created in the country of Germany"
+  },
+  {
+   "serial": 437,
+   "fact": "goalkeeper is associated with the sport of association football"
+  },
+  {
+   "serial": 438,
+   "fact": "The univeristy where Nathaniel Hawthorne was educated is Bowdoin College"
+  },
+  {
+   "serial": 439,
+   "fact": "The official language of Japan is Swedish"
+  },
+  {
+   "serial": 440,
+   "fact": "Canada is located in the continent of Asia"
+  },
+  {
+   "serial": 441,
+   "fact": "Colin Irwin is a citizen of Israel"
+  },
+  {
+   "serial": 442,
+   "fact": "Malaysia is located in the continent of Antarctica"
+  },
+  {
+   "serial": 443,
+   "fact": "The director of The Beatles is Joe Hockey"
+  },
+  {
+   "serial": 444,
+   "fact": "Tim Cook is a citizen of United States of America"
+  },
+  {
+   "serial": 445,
+   "fact": "The chairperson of Congolese Party of Labour is Stephen McNeil"
+  },
+  {
+   "serial": 446,
+   "fact": "Alta IF is associated with the sport of baseball"
+  },
+  {
+   "serial": 447,
+   "fact": "Roy Rogers is married to Dale Evans"
+  },
+  {
+   "serial": 448,
+   "fact": "Charles Dickens died in the city of Gads Hill Place"
+  },
+  {
+   "serial": 449,
+   "fact": "The capital of Romania is Rajanpur"
+  },
+  {
+   "serial": 450,
+   "fact": "Olga of Kiev died in the city of Rodez"
+  },
+  {
+   "serial": 451,
+   "fact": "Gennady Rozhdestvensky died in the city of United States of America"
+  },
+  {
+   "serial": 452,
+   "fact": "Roy Rogers is married to John McVie"
+  },
+  {
+   "serial": 453,
+   "fact": "The univeristy where Wilhelm II was educated is Baldwin Wallace University"
+  },
+  {
+   "serial": 454,
+   "fact": "The name of the current head of the Tucson government is Jonathan Rothschild"
+  }
+ ]
+}
