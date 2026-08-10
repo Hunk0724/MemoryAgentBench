@@ -53,6 +53,19 @@ python analysis/recall_audit_6k/recall_decomposition_6k.py
 
 **論文含義**:此抽取 confound 由各 backbone 內**所有 method 共用同一 per-backbone bank** → 只影響**跨 backbone 絕對值**,不影響**同 backbone 內 method 比較**。
 
+## (3) 全部 4 配置的 in-memory vs retrieval 拆解(檢索從不失敗)
+
+`python analysis/recall_audit_6k/retrieval_vs_source_6k.py`
+
+對每個配置把「gt_new∈memory(A)」與「gt_new∈pool(B)」拆開,算 `C = retrieval@K | in-memory`。各配置的 memory 來源不同:faithful = ours P1 extraction cache;dest/native = 破壞性更新後的 qdrant store facts(存於 `store_bank_6k_{dest,native}.json`)。
+
+**結果:C = 100%,每個配置、每個 backbone(只要 gt_new 還在 memory 裡)無一例外。** 即**檢索器從不失敗**。gt_new 的 miss 只有兩種來源:
+- **配置 1 faithful**:抽取沒抓到(弱 backbone P1 confound)。
+- **配置 2/4 destructive**:write-time 破壞性刪除——store 從 455 塌到 **0–313**(gemma3-4b **0 筆**、gemma3-1b **5 筆**、llama **12 筆**),弱 backbone 上整個 store 幾乎全毀。
+- **配置 3 Zep**:pool recall 全 100%,根本沒 miss。
+
+→ 同時佐證兩個論點:**faithful 保留全版本的價值**、以及 **write-time commit 的不可逆傷害(弱 backbone 更致命)**。
+
 ## Bundle 內容(給跨機重現)
 
 | 檔 | 用途 |
