@@ -1,7 +1,26 @@
 # Recall decomposition — local backbones (FC-SH 6k, has_pair N=74)
 
 回應 [`docs/handoff/GX10_gemma_retrieval_check.md`](../../docs/handoff/GX10_gemma_retrieval_check.md)。
-把 checklist item-3 的 `gt_new∈top100` 拆成兩個獨立成因,判定「檢索 vs 抽取」哪個是瓶頸。
+(1) 四種 memory-bank 配置的 `gt_new∈pool`(對應 paper `tab:retrieval_len`,local backbone 版);
+(2) 對 faithful 配置,把 `gt_new∈top100` 拆成抽取 vs 檢索兩成因。
+
+## (1) gt_new ∈ pool — 四種 bank 配置 × 8 local backbone
+
+`python analysis/recall_audit_6k/pool_recall_4config_6k.py`
+
+| 配置(bank 設置)| g3-1b | g3-4b | g3-12b | g3-27b | g2-9b | llama-8b | qwen-7b | mistral-7b |
+|:--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **1 faithful**(ours/DontAsk/Vanilla, top-100)| 78 | 86 | 100 | 100 | 100 | 80 | 100 | 92 |
+| **2 Mem0+FE**(faithful+destructive, top-100)| 0 | 0 | 76 | 77 | 22 | 0 | 22 | 18 |
+| **3 Zep**(bi-temporal, top-10)| 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 |
+| **4 Mem0 Vanilla**(native, top-100)| — | 0 | 54 | 66 | — | — | — | — |
+
+**四種配置裡檢索都不是瓶頸**,miss 三種來源:
+- 配置 1 faithful:miss = **抽取 confound**(弱 backbone P1 沒抽到;retrieval@100|in-bank=100%,見 (2))。
+- 配置 2/4 destructive:miss = **write-time 破壞性刪版**(弱端歸零 0%)——正是「write-time 不可逆」的證據。
+- 配置 3 Zep:全 100%(held-fixed gpt-4o-mini graph、backbone-無關);Zep 低準確來自下游,非檢索。
+
+## (2) faithful 配置的抽取 vs 檢索拆解
 
 ## 重現方式(零 API 成本,~7.5MB committed 資料)
 
